@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Orb.Core;
-using Orb.Models;
 using Orb.Models.Subscriptions;
+using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -15,19 +15,19 @@ public class NewSubscriptionBulkPriceTest : TestBase
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
             Cadence = NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkPriceModelType.Bulk,
+            ModelType = ModelType.Bulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
             {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -43,37 +43,36 @@ public class NewSubscriptionBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        BulkConfig expectedBulkConfig = new(
+        Models::BulkConfig expectedBulkConfig = new(
             [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]
         );
         ApiEnum<string, NewSubscriptionBulkPriceCadence> expectedCadence =
             NewSubscriptionBulkPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionBulkPriceModelType> expectedModelType =
-            NewSubscriptionBulkPriceModelType.Bulk;
+        ApiEnum<string, ModelType> expectedModelType = ModelType.Bulk;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
         NewSubscriptionBulkPriceConversionRateConfig expectedConversionRateConfig =
-            new SharedUnitConversionRateConfig()
+            new Models::SharedUnitConversionRateConfig()
             {
-                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -82,10 +81,10 @@ public class NewSubscriptionBulkPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";

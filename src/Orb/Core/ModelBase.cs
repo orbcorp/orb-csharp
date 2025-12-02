@@ -493,7 +493,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Reason>(),
             new ApiEnumConverter<string, CustomerPaymentProvider>(),
             new ApiEnumConverter<string, ProviderType>(),
-            new ApiEnumConverter<string, NewAvalaraTaxConfigurationTaxProvider>(),
+            new ApiEnumConverter<string, TaxProvider>(),
             new ApiEnumConverter<string, NewSphereConfigurationTaxProvider>(),
             new ApiEnumConverter<string, NewTaxJarConfigurationTaxProvider>(),
             new ApiEnumConverter<string, PaymentProvider>(),
@@ -593,9 +593,9 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, Prices::PriceEvaluationModelPricePercentCadence>(),
             new ApiEnumConverter<string, Prices::PriceEvaluationModelPriceEventOutputCadence>(),
-            new ApiEnumConverter<string, Subscriptions::DiscountOverrideDiscountType>(),
+            new ApiEnumConverter<string, Subscriptions::DiscountType>(),
             new ApiEnumConverter<string, Subscriptions::NewSubscriptionBulkPriceCadence>(),
-            new ApiEnumConverter<string, Subscriptions::NewSubscriptionBulkPriceModelType>(),
+            new ApiEnumConverter<string, Subscriptions::ModelType>(),
             new ApiEnumConverter<
                 string,
                 Subscriptions::NewSubscriptionBulkWithProrationPriceCadence

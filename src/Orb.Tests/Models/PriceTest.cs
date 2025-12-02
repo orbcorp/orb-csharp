@@ -218,7 +218,7 @@ public class UnitTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        UnitModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"unit\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"unit\"");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, UnitPriceType> expectedPriceType = UnitPriceType.UsagePrice;
@@ -261,7 +261,7 @@ public class UnitTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -524,7 +524,7 @@ public class TieredTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        TieredModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered\"");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredPriceType> expectedPriceType = TieredPriceType.UsagePrice;
@@ -579,7 +579,7 @@ public class TieredTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -832,7 +832,7 @@ public class BulkTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        BulkModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk\"");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, BulkPriceType> expectedPriceType = BulkPriceType.UsagePrice;
@@ -875,7 +875,7 @@ public class BulkTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -1143,7 +1143,7 @@ public class BulkWithFiltersTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        BulkWithFiltersModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"bulk_with_filters\""
         );
         string expectedName = "name";
@@ -1189,7 +1189,7 @@ public class BulkWithFiltersTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -1504,7 +1504,7 @@ public class PackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        PackageModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"package\"");
         string expectedName = "name";
         PackageConfig expectedPackageConfig = new()
         {
@@ -1551,7 +1551,7 @@ public class PackageTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPackageConfig, model.PackageConfig);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
@@ -1813,7 +1813,7 @@ public class MatrixTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        MatrixModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"matrix\"");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, MatrixPriceType> expectedPriceType = MatrixPriceType.UsagePrice;
@@ -1856,7 +1856,7 @@ public class MatrixTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -2116,7 +2116,7 @@ public class ThresholdTotalAmountTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        ThresholdTotalAmountModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"threshold_total_amount\""
         );
         string expectedName = "name";
@@ -2170,7 +2170,7 @@ public class ThresholdTotalAmountTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -2476,7 +2476,7 @@ public class TieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        TieredPackageModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"tiered_package\""
         );
         string expectedName = "name";
@@ -2530,7 +2530,7 @@ public class TieredPackageTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -2848,7 +2848,7 @@ public class TieredWithMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        TieredWithMinimumModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"tiered_with_minimum\""
         );
         string expectedName = "name";
@@ -2913,7 +2913,7 @@ public class TieredWithMinimumTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -3258,7 +3258,7 @@ public class GroupedTieredTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        GroupedTieredModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"grouped_tiered\""
         );
         string expectedName = "name";
@@ -3304,7 +3304,7 @@ public class GroupedTieredTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -3620,8 +3620,9 @@ public class TieredPackageWithMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        TieredPackageWithMinimumModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"tiered_package_with_minimum\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"tiered_package_with_minimum\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, TieredPackageWithMinimumPriceType> expectedPriceType =
@@ -3684,7 +3685,7 @@ public class TieredPackageWithMinimumTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -4015,7 +4016,7 @@ public class PackageWithAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        PackageWithAllocationModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"package_with_allocation\""
         );
         string expectedName = "name";
@@ -4066,7 +4067,7 @@ public class PackageWithAllocationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPackageWithAllocationConfig, model.PackageWithAllocationConfig);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
@@ -4340,7 +4341,7 @@ public class UnitWithPercentTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        UnitWithPercentModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"unit_with_percent\""
         );
         string expectedName = "name";
@@ -4390,7 +4391,7 @@ public class UnitWithPercentTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -4675,7 +4676,7 @@ public class MatrixWithAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        MatrixWithAllocationModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"matrix_with_allocation\""
         );
         string expectedName = "name";
@@ -4721,7 +4722,7 @@ public class MatrixWithAllocationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -4975,7 +4976,7 @@ public class TieredWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        TieredWithProrationModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"tiered_with_proration\""
         );
         string expectedName = "name";
@@ -5023,7 +5024,7 @@ public class TieredWithProrationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -5314,7 +5315,7 @@ public class UnitWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        UnitWithProrationModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"unit_with_proration\""
         );
         string expectedName = "name";
@@ -5362,7 +5363,7 @@ public class UnitWithProrationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -5639,7 +5640,7 @@ public class GroupedAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        GroupedAllocationModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"grouped_allocation\""
         );
         string expectedName = "name";
@@ -5685,7 +5686,7 @@ public class GroupedAllocationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -5970,7 +5971,7 @@ public class BulkWithProrationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        BulkWithProrationModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"bulk_with_proration\""
         );
         string expectedName = "name";
@@ -6016,7 +6017,7 @@ public class BulkWithProrationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -6325,8 +6326,9 @@ public class GroupedWithProratedMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        GroupedWithProratedMinimumModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"grouped_with_prorated_minimum\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_prorated_minimum\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedWithProratedMinimumPriceType> expectedPriceType =
@@ -6373,7 +6375,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -6677,8 +6679,9 @@ public class GroupedWithMeteredMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        GroupedWithMeteredMinimumModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"grouped_with_metered_minimum\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_metered_minimum\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedWithMeteredMinimumPriceType> expectedPriceType =
@@ -6725,7 +6728,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -7074,8 +7077,9 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        GroupedWithMinMaxThresholdsModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, GroupedWithMinMaxThresholdsPriceType> expectedPriceType =
@@ -7122,7 +7126,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -7424,7 +7428,7 @@ public class MatrixWithDisplayNameTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        MatrixWithDisplayNameModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"matrix_with_display_name\""
         );
         string expectedName = "name";
@@ -7470,7 +7474,7 @@ public class MatrixWithDisplayNameTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -7802,7 +7806,7 @@ public class GroupedTieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        GroupedTieredPackageModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"grouped_tiered_package\""
         );
         string expectedName = "name";
@@ -7848,7 +7852,7 @@ public class GroupedTieredPackageTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -8168,7 +8172,7 @@ public class MaxGroupTieredPackageTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        MaxGroupTieredPackageModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"max_group_tiered_package\""
         );
         string expectedName = "name";
@@ -8214,7 +8218,7 @@ public class MaxGroupTieredPackageTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -8532,8 +8536,9 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        ScalableMatrixWithUnitPricingModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"scalable_matrix_with_unit_pricing\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"scalable_matrix_with_unit_pricing\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, ScalableMatrixWithUnitPricingPriceType> expectedPriceType =
@@ -8593,7 +8598,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -8939,8 +8944,9 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        ScalableMatrixWithTieredPricingModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"scalable_matrix_with_tiered_pricing\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"scalable_matrix_with_tiered_pricing\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, ScalableMatrixWithTieredPricingPriceType> expectedPriceType =
@@ -9003,7 +9009,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -9378,7 +9384,7 @@ public class CumulativeGroupedBulkTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        CumulativeGroupedBulkModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"cumulative_grouped_bulk\""
         );
         string expectedName = "name";
@@ -9424,7 +9430,7 @@ public class CumulativeGroupedBulkTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -9752,8 +9758,9 @@ public class CumulativeGroupedAllocationTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        CumulativeGroupedAllocationModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, CumulativeGroupedAllocationPriceType> expectedPriceType =
@@ -9800,7 +9807,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -10081,9 +10088,7 @@ public class PriceMinimumTest : TestBase
             MinimumAmount = "minimum_amount",
             Prorated = true,
         };
-        PriceMinimumModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"minimum\""
-        );
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"minimum\"");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, PriceMinimumPriceType> expectedPriceType = PriceMinimumPriceType.UsagePrice;
@@ -10126,7 +10131,7 @@ public class PriceMinimumTest : TestBase
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedMinimumConfig, model.MinimumConfig);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);
@@ -10395,7 +10400,7 @@ public class PercentTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        PercentModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
         string expectedName = "name";
         PercentConfig expectedPercentConfig = new(0);
         long expectedPlanPhaseOrder = 0;
@@ -10438,7 +10443,7 @@ public class PercentTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPercentConfig, model.PercentConfig);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
@@ -10714,9 +10719,7 @@ public class EventOutputTest : TestBase
             MinimumAmount = "minimum_amount",
         };
         string expectedMinimumAmount = "minimum_amount";
-        EventOutputModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"event_output\""
-        );
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
         string expectedName = "name";
         long expectedPlanPhaseOrder = 0;
         ApiEnum<string, EventOutputPriceType> expectedPriceType = EventOutputPriceType.UsagePrice;
@@ -10759,7 +10762,7 @@ public class EventOutputTest : TestBase
         }
         Assert.Equal(expectedMinimum, model.Minimum);
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
         Assert.Equal(expectedPriceType, model.PriceType);

@@ -55,9 +55,7 @@ public class BodyModelIncrementTest : TestBase
         };
 
         double expectedAmount = 0;
-        BodyModelIncrementEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"increment\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -97,7 +95,7 @@ public class BodyModelIncrementTest : TestBase
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
         Assert.Equal(expectedAmount, model.Amount);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedEffectiveDate, model.EffectiveDate);
@@ -218,15 +216,13 @@ public class BodyModelDecrementTest : TestBase
         };
 
         double expectedAmount = 0;
-        BodyModelDecrementEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"decrement\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAmount, model.Amount);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
@@ -262,8 +258,9 @@ public class BodyModelExpirationChangeTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        BodyModelExpirationChangeEntryType expectedEntryType =
-            JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
+            "\"expiration_change\""
+        );
 
 #if NET
         DateOnly
@@ -284,7 +281,7 @@ public class BodyModelExpirationChangeTest : TestBase
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedTargetExpiryDate, model.TargetExpiryDate);
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
@@ -319,9 +316,7 @@ public class BodyModelVoidTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        BodyModelVoidEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"void\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -330,7 +325,7 @@ public class BodyModelVoidTest : TestBase
 
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
@@ -361,16 +356,14 @@ public class BodyModelAmendmentTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        BodyModelAmendmentEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"amendment\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);

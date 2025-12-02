@@ -178,7 +178,7 @@ public class PriceBulkWithFiltersTest : TestBase
             PriceBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        PriceBulkWithFiltersModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"bulk_with_filters\""
         );
         string expectedName = "Annual fee";
@@ -216,7 +216,7 @@ public class PriceBulkWithFiltersTest : TestBase
         Assert.Equal(expectedCadence, model.Cadence);
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
         Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
@@ -370,8 +370,9 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
                 PerUnitRate = "per_unit_rate",
             };
         string expectedItemID = "item_id";
-        PriceGroupedWithMinMaxThresholdsModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -410,7 +411,7 @@ public class PriceGroupedWithMinMaxThresholdsTest : TestBase
             model.GroupedWithMinMaxThresholdsConfig
         );
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
         Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
@@ -520,8 +521,9 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
             };
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        PriceCumulativeGroupedAllocationModelType expectedModelType =
-            JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -560,7 +562,7 @@ public class PriceCumulativeGroupedAllocationTest : TestBase
         );
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
         Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);
@@ -653,9 +655,7 @@ public class PricePercentTest : TestBase
         ApiEnum<string, PricePercentCadence> expectedCadence = PricePercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
-        PricePercentModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"percent\""
-        );
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
         string expectedName = "Annual fee";
         PricePercentPercentConfig expectedPercentConfig = new(0);
         string expectedBillableMetricID = "billable_metric_id";
@@ -691,7 +691,7 @@ public class PricePercentTest : TestBase
         Assert.Equal(expectedCadence, model.Cadence);
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPercentConfig, model.PercentConfig);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
@@ -784,9 +784,7 @@ public class PriceEventOutputTest : TestBase
             GroupingKey = "grouping_key",
         };
         string expectedItemID = "item_id";
-        PriceEventOutputModelType expectedModelType = JsonSerializer.Deserialize<JsonElement>(
-            "\"event_output\""
-        );
+        JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
@@ -822,7 +820,7 @@ public class PriceEventOutputTest : TestBase
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedEventOutputConfig, model.EventOutputConfig);
         Assert.Equal(expectedItemID, model.ItemID);
-        Assert.Equal(expectedModelType, model.ModelType);
+        Assert.True(JsonElement.DeepEquals(expectedModelType, model.ModelType));
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedBillableMetricID, model.BillableMetricID);
         Assert.Equal(expectedBilledInAdvance, model.BilledInAdvance);

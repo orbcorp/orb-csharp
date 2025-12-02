@@ -2808,15 +2808,9 @@ public sealed record class BulkWithFilters : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -2988,7 +2982,15 @@ public sealed record class BulkWithFilters : ModelBase
         this.BulkWithFiltersConfig.Validate();
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -3007,14 +3009,14 @@ public sealed record class BulkWithFilters : ModelBase
 
     public BulkWithFilters()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
 #pragma warning disable CS8618
@@ -3320,59 +3322,6 @@ sealed class CadenceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPl
     }
 }
 
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
-    }
-
-    ModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'ModelType'");
-        }
-    }
-
-    class Converter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfigConverter))]
 public record class ConversionRateConfig
 {
@@ -3598,15 +3547,9 @@ public sealed record class TieredWithProration : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -3792,7 +3735,15 @@ public sealed record class TieredWithProration : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.TieredWithProrationConfig.Validate();
         _ = this.BillableMetricID;
@@ -3812,14 +3763,14 @@ public sealed record class TieredWithProration : ModelBase
 
     public TieredWithProration()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
 #pragma warning disable CS8618
@@ -3919,62 +3870,6 @@ sealed class TieredWithProrationCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class TieredWithProrationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public TieredWithProrationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
-    }
-
-    TieredWithProrationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'TieredWithProrationModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -4370,15 +4265,9 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -4550,7 +4439,15 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         this.Cadence.Validate();
         this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -4569,14 +4466,18 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
 
     public GroupedWithMinMaxThresholds()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -4799,62 +4700,6 @@ class GroupedWithMinMaxThresholdsConfigFromRaw
         global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class GroupedWithMinMaxThresholdsModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public GroupedWithMinMaxThresholdsModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
-    }
-
-    GroupedWithMinMaxThresholdsModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'GroupedWithMinMaxThresholdsModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(
@@ -5112,15 +4957,9 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -5292,7 +5131,15 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         this.Cadence.Validate();
         this.CumulativeGroupedAllocationConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -5311,14 +5158,18 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
 
     public CumulativeGroupedAllocation()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -5541,62 +5392,6 @@ class CumulativeGroupedAllocationConfigFromRaw
         global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class CumulativeGroupedAllocationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public CumulativeGroupedAllocationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
-    }
-
-    CumulativeGroupedAllocationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'CumulativeGroupedAllocationModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(
@@ -5833,15 +5628,9 @@ public sealed record class Percent : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.PercentModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.PercentModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -6027,7 +5816,15 @@ public sealed record class Percent : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.PercentConfig.Validate();
         _ = this.BillableMetricID;
@@ -6047,14 +5844,14 @@ public sealed record class Percent : ModelBase
 
     public Percent()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
 #pragma warning disable CS8618
@@ -6137,59 +5934,6 @@ sealed class PercentCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class PercentModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public PercentModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
-    }
-
-    PercentModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.PercentModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'PercentModelType'");
-        }
-    }
-
-    class Converter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.PercentModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.PercentModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.PercentModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -6503,15 +6247,9 @@ public sealed record class EventOutput : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.EventOutputModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.EventOutputModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -6683,7 +6421,15 @@ public sealed record class EventOutput : ModelBase
         this.Cadence.Validate();
         this.EventOutputConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -6702,14 +6448,14 @@ public sealed record class EventOutput : ModelBase
 
     public EventOutput()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
 #pragma warning disable CS8618
@@ -6879,59 +6625,6 @@ class EventOutputConfigFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID
     public global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class EventOutputModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public EventOutputModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
-    }
-
-    EventOutputModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.EventOutputModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException("Invalid value given for 'EventOutputModelType'");
-        }
-    }
-
-    class Converter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.EventOutputModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.EventOutputModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.EventOutputModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(
@@ -9960,15 +9653,9 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -10140,7 +9827,15 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
         this.BulkWithFiltersConfig.Validate();
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -10159,14 +9854,14 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
 
     public ReplacePricePriceBulkWithFilters()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
     public ReplacePricePriceBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
 #pragma warning disable CS8618
@@ -10547,62 +10242,6 @@ sealed class ReplacePricePriceBulkWithFiltersCadenceConverter
     }
 }
 
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePricePriceBulkWithFiltersModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePricePriceBulkWithFiltersModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
-    }
-
-    ReplacePricePriceBulkWithFiltersModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePricePriceBulkWithFiltersModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersConversionRateConfigConverter)
 )]
@@ -10843,15 +10482,9 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -11037,7 +10670,15 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.TieredWithProrationConfig.Validate();
         _ = this.BillableMetricID;
@@ -11057,14 +10698,14 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
 
     public ReplacePricePriceTieredWithProration()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
     public ReplacePricePriceTieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
 #pragma warning disable CS8618
@@ -11216,62 +10857,6 @@ sealed class ReplacePricePriceTieredWithProrationCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePricePriceTieredWithProrationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePricePriceTieredWithProrationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
-    }
-
-    ReplacePricePriceTieredWithProrationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePricePriceTieredWithProrationModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -11677,15 +11262,9 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -11857,7 +11436,15 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
         this.Cadence.Validate();
         this.GroupedWithMinMaxThresholdsConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -11876,7 +11463,9 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
 
     public ReplacePricePriceGroupedWithMinMaxThresholds()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
     public ReplacePricePriceGroupedWithMinMaxThresholds(
@@ -11885,7 +11474,9 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"grouped_with_min_max_thresholds\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -12132,62 +11723,6 @@ class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
         global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePricePriceGroupedWithMinMaxThresholdsModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePricePriceGroupedWithMinMaxThresholdsModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"grouped_with_min_max_thresholds\"");
-    }
-
-    ReplacePricePriceGroupedWithMinMaxThresholdsModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePricePriceGroupedWithMinMaxThresholdsModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(
@@ -12445,15 +11980,9 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -12625,7 +12154,15 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
         this.Cadence.Validate();
         this.CumulativeGroupedAllocationConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -12644,7 +12181,9 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
 
     public ReplacePricePriceCumulativeGroupedAllocation()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
     public ReplacePricePriceCumulativeGroupedAllocation(
@@ -12653,7 +12192,9 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>(
+            "\"cumulative_grouped_allocation\""
+        );
     }
 
 #pragma warning disable CS8618
@@ -12902,62 +12443,6 @@ class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationCon
         );
 }
 
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePricePriceCumulativeGroupedAllocationModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePricePriceCumulativeGroupedAllocationModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"cumulative_grouped_allocation\"");
-    }
-
-    ReplacePricePriceCumulativeGroupedAllocationModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePricePriceCumulativeGroupedAllocationModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
-}
-
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter)
 )]
@@ -13198,15 +12683,9 @@ public sealed record class ReplacePricePricePercent : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -13392,7 +12871,15 @@ public sealed record class ReplacePricePricePercent : ModelBase
     {
         this.Cadence.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"percent\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         this.PercentConfig.Validate();
         _ = this.BillableMetricID;
@@ -13412,14 +12899,14 @@ public sealed record class ReplacePricePricePercent : ModelBase
 
     public ReplacePricePricePercent()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
     public ReplacePricePricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
 #pragma warning disable CS8618
@@ -13541,62 +13028,6 @@ sealed class ReplacePricePricePercentCadenceConverter
             },
             options
         );
-    }
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePricePricePercentModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePricePricePercentModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
-    }
-
-    ReplacePricePricePercentModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePricePricePercentModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
     }
 }
 
@@ -13921,15 +13352,9 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
     /// <summary>
     /// The pricing model type
     /// </summary>
-    public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputModelType ModelType
+    public JsonElement ModelType
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputModelType>(
-                this.RawData,
-                "model_type"
-            );
-        }
+        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
         init { ModelBase.Set(this._rawData, "model_type", value); }
     }
 
@@ -14101,7 +13526,15 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
         this.Cadence.Validate();
         this.EventOutputConfig.Validate();
         _ = this.ItemID;
-        this.ModelType.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.Deserialize<JsonElement>("\"event_output\"")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Name;
         _ = this.BillableMetricID;
         _ = this.BilledInAdvance;
@@ -14120,14 +13553,14 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
 
     public ReplacePricePriceEventOutput()
     {
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
     public ReplacePricePriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
-        this.ModelType = new();
+        this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
 #pragma warning disable CS8618
@@ -14360,62 +13793,6 @@ class ReplacePricePriceEventOutputEventOutputConfigFromRaw
         global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig.FromRawUnchecked(
             rawData
         );
-}
-
-/// <summary>
-/// The pricing model type
-/// </summary>
-[JsonConverter(typeof(Converter))]
-public class ReplacePricePriceEventOutputModelType
-{
-    public JsonElement Json { get; private init; }
-
-    public ReplacePricePriceEventOutputModelType()
-    {
-        Json = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
-    }
-
-    ReplacePricePriceEventOutputModelType(JsonElement json)
-    {
-        Json = json;
-    }
-
-    public void Validate()
-    {
-        if (
-            JsonElement.DeepEquals(
-                this.Json,
-                new global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputModelType().Json
-            )
-        )
-        {
-            throw new OrbInvalidDataException(
-                "Invalid value given for 'ReplacePricePriceEventOutputModelType'"
-            );
-        }
-    }
-
-    class Converter
-        : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputModelType>
-    {
-        public override global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputModelType? Read(
-            ref Utf8JsonReader reader,
-            System::Type typeToConvert,
-            JsonSerializerOptions options
-        )
-        {
-            return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-        }
-
-        public override void Write(
-            Utf8JsonWriter writer,
-            global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputModelType value,
-            JsonSerializerOptions options
-        )
-        {
-            JsonSerializer.Serialize(writer, value.Json, options);
-        }
-    }
 }
 
 [JsonConverter(

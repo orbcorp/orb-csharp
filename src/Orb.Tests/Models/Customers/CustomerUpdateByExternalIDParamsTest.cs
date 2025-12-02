@@ -16,12 +16,11 @@ public class TaxConfiguration1NumeralTest : TestBase
         };
 
         bool expectedTaxExempt = true;
-        TaxConfiguration1NumeralTaxProvider expectedTaxProvider =
-            JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
-        Assert.Equal(expectedTaxProvider, model.TaxProvider);
+        Assert.True(JsonElement.DeepEquals(expectedTaxProvider, model.TaxProvider));
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
     }
 }
@@ -39,12 +38,11 @@ public class TaxConfiguration1AnrokTest : TestBase
         };
 
         bool expectedTaxExempt = true;
-        TaxConfiguration1AnrokTaxProvider expectedTaxProvider =
-            JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
-        Assert.Equal(expectedTaxProvider, model.TaxProvider);
+        Assert.True(JsonElement.DeepEquals(expectedTaxProvider, model.TaxProvider));
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
     }
 }
@@ -62,12 +60,11 @@ public class TaxConfiguration1StripeTest : TestBase
         };
 
         bool expectedTaxExempt = true;
-        TaxConfiguration1StripeTaxProvider expectedTaxProvider =
-            JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
+        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
-        Assert.Equal(expectedTaxProvider, model.TaxProvider);
+        Assert.True(JsonElement.DeepEquals(expectedTaxProvider, model.TaxProvider));
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
     }
 }

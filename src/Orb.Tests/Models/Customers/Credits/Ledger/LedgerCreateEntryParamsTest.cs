@@ -55,9 +55,7 @@ public class IncrementTest : TestBase
         };
 
         double expectedAmount = 0;
-        Ledger::IncrementEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"increment\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -97,7 +95,7 @@ public class IncrementTest : TestBase
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
         Assert.Equal(expectedAmount, model.Amount);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedEffectiveDate, model.EffectiveDate);
@@ -218,15 +216,13 @@ public class DecrementTest : TestBase
         };
 
         double expectedAmount = 0;
-        Ledger::DecrementEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"decrement\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAmount, model.Amount);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
@@ -262,8 +258,9 @@ public class ExpirationChangeTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        Ledger::ExpirationChangeEntryType expectedEntryType =
-            JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
+            "\"expiration_change\""
+        );
 
 #if NET
         DateOnly
@@ -284,7 +281,7 @@ public class ExpirationChangeTest : TestBase
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedTargetExpiryDate, model.TargetExpiryDate);
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
@@ -319,9 +316,7 @@ public class VoidTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        Ledger::VoidEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"void\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -329,7 +324,7 @@ public class VoidTest : TestBase
 
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
@@ -360,16 +355,14 @@ public class AmendmentTest : TestBase
 
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
-        Ledger::AmendmentEntryType expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
-            "\"amendment\""
-        );
+        JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
-        Assert.Equal(expectedEntryType, model.EntryType);
+        Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);

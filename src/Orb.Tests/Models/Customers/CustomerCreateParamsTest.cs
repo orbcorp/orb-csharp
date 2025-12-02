@@ -16,11 +16,11 @@ public class NumeralTest : TestBase
         };
 
         bool expectedTaxExempt = true;
-        TaxProvider expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
+        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
-        Assert.Equal(expectedTaxProvider, model.TaxProvider);
+        Assert.True(JsonElement.DeepEquals(expectedTaxProvider, model.TaxProvider));
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
     }
 }
@@ -38,11 +38,11 @@ public class AnrokTest : TestBase
         };
 
         bool expectedTaxExempt = true;
-        AnrokTaxProvider expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
+        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
-        Assert.Equal(expectedTaxProvider, model.TaxProvider);
+        Assert.True(JsonElement.DeepEquals(expectedTaxProvider, model.TaxProvider));
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
     }
 }
@@ -60,13 +60,11 @@ public class StripeTest : TestBase
         };
 
         bool expectedTaxExempt = true;
-        StripeTaxProvider expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>(
-            "\"stripe\""
-        );
+        JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
         bool expectedAutomaticTaxEnabled = true;
 
         Assert.Equal(expectedTaxExempt, model.TaxExempt);
-        Assert.Equal(expectedTaxProvider, model.TaxProvider);
+        Assert.True(JsonElement.DeepEquals(expectedTaxProvider, model.TaxProvider));
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
     }
 }
