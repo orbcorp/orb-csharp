@@ -164,17 +164,33 @@ public sealed record class CustomerUpdateParams : ParamsBase
     }
 
     /// <summary>
+    /// Payment configuration for the customer, applicable when using Orb Invoicing
+    /// with a supported payment provider such as Stripe.
+    /// </summary>
+    public PaymentConfigurationModel? PaymentConfiguration
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<PaymentConfigurationModel>(
+                this.RawBodyData,
+                "payment_configuration"
+            );
+        }
+        init { ModelBase.Set(this._rawBodyData, "payment_configuration", value); }
+    }
+
+    /// <summary>
     /// This is used for creating charges or invoices in an external system via Orb.
     /// When not in test mode: - the connection must first be configured in the Orb
     /// webapp.  - if the provider is an invoicing provider (`stripe_invoice`, `quickbooks`,
     /// `bill.com`, `netsuite`), any product mappings must first be configured with
     /// the Orb team.
     /// </summary>
-    public ApiEnum<string, PaymentProviderModel>? PaymentProvider
+    public ApiEnum<string, PaymentProvider2>? PaymentProvider
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, PaymentProviderModel>>(
+            return ModelBase.GetNullableClass<ApiEnum<string, PaymentProvider2>>(
                 this.RawBodyData,
                 "payment_provider"
             );
@@ -403,14 +419,213 @@ public sealed record class CustomerUpdateParams : ParamsBase
 }
 
 /// <summary>
+/// Payment configuration for the customer, applicable when using Orb Invoicing with
+/// a supported payment provider such as Stripe.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<PaymentConfigurationModel, PaymentConfigurationModelFromRaw>))]
+public sealed record class PaymentConfigurationModel : ModelBase
+{
+    /// <summary>
+    /// Provider-specific payment configuration.
+    /// </summary>
+    public IReadOnlyList<PaymentProvider1>? PaymentProviders
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<List<PaymentProvider1>>(
+                this.RawData,
+                "payment_providers"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "payment_providers", value);
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.PaymentProviders ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public PaymentConfigurationModel() { }
+
+    public PaymentConfigurationModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaymentConfigurationModel(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+#pragma warning restore CS8618
+
+    public static PaymentConfigurationModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PaymentConfigurationModelFromRaw : IFromRaw<PaymentConfigurationModel>
+{
+    public PaymentConfigurationModel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PaymentConfigurationModel.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ModelConverter<PaymentProvider1, PaymentProvider1FromRaw>))]
+public sealed record class PaymentProvider1 : ModelBase
+{
+    /// <summary>
+    /// The payment provider to configure.
+    /// </summary>
+    public required ApiEnum<string, PaymentProvider1ProviderType> ProviderType
+    {
+        get
+        {
+            return ModelBase.GetNotNullClass<ApiEnum<string, PaymentProvider1ProviderType>>(
+                this.RawData,
+                "provider_type"
+            );
+        }
+        init { ModelBase.Set(this._rawData, "provider_type", value); }
+    }
+
+    /// <summary>
+    /// List of Stripe payment method types to exclude for this customer. Excluded
+    /// payment methods will not be available for the customer to select during payment,
+    /// and will not be used for auto-collection. If a customer's default payment
+    /// method becomes excluded, Orb will attempt to use the next available compatible
+    /// payment method for auto-collection.
+    /// </summary>
+    public IReadOnlyList<string>? ExcludedPaymentMethodTypes
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<List<string>>(
+                this.RawData,
+                "excluded_payment_method_types"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "excluded_payment_method_types", value);
+        }
+    }
+
+    public override void Validate()
+    {
+        this.ProviderType.Validate();
+        _ = this.ExcludedPaymentMethodTypes;
+    }
+
+    public PaymentProvider1() { }
+
+    public PaymentProvider1(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaymentProvider1(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+#pragma warning restore CS8618
+
+    public static PaymentProvider1 FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public PaymentProvider1(ApiEnum<string, PaymentProvider1ProviderType> providerType)
+        : this()
+    {
+        this.ProviderType = providerType;
+    }
+}
+
+class PaymentProvider1FromRaw : IFromRaw<PaymentProvider1>
+{
+    public PaymentProvider1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaymentProvider1.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The payment provider to configure.
+/// </summary>
+[JsonConverter(typeof(PaymentProvider1ProviderTypeConverter))]
+public enum PaymentProvider1ProviderType
+{
+    Stripe,
+}
+
+sealed class PaymentProvider1ProviderTypeConverter : JsonConverter<PaymentProvider1ProviderType>
+{
+    public override PaymentProvider1ProviderType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "stripe" => PaymentProvider1ProviderType.Stripe,
+            _ => (PaymentProvider1ProviderType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentProvider1ProviderType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentProvider1ProviderType.Stripe => "stripe",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
 /// This is used for creating charges or invoices in an external system via Orb.
 /// When not in test mode: - the connection must first be configured in the Orb webapp.
 ///  - if the provider is an invoicing provider (`stripe_invoice`, `quickbooks`,
 /// `bill.com`, `netsuite`), any product mappings must first be configured with the
 /// Orb team.
 /// </summary>
-[JsonConverter(typeof(PaymentProviderModelConverter))]
-public enum PaymentProviderModel
+[JsonConverter(typeof(PaymentProvider2Converter))]
+public enum PaymentProvider2
 {
     Quickbooks,
     BillCom,
@@ -419,9 +634,9 @@ public enum PaymentProviderModel
     Netsuite,
 }
 
-sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
+sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
 {
-    public override PaymentProviderModel Read(
+    public override PaymentProvider2 Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -429,18 +644,18 @@ sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "quickbooks" => PaymentProviderModel.Quickbooks,
-            "bill.com" => PaymentProviderModel.BillCom,
-            "stripe_charge" => PaymentProviderModel.StripeCharge,
-            "stripe_invoice" => PaymentProviderModel.StripeInvoice,
-            "netsuite" => PaymentProviderModel.Netsuite,
-            _ => (PaymentProviderModel)(-1),
+            "quickbooks" => PaymentProvider2.Quickbooks,
+            "bill.com" => PaymentProvider2.BillCom,
+            "stripe_charge" => PaymentProvider2.StripeCharge,
+            "stripe_invoice" => PaymentProvider2.StripeInvoice,
+            "netsuite" => PaymentProvider2.Netsuite,
+            _ => (PaymentProvider2)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PaymentProviderModel value,
+        PaymentProvider2 value,
         JsonSerializerOptions options
     )
     {
@@ -448,11 +663,11 @@ sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
             writer,
             value switch
             {
-                PaymentProviderModel.Quickbooks => "quickbooks",
-                PaymentProviderModel.BillCom => "bill.com",
-                PaymentProviderModel.StripeCharge => "stripe_charge",
-                PaymentProviderModel.StripeInvoice => "stripe_invoice",
-                PaymentProviderModel.Netsuite => "netsuite",
+                PaymentProvider2.Quickbooks => "quickbooks",
+                PaymentProvider2.BillCom => "bill.com",
+                PaymentProvider2.StripeCharge => "stripe_charge",
+                PaymentProvider2.StripeInvoice => "stripe_invoice",
+                PaymentProvider2.Netsuite => "netsuite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

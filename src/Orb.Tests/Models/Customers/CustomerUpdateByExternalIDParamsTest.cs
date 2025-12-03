@@ -1,7 +1,293 @@
+using System.Collections.Generic;
 using System.Text.Json;
+using Orb.Core;
 using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
+
+public class PaymentConfiguration1Test : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PaymentConfiguration1
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        List<PaymentProvider3> expectedPaymentProviders =
+        [
+            new()
+            {
+                ProviderType = PaymentProvider3ProviderType.Stripe,
+                ExcludedPaymentMethodTypes = ["string"],
+            },
+        ];
+
+        Assert.Equal(expectedPaymentProviders.Count, model.PaymentProviders.Count);
+        for (int i = 0; i < expectedPaymentProviders.Count; i++)
+        {
+            Assert.Equal(expectedPaymentProviders[i], model.PaymentProviders[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PaymentConfiguration1
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaymentConfiguration1>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PaymentConfiguration1
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaymentConfiguration1>(json);
+        Assert.NotNull(deserialized);
+
+        List<PaymentProvider3> expectedPaymentProviders =
+        [
+            new()
+            {
+                ProviderType = PaymentProvider3ProviderType.Stripe,
+                ExcludedPaymentMethodTypes = ["string"],
+            },
+        ];
+
+        Assert.Equal(expectedPaymentProviders.Count, deserialized.PaymentProviders.Count);
+        for (int i = 0; i < expectedPaymentProviders.Count; i++)
+        {
+            Assert.Equal(expectedPaymentProviders[i], deserialized.PaymentProviders[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PaymentConfiguration1
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PaymentConfiguration1 { };
+
+        Assert.Null(model.PaymentProviders);
+        Assert.False(model.RawData.ContainsKey("payment_providers"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PaymentConfiguration1 { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new PaymentConfiguration1
+        {
+            // Null should be interpreted as omitted for these properties
+            PaymentProviders = null,
+        };
+
+        Assert.Null(model.PaymentProviders);
+        Assert.False(model.RawData.ContainsKey("payment_providers"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PaymentConfiguration1
+        {
+            // Null should be interpreted as omitted for these properties
+            PaymentProviders = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class PaymentProvider3Test : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PaymentProvider3
+        {
+            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        ApiEnum<string, PaymentProvider3ProviderType> expectedProviderType =
+            PaymentProvider3ProviderType.Stripe;
+        List<string> expectedExcludedPaymentMethodTypes = ["string"];
+
+        Assert.Equal(expectedProviderType, model.ProviderType);
+        Assert.Equal(
+            expectedExcludedPaymentMethodTypes.Count,
+            model.ExcludedPaymentMethodTypes.Count
+        );
+        for (int i = 0; i < expectedExcludedPaymentMethodTypes.Count; i++)
+        {
+            Assert.Equal(
+                expectedExcludedPaymentMethodTypes[i],
+                model.ExcludedPaymentMethodTypes[i]
+            );
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PaymentProvider3
+        {
+            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaymentProvider3>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PaymentProvider3
+        {
+            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaymentProvider3>(json);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, PaymentProvider3ProviderType> expectedProviderType =
+            PaymentProvider3ProviderType.Stripe;
+        List<string> expectedExcludedPaymentMethodTypes = ["string"];
+
+        Assert.Equal(expectedProviderType, deserialized.ProviderType);
+        Assert.Equal(
+            expectedExcludedPaymentMethodTypes.Count,
+            deserialized.ExcludedPaymentMethodTypes.Count
+        );
+        for (int i = 0; i < expectedExcludedPaymentMethodTypes.Count; i++)
+        {
+            Assert.Equal(
+                expectedExcludedPaymentMethodTypes[i],
+                deserialized.ExcludedPaymentMethodTypes[i]
+            );
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PaymentProvider3
+        {
+            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PaymentProvider3 { ProviderType = PaymentProvider3ProviderType.Stripe };
+
+        Assert.Null(model.ExcludedPaymentMethodTypes);
+        Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PaymentProvider3 { ProviderType = PaymentProvider3ProviderType.Stripe };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new PaymentProvider3
+        {
+            ProviderType = PaymentProvider3ProviderType.Stripe,
+
+            // Null should be interpreted as omitted for these properties
+            ExcludedPaymentMethodTypes = null,
+        };
+
+        Assert.Null(model.ExcludedPaymentMethodTypes);
+        Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PaymentProvider3
+        {
+            ProviderType = PaymentProvider3ProviderType.Stripe,
+
+            // Null should be interpreted as omitted for these properties
+            ExcludedPaymentMethodTypes = null,
+        };
+
+        model.Validate();
+    }
+}
 
 public class TaxConfiguration1NumeralTest : TestBase
 {
