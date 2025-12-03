@@ -90,6 +90,7 @@ public sealed record class Item : ModelBase
         init { ModelBase.Set(this._rawData, "archived_at", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -118,6 +119,7 @@ public sealed record class Item : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ItemFromRaw.FromRawUnchecked"/>
     public static Item FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -126,6 +128,7 @@ public sealed record class Item : ModelBase
 
 class ItemFromRaw : IFromRaw<Item>
 {
+    /// <inheritdoc/>
     public Item FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Item.FromRawUnchecked(rawData);
 }
@@ -163,6 +166,7 @@ public sealed record class ItemExternalConnection : ModelBase
         init { ModelBase.Set(this._rawData, "external_entity_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.ExternalConnectionName.Validate();
@@ -184,6 +188,7 @@ public sealed record class ItemExternalConnection : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ItemExternalConnectionFromRaw.FromRawUnchecked"/>
     public static ItemExternalConnection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -194,6 +199,7 @@ public sealed record class ItemExternalConnection : ModelBase
 
 class ItemExternalConnectionFromRaw : IFromRaw<ItemExternalConnection>
 {
+    /// <inheritdoc/>
     public ItemExternalConnection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ItemExternalConnection.FromRawUnchecked(rawData);

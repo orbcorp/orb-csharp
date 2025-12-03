@@ -25,6 +25,7 @@ public sealed record class SubLineItemGrouping : ModelBase
         init { ModelBase.Set(this._rawData, "value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Key;
@@ -46,6 +47,7 @@ public sealed record class SubLineItemGrouping : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubLineItemGroupingFromRaw.FromRawUnchecked"/>
     public static SubLineItemGrouping FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -56,6 +58,7 @@ public sealed record class SubLineItemGrouping : ModelBase
 
 class SubLineItemGroupingFromRaw : IFromRaw<SubLineItemGrouping>
 {
+    /// <inheritdoc/>
     public SubLineItemGrouping FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         SubLineItemGrouping.FromRawUnchecked(rawData);
 }

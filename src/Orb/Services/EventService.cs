@@ -9,7 +9,7 @@ using Orb.Services.Events;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class EventService : IEventService
 {
     /// <inheritdoc/>

@@ -149,6 +149,7 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static TopUpCreateByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -255,6 +256,7 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : ModelB
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AutoCollection;
@@ -280,6 +282,7 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : ModelB
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpCreateByExternalIDParamsInvoiceSettingsFromRaw.FromRawUnchecked"/>
     public static TopUpCreateByExternalIDParamsInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -291,6 +294,7 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : ModelB
 class TopUpCreateByExternalIDParamsInvoiceSettingsFromRaw
     : IFromRaw<TopUpCreateByExternalIDParamsInvoiceSettings>
 {
+    /// <inheritdoc/>
     public TopUpCreateByExternalIDParamsInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopUpCreateByExternalIDParamsInvoiceSettings.FromRawUnchecked(rawData);

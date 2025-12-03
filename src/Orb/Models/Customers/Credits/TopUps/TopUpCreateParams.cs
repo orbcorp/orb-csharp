@@ -147,6 +147,7 @@ public sealed record class TopUpCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static TopUpCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -245,6 +246,7 @@ public sealed record class InvoiceSettings : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AutoCollection;
@@ -268,6 +270,7 @@ public sealed record class InvoiceSettings : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="InvoiceSettingsFromRaw.FromRawUnchecked"/>
     public static InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -276,6 +279,7 @@ public sealed record class InvoiceSettings : ModelBase
 
 class InvoiceSettingsFromRaw : IFromRaw<InvoiceSettings>
 {
+    /// <inheritdoc/>
     public InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         InvoiceSettings.FromRawUnchecked(rawData);
 }

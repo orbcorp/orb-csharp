@@ -7,7 +7,7 @@ using Orb.Models.Events.Volume;
 
 namespace Orb.Services.Events;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class VolumeService : IVolumeService
 {
     /// <inheritdoc/>

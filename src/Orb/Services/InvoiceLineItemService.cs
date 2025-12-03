@@ -7,7 +7,7 @@ using Orb.Models.InvoiceLineItems;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class InvoiceLineItemService : IInvoiceLineItemService
 {
     /// <inheritdoc/>

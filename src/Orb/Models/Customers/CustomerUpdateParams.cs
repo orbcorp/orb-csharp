@@ -379,6 +379,7 @@ public sealed record class CustomerUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static CustomerUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -452,6 +453,7 @@ public sealed record class CustomerUpdateParamsPaymentConfiguration : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.PaymentProviders ?? [])
@@ -477,6 +479,7 @@ public sealed record class CustomerUpdateParamsPaymentConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerUpdateParamsPaymentConfigurationFromRaw.FromRawUnchecked"/>
     public static CustomerUpdateParamsPaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -488,6 +491,7 @@ public sealed record class CustomerUpdateParamsPaymentConfiguration : ModelBase
 class CustomerUpdateParamsPaymentConfigurationFromRaw
     : IFromRaw<CustomerUpdateParamsPaymentConfiguration>
 {
+    /// <inheritdoc/>
     public CustomerUpdateParamsPaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerUpdateParamsPaymentConfiguration.FromRawUnchecked(rawData);
@@ -545,6 +549,7 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.ProviderType.Validate();
@@ -570,6 +575,7 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerUpdateParamsPaymentConfigurationPaymentProviderFromRaw.FromRawUnchecked"/>
     public static CustomerUpdateParamsPaymentConfigurationPaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -593,6 +599,7 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
 class CustomerUpdateParamsPaymentConfigurationPaymentProviderFromRaw
     : IFromRaw<CustomerUpdateParamsPaymentConfigurationPaymentProvider>
 {
+    /// <inheritdoc/>
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerUpdateParamsPaymentConfigurationPaymentProvider.FromRawUnchecked(rawData);
@@ -808,24 +815,84 @@ public record class CustomerUpdateParamsTaxConfiguration
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewAvalaraTaxConfiguration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewAvalara(out var value)) {
+    ///     // `value` is of type `NewAvalaraTaxConfiguration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewAvalara([NotNullWhen(true)] out NewAvalaraTaxConfiguration? value)
     {
         value = this.Value as NewAvalaraTaxConfiguration;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewTaxJarConfiguration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewTaxJar(out var value)) {
+    ///     // `value` is of type `NewTaxJarConfiguration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewTaxJar([NotNullWhen(true)] out NewTaxJarConfiguration? value)
     {
         value = this.Value as NewTaxJarConfiguration;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSphereConfiguration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSphere(out var value)) {
+    ///     // `value` is of type `NewSphereConfiguration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSphere([NotNullWhen(true)] out NewSphereConfiguration? value)
     {
         value = this.Value as NewSphereConfiguration;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="CustomerUpdateParamsTaxConfigurationNumeral"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNumeral(out var value)) {
+    ///     // `value` is of type `CustomerUpdateParamsTaxConfigurationNumeral`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNumeral(
         [NotNullWhen(true)] out CustomerUpdateParamsTaxConfigurationNumeral? value
     )
@@ -834,6 +901,21 @@ public record class CustomerUpdateParamsTaxConfiguration
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="CustomerUpdateParamsTaxConfigurationAnrok"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAnrok(out var value)) {
+    ///     // `value` is of type `CustomerUpdateParamsTaxConfigurationAnrok`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAnrok(
         [NotNullWhen(true)] out CustomerUpdateParamsTaxConfigurationAnrok? value
     )
@@ -842,6 +924,21 @@ public record class CustomerUpdateParamsTaxConfiguration
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="CustomerUpdateParamsTaxConfigurationStripe"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickStripe(out var value)) {
+    ///     // `value` is of type `CustomerUpdateParamsTaxConfigurationStripe`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickStripe(
         [NotNullWhen(true)] out CustomerUpdateParamsTaxConfigurationStripe? value
     )
@@ -850,6 +947,30 @@ public record class CustomerUpdateParamsTaxConfiguration
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewAvalaraTaxConfiguration value) => {...},
+    ///     (NewTaxJarConfiguration value) => {...},
+    ///     (NewSphereConfiguration value) => {...},
+    ///     (CustomerUpdateParamsTaxConfigurationNumeral value) => {...},
+    ///     (CustomerUpdateParamsTaxConfigurationAnrok value) => {...},
+    ///     (CustomerUpdateParamsTaxConfigurationStripe value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewAvalaraTaxConfiguration> newAvalara,
         System::Action<NewTaxJarConfiguration> newTaxJar,
@@ -886,6 +1007,31 @@ public record class CustomerUpdateParamsTaxConfiguration
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewAvalaraTaxConfiguration value) => {...},
+    ///     (NewTaxJarConfiguration value) => {...},
+    ///     (NewSphereConfiguration value) => {...},
+    ///     (CustomerUpdateParamsTaxConfigurationNumeral value) => {...},
+    ///     (CustomerUpdateParamsTaxConfigurationAnrok value) => {...},
+    ///     (CustomerUpdateParamsTaxConfigurationStripe value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewAvalaraTaxConfiguration, T> newAvalara,
         System::Func<NewTaxJarConfiguration, T> newTaxJar,
@@ -933,6 +1079,16 @@ public record class CustomerUpdateParamsTaxConfiguration
         CustomerUpdateParamsTaxConfigurationStripe value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1158,6 +1314,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : ModelBa
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -1195,6 +1352,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : ModelBa
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerUpdateParamsTaxConfigurationNumeralFromRaw.FromRawUnchecked"/>
     public static CustomerUpdateParamsTaxConfigurationNumeral FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1213,6 +1371,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : ModelBa
 class CustomerUpdateParamsTaxConfigurationNumeralFromRaw
     : IFromRaw<CustomerUpdateParamsTaxConfigurationNumeral>
 {
+    /// <inheritdoc/>
     public CustomerUpdateParamsTaxConfigurationNumeral FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerUpdateParamsTaxConfigurationNumeral.FromRawUnchecked(rawData);
@@ -1248,6 +1407,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : ModelBase
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -1285,6 +1445,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerUpdateParamsTaxConfigurationAnrokFromRaw.FromRawUnchecked"/>
     public static CustomerUpdateParamsTaxConfigurationAnrok FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1303,6 +1464,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : ModelBase
 class CustomerUpdateParamsTaxConfigurationAnrokFromRaw
     : IFromRaw<CustomerUpdateParamsTaxConfigurationAnrok>
 {
+    /// <inheritdoc/>
     public CustomerUpdateParamsTaxConfigurationAnrok FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerUpdateParamsTaxConfigurationAnrok.FromRawUnchecked(rawData);
@@ -1338,6 +1500,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : ModelBas
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -1375,6 +1538,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : ModelBas
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerUpdateParamsTaxConfigurationStripeFromRaw.FromRawUnchecked"/>
     public static CustomerUpdateParamsTaxConfigurationStripe FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1393,6 +1557,7 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : ModelBas
 class CustomerUpdateParamsTaxConfigurationStripeFromRaw
     : IFromRaw<CustomerUpdateParamsTaxConfigurationStripe>
 {
+    /// <inheritdoc/>
     public CustomerUpdateParamsTaxConfigurationStripe FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerUpdateParamsTaxConfigurationStripe.FromRawUnchecked(rawData);

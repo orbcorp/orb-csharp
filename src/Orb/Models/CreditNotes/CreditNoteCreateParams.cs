@@ -161,6 +161,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static CreditNoteCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -272,6 +273,7 @@ public sealed record class LineItem : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -295,6 +297,7 @@ public sealed record class LineItem : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.CreditNotes.LineItemFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -305,6 +308,7 @@ public sealed record class LineItem : ModelBase
 
 class LineItemFromRaw : IFromRaw<global::Orb.Models.CreditNotes.LineItem>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.CreditNotes.LineItem.FromRawUnchecked(rawData);

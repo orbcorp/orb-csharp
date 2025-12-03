@@ -114,6 +114,7 @@ public sealed record class MonetaryMinimumAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -151,6 +152,7 @@ public sealed record class MonetaryMinimumAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryMinimumAdjustmentFromRaw.FromRawUnchecked"/>
     public static MonetaryMinimumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -161,6 +163,7 @@ public sealed record class MonetaryMinimumAdjustment : ModelBase
 
 class MonetaryMinimumAdjustmentFromRaw : IFromRaw<MonetaryMinimumAdjustment>
 {
+    /// <inheritdoc/>
     public MonetaryMinimumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryMinimumAdjustment.FromRawUnchecked(rawData);
@@ -251,6 +254,7 @@ public sealed record class MonetaryMinimumAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -273,6 +277,7 @@ public sealed record class MonetaryMinimumAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryMinimumAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static MonetaryMinimumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -283,6 +288,7 @@ public sealed record class MonetaryMinimumAdjustmentFilter : ModelBase
 
 class MonetaryMinimumAdjustmentFilterFromRaw : IFromRaw<MonetaryMinimumAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public MonetaryMinimumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryMinimumAdjustmentFilter.FromRawUnchecked(rawData);

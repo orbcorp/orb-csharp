@@ -41,6 +41,7 @@ public sealed record class SharedTier : ModelBase
         init { ModelBase.Set(this._rawData, "last_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FirstUnit;
@@ -63,6 +64,7 @@ public sealed record class SharedTier : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SharedTierFromRaw.FromRawUnchecked"/>
     public static SharedTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -71,6 +73,7 @@ public sealed record class SharedTier : ModelBase
 
 class SharedTierFromRaw : IFromRaw<SharedTier>
 {
+    /// <inheritdoc/>
     public SharedTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         SharedTier.FromRawUnchecked(rawData);
 }

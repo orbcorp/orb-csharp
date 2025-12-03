@@ -10,7 +10,7 @@ using Orb.Services.Beta;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class BetaService : IBetaService
 {
     /// <inheritdoc/>

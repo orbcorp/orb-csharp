@@ -224,6 +224,7 @@ public sealed record class Plan : ModelBase
         init { ModelBase.Set(this._rawData, "version", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -287,6 +288,7 @@ public sealed record class Plan : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanFromRaw.FromRawUnchecked"/>
     public static Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -295,6 +297,7 @@ public sealed record class Plan : ModelBase
 
 class PlanFromRaw : IFromRaw<Plan>
 {
+    /// <inheritdoc/>
     public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Plan.FromRawUnchecked(rawData);
 }
@@ -419,6 +422,21 @@ public record class PlanAdjustment
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Models::PlanPhaseUsageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseUsageDiscount(out var value)) {
+    ///     // `value` is of type `Models::PlanPhaseUsageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseUsageDiscount(
         [NotNullWhen(true)] out Models::PlanPhaseUsageDiscountAdjustment? value
     )
@@ -427,6 +445,21 @@ public record class PlanAdjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Models::PlanPhaseAmountDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseAmountDiscount(out var value)) {
+    ///     // `value` is of type `Models::PlanPhaseAmountDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseAmountDiscount(
         [NotNullWhen(true)] out Models::PlanPhaseAmountDiscountAdjustment? value
     )
@@ -435,6 +468,21 @@ public record class PlanAdjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Models::PlanPhasePercentageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhasePercentageDiscount(out var value)) {
+    ///     // `value` is of type `Models::PlanPhasePercentageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhasePercentageDiscount(
         [NotNullWhen(true)] out Models::PlanPhasePercentageDiscountAdjustment? value
     )
@@ -443,6 +491,21 @@ public record class PlanAdjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Models::PlanPhaseMinimumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseMinimum(out var value)) {
+    ///     // `value` is of type `Models::PlanPhaseMinimumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseMinimum(
         [NotNullWhen(true)] out Models::PlanPhaseMinimumAdjustment? value
     )
@@ -451,6 +514,21 @@ public record class PlanAdjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Models::PlanPhaseMaximumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseMaximum(out var value)) {
+    ///     // `value` is of type `Models::PlanPhaseMaximumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseMaximum(
         [NotNullWhen(true)] out Models::PlanPhaseMaximumAdjustment? value
     )
@@ -459,6 +537,29 @@ public record class PlanAdjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (Models::PlanPhaseUsageDiscountAdjustment value) => {...},
+    ///     (Models::PlanPhaseAmountDiscountAdjustment value) => {...},
+    ///     (Models::PlanPhasePercentageDiscountAdjustment value) => {...},
+    ///     (Models::PlanPhaseMinimumAdjustment value) => {...},
+    ///     (Models::PlanPhaseMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<Models::PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
         System::Action<Models::PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
@@ -491,6 +592,30 @@ public record class PlanAdjustment
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (Models::PlanPhaseUsageDiscountAdjustment value) => {...},
+    ///     (Models::PlanPhaseAmountDiscountAdjustment value) => {...},
+    ///     (Models::PlanPhasePercentageDiscountAdjustment value) => {...},
+    ///     (Models::PlanPhaseMinimumAdjustment value) => {...},
+    ///     (Models::PlanPhaseMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<Models::PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
         System::Func<Models::PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
@@ -532,6 +657,16 @@ public record class PlanAdjustment
     public static implicit operator PlanAdjustment(Models::PlanPhaseMaximumAdjustment value) =>
         new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -734,6 +869,7 @@ public sealed record class BasePlan : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -756,6 +892,7 @@ public sealed record class BasePlan : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BasePlanFromRaw.FromRawUnchecked"/>
     public static BasePlan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -764,6 +901,7 @@ public sealed record class BasePlan : ModelBase
 
 class BasePlanFromRaw : IFromRaw<BasePlan>
 {
+    /// <inheritdoc/>
     public BasePlan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BasePlan.FromRawUnchecked(rawData);
 }
@@ -850,6 +988,7 @@ public sealed record class PlanPlanPhase : ModelBase
         init { ModelBase.Set(this._rawData, "order", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -880,6 +1019,7 @@ public sealed record class PlanPlanPhase : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPlanPhaseFromRaw.FromRawUnchecked"/>
     public static PlanPlanPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -888,6 +1028,7 @@ public sealed record class PlanPlanPhase : ModelBase
 
 class PlanPlanPhaseFromRaw : IFromRaw<PlanPlanPhase>
 {
+    /// <inheritdoc/>
     public PlanPlanPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         PlanPlanPhase.FromRawUnchecked(rawData);
 }
@@ -969,6 +1110,7 @@ public sealed record class Product : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -991,6 +1133,7 @@ public sealed record class Product : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ProductFromRaw.FromRawUnchecked"/>
     public static Product FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -999,6 +1142,7 @@ public sealed record class Product : ModelBase
 
 class ProductFromRaw : IFromRaw<Product>
 {
+    /// <inheritdoc/>
     public Product FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Product.FromRawUnchecked(rawData);
 }
@@ -1071,6 +1215,7 @@ public sealed record class TrialConfig : ModelBase
         init { ModelBase.Set(this._rawData, "trial_period_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TrialPeriod;
@@ -1092,6 +1237,7 @@ public sealed record class TrialConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TrialConfigFromRaw.FromRawUnchecked"/>
     public static TrialConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1100,6 +1246,7 @@ public sealed record class TrialConfig : ModelBase
 
 class TrialConfigFromRaw : IFromRaw<TrialConfig>
 {
+    /// <inheritdoc/>
     public TrialConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TrialConfig.FromRawUnchecked(rawData);
 }

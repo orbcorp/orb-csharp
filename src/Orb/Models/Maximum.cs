@@ -44,6 +44,7 @@ public sealed record class Maximum : ModelBase
         init { ModelBase.Set(this._rawData, "maximum_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AppliesToPriceIDs;
@@ -74,6 +75,7 @@ public sealed record class Maximum : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MaximumFromRaw.FromRawUnchecked"/>
     public static Maximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -82,6 +84,7 @@ public sealed record class Maximum : ModelBase
 
 class MaximumFromRaw : IFromRaw<Maximum>
 {
+    /// <inheritdoc/>
     public Maximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Maximum.FromRawUnchecked(rawData);
 }
@@ -128,6 +131,7 @@ public sealed record class MaximumFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -150,6 +154,7 @@ public sealed record class MaximumFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MaximumFilterFromRaw.FromRawUnchecked"/>
     public static MaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -158,6 +163,7 @@ public sealed record class MaximumFilter : ModelBase
 
 class MaximumFilterFromRaw : IFromRaw<MaximumFilter>
 {
+    /// <inheritdoc/>
     public MaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MaximumFilter.FromRawUnchecked(rawData);
 }

@@ -29,6 +29,7 @@ public sealed record class CouponRedemption : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CouponID;
@@ -51,6 +52,7 @@ public sealed record class CouponRedemption : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CouponRedemptionFromRaw.FromRawUnchecked"/>
     public static CouponRedemption FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -61,6 +63,7 @@ public sealed record class CouponRedemption : ModelBase
 
 class CouponRedemptionFromRaw : IFromRaw<CouponRedemption>
 {
+    /// <inheritdoc/>
     public CouponRedemption FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         CouponRedemption.FromRawUnchecked(rawData);
 }

@@ -19,6 +19,7 @@ public sealed record class EventUpdateResponse : ModelBase
         init { ModelBase.Set(this._rawData, "amended", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amended;
@@ -39,6 +40,7 @@ public sealed record class EventUpdateResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventUpdateResponseFromRaw.FromRawUnchecked"/>
     public static EventUpdateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -56,6 +58,7 @@ public sealed record class EventUpdateResponse : ModelBase
 
 class EventUpdateResponseFromRaw : IFromRaw<EventUpdateResponse>
 {
+    /// <inheritdoc/>
     public EventUpdateResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         EventUpdateResponse.FromRawUnchecked(rawData);
 }

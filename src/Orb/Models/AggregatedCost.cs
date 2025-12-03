@@ -50,6 +50,7 @@ public sealed record class AggregatedCost : ModelBase
         init { ModelBase.Set(this._rawData, "total", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.PerPriceCosts)
@@ -77,6 +78,7 @@ public sealed record class AggregatedCost : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AggregatedCostFromRaw.FromRawUnchecked"/>
     public static AggregatedCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -85,6 +87,7 @@ public sealed record class AggregatedCost : ModelBase
 
 class AggregatedCostFromRaw : IFromRaw<AggregatedCost>
 {
+    /// <inheritdoc/>
     public AggregatedCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AggregatedCost.FromRawUnchecked(rawData);
 }

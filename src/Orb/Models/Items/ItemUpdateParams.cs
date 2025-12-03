@@ -86,6 +86,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static ItemUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -155,6 +156,7 @@ public sealed record class ExternalConnection : ModelBase
         init { ModelBase.Set(this._rawData, "external_entity_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.ExternalConnectionName.Validate();
@@ -176,6 +178,7 @@ public sealed record class ExternalConnection : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ExternalConnectionFromRaw.FromRawUnchecked"/>
     public static ExternalConnection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -186,6 +189,7 @@ public sealed record class ExternalConnection : ModelBase
 
 class ExternalConnectionFromRaw : IFromRaw<ExternalConnection>
 {
+    /// <inheritdoc/>
     public ExternalConnection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ExternalConnection.FromRawUnchecked(rawData);
 }

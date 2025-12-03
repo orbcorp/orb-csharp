@@ -18,6 +18,7 @@ public sealed record class PriceEvaluateMultipleResponse : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -41,6 +42,7 @@ public sealed record class PriceEvaluateMultipleResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PriceEvaluateMultipleResponseFromRaw.FromRawUnchecked"/>
     public static PriceEvaluateMultipleResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -58,6 +60,7 @@ public sealed record class PriceEvaluateMultipleResponse : ModelBase
 
 class PriceEvaluateMultipleResponseFromRaw : IFromRaw<PriceEvaluateMultipleResponse>
 {
+    /// <inheritdoc/>
     public PriceEvaluateMultipleResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PriceEvaluateMultipleResponse.FromRawUnchecked(rawData);
@@ -117,6 +120,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "price_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Currency;
@@ -144,6 +148,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
     public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -152,6 +157,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<Data>
 {
+    /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Data.FromRawUnchecked(rawData);
 }

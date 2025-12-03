@@ -18,6 +18,7 @@ public sealed record class CostListByExternalIDResponse : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -41,6 +42,7 @@ public sealed record class CostListByExternalIDResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CostListByExternalIDResponseFromRaw.FromRawUnchecked"/>
     public static CostListByExternalIDResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -58,6 +60,7 @@ public sealed record class CostListByExternalIDResponse : ModelBase
 
 class CostListByExternalIDResponseFromRaw : IFromRaw<CostListByExternalIDResponse>
 {
+    /// <inheritdoc/>
     public CostListByExternalIDResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CostListByExternalIDResponse.FromRawUnchecked(rawData);

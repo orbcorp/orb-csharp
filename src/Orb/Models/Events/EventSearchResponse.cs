@@ -17,6 +17,7 @@ public sealed record class EventSearchResponse : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -40,6 +41,7 @@ public sealed record class EventSearchResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventSearchResponseFromRaw.FromRawUnchecked"/>
     public static EventSearchResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -57,6 +59,7 @@ public sealed record class EventSearchResponse : ModelBase
 
 class EventSearchResponseFromRaw : IFromRaw<EventSearchResponse>
 {
+    /// <inheritdoc/>
     public EventSearchResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         EventSearchResponse.FromRawUnchecked(rawData);
 }
@@ -143,6 +146,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "timestamp", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -169,6 +173,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
     public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -177,6 +182,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<Data>
 {
+    /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Data.FromRawUnchecked(rawData);
 }

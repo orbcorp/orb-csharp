@@ -28,6 +28,7 @@ public sealed record class SubscriptionSubscriptions : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -52,6 +53,7 @@ public sealed record class SubscriptionSubscriptions : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSubscriptionsFromRaw.FromRawUnchecked"/>
     public static SubscriptionSubscriptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -62,6 +64,7 @@ public sealed record class SubscriptionSubscriptions : ModelBase
 
 class SubscriptionSubscriptionsFromRaw : IFromRaw<SubscriptionSubscriptions>
 {
+    /// <inheritdoc/>
     public SubscriptionSubscriptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSubscriptions.FromRawUnchecked(rawData);

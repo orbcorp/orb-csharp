@@ -76,6 +76,7 @@ public sealed record class TrialDiscount : ModelBase
         init { ModelBase.Set(this._rawData, "trial_percentage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.DiscountType.Validate();
@@ -104,6 +105,7 @@ public sealed record class TrialDiscount : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TrialDiscountFromRaw.FromRawUnchecked"/>
     public static TrialDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -119,6 +121,7 @@ public sealed record class TrialDiscount : ModelBase
 
 class TrialDiscountFromRaw : IFromRaw<TrialDiscount>
 {
+    /// <inheritdoc/>
     public TrialDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TrialDiscount.FromRawUnchecked(rawData);
 }
@@ -206,6 +209,7 @@ public sealed record class TrialDiscountFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -228,6 +232,7 @@ public sealed record class TrialDiscountFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TrialDiscountFilterFromRaw.FromRawUnchecked"/>
     public static TrialDiscountFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -238,6 +243,7 @@ public sealed record class TrialDiscountFilter : ModelBase
 
 class TrialDiscountFilterFromRaw : IFromRaw<TrialDiscountFilter>
 {
+    /// <inheritdoc/>
     public TrialDiscountFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TrialDiscountFilter.FromRawUnchecked(rawData);
 }

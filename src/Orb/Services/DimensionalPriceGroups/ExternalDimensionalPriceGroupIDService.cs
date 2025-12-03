@@ -9,7 +9,7 @@ using Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
 namespace Orb.Services.DimensionalPriceGroups;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ExternalDimensionalPriceGroupIDService : IExternalDimensionalPriceGroupIDService
 {
     /// <inheritdoc/>

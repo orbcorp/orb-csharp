@@ -19,6 +19,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -39,6 +40,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ConversionRateUnitConfigFromRaw.FromRawUnchecked"/>
     public static ConversionRateUnitConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -56,6 +58,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase
 
 class ConversionRateUnitConfigFromRaw : IFromRaw<ConversionRateUnitConfig>
 {
+    /// <inheritdoc/>
     public ConversionRateUnitConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ConversionRateUnitConfig.FromRawUnchecked(rawData);

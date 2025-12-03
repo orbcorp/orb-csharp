@@ -9,7 +9,7 @@ using Orb.Services.DimensionalPriceGroups;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
 {
     /// <inheritdoc/>

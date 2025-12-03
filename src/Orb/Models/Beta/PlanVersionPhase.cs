@@ -60,6 +60,7 @@ public sealed record class PlanVersionPhase : ModelBase
         init { ModelBase.Set(this._rawData, "order", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -85,6 +86,7 @@ public sealed record class PlanVersionPhase : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanVersionPhaseFromRaw.FromRawUnchecked"/>
     public static PlanVersionPhase FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -95,6 +97,7 @@ public sealed record class PlanVersionPhase : ModelBase
 
 class PlanVersionPhaseFromRaw : IFromRaw<PlanVersionPhase>
 {
+    /// <inheritdoc/>
     public PlanVersionPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         PlanVersionPhase.FromRawUnchecked(rawData);
 }

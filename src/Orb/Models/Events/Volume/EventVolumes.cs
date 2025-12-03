@@ -23,6 +23,7 @@ public sealed record class EventVolumes : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -46,6 +47,7 @@ public sealed record class EventVolumes : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventVolumesFromRaw.FromRawUnchecked"/>
     public static EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -61,6 +63,7 @@ public sealed record class EventVolumes : ModelBase
 
 class EventVolumesFromRaw : IFromRaw<EventVolumes>
 {
+    /// <inheritdoc/>
     public EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         EventVolumes.FromRawUnchecked(rawData);
 }
@@ -98,6 +101,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Count;
@@ -120,6 +124,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Events.Volume.DataFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Events.Volume.Data FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -130,6 +135,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<global::Orb.Models.Events.Volume.Data>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Events.Volume.Data FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Events.Volume.Data.FromRawUnchecked(rawData);

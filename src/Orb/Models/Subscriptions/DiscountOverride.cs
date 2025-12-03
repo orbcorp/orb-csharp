@@ -52,6 +52,7 @@ public sealed record class DiscountOverride : ModelBase
         init { ModelBase.Set(this._rawData, "usage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.DiscountType.Validate();
@@ -75,6 +76,7 @@ public sealed record class DiscountOverride : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DiscountOverrideFromRaw.FromRawUnchecked"/>
     public static DiscountOverride FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -94,6 +96,7 @@ public sealed record class DiscountOverride : ModelBase
 
 class DiscountOverrideFromRaw : IFromRaw<DiscountOverride>
 {
+    /// <inheritdoc/>
     public DiscountOverride FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         DiscountOverride.FromRawUnchecked(rawData);
 }

@@ -9,7 +9,7 @@ using Orb.Models.Subscriptions;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class SubscriptionService : ISubscriptionService
 {
     /// <inheritdoc/>

@@ -9,7 +9,7 @@ using Orb.Services.Plans;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class PlanService : IPlanService
 {
     /// <inheritdoc/>

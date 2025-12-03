@@ -51,6 +51,7 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "external_dimensional_price_group_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.DimensionValues;
@@ -73,6 +74,7 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewDimensionalPriceConfigurationFromRaw.FromRawUnchecked"/>
     public static NewDimensionalPriceConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -90,6 +92,7 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
 
 class NewDimensionalPriceConfigurationFromRaw : IFromRaw<NewDimensionalPriceConfiguration>
 {
+    /// <inheritdoc/>
     public NewDimensionalPriceConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewDimensionalPriceConfiguration.FromRawUnchecked(rawData);

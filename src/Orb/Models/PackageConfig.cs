@@ -32,6 +32,7 @@ public sealed record class PackageConfig : ModelBase
         init { ModelBase.Set(this._rawData, "package_size", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PackageAmount;
@@ -53,6 +54,7 @@ public sealed record class PackageConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PackageConfigFromRaw.FromRawUnchecked"/>
     public static PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -61,6 +63,7 @@ public sealed record class PackageConfig : ModelBase
 
 class PackageConfigFromRaw : IFromRaw<PackageConfig>
 {
+    /// <inheritdoc/>
     public PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         PackageConfig.FromRawUnchecked(rawData);
 }

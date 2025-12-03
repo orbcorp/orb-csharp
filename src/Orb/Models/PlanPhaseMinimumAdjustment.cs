@@ -116,6 +116,7 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -153,6 +154,7 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseMinimumAdjustmentFromRaw.FromRawUnchecked"/>
     public static PlanPhaseMinimumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -163,6 +165,7 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
 
 class PlanPhaseMinimumAdjustmentFromRaw : IFromRaw<PlanPhaseMinimumAdjustment>
 {
+    /// <inheritdoc/>
     public PlanPhaseMinimumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseMinimumAdjustment.FromRawUnchecked(rawData);
@@ -255,6 +258,7 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -277,6 +281,7 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseMinimumAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static PlanPhaseMinimumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -287,6 +292,7 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
 
 class PlanPhaseMinimumAdjustmentFilterFromRaw : IFromRaw<PlanPhaseMinimumAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public PlanPhaseMinimumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseMinimumAdjustmentFilter.FromRawUnchecked(rawData);

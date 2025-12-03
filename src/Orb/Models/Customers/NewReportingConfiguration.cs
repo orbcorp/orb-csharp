@@ -16,6 +16,7 @@ public sealed record class NewReportingConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "exempt", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Exempt;
@@ -36,6 +37,7 @@ public sealed record class NewReportingConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewReportingConfigurationFromRaw.FromRawUnchecked"/>
     public static NewReportingConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -53,6 +55,7 @@ public sealed record class NewReportingConfiguration : ModelBase
 
 class NewReportingConfigurationFromRaw : IFromRaw<NewReportingConfiguration>
 {
+    /// <inheritdoc/>
     public NewReportingConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewReportingConfiguration.FromRawUnchecked(rawData);

@@ -147,6 +147,7 @@ public sealed record class PriceInterval : ModelBase
         init { ModelBase.Set(this._rawData, "usage_customer_ids", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -180,6 +181,7 @@ public sealed record class PriceInterval : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PriceIntervalFromRaw.FromRawUnchecked"/>
     public static PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -188,6 +190,7 @@ public sealed record class PriceInterval : ModelBase
 
 class PriceIntervalFromRaw : IFromRaw<PriceInterval>
 {
+    /// <inheritdoc/>
     public PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         PriceInterval.FromRawUnchecked(rawData);
 }

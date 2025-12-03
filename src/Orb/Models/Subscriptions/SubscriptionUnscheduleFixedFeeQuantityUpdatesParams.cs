@@ -61,6 +61,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static SubscriptionUnscheduleFixedFeeQuantityUpdatesParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

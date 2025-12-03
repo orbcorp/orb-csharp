@@ -44,6 +44,7 @@ public sealed record class Minimum : ModelBase
         init { ModelBase.Set(this._rawData, "minimum_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AppliesToPriceIDs;
@@ -74,6 +75,7 @@ public sealed record class Minimum : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MinimumFromRaw.FromRawUnchecked"/>
     public static Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -82,6 +84,7 @@ public sealed record class Minimum : ModelBase
 
 class MinimumFromRaw : IFromRaw<Minimum>
 {
+    /// <inheritdoc/>
     public Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Minimum.FromRawUnchecked(rawData);
 }
@@ -128,6 +131,7 @@ public sealed record class MinimumFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -150,6 +154,7 @@ public sealed record class MinimumFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MinimumFilterFromRaw.FromRawUnchecked"/>
     public static MinimumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -158,6 +163,7 @@ public sealed record class MinimumFilter : ModelBase
 
 class MinimumFilterFromRaw : IFromRaw<MinimumFilter>
 {
+    /// <inheritdoc/>
     public MinimumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MinimumFilter.FromRawUnchecked(rawData);
 }

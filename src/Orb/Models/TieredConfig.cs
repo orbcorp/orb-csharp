@@ -39,6 +39,7 @@ public sealed record class TieredConfig : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -63,6 +64,7 @@ public sealed record class TieredConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TieredConfigFromRaw.FromRawUnchecked"/>
     public static TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -78,6 +80,7 @@ public sealed record class TieredConfig : ModelBase
 
 class TieredConfigFromRaw : IFromRaw<TieredConfig>
 {
+    /// <inheritdoc/>
     public TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TieredConfig.FromRawUnchecked(rawData);
 }

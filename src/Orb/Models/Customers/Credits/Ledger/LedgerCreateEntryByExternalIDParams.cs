@@ -143,6 +143,7 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -331,6 +332,21 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="LedgerCreateEntryByExternalIDParamsBodyIncrement"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickIncrement(out var value)) {
+    ///     // `value` is of type `LedgerCreateEntryByExternalIDParamsBodyIncrement`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickIncrement(
         [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyIncrement? value
     )
@@ -339,6 +355,21 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="LedgerCreateEntryByExternalIDParamsBodyDecrement"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDecrement(out var value)) {
+    ///     // `value` is of type `LedgerCreateEntryByExternalIDParamsBodyDecrement`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDecrement(
         [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyDecrement? value
     )
@@ -347,6 +378,21 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="LedgerCreateEntryByExternalIDParamsBodyExpirationChange"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickExpirationChange(out var value)) {
+    ///     // `value` is of type `LedgerCreateEntryByExternalIDParamsBodyExpirationChange`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickExpirationChange(
         [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyExpirationChange? value
     )
@@ -355,6 +401,21 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="LedgerCreateEntryByExternalIDParamsBodyVoid"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickVoid(out var value)) {
+    ///     // `value` is of type `LedgerCreateEntryByExternalIDParamsBodyVoid`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickVoid(
         [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyVoid? value
     )
@@ -363,6 +424,21 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="LedgerCreateEntryByExternalIDParamsBodyAmendment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAmendment(out var value)) {
+    ///     // `value` is of type `LedgerCreateEntryByExternalIDParamsBodyAmendment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAmendment(
         [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyAmendment? value
     )
@@ -371,6 +447,29 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (LedgerCreateEntryByExternalIDParamsBodyIncrement value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyDecrement value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyExpirationChange value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyVoid value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyAmendment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<LedgerCreateEntryByExternalIDParamsBodyIncrement> increment,
         System::Action<LedgerCreateEntryByExternalIDParamsBodyDecrement> decrement,
@@ -403,6 +502,30 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (LedgerCreateEntryByExternalIDParamsBodyIncrement value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyDecrement value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyExpirationChange value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyVoid value) => {...},
+    ///     (LedgerCreateEntryByExternalIDParamsBodyAmendment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<LedgerCreateEntryByExternalIDParamsBodyIncrement, T> increment,
         System::Func<LedgerCreateEntryByExternalIDParamsBodyDecrement, T> decrement,
@@ -446,6 +569,16 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         LedgerCreateEntryByExternalIDParamsBodyAmendment value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -753,6 +886,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
         init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -800,6 +934,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyIncrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -818,6 +953,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
 class LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrement>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyIncrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyIncrement.FromRawUnchecked(rawData);
@@ -877,6 +1013,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -903,6 +1040,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyIncrementFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -914,6 +1052,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
 class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyIncrementFilter.FromRawUnchecked(rawData);
@@ -1125,6 +1264,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AutoCollection;
@@ -1155,6 +1295,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1173,6 +1314,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
 class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings.FromRawUnchecked(rawData);
@@ -1226,6 +1368,33 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// "/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDate(out var value)) {
+    ///     // `value` is of type `
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// `
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDate([NotNullWhen(true)] out
 #if NET
         System::DateOnly
@@ -1244,12 +1413,53 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="System::DateTimeOffset"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDateTime(out var value)) {
+    ///     // `value` is of type `System::DateTimeOffset`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
         value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<
 #if NET
@@ -1282,6 +1492,33 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<
 #if NET
@@ -1321,6 +1558,16 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         System::DateTimeOffset value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1440,6 +1687,33 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// "/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDate(out var value)) {
+    ///     // `value` is of type `
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// `
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDate([NotNullWhen(true)] out
 #if NET
         System::DateOnly
@@ -1458,12 +1732,53 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="System::DateTimeOffset"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDateTime(out var value)) {
+    ///     // `value` is of type `System::DateTimeOffset`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
         value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<
 #if NET
@@ -1496,6 +1811,33 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<
 #if NET
@@ -1535,6 +1877,16 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         System::DateTimeOffset value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1667,6 +2019,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
         init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -1706,6 +2059,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyDecrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1724,6 +2078,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
 class LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyDecrement>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyDecrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyDecrement.FromRawUnchecked(rawData);
@@ -1839,6 +2194,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
         init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         if (
@@ -1883,6 +2239,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyExpirationChange FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1908,6 +2265,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
 class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyExpirationChange.FromRawUnchecked(rawData);
@@ -1998,6 +2356,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
         init { ModelBase.Set(this._rawData, "void_reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -2039,6 +2398,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyVoidFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyVoid FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -2050,6 +2410,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
 class LedgerCreateEntryByExternalIDParamsBodyVoidFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyVoid>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyVoid FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyVoid.FromRawUnchecked(rawData);
@@ -2171,6 +2532,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
         init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -2211,6 +2573,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="LedgerCreateEntryByExternalIDParamsBodyAmendmentFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParamsBodyAmendment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -2222,6 +2585,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
 class LedgerCreateEntryByExternalIDParamsBodyAmendmentFromRaw
     : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyAmendment>
 {
+    /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyAmendment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => LedgerCreateEntryByExternalIDParamsBodyAmendment.FromRawUnchecked(rawData);

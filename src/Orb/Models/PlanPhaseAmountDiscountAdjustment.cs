@@ -110,6 +110,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -146,6 +147,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseAmountDiscountAdjustmentFromRaw.FromRawUnchecked"/>
     public static PlanPhaseAmountDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -156,6 +158,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
 
 class PlanPhaseAmountDiscountAdjustmentFromRaw : IFromRaw<PlanPhaseAmountDiscountAdjustment>
 {
+    /// <inheritdoc/>
     public PlanPhaseAmountDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseAmountDiscountAdjustment.FromRawUnchecked(rawData);
@@ -248,6 +251,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -270,6 +274,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseAmountDiscountAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static PlanPhaseAmountDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -281,6 +286,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
 class PlanPhaseAmountDiscountAdjustmentFilterFromRaw
     : IFromRaw<PlanPhaseAmountDiscountAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public PlanPhaseAmountDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseAmountDiscountAdjustmentFilter.FromRawUnchecked(rawData);

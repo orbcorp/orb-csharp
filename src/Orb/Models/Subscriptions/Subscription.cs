@@ -371,6 +371,7 @@ public sealed record class Subscription : ModelBase
         init { ModelBase.Set(this._rawData, "trial_info", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -446,6 +447,7 @@ public sealed record class Subscription : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionFromRaw.FromRawUnchecked"/>
     public static Subscription FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -454,6 +456,7 @@ public sealed record class Subscription : ModelBase
 
 class SubscriptionFromRaw : IFromRaw<Subscription>
 {
+    /// <inheritdoc/>
     public Subscription FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Subscription.FromRawUnchecked(rawData);
 }
@@ -517,24 +520,90 @@ public record class DiscountInterval
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="AmountDiscountInterval"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAmount(out var value)) {
+    ///     // `value` is of type `AmountDiscountInterval`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAmount([NotNullWhen(true)] out AmountDiscountInterval? value)
     {
         value = this.Value as AmountDiscountInterval;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PercentageDiscountInterval"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercentage(out var value)) {
+    ///     // `value` is of type `PercentageDiscountInterval`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPercentage([NotNullWhen(true)] out PercentageDiscountInterval? value)
     {
         value = this.Value as PercentageDiscountInterval;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="UsageDiscountInterval"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUsage(out var value)) {
+    ///     // `value` is of type `UsageDiscountInterval`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUsage([NotNullWhen(true)] out UsageDiscountInterval? value)
     {
         value = this.Value as UsageDiscountInterval;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (AmountDiscountInterval value) => {...},
+    ///     (PercentageDiscountInterval value) => {...},
+    ///     (UsageDiscountInterval value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<AmountDiscountInterval> amount,
         System::Action<PercentageDiscountInterval> percentage,
@@ -559,6 +628,28 @@ public record class DiscountInterval
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (AmountDiscountInterval value) => {...},
+    ///     (PercentageDiscountInterval value) => {...},
+    ///     (UsageDiscountInterval value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<AmountDiscountInterval, T> amount,
         System::Func<PercentageDiscountInterval, T> percentage,
@@ -583,6 +674,16 @@ public record class DiscountInterval
 
     public static implicit operator DiscountInterval(UsageDiscountInterval value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)

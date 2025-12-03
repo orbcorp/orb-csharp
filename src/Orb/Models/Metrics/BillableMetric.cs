@@ -74,6 +74,7 @@ public sealed record class BillableMetric : ModelBase
         init { ModelBase.Set(this._rawData, "status", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -99,6 +100,7 @@ public sealed record class BillableMetric : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BillableMetricFromRaw.FromRawUnchecked"/>
     public static BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -107,6 +109,7 @@ public sealed record class BillableMetric : ModelBase
 
 class BillableMetricFromRaw : IFromRaw<BillableMetric>
 {
+    /// <inheritdoc/>
     public BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BillableMetric.FromRawUnchecked(rawData);
 }

@@ -18,6 +18,7 @@ public sealed record class SubscriptionChangeMinified : ModelBase
         init { ModelBase.Set(this._rawData, "id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -38,6 +39,7 @@ public sealed record class SubscriptionChangeMinified : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionChangeMinifiedFromRaw.FromRawUnchecked"/>
     public static SubscriptionChangeMinified FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -55,6 +57,7 @@ public sealed record class SubscriptionChangeMinified : ModelBase
 
 class SubscriptionChangeMinifiedFromRaw : IFromRaw<SubscriptionChangeMinified>
 {
+    /// <inheritdoc/>
     public SubscriptionChangeMinified FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionChangeMinified.FromRawUnchecked(rawData);

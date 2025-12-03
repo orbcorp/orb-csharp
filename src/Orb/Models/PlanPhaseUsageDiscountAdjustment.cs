@@ -110,6 +110,7 @@ public sealed record class PlanPhaseUsageDiscountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "usage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -146,6 +147,7 @@ public sealed record class PlanPhaseUsageDiscountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseUsageDiscountAdjustmentFromRaw.FromRawUnchecked"/>
     public static PlanPhaseUsageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -156,6 +158,7 @@ public sealed record class PlanPhaseUsageDiscountAdjustment : ModelBase
 
 class PlanPhaseUsageDiscountAdjustmentFromRaw : IFromRaw<PlanPhaseUsageDiscountAdjustment>
 {
+    /// <inheritdoc/>
     public PlanPhaseUsageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseUsageDiscountAdjustment.FromRawUnchecked(rawData);
@@ -248,6 +251,7 @@ public sealed record class PlanPhaseUsageDiscountAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -270,6 +274,7 @@ public sealed record class PlanPhaseUsageDiscountAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseUsageDiscountAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static PlanPhaseUsageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -281,6 +286,7 @@ public sealed record class PlanPhaseUsageDiscountAdjustmentFilter : ModelBase
 class PlanPhaseUsageDiscountAdjustmentFilterFromRaw
     : IFromRaw<PlanPhaseUsageDiscountAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public PlanPhaseUsageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseUsageDiscountAdjustmentFilter.FromRawUnchecked(rawData);

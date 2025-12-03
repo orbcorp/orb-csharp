@@ -243,6 +243,7 @@ public sealed record class EventIngestParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static EventIngestParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -347,6 +348,7 @@ public sealed record class Event : ModelBase
         init { ModelBase.Set(this._rawData, "external_customer_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EventName;
@@ -372,6 +374,7 @@ public sealed record class Event : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventFromRaw.FromRawUnchecked"/>
     public static Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -380,6 +383,7 @@ public sealed record class Event : ModelBase
 
 class EventFromRaw : IFromRaw<Event>
 {
+    /// <inheritdoc/>
     public Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Event.FromRawUnchecked(rawData);
 }

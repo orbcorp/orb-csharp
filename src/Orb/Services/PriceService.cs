@@ -10,7 +10,7 @@ using Models = Orb.Models;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class PriceService : IPriceService
 {
     /// <inheritdoc/>

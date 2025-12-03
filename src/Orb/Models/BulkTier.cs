@@ -31,6 +31,7 @@ public sealed record class BulkTier : ModelBase
         init { ModelBase.Set(this._rawData, "maximum_units", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -52,6 +53,7 @@ public sealed record class BulkTier : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BulkTierFromRaw.FromRawUnchecked"/>
     public static BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -67,6 +69,7 @@ public sealed record class BulkTier : ModelBase
 
 class BulkTierFromRaw : IFromRaw<BulkTier>
 {
+    /// <inheritdoc/>
     public BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BulkTier.FromRawUnchecked(rawData);
 }

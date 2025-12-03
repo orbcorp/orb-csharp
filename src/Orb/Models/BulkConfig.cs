@@ -22,6 +22,7 @@ public sealed record class BulkConfig : ModelBase
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -45,6 +46,7 @@ public sealed record class BulkConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BulkConfigFromRaw.FromRawUnchecked"/>
     public static BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -60,6 +62,7 @@ public sealed record class BulkConfig : ModelBase
 
 class BulkConfigFromRaw : IFromRaw<BulkConfig>
 {
+    /// <inheritdoc/>
     public BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BulkConfig.FromRawUnchecked(rawData);
 }

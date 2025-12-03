@@ -36,6 +36,7 @@ public sealed record class BackfillListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -60,6 +61,7 @@ public sealed record class BackfillListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BackfillListPageResponseFromRaw.FromRawUnchecked"/>
     public static BackfillListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -70,6 +72,7 @@ public sealed record class BackfillListPageResponse : ModelBase
 
 class BackfillListPageResponseFromRaw : IFromRaw<BackfillListPageResponse>
 {
+    /// <inheritdoc/>
     public BackfillListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => BackfillListPageResponse.FromRawUnchecked(rawData);
@@ -203,6 +206,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "deprecation_filter", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -233,6 +237,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Events.Backfills.DataFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Events.Backfills.Data FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -243,6 +248,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<global::Orb.Models.Events.Backfills.Data>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Events.Backfills.Data FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Events.Backfills.Data.FromRawUnchecked(rawData);

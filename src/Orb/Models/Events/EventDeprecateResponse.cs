@@ -19,6 +19,7 @@ public sealed record class EventDeprecateResponse : ModelBase
         init { ModelBase.Set(this._rawData, "deprecated", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Deprecated;
@@ -39,6 +40,7 @@ public sealed record class EventDeprecateResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventDeprecateResponseFromRaw.FromRawUnchecked"/>
     public static EventDeprecateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -56,6 +58,7 @@ public sealed record class EventDeprecateResponse : ModelBase
 
 class EventDeprecateResponseFromRaw : IFromRaw<EventDeprecateResponse>
 {
+    /// <inheritdoc/>
     public EventDeprecateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => EventDeprecateResponse.FromRawUnchecked(rawData);

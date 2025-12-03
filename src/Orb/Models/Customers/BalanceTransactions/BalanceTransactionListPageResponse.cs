@@ -35,6 +35,7 @@ public sealed record class BalanceTransactionListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -59,6 +60,7 @@ public sealed record class BalanceTransactionListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BalanceTransactionListPageResponseFromRaw.FromRawUnchecked"/>
     public static BalanceTransactionListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -69,6 +71,7 @@ public sealed record class BalanceTransactionListPageResponse : ModelBase
 
 class BalanceTransactionListPageResponseFromRaw : IFromRaw<BalanceTransactionListPageResponse>
 {
+    /// <inheritdoc/>
     public BalanceTransactionListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => BalanceTransactionListPageResponse.FromRawUnchecked(rawData);
@@ -162,6 +165,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -191,6 +195,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
     public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -199,6 +204,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<Data>
 {
+    /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Data.FromRawUnchecked(rawData);
 }

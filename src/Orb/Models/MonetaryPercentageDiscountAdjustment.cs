@@ -113,6 +113,7 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -149,6 +150,7 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryPercentageDiscountAdjustmentFromRaw.FromRawUnchecked"/>
     public static MonetaryPercentageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -159,6 +161,7 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
 
 class MonetaryPercentageDiscountAdjustmentFromRaw : IFromRaw<MonetaryPercentageDiscountAdjustment>
 {
+    /// <inheritdoc/>
     public MonetaryPercentageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryPercentageDiscountAdjustment.FromRawUnchecked(rawData);
@@ -253,6 +256,7 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -277,6 +281,7 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryPercentageDiscountAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static MonetaryPercentageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -288,6 +293,7 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
 class MonetaryPercentageDiscountAdjustmentFilterFromRaw
     : IFromRaw<MonetaryPercentageDiscountAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public MonetaryPercentageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryPercentageDiscountAdjustmentFilter.FromRawUnchecked(rawData);

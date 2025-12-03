@@ -567,6 +567,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
         init { ModelBase.Set(this._rawData, "will_auto_issue", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -644,6 +645,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="InvoiceFetchUpcomingResponseFromRaw.FromRawUnchecked"/>
     public static InvoiceFetchUpcomingResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -654,6 +656,7 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
 
 class InvoiceFetchUpcomingResponseFromRaw : IFromRaw<InvoiceFetchUpcomingResponse>
 {
+    /// <inheritdoc/>
     public InvoiceFetchUpcomingResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => InvoiceFetchUpcomingResponse.FromRawUnchecked(rawData);
@@ -722,6 +725,7 @@ public sealed record class AutoCollection : ModelBase
         init { ModelBase.Set(this._rawData, "previously_attempted_at", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Enabled;
@@ -745,6 +749,7 @@ public sealed record class AutoCollection : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Invoices.AutoCollectionFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Invoices.AutoCollection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -755,6 +760,7 @@ public sealed record class AutoCollection : ModelBase
 
 class AutoCollectionFromRaw : IFromRaw<global::Orb.Models.Invoices.AutoCollection>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Invoices.AutoCollection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Invoices.AutoCollection.FromRawUnchecked(rawData);
@@ -820,6 +826,7 @@ public sealed record class CreditNote : ModelBase
         init { ModelBase.Set(this._rawData, "voided_at", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -846,6 +853,7 @@ public sealed record class CreditNote : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Invoices.CreditNoteFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Invoices.CreditNote FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -856,6 +864,7 @@ public sealed record class CreditNote : ModelBase
 
 class CreditNoteFromRaw : IFromRaw<global::Orb.Models.Invoices.CreditNote>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Invoices.CreditNote FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Invoices.CreditNote.FromRawUnchecked(rawData);
@@ -963,6 +972,7 @@ public sealed record class CustomerBalanceTransaction : ModelBase
         init { ModelBase.Set(this._rawData, "type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -992,6 +1002,7 @@ public sealed record class CustomerBalanceTransaction : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Invoices.CustomerBalanceTransactionFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Invoices.CustomerBalanceTransaction FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1003,6 +1014,7 @@ public sealed record class CustomerBalanceTransaction : ModelBase
 class CustomerBalanceTransactionFromRaw
     : IFromRaw<global::Orb.Models.Invoices.CustomerBalanceTransaction>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Invoices.CustomerBalanceTransaction FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Invoices.CustomerBalanceTransaction.FromRawUnchecked(rawData);
@@ -1360,6 +1372,7 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : ModelBase
         init { ModelBase.Set(this._rawData, "usage_customer_ids", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -1405,6 +1418,7 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="InvoiceFetchUpcomingResponseLineItemFromRaw.FromRawUnchecked"/>
     public static InvoiceFetchUpcomingResponseLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1415,6 +1429,7 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : ModelBase
 
 class InvoiceFetchUpcomingResponseLineItemFromRaw : IFromRaw<InvoiceFetchUpcomingResponseLineItem>
 {
+    /// <inheritdoc/>
     public InvoiceFetchUpcomingResponseLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => InvoiceFetchUpcomingResponseLineItem.FromRawUnchecked(rawData);
@@ -1537,6 +1552,21 @@ public record class Adjustment
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryUsageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryUsageDiscount(out var value)) {
+    ///     // `value` is of type `MonetaryUsageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickMonetaryUsageDiscount(
         [NotNullWhen(true)] out MonetaryUsageDiscountAdjustment? value
     )
@@ -1545,6 +1575,21 @@ public record class Adjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryAmountDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryAmountDiscount(out var value)) {
+    ///     // `value` is of type `MonetaryAmountDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickMonetaryAmountDiscount(
         [NotNullWhen(true)] out MonetaryAmountDiscountAdjustment? value
     )
@@ -1553,6 +1598,21 @@ public record class Adjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryPercentageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryPercentageDiscount(out var value)) {
+    ///     // `value` is of type `MonetaryPercentageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickMonetaryPercentageDiscount(
         [NotNullWhen(true)] out MonetaryPercentageDiscountAdjustment? value
     )
@@ -1561,18 +1621,71 @@ public record class Adjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryMinimumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryMinimum(out var value)) {
+    ///     // `value` is of type `MonetaryMinimumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickMonetaryMinimum([NotNullWhen(true)] out MonetaryMinimumAdjustment? value)
     {
         value = this.Value as MonetaryMinimumAdjustment;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MonetaryMaximumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMonetaryMaximum(out var value)) {
+    ///     // `value` is of type `MonetaryMaximumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickMonetaryMaximum([NotNullWhen(true)] out MonetaryMaximumAdjustment? value)
     {
         value = this.Value as MonetaryMaximumAdjustment;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (MonetaryUsageDiscountAdjustment value) => {...},
+    ///     (MonetaryAmountDiscountAdjustment value) => {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
+    ///     (MonetaryMinimumAdjustment value) => {...},
+    ///     (MonetaryMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
         System::Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
@@ -1603,6 +1716,30 @@ public record class Adjustment
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (MonetaryUsageDiscountAdjustment value) => {...},
+    ///     (MonetaryAmountDiscountAdjustment value) => {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
+    ///     (MonetaryMinimumAdjustment value) => {...},
+    ///     (MonetaryMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
         System::Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
@@ -1642,6 +1779,16 @@ public record class Adjustment
         MonetaryMaximumAdjustment value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1882,24 +2029,90 @@ public record class SubLineItem
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="MatrixSubLineItem"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMatrix(out var value)) {
+    ///     // `value` is of type `MatrixSubLineItem`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickMatrix([NotNullWhen(true)] out MatrixSubLineItem? value)
     {
         value = this.Value as MatrixSubLineItem;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="TierSubLineItem"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTier(out var value)) {
+    ///     // `value` is of type `TierSubLineItem`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTier([NotNullWhen(true)] out TierSubLineItem? value)
     {
         value = this.Value as TierSubLineItem;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="OtherSubLineItem"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickOther(out var value)) {
+    ///     // `value` is of type `OtherSubLineItem`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickOther([NotNullWhen(true)] out OtherSubLineItem? value)
     {
         value = this.Value as OtherSubLineItem;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (MatrixSubLineItem value) => {...},
+    ///     (TierSubLineItem value) => {...},
+    ///     (OtherSubLineItem value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<MatrixSubLineItem> matrix,
         System::Action<TierSubLineItem> tier,
@@ -1922,6 +2135,28 @@ public record class SubLineItem
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (MatrixSubLineItem value) => {...},
+    ///     (TierSubLineItem value) => {...},
+    ///     (OtherSubLineItem value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<MatrixSubLineItem, T> matrix,
         System::Func<TierSubLineItem, T> tier,
@@ -1949,6 +2184,16 @@ public record class SubLineItem
         OtherSubLineItem value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -2143,6 +2388,7 @@ public sealed record class PaymentAttempt : ModelBase
         init { ModelBase.Set(this._rawData, "succeeded", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -2169,6 +2415,7 @@ public sealed record class PaymentAttempt : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Invoices.PaymentAttemptFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Invoices.PaymentAttempt FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -2179,6 +2426,7 @@ public sealed record class PaymentAttempt : ModelBase
 
 class PaymentAttemptFromRaw : IFromRaw<global::Orb.Models.Invoices.PaymentAttempt>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Invoices.PaymentAttempt FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Invoices.PaymentAttempt.FromRawUnchecked(rawData);

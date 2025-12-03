@@ -105,6 +105,7 @@ public sealed record class MonetaryMaximumAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -141,6 +142,7 @@ public sealed record class MonetaryMaximumAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryMaximumAdjustmentFromRaw.FromRawUnchecked"/>
     public static MonetaryMaximumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -151,6 +153,7 @@ public sealed record class MonetaryMaximumAdjustment : ModelBase
 
 class MonetaryMaximumAdjustmentFromRaw : IFromRaw<MonetaryMaximumAdjustment>
 {
+    /// <inheritdoc/>
     public MonetaryMaximumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryMaximumAdjustment.FromRawUnchecked(rawData);
@@ -241,6 +244,7 @@ public sealed record class MonetaryMaximumAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -263,6 +267,7 @@ public sealed record class MonetaryMaximumAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryMaximumAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static MonetaryMaximumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -273,6 +278,7 @@ public sealed record class MonetaryMaximumAdjustmentFilter : ModelBase
 
 class MonetaryMaximumAdjustmentFilterFromRaw : IFromRaw<MonetaryMaximumAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public MonetaryMaximumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryMaximumAdjustmentFilter.FromRawUnchecked(rawData);

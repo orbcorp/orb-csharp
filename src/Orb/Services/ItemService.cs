@@ -8,7 +8,7 @@ using Orb.Models.Items;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ItemService : IItemService
 {
     /// <inheritdoc/>

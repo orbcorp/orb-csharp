@@ -31,6 +31,7 @@ public sealed record class MatrixValue : ModelBase
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.DimensionValues;
@@ -52,6 +53,7 @@ public sealed record class MatrixValue : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MatrixValueFromRaw.FromRawUnchecked"/>
     public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -60,6 +62,7 @@ public sealed record class MatrixValue : ModelBase
 
 class MatrixValueFromRaw : IFromRaw<MatrixValue>
 {
+    /// <inheritdoc/>
     public MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MatrixValue.FromRawUnchecked(rawData);
 }

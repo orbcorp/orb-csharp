@@ -40,6 +40,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -64,6 +65,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionFetchSchedulePageResponseFromRaw.FromRawUnchecked"/>
     public static SubscriptionFetchSchedulePageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -74,6 +76,7 @@ public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
 
 class SubscriptionFetchSchedulePageResponseFromRaw : IFromRaw<SubscriptionFetchSchedulePageResponse>
 {
+    /// <inheritdoc/>
     public SubscriptionFetchSchedulePageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionFetchSchedulePageResponse.FromRawUnchecked(rawData);
@@ -111,6 +114,7 @@ public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CreatedAt;
@@ -136,6 +140,7 @@ public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionFetchSchedulePageResponseDataFromRaw.FromRawUnchecked"/>
     public static SubscriptionFetchSchedulePageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -147,6 +152,7 @@ public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
 class SubscriptionFetchSchedulePageResponseDataFromRaw
     : IFromRaw<SubscriptionFetchSchedulePageResponseData>
 {
+    /// <inheritdoc/>
     public SubscriptionFetchSchedulePageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionFetchSchedulePageResponseData.FromRawUnchecked(rawData);
@@ -178,6 +184,7 @@ public sealed record class Plan : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -200,6 +207,7 @@ public sealed record class Plan : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanFromRaw.FromRawUnchecked"/>
     public static Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -208,6 +216,7 @@ public sealed record class Plan : ModelBase
 
 class PlanFromRaw : IFromRaw<Plan>
 {
+    /// <inheritdoc/>
     public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Plan.FromRawUnchecked(rawData);
 }

@@ -91,6 +91,7 @@ public sealed record class CouponCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static CouponCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -161,18 +162,68 @@ public record class Discount
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Percentage"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercentage(out var value)) {
+    ///     // `value` is of type `Percentage`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPercentage([NotNullWhen(true)] out Percentage? value)
     {
         value = this.Value as Percentage;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Amount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAmount(out var value)) {
+    ///     // `value` is of type `Amount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAmount([NotNullWhen(true)] out Amount? value)
     {
         value = this.Value as Amount;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (Percentage value) => {...},
+    ///     (Amount value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(System::Action<Percentage> percentage, System::Action<Amount> amount)
     {
         switch (this.Value)
@@ -188,6 +239,27 @@ public record class Discount
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (Percentage value) => {...},
+    ///     (Amount value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(System::Func<Percentage, T> percentage, System::Func<Amount, T> amount)
     {
         return this.Value switch
@@ -203,6 +275,16 @@ public record class Discount
 
     public static implicit operator global::Orb.Models.Coupons.Discount(Amount value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -313,6 +395,7 @@ public sealed record class Percentage : ModelBase
         init { ModelBase.Set(this._rawData, "percentage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         if (
@@ -347,6 +430,7 @@ public sealed record class Percentage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PercentageFromRaw.FromRawUnchecked"/>
     public static Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -362,6 +446,7 @@ public sealed record class Percentage : ModelBase
 
 class PercentageFromRaw : IFromRaw<Percentage>
 {
+    /// <inheritdoc/>
     public Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Percentage.FromRawUnchecked(rawData);
 }
@@ -381,6 +466,7 @@ public sealed record class Amount : ModelBase
         init { ModelBase.Set(this._rawData, "discount_type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AmountDiscount;
@@ -415,6 +501,7 @@ public sealed record class Amount : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AmountFromRaw.FromRawUnchecked"/>
     public static Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -430,6 +517,7 @@ public sealed record class Amount : ModelBase
 
 class AmountFromRaw : IFromRaw<Amount>
 {
+    /// <inheritdoc/>
     public Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Amount.FromRawUnchecked(rawData);
 }

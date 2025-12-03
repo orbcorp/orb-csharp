@@ -390,6 +390,7 @@ public sealed record class CustomerCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static CustomerCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -456,6 +457,7 @@ public sealed record class PaymentConfiguration : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.PaymentProviders ?? [])
@@ -479,6 +481,7 @@ public sealed record class PaymentConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PaymentConfigurationFromRaw.FromRawUnchecked"/>
     public static PaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -489,6 +492,7 @@ public sealed record class PaymentConfiguration : ModelBase
 
 class PaymentConfigurationFromRaw : IFromRaw<PaymentConfiguration>
 {
+    /// <inheritdoc/>
     public PaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PaymentConfiguration.FromRawUnchecked(rawData);
@@ -541,6 +545,7 @@ public sealed record class PaymentProvider : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.ProviderType.Validate();
@@ -562,6 +567,7 @@ public sealed record class PaymentProvider : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PaymentProviderFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -579,6 +585,7 @@ public sealed record class PaymentProvider : ModelBase
 
 class PaymentProviderFromRaw : IFromRaw<global::Orb.Models.Customers.PaymentProvider>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Customers.PaymentProvider.FromRawUnchecked(rawData);
@@ -769,42 +776,156 @@ public record class TaxConfiguration
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewAvalaraTaxConfiguration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewAvalara(out var value)) {
+    ///     // `value` is of type `NewAvalaraTaxConfiguration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewAvalara([NotNullWhen(true)] out NewAvalaraTaxConfiguration? value)
     {
         value = this.Value as NewAvalaraTaxConfiguration;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewTaxJarConfiguration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewTaxJar(out var value)) {
+    ///     // `value` is of type `NewTaxJarConfiguration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewTaxJar([NotNullWhen(true)] out NewTaxJarConfiguration? value)
     {
         value = this.Value as NewTaxJarConfiguration;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSphereConfiguration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSphere(out var value)) {
+    ///     // `value` is of type `NewSphereConfiguration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSphere([NotNullWhen(true)] out NewSphereConfiguration? value)
     {
         value = this.Value as NewSphereConfiguration;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Numeral"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNumeral(out var value)) {
+    ///     // `value` is of type `Numeral`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNumeral([NotNullWhen(true)] out Numeral? value)
     {
         value = this.Value as Numeral;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Anrok"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAnrok(out var value)) {
+    ///     // `value` is of type `Anrok`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAnrok([NotNullWhen(true)] out Anrok? value)
     {
         value = this.Value as Anrok;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Stripe"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickStripe(out var value)) {
+    ///     // `value` is of type `Stripe`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickStripe([NotNullWhen(true)] out Stripe? value)
     {
         value = this.Value as Stripe;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewAvalaraTaxConfiguration value) => {...},
+    ///     (NewTaxJarConfiguration value) => {...},
+    ///     (NewSphereConfiguration value) => {...},
+    ///     (Numeral value) => {...},
+    ///     (Anrok value) => {...},
+    ///     (Stripe value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewAvalaraTaxConfiguration> newAvalara,
         System::Action<NewTaxJarConfiguration> newTaxJar,
@@ -841,6 +962,31 @@ public record class TaxConfiguration
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewAvalaraTaxConfiguration value) => {...},
+    ///     (NewTaxJarConfiguration value) => {...},
+    ///     (NewSphereConfiguration value) => {...},
+    ///     (Numeral value) => {...},
+    ///     (Anrok value) => {...},
+    ///     (Stripe value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewAvalaraTaxConfiguration, T> newAvalara,
         System::Func<NewTaxJarConfiguration, T> newTaxJar,
@@ -877,6 +1023,16 @@ public record class TaxConfiguration
 
     public static implicit operator TaxConfiguration(Stripe value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1082,6 +1238,7 @@ public sealed record class Numeral : ModelBase
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -1117,6 +1274,7 @@ public sealed record class Numeral : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NumeralFromRaw.FromRawUnchecked"/>
     public static Numeral FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1132,6 +1290,7 @@ public sealed record class Numeral : ModelBase
 
 class NumeralFromRaw : IFromRaw<Numeral>
 {
+    /// <inheritdoc/>
     public Numeral FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Numeral.FromRawUnchecked(rawData);
 }
@@ -1161,6 +1320,7 @@ public sealed record class Anrok : ModelBase
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -1196,6 +1356,7 @@ public sealed record class Anrok : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AnrokFromRaw.FromRawUnchecked"/>
     public static Anrok FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1211,6 +1372,7 @@ public sealed record class Anrok : ModelBase
 
 class AnrokFromRaw : IFromRaw<Anrok>
 {
+    /// <inheritdoc/>
     public Anrok FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Anrok.FromRawUnchecked(rawData);
 }
@@ -1240,6 +1402,7 @@ public sealed record class Stripe : ModelBase
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -1275,6 +1438,7 @@ public sealed record class Stripe : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="StripeFromRaw.FromRawUnchecked"/>
     public static Stripe FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1290,6 +1454,7 @@ public sealed record class Stripe : ModelBase
 
 class StripeFromRaw : IFromRaw<Stripe>
 {
+    /// <inheritdoc/>
     public Stripe FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Stripe.FromRawUnchecked(rawData);
 }

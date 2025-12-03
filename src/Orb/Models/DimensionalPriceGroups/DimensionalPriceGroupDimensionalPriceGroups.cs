@@ -33,6 +33,7 @@ public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBa
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -59,6 +60,7 @@ public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBa
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DimensionalPriceGroupDimensionalPriceGroupsFromRaw.FromRawUnchecked"/>
     public static DimensionalPriceGroupDimensionalPriceGroups FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -70,6 +72,7 @@ public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBa
 class DimensionalPriceGroupDimensionalPriceGroupsFromRaw
     : IFromRaw<DimensionalPriceGroupDimensionalPriceGroups>
 {
+    /// <inheritdoc/>
     public DimensionalPriceGroupDimensionalPriceGroups FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => DimensionalPriceGroupDimensionalPriceGroups.FromRawUnchecked(rawData);

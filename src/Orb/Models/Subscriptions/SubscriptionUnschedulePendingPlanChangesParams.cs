@@ -39,6 +39,7 @@ public sealed record class SubscriptionUnschedulePendingPlanChangesParams : Para
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static SubscriptionUnschedulePendingPlanChangesParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

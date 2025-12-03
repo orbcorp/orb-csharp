@@ -51,6 +51,7 @@ public sealed record class OtherSubLineItem : ModelBase
         init { ModelBase.Set(this._rawData, "type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -75,6 +76,7 @@ public sealed record class OtherSubLineItem : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="OtherSubLineItemFromRaw.FromRawUnchecked"/>
     public static OtherSubLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -85,6 +87,7 @@ public sealed record class OtherSubLineItem : ModelBase
 
 class OtherSubLineItemFromRaw : IFromRaw<OtherSubLineItem>
 {
+    /// <inheritdoc/>
     public OtherSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         OtherSubLineItem.FromRawUnchecked(rawData);
 }

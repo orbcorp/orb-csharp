@@ -9,7 +9,7 @@ using Orb.Models.Plans.ExternalPlanID;
 
 namespace Orb.Services.Plans;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ExternalPlanIDService : IExternalPlanIDService
 {
     /// <inheritdoc/>

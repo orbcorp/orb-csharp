@@ -31,6 +31,7 @@ public sealed record class ItemSlim : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -52,6 +53,7 @@ public sealed record class ItemSlim : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ItemSlimFromRaw.FromRawUnchecked"/>
     public static ItemSlim FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -60,6 +62,7 @@ public sealed record class ItemSlim : ModelBase
 
 class ItemSlimFromRaw : IFromRaw<ItemSlim>
 {
+    /// <inheritdoc/>
     public ItemSlim FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ItemSlim.FromRawUnchecked(rawData);
 }
