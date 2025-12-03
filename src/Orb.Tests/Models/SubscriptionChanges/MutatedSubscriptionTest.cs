@@ -115,12 +115,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -1593,12 +1604,23 @@ public class MutatedSubscriptionTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = ProviderType.Quickbooks,
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
             ReportingConfiguration = new(true),
         };
         string expectedDefaultInvoiceMemo = "default_invoice_memo";
@@ -3095,12 +3117,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -4580,12 +4613,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -6062,12 +6106,23 @@ public class MutatedSubscriptionTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = ProviderType.Quickbooks,
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
             ReportingConfiguration = new(true),
         };
         string expectedDefaultInvoiceMemo = "default_invoice_memo";
@@ -7573,12 +7628,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -9055,12 +9121,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -9675,12 +9752,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -10294,12 +10382,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",
@@ -10916,12 +11015,23 @@ public class MutatedSubscriptionTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
             DefaultInvoiceMemo = "default_invoice_memo",

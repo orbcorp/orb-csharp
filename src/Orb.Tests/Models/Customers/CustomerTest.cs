@@ -67,12 +67,23 @@ public class CustomerTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = ProviderType.Quickbooks,
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
             ReportingConfiguration = new(true),
         };
 
@@ -130,12 +141,23 @@ public class CustomerTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = ProviderType.Quickbooks,
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
         };
         bool expectedAutomaticTaxEnabled = true;
+        CustomerPaymentConfiguration expectedPaymentConfiguration = new()
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
         ReportingConfiguration expectedReportingConfiguration = new(true);
 
         Assert.Equal(expectedID, model.ID);
@@ -171,6 +193,7 @@ public class CustomerTest : TestBase
         Assert.Equal(expectedTimezone, model.Timezone);
         Assert.Equal(expectedAccountingSyncConfiguration, model.AccountingSyncConfiguration);
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
+        Assert.Equal(expectedPaymentConfiguration, model.PaymentConfiguration);
         Assert.Equal(expectedReportingConfiguration, model.ReportingConfiguration);
     }
 
@@ -232,12 +255,23 @@ public class CustomerTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = ProviderType.Quickbooks,
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
             ReportingConfiguration = new(true),
         };
 
@@ -305,12 +339,23 @@ public class CustomerTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = ProviderType.Quickbooks,
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
             ReportingConfiguration = new(true),
         };
 
@@ -372,12 +417,23 @@ public class CustomerTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = ProviderType.Quickbooks,
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
         };
         bool expectedAutomaticTaxEnabled = true;
+        CustomerPaymentConfiguration expectedPaymentConfiguration = new()
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
         ReportingConfiguration expectedReportingConfiguration = new(true);
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -413,6 +469,7 @@ public class CustomerTest : TestBase
         Assert.Equal(expectedTimezone, deserialized.Timezone);
         Assert.Equal(expectedAccountingSyncConfiguration, deserialized.AccountingSyncConfiguration);
         Assert.Equal(expectedAutomaticTaxEnabled, deserialized.AutomaticTaxEnabled);
+        Assert.Equal(expectedPaymentConfiguration, deserialized.PaymentConfiguration);
         Assert.Equal(expectedReportingConfiguration, deserialized.ReportingConfiguration);
     }
 
@@ -474,12 +531,23 @@ public class CustomerTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = ProviderType.Quickbooks,
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
             ReportingConfiguration = new(true),
         };
 
@@ -543,6 +611,8 @@ public class CustomerTest : TestBase
         Assert.False(model.RawData.ContainsKey("accounting_sync_configuration"));
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.False(model.RawData.ContainsKey("automatic_tax_enabled"));
+        Assert.Null(model.PaymentConfiguration);
+        Assert.False(model.RawData.ContainsKey("payment_configuration"));
         Assert.Null(model.ReportingConfiguration);
         Assert.False(model.RawData.ContainsKey("reporting_configuration"));
     }
@@ -657,6 +727,7 @@ public class CustomerTest : TestBase
 
             AccountingSyncConfiguration = null,
             AutomaticTaxEnabled = null,
+            PaymentConfiguration = null,
             ReportingConfiguration = null,
         };
 
@@ -664,6 +735,8 @@ public class CustomerTest : TestBase
         Assert.True(model.RawData.ContainsKey("accounting_sync_configuration"));
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.True(model.RawData.ContainsKey("automatic_tax_enabled"));
+        Assert.Null(model.PaymentConfiguration);
+        Assert.True(model.RawData.ContainsKey("payment_configuration"));
         Assert.Null(model.ReportingConfiguration);
         Assert.True(model.RawData.ContainsKey("reporting_configuration"));
     }
@@ -722,6 +795,7 @@ public class CustomerTest : TestBase
 
             AccountingSyncConfiguration = null,
             AutomaticTaxEnabled = null,
+            PaymentConfiguration = null,
             ReportingConfiguration = null,
         };
 
@@ -829,7 +903,7 @@ public class AccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = ProviderType.Quickbooks,
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -840,7 +914,7 @@ public class AccountingSyncConfigurationTest : TestBase
             new()
             {
                 ExternalProviderID = "external_provider_id",
-                ProviderType = ProviderType.Quickbooks,
+                ProviderType = AccountingProviderProviderType.Quickbooks,
             },
         ];
         bool expectedExcluded = true;
@@ -863,7 +937,7 @@ public class AccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = ProviderType.Quickbooks,
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -885,7 +959,7 @@ public class AccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = ProviderType.Quickbooks,
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -900,7 +974,7 @@ public class AccountingSyncConfigurationTest : TestBase
             new()
             {
                 ExternalProviderID = "external_provider_id",
-                ProviderType = ProviderType.Quickbooks,
+                ProviderType = AccountingProviderProviderType.Quickbooks,
             },
         ];
         bool expectedExcluded = true;
@@ -923,7 +997,7 @@ public class AccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = ProviderType.Quickbooks,
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -941,11 +1015,12 @@ public class AccountingProviderTest : TestBase
         var model = new AccountingProvider
         {
             ExternalProviderID = "external_provider_id",
-            ProviderType = ProviderType.Quickbooks,
+            ProviderType = AccountingProviderProviderType.Quickbooks,
         };
 
         string expectedExternalProviderID = "external_provider_id";
-        ApiEnum<string, ProviderType> expectedProviderType = ProviderType.Quickbooks;
+        ApiEnum<string, AccountingProviderProviderType> expectedProviderType =
+            AccountingProviderProviderType.Quickbooks;
 
         Assert.Equal(expectedExternalProviderID, model.ExternalProviderID);
         Assert.Equal(expectedProviderType, model.ProviderType);
@@ -957,7 +1032,7 @@ public class AccountingProviderTest : TestBase
         var model = new AccountingProvider
         {
             ExternalProviderID = "external_provider_id",
-            ProviderType = ProviderType.Quickbooks,
+            ProviderType = AccountingProviderProviderType.Quickbooks,
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -972,7 +1047,7 @@ public class AccountingProviderTest : TestBase
         var model = new AccountingProvider
         {
             ExternalProviderID = "external_provider_id",
-            ProviderType = ProviderType.Quickbooks,
+            ProviderType = AccountingProviderProviderType.Quickbooks,
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -980,7 +1055,8 @@ public class AccountingProviderTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedExternalProviderID = "external_provider_id";
-        ApiEnum<string, ProviderType> expectedProviderType = ProviderType.Quickbooks;
+        ApiEnum<string, AccountingProviderProviderType> expectedProviderType =
+            AccountingProviderProviderType.Quickbooks;
 
         Assert.Equal(expectedExternalProviderID, deserialized.ExternalProviderID);
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
@@ -992,7 +1068,291 @@ public class AccountingProviderTest : TestBase
         var model = new AccountingProvider
         {
             ExternalProviderID = "external_provider_id",
-            ProviderType = ProviderType.Quickbooks,
+            ProviderType = AccountingProviderProviderType.Quickbooks,
+        };
+
+        model.Validate();
+    }
+}
+
+public class CustomerPaymentConfigurationTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        List<PaymentProvider5> expectedPaymentProviders =
+        [
+            new()
+            {
+                ProviderType = PaymentProvider5ProviderType.Stripe,
+                ExcludedPaymentMethodTypes = ["string"],
+            },
+        ];
+
+        Assert.Equal(expectedPaymentProviders.Count, model.PaymentProviders.Count);
+        for (int i = 0; i < expectedPaymentProviders.Count; i++)
+        {
+            Assert.Equal(expectedPaymentProviders[i], model.PaymentProviders[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfiguration>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfiguration>(json);
+        Assert.NotNull(deserialized);
+
+        List<PaymentProvider5> expectedPaymentProviders =
+        [
+            new()
+            {
+                ProviderType = PaymentProvider5ProviderType.Stripe,
+                ExcludedPaymentMethodTypes = ["string"],
+            },
+        ];
+
+        Assert.Equal(expectedPaymentProviders.Count, deserialized.PaymentProviders.Count);
+        for (int i = 0; i < expectedPaymentProviders.Count; i++)
+        {
+            Assert.Equal(expectedPaymentProviders[i], deserialized.PaymentProviders[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new CustomerPaymentConfiguration { };
+
+        Assert.Null(model.PaymentProviders);
+        Assert.False(model.RawData.ContainsKey("payment_providers"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new CustomerPaymentConfiguration { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            // Null should be interpreted as omitted for these properties
+            PaymentProviders = null,
+        };
+
+        Assert.Null(model.PaymentProviders);
+        Assert.False(model.RawData.ContainsKey("payment_providers"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            // Null should be interpreted as omitted for these properties
+            PaymentProviders = null,
+        };
+
+        model.Validate();
+    }
+}
+
+public class PaymentProvider5Test : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new PaymentProvider5
+        {
+            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        ApiEnum<string, PaymentProvider5ProviderType> expectedProviderType =
+            PaymentProvider5ProviderType.Stripe;
+        List<string> expectedExcludedPaymentMethodTypes = ["string"];
+
+        Assert.Equal(expectedProviderType, model.ProviderType);
+        Assert.Equal(
+            expectedExcludedPaymentMethodTypes.Count,
+            model.ExcludedPaymentMethodTypes.Count
+        );
+        for (int i = 0; i < expectedExcludedPaymentMethodTypes.Count; i++)
+        {
+            Assert.Equal(
+                expectedExcludedPaymentMethodTypes[i],
+                model.ExcludedPaymentMethodTypes[i]
+            );
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new PaymentProvider5
+        {
+            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaymentProvider5>(json);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new PaymentProvider5
+        {
+            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaymentProvider5>(json);
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, PaymentProvider5ProviderType> expectedProviderType =
+            PaymentProvider5ProviderType.Stripe;
+        List<string> expectedExcludedPaymentMethodTypes = ["string"];
+
+        Assert.Equal(expectedProviderType, deserialized.ProviderType);
+        Assert.Equal(
+            expectedExcludedPaymentMethodTypes.Count,
+            deserialized.ExcludedPaymentMethodTypes.Count
+        );
+        for (int i = 0; i < expectedExcludedPaymentMethodTypes.Count; i++)
+        {
+            Assert.Equal(
+                expectedExcludedPaymentMethodTypes[i],
+                deserialized.ExcludedPaymentMethodTypes[i]
+            );
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new PaymentProvider5
+        {
+            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PaymentProvider5 { ProviderType = PaymentProvider5ProviderType.Stripe };
+
+        Assert.Null(model.ExcludedPaymentMethodTypes);
+        Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PaymentProvider5 { ProviderType = PaymentProvider5ProviderType.Stripe };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new PaymentProvider5
+        {
+            ProviderType = PaymentProvider5ProviderType.Stripe,
+
+            // Null should be interpreted as omitted for these properties
+            ExcludedPaymentMethodTypes = null,
+        };
+
+        Assert.Null(model.ExcludedPaymentMethodTypes);
+        Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PaymentProvider5
+        {
+            ProviderType = PaymentProvider5ProviderType.Stripe,
+
+            // Null should be interpreted as omitted for these properties
+            ExcludedPaymentMethodTypes = null,
         };
 
         model.Validate();

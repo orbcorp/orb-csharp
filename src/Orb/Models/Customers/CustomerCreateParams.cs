@@ -167,16 +167,33 @@ public sealed record class CustomerCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// This is used for creating charges or invoices in an external system via Orb.
-    /// When not in test mode, the connection must first be configured in the Orb webapp.
+    /// Payment configuration for the customer, applicable when using Orb Invoicing
+    /// with a supported payment provider such as Stripe.
     /// </summary>
-    public ApiEnum<string, global::Orb.Models.Customers.PaymentProvider>? PaymentProvider
+    public PaymentConfiguration? PaymentConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<
-                ApiEnum<string, global::Orb.Models.Customers.PaymentProvider>
-            >(this.RawBodyData, "payment_provider");
+            return ModelBase.GetNullableClass<PaymentConfiguration>(
+                this.RawBodyData,
+                "payment_configuration"
+            );
+        }
+        init { ModelBase.Set(this._rawBodyData, "payment_configuration", value); }
+    }
+
+    /// <summary>
+    /// This is used for creating charges or invoices in an external system via Orb.
+    /// When not in test mode, the connection must first be configured in the Orb webapp.
+    /// </summary>
+    public ApiEnum<string, PaymentProviderModel>? PaymentProvider
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<ApiEnum<string, PaymentProviderModel>>(
+                this.RawBodyData,
+                "payment_provider"
+            );
         }
         init { ModelBase.Set(this._rawBodyData, "payment_provider", value); }
     }
@@ -410,11 +427,213 @@ public sealed record class CustomerCreateParams : ParamsBase
 }
 
 /// <summary>
+/// Payment configuration for the customer, applicable when using Orb Invoicing with
+/// a supported payment provider such as Stripe.
+/// </summary>
+[JsonConverter(typeof(ModelConverter<PaymentConfiguration, PaymentConfigurationFromRaw>))]
+public sealed record class PaymentConfiguration : ModelBase
+{
+    /// <summary>
+    /// Provider-specific payment configuration.
+    /// </summary>
+    public IReadOnlyList<global::Orb.Models.Customers.PaymentProvider>? PaymentProviders
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<List<global::Orb.Models.Customers.PaymentProvider>>(
+                this.RawData,
+                "payment_providers"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "payment_providers", value);
+        }
+    }
+
+    public override void Validate()
+    {
+        foreach (var item in this.PaymentProviders ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public PaymentConfiguration() { }
+
+    public PaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaymentConfiguration(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+#pragma warning restore CS8618
+
+    public static PaymentConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PaymentConfigurationFromRaw : IFromRaw<PaymentConfiguration>
+{
+    public PaymentConfiguration FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PaymentConfiguration.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(ModelConverter<global::Orb.Models.Customers.PaymentProvider, PaymentProviderFromRaw>)
+)]
+public sealed record class PaymentProvider : ModelBase
+{
+    /// <summary>
+    /// The payment provider to configure.
+    /// </summary>
+    public required ApiEnum<string, ProviderType> ProviderType
+    {
+        get
+        {
+            return ModelBase.GetNotNullClass<ApiEnum<string, ProviderType>>(
+                this.RawData,
+                "provider_type"
+            );
+        }
+        init { ModelBase.Set(this._rawData, "provider_type", value); }
+    }
+
+    /// <summary>
+    /// List of Stripe payment method types to exclude for this customer. Excluded
+    /// payment methods will not be available for the customer to select during payment,
+    /// and will not be used for auto-collection. If a customer's default payment
+    /// method becomes excluded, Orb will attempt to use the next available compatible
+    /// payment method for auto-collection.
+    /// </summary>
+    public IReadOnlyList<string>? ExcludedPaymentMethodTypes
+    {
+        get
+        {
+            return ModelBase.GetNullableClass<List<string>>(
+                this.RawData,
+                "excluded_payment_method_types"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            ModelBase.Set(this._rawData, "excluded_payment_method_types", value);
+        }
+    }
+
+    public override void Validate()
+    {
+        this.ProviderType.Validate();
+        _ = this.ExcludedPaymentMethodTypes;
+    }
+
+    public PaymentProvider() { }
+
+    public PaymentProvider(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaymentProvider(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = [.. rawData];
+    }
+#pragma warning restore CS8618
+
+    public static global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public PaymentProvider(ApiEnum<string, ProviderType> providerType)
+        : this()
+    {
+        this.ProviderType = providerType;
+    }
+}
+
+class PaymentProviderFromRaw : IFromRaw<global::Orb.Models.Customers.PaymentProvider>
+{
+    public global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => global::Orb.Models.Customers.PaymentProvider.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The payment provider to configure.
+/// </summary>
+[JsonConverter(typeof(ProviderTypeConverter))]
+public enum ProviderType
+{
+    Stripe,
+}
+
+sealed class ProviderTypeConverter : JsonConverter<ProviderType>
+{
+    public override ProviderType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "stripe" => ProviderType.Stripe,
+            _ => (ProviderType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ProviderType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ProviderType.Stripe => "stripe",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
 /// This is used for creating charges or invoices in an external system via Orb.
 /// When not in test mode, the connection must first be configured in the Orb webapp.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.PaymentProviderConverter))]
-public enum PaymentProvider
+[JsonConverter(typeof(PaymentProviderModelConverter))]
+public enum PaymentProviderModel
 {
     Quickbooks,
     BillCom,
@@ -423,9 +642,9 @@ public enum PaymentProvider
     Netsuite,
 }
 
-sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Customers.PaymentProvider>
+sealed class PaymentProviderModelConverter : JsonConverter<PaymentProviderModel>
 {
-    public override global::Orb.Models.Customers.PaymentProvider Read(
+    public override PaymentProviderModel Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -433,18 +652,18 @@ sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Custome
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "quickbooks" => global::Orb.Models.Customers.PaymentProvider.Quickbooks,
-            "bill.com" => global::Orb.Models.Customers.PaymentProvider.BillCom,
-            "stripe_charge" => global::Orb.Models.Customers.PaymentProvider.StripeCharge,
-            "stripe_invoice" => global::Orb.Models.Customers.PaymentProvider.StripeInvoice,
-            "netsuite" => global::Orb.Models.Customers.PaymentProvider.Netsuite,
-            _ => (global::Orb.Models.Customers.PaymentProvider)(-1),
+            "quickbooks" => PaymentProviderModel.Quickbooks,
+            "bill.com" => PaymentProviderModel.BillCom,
+            "stripe_charge" => PaymentProviderModel.StripeCharge,
+            "stripe_invoice" => PaymentProviderModel.StripeInvoice,
+            "netsuite" => PaymentProviderModel.Netsuite,
+            _ => (PaymentProviderModel)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.PaymentProvider value,
+        PaymentProviderModel value,
         JsonSerializerOptions options
     )
     {
@@ -452,11 +671,11 @@ sealed class PaymentProviderConverter : JsonConverter<global::Orb.Models.Custome
             writer,
             value switch
             {
-                global::Orb.Models.Customers.PaymentProvider.Quickbooks => "quickbooks",
-                global::Orb.Models.Customers.PaymentProvider.BillCom => "bill.com",
-                global::Orb.Models.Customers.PaymentProvider.StripeCharge => "stripe_charge",
-                global::Orb.Models.Customers.PaymentProvider.StripeInvoice => "stripe_invoice",
-                global::Orb.Models.Customers.PaymentProvider.Netsuite => "netsuite",
+                PaymentProviderModel.Quickbooks => "quickbooks",
+                PaymentProviderModel.BillCom => "bill.com",
+                PaymentProviderModel.StripeCharge => "stripe_charge",
+                PaymentProviderModel.StripeInvoice => "stripe_invoice",
+                PaymentProviderModel.Netsuite => "netsuite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

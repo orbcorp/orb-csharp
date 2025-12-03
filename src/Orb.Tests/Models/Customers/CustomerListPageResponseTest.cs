@@ -73,12 +73,23 @@ public class CustomerListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalProviderID = "external_provider_id",
-                                ProviderType = ProviderType.Quickbooks,
+                                ProviderType = AccountingProviderProviderType.Quickbooks,
                             },
                         ],
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    PaymentConfiguration = new()
+                    {
+                        PaymentProviders =
+                        [
+                            new()
+                            {
+                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ExcludedPaymentMethodTypes = ["string"],
+                            },
+                        ],
+                    },
                     ReportingConfiguration = new(true),
                 },
             ],
@@ -142,12 +153,23 @@ public class CustomerListPageResponseTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
         ];
@@ -230,12 +252,23 @@ public class CustomerListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalProviderID = "external_provider_id",
-                                ProviderType = ProviderType.Quickbooks,
+                                ProviderType = AccountingProviderProviderType.Quickbooks,
                             },
                         ],
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    PaymentConfiguration = new()
+                    {
+                        PaymentProviders =
+                        [
+                            new()
+                            {
+                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ExcludedPaymentMethodTypes = ["string"],
+                            },
+                        ],
+                    },
                     ReportingConfiguration = new(true),
                 },
             ],
@@ -313,12 +346,23 @@ public class CustomerListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalProviderID = "external_provider_id",
-                                ProviderType = ProviderType.Quickbooks,
+                                ProviderType = AccountingProviderProviderType.Quickbooks,
                             },
                         ],
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    PaymentConfiguration = new()
+                    {
+                        PaymentProviders =
+                        [
+                            new()
+                            {
+                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ExcludedPaymentMethodTypes = ["string"],
+                            },
+                        ],
+                    },
                     ReportingConfiguration = new(true),
                 },
             ],
@@ -386,12 +430,23 @@ public class CustomerListPageResponseTest : TestBase
                         new()
                         {
                             ExternalProviderID = "external_provider_id",
-                            ProviderType = ProviderType.Quickbooks,
+                            ProviderType = AccountingProviderProviderType.Quickbooks,
                         },
                     ],
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                PaymentConfiguration = new()
+                {
+                    PaymentProviders =
+                    [
+                        new()
+                        {
+                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ExcludedPaymentMethodTypes = ["string"],
+                        },
+                    ],
+                },
                 ReportingConfiguration = new(true),
             },
         ];
@@ -474,12 +529,23 @@ public class CustomerListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalProviderID = "external_provider_id",
-                                ProviderType = ProviderType.Quickbooks,
+                                ProviderType = AccountingProviderProviderType.Quickbooks,
                             },
                         ],
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    PaymentConfiguration = new()
+                    {
+                        PaymentProviders =
+                        [
+                            new()
+                            {
+                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ExcludedPaymentMethodTypes = ["string"],
+                            },
+                        ],
+                    },
                     ReportingConfiguration = new(true),
                 },
             ],
