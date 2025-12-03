@@ -136,6 +136,12 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 
     public CreditNoteCreateParams() { }
 
+    public CreditNoteCreateParams(CreditNoteCreateParams creditNoteCreateParams)
+        : base(creditNoteCreateParams)
+    {
+        this._rawBodyData = [.. creditNoteCreateParams._rawBodyData];
+    }
+
     public CreditNoteCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -283,6 +289,9 @@ public sealed record class LineItem : ModelBase
     }
 
     public LineItem() { }
+
+    public LineItem(global::Orb.Models.CreditNotes.LineItem lineItem)
+        : base(lineItem) { }
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {

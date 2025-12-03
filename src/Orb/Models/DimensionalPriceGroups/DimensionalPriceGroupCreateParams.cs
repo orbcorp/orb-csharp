@@ -80,6 +80,14 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     public DimensionalPriceGroupCreateParams() { }
 
     public DimensionalPriceGroupCreateParams(
+        DimensionalPriceGroupCreateParams dimensionalPriceGroupCreateParams
+    )
+        : base(dimensionalPriceGroupCreateParams)
+    {
+        this._rawBodyData = [.. dimensionalPriceGroupCreateParams._rawBodyData];
+    }
+
+    public DimensionalPriceGroupCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

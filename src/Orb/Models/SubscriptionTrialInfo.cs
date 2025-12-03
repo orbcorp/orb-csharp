@@ -25,6 +25,9 @@ public sealed record class SubscriptionTrialInfo : ModelBase
 
     public SubscriptionTrialInfo() { }
 
+    public SubscriptionTrialInfo(SubscriptionTrialInfo subscriptionTrialInfo)
+        : base(subscriptionTrialInfo) { }
+
     public SubscriptionTrialInfo(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

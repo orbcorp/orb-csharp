@@ -42,6 +42,12 @@ public sealed record class PriceCreateParams : ParamsBase
 
     public PriceCreateParams() { }
 
+    public PriceCreateParams(PriceCreateParams priceCreateParams)
+        : base(priceCreateParams)
+    {
+        this._rawBodyData = [.. priceCreateParams._rawBodyData];
+    }
+
     public PriceCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -2942,6 +2948,9 @@ public sealed record class BulkWithFilters : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
+    public BulkWithFilters(global::Orb.Models.Prices.BulkWithFilters bulkWithFilters)
+        : base(bulkWithFilters) { }
+
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3030,6 +3039,11 @@ public sealed record class BulkWithFiltersConfig : ModelBase
 
     public BulkWithFiltersConfig() { }
 
+    public BulkWithFiltersConfig(
+        global::Orb.Models.Prices.BulkWithFiltersConfig bulkWithFiltersConfig
+    )
+        : base(bulkWithFiltersConfig) { }
+
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3098,6 +3112,9 @@ public sealed record class Filter : ModelBase
 
     public Filter() { }
 
+    public Filter(global::Orb.Models.Prices.Filter filter)
+        : base(filter) { }
+
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3162,6 +3179,9 @@ public sealed record class Tier : ModelBase
     }
 
     public Tier() { }
+
+    public Tier(global::Orb.Models.Prices.Tier tier)
+        : base(tier) { }
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3775,6 +3795,11 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         );
     }
 
+    public GroupedWithMinMaxThresholds(
+        global::Orb.Models.Prices.GroupedWithMinMaxThresholds groupedWithMinMaxThresholds
+    )
+        : base(groupedWithMinMaxThresholds) { }
+
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3933,6 +3958,11 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
     }
 
     public GroupedWithMinMaxThresholdsConfig() { }
+
+    public GroupedWithMinMaxThresholdsConfig(
+        global::Orb.Models.Prices.GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
+    )
+        : base(groupedWithMinMaxThresholdsConfig) { }
 
     public GroupedWithMinMaxThresholdsConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4493,6 +4523,11 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         );
     }
 
+    public CumulativeGroupedAllocation(
+        global::Orb.Models.Prices.CumulativeGroupedAllocation cumulativeGroupedAllocation
+    )
+        : base(cumulativeGroupedAllocation) { }
+
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4651,6 +4686,11 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
     }
 
     public CumulativeGroupedAllocationConfig() { }
+
+    public CumulativeGroupedAllocationConfig(
+        global::Orb.Models.Prices.CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
+    )
+        : base(cumulativeGroupedAllocationConfig) { }
 
     public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5206,6 +5246,9 @@ public sealed record class Percent : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
+    public Percent(global::Orb.Models.Prices.Percent percent)
+        : base(percent) { }
+
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -5324,6 +5367,9 @@ public sealed record class PercentConfig : ModelBase
     }
 
     public PercentConfig() { }
+
+    public PercentConfig(global::Orb.Models.Prices.PercentConfig percentConfig)
+        : base(percentConfig) { }
 
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5879,6 +5925,9 @@ public sealed record class EventOutput : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
+    public EventOutput(global::Orb.Models.Prices.EventOutput eventOutput)
+        : base(eventOutput) { }
+
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6021,6 +6070,9 @@ public sealed record class EventOutputConfig : ModelBase
     }
 
     public EventOutputConfig() { }
+
+    public EventOutputConfig(global::Orb.Models.Prices.EventOutputConfig eventOutputConfig)
+        : base(eventOutputConfig) { }
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

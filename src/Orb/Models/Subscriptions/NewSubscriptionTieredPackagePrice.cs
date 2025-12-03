@@ -257,6 +257,11 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
 
     public NewSubscriptionTieredPackagePrice() { }
 
+    public NewSubscriptionTieredPackagePrice(
+        NewSubscriptionTieredPackagePrice newSubscriptionTieredPackagePrice
+    )
+        : base(newSubscriptionTieredPackagePrice) { }
+
     public NewSubscriptionTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -441,6 +446,11 @@ public sealed record class TieredPackageConfig : ModelBase
 
     public TieredPackageConfig() { }
 
+    public TieredPackageConfig(
+        global::Orb.Models.Subscriptions.TieredPackageConfig tieredPackageConfig
+    )
+        : base(tieredPackageConfig) { }
+
     public TieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -508,6 +518,11 @@ public sealed record class TieredPackageConfigTier : ModelBase
     }
 
     public TieredPackageConfigTier() { }
+
+    public TieredPackageConfigTier(
+        global::Orb.Models.Subscriptions.TieredPackageConfigTier tieredPackageConfigTier
+    )
+        : base(tieredPackageConfigTier) { }
 
     public TieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

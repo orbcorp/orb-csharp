@@ -23,6 +23,11 @@ public sealed record class CustomerSyncPaymentMethodsFromGatewayParams : ParamsB
     public CustomerSyncPaymentMethodsFromGatewayParams() { }
 
     public CustomerSyncPaymentMethodsFromGatewayParams(
+        CustomerSyncPaymentMethodsFromGatewayParams customerSyncPaymentMethodsFromGatewayParams
+    )
+        : base(customerSyncPaymentMethodsFromGatewayParams) { }
+
+    public CustomerSyncPaymentMethodsFromGatewayParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

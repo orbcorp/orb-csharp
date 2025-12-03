@@ -20,6 +20,9 @@ public sealed record class TopUpDeleteParams : ParamsBase
 
     public TopUpDeleteParams() { }
 
+    public TopUpDeleteParams(TopUpDeleteParams topUpDeleteParams)
+        : base(topUpDeleteParams) { }
+
     public TopUpDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

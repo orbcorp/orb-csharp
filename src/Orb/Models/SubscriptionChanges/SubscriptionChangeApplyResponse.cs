@@ -100,6 +100,11 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
 
     public SubscriptionChangeApplyResponse() { }
 
+    public SubscriptionChangeApplyResponse(
+        SubscriptionChangeApplyResponse subscriptionChangeApplyResponse
+    )
+        : base(subscriptionChangeApplyResponse) { }
+
     public SubscriptionChangeApplyResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

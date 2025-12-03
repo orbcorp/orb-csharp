@@ -3095,6 +3095,12 @@ public sealed record class Unit : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Unit(Unit unit)
+        : base(unit) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Unit(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3280,6 +3286,9 @@ public sealed record class CompositePriceFilter : ModelBase
     }
 
     public CompositePriceFilter() { }
+
+    public CompositePriceFilter(CompositePriceFilter compositePriceFilter)
+        : base(compositePriceFilter) { }
 
     public CompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4039,6 +4048,12 @@ public sealed record class Tiered : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Tiered(Tiered tiered)
+        : base(tiered) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Tiered(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4226,6 +4241,9 @@ public sealed record class TieredCompositePriceFilter : ModelBase
     }
 
     public TieredCompositePriceFilter() { }
+
+    public TieredCompositePriceFilter(TieredCompositePriceFilter tieredCompositePriceFilter)
+        : base(tieredCompositePriceFilter) { }
 
     public TieredCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4987,6 +5005,12 @@ public sealed record class Bulk : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Bulk(Bulk bulk)
+        : base(bulk) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Bulk(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -5172,6 +5196,9 @@ public sealed record class BulkCompositePriceFilter : ModelBase
     }
 
     public BulkCompositePriceFilter() { }
+
+    public BulkCompositePriceFilter(BulkCompositePriceFilter bulkCompositePriceFilter)
+        : base(bulkCompositePriceFilter) { }
 
     public BulkCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5938,6 +5965,12 @@ public sealed record class BulkWithFilters : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public BulkWithFilters(BulkWithFilters bulkWithFilters)
+        : base(bulkWithFilters) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6067,6 +6100,9 @@ public sealed record class BulkWithFiltersConfig : ModelBase
 
     public BulkWithFiltersConfig() { }
 
+    public BulkWithFiltersConfig(BulkWithFiltersConfig bulkWithFiltersConfig)
+        : base(bulkWithFiltersConfig) { }
+
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6132,6 +6168,9 @@ public sealed record class BulkWithFiltersConfigFilter : ModelBase
 
     public BulkWithFiltersConfigFilter() { }
 
+    public BulkWithFiltersConfigFilter(BulkWithFiltersConfigFilter bulkWithFiltersConfigFilter)
+        : base(bulkWithFiltersConfigFilter) { }
+
     public BulkWithFiltersConfigFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6194,6 +6233,9 @@ public sealed record class BulkWithFiltersConfigTier : ModelBase
     }
 
     public BulkWithFiltersConfigTier() { }
+
+    public BulkWithFiltersConfigTier(BulkWithFiltersConfigTier bulkWithFiltersConfigTier)
+        : base(bulkWithFiltersConfigTier) { }
 
     public BulkWithFiltersConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6342,6 +6384,11 @@ public sealed record class BulkWithFiltersCompositePriceFilter : ModelBase
     }
 
     public BulkWithFiltersCompositePriceFilter() { }
+
+    public BulkWithFiltersCompositePriceFilter(
+        BulkWithFiltersCompositePriceFilter bulkWithFiltersCompositePriceFilter
+    )
+        : base(bulkWithFiltersCompositePriceFilter) { }
 
     public BulkWithFiltersCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7107,6 +7154,12 @@ public sealed record class Package : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Package(Package package)
+        : base(package) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Package(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -7294,6 +7347,9 @@ public sealed record class PackageCompositePriceFilter : ModelBase
     }
 
     public PackageCompositePriceFilter() { }
+
+    public PackageCompositePriceFilter(PackageCompositePriceFilter packageCompositePriceFilter)
+        : base(packageCompositePriceFilter) { }
 
     public PackageCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8058,6 +8114,12 @@ public sealed record class Matrix : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Matrix(Matrix matrix)
+        : base(matrix) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Matrix(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -8245,6 +8307,9 @@ public sealed record class MatrixCompositePriceFilter : ModelBase
     }
 
     public MatrixCompositePriceFilter() { }
+
+    public MatrixCompositePriceFilter(MatrixCompositePriceFilter matrixCompositePriceFilter)
+        : base(matrixCompositePriceFilter) { }
 
     public MatrixCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -9015,6 +9080,12 @@ public sealed record class ThresholdTotalAmount : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public ThresholdTotalAmount(ThresholdTotalAmount thresholdTotalAmount)
+        : base(thresholdTotalAmount) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ThresholdTotalAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -9207,6 +9278,11 @@ public sealed record class ThresholdTotalAmountCompositePriceFilter : ModelBase
     }
 
     public ThresholdTotalAmountCompositePriceFilter() { }
+
+    public ThresholdTotalAmountCompositePriceFilter(
+        ThresholdTotalAmountCompositePriceFilter thresholdTotalAmountCompositePriceFilter
+    )
+        : base(thresholdTotalAmountCompositePriceFilter) { }
 
     public ThresholdTotalAmountCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9716,6 +9792,11 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : Mode
     public ThresholdTotalAmountThresholdTotalAmountConfig() { }
 
     public ThresholdTotalAmountThresholdTotalAmountConfig(
+        ThresholdTotalAmountThresholdTotalAmountConfig thresholdTotalAmountThresholdTotalAmountConfig
+    )
+        : base(thresholdTotalAmountThresholdTotalAmountConfig) { }
+
+    public ThresholdTotalAmountThresholdTotalAmountConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9795,6 +9876,11 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfigConsump
     }
 
     public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable() { }
+
+    public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable(
+        ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable thresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+    )
+        : base(thresholdTotalAmountThresholdTotalAmountConfigConsumptionTable) { }
 
     public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -10144,6 +10230,12 @@ public sealed record class TieredPackage : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public TieredPackage(TieredPackage tieredPackage)
+        : base(tieredPackage) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredPackage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -10332,6 +10424,11 @@ public sealed record class TieredPackageCompositePriceFilter : ModelBase
     }
 
     public TieredPackageCompositePriceFilter() { }
+
+    public TieredPackageCompositePriceFilter(
+        TieredPackageCompositePriceFilter tieredPackageCompositePriceFilter
+    )
+        : base(tieredPackageCompositePriceFilter) { }
 
     public TieredPackageCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -10840,6 +10937,11 @@ public sealed record class TieredPackageTieredPackageConfig : ModelBase
 
     public TieredPackageTieredPackageConfig() { }
 
+    public TieredPackageTieredPackageConfig(
+        TieredPackageTieredPackageConfig tieredPackageTieredPackageConfig
+    )
+        : base(tieredPackageTieredPackageConfig) { }
+
     public TieredPackageTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -10907,6 +11009,11 @@ public sealed record class TieredPackageTieredPackageConfigTier : ModelBase
     }
 
     public TieredPackageTieredPackageConfigTier() { }
+
+    public TieredPackageTieredPackageConfigTier(
+        TieredPackageTieredPackageConfigTier tieredPackageTieredPackageConfigTier
+    )
+        : base(tieredPackageTieredPackageConfigTier) { }
 
     public TieredPackageTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -11251,6 +11358,12 @@ public sealed record class TieredWithMinimum : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public TieredWithMinimum(TieredWithMinimum tieredWithMinimum)
+        : base(tieredWithMinimum) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredWithMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -11441,6 +11554,11 @@ public sealed record class TieredWithMinimumCompositePriceFilter : ModelBase
     }
 
     public TieredWithMinimumCompositePriceFilter() { }
+
+    public TieredWithMinimumCompositePriceFilter(
+        TieredWithMinimumCompositePriceFilter tieredWithMinimumCompositePriceFilter
+    )
+        : base(tieredWithMinimumCompositePriceFilter) { }
 
     public TieredWithMinimumCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -11974,6 +12092,11 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig : ModelBase
     public TieredWithMinimumTieredWithMinimumConfig() { }
 
     public TieredWithMinimumTieredWithMinimumConfig(
+        TieredWithMinimumTieredWithMinimumConfig tieredWithMinimumTieredWithMinimumConfig
+    )
+        : base(tieredWithMinimumTieredWithMinimumConfig) { }
+
+    public TieredWithMinimumTieredWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -12062,6 +12185,11 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfigTier : ModelB
     }
 
     public TieredWithMinimumTieredWithMinimumConfigTier() { }
+
+    public TieredWithMinimumTieredWithMinimumConfigTier(
+        TieredWithMinimumTieredWithMinimumConfigTier tieredWithMinimumTieredWithMinimumConfigTier
+    )
+        : base(tieredWithMinimumTieredWithMinimumConfigTier) { }
 
     public TieredWithMinimumTieredWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -12409,6 +12537,12 @@ public sealed record class GroupedTiered : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public GroupedTiered(GroupedTiered groupedTiered)
+        : base(groupedTiered) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedTiered(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -12597,6 +12731,11 @@ public sealed record class GroupedTieredCompositePriceFilter : ModelBase
     }
 
     public GroupedTieredCompositePriceFilter() { }
+
+    public GroupedTieredCompositePriceFilter(
+        GroupedTieredCompositePriceFilter groupedTieredCompositePriceFilter
+    )
+        : base(groupedTieredCompositePriceFilter) { }
 
     public GroupedTieredCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -13055,6 +13194,11 @@ public sealed record class GroupedTieredGroupedTieredConfig : ModelBase
 
     public GroupedTieredGroupedTieredConfig() { }
 
+    public GroupedTieredGroupedTieredConfig(
+        GroupedTieredGroupedTieredConfig groupedTieredGroupedTieredConfig
+    )
+        : base(groupedTieredGroupedTieredConfig) { }
+
     public GroupedTieredGroupedTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -13122,6 +13266,11 @@ public sealed record class GroupedTieredGroupedTieredConfigTier : ModelBase
     }
 
     public GroupedTieredGroupedTieredConfigTier() { }
+
+    public GroupedTieredGroupedTieredConfigTier(
+        GroupedTieredGroupedTieredConfigTier groupedTieredGroupedTieredConfigTier
+    )
+        : base(groupedTieredGroupedTieredConfigTier) { }
 
     public GroupedTieredGroupedTieredConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -13513,6 +13662,12 @@ public sealed record class TieredPackageWithMinimum : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public TieredPackageWithMinimum(TieredPackageWithMinimum tieredPackageWithMinimum)
+        : base(tieredPackageWithMinimum) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredPackageWithMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -13706,6 +13861,11 @@ public sealed record class TieredPackageWithMinimumCompositePriceFilter : ModelB
     }
 
     public TieredPackageWithMinimumCompositePriceFilter() { }
+
+    public TieredPackageWithMinimumCompositePriceFilter(
+        TieredPackageWithMinimumCompositePriceFilter tieredPackageWithMinimumCompositePriceFilter
+    )
+        : base(tieredPackageWithMinimumCompositePriceFilter) { }
 
     public TieredPackageWithMinimumCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14217,6 +14377,11 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
     public TieredPackageWithMinimumTieredPackageWithMinimumConfig() { }
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfig(
+        TieredPackageWithMinimumTieredPackageWithMinimumConfig tieredPackageWithMinimumTieredPackageWithMinimumConfig
+    )
+        : base(tieredPackageWithMinimumTieredPackageWithMinimumConfig) { }
+
+    public TieredPackageWithMinimumTieredPackageWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -14298,6 +14463,11 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
     }
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier() { }
+
+    public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier(
+        TieredPackageWithMinimumTieredPackageWithMinimumConfigTier tieredPackageWithMinimumTieredPackageWithMinimumConfigTier
+    )
+        : base(tieredPackageWithMinimumTieredPackageWithMinimumConfigTier) { }
 
     public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14647,6 +14817,12 @@ public sealed record class PackageWithAllocation : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public PackageWithAllocation(PackageWithAllocation packageWithAllocation)
+        : base(packageWithAllocation) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public PackageWithAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -14839,6 +15015,11 @@ public sealed record class PackageWithAllocationCompositePriceFilter : ModelBase
     }
 
     public PackageWithAllocationCompositePriceFilter() { }
+
+    public PackageWithAllocationCompositePriceFilter(
+        PackageWithAllocationCompositePriceFilter packageWithAllocationCompositePriceFilter
+    )
+        : base(packageWithAllocationCompositePriceFilter) { }
 
     public PackageWithAllocationCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15302,6 +15483,11 @@ public sealed record class PackageWithAllocationPackageWithAllocationConfig : Mo
     public PackageWithAllocationPackageWithAllocationConfig() { }
 
     public PackageWithAllocationPackageWithAllocationConfig(
+        PackageWithAllocationPackageWithAllocationConfig packageWithAllocationPackageWithAllocationConfig
+    )
+        : base(packageWithAllocationPackageWithAllocationConfig) { }
+
+    public PackageWithAllocationPackageWithAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -15694,6 +15880,12 @@ public sealed record class UnitWithPercent : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public UnitWithPercent(UnitWithPercent unitWithPercent)
+        : base(unitWithPercent) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public UnitWithPercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -15882,6 +16074,11 @@ public sealed record class UnitWithPercentCompositePriceFilter : ModelBase
     }
 
     public UnitWithPercentCompositePriceFilter() { }
+
+    public UnitWithPercentCompositePriceFilter(
+        UnitWithPercentCompositePriceFilter unitWithPercentCompositePriceFilter
+    )
+        : base(unitWithPercentCompositePriceFilter) { }
 
     public UnitWithPercentCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -16378,6 +16575,11 @@ public sealed record class UnitWithPercentUnitWithPercentConfig : ModelBase
 
     public UnitWithPercentUnitWithPercentConfig() { }
 
+    public UnitWithPercentUnitWithPercentConfig(
+        UnitWithPercentUnitWithPercentConfig unitWithPercentUnitWithPercentConfig
+    )
+        : base(unitWithPercentUnitWithPercentConfig) { }
+
     public UnitWithPercentUnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -16721,6 +16923,12 @@ public sealed record class MatrixWithAllocation : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public MatrixWithAllocation(MatrixWithAllocation matrixWithAllocation)
+        : base(matrixWithAllocation) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MatrixWithAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -16913,6 +17121,11 @@ public sealed record class MatrixWithAllocationCompositePriceFilter : ModelBase
     }
 
     public MatrixWithAllocationCompositePriceFilter() { }
+
+    public MatrixWithAllocationCompositePriceFilter(
+        MatrixWithAllocationCompositePriceFilter matrixWithAllocationCompositePriceFilter
+    )
+        : base(matrixWithAllocationCompositePriceFilter) { }
 
     public MatrixWithAllocationCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -17687,6 +17900,12 @@ public sealed record class TieredWithProration : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public TieredWithProration(TieredWithProration tieredWithProration)
+        : base(tieredWithProration) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -17877,6 +18096,11 @@ public sealed record class TieredWithProrationCompositePriceFilter : ModelBase
     }
 
     public TieredWithProrationCompositePriceFilter() { }
+
+    public TieredWithProrationCompositePriceFilter(
+        TieredWithProrationCompositePriceFilter tieredWithProrationCompositePriceFilter
+    )
+        : base(tieredWithProrationCompositePriceFilter) { }
 
     public TieredWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -18374,6 +18598,11 @@ public sealed record class TieredWithProrationTieredWithProrationConfig : ModelB
     public TieredWithProrationTieredWithProrationConfig() { }
 
     public TieredWithProrationTieredWithProrationConfig(
+        TieredWithProrationTieredWithProrationConfig tieredWithProrationTieredWithProrationConfig
+    )
+        : base(tieredWithProrationTieredWithProrationConfig) { }
+
+    public TieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -18452,6 +18681,11 @@ public sealed record class TieredWithProrationTieredWithProrationConfigTier : Mo
     }
 
     public TieredWithProrationTieredWithProrationConfigTier() { }
+
+    public TieredWithProrationTieredWithProrationConfigTier(
+        TieredWithProrationTieredWithProrationConfigTier tieredWithProrationTieredWithProrationConfigTier
+    )
+        : base(tieredWithProrationTieredWithProrationConfigTier) { }
 
     public TieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -18799,6 +19033,12 @@ public sealed record class UnitWithProration : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public UnitWithProration(UnitWithProration unitWithProration)
+        : base(unitWithProration) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public UnitWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -18989,6 +19229,11 @@ public sealed record class UnitWithProrationCompositePriceFilter : ModelBase
     }
 
     public UnitWithProrationCompositePriceFilter() { }
+
+    public UnitWithProrationCompositePriceFilter(
+        UnitWithProrationCompositePriceFilter unitWithProrationCompositePriceFilter
+    )
+        : base(unitWithProrationCompositePriceFilter) { }
 
     public UnitWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -19476,6 +19721,11 @@ public sealed record class UnitWithProrationUnitWithProrationConfig : ModelBase
     public UnitWithProrationUnitWithProrationConfig() { }
 
     public UnitWithProrationUnitWithProrationConfig(
+        UnitWithProrationUnitWithProrationConfig unitWithProrationUnitWithProrationConfig
+    )
+        : base(unitWithProrationUnitWithProrationConfig) { }
+
+    public UnitWithProrationUnitWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -19828,6 +20078,12 @@ public sealed record class GroupedAllocation : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public GroupedAllocation(GroupedAllocation groupedAllocation)
+        : base(groupedAllocation) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -20018,6 +20274,11 @@ public sealed record class GroupedAllocationCompositePriceFilter : ModelBase
     }
 
     public GroupedAllocationCompositePriceFilter() { }
+
+    public GroupedAllocationCompositePriceFilter(
+        GroupedAllocationCompositePriceFilter groupedAllocationCompositePriceFilter
+    )
+        : base(groupedAllocationCompositePriceFilter) { }
 
     public GroupedAllocationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -20478,6 +20739,11 @@ public sealed record class GroupedAllocationGroupedAllocationConfig : ModelBase
     public GroupedAllocationGroupedAllocationConfig() { }
 
     public GroupedAllocationGroupedAllocationConfig(
+        GroupedAllocationGroupedAllocationConfig groupedAllocationGroupedAllocationConfig
+    )
+        : base(groupedAllocationGroupedAllocationConfig) { }
+
+    public GroupedAllocationGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -20870,6 +21136,12 @@ public sealed record class BulkWithProration : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public BulkWithProration(BulkWithProration bulkWithProration)
+        : base(bulkWithProration) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public BulkWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -20988,6 +21260,11 @@ public sealed record class BulkWithProrationBulkWithProrationConfig : ModelBase
     public BulkWithProrationBulkWithProrationConfig() { }
 
     public BulkWithProrationBulkWithProrationConfig(
+        BulkWithProrationBulkWithProrationConfig bulkWithProrationBulkWithProrationConfig
+    )
+        : base(bulkWithProrationBulkWithProrationConfig) { }
+
+    public BulkWithProrationBulkWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -21066,6 +21343,11 @@ public sealed record class BulkWithProrationBulkWithProrationConfigTier : ModelB
     }
 
     public BulkWithProrationBulkWithProrationConfigTier() { }
+
+    public BulkWithProrationBulkWithProrationConfigTier(
+        BulkWithProrationBulkWithProrationConfigTier bulkWithProrationBulkWithProrationConfigTier
+    )
+        : base(bulkWithProrationBulkWithProrationConfigTier) { }
 
     public BulkWithProrationBulkWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -21217,6 +21499,11 @@ public sealed record class BulkWithProrationCompositePriceFilter : ModelBase
     }
 
     public BulkWithProrationCompositePriceFilter() { }
+
+    public BulkWithProrationCompositePriceFilter(
+        BulkWithProrationCompositePriceFilter bulkWithProrationCompositePriceFilter
+    )
+        : base(bulkWithProrationCompositePriceFilter) { }
 
     public BulkWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -21991,6 +22278,12 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public GroupedWithProratedMinimum(GroupedWithProratedMinimum groupedWithProratedMinimum)
+        : base(groupedWithProratedMinimum) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithProratedMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -22186,6 +22479,11 @@ public sealed record class GroupedWithProratedMinimumCompositePriceFilter : Mode
     }
 
     public GroupedWithProratedMinimumCompositePriceFilter() { }
+
+    public GroupedWithProratedMinimumCompositePriceFilter(
+        GroupedWithProratedMinimumCompositePriceFilter groupedWithProratedMinimumCompositePriceFilter
+    )
+        : base(groupedWithProratedMinimumCompositePriceFilter) { }
 
     public GroupedWithProratedMinimumCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -22650,6 +22948,11 @@ public sealed record class GroupedWithProratedMinimumGroupedWithProratedMinimumC
     public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig() { }
 
     public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig(
+        GroupedWithProratedMinimumGroupedWithProratedMinimumConfig groupedWithProratedMinimumGroupedWithProratedMinimumConfig
+    )
+        : base(groupedWithProratedMinimumGroupedWithProratedMinimumConfig) { }
+
+    public GroupedWithProratedMinimumGroupedWithProratedMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -23047,6 +23350,12 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public GroupedWithMeteredMinimum(GroupedWithMeteredMinimum groupedWithMeteredMinimum)
+        : base(groupedWithMeteredMinimum) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithMeteredMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -23242,6 +23551,11 @@ public sealed record class GroupedWithMeteredMinimumCompositePriceFilter : Model
     }
 
     public GroupedWithMeteredMinimumCompositePriceFilter() { }
+
+    public GroupedWithMeteredMinimumCompositePriceFilter(
+        GroupedWithMeteredMinimumCompositePriceFilter groupedWithMeteredMinimumCompositePriceFilter
+    )
+        : base(groupedWithMeteredMinimumCompositePriceFilter) { }
 
     public GroupedWithMeteredMinimumCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -23754,6 +24068,11 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig() { }
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig(
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig groupedWithMeteredMinimumGroupedWithMeteredMinimumConfig
+    )
+        : base(groupedWithMeteredMinimumGroupedWithMeteredMinimumConfig) { }
+
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -23826,6 +24145,11 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     }
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor() { }
+
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor(
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
+    )
+        : base(groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor) { }
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -23903,6 +24227,11 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     }
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount() { }
+
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount(
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+    )
+        : base(groupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount) { }
 
     public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -24305,6 +24634,12 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public GroupedWithMinMaxThresholds(GroupedWithMinMaxThresholds groupedWithMinMaxThresholds)
+        : base(groupedWithMinMaxThresholds) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -24503,6 +24838,11 @@ public sealed record class GroupedWithMinMaxThresholdsCompositePriceFilter : Mod
     }
 
     public GroupedWithMinMaxThresholdsCompositePriceFilter() { }
+
+    public GroupedWithMinMaxThresholdsCompositePriceFilter(
+        GroupedWithMinMaxThresholdsCompositePriceFilter groupedWithMinMaxThresholdsCompositePriceFilter
+    )
+        : base(groupedWithMinMaxThresholdsCompositePriceFilter) { }
 
     public GroupedWithMinMaxThresholdsCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -24976,6 +25316,11 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
 
     public GroupedWithMinMaxThresholdsConfig() { }
 
+    public GroupedWithMinMaxThresholdsConfig(
+        GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
+    )
+        : base(groupedWithMinMaxThresholdsConfig) { }
+
     public GroupedWithMinMaxThresholdsConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -25367,6 +25712,12 @@ public sealed record class MatrixWithDisplayName : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public MatrixWithDisplayName(MatrixWithDisplayName matrixWithDisplayName)
+        : base(matrixWithDisplayName) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MatrixWithDisplayName(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -25559,6 +25910,11 @@ public sealed record class MatrixWithDisplayNameCompositePriceFilter : ModelBase
     }
 
     public MatrixWithDisplayNameCompositePriceFilter() { }
+
+    public MatrixWithDisplayNameCompositePriceFilter(
+        MatrixWithDisplayNameCompositePriceFilter matrixWithDisplayNameCompositePriceFilter
+    )
+        : base(matrixWithDisplayNameCompositePriceFilter) { }
 
     public MatrixWithDisplayNameCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -26020,6 +26376,11 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig : Mo
     public MatrixWithDisplayNameMatrixWithDisplayNameConfig() { }
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfig(
+        MatrixWithDisplayNameMatrixWithDisplayNameConfig matrixWithDisplayNameMatrixWithDisplayNameConfig
+    )
+        : base(matrixWithDisplayNameMatrixWithDisplayNameConfig) { }
+
+    public MatrixWithDisplayNameMatrixWithDisplayNameConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -26099,6 +26460,11 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitA
     }
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount() { }
+
+    public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount(
+        MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
+    )
+        : base(matrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount) { }
 
     public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -26495,6 +26861,12 @@ public sealed record class GroupedTieredPackage : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public GroupedTieredPackage(GroupedTieredPackage groupedTieredPackage)
+        : base(groupedTieredPackage) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public GroupedTieredPackage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -26687,6 +27059,11 @@ public sealed record class GroupedTieredPackageCompositePriceFilter : ModelBase
     }
 
     public GroupedTieredPackageCompositePriceFilter() { }
+
+    public GroupedTieredPackageCompositePriceFilter(
+        GroupedTieredPackageCompositePriceFilter groupedTieredPackageCompositePriceFilter
+    )
+        : base(groupedTieredPackageCompositePriceFilter) { }
 
     public GroupedTieredPackageCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -27159,6 +27536,11 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfig : Mode
     public GroupedTieredPackageGroupedTieredPackageConfig() { }
 
     public GroupedTieredPackageGroupedTieredPackageConfig(
+        GroupedTieredPackageGroupedTieredPackageConfig groupedTieredPackageGroupedTieredPackageConfig
+    )
+        : base(groupedTieredPackageGroupedTieredPackageConfig) { }
+
+    public GroupedTieredPackageGroupedTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -27228,6 +27610,11 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfigTier : 
     }
 
     public GroupedTieredPackageGroupedTieredPackageConfigTier() { }
+
+    public GroupedTieredPackageGroupedTieredPackageConfigTier(
+        GroupedTieredPackageGroupedTieredPackageConfigTier groupedTieredPackageGroupedTieredPackageConfigTier
+    )
+        : base(groupedTieredPackageGroupedTieredPackageConfigTier) { }
 
     public GroupedTieredPackageGroupedTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -27624,6 +28011,12 @@ public sealed record class MaxGroupTieredPackage : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public MaxGroupTieredPackage(MaxGroupTieredPackage maxGroupTieredPackage)
+        : base(maxGroupTieredPackage) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public MaxGroupTieredPackage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -27816,6 +28209,11 @@ public sealed record class MaxGroupTieredPackageCompositePriceFilter : ModelBase
     }
 
     public MaxGroupTieredPackageCompositePriceFilter() { }
+
+    public MaxGroupTieredPackageCompositePriceFilter(
+        MaxGroupTieredPackageCompositePriceFilter maxGroupTieredPackageCompositePriceFilter
+    )
+        : base(maxGroupTieredPackageCompositePriceFilter) { }
 
     public MaxGroupTieredPackageCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -28287,6 +28685,11 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig : Mo
     public MaxGroupTieredPackageMaxGroupTieredPackageConfig() { }
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfig(
+        MaxGroupTieredPackageMaxGroupTieredPackageConfig maxGroupTieredPackageMaxGroupTieredPackageConfig
+    )
+        : base(maxGroupTieredPackageMaxGroupTieredPackageConfig) { }
+
+    public MaxGroupTieredPackageMaxGroupTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -28356,6 +28759,11 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfigTier 
     }
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier() { }
+
+    public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier(
+        MaxGroupTieredPackageMaxGroupTieredPackageConfigTier maxGroupTieredPackageMaxGroupTieredPackageConfigTier
+    )
+        : base(maxGroupTieredPackageMaxGroupTieredPackageConfigTier) { }
 
     public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -28753,6 +29161,14 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public ScalableMatrixWithUnitPricing(
+        ScalableMatrixWithUnitPricing scalableMatrixWithUnitPricing
+    )
+        : base(scalableMatrixWithUnitPricing) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ScalableMatrixWithUnitPricing(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -28951,6 +29367,11 @@ public sealed record class ScalableMatrixWithUnitPricingCompositePriceFilter : M
     }
 
     public ScalableMatrixWithUnitPricingCompositePriceFilter() { }
+
+    public ScalableMatrixWithUnitPricingCompositePriceFilter(
+        ScalableMatrixWithUnitPricingCompositePriceFilter scalableMatrixWithUnitPricingCompositePriceFilter
+    )
+        : base(scalableMatrixWithUnitPricingCompositePriceFilter) { }
 
     public ScalableMatrixWithUnitPricingCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -29493,6 +29914,11 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig() { }
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig(
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig
+    )
+        : base(scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig) { }
+
+    public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -29575,6 +30001,12 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
     }
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
+
+    public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+    )
+        : base(scalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor)
+    { }
 
     public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -29927,6 +30359,14 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public ScalableMatrixWithTieredPricing(
+        ScalableMatrixWithTieredPricing scalableMatrixWithTieredPricing
+    )
+        : base(scalableMatrixWithTieredPricing) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public ScalableMatrixWithTieredPricing(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -30125,6 +30565,11 @@ public sealed record class ScalableMatrixWithTieredPricingCompositePriceFilter :
     }
 
     public ScalableMatrixWithTieredPricingCompositePriceFilter() { }
+
+    public ScalableMatrixWithTieredPricingCompositePriceFilter(
+        ScalableMatrixWithTieredPricingCompositePriceFilter scalableMatrixWithTieredPricingCompositePriceFilter
+    )
+        : base(scalableMatrixWithTieredPricingCompositePriceFilter) { }
 
     public ScalableMatrixWithTieredPricingCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -30667,6 +31112,11 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig() { }
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig(
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig
+    )
+        : base(scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig) { }
+
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -30755,6 +31205,13 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     { }
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+    )
+        : base(
+            scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+        ) { }
+
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -30830,6 +31287,11 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     }
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier() { }
+
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier(
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+    )
+        : base(scalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier) { }
 
     public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -31182,6 +31644,12 @@ public sealed record class CumulativeGroupedBulk : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public CumulativeGroupedBulk(CumulativeGroupedBulk cumulativeGroupedBulk)
+        : base(cumulativeGroupedBulk) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public CumulativeGroupedBulk(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -31374,6 +31842,11 @@ public sealed record class CumulativeGroupedBulkCompositePriceFilter : ModelBase
     }
 
     public CumulativeGroupedBulkCompositePriceFilter() { }
+
+    public CumulativeGroupedBulkCompositePriceFilter(
+        CumulativeGroupedBulkCompositePriceFilter cumulativeGroupedBulkCompositePriceFilter
+    )
+        : base(cumulativeGroupedBulkCompositePriceFilter) { }
 
     public CumulativeGroupedBulkCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -31835,6 +32308,11 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig : Mo
     public CumulativeGroupedBulkCumulativeGroupedBulkConfig() { }
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfig(
+        CumulativeGroupedBulkCumulativeGroupedBulkConfig cumulativeGroupedBulkCumulativeGroupedBulkConfig
+    )
+        : base(cumulativeGroupedBulkCumulativeGroupedBulkConfig) { }
+
+    public CumulativeGroupedBulkCumulativeGroupedBulkConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -31915,6 +32393,11 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimen
     }
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue() { }
+
+    public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue(
+        CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue cumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
+    )
+        : base(cumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue) { }
 
     public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -32313,6 +32796,12 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public CumulativeGroupedAllocation(CumulativeGroupedAllocation cumulativeGroupedAllocation)
+        : base(cumulativeGroupedAllocation) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -32511,6 +33000,11 @@ public sealed record class CumulativeGroupedAllocationCompositePriceFilter : Mod
     }
 
     public CumulativeGroupedAllocationCompositePriceFilter() { }
+
+    public CumulativeGroupedAllocationCompositePriceFilter(
+        CumulativeGroupedAllocationCompositePriceFilter cumulativeGroupedAllocationCompositePriceFilter
+    )
+        : base(cumulativeGroupedAllocationCompositePriceFilter) { }
 
     public CumulativeGroupedAllocationCompositePriceFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -32984,6 +33478,11 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
 
     public CumulativeGroupedAllocationConfig() { }
 
+    public CumulativeGroupedAllocationConfig(
+        CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
+    )
+        : base(cumulativeGroupedAllocationConfig) { }
+
     public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -33375,6 +33874,12 @@ public sealed record class PriceMinimum : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public PriceMinimum(PriceMinimum priceMinimum)
+        : base(priceMinimum) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public PriceMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -33563,6 +34068,11 @@ public sealed record class PriceMinimumCompositePriceFilter : ModelBase
     }
 
     public PriceMinimumCompositePriceFilter() { }
+
+    public PriceMinimumCompositePriceFilter(
+        PriceMinimumCompositePriceFilter priceMinimumCompositePriceFilter
+    )
+        : base(priceMinimumCompositePriceFilter) { }
 
     public PriceMinimumCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -34015,6 +34525,9 @@ public sealed record class PriceMinimumMinimumConfig : ModelBase
 
     public PriceMinimumMinimumConfig() { }
 
+    public PriceMinimumMinimumConfig(PriceMinimumMinimumConfig priceMinimumMinimumConfig)
+        : base(priceMinimumMinimumConfig) { }
+
     public PriceMinimumMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -34406,6 +34919,12 @@ public sealed record class Percent : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Percent(Percent percent)
+        : base(percent) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -34593,6 +35112,9 @@ public sealed record class PercentCompositePriceFilter : ModelBase
     }
 
     public PercentCompositePriceFilter() { }
+
+    public PercentCompositePriceFilter(PercentCompositePriceFilter percentCompositePriceFilter)
+        : base(percentCompositePriceFilter) { }
 
     public PercentCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -35026,6 +35548,9 @@ public sealed record class PercentConfig : ModelBase
 
     public PercentConfig() { }
 
+    public PercentConfig(PercentConfig percentConfig)
+        : base(percentConfig) { }
+
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -35420,6 +35945,12 @@ public sealed record class EventOutput : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public EventOutput(EventOutput eventOutput)
+        : base(eventOutput) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -35606,6 +36137,11 @@ public sealed record class EventOutputCompositePriceFilter : ModelBase
     }
 
     public EventOutputCompositePriceFilter() { }
+
+    public EventOutputCompositePriceFilter(
+        EventOutputCompositePriceFilter eventOutputCompositePriceFilter
+    )
+        : base(eventOutputCompositePriceFilter) { }
 
     public EventOutputCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -36062,6 +36598,9 @@ public sealed record class EventOutputConfig : ModelBase
     }
 
     public EventOutputConfig() { }
+
+    public EventOutputConfig(EventOutputConfig eventOutputConfig)
+        : base(eventOutputConfig) { }
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

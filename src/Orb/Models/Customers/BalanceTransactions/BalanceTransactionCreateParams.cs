@@ -54,6 +54,14 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     public BalanceTransactionCreateParams() { }
 
     public BalanceTransactionCreateParams(
+        BalanceTransactionCreateParams balanceTransactionCreateParams
+    )
+        : base(balanceTransactionCreateParams)
+    {
+        this._rawBodyData = [.. balanceTransactionCreateParams._rawBodyData];
+    }
+
+    public BalanceTransactionCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

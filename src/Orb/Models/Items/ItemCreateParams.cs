@@ -48,6 +48,12 @@ public sealed record class ItemCreateParams : ParamsBase
 
     public ItemCreateParams() { }
 
+    public ItemCreateParams(ItemCreateParams itemCreateParams)
+        : base(itemCreateParams)
+    {
+        this._rawBodyData = [.. itemCreateParams._rawBodyData];
+    }
+
     public ItemCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

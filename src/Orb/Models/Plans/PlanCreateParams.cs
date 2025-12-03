@@ -148,6 +148,12 @@ public sealed record class PlanCreateParams : ParamsBase
 
     public PlanCreateParams() { }
 
+    public PlanCreateParams(PlanCreateParams planCreateParams)
+        : base(planCreateParams)
+    {
+        this._rawBodyData = [.. planCreateParams._rawBodyData];
+    }
+
     public PlanCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -252,6 +258,9 @@ public sealed record class Price : ModelBase
     }
 
     public Price() { }
+
+    public Price(global::Orb.Models.Plans.Price price)
+        : base(price) { }
 
     public Price(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3134,6 +3143,9 @@ public sealed record class BulkWithFilters : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
+    public BulkWithFilters(global::Orb.Models.Plans.BulkWithFilters bulkWithFilters)
+        : base(bulkWithFilters) { }
+
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3222,6 +3234,11 @@ public sealed record class BulkWithFiltersConfig : ModelBase
 
     public BulkWithFiltersConfig() { }
 
+    public BulkWithFiltersConfig(
+        global::Orb.Models.Plans.BulkWithFiltersConfig bulkWithFiltersConfig
+    )
+        : base(bulkWithFiltersConfig) { }
+
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3287,6 +3304,9 @@ public sealed record class Filter : ModelBase
 
     public Filter() { }
 
+    public Filter(global::Orb.Models.Plans.Filter filter)
+        : base(filter) { }
+
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3351,6 +3371,9 @@ public sealed record class Tier : ModelBase
     }
 
     public Tier() { }
+
+    public Tier(global::Orb.Models.Plans.Tier tier)
+        : base(tier) { }
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3971,6 +3994,9 @@ public sealed record class TieredWithProration : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
+    public TieredWithProration(global::Orb.Models.Plans.TieredWithProration tieredWithProration)
+        : base(tieredWithProration) { }
+
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4100,6 +4126,11 @@ public sealed record class TieredWithProrationConfig : ModelBase
 
     public TieredWithProrationConfig() { }
 
+    public TieredWithProrationConfig(
+        global::Orb.Models.Plans.TieredWithProrationConfig tieredWithProrationConfig
+    )
+        : base(tieredWithProrationConfig) { }
+
     public TieredWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4177,6 +4208,11 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
     }
 
     public TieredWithProrationConfigTier() { }
+
+    public TieredWithProrationConfigTier(
+        global::Orb.Models.Plans.TieredWithProrationConfigTier tieredWithProrationConfigTier
+    )
+        : base(tieredWithProrationConfigTier) { }
 
     public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4745,6 +4781,11 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         );
     }
 
+    public GroupedWithMinMaxThresholds(
+        global::Orb.Models.Plans.GroupedWithMinMaxThresholds groupedWithMinMaxThresholds
+    )
+        : base(groupedWithMinMaxThresholds) { }
+
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4899,6 +4940,11 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
     }
 
     public GroupedWithMinMaxThresholdsConfig() { }
+
+    public GroupedWithMinMaxThresholdsConfig(
+        global::Orb.Models.Plans.GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
+    )
+        : base(groupedWithMinMaxThresholdsConfig) { }
 
     public GroupedWithMinMaxThresholdsConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5471,6 +5517,11 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         );
     }
 
+    public CumulativeGroupedAllocation(
+        global::Orb.Models.Plans.CumulativeGroupedAllocation cumulativeGroupedAllocation
+    )
+        : base(cumulativeGroupedAllocation) { }
+
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -5625,6 +5676,11 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
     }
 
     public CumulativeGroupedAllocationConfig() { }
+
+    public CumulativeGroupedAllocationConfig(
+        global::Orb.Models.Plans.CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
+    )
+        : base(cumulativeGroupedAllocationConfig) { }
 
     public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6192,6 +6248,9 @@ public sealed record class Percent : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
+    public Percent(global::Orb.Models.Plans.Percent percent)
+        : base(percent) { }
+
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6310,6 +6369,9 @@ public sealed record class PercentConfig : ModelBase
     }
 
     public PercentConfig() { }
+
+    public PercentConfig(global::Orb.Models.Plans.PercentConfig percentConfig)
+        : base(percentConfig) { }
 
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6877,6 +6939,9 @@ public sealed record class EventOutput : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
+    public EventOutput(global::Orb.Models.Plans.EventOutput eventOutput)
+        : base(eventOutput) { }
+
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -7019,6 +7084,9 @@ public sealed record class EventOutputConfig : ModelBase
     }
 
     public EventOutputConfig() { }
+
+    public EventOutputConfig(global::Orb.Models.Plans.EventOutputConfig eventOutputConfig)
+        : base(eventOutputConfig) { }
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7361,6 +7429,9 @@ public sealed record class Adjustment : ModelBase
     }
 
     public Adjustment() { }
+
+    public Adjustment(global::Orb.Models.Plans.Adjustment adjustment)
+        : base(adjustment) { }
 
     public Adjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7917,6 +7988,9 @@ public sealed record class PlanPhase : ModelBase
     }
 
     public PlanPhase() { }
+
+    public PlanPhase(PlanPhase planPhase)
+        : base(planPhase) { }
 
     public PlanPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {

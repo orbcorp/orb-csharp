@@ -73,6 +73,12 @@ public sealed record class EventSearchParams : ParamsBase
 
     public EventSearchParams() { }
 
+    public EventSearchParams(EventSearchParams eventSearchParams)
+        : base(eventSearchParams)
+    {
+        this._rawBodyData = [.. eventSearchParams._rawBodyData];
+    }
+
     public EventSearchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

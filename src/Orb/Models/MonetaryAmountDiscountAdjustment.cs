@@ -132,6 +132,12 @@ public sealed record class MonetaryAmountDiscountAdjustment : ModelBase
     public MonetaryAmountDiscountAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public MonetaryAmountDiscountAdjustment(
+        MonetaryAmountDiscountAdjustment monetaryAmountDiscountAdjustment
+    )
+        : base(monetaryAmountDiscountAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryAmountDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -260,6 +266,11 @@ public sealed record class MonetaryAmountDiscountAdjustmentFilter : ModelBase
     }
 
     public MonetaryAmountDiscountAdjustmentFilter() { }
+
+    public MonetaryAmountDiscountAdjustmentFilter(
+        MonetaryAmountDiscountAdjustmentFilter monetaryAmountDiscountAdjustmentFilter
+    )
+        : base(monetaryAmountDiscountAdjustmentFilter) { }
 
     public MonetaryAmountDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

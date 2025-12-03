@@ -43,6 +43,11 @@ public sealed record class DimensionalPriceGroupListParams : ParamsBase
     public DimensionalPriceGroupListParams() { }
 
     public DimensionalPriceGroupListParams(
+        DimensionalPriceGroupListParams dimensionalPriceGroupListParams
+    )
+        : base(dimensionalPriceGroupListParams) { }
+
+    public DimensionalPriceGroupListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

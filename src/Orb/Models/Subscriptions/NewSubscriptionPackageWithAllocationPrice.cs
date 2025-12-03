@@ -258,6 +258,11 @@ public sealed record class NewSubscriptionPackageWithAllocationPrice : ModelBase
     public NewSubscriptionPackageWithAllocationPrice() { }
 
     public NewSubscriptionPackageWithAllocationPrice(
+        NewSubscriptionPackageWithAllocationPrice newSubscriptionPackageWithAllocationPrice
+    )
+        : base(newSubscriptionPackageWithAllocationPrice) { }
+
+    public NewSubscriptionPackageWithAllocationPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -444,6 +449,11 @@ public sealed record class PackageWithAllocationConfig : ModelBase
     }
 
     public PackageWithAllocationConfig() { }
+
+    public PackageWithAllocationConfig(
+        global::Orb.Models.Subscriptions.PackageWithAllocationConfig packageWithAllocationConfig
+    )
+        : base(packageWithAllocationConfig) { }
 
     public PackageWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

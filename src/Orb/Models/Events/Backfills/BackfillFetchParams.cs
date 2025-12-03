@@ -17,6 +17,9 @@ public sealed record class BackfillFetchParams : ParamsBase
 
     public BackfillFetchParams() { }
 
+    public BackfillFetchParams(BackfillFetchParams backfillFetchParams)
+        : base(backfillFetchParams) { }
+
     public BackfillFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

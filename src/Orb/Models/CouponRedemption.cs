@@ -39,6 +39,9 @@ public sealed record class CouponRedemption : ModelBase
 
     public CouponRedemption() { }
 
+    public CouponRedemption(CouponRedemption couponRedemption)
+        : base(couponRedemption) { }
+
     public CouponRedemption(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

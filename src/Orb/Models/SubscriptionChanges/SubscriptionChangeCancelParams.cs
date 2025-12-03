@@ -20,6 +20,11 @@ public sealed record class SubscriptionChangeCancelParams : ParamsBase
     public SubscriptionChangeCancelParams() { }
 
     public SubscriptionChangeCancelParams(
+        SubscriptionChangeCancelParams subscriptionChangeCancelParams
+    )
+        : base(subscriptionChangeCancelParams) { }
+
+    public SubscriptionChangeCancelParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

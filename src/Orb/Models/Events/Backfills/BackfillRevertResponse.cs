@@ -153,6 +153,9 @@ public sealed record class BackfillRevertResponse : ModelBase
 
     public BackfillRevertResponse() { }
 
+    public BackfillRevertResponse(BackfillRevertResponse backfillRevertResponse)
+        : base(backfillRevertResponse) { }
+
     public BackfillRevertResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

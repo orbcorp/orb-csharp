@@ -18,6 +18,11 @@ public sealed record class DimensionalPriceGroupRetrieveParams : ParamsBase
     public DimensionalPriceGroupRetrieveParams() { }
 
     public DimensionalPriceGroupRetrieveParams(
+        DimensionalPriceGroupRetrieveParams dimensionalPriceGroupRetrieveParams
+    )
+        : base(dimensionalPriceGroupRetrieveParams) { }
+
+    public DimensionalPriceGroupRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

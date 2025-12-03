@@ -32,6 +32,9 @@ public sealed record class Threshold : ModelBase
 
     public Threshold() { }
 
+    public Threshold(Threshold threshold)
+        : base(threshold) { }
+
     public Threshold(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

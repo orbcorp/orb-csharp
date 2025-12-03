@@ -112,6 +112,12 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
 
     public LedgerCreateEntryParams() { }
 
+    public LedgerCreateEntryParams(LedgerCreateEntryParams ledgerCreateEntryParams)
+        : base(ledgerCreateEntryParams)
+    {
+        this._rawBodyData = [.. ledgerCreateEntryParams._rawBodyData];
+    }
+
     public LedgerCreateEntryParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -832,6 +838,9 @@ public sealed record class Increment : ModelBase
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
     }
 
+    public Increment(Increment increment)
+        : base(increment) { }
+
     public Increment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -925,6 +934,9 @@ public sealed record class Filter : ModelBase
     }
 
     public Filter() { }
+
+    public Filter(global::Orb.Models.Customers.Credits.Ledger.Filter filter)
+        : base(filter) { }
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1153,6 +1165,9 @@ public sealed record class InvoiceSettings : ModelBase
     }
 
     public InvoiceSettings() { }
+
+    public InvoiceSettings(InvoiceSettings invoiceSettings)
+        : base(invoiceSettings) { }
 
     public InvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1867,6 +1882,9 @@ public sealed record class Decrement : ModelBase
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
+    public Decrement(Decrement decrement)
+        : base(decrement) { }
+
     public Decrement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -2034,6 +2052,9 @@ public sealed record class ExpirationChange : ModelBase
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
     }
 
+    public ExpirationChange(ExpirationChange expirationChange)
+        : base(expirationChange) { }
+
     public ExpirationChange(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -2183,6 +2204,9 @@ public sealed record class Void : ModelBase
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
+
+    public Void(Void void1)
+        : base(void1) { }
 
     public Void(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2346,6 +2370,9 @@ public sealed record class Amendment : ModelBase
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
+
+    public Amendment(Amendment amendment)
+        : base(amendment) { }
 
     public Amendment(IReadOnlyDictionary<string, JsonElement> rawData)
     {

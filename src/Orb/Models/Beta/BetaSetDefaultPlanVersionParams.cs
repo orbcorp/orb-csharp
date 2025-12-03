@@ -34,6 +34,14 @@ public sealed record class BetaSetDefaultPlanVersionParams : ParamsBase
     public BetaSetDefaultPlanVersionParams() { }
 
     public BetaSetDefaultPlanVersionParams(
+        BetaSetDefaultPlanVersionParams betaSetDefaultPlanVersionParams
+    )
+        : base(betaSetDefaultPlanVersionParams)
+    {
+        this._rawBodyData = [.. betaSetDefaultPlanVersionParams._rawBodyData];
+    }
+
+    public BetaSetDefaultPlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

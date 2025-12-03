@@ -86,6 +86,9 @@ public sealed record class MetricListParams : ParamsBase
 
     public MetricListParams() { }
 
+    public MetricListParams(MetricListParams metricListParams)
+        : base(metricListParams) { }
+
     public MetricListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

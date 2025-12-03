@@ -74,6 +74,9 @@ public sealed record class TopUpInvoiceSettings : ModelBase
 
     public TopUpInvoiceSettings() { }
 
+    public TopUpInvoiceSettings(TopUpInvoiceSettings topUpInvoiceSettings)
+        : base(topUpInvoiceSettings) { }
+
     public TopUpInvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -21,6 +21,11 @@ public sealed record class CustomerFetchByExternalIDParams : ParamsBase
     public CustomerFetchByExternalIDParams() { }
 
     public CustomerFetchByExternalIDParams(
+        CustomerFetchByExternalIDParams customerFetchByExternalIDParams
+    )
+        : base(customerFetchByExternalIDParams) { }
+
+    public CustomerFetchByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

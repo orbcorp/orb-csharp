@@ -257,6 +257,11 @@ public sealed record class NewPlanGroupedWithProratedMinimumPrice : ModelBase
 
     public NewPlanGroupedWithProratedMinimumPrice() { }
 
+    public NewPlanGroupedWithProratedMinimumPrice(
+        NewPlanGroupedWithProratedMinimumPrice newPlanGroupedWithProratedMinimumPrice
+    )
+        : base(newPlanGroupedWithProratedMinimumPrice) { }
+
     public NewPlanGroupedWithProratedMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -396,6 +401,11 @@ public sealed record class NewPlanGroupedWithProratedMinimumPriceGroupedWithPror
     }
 
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig() { }
+
+    public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig(
+        NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig newPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig
+    )
+        : base(newPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig) { }
 
     public NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

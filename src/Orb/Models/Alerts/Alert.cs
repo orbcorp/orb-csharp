@@ -153,6 +153,9 @@ public sealed record class Alert : ModelBase
 
     public Alert() { }
 
+    public Alert(Alert alert)
+        : base(alert) { }
+
     public Alert(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -199,6 +202,9 @@ public sealed record class Metric : ModelBase
     }
 
     public Metric() { }
+
+    public Metric(Metric metric)
+        : base(metric) { }
 
     public Metric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -279,6 +285,9 @@ public sealed record class Plan : ModelBase
     }
 
     public Plan() { }
+
+    public Plan(Plan plan)
+        : base(plan) { }
 
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -395,6 +404,9 @@ public sealed record class BalanceAlertStatus : ModelBase
     }
 
     public BalanceAlertStatus() { }
+
+    public BalanceAlertStatus(BalanceAlertStatus balanceAlertStatus)
+        : base(balanceAlertStatus) { }
 
     public BalanceAlertStatus(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -264,6 +264,11 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice : M
     public NewSubscriptionScalableMatrixWithUnitPricingPrice() { }
 
     public NewSubscriptionScalableMatrixWithUnitPricingPrice(
+        NewSubscriptionScalableMatrixWithUnitPricingPrice newSubscriptionScalableMatrixWithUnitPricingPrice
+    )
+        : base(newSubscriptionScalableMatrixWithUnitPricingPrice) { }
+
+    public NewSubscriptionScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -480,6 +485,11 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
 
     public ScalableMatrixWithUnitPricingConfig() { }
 
+    public ScalableMatrixWithUnitPricingConfig(
+        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingConfig
+    )
+        : base(scalableMatrixWithUnitPricingConfig) { }
+
     public ScalableMatrixWithUnitPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -561,6 +571,11 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
     }
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
+
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingConfigMatrixScalingFactor
+    )
+        : base(scalableMatrixWithUnitPricingConfigMatrixScalingFactor) { }
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData

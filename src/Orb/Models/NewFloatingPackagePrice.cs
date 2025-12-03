@@ -236,6 +236,9 @@ public sealed record class NewFloatingPackagePrice : ModelBase
 
     public NewFloatingPackagePrice() { }
 
+    public NewFloatingPackagePrice(NewFloatingPackagePrice newFloatingPackagePrice)
+        : base(newFloatingPackagePrice) { }
+
     public NewFloatingPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

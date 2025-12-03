@@ -249,6 +249,11 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice : Mod
     public NewFloatingScalableMatrixWithTieredPricingPrice() { }
 
     public NewFloatingScalableMatrixWithTieredPricingPrice(
+        NewFloatingScalableMatrixWithTieredPricingPrice newFloatingScalableMatrixWithTieredPricingPrice
+    )
+        : base(newFloatingScalableMatrixWithTieredPricingPrice) { }
+
+    public NewFloatingScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -464,6 +469,11 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : ModelBase
 
     public ScalableMatrixWithTieredPricingConfig() { }
 
+    public ScalableMatrixWithTieredPricingConfig(
+        ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
+    )
+        : base(scalableMatrixWithTieredPricingConfig) { }
+
     public ScalableMatrixWithTieredPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -537,6 +547,9 @@ public sealed record class MatrixScalingFactor : ModelBase
 
     public MatrixScalingFactor() { }
 
+    public MatrixScalingFactor(MatrixScalingFactor matrixScalingFactor)
+        : base(matrixScalingFactor) { }
+
     public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -603,6 +616,11 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : ModelBase
     }
 
     public ScalableMatrixWithTieredPricingConfigTier() { }
+
+    public ScalableMatrixWithTieredPricingConfigTier(
+        ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
+    )
+        : base(scalableMatrixWithTieredPricingConfigTier) { }
 
     public ScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

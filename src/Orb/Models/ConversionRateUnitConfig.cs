@@ -27,6 +27,9 @@ public sealed record class ConversionRateUnitConfig : ModelBase
 
     public ConversionRateUnitConfig() { }
 
+    public ConversionRateUnitConfig(ConversionRateUnitConfig conversionRateUnitConfig)
+        : base(conversionRateUnitConfig) { }
+
     public ConversionRateUnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

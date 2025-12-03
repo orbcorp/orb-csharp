@@ -27,6 +27,9 @@ public sealed record class InvoiceTiny : ModelBase
 
     public InvoiceTiny() { }
 
+    public InvoiceTiny(InvoiceTiny invoiceTiny)
+        : base(invoiceTiny) { }
+
     public InvoiceTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

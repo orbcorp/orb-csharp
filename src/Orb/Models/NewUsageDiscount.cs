@@ -145,6 +145,9 @@ public sealed record class NewUsageDiscount : ModelBase
 
     public NewUsageDiscount() { }
 
+    public NewUsageDiscount(NewUsageDiscount newUsageDiscount)
+        : base(newUsageDiscount) { }
+
     public NewUsageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -310,6 +313,9 @@ public sealed record class NewUsageDiscountFilter : ModelBase
     }
 
     public NewUsageDiscountFilter() { }
+
+    public NewUsageDiscountFilter(NewUsageDiscountFilter newUsageDiscountFilter)
+        : base(newUsageDiscountFilter) { }
 
     public NewUsageDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -17,6 +17,9 @@ public sealed record class ItemFetchParams : ParamsBase
 
     public ItemFetchParams() { }
 
+    public ItemFetchParams(ItemFetchParams itemFetchParams)
+        : base(itemFetchParams) { }
+
     public ItemFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

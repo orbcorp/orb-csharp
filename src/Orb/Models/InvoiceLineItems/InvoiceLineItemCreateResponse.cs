@@ -231,6 +231,11 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
 
     public InvoiceLineItemCreateResponse() { }
 
+    public InvoiceLineItemCreateResponse(
+        InvoiceLineItemCreateResponse invoiceLineItemCreateResponse
+    )
+        : base(invoiceLineItemCreateResponse) { }
+
     public InvoiceLineItemCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

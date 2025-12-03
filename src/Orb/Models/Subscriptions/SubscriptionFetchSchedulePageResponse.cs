@@ -52,6 +52,11 @@ public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
 
     public SubscriptionFetchSchedulePageResponse() { }
 
+    public SubscriptionFetchSchedulePageResponse(
+        SubscriptionFetchSchedulePageResponse subscriptionFetchSchedulePageResponse
+    )
+        : base(subscriptionFetchSchedulePageResponse) { }
+
     public SubscriptionFetchSchedulePageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -126,6 +131,11 @@ public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
     public SubscriptionFetchSchedulePageResponseData() { }
 
     public SubscriptionFetchSchedulePageResponseData(
+        SubscriptionFetchSchedulePageResponseData subscriptionFetchSchedulePageResponseData
+    )
+        : base(subscriptionFetchSchedulePageResponseData) { }
+
+    public SubscriptionFetchSchedulePageResponseData(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -193,6 +203,9 @@ public sealed record class Plan : ModelBase
     }
 
     public Plan() { }
+
+    public Plan(Plan plan)
+        : base(plan) { }
 
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {

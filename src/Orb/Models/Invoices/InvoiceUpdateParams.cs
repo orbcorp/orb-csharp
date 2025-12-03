@@ -88,6 +88,12 @@ public sealed record class InvoiceUpdateParams : ParamsBase
 
     public InvoiceUpdateParams() { }
 
+    public InvoiceUpdateParams(InvoiceUpdateParams invoiceUpdateParams)
+        : base(invoiceUpdateParams)
+    {
+        this._rawBodyData = [.. invoiceUpdateParams._rawBodyData];
+    }
+
     public InvoiceUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

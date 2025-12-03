@@ -51,6 +51,9 @@ public sealed record class TieredConfig : ModelBase
 
     public TieredConfig() { }
 
+    public TieredConfig(TieredConfig tieredConfig)
+        : base(tieredConfig) { }
+
     public TieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

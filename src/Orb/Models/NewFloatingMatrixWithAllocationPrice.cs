@@ -245,6 +245,11 @@ public sealed record class NewFloatingMatrixWithAllocationPrice : ModelBase
 
     public NewFloatingMatrixWithAllocationPrice() { }
 
+    public NewFloatingMatrixWithAllocationPrice(
+        NewFloatingMatrixWithAllocationPrice newFloatingMatrixWithAllocationPrice
+    )
+        : base(newFloatingMatrixWithAllocationPrice) { }
+
     public NewFloatingMatrixWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

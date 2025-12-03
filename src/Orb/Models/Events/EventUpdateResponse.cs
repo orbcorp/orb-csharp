@@ -27,6 +27,9 @@ public sealed record class EventUpdateResponse : ModelBase
 
     public EventUpdateResponse() { }
 
+    public EventUpdateResponse(EventUpdateResponse eventUpdateResponse)
+        : base(eventUpdateResponse) { }
+
     public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

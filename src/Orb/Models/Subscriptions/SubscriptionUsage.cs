@@ -267,6 +267,9 @@ public sealed record class UngroupedSubscriptionUsage : ModelBase
 
     public UngroupedSubscriptionUsage() { }
 
+    public UngroupedSubscriptionUsage(UngroupedSubscriptionUsage ungroupedSubscriptionUsage)
+        : base(ungroupedSubscriptionUsage) { }
+
     public UngroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -344,6 +347,9 @@ public sealed record class Data : ModelBase
 
     public Data() { }
 
+    public Data(Data data)
+        : base(data) { }
+
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -394,6 +400,9 @@ public sealed record class BillableMetric : ModelBase
     }
 
     public BillableMetric() { }
+
+    public BillableMetric(BillableMetric billableMetric)
+        : base(billableMetric) { }
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -464,6 +473,9 @@ public sealed record class DataUsage : ModelBase
     }
 
     public DataUsage() { }
+
+    public DataUsage(DataUsage dataUsage)
+        : base(dataUsage) { }
 
     public DataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -575,6 +587,9 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
 
     public GroupedSubscriptionUsage() { }
 
+    public GroupedSubscriptionUsage(GroupedSubscriptionUsage groupedSubscriptionUsage)
+        : base(groupedSubscriptionUsage) { }
+
     public GroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -673,6 +688,9 @@ public sealed record class GroupedSubscriptionUsageData : ModelBase
 
     public GroupedSubscriptionUsageData() { }
 
+    public GroupedSubscriptionUsageData(GroupedSubscriptionUsageData groupedSubscriptionUsageData)
+        : base(groupedSubscriptionUsageData) { }
+
     public GroupedSubscriptionUsageData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -733,6 +751,11 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBas
     public GroupedSubscriptionUsageDataBillableMetric() { }
 
     public GroupedSubscriptionUsageDataBillableMetric(
+        GroupedSubscriptionUsageDataBillableMetric groupedSubscriptionUsageDataBillableMetric
+    )
+        : base(groupedSubscriptionUsageDataBillableMetric) { }
+
+    public GroupedSubscriptionUsageDataBillableMetric(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -788,6 +811,9 @@ public sealed record class MetricGroup : ModelBase
     }
 
     public MetricGroup() { }
+
+    public MetricGroup(MetricGroup metricGroup)
+        : base(metricGroup) { }
 
     public MetricGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -863,6 +889,11 @@ public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
     }
 
     public GroupedSubscriptionUsageDataUsage() { }
+
+    public GroupedSubscriptionUsageDataUsage(
+        GroupedSubscriptionUsageDataUsage groupedSubscriptionUsageDataUsage
+    )
+        : base(groupedSubscriptionUsageDataUsage) { }
 
     public GroupedSubscriptionUsageDataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {

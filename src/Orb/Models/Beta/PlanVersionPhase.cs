@@ -73,6 +73,9 @@ public sealed record class PlanVersionPhase : ModelBase
 
     public PlanVersionPhase() { }
 
+    public PlanVersionPhase(PlanVersionPhase planVersionPhase)
+        : base(planVersionPhase) { }
+
     public PlanVersionPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

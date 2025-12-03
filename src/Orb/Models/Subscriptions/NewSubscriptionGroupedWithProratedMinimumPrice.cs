@@ -261,6 +261,11 @@ public sealed record class NewSubscriptionGroupedWithProratedMinimumPrice : Mode
     public NewSubscriptionGroupedWithProratedMinimumPrice() { }
 
     public NewSubscriptionGroupedWithProratedMinimumPrice(
+        NewSubscriptionGroupedWithProratedMinimumPrice newSubscriptionGroupedWithProratedMinimumPrice
+    )
+        : base(newSubscriptionGroupedWithProratedMinimumPrice) { }
+
+    public NewSubscriptionGroupedWithProratedMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -400,6 +405,11 @@ public sealed record class GroupedWithProratedMinimumConfig : ModelBase
     }
 
     public GroupedWithProratedMinimumConfig() { }
+
+    public GroupedWithProratedMinimumConfig(
+        global::Orb.Models.Subscriptions.GroupedWithProratedMinimumConfig groupedWithProratedMinimumConfig
+    )
+        : base(groupedWithProratedMinimumConfig) { }
 
     public GroupedWithProratedMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

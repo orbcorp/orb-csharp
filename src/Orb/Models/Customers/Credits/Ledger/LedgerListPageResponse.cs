@@ -47,6 +47,9 @@ public sealed record class LedgerListPageResponse : ModelBase
 
     public LedgerListPageResponse() { }
 
+    public LedgerListPageResponse(LedgerListPageResponse ledgerListPageResponse)
+        : base(ledgerListPageResponse) { }
+
     public LedgerListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

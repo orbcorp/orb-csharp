@@ -55,6 +55,12 @@ public sealed record class PlanUpdateParams : ParamsBase
 
     public PlanUpdateParams() { }
 
+    public PlanUpdateParams(PlanUpdateParams planUpdateParams)
+        : base(planUpdateParams)
+    {
+        this._rawBodyData = [.. planUpdateParams._rawBodyData];
+    }
+
     public PlanUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

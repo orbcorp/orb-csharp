@@ -42,6 +42,11 @@ public sealed record class NewAccountingSyncConfiguration : ModelBase
 
     public NewAccountingSyncConfiguration() { }
 
+    public NewAccountingSyncConfiguration(
+        NewAccountingSyncConfiguration newAccountingSyncConfiguration
+    )
+        : base(newAccountingSyncConfiguration) { }
+
     public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -62,6 +62,14 @@ public sealed record class ExternalDimensionalPriceGroupIDUpdateParams : ParamsB
     public ExternalDimensionalPriceGroupIDUpdateParams() { }
 
     public ExternalDimensionalPriceGroupIDUpdateParams(
+        ExternalDimensionalPriceGroupIDUpdateParams externalDimensionalPriceGroupIDUpdateParams
+    )
+        : base(externalDimensionalPriceGroupIDUpdateParams)
+    {
+        this._rawBodyData = [.. externalDimensionalPriceGroupIDUpdateParams._rawBodyData];
+    }
+
+    public ExternalDimensionalPriceGroupIDUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

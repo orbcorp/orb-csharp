@@ -75,6 +75,9 @@ public sealed record class AdjustmentInterval : ModelBase
 
     public AdjustmentInterval() { }
 
+    public AdjustmentInterval(AdjustmentInterval adjustmentInterval)
+        : base(adjustmentInterval) { }
+
     public AdjustmentInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

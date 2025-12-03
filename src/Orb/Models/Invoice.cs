@@ -630,6 +630,10 @@ public sealed record class Invoice : ModelBase
     public Invoice() { }
 
     [System::Obsolete("Required properties are deprecated: discount")]
+    public Invoice(Invoice invoice)
+        : base(invoice) { }
+
+    [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -725,6 +729,9 @@ public sealed record class InvoiceAutoCollection : ModelBase
     }
 
     public InvoiceAutoCollection() { }
+
+    public InvoiceAutoCollection(InvoiceAutoCollection invoiceAutoCollection)
+        : base(invoiceAutoCollection) { }
 
     public InvoiceAutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -824,6 +831,9 @@ public sealed record class InvoiceCreditNote : ModelBase
     }
 
     public InvoiceCreditNote() { }
+
+    public InvoiceCreditNote(InvoiceCreditNote invoiceCreditNote)
+        : base(invoiceCreditNote) { }
 
     public InvoiceCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -970,6 +980,11 @@ public sealed record class InvoiceCustomerBalanceTransaction : ModelBase
     }
 
     public InvoiceCustomerBalanceTransaction() { }
+
+    public InvoiceCustomerBalanceTransaction(
+        InvoiceCustomerBalanceTransaction invoiceCustomerBalanceTransaction
+    )
+        : base(invoiceCustomerBalanceTransaction) { }
 
     public InvoiceCustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1385,6 +1400,9 @@ public sealed record class InvoiceLineItem : ModelBase
     }
 
     public InvoiceLineItem() { }
+
+    public InvoiceLineItem(InvoiceLineItem invoiceLineItem)
+        : base(invoiceLineItem) { }
 
     public InvoiceLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2389,6 +2407,9 @@ public sealed record class InvoicePaymentAttempt : ModelBase
     }
 
     public InvoicePaymentAttempt() { }
+
+    public InvoicePaymentAttempt(InvoicePaymentAttempt invoicePaymentAttempt)
+        : base(invoicePaymentAttempt) { }
 
     public InvoicePaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {

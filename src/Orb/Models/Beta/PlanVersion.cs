@@ -88,6 +88,9 @@ public sealed record class PlanVersion : ModelBase
 
     public PlanVersion() { }
 
+    public PlanVersion(PlanVersion planVersion)
+        : base(planVersion) { }
+
     public PlanVersion(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

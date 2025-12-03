@@ -40,6 +40,9 @@ public sealed record class InvoiceListPageResponse : ModelBase
 
     public InvoiceListPageResponse() { }
 
+    public InvoiceListPageResponse(InvoiceListPageResponse invoiceListPageResponse)
+        : base(invoiceListPageResponse) { }
+
     public InvoiceListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

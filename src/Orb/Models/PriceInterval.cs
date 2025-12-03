@@ -168,6 +168,9 @@ public sealed record class PriceInterval : ModelBase
 
     public PriceInterval() { }
 
+    public PriceInterval(PriceInterval priceInterval)
+        : base(priceInterval) { }
+
     public PriceInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

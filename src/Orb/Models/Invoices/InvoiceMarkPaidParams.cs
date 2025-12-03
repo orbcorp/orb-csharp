@@ -67,6 +67,12 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
 
     public InvoiceMarkPaidParams() { }
 
+    public InvoiceMarkPaidParams(InvoiceMarkPaidParams invoiceMarkPaidParams)
+        : base(invoiceMarkPaidParams)
+    {
+        this._rawBodyData = [.. invoiceMarkPaidParams._rawBodyData];
+    }
+
     public InvoiceMarkPaidParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

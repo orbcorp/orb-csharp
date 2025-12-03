@@ -396,6 +396,9 @@ public sealed record class Customer : ModelBase
 
     public Customer() { }
 
+    public Customer(Customer customer)
+        : base(customer) { }
+
     public Customer(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -452,6 +455,9 @@ public sealed record class Hierarchy : ModelBase
     }
 
     public Hierarchy() { }
+
+    public Hierarchy(Hierarchy hierarchy)
+        : base(hierarchy) { }
 
     public Hierarchy(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -572,6 +578,9 @@ public sealed record class AccountingSyncConfiguration : ModelBase
 
     public AccountingSyncConfiguration() { }
 
+    public AccountingSyncConfiguration(AccountingSyncConfiguration accountingSyncConfiguration)
+        : base(accountingSyncConfiguration) { }
+
     public AccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -631,6 +640,9 @@ public sealed record class AccountingProvider : ModelBase
     }
 
     public AccountingProvider() { }
+
+    public AccountingProvider(AccountingProvider accountingProvider)
+        : base(accountingProvider) { }
 
     public AccountingProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -748,6 +760,9 @@ public sealed record class CustomerPaymentConfiguration : ModelBase
 
     public CustomerPaymentConfiguration() { }
 
+    public CustomerPaymentConfiguration(CustomerPaymentConfiguration customerPaymentConfiguration)
+        : base(customerPaymentConfiguration) { }
+
     public CustomerPaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -838,6 +853,11 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : ModelBa
     }
 
     public CustomerPaymentConfigurationPaymentProvider() { }
+
+    public CustomerPaymentConfigurationPaymentProvider(
+        CustomerPaymentConfigurationPaymentProvider customerPaymentConfigurationPaymentProvider
+    )
+        : base(customerPaymentConfigurationPaymentProvider) { }
 
     public CustomerPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -942,6 +962,9 @@ public sealed record class ReportingConfiguration : ModelBase
     }
 
     public ReportingConfiguration() { }
+
+    public ReportingConfiguration(ReportingConfiguration reportingConfiguration)
+        : base(reportingConfiguration) { }
 
     public ReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

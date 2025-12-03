@@ -44,6 +44,9 @@ public sealed record class TopUpListByExternalIDParams : ParamsBase
 
     public TopUpListByExternalIDParams() { }
 
+    public TopUpListByExternalIDParams(TopUpListByExternalIDParams topUpListByExternalIDParams)
+        : base(topUpListByExternalIDParams) { }
+
     public TopUpListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

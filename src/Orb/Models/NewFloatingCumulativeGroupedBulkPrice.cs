@@ -245,6 +245,11 @@ public sealed record class NewFloatingCumulativeGroupedBulkPrice : ModelBase
 
     public NewFloatingCumulativeGroupedBulkPrice() { }
 
+    public NewFloatingCumulativeGroupedBulkPrice(
+        NewFloatingCumulativeGroupedBulkPrice newFloatingCumulativeGroupedBulkPrice
+    )
+        : base(newFloatingCumulativeGroupedBulkPrice) { }
+
     public NewFloatingCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -379,6 +384,9 @@ public sealed record class CumulativeGroupedBulkConfig : ModelBase
 
     public CumulativeGroupedBulkConfig() { }
 
+    public CumulativeGroupedBulkConfig(CumulativeGroupedBulkConfig cumulativeGroupedBulkConfig)
+        : base(cumulativeGroupedBulkConfig) { }
+
     public CumulativeGroupedBulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -451,6 +459,9 @@ public sealed record class DimensionValue : ModelBase
     }
 
     public DimensionValue() { }
+
+    public DimensionValue(DimensionValue dimensionValue)
+        : base(dimensionValue) { }
 
     public DimensionValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {

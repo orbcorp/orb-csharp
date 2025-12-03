@@ -169,6 +169,9 @@ public sealed record class CostListParams : ParamsBase
 
     public CostListParams() { }
 
+    public CostListParams(CostListParams costListParams)
+        : base(costListParams) { }
+
     public CostListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

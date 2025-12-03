@@ -53,6 +53,11 @@ public sealed record class CreditListByExternalIDPageResponse : ModelBase
 
     public CreditListByExternalIDPageResponse() { }
 
+    public CreditListByExternalIDPageResponse(
+        CreditListByExternalIDPageResponse creditListByExternalIDPageResponse
+    )
+        : base(creditListByExternalIDPageResponse) { }
+
     public CreditListByExternalIDPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -177,6 +182,11 @@ public sealed record class CreditListByExternalIDPageResponseData : ModelBase
 
     public CreditListByExternalIDPageResponseData() { }
 
+    public CreditListByExternalIDPageResponseData(
+        CreditListByExternalIDPageResponseData creditListByExternalIDPageResponseData
+    )
+        : base(creditListByExternalIDPageResponseData) { }
+
     public CreditListByExternalIDPageResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -265,6 +275,11 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
     }
 
     public CreditListByExternalIDPageResponseDataFilter() { }
+
+    public CreditListByExternalIDPageResponseDataFilter(
+        CreditListByExternalIDPageResponseDataFilter creditListByExternalIDPageResponseDataFilter
+    )
+        : base(creditListByExternalIDPageResponseDataFilter) { }
 
     public CreditListByExternalIDPageResponseDataFilter(
         IReadOnlyDictionary<string, JsonElement> rawData

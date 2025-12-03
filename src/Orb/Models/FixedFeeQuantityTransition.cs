@@ -41,6 +41,9 @@ public sealed record class FixedFeeQuantityTransition : ModelBase
 
     public FixedFeeQuantityTransition() { }
 
+    public FixedFeeQuantityTransition(FixedFeeQuantityTransition fixedFeeQuantityTransition)
+        : base(fixedFeeQuantityTransition) { }
+
     public FixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

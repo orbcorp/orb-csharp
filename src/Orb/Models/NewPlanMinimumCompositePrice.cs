@@ -255,6 +255,9 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
 
     public NewPlanMinimumCompositePrice() { }
 
+    public NewPlanMinimumCompositePrice(NewPlanMinimumCompositePrice newPlanMinimumCompositePrice)
+        : base(newPlanMinimumCompositePrice) { }
+
     public NewPlanMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -390,6 +393,11 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : ModelBase
     }
 
     public NewPlanMinimumCompositePriceMinimumConfig() { }
+
+    public NewPlanMinimumCompositePriceMinimumConfig(
+        NewPlanMinimumCompositePriceMinimumConfig newPlanMinimumCompositePriceMinimumConfig
+    )
+        : base(newPlanMinimumCompositePriceMinimumConfig) { }
 
     public NewPlanMinimumCompositePriceMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

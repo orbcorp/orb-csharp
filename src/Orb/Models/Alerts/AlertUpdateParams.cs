@@ -33,6 +33,12 @@ public sealed record class AlertUpdateParams : ParamsBase
 
     public AlertUpdateParams() { }
 
+    public AlertUpdateParams(AlertUpdateParams alertUpdateParams)
+        : base(alertUpdateParams)
+    {
+        this._rawBodyData = [.. alertUpdateParams._rawBodyData];
+    }
+
     public AlertUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

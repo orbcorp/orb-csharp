@@ -59,6 +59,9 @@ public sealed record class Address : ModelBase
 
     public Address() { }
 
+    public Address(Address address)
+        : base(address) { }
+
     public Address(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

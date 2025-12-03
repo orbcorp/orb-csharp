@@ -257,6 +257,11 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPrice : ModelBase
 
     public NewPlanGroupedWithMeteredMinimumPrice() { }
 
+    public NewPlanGroupedWithMeteredMinimumPrice(
+        NewPlanGroupedWithMeteredMinimumPrice newPlanGroupedWithMeteredMinimumPrice
+    )
+        : base(newPlanGroupedWithMeteredMinimumPrice) { }
+
     public NewPlanGroupedWithMeteredMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -445,6 +450,11 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig() { }
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig(
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig
+    )
+        : base(newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig) { }
+
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -522,6 +532,12 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor() { }
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor(
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
+    )
+        : base(newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor)
+    { }
+
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -597,6 +613,11 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     }
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount() { }
+
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount(
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
+    )
+        : base(newPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount) { }
 
     public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -29,6 +29,9 @@ public sealed record class CostListByExternalIDResponse : ModelBase
 
     public CostListByExternalIDResponse() { }
 
+    public CostListByExternalIDResponse(CostListByExternalIDResponse costListByExternalIDResponse)
+        : base(costListByExternalIDResponse) { }
+
     public CostListByExternalIDResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

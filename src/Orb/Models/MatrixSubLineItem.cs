@@ -86,6 +86,9 @@ public sealed record class MatrixSubLineItem : ModelBase
 
     public MatrixSubLineItem() { }
 
+    public MatrixSubLineItem(MatrixSubLineItem matrixSubLineItem)
+        : base(matrixSubLineItem) { }
+
     public MatrixSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

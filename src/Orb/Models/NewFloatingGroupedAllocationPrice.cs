@@ -245,6 +245,11 @@ public sealed record class NewFloatingGroupedAllocationPrice : ModelBase
 
     public NewFloatingGroupedAllocationPrice() { }
 
+    public NewFloatingGroupedAllocationPrice(
+        NewFloatingGroupedAllocationPrice newFloatingGroupedAllocationPrice
+    )
+        : base(newFloatingGroupedAllocationPrice) { }
+
     public NewFloatingGroupedAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -377,6 +382,9 @@ public sealed record class GroupedAllocationConfig : ModelBase
     }
 
     public GroupedAllocationConfig() { }
+
+    public GroupedAllocationConfig(GroupedAllocationConfig groupedAllocationConfig)
+        : base(groupedAllocationConfig) { }
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -520,6 +520,14 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     public SubscriptionSchedulePlanChangeParams() { }
 
     public SubscriptionSchedulePlanChangeParams(
+        SubscriptionSchedulePlanChangeParams subscriptionSchedulePlanChangeParams
+    )
+        : base(subscriptionSchedulePlanChangeParams)
+    {
+        this._rawBodyData = [.. subscriptionSchedulePlanChangeParams._rawBodyData];
+    }
+
+    public SubscriptionSchedulePlanChangeParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData
@@ -703,6 +711,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
     }
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustment() { }
+
+    public SubscriptionSchedulePlanChangeParamsAddAdjustment(
+        SubscriptionSchedulePlanChangeParamsAddAdjustment subscriptionSchedulePlanChangeParamsAddAdjustment
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddAdjustment) { }
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1376,6 +1389,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPrice() { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPrice(
+        SubscriptionSchedulePlanChangeParamsAddPrice subscriptionSchedulePlanChangeParamsAddPrice
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPrice) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4494,6 +4512,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4587,6 +4610,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig
+        ) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4665,6 +4695,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        ) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4741,6 +4778,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5408,6 +5452,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5561,6 +5610,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig
+        ) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5646,6 +5702,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6232,6 +6295,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -6409,6 +6477,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6995,6 +7070,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -7172,6 +7252,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -7752,6 +7839,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent(
+        SubscriptionSchedulePlanChangeParamsAddPricePricePercent subscriptionSchedulePlanChangeParamsAddPricePricePercent
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePricePercent) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePricePercent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -7882,6 +7974,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig() { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig subscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -8469,6 +8566,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput subscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceEventOutput) { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -8628,6 +8730,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig() { }
+
+    public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig(
+        SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig subscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig
+    )
+        : base(subscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig) { }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9037,6 +9144,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment 
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment() { }
 
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment(
+        SubscriptionSchedulePlanChangeParamsRemoveAdjustment subscriptionSchedulePlanChangeParamsRemoveAdjustment
+    )
+        : base(subscriptionSchedulePlanChangeParamsRemoveAdjustment) { }
+
+    public SubscriptionSchedulePlanChangeParamsRemoveAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9114,6 +9226,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Mod
     public SubscriptionSchedulePlanChangeParamsRemovePrice() { }
 
     public SubscriptionSchedulePlanChangeParamsRemovePrice(
+        SubscriptionSchedulePlanChangeParamsRemovePrice subscriptionSchedulePlanChangeParamsRemovePrice
+    )
+        : base(subscriptionSchedulePlanChangeParamsRemovePrice) { }
+
+    public SubscriptionSchedulePlanChangeParamsRemovePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9186,6 +9303,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
     }
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment() { }
+
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustment(
+        SubscriptionSchedulePlanChangeParamsReplaceAdjustment subscriptionSchedulePlanChangeParamsReplaceAdjustment
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplaceAdjustment) { }
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -9835,6 +9957,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePrice() { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePrice(
+        SubscriptionSchedulePlanChangeParamsReplacePrice subscriptionSchedulePlanChangeParamsReplacePrice
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePrice) { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -12965,6 +13092,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -13061,6 +13193,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
+        ) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -13139,6 +13278,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        ) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -13215,6 +13361,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13882,6 +14035,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -14037,6 +14195,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig
+        ) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -14122,6 +14287,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14708,6 +14880,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -14885,6 +15062,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -15471,6 +15655,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -15648,6 +15837,13 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+    )
+        : base(
+            subscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+        ) { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16228,6 +16424,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent(
+        SubscriptionSchedulePlanChangeParamsReplacePricePricePercent subscriptionSchedulePlanChangeParamsReplacePricePricePercent
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePricePercent) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -16364,6 +16565,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig() { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig subscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig) { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -16955,6 +17161,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput) { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -17116,6 +17327,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig() { }
+
+    public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig(
+        SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig
+    )
+        : base(subscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig)
+    { }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

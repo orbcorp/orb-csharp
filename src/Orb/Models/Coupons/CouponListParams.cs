@@ -65,6 +65,9 @@ public sealed record class CouponListParams : ParamsBase
 
     public CouponListParams() { }
 
+    public CouponListParams(CouponListParams couponListParams)
+        : base(couponListParams) { }
+
     public CouponListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

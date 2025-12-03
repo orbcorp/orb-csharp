@@ -24,6 +24,9 @@ public sealed record class NewReportingConfiguration : ModelBase
 
     public NewReportingConfiguration() { }
 
+    public NewReportingConfiguration(NewReportingConfiguration newReportingConfiguration)
+        : base(newReportingConfiguration) { }
+
     public NewReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

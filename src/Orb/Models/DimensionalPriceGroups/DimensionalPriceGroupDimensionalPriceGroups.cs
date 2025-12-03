@@ -46,6 +46,11 @@ public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBa
     public DimensionalPriceGroupDimensionalPriceGroups() { }
 
     public DimensionalPriceGroupDimensionalPriceGroups(
+        DimensionalPriceGroupDimensionalPriceGroups dimensionalPriceGroupDimensionalPriceGroups
+    )
+        : base(dimensionalPriceGroupDimensionalPriceGroups) { }
+
+    public DimensionalPriceGroupDimensionalPriceGroups(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {

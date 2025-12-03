@@ -146,6 +146,9 @@ public sealed record class CustomerTaxID : ModelBase
 
     public CustomerTaxID() { }
 
+    public CustomerTaxID(CustomerTaxID customerTaxID)
+        : base(customerTaxID) { }
+
     public CustomerTaxID(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

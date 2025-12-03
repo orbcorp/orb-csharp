@@ -24,6 +24,9 @@ public sealed record class TopLevelPingResponse : ModelBase
 
     public TopLevelPingResponse() { }
 
+    public TopLevelPingResponse(TopLevelPingResponse topLevelPingResponse)
+        : base(topLevelPingResponse) { }
+
     public TopLevelPingResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

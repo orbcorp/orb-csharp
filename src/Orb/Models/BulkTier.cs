@@ -40,6 +40,9 @@ public sealed record class BulkTier : ModelBase
 
     public BulkTier() { }
 
+    public BulkTier(BulkTier bulkTier)
+        : base(bulkTier) { }
+
     public BulkTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

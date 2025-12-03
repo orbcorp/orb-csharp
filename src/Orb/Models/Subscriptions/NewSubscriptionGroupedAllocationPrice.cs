@@ -257,6 +257,11 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : ModelBase
 
     public NewSubscriptionGroupedAllocationPrice() { }
 
+    public NewSubscriptionGroupedAllocationPrice(
+        NewSubscriptionGroupedAllocationPrice newSubscriptionGroupedAllocationPrice
+    )
+        : base(newSubscriptionGroupedAllocationPrice) { }
+
     public NewSubscriptionGroupedAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -394,6 +399,11 @@ public sealed record class GroupedAllocationConfig : ModelBase
     }
 
     public GroupedAllocationConfig() { }
+
+    public GroupedAllocationConfig(
+        global::Orb.Models.Subscriptions.GroupedAllocationConfig groupedAllocationConfig
+    )
+        : base(groupedAllocationConfig) { }
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

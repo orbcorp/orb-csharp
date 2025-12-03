@@ -27,6 +27,9 @@ public sealed record class InvoiceVoidParams : ParamsBase
 
     public InvoiceVoidParams() { }
 
+    public InvoiceVoidParams(InvoiceVoidParams invoiceVoidParams)
+        : base(invoiceVoidParams) { }
+
     public InvoiceVoidParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

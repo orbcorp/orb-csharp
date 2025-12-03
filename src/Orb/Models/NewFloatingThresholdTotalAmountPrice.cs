@@ -245,6 +245,11 @@ public sealed record class NewFloatingThresholdTotalAmountPrice : ModelBase
 
     public NewFloatingThresholdTotalAmountPrice() { }
 
+    public NewFloatingThresholdTotalAmountPrice(
+        NewFloatingThresholdTotalAmountPrice newFloatingThresholdTotalAmountPrice
+    )
+        : base(newFloatingThresholdTotalAmountPrice) { }
+
     public NewFloatingThresholdTotalAmountPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -427,6 +432,9 @@ public sealed record class ThresholdTotalAmountConfig : ModelBase
 
     public ThresholdTotalAmountConfig() { }
 
+    public ThresholdTotalAmountConfig(ThresholdTotalAmountConfig thresholdTotalAmountConfig)
+        : base(thresholdTotalAmountConfig) { }
+
     public ThresholdTotalAmountConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -496,6 +504,9 @@ public sealed record class ConsumptionTable : ModelBase
     }
 
     public ConsumptionTable() { }
+
+    public ConsumptionTable(ConsumptionTable consumptionTable)
+        : base(consumptionTable) { }
 
     public ConsumptionTable(IReadOnlyDictionary<string, JsonElement> rawData)
     {

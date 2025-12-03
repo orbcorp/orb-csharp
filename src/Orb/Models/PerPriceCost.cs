@@ -67,6 +67,9 @@ public sealed record class PerPriceCost : ModelBase
 
     public PerPriceCost() { }
 
+    public PerPriceCost(PerPriceCost perPriceCost)
+        : base(perPriceCost) { }
+
     public PerPriceCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

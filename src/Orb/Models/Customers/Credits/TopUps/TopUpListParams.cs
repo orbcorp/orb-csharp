@@ -44,6 +44,9 @@ public sealed record class TopUpListParams : ParamsBase
 
     public TopUpListParams() { }
 
+    public TopUpListParams(TopUpListParams topUpListParams)
+        : base(topUpListParams) { }
+
     public TopUpListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

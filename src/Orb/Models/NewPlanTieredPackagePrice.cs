@@ -254,6 +254,9 @@ public sealed record class NewPlanTieredPackagePrice : ModelBase
 
     public NewPlanTieredPackagePrice() { }
 
+    public NewPlanTieredPackagePrice(NewPlanTieredPackagePrice newPlanTieredPackagePrice)
+        : base(newPlanTieredPackagePrice) { }
+
     public NewPlanTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -439,6 +442,11 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfig : ModelB
     public NewPlanTieredPackagePriceTieredPackageConfig() { }
 
     public NewPlanTieredPackagePriceTieredPackageConfig(
+        NewPlanTieredPackagePriceTieredPackageConfig newPlanTieredPackagePriceTieredPackageConfig
+    )
+        : base(newPlanTieredPackagePriceTieredPackageConfig) { }
+
+    public NewPlanTieredPackagePriceTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -508,6 +516,11 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfigTier : Mo
     }
 
     public NewPlanTieredPackagePriceTieredPackageConfigTier() { }
+
+    public NewPlanTieredPackagePriceTieredPackageConfigTier(
+        NewPlanTieredPackagePriceTieredPackageConfigTier newPlanTieredPackagePriceTieredPackageConfigTier
+    )
+        : base(newPlanTieredPackagePriceTieredPackageConfigTier) { }
 
     public NewPlanTieredPackagePriceTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

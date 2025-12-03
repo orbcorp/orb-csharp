@@ -22,6 +22,9 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
 
     public InvoiceFetchUpcomingParams() { }
 
+    public InvoiceFetchUpcomingParams(InvoiceFetchUpcomingParams invoiceFetchUpcomingParams)
+        : base(invoiceFetchUpcomingParams) { }
+
     public InvoiceFetchUpcomingParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

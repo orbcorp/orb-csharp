@@ -27,6 +27,9 @@ public sealed record class PriceEvaluateResponse : ModelBase
 
     public PriceEvaluateResponse() { }
 
+    public PriceEvaluateResponse(PriceEvaluateResponse priceEvaluateResponse)
+        : base(priceEvaluateResponse) { }
+
     public PriceEvaluateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

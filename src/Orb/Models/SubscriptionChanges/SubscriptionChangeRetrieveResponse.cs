@@ -103,6 +103,11 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
 
     public SubscriptionChangeRetrieveResponse() { }
 
+    public SubscriptionChangeRetrieveResponse(
+        SubscriptionChangeRetrieveResponse subscriptionChangeRetrieveResponse
+    )
+        : base(subscriptionChangeRetrieveResponse) { }
+
     public SubscriptionChangeRetrieveResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -255,6 +255,11 @@ public sealed record class NewPlanUnitWithProrationPrice : ModelBase
 
     public NewPlanUnitWithProrationPrice() { }
 
+    public NewPlanUnitWithProrationPrice(
+        NewPlanUnitWithProrationPrice newPlanUnitWithProrationPrice
+    )
+        : base(newPlanUnitWithProrationPrice) { }
+
     public NewPlanUnitWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -417,6 +422,11 @@ public sealed record class NewPlanUnitWithProrationPriceUnitWithProrationConfig 
     }
 
     public NewPlanUnitWithProrationPriceUnitWithProrationConfig() { }
+
+    public NewPlanUnitWithProrationPriceUnitWithProrationConfig(
+        NewPlanUnitWithProrationPriceUnitWithProrationConfig newPlanUnitWithProrationPriceUnitWithProrationConfig
+    )
+        : base(newPlanUnitWithProrationPriceUnitWithProrationConfig) { }
 
     public NewPlanUnitWithProrationPriceUnitWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -24,6 +24,9 @@ public sealed record class BillableMetricTiny : ModelBase
 
     public BillableMetricTiny() { }
 
+    public BillableMetricTiny(BillableMetricTiny billableMetricTiny)
+        : base(billableMetricTiny) { }
+
     public BillableMetricTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

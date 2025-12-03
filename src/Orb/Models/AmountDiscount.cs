@@ -79,6 +79,9 @@ public sealed record class AmountDiscount : ModelBase
 
     public AmountDiscount() { }
 
+    public AmountDiscount(AmountDiscount amountDiscount)
+        : base(amountDiscount) { }
+
     public AmountDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -198,6 +201,9 @@ public sealed record class AmountDiscountFilter : ModelBase
     }
 
     public AmountDiscountFilter() { }
+
+    public AmountDiscountFilter(AmountDiscountFilter amountDiscountFilter)
+        : base(amountDiscountFilter) { }
 
     public AmountDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

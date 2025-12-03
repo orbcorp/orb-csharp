@@ -42,6 +42,12 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
 
     public ExternalPriceIDUpdateParams() { }
 
+    public ExternalPriceIDUpdateParams(ExternalPriceIDUpdateParams externalPriceIDUpdateParams)
+        : base(externalPriceIDUpdateParams)
+    {
+        this._rawBodyData = [.. externalPriceIDUpdateParams._rawBodyData];
+    }
+
     public ExternalPriceIDUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

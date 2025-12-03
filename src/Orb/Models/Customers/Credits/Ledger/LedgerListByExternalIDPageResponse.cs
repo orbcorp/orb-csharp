@@ -53,6 +53,11 @@ public sealed record class LedgerListByExternalIDPageResponse : ModelBase
 
     public LedgerListByExternalIDPageResponse() { }
 
+    public LedgerListByExternalIDPageResponse(
+        LedgerListByExternalIDPageResponse ledgerListByExternalIDPageResponse
+    )
+        : base(ledgerListByExternalIDPageResponse) { }
+
     public LedgerListByExternalIDPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

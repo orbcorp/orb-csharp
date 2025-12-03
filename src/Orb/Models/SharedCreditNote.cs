@@ -218,6 +218,9 @@ public sealed record class SharedCreditNote : ModelBase
 
     public SharedCreditNote() { }
 
+    public SharedCreditNote(SharedCreditNote sharedCreditNote)
+        : base(sharedCreditNote) { }
+
     public SharedCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -383,6 +386,9 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
 
     public SharedCreditNoteLineItem() { }
 
+    public SharedCreditNoteLineItem(SharedCreditNoteLineItem sharedCreditNoteLineItem)
+        : base(sharedCreditNoteLineItem) { }
+
     public SharedCreditNoteLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -480,6 +486,9 @@ public sealed record class Discount : ModelBase
     }
 
     public Discount() { }
+
+    public Discount(Discount discount)
+        : base(discount) { }
 
     public Discount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -615,6 +624,9 @@ public sealed record class MaximumAmountAdjustment : ModelBase
 
     public MaximumAmountAdjustment() { }
 
+    public MaximumAmountAdjustment(MaximumAmountAdjustment maximumAmountAdjustment)
+        : base(maximumAmountAdjustment) { }
+
     public MaximumAmountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -710,6 +722,9 @@ public sealed record class AppliesToPrice : ModelBase
     }
 
     public AppliesToPrice() { }
+
+    public AppliesToPrice(AppliesToPrice appliesToPrice)
+        : base(appliesToPrice) { }
 
     public AppliesToPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -888,6 +903,9 @@ public sealed record class SharedCreditNoteDiscount : ModelBase
 
     public SharedCreditNoteDiscount() { }
 
+    public SharedCreditNoteDiscount(SharedCreditNoteDiscount sharedCreditNoteDiscount)
+        : base(sharedCreditNoteDiscount) { }
+
     public SharedCreditNoteDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -988,6 +1006,11 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
     }
 
     public SharedCreditNoteDiscountAppliesToPrice() { }
+
+    public SharedCreditNoteDiscountAppliesToPrice(
+        SharedCreditNoteDiscountAppliesToPrice sharedCreditNoteDiscountAppliesToPrice
+    )
+        : base(sharedCreditNoteDiscountAppliesToPrice) { }
 
     public SharedCreditNoteDiscountAppliesToPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {

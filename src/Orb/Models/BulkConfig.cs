@@ -33,6 +33,9 @@ public sealed record class BulkConfig : ModelBase
 
     public BulkConfig() { }
 
+    public BulkConfig(BulkConfig bulkConfig)
+        : base(bulkConfig) { }
+
     public BulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

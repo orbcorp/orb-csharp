@@ -255,6 +255,11 @@ public sealed record class NewPlanTieredWithMinimumPrice : ModelBase
 
     public NewPlanTieredWithMinimumPrice() { }
 
+    public NewPlanTieredWithMinimumPrice(
+        NewPlanTieredWithMinimumPrice newPlanTieredWithMinimumPrice
+    )
+        : base(newPlanTieredWithMinimumPrice) { }
+
     public NewPlanTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -464,6 +469,11 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig() { }
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
+        NewPlanTieredWithMinimumPriceTieredWithMinimumConfig newPlanTieredWithMinimumPriceTieredWithMinimumConfig
+    )
+        : base(newPlanTieredWithMinimumPriceTieredWithMinimumConfig) { }
+
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -554,6 +564,11 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigT
     }
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier() { }
+
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
+        NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier newPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
+    )
+        : base(newPlanTieredWithMinimumPriceTieredWithMinimumConfigTier) { }
 
     public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

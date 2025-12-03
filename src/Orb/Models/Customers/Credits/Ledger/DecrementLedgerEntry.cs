@@ -155,6 +155,9 @@ public sealed record class DecrementLedgerEntry : ModelBase
 
     public DecrementLedgerEntry() { }
 
+    public DecrementLedgerEntry(DecrementLedgerEntry decrementLedgerEntry)
+        : base(decrementLedgerEntry) { }
+
     public DecrementLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

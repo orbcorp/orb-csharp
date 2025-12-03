@@ -42,6 +42,12 @@ public sealed record class PriceUpdateParams : ParamsBase
 
     public PriceUpdateParams() { }
 
+    public PriceUpdateParams(PriceUpdateParams priceUpdateParams)
+        : base(priceUpdateParams)
+    {
+        this._rawBodyData = [.. priceUpdateParams._rawBodyData];
+    }
+
     public PriceUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

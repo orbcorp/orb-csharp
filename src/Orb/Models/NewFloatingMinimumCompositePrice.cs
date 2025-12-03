@@ -239,6 +239,11 @@ public sealed record class NewFloatingMinimumCompositePrice : ModelBase
 
     public NewFloatingMinimumCompositePrice() { }
 
+    public NewFloatingMinimumCompositePrice(
+        NewFloatingMinimumCompositePrice newFloatingMinimumCompositePrice
+    )
+        : base(newFloatingMinimumCompositePrice) { }
+
     public NewFloatingMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -369,6 +374,9 @@ public sealed record class MinimumConfig : ModelBase
     }
 
     public MinimumConfig() { }
+
+    public MinimumConfig(MinimumConfig minimumConfig)
+        : base(minimumConfig) { }
 
     public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

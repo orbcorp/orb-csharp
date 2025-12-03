@@ -110,6 +110,9 @@ public sealed record class BalanceTransactionListParams : ParamsBase
 
     public BalanceTransactionListParams() { }
 
+    public BalanceTransactionListParams(BalanceTransactionListParams balanceTransactionListParams)
+        : base(balanceTransactionListParams) { }
+
     public BalanceTransactionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

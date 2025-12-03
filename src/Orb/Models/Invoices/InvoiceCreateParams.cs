@@ -161,6 +161,12 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
     public InvoiceCreateParams() { }
 
+    public InvoiceCreateParams(InvoiceCreateParams invoiceCreateParams)
+        : base(invoiceCreateParams)
+    {
+        this._rawBodyData = [.. invoiceCreateParams._rawBodyData];
+    }
+
     public InvoiceCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -330,6 +336,9 @@ public sealed record class LineItem : ModelBase
     }
 
     public LineItem() { }
+
+    public LineItem(global::Orb.Models.Invoices.LineItem lineItem)
+        : base(lineItem) { }
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {

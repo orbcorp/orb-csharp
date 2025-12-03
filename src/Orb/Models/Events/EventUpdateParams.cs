@@ -115,6 +115,12 @@ public sealed record class EventUpdateParams : ParamsBase
 
     public EventUpdateParams() { }
 
+    public EventUpdateParams(EventUpdateParams eventUpdateParams)
+        : base(eventUpdateParams)
+    {
+        this._rawBodyData = [.. eventUpdateParams._rawBodyData];
+    }
+
     public EventUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

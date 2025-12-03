@@ -20,6 +20,9 @@ public sealed record class TopLevelPingParams : ParamsBase
 {
     public TopLevelPingParams() { }
 
+    public TopLevelPingParams(TopLevelPingParams topLevelPingParams)
+        : base(topLevelPingParams) { }
+
     public TopLevelPingParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

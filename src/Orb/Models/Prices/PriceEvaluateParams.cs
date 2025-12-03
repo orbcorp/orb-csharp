@@ -116,6 +116,12 @@ public sealed record class PriceEvaluateParams : ParamsBase
 
     public PriceEvaluateParams() { }
 
+    public PriceEvaluateParams(PriceEvaluateParams priceEvaluateParams)
+        : base(priceEvaluateParams)
+    {
+        this._rawBodyData = [.. priceEvaluateParams._rawBodyData];
+    }
+
     public PriceEvaluateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

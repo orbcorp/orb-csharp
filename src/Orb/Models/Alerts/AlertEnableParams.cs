@@ -28,6 +28,9 @@ public sealed record class AlertEnableParams : ParamsBase
 
     public AlertEnableParams() { }
 
+    public AlertEnableParams(AlertEnableParams alertEnableParams)
+        : base(alertEnableParams) { }
+
     public AlertEnableParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

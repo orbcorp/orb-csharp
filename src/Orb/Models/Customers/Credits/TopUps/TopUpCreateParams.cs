@@ -122,6 +122,12 @@ public sealed record class TopUpCreateParams : ParamsBase
 
     public TopUpCreateParams() { }
 
+    public TopUpCreateParams(TopUpCreateParams topUpCreateParams)
+        : base(topUpCreateParams)
+    {
+        this._rawBodyData = [.. topUpCreateParams._rawBodyData];
+    }
+
     public TopUpCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -256,6 +262,9 @@ public sealed record class InvoiceSettings : ModelBase
     }
 
     public InvoiceSettings() { }
+
+    public InvoiceSettings(InvoiceSettings invoiceSettings)
+        : base(invoiceSettings) { }
 
     public InvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {

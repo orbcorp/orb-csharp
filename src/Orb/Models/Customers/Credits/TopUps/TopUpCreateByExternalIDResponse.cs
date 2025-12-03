@@ -112,6 +112,11 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
 
     public TopUpCreateByExternalIDResponse() { }
 
+    public TopUpCreateByExternalIDResponse(
+        TopUpCreateByExternalIDResponse topUpCreateByExternalIDResponse
+    )
+        : base(topUpCreateByExternalIDResponse) { }
+
     public TopUpCreateByExternalIDResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -42,6 +42,9 @@ public sealed record class CreditNoteListPageResponse : ModelBase
 
     public CreditNoteListPageResponse() { }
 
+    public CreditNoteListPageResponse(CreditNoteListPageResponse creditNoteListPageResponse)
+        : base(creditNoteListPageResponse) { }
+
     public CreditNoteListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

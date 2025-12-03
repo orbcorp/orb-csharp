@@ -32,6 +32,9 @@ public sealed record class ConversionRateTieredConfig : ModelBase
 
     public ConversionRateTieredConfig() { }
 
+    public ConversionRateTieredConfig(ConversionRateTieredConfig conversionRateTieredConfig)
+        : base(conversionRateTieredConfig) { }
+
     public ConversionRateTieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

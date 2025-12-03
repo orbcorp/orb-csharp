@@ -64,6 +64,14 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     public SubscriptionTriggerPhaseParams() { }
 
     public SubscriptionTriggerPhaseParams(
+        SubscriptionTriggerPhaseParams subscriptionTriggerPhaseParams
+    )
+        : base(subscriptionTriggerPhaseParams)
+    {
+        this._rawBodyData = [.. subscriptionTriggerPhaseParams._rawBodyData];
+    }
+
+    public SubscriptionTriggerPhaseParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

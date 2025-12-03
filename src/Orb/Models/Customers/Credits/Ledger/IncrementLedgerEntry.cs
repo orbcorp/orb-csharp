@@ -147,6 +147,9 @@ public sealed record class IncrementLedgerEntry : ModelBase
 
     public IncrementLedgerEntry() { }
 
+    public IncrementLedgerEntry(IncrementLedgerEntry incrementLedgerEntry)
+        : base(incrementLedgerEntry) { }
+
     public IncrementLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

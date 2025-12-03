@@ -148,6 +148,9 @@ public sealed record class VoidLedgerEntry : ModelBase
 
     public VoidLedgerEntry() { }
 
+    public VoidLedgerEntry(VoidLedgerEntry voidLedgerEntry)
+        : base(voidLedgerEntry) { }
+
     public VoidLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

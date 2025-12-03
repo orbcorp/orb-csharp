@@ -91,6 +91,9 @@ public sealed record class ChangedSubscriptionResources : ModelBase
 
     public ChangedSubscriptionResources() { }
 
+    public ChangedSubscriptionResources(ChangedSubscriptionResources changedSubscriptionResources)
+        : base(changedSubscriptionResources) { }
+
     public ChangedSubscriptionResources(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -730,6 +733,10 @@ public sealed record class CreatedInvoice : ModelBase
     public CreatedInvoice() { }
 
     [System::Obsolete("Required properties are deprecated: discount")]
+    public CreatedInvoice(CreatedInvoice createdInvoice)
+        : base(createdInvoice) { }
+
+    [System::Obsolete("Required properties are deprecated: discount")]
     public CreatedInvoice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -826,6 +833,9 @@ public sealed record class AutoCollection : ModelBase
 
     public AutoCollection() { }
 
+    public AutoCollection(AutoCollection autoCollection)
+        : base(autoCollection) { }
+
     public AutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -921,6 +931,9 @@ public sealed record class CreditNote : ModelBase
     }
 
     public CreditNote() { }
+
+    public CreditNote(CreditNote creditNote)
+        : base(creditNote) { }
 
     public CreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1058,6 +1071,9 @@ public sealed record class CustomerBalanceTransaction : ModelBase
     }
 
     public CustomerBalanceTransaction() { }
+
+    public CustomerBalanceTransaction(CustomerBalanceTransaction customerBalanceTransaction)
+        : base(customerBalanceTransaction) { }
 
     public CustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1454,6 +1470,9 @@ public sealed record class LineItem : ModelBase
     }
 
     public LineItem() { }
+
+    public LineItem(LineItem lineItem)
+        : base(lineItem) { }
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2440,6 +2459,9 @@ public sealed record class PaymentAttempt : ModelBase
     }
 
     public PaymentAttempt() { }
+
+    public PaymentAttempt(PaymentAttempt paymentAttempt)
+        : base(paymentAttempt) { }
 
     public PaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {

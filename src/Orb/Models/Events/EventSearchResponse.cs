@@ -28,6 +28,9 @@ public sealed record class EventSearchResponse : ModelBase
 
     public EventSearchResponse() { }
 
+    public EventSearchResponse(EventSearchResponse eventSearchResponse)
+        : base(eventSearchResponse) { }
+
     public EventSearchResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -159,6 +162,9 @@ public sealed record class Data : ModelBase
     }
 
     public Data() { }
+
+    public Data(Data data)
+        : base(data) { }
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {

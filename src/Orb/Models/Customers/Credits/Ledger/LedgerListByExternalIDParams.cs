@@ -196,6 +196,9 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
 
     public LedgerListByExternalIDParams() { }
 
+    public LedgerListByExternalIDParams(LedgerListByExternalIDParams ledgerListByExternalIDParams)
+        : base(ledgerListByExternalIDParams) { }
+
     public LedgerListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

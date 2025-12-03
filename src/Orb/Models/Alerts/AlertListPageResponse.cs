@@ -40,6 +40,9 @@ public sealed record class AlertListPageResponse : ModelBase
 
     public AlertListPageResponse() { }
 
+    public AlertListPageResponse(AlertListPageResponse alertListPageResponse)
+        : base(alertListPageResponse) { }
+
     public AlertListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

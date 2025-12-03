@@ -77,6 +77,12 @@ public sealed record class MetricCreateParams : ParamsBase
 
     public MetricCreateParams() { }
 
+    public MetricCreateParams(MetricCreateParams metricCreateParams)
+        : base(metricCreateParams)
+    {
+        this._rawBodyData = [.. metricCreateParams._rawBodyData];
+    }
+
     public MetricCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

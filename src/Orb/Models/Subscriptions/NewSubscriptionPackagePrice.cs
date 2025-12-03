@@ -250,6 +250,9 @@ public sealed record class NewSubscriptionPackagePrice : ModelBase
 
     public NewSubscriptionPackagePrice() { }
 
+    public NewSubscriptionPackagePrice(NewSubscriptionPackagePrice newSubscriptionPackagePrice)
+        : base(newSubscriptionPackagePrice) { }
+
     public NewSubscriptionPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

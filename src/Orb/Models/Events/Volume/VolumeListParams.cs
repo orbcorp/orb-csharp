@@ -89,6 +89,9 @@ public sealed record class VolumeListParams : ParamsBase
 
     public VolumeListParams() { }
 
+    public VolumeListParams(VolumeListParams volumeListParams)
+        : base(volumeListParams) { }
+
     public VolumeListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

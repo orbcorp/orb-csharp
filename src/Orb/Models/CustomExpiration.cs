@@ -39,6 +39,9 @@ public sealed record class CustomExpiration : ModelBase
 
     public CustomExpiration() { }
 
+    public CustomExpiration(CustomExpiration customExpiration)
+        : base(customExpiration) { }
+
     public CustomExpiration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -257,6 +257,11 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : ModelBase
 
     public NewSubscriptionBulkWithProrationPrice() { }
 
+    public NewSubscriptionBulkWithProrationPrice(
+        NewSubscriptionBulkWithProrationPrice newSubscriptionBulkWithProrationPrice
+    )
+        : base(newSubscriptionBulkWithProrationPrice) { }
+
     public NewSubscriptionBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -323,6 +328,11 @@ public sealed record class BulkWithProrationConfig : ModelBase
     }
 
     public BulkWithProrationConfig() { }
+
+    public BulkWithProrationConfig(
+        global::Orb.Models.Subscriptions.BulkWithProrationConfig bulkWithProrationConfig
+    )
+        : base(bulkWithProrationConfig) { }
 
     public BulkWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -396,6 +406,9 @@ public sealed record class BulkWithProrationConfigTier : ModelBase
     }
 
     public BulkWithProrationConfigTier() { }
+
+    public BulkWithProrationConfigTier(BulkWithProrationConfigTier bulkWithProrationConfigTier)
+        : base(bulkWithProrationConfigTier) { }
 
     public BulkWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -245,6 +245,11 @@ public sealed record class NewFloatingPackageWithAllocationPrice : ModelBase
 
     public NewFloatingPackageWithAllocationPrice() { }
 
+    public NewFloatingPackageWithAllocationPrice(
+        NewFloatingPackageWithAllocationPrice newFloatingPackageWithAllocationPrice
+    )
+        : base(newFloatingPackageWithAllocationPrice) { }
+
     public NewFloatingPackageWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -426,6 +431,9 @@ public sealed record class PackageWithAllocationConfig : ModelBase
     }
 
     public PackageWithAllocationConfig() { }
+
+    public PackageWithAllocationConfig(PackageWithAllocationConfig packageWithAllocationConfig)
+        : base(packageWithAllocationConfig) { }
 
     public PackageWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

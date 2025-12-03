@@ -258,6 +258,11 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPrice : ModelBase
     public NewPlanScalableMatrixWithUnitPricingPrice() { }
 
     public NewPlanScalableMatrixWithUnitPricingPrice(
+        NewPlanScalableMatrixWithUnitPricingPrice newPlanScalableMatrixWithUnitPricingPrice
+    )
+        : base(newPlanScalableMatrixWithUnitPricingPrice) { }
+
+    public NewPlanScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -475,6 +480,11 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig() { }
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig(
+        NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig
+    )
+        : base(newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig) { }
+
+    public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -561,6 +571,13 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor()
     { }
+
+    public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+    )
+        : base(
+            newPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+        ) { }
 
     public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -17,6 +17,9 @@ public sealed record class AlertRetrieveParams : ParamsBase
 
     public AlertRetrieveParams() { }
 
+    public AlertRetrieveParams(AlertRetrieveParams alertRetrieveParams)
+        : base(alertRetrieveParams) { }
+
     public AlertRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

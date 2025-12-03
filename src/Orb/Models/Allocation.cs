@@ -61,6 +61,9 @@ public sealed record class Allocation : ModelBase
 
     public Allocation() { }
 
+    public Allocation(Allocation allocation)
+        : base(allocation) { }
+
     public Allocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -130,6 +133,9 @@ public sealed record class Filter : ModelBase
     }
 
     public Filter() { }
+
+    public Filter(Filter filter)
+        : base(filter) { }
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

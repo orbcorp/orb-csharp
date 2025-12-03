@@ -245,6 +245,11 @@ public sealed record class NewFloatingBulkWithProrationPrice : ModelBase
 
     public NewFloatingBulkWithProrationPrice() { }
 
+    public NewFloatingBulkWithProrationPrice(
+        NewFloatingBulkWithProrationPrice newFloatingBulkWithProrationPrice
+    )
+        : base(newFloatingBulkWithProrationPrice) { }
+
     public NewFloatingBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -300,6 +305,9 @@ public sealed record class BulkWithProrationConfig : ModelBase
     }
 
     public BulkWithProrationConfig() { }
+
+    public BulkWithProrationConfig(BulkWithProrationConfig bulkWithProrationConfig)
+        : base(bulkWithProrationConfig) { }
 
     public BulkWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -370,6 +378,9 @@ public sealed record class Tier : ModelBase
     }
 
     public Tier() { }
+
+    public Tier(Tier tier)
+        : base(tier) { }
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -47,6 +47,11 @@ public sealed record class BalanceTransactionListPageResponse : ModelBase
 
     public BalanceTransactionListPageResponse() { }
 
+    public BalanceTransactionListPageResponse(
+        BalanceTransactionListPageResponse balanceTransactionListPageResponse
+    )
+        : base(balanceTransactionListPageResponse) { }
+
     public BalanceTransactionListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -181,6 +186,9 @@ public sealed record class Data : ModelBase
     }
 
     public Data() { }
+
+    public Data(Data data)
+        : base(data) { }
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {

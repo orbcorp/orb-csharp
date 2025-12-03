@@ -125,6 +125,12 @@ public sealed record class BetaCreatePlanVersionParams : ParamsBase
 
     public BetaCreatePlanVersionParams() { }
 
+    public BetaCreatePlanVersionParams(BetaCreatePlanVersionParams betaCreatePlanVersionParams)
+        : base(betaCreatePlanVersionParams)
+    {
+        this._rawBodyData = [.. betaCreatePlanVersionParams._rawBodyData];
+    }
+
     public BetaCreatePlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -225,6 +231,9 @@ public sealed record class AddAdjustment : ModelBase
     }
 
     public AddAdjustment() { }
+
+    public AddAdjustment(AddAdjustment addAdjustment)
+        : base(addAdjustment) { }
 
     public AddAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -765,6 +774,9 @@ public sealed record class AddPrice : ModelBase
     }
 
     public AddPrice() { }
+
+    public AddPrice(AddPrice addPrice)
+        : base(addPrice) { }
 
     public AddPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3680,6 +3692,9 @@ public sealed record class BulkWithFilters : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
+    public BulkWithFilters(global::Orb.Models.Beta.BulkWithFilters bulkWithFilters)
+        : base(bulkWithFilters) { }
+
     public BulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3768,6 +3783,11 @@ public sealed record class BulkWithFiltersConfig : ModelBase
 
     public BulkWithFiltersConfig() { }
 
+    public BulkWithFiltersConfig(
+        global::Orb.Models.Beta.BulkWithFiltersConfig bulkWithFiltersConfig
+    )
+        : base(bulkWithFiltersConfig) { }
+
     public BulkWithFiltersConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3833,6 +3853,9 @@ public sealed record class Filter : ModelBase
 
     public Filter() { }
 
+    public Filter(global::Orb.Models.Beta.Filter filter)
+        : base(filter) { }
+
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -3897,6 +3920,9 @@ public sealed record class Tier : ModelBase
     }
 
     public Tier() { }
+
+    public Tier(global::Orb.Models.Beta.Tier tier)
+        : base(tier) { }
 
     public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4517,6 +4543,9 @@ public sealed record class TieredWithProration : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
+    public TieredWithProration(global::Orb.Models.Beta.TieredWithProration tieredWithProration)
+        : base(tieredWithProration) { }
+
     public TieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4646,6 +4675,11 @@ public sealed record class TieredWithProrationConfig : ModelBase
 
     public TieredWithProrationConfig() { }
 
+    public TieredWithProrationConfig(
+        global::Orb.Models.Beta.TieredWithProrationConfig tieredWithProrationConfig
+    )
+        : base(tieredWithProrationConfig) { }
+
     public TieredWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -4722,6 +4756,11 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
     }
 
     public TieredWithProrationConfigTier() { }
+
+    public TieredWithProrationConfigTier(
+        global::Orb.Models.Beta.TieredWithProrationConfigTier tieredWithProrationConfigTier
+    )
+        : base(tieredWithProrationConfigTier) { }
 
     public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5290,6 +5329,11 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         );
     }
 
+    public GroupedWithMinMaxThresholds(
+        global::Orb.Models.Beta.GroupedWithMinMaxThresholds groupedWithMinMaxThresholds
+    )
+        : base(groupedWithMinMaxThresholds) { }
+
     public GroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -5443,6 +5487,11 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
     }
 
     public GroupedWithMinMaxThresholdsConfig() { }
+
+    public GroupedWithMinMaxThresholdsConfig(
+        global::Orb.Models.Beta.GroupedWithMinMaxThresholdsConfig groupedWithMinMaxThresholdsConfig
+    )
+        : base(groupedWithMinMaxThresholdsConfig) { }
 
     public GroupedWithMinMaxThresholdsConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6015,6 +6064,11 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         );
     }
 
+    public CumulativeGroupedAllocation(
+        global::Orb.Models.Beta.CumulativeGroupedAllocation cumulativeGroupedAllocation
+    )
+        : base(cumulativeGroupedAllocation) { }
+
     public CumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6168,6 +6222,11 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
     }
 
     public CumulativeGroupedAllocationConfig() { }
+
+    public CumulativeGroupedAllocationConfig(
+        global::Orb.Models.Beta.CumulativeGroupedAllocationConfig cumulativeGroupedAllocationConfig
+    )
+        : base(cumulativeGroupedAllocationConfig) { }
 
     public CumulativeGroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6732,6 +6791,9 @@ public sealed record class Percent : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
+    public Percent(global::Orb.Models.Beta.Percent percent)
+        : base(percent) { }
+
     public Percent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -6850,6 +6912,9 @@ public sealed record class PercentConfig : ModelBase
     }
 
     public PercentConfig() { }
+
+    public PercentConfig(global::Orb.Models.Beta.PercentConfig percentConfig)
+        : base(percentConfig) { }
 
     public PercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7417,6 +7482,9 @@ public sealed record class EventOutput : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
+    public EventOutput(global::Orb.Models.Beta.EventOutput eventOutput)
+        : base(eventOutput) { }
+
     public EventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -7558,6 +7626,9 @@ public sealed record class EventOutputConfig : ModelBase
     }
 
     public EventOutputConfig() { }
+
+    public EventOutputConfig(global::Orb.Models.Beta.EventOutputConfig eventOutputConfig)
+        : base(eventOutputConfig) { }
 
     public EventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7901,6 +7972,9 @@ public sealed record class RemoveAdjustment : ModelBase
 
     public RemoveAdjustment() { }
 
+    public RemoveAdjustment(RemoveAdjustment removeAdjustment)
+        : base(removeAdjustment) { }
+
     public RemoveAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -7966,6 +8040,9 @@ public sealed record class RemovePrice : ModelBase
     }
 
     public RemovePrice() { }
+
+    public RemovePrice(RemovePrice removePrice)
+        : base(removePrice) { }
 
     public RemovePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8046,6 +8123,9 @@ public sealed record class ReplaceAdjustment : ModelBase
     }
 
     public ReplaceAdjustment() { }
+
+    public ReplaceAdjustment(ReplaceAdjustment replaceAdjustment)
+        : base(replaceAdjustment) { }
 
     public ReplaceAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -8591,6 +8671,9 @@ public sealed record class ReplacePrice : ModelBase
     }
 
     public ReplacePrice() { }
+
+    public ReplacePrice(ReplacePrice replacePrice)
+        : base(replacePrice) { }
 
     public ReplacePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -11490,6 +11573,11 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
+    public ReplacePricePriceBulkWithFilters(
+        ReplacePricePriceBulkWithFilters replacePricePriceBulkWithFilters
+    )
+        : base(replacePricePriceBulkWithFilters) { }
+
     public ReplacePricePriceBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -11577,6 +11665,11 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig() { }
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig replacePricePriceBulkWithFiltersBulkWithFiltersConfig
+    )
+        : base(replacePricePriceBulkWithFiltersBulkWithFiltersConfig) { }
+
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -11650,6 +11743,11 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter replacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+    )
+        : base(replacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter) { }
+
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -11721,6 +11819,11 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     }
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier() { }
+
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier replacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+    )
+        : base(replacePricePriceBulkWithFiltersBulkWithFiltersConfigTier) { }
 
     public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -12353,6 +12456,11 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"tiered_with_proration\"");
     }
 
+    public ReplacePricePriceTieredWithProration(
+        ReplacePricePriceTieredWithProration replacePricePriceTieredWithProration
+    )
+        : base(replacePricePriceTieredWithProration) { }
+
     public ReplacePricePriceTieredWithProration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -12483,6 +12591,11 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig() { }
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfig replacePricePriceTieredWithProrationTieredWithProrationConfig
+    )
+        : base(replacePricePriceTieredWithProrationTieredWithProrationConfig) { }
+
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -12564,6 +12677,11 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     }
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier() { }
+
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier replacePricePriceTieredWithProrationTieredWithProrationConfigTier
+    )
+        : base(replacePricePriceTieredWithProrationTieredWithProrationConfigTier) { }
 
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13133,6 +13251,11 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
     }
 
     public ReplacePricePriceGroupedWithMinMaxThresholds(
+        ReplacePricePriceGroupedWithMinMaxThresholds replacePricePriceGroupedWithMinMaxThresholds
+    )
+        : base(replacePricePriceGroupedWithMinMaxThresholds) { }
+
+    public ReplacePricePriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -13287,6 +13410,11 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWi
     }
 
     public ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig() { }
+
+    public ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
+        ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig replacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+    )
+        : base(replacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig) { }
 
     public ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -13860,6 +13988,11 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
     }
 
     public ReplacePricePriceCumulativeGroupedAllocation(
+        ReplacePricePriceCumulativeGroupedAllocation replacePricePriceCumulativeGroupedAllocation
+    )
+        : base(replacePricePriceCumulativeGroupedAllocation) { }
+
+    public ReplacePricePriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -14014,6 +14147,11 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativ
     }
 
     public ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig() { }
+
+    public ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
+        ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig replacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+    )
+        : base(replacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig) { }
 
     public ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -14580,6 +14718,9 @@ public sealed record class ReplacePricePricePercent : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
+    public ReplacePricePricePercent(ReplacePricePricePercent replacePricePricePercent)
+        : base(replacePricePricePercent) { }
+
     public ReplacePricePricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -14699,6 +14840,11 @@ public sealed record class ReplacePricePricePercentPercentConfig : ModelBase
     }
 
     public ReplacePricePricePercentPercentConfig() { }
+
+    public ReplacePricePricePercentPercentConfig(
+        ReplacePricePricePercentPercentConfig replacePricePricePercentPercentConfig
+    )
+        : base(replacePricePricePercentPercentConfig) { }
 
     public ReplacePricePricePercentPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -15264,6 +15410,9 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
+    public ReplacePricePriceEventOutput(ReplacePricePriceEventOutput replacePricePriceEventOutput)
+        : base(replacePricePriceEventOutput) { }
+
     public ReplacePricePriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -15406,6 +15555,11 @@ public sealed record class ReplacePricePriceEventOutputEventOutputConfig : Model
     }
 
     public ReplacePricePriceEventOutputEventOutputConfig() { }
+
+    public ReplacePricePriceEventOutputEventOutputConfig(
+        ReplacePricePriceEventOutputEventOutputConfig replacePricePriceEventOutputEventOutputConfig
+    )
+        : base(replacePricePriceEventOutputEventOutputConfig) { }
 
     public ReplacePricePriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

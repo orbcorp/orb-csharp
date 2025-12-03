@@ -257,6 +257,11 @@ public sealed record class NewPlanPackageWithAllocationPrice : ModelBase
 
     public NewPlanPackageWithAllocationPrice() { }
 
+    public NewPlanPackageWithAllocationPrice(
+        NewPlanPackageWithAllocationPrice newPlanPackageWithAllocationPrice
+    )
+        : base(newPlanPackageWithAllocationPrice) { }
+
     public NewPlanPackageWithAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -441,6 +446,11 @@ public sealed record class NewPlanPackageWithAllocationPricePackageWithAllocatio
     }
 
     public NewPlanPackageWithAllocationPricePackageWithAllocationConfig() { }
+
+    public NewPlanPackageWithAllocationPricePackageWithAllocationConfig(
+        NewPlanPackageWithAllocationPricePackageWithAllocationConfig newPlanPackageWithAllocationPricePackageWithAllocationConfig
+    )
+        : base(newPlanPackageWithAllocationPricePackageWithAllocationConfig) { }
 
     public NewPlanPackageWithAllocationPricePackageWithAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -429,6 +429,12 @@ public sealed record class Subscription : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
     )]
+    public Subscription(Subscription subscription)
+        : base(subscription) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
     public Subscription(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

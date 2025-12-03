@@ -261,6 +261,11 @@ public sealed record class NewSubscriptionGroupedWithMeteredMinimumPrice : Model
     public NewSubscriptionGroupedWithMeteredMinimumPrice() { }
 
     public NewSubscriptionGroupedWithMeteredMinimumPrice(
+        NewSubscriptionGroupedWithMeteredMinimumPrice newSubscriptionGroupedWithMeteredMinimumPrice
+    )
+        : base(newSubscriptionGroupedWithMeteredMinimumPrice) { }
+
+    public NewSubscriptionGroupedWithMeteredMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -451,6 +456,11 @@ public sealed record class GroupedWithMeteredMinimumConfig : ModelBase
 
     public GroupedWithMeteredMinimumConfig() { }
 
+    public GroupedWithMeteredMinimumConfig(
+        global::Orb.Models.Subscriptions.GroupedWithMeteredMinimumConfig groupedWithMeteredMinimumConfig
+    )
+        : base(groupedWithMeteredMinimumConfig) { }
+
     public GroupedWithMeteredMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -520,6 +530,9 @@ public sealed record class ScalingFactor : ModelBase
 
     public ScalingFactor() { }
 
+    public ScalingFactor(global::Orb.Models.Subscriptions.ScalingFactor scalingFactor)
+        : base(scalingFactor) { }
+
     public ScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -587,6 +600,9 @@ public sealed record class UnitAmount : ModelBase
     }
 
     public UnitAmount() { }
+
+    public UnitAmount(global::Orb.Models.Subscriptions.UnitAmount unitAmount)
+        : base(unitAmount) { }
 
     public UnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

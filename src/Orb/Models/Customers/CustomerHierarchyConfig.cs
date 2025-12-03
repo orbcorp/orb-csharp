@@ -47,6 +47,9 @@ public sealed record class CustomerHierarchyConfig : ModelBase
 
     public CustomerHierarchyConfig() { }
 
+    public CustomerHierarchyConfig(CustomerHierarchyConfig customerHierarchyConfig)
+        : base(customerHierarchyConfig) { }
+
     public CustomerHierarchyConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

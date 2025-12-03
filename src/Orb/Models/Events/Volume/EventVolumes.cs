@@ -34,6 +34,9 @@ public sealed record class EventVolumes : ModelBase
 
     public EventVolumes() { }
 
+    public EventVolumes(EventVolumes eventVolumes)
+        : base(eventVolumes) { }
+
     public EventVolumes(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -110,6 +113,9 @@ public sealed record class Data : ModelBase
     }
 
     public Data() { }
+
+    public Data(global::Orb.Models.Events.Volume.Data data)
+        : base(data) { }
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {

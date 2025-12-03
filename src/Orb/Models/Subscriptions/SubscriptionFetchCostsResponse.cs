@@ -29,6 +29,11 @@ public sealed record class SubscriptionFetchCostsResponse : ModelBase
 
     public SubscriptionFetchCostsResponse() { }
 
+    public SubscriptionFetchCostsResponse(
+        SubscriptionFetchCostsResponse subscriptionFetchCostsResponse
+    )
+        : base(subscriptionFetchCostsResponse) { }
+
     public SubscriptionFetchCostsResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -257,6 +257,11 @@ public sealed record class NewSubscriptionMinimumCompositePrice : ModelBase
 
     public NewSubscriptionMinimumCompositePrice() { }
 
+    public NewSubscriptionMinimumCompositePrice(
+        NewSubscriptionMinimumCompositePrice newSubscriptionMinimumCompositePrice
+    )
+        : base(newSubscriptionMinimumCompositePrice) { }
+
     public NewSubscriptionMinimumCompositePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -392,6 +397,9 @@ public sealed record class MinimumConfig : ModelBase
     }
 
     public MinimumConfig() { }
+
+    public MinimumConfig(global::Orb.Models.Subscriptions.MinimumConfig minimumConfig)
+        : base(minimumConfig) { }
 
     public MinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

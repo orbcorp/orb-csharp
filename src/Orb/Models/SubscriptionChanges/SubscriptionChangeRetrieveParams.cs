@@ -24,6 +24,11 @@ public sealed record class SubscriptionChangeRetrieveParams : ParamsBase
     public SubscriptionChangeRetrieveParams() { }
 
     public SubscriptionChangeRetrieveParams(
+        SubscriptionChangeRetrieveParams subscriptionChangeRetrieveParams
+    )
+        : base(subscriptionChangeRetrieveParams) { }
+
+    public SubscriptionChangeRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

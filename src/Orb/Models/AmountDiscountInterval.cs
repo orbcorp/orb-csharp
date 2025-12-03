@@ -103,6 +103,9 @@ public sealed record class AmountDiscountInterval : ModelBase
 
     public AmountDiscountInterval() { }
 
+    public AmountDiscountInterval(AmountDiscountInterval amountDiscountInterval)
+        : base(amountDiscountInterval) { }
+
     public AmountDiscountInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -228,6 +231,9 @@ public sealed record class AmountDiscountIntervalFilter : ModelBase
     }
 
     public AmountDiscountIntervalFilter() { }
+
+    public AmountDiscountIntervalFilter(AmountDiscountIntervalFilter amountDiscountIntervalFilter)
+        : base(amountDiscountIntervalFilter) { }
 
     public AmountDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

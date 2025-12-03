@@ -40,6 +40,9 @@ public sealed record class MatrixValue : ModelBase
 
     public MatrixValue() { }
 
+    public MatrixValue(MatrixValue matrixValue)
+        : base(matrixValue) { }
+
     public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

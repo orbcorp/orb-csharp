@@ -18,6 +18,9 @@ public sealed record class InvoicePayParams : ParamsBase
 
     public InvoicePayParams() { }
 
+    public InvoicePayParams(InvoicePayParams invoicePayParams)
+        : base(invoicePayParams) { }
+
     public InvoicePayParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

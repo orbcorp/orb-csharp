@@ -270,6 +270,12 @@ public sealed record class Plan : ModelBase
     [System::Obsolete(
         "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
     )]
+    public Plan(Plan plan)
+        : base(plan) { }
+
+    [System::Obsolete(
+        "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -879,6 +885,9 @@ public sealed record class BasePlan : ModelBase
 
     public BasePlan() { }
 
+    public BasePlan(BasePlan basePlan)
+        : base(basePlan) { }
+
     public BasePlan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1006,6 +1015,9 @@ public sealed record class PlanPlanPhase : ModelBase
 
     public PlanPlanPhase() { }
 
+    public PlanPlanPhase(PlanPlanPhase planPlanPhase)
+        : base(planPlanPhase) { }
+
     public PlanPlanPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1120,6 +1132,9 @@ public sealed record class Product : ModelBase
 
     public Product() { }
 
+    public Product(Product product)
+        : base(product) { }
+
     public Product(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1223,6 +1238,9 @@ public sealed record class TrialConfig : ModelBase
     }
 
     public TrialConfig() { }
+
+    public TrialConfig(TrialConfig trialConfig)
+        : base(trialConfig) { }
 
     public TrialConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

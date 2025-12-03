@@ -18,6 +18,9 @@ public sealed record class CouponFetchParams : ParamsBase
 
     public CouponFetchParams() { }
 
+    public CouponFetchParams(CouponFetchParams couponFetchParams)
+        : base(couponFetchParams) { }
+
     public CouponFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

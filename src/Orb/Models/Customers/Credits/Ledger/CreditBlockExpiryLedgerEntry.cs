@@ -134,6 +134,9 @@ public sealed record class CreditBlockExpiryLedgerEntry : ModelBase
 
     public CreditBlockExpiryLedgerEntry() { }
 
+    public CreditBlockExpiryLedgerEntry(CreditBlockExpiryLedgerEntry creditBlockExpiryLedgerEntry)
+        : base(creditBlockExpiryLedgerEntry) { }
+
     public CreditBlockExpiryLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -47,6 +47,9 @@ public sealed record class TaxAmount : ModelBase
 
     public TaxAmount() { }
 
+    public TaxAmount(TaxAmount taxAmount)
+        : base(taxAmount) { }
+
     public TaxAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
