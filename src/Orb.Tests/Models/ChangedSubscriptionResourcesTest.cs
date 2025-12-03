@@ -79,7 +79,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -153,14 +153,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -197,8 +197,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -267,14 +269,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -295,8 +298,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -311,8 +314,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -365,8 +368,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -382,8 +385,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -492,7 +495,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -543,7 +546,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             ID = "cgZa3SXcsPTVyC4Y",
-                            Action = Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                            Action =
+                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                             Amount = "11.00",
                             CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                             CreditNote = new("id"),
@@ -551,7 +555,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             EndingBalance = "22.00",
                             Invoice = new("gXcsPTVyC4YZa3Sc"),
                             StartingBalance = "33.00",
-                            Type = Models::CustomerBalanceTransactionModelType.Increment,
+                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                         },
                     ],
                     CustomerTaxID = new()
@@ -566,14 +570,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -609,8 +613,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -679,14 +685,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -707,8 +714,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -723,8 +730,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -777,8 +784,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -794,8 +801,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -810,7 +817,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             ID = "id",
                             Amount = "amount",
                             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                             PaymentProviderID = "payment_provider_id",
                             ReceiptPdf =
                                 "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -906,7 +913,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new()
                     {
                         AmountApplied = "amount_applied",
-                        DiscountType = Models::DiscountModelDiscountType.Percentage,
+                        DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AppliesToPrices = [new() { ID = "id", Name = "name" }],
                         Reason = "reason",
@@ -980,14 +987,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1023,8 +1030,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter10Field.PriceID,
-                                        Operator = Models::Filter10Operator.Includes,
+                                        Field =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1092,14 +1101,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             Discount = new Models::PercentageDiscount()
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter17Field.PriceID,
-                                        Operator = Models::Filter17Operator.Includes,
+                                        Field = Models::PercentageDiscountFilterField.PriceID,
+                                        Operator =
+                                            Models::PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1120,8 +1130,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1136,8 +1146,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1190,8 +1200,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1207,8 +1217,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1317,7 +1327,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new()
                     {
                         AmountApplied = "amount_applied",
-                        DiscountType = Models::DiscountModelDiscountType.Percentage,
+                        DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AppliesToPrices = [new() { ID = "id", Name = "name" }],
                         Reason = "reason",
@@ -1368,7 +1378,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new()
                     {
                         ID = "cgZa3SXcsPTVyC4Y",
-                        Action = Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                        Action = Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                         Amount = "11.00",
                         CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                         CreditNote = new("id"),
@@ -1376,7 +1386,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         EndingBalance = "22.00",
                         Invoice = new("gXcsPTVyC4YZa3Sc"),
                         StartingBalance = "33.00",
-                        Type = Models::CustomerBalanceTransactionModelType.Increment,
+                        Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                     },
                 ],
                 CustomerTaxID = new()
@@ -1391,14 +1401,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1433,8 +1443,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter10Field.PriceID,
-                                        Operator = Models::Filter10Operator.Includes,
+                                        Field =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1502,14 +1514,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             Discount = new Models::PercentageDiscount()
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter17Field.PriceID,
-                                        Operator = Models::Filter17Operator.Includes,
+                                        Field = Models::PercentageDiscountFilterField.PriceID,
+                                        Operator =
+                                            Models::PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1530,8 +1543,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1546,8 +1559,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1600,8 +1613,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1617,8 +1630,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1633,7 +1646,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         ID = "id",
                         Amount = "amount",
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                        PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                         PaymentProviderID = "payment_provider_id",
                         ReceiptPdf =
                             "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -1755,7 +1768,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -1829,14 +1842,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1873,8 +1886,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1943,14 +1958,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1971,8 +1987,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1987,8 +2003,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2041,8 +2057,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2058,8 +2074,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2168,7 +2184,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -2219,7 +2235,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             ID = "cgZa3SXcsPTVyC4Y",
-                            Action = Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                            Action =
+                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                             Amount = "11.00",
                             CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                             CreditNote = new("id"),
@@ -2227,7 +2244,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             EndingBalance = "22.00",
                             Invoice = new("gXcsPTVyC4YZa3Sc"),
                             StartingBalance = "33.00",
-                            Type = Models::CustomerBalanceTransactionModelType.Increment,
+                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                         },
                     ],
                     CustomerTaxID = new()
@@ -2242,14 +2259,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2285,8 +2302,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2355,14 +2374,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2383,8 +2403,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2399,8 +2419,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2453,8 +2473,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2470,8 +2490,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2486,7 +2506,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             ID = "id",
                             Amount = "amount",
                             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                             PaymentProviderID = "payment_provider_id",
                             ReceiptPdf =
                                 "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -2593,7 +2613,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -2667,14 +2687,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2711,8 +2731,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2781,14 +2803,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2809,8 +2832,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2825,8 +2848,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2879,8 +2902,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2896,8 +2919,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3006,7 +3029,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -3057,7 +3080,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             ID = "cgZa3SXcsPTVyC4Y",
-                            Action = Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                            Action =
+                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                             Amount = "11.00",
                             CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                             CreditNote = new("id"),
@@ -3065,7 +3089,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             EndingBalance = "22.00",
                             Invoice = new("gXcsPTVyC4YZa3Sc"),
                             StartingBalance = "33.00",
-                            Type = Models::CustomerBalanceTransactionModelType.Increment,
+                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                         },
                     ],
                     CustomerTaxID = new()
@@ -3080,14 +3104,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3123,8 +3147,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3193,14 +3219,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3221,8 +3248,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3237,8 +3264,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3291,8 +3318,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3308,8 +3335,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3324,7 +3351,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             ID = "id",
                             Amount = "amount",
                             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                             PaymentProviderID = "payment_provider_id",
                             ReceiptPdf =
                                 "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -3424,7 +3451,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new()
                     {
                         AmountApplied = "amount_applied",
-                        DiscountType = Models::DiscountModelDiscountType.Percentage,
+                        DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AppliesToPrices = [new() { ID = "id", Name = "name" }],
                         Reason = "reason",
@@ -3498,14 +3525,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3541,8 +3568,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter10Field.PriceID,
-                                        Operator = Models::Filter10Operator.Includes,
+                                        Field =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3610,14 +3639,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             Discount = new Models::PercentageDiscount()
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter17Field.PriceID,
-                                        Operator = Models::Filter17Operator.Includes,
+                                        Field = Models::PercentageDiscountFilterField.PriceID,
+                                        Operator =
+                                            Models::PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3638,8 +3668,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3654,8 +3684,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3708,8 +3738,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3725,8 +3755,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3835,7 +3865,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new()
                     {
                         AmountApplied = "amount_applied",
-                        DiscountType = Models::DiscountModelDiscountType.Percentage,
+                        DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AppliesToPrices = [new() { ID = "id", Name = "name" }],
                         Reason = "reason",
@@ -3886,7 +3916,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new()
                     {
                         ID = "cgZa3SXcsPTVyC4Y",
-                        Action = Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                        Action = Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                         Amount = "11.00",
                         CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                         CreditNote = new("id"),
@@ -3894,7 +3924,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         EndingBalance = "22.00",
                         Invoice = new("gXcsPTVyC4YZa3Sc"),
                         StartingBalance = "33.00",
-                        Type = Models::CustomerBalanceTransactionModelType.Increment,
+                        Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                     },
                 ],
                 CustomerTaxID = new()
@@ -3909,14 +3939,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -3951,8 +3981,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter10Field.PriceID,
-                                        Operator = Models::Filter10Operator.Includes,
+                                        Field =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -4020,14 +4052,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             Discount = new Models::PercentageDiscount()
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter17Field.PriceID,
-                                        Operator = Models::Filter17Operator.Includes,
+                                        Field = Models::PercentageDiscountFilterField.PriceID,
+                                        Operator =
+                                            Models::PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -4048,8 +4081,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -4064,8 +4097,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -4118,8 +4151,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4135,8 +4168,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -4151,7 +4184,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         ID = "id",
                         Amount = "amount",
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                        PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                         PaymentProviderID = "payment_provider_id",
                         ReceiptPdf =
                             "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -4273,7 +4306,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -4347,14 +4380,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -4391,8 +4424,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4461,14 +4496,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4489,8 +4525,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4505,8 +4541,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4559,8 +4595,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -4576,8 +4612,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -4686,7 +4722,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -4737,7 +4773,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new()
                         {
                             ID = "cgZa3SXcsPTVyC4Y",
-                            Action = Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                            Action =
+                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                             Amount = "11.00",
                             CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                             CreditNote = new("id"),
@@ -4745,7 +4782,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             EndingBalance = "22.00",
                             Invoice = new("gXcsPTVyC4YZa3Sc"),
                             StartingBalance = "33.00",
-                            Type = Models::CustomerBalanceTransactionModelType.Increment,
+                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                         },
                     ],
                     CustomerTaxID = new()
@@ -4760,14 +4797,14 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -4803,8 +4840,10 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter10Field.PriceID,
-                                            Operator = Models::Filter10Operator.Includes,
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4873,14 +4912,15 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4901,8 +4941,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter2Field.PriceID,
-                                            Operator = Models::Filter2Operator.Includes,
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4917,8 +4957,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter4Field.PriceID,
-                                            Operator = Models::Filter4Operator.Includes,
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -4971,8 +5011,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -4988,8 +5028,8 @@ public class ChangedSubscriptionResourcesTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -5004,7 +5044,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             ID = "id",
                             Amount = "amount",
                             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                             PaymentProviderID = "payment_provider_id",
                             ReceiptPdf =
                                 "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -5107,14 +5147,14 @@ public class CreatedInvoiceTest : TestBase
                 new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -5150,8 +5190,10 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter10Field.PriceID,
-                                    Operator = Models::Filter10Operator.Includes,
+                                    Field =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5219,14 +5261,14 @@ public class CreatedInvoiceTest : TestBase
                         Discount = new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5247,8 +5289,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter2Field.PriceID,
-                                    Operator = Models::Filter2Operator.Includes,
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5263,8 +5305,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter4Field.PriceID,
-                                    Operator = Models::Filter4Operator.Includes,
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5317,8 +5359,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5334,8 +5376,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5444,14 +5486,14 @@ public class CreatedInvoiceTest : TestBase
             new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5489,8 +5531,9 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter10Field.PriceID,
-                                Operator = Models::Filter10Operator.Includes,
+                                Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                Operator =
+                                    Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -5558,14 +5601,14 @@ public class CreatedInvoiceTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -5586,8 +5629,8 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -5602,8 +5645,8 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -5656,8 +5699,8 @@ public class CreatedInvoiceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter2Field.PriceID,
-                    Operator = Models::Filter2Operator.Includes,
+                    Field = Models::MaximumFilterField.PriceID,
+                    Operator = Models::MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5673,8 +5716,8 @@ public class CreatedInvoiceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter4Field.PriceID,
-                    Operator = Models::Filter4Operator.Includes,
+                    Field = Models::MinimumFilterField.PriceID,
+                    Operator = Models::MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5858,14 +5901,14 @@ public class CreatedInvoiceTest : TestBase
                 new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -5901,8 +5944,10 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter10Field.PriceID,
-                                    Operator = Models::Filter10Operator.Includes,
+                                    Field =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5970,14 +6015,14 @@ public class CreatedInvoiceTest : TestBase
                         Discount = new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -5998,8 +6043,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter2Field.PriceID,
-                                    Operator = Models::Filter2Operator.Includes,
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -6014,8 +6059,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter4Field.PriceID,
-                                    Operator = Models::Filter4Operator.Includes,
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -6068,8 +6113,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6085,8 +6130,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6202,14 +6247,14 @@ public class CreatedInvoiceTest : TestBase
                 new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -6245,8 +6290,10 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter10Field.PriceID,
-                                    Operator = Models::Filter10Operator.Includes,
+                                    Field =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -6314,14 +6361,14 @@ public class CreatedInvoiceTest : TestBase
                         Discount = new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -6342,8 +6389,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter2Field.PriceID,
-                                    Operator = Models::Filter2Operator.Includes,
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -6358,8 +6405,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter4Field.PriceID,
-                                    Operator = Models::Filter4Operator.Includes,
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -6412,8 +6459,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6429,8 +6476,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6543,14 +6590,14 @@ public class CreatedInvoiceTest : TestBase
             new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6588,8 +6635,9 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter10Field.PriceID,
-                                Operator = Models::Filter10Operator.Includes,
+                                Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                Operator =
+                                    Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -6657,14 +6705,14 @@ public class CreatedInvoiceTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -6685,8 +6733,8 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -6701,8 +6749,8 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -6755,8 +6803,8 @@ public class CreatedInvoiceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter2Field.PriceID,
-                    Operator = Models::Filter2Operator.Includes,
+                    Field = Models::MaximumFilterField.PriceID,
+                    Operator = Models::MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6772,8 +6820,8 @@ public class CreatedInvoiceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter4Field.PriceID,
-                    Operator = Models::Filter4Operator.Includes,
+                    Field = Models::MinimumFilterField.PriceID,
+                    Operator = Models::MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6957,14 +7005,14 @@ public class CreatedInvoiceTest : TestBase
                 new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -7000,8 +7048,10 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter10Field.PriceID,
-                                    Operator = Models::Filter10Operator.Includes,
+                                    Field =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -7069,14 +7119,14 @@ public class CreatedInvoiceTest : TestBase
                         Discount = new Models::PercentageDiscount()
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::Filter17Field.PriceID,
-                                    Operator = Models::Filter17Operator.Includes,
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -7097,8 +7147,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter2Field.PriceID,
-                                    Operator = Models::Filter2Operator.Includes,
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -7113,8 +7163,8 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter4Field.PriceID,
-                                    Operator = Models::Filter4Operator.Includes,
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -7167,8 +7217,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7184,8 +7234,8 @@ public class CreatedInvoiceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7576,8 +7626,9 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -7645,14 +7696,14 @@ public class LineItemTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -7673,8 +7724,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -7689,8 +7740,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -7738,7 +7789,7 @@ public class LineItemTest : TestBase
 
         string expectedID = "id";
         string expectedAdjustedSubtotal = "5.00";
-        List<Models::Adjustment> expectedAdjustments =
+        List<Models::LineItemAdjustment> expectedAdjustments =
         [
             new Models::MonetaryUsageDiscountAdjustment()
             {
@@ -7751,8 +7802,8 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter10Field.PriceID,
-                        Operator = Models::Filter10Operator.Includes,
+                        Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7819,14 +7870,14 @@ public class LineItemTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7847,8 +7898,8 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7863,8 +7914,8 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7964,8 +8015,9 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8033,14 +8085,14 @@ public class LineItemTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8061,8 +8113,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8077,8 +8129,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8150,8 +8202,9 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8219,14 +8272,14 @@ public class LineItemTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8247,8 +8300,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8263,8 +8316,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8316,7 +8369,7 @@ public class LineItemTest : TestBase
 
         string expectedID = "id";
         string expectedAdjustedSubtotal = "5.00";
-        List<Models::Adjustment> expectedAdjustments =
+        List<Models::LineItemAdjustment> expectedAdjustments =
         [
             new Models::MonetaryUsageDiscountAdjustment()
             {
@@ -8329,8 +8382,8 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter10Field.PriceID,
-                        Operator = Models::Filter10Operator.Includes,
+                        Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8397,14 +8450,14 @@ public class LineItemTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8425,8 +8478,8 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8441,8 +8494,8 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8542,8 +8595,9 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8611,14 +8665,14 @@ public class LineItemTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8639,8 +8693,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -8655,8 +8709,8 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],

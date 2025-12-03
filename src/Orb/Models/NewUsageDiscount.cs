@@ -81,9 +81,15 @@ public sealed record class NewUsageDiscount : ModelBase
     /// <summary>
     /// A list of filters that determine which prices this adjustment will apply to.
     /// </summary>
-    public IReadOnlyList<Filter16>? Filters
+    public IReadOnlyList<NewUsageDiscountFilter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<Filter16>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNullableClass<List<NewUsageDiscountFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -250,17 +256,20 @@ sealed class NewUsageDiscountAppliesToAllConverter : JsonConverter<NewUsageDisco
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter16, Filter16FromRaw>))]
-public sealed record class Filter16 : ModelBase
+[JsonConverter(typeof(ModelConverter<NewUsageDiscountFilter, NewUsageDiscountFilterFromRaw>))]
+public sealed record class NewUsageDiscountFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter16Field> Field
+    public required ApiEnum<string, NewUsageDiscountFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter16Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewUsageDiscountFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -268,11 +277,11 @@ public sealed record class Filter16 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter16Operator> Operator
+    public required ApiEnum<string, NewUsageDiscountFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter16Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewUsageDiscountFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -296,38 +305,41 @@ public sealed record class Filter16 : ModelBase
         _ = this.Values;
     }
 
-    public Filter16() { }
+    public NewUsageDiscountFilter() { }
 
-    public Filter16(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewUsageDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter16(FrozenDictionary<string, JsonElement> rawData)
+    NewUsageDiscountFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter16 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewUsageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter16FromRaw : IFromRaw<Filter16>
+class NewUsageDiscountFilterFromRaw : IFromRaw<NewUsageDiscountFilter>
 {
-    public Filter16 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter16.FromRawUnchecked(rawData);
+    public NewUsageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewUsageDiscountFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter16FieldConverter))]
-public enum Filter16Field
+[JsonConverter(typeof(NewUsageDiscountFilterFieldConverter))]
+public enum NewUsageDiscountFilterField
 {
     PriceID,
     ItemID,
@@ -336,9 +348,9 @@ public enum Filter16Field
     PricingUnitID,
 }
 
-sealed class Filter16FieldConverter : JsonConverter<Filter16Field>
+sealed class NewUsageDiscountFilterFieldConverter : JsonConverter<NewUsageDiscountFilterField>
 {
-    public override Filter16Field Read(
+    public override NewUsageDiscountFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -346,18 +358,18 @@ sealed class Filter16FieldConverter : JsonConverter<Filter16Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter16Field.PriceID,
-            "item_id" => Filter16Field.ItemID,
-            "price_type" => Filter16Field.PriceType,
-            "currency" => Filter16Field.Currency,
-            "pricing_unit_id" => Filter16Field.PricingUnitID,
-            _ => (Filter16Field)(-1),
+            "price_id" => NewUsageDiscountFilterField.PriceID,
+            "item_id" => NewUsageDiscountFilterField.ItemID,
+            "price_type" => NewUsageDiscountFilterField.PriceType,
+            "currency" => NewUsageDiscountFilterField.Currency,
+            "pricing_unit_id" => NewUsageDiscountFilterField.PricingUnitID,
+            _ => (NewUsageDiscountFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter16Field value,
+        NewUsageDiscountFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -365,11 +377,11 @@ sealed class Filter16FieldConverter : JsonConverter<Filter16Field>
             writer,
             value switch
             {
-                Filter16Field.PriceID => "price_id",
-                Filter16Field.ItemID => "item_id",
-                Filter16Field.PriceType => "price_type",
-                Filter16Field.Currency => "currency",
-                Filter16Field.PricingUnitID => "pricing_unit_id",
+                NewUsageDiscountFilterField.PriceID => "price_id",
+                NewUsageDiscountFilterField.ItemID => "item_id",
+                NewUsageDiscountFilterField.PriceType => "price_type",
+                NewUsageDiscountFilterField.Currency => "currency",
+                NewUsageDiscountFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -382,16 +394,16 @@ sealed class Filter16FieldConverter : JsonConverter<Filter16Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter16OperatorConverter))]
-public enum Filter16Operator
+[JsonConverter(typeof(NewUsageDiscountFilterOperatorConverter))]
+public enum NewUsageDiscountFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter16OperatorConverter : JsonConverter<Filter16Operator>
+sealed class NewUsageDiscountFilterOperatorConverter : JsonConverter<NewUsageDiscountFilterOperator>
 {
-    public override Filter16Operator Read(
+    public override NewUsageDiscountFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -399,15 +411,15 @@ sealed class Filter16OperatorConverter : JsonConverter<Filter16Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter16Operator.Includes,
-            "excludes" => Filter16Operator.Excludes,
-            _ => (Filter16Operator)(-1),
+            "includes" => NewUsageDiscountFilterOperator.Includes,
+            "excludes" => NewUsageDiscountFilterOperator.Excludes,
+            _ => (NewUsageDiscountFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter16Operator value,
+        NewUsageDiscountFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -415,8 +427,8 @@ sealed class Filter16OperatorConverter : JsonConverter<Filter16Operator>
             writer,
             value switch
             {
-                Filter16Operator.Includes => "includes",
-                Filter16Operator.Excludes => "excludes",
+                NewUsageDiscountFilterOperator.Includes => "includes",
+                NewUsageDiscountFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

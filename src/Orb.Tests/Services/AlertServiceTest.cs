@@ -44,7 +44,11 @@ public class AlertServiceTest : TestBase
     {
         var alert = await this.client.Alerts.CreateForExternalCustomer(
             "external_customer_id",
-            new() { Currency = "currency", Type = TypeModel.CreditBalanceDepleted }
+            new()
+            {
+                Currency = "currency",
+                Type = AlertCreateForExternalCustomerParamsType.CreditBalanceDepleted,
+            }
         );
         alert.Validate();
     }
@@ -54,7 +58,11 @@ public class AlertServiceTest : TestBase
     {
         var alert = await this.client.Alerts.CreateForSubscription(
             "subscription_id",
-            new() { Thresholds = [new(0)], Type = Type1.UsageExceeded }
+            new()
+            {
+                Thresholds = [new(0)],
+                Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            }
         );
         alert.Validate();
     }

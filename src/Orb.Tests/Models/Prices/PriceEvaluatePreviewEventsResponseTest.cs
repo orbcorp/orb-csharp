@@ -32,7 +32,7 @@ public class PriceEvaluatePreviewEventsResponseTest : TestBase
             ],
         };
 
-        List<DataModel> expectedData =
+        List<PriceEvaluatePreviewEventsResponseData> expectedData =
         [
             new()
             {
@@ -121,7 +121,7 @@ public class PriceEvaluatePreviewEventsResponseTest : TestBase
         var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponse>(json);
         Assert.NotNull(deserialized);
 
-        List<DataModel> expectedData =
+        List<PriceEvaluatePreviewEventsResponseData> expectedData =
         [
             new()
             {
@@ -178,12 +178,12 @@ public class PriceEvaluatePreviewEventsResponseTest : TestBase
     }
 }
 
-public class DataModelTest : TestBase
+public class PriceEvaluatePreviewEventsResponseDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -228,7 +228,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -246,7 +246,7 @@ public class DataModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponseData>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -254,7 +254,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -272,7 +272,7 @@ public class DataModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponseData>(json);
         Assert.NotNull(deserialized);
 
         string expectedCurrency = "currency";
@@ -303,7 +303,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -326,7 +326,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -351,7 +351,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -371,7 +371,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =
@@ -400,7 +400,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new DataModel
+        var model = new PriceEvaluatePreviewEventsResponseData
         {
             Currency = "currency",
             PriceGroups =

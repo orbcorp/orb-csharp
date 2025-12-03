@@ -42,9 +42,12 @@ public sealed record class MinimumInterval : ModelBase
     /// <summary>
     /// The filters that determine which prices this minimum interval applies to.
     /// </summary>
-    public required IReadOnlyList<Filter5> Filters
+    public required IReadOnlyList<MinimumIntervalFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter5>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<MinimumIntervalFilter>>(this.RawData, "filters");
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -109,17 +112,20 @@ class MinimumIntervalFromRaw : IFromRaw<MinimumInterval>
         MinimumInterval.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Filter5, Filter5FromRaw>))]
-public sealed record class Filter5 : ModelBase
+[JsonConverter(typeof(ModelConverter<MinimumIntervalFilter, MinimumIntervalFilterFromRaw>))]
+public sealed record class MinimumIntervalFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter5Field> Field
+    public required ApiEnum<string, MinimumIntervalFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter5Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -127,11 +133,11 @@ public sealed record class Filter5 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter5Operator> Operator
+    public required ApiEnum<string, MinimumIntervalFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter5Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -155,38 +161,41 @@ public sealed record class Filter5 : ModelBase
         _ = this.Values;
     }
 
-    public Filter5() { }
+    public MinimumIntervalFilter() { }
 
-    public Filter5(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MinimumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter5(FrozenDictionary<string, JsonElement> rawData)
+    MinimumIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter5 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MinimumIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter5FromRaw : IFromRaw<Filter5>
+class MinimumIntervalFilterFromRaw : IFromRaw<MinimumIntervalFilter>
 {
-    public Filter5 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter5.FromRawUnchecked(rawData);
+    public MinimumIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MinimumIntervalFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter5FieldConverter))]
-public enum Filter5Field
+[JsonConverter(typeof(MinimumIntervalFilterFieldConverter))]
+public enum MinimumIntervalFilterField
 {
     PriceID,
     ItemID,
@@ -195,9 +204,9 @@ public enum Filter5Field
     PricingUnitID,
 }
 
-sealed class Filter5FieldConverter : JsonConverter<Filter5Field>
+sealed class MinimumIntervalFilterFieldConverter : JsonConverter<MinimumIntervalFilterField>
 {
-    public override Filter5Field Read(
+    public override MinimumIntervalFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -205,18 +214,18 @@ sealed class Filter5FieldConverter : JsonConverter<Filter5Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter5Field.PriceID,
-            "item_id" => Filter5Field.ItemID,
-            "price_type" => Filter5Field.PriceType,
-            "currency" => Filter5Field.Currency,
-            "pricing_unit_id" => Filter5Field.PricingUnitID,
-            _ => (Filter5Field)(-1),
+            "price_id" => MinimumIntervalFilterField.PriceID,
+            "item_id" => MinimumIntervalFilterField.ItemID,
+            "price_type" => MinimumIntervalFilterField.PriceType,
+            "currency" => MinimumIntervalFilterField.Currency,
+            "pricing_unit_id" => MinimumIntervalFilterField.PricingUnitID,
+            _ => (MinimumIntervalFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter5Field value,
+        MinimumIntervalFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -224,11 +233,11 @@ sealed class Filter5FieldConverter : JsonConverter<Filter5Field>
             writer,
             value switch
             {
-                Filter5Field.PriceID => "price_id",
-                Filter5Field.ItemID => "item_id",
-                Filter5Field.PriceType => "price_type",
-                Filter5Field.Currency => "currency",
-                Filter5Field.PricingUnitID => "pricing_unit_id",
+                MinimumIntervalFilterField.PriceID => "price_id",
+                MinimumIntervalFilterField.ItemID => "item_id",
+                MinimumIntervalFilterField.PriceType => "price_type",
+                MinimumIntervalFilterField.Currency => "currency",
+                MinimumIntervalFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -241,16 +250,16 @@ sealed class Filter5FieldConverter : JsonConverter<Filter5Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter5OperatorConverter))]
-public enum Filter5Operator
+[JsonConverter(typeof(MinimumIntervalFilterOperatorConverter))]
+public enum MinimumIntervalFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter5OperatorConverter : JsonConverter<Filter5Operator>
+sealed class MinimumIntervalFilterOperatorConverter : JsonConverter<MinimumIntervalFilterOperator>
 {
-    public override Filter5Operator Read(
+    public override MinimumIntervalFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -258,15 +267,15 @@ sealed class Filter5OperatorConverter : JsonConverter<Filter5Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter5Operator.Includes,
-            "excludes" => Filter5Operator.Excludes,
-            _ => (Filter5Operator)(-1),
+            "includes" => MinimumIntervalFilterOperator.Includes,
+            "excludes" => MinimumIntervalFilterOperator.Excludes,
+            _ => (MinimumIntervalFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter5Operator value,
+        MinimumIntervalFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -274,8 +283,8 @@ sealed class Filter5OperatorConverter : JsonConverter<Filter5Operator>
             writer,
             value switch
             {
-                Filter5Operator.Includes => "includes",
-                Filter5Operator.Excludes => "excludes",
+                MinimumIntervalFilterOperator.Includes => "includes",
+                MinimumIntervalFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

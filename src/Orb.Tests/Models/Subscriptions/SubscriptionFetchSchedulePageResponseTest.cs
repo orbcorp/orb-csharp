@@ -31,7 +31,7 @@ public class SubscriptionFetchSchedulePageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        List<Data1> expectedData =
+        List<SubscriptionFetchSchedulePageResponseData> expectedData =
         [
             new()
             {
@@ -116,7 +116,7 @@ public class SubscriptionFetchSchedulePageResponseTest : TestBase
         var deserialized = JsonSerializer.Deserialize<SubscriptionFetchSchedulePageResponse>(json);
         Assert.NotNull(deserialized);
 
-        List<Data1> expectedData =
+        List<SubscriptionFetchSchedulePageResponseData> expectedData =
         [
             new()
             {
@@ -172,12 +172,12 @@ public class SubscriptionFetchSchedulePageResponseTest : TestBase
     }
 }
 
-public class Data1Test : TestBase
+public class SubscriptionFetchSchedulePageResponseDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Data1
+        var model = new SubscriptionFetchSchedulePageResponseData
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -209,7 +209,7 @@ public class Data1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Data1
+        var model = new SubscriptionFetchSchedulePageResponseData
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -223,7 +223,9 @@ public class Data1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data1>(json);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionFetchSchedulePageResponseData>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -231,7 +233,7 @@ public class Data1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Data1
+        var model = new SubscriptionFetchSchedulePageResponseData
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -245,7 +247,9 @@ public class Data1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data1>(json);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionFetchSchedulePageResponseData>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -267,7 +271,7 @@ public class Data1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Data1
+        var model = new SubscriptionFetchSchedulePageResponseData
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),

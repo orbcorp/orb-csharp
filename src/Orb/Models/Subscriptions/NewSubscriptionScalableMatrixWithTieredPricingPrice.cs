@@ -440,14 +440,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : ModelBase
     /// <summary>
     /// Tier pricing structure
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier12> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier12>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -589,11 +588,11 @@ class MatrixScalingFactorFromRaw : IFromRaw<global::Orb.Models.Subscriptions.Mat
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier12,
-        global::Orb.Models.Subscriptions.Tier12FromRaw
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier,
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTierFromRaw
     >)
 )]
-public sealed record class Tier12 : ModelBase
+public sealed record class ScalableMatrixWithTieredPricingConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -619,22 +618,24 @@ public sealed record class Tier12 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier12() { }
+    public ScalableMatrixWithTieredPricingConfigTier() { }
 
-    public Tier12(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithTieredPricingConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier12(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithTieredPricingConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier12 FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -642,11 +643,15 @@ public sealed record class Tier12 : ModelBase
     }
 }
 
-class Tier12FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier12>
+class ScalableMatrixWithTieredPricingConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier12 FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier12.FromRawUnchecked(rawData);
+    ) =>
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(

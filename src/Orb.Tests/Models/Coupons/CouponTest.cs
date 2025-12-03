@@ -17,14 +17,14 @@ public class CouponTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41,14 +41,14 @@ public class CouponTest : TestBase
         CouponDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -78,14 +78,14 @@ public class CouponTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -113,14 +113,14 @@ public class CouponTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -141,14 +141,14 @@ public class CouponTest : TestBase
         CouponDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -178,14 +178,14 @@ public class CouponTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],

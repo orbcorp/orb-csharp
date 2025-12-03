@@ -13,14 +13,14 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter26Field.PriceID,
-                    Operator = Filter26Operator.Includes,
+                    Field = UsageDiscountFilterField.PriceID,
+                    Operator = UsageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29,21 +29,21 @@ public class UsageDiscountTest : TestBase
 
         ApiEnum<string, UsageDiscountDiscountType> expectedDiscountType =
             UsageDiscountDiscountType.Usage;
-        double expectedUsageDiscount1 = 0;
+        double expectedUsageDiscountValue = 0;
         List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
-        List<Filter26> expectedFilters =
+        List<UsageDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter26Field.PriceID,
-                Operator = Filter26Operator.Includes,
+                Field = UsageDiscountFilterField.PriceID,
+                Operator = UsageDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
         string expectedReason = "reason";
 
         Assert.Equal(expectedDiscountType, model.DiscountType);
-        Assert.Equal(expectedUsageDiscount1, model.UsageDiscount1);
+        Assert.Equal(expectedUsageDiscountValue, model.UsageDiscountValue);
         Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
         {
@@ -63,14 +63,14 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter26Field.PriceID,
-                    Operator = Filter26Operator.Includes,
+                    Field = UsageDiscountFilterField.PriceID,
+                    Operator = UsageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -89,14 +89,14 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter26Field.PriceID,
-                    Operator = Filter26Operator.Includes,
+                    Field = UsageDiscountFilterField.PriceID,
+                    Operator = UsageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -109,21 +109,21 @@ public class UsageDiscountTest : TestBase
 
         ApiEnum<string, UsageDiscountDiscountType> expectedDiscountType =
             UsageDiscountDiscountType.Usage;
-        double expectedUsageDiscount1 = 0;
+        double expectedUsageDiscountValue = 0;
         List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
-        List<Filter26> expectedFilters =
+        List<UsageDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter26Field.PriceID,
-                Operator = Filter26Operator.Includes,
+                Field = UsageDiscountFilterField.PriceID,
+                Operator = UsageDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
         string expectedReason = "reason";
 
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
-        Assert.Equal(expectedUsageDiscount1, deserialized.UsageDiscount1);
+        Assert.Equal(expectedUsageDiscountValue, deserialized.UsageDiscountValue);
         Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
         {
@@ -143,14 +143,14 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter26Field.PriceID,
-                    Operator = Filter26Operator.Includes,
+                    Field = UsageDiscountFilterField.PriceID,
+                    Operator = UsageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -166,7 +166,7 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
         };
 
         Assert.Null(model.AppliesToPriceIDs);
@@ -183,7 +183,7 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
         };
 
         model.Validate();
@@ -195,7 +195,7 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
 
             AppliesToPriceIDs = null,
             Filters = null,
@@ -216,7 +216,7 @@ public class UsageDiscountTest : TestBase
         var model = new UsageDiscount
         {
             DiscountType = UsageDiscountDiscountType.Usage,
-            UsageDiscount1 = 0,
+            UsageDiscountValue = 0,
 
             AppliesToPriceIDs = null,
             Filters = null,
@@ -227,20 +227,21 @@ public class UsageDiscountTest : TestBase
     }
 }
 
-public class Filter26Test : TestBase
+public class UsageDiscountFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter26
+        var model = new UsageDiscountFilter
         {
-            Field = Filter26Field.PriceID,
-            Operator = Filter26Operator.Includes,
+            Field = UsageDiscountFilterField.PriceID,
+            Operator = UsageDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter26Field> expectedField = Filter26Field.PriceID;
-        ApiEnum<string, Filter26Operator> expectedOperator = Filter26Operator.Includes;
+        ApiEnum<string, UsageDiscountFilterField> expectedField = UsageDiscountFilterField.PriceID;
+        ApiEnum<string, UsageDiscountFilterOperator> expectedOperator =
+            UsageDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -255,15 +256,15 @@ public class Filter26Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter26
+        var model = new UsageDiscountFilter
         {
-            Field = Filter26Field.PriceID,
-            Operator = Filter26Operator.Includes,
+            Field = UsageDiscountFilterField.PriceID,
+            Operator = UsageDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter26>(json);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -271,19 +272,20 @@ public class Filter26Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter26
+        var model = new UsageDiscountFilter
         {
-            Field = Filter26Field.PriceID,
-            Operator = Filter26Operator.Includes,
+            Field = UsageDiscountFilterField.PriceID,
+            Operator = UsageDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter26>(json);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter26Field> expectedField = Filter26Field.PriceID;
-        ApiEnum<string, Filter26Operator> expectedOperator = Filter26Operator.Includes;
+        ApiEnum<string, UsageDiscountFilterField> expectedField = UsageDiscountFilterField.PriceID;
+        ApiEnum<string, UsageDiscountFilterOperator> expectedOperator =
+            UsageDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -298,10 +300,10 @@ public class Filter26Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter26
+        var model = new UsageDiscountFilter
         {
-            Field = Filter26Field.PriceID,
-            Operator = Filter26Operator.Includes,
+            Field = UsageDiscountFilterField.PriceID,
+            Operator = UsageDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 

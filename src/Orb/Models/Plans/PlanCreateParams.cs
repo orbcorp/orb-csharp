@@ -236,7 +236,7 @@ public sealed record class Price : ModelBase
     /// <summary>
     /// New plan price request body params.
     /// </summary>
-    public PricePrice? Price1
+    public PricePrice? PriceValue
     {
         get { return ModelBase.GetNullableClass<PricePrice>(this.RawData, "price"); }
         init { ModelBase.Set(this._rawData, "price", value); }
@@ -246,7 +246,7 @@ public sealed record class Price : ModelBase
     {
         this.AllocationPrice?.Validate();
         _ = this.PlanPhaseOrder;
-        this.Price1?.Validate();
+        this.PriceValue?.Validate();
     }
 
     public Price() { }
@@ -3404,14 +3404,13 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Plans.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Plans.TieredWithProrationConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Plans.TierModel>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Plans.TieredWithProrationConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -3447,7 +3446,9 @@ public sealed record class TieredWithProrationConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationConfig(List<global::Orb.Models.Plans.TierModel> tiers)
+    public TieredWithProrationConfig(
+        List<global::Orb.Models.Plans.TieredWithProrationConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -3467,11 +3468,11 @@ class TieredWithProrationConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Plans.TierModel,
-        global::Orb.Models.Plans.TierModelFromRaw
+        global::Orb.Models.Plans.TieredWithProrationConfigTier,
+        global::Orb.Models.Plans.TieredWithProrationConfigTierFromRaw
     >)
 )]
-public sealed record class TierModel : ModelBase
+public sealed record class TieredWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -3497,22 +3498,22 @@ public sealed record class TierModel : ModelBase
         _ = this.UnitAmount;
     }
 
-    public TierModel() { }
+    public TieredWithProrationConfigTier() { }
 
-    public TierModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TierModel(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Plans.TierModel FromRawUnchecked(
+    public static global::Orb.Models.Plans.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3520,11 +3521,12 @@ public sealed record class TierModel : ModelBase
     }
 }
 
-class TierModelFromRaw : IFromRaw<global::Orb.Models.Plans.TierModel>
+class TieredWithProrationConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Plans.TieredWithProrationConfigTier>
 {
-    public global::Orb.Models.Plans.TierModel FromRawUnchecked(
+    public global::Orb.Models.Plans.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Plans.TierModel.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Plans.TieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Plans.TieredWithProrationConversionRateConfigConverter))]
@@ -6227,7 +6229,7 @@ public sealed record class Adjustment : ModelBase
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
     /// </summary>
-    public required AdjustmentAdjustment Adjustment1
+    public required AdjustmentAdjustment AdjustmentValue
     {
         get { return ModelBase.GetNotNullClass<AdjustmentAdjustment>(this.RawData, "adjustment"); }
         init { ModelBase.Set(this._rawData, "adjustment", value); }
@@ -6244,7 +6246,7 @@ public sealed record class Adjustment : ModelBase
 
     public override void Validate()
     {
-        this.Adjustment1.Validate();
+        this.AdjustmentValue.Validate();
         _ = this.PlanPhaseOrder;
     }
 
@@ -6271,10 +6273,10 @@ public sealed record class Adjustment : ModelBase
     }
 
     [SetsRequiredMembers]
-    public Adjustment(AdjustmentAdjustment adjustment1)
+    public Adjustment(AdjustmentAdjustment adjustmentValue)
         : this()
     {
-        this.Adjustment1 = adjustment1;
+        this.AdjustmentValue = adjustmentValue;
     }
 }
 

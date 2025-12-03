@@ -28,8 +28,8 @@ public class LedgerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter1Field.PriceID,
-                                Operator = Filter1Operator.Includes,
+                                Field = AffectedBlockFilterField.PriceID,
+                                Operator = AffectedBlockFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -94,7 +94,7 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     ID = "cgZa3SXcsPTVyC4Y",
                                     Action =
-                                        Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                                        Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                                     Amount = "11.00",
                                     CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                                     CreditNote = new("id"),
@@ -102,7 +102,7 @@ public class LedgerListPageResponseTest : TestBase
                                     EndingBalance = "22.00",
                                     Invoice = new("gXcsPTVyC4YZa3Sc"),
                                     StartingBalance = "33.00",
-                                    Type = Models::CustomerBalanceTransactionModelType.Increment,
+                                    Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                                 },
                             ],
                             CustomerTaxID = new()
@@ -118,14 +118,15 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -161,8 +162,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter10Field.PriceID,
-                                                    Operator = Models::Filter10Operator.Includes,
+                                                    Field =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -236,7 +239,7 @@ public class LedgerListPageResponseTest : TestBase
                                         {
                                             DiscountType =
                                                 Models::PercentageDiscountDiscountType.Percentage,
-                                            PercentageDiscount1 = 0.15,
+                                            PercentageDiscountValue = 0.15,
                                             AppliesToPriceIDs =
                                             [
                                                 "h74gfhdjvn7ujokd",
@@ -246,8 +249,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter17Field.PriceID,
-                                                    Operator = Models::Filter17Operator.Includes,
+                                                    Field =
+                                                        Models::PercentageDiscountFilterField.PriceID,
+                                                    Operator =
+                                                        Models::PercentageDiscountFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -268,8 +273,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter2Field.PriceID,
-                                                    Operator = Models::Filter2Operator.Includes,
+                                                    Field = Models::MaximumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MaximumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -287,8 +293,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter4Field.PriceID,
-                                                    Operator = Models::Filter4Operator.Includes,
+                                                    Field = Models::MinimumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MinimumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -345,8 +352,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -362,8 +369,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -379,7 +386,7 @@ public class LedgerListPageResponseTest : TestBase
                                     Amount = "amount",
                                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                                     PaymentProvider =
-                                        Models::PaymentAttemptModelPaymentProvider.Stripe,
+                                        Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                                     PaymentProviderID = "payment_provider_id",
                                     ReceiptPdf =
                                         "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -427,8 +434,8 @@ public class LedgerListPageResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter1Field.PriceID,
-                            Operator = Filter1Operator.Includes,
+                            Field = AffectedBlockFilterField.PriceID,
+                            Operator = AffectedBlockFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -489,7 +496,7 @@ public class LedgerListPageResponseTest : TestBase
                             {
                                 ID = "cgZa3SXcsPTVyC4Y",
                                 Action =
-                                    Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                                    Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                                 Amount = "11.00",
                                 CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                                 CreditNote = new("id"),
@@ -497,7 +504,7 @@ public class LedgerListPageResponseTest : TestBase
                                 EndingBalance = "22.00",
                                 Invoice = new("gXcsPTVyC4YZa3Sc"),
                                 StartingBalance = "33.00",
-                                Type = Models::CustomerBalanceTransactionModelType.Increment,
+                                Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                             },
                         ],
                         CustomerTaxID = new()
@@ -512,14 +519,15 @@ public class LedgerListPageResponseTest : TestBase
                             new Models::PercentageDiscount()
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter17Field.PriceID,
-                                        Operator = Models::Filter17Operator.Includes,
+                                        Field = Models::PercentageDiscountFilterField.PriceID,
+                                        Operator =
+                                            Models::PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -555,8 +563,10 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter10Field.PriceID,
-                                                Operator = Models::Filter10Operator.Includes,
+                                                Field =
+                                                    Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                Operator =
+                                                    Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -627,7 +637,7 @@ public class LedgerListPageResponseTest : TestBase
                                     {
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
-                                        PercentageDiscount1 = 0.15,
+                                        PercentageDiscountValue = 0.15,
                                         AppliesToPriceIDs =
                                         [
                                             "h74gfhdjvn7ujokd",
@@ -637,8 +647,10 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter17Field.PriceID,
-                                                Operator = Models::Filter17Operator.Includes,
+                                                Field =
+                                                    Models::PercentageDiscountFilterField.PriceID,
+                                                Operator =
+                                                    Models::PercentageDiscountFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -659,8 +671,8 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter2Field.PriceID,
-                                                Operator = Models::Filter2Operator.Includes,
+                                                Field = Models::MaximumFilterField.PriceID,
+                                                Operator = Models::MaximumFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -678,8 +690,8 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter4Field.PriceID,
-                                                Operator = Models::Filter4Operator.Includes,
+                                                Field = Models::MinimumFilterField.PriceID,
+                                                Operator = Models::MinimumFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -736,8 +748,8 @@ public class LedgerListPageResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter2Field.PriceID,
-                                    Operator = Models::Filter2Operator.Includes,
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -753,8 +765,8 @@ public class LedgerListPageResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter4Field.PriceID,
-                                    Operator = Models::Filter4Operator.Includes,
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -769,7 +781,8 @@ public class LedgerListPageResponseTest : TestBase
                                 ID = "id",
                                 Amount = "amount",
                                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                                PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                                PaymentProvider =
+                                    Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                                 PaymentProviderID = "payment_provider_id",
                                 ReceiptPdf =
                                     "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -833,8 +846,8 @@ public class LedgerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter1Field.PriceID,
-                                Operator = Filter1Operator.Includes,
+                                Field = AffectedBlockFilterField.PriceID,
+                                Operator = AffectedBlockFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -899,7 +912,7 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     ID = "cgZa3SXcsPTVyC4Y",
                                     Action =
-                                        Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                                        Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                                     Amount = "11.00",
                                     CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                                     CreditNote = new("id"),
@@ -907,7 +920,7 @@ public class LedgerListPageResponseTest : TestBase
                                     EndingBalance = "22.00",
                                     Invoice = new("gXcsPTVyC4YZa3Sc"),
                                     StartingBalance = "33.00",
-                                    Type = Models::CustomerBalanceTransactionModelType.Increment,
+                                    Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                                 },
                             ],
                             CustomerTaxID = new()
@@ -923,14 +936,15 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -966,8 +980,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter10Field.PriceID,
-                                                    Operator = Models::Filter10Operator.Includes,
+                                                    Field =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1041,7 +1057,7 @@ public class LedgerListPageResponseTest : TestBase
                                         {
                                             DiscountType =
                                                 Models::PercentageDiscountDiscountType.Percentage,
-                                            PercentageDiscount1 = 0.15,
+                                            PercentageDiscountValue = 0.15,
                                             AppliesToPriceIDs =
                                             [
                                                 "h74gfhdjvn7ujokd",
@@ -1051,8 +1067,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter17Field.PriceID,
-                                                    Operator = Models::Filter17Operator.Includes,
+                                                    Field =
+                                                        Models::PercentageDiscountFilterField.PriceID,
+                                                    Operator =
+                                                        Models::PercentageDiscountFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1073,8 +1091,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter2Field.PriceID,
-                                                    Operator = Models::Filter2Operator.Includes,
+                                                    Field = Models::MaximumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MaximumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1092,8 +1111,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter4Field.PriceID,
-                                                    Operator = Models::Filter4Operator.Includes,
+                                                    Field = Models::MinimumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MinimumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1150,8 +1170,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1167,8 +1187,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1184,7 +1204,7 @@ public class LedgerListPageResponseTest : TestBase
                                     Amount = "amount",
                                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                                     PaymentProvider =
-                                        Models::PaymentAttemptModelPaymentProvider.Stripe,
+                                        Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                                     PaymentProviderID = "payment_provider_id",
                                     ReceiptPdf =
                                         "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -1243,8 +1263,8 @@ public class LedgerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter1Field.PriceID,
-                                Operator = Filter1Operator.Includes,
+                                Field = AffectedBlockFilterField.PriceID,
+                                Operator = AffectedBlockFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1309,7 +1329,7 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     ID = "cgZa3SXcsPTVyC4Y",
                                     Action =
-                                        Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                                        Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                                     Amount = "11.00",
                                     CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                                     CreditNote = new("id"),
@@ -1317,7 +1337,7 @@ public class LedgerListPageResponseTest : TestBase
                                     EndingBalance = "22.00",
                                     Invoice = new("gXcsPTVyC4YZa3Sc"),
                                     StartingBalance = "33.00",
-                                    Type = Models::CustomerBalanceTransactionModelType.Increment,
+                                    Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                                 },
                             ],
                             CustomerTaxID = new()
@@ -1333,14 +1353,15 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1376,8 +1397,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter10Field.PriceID,
-                                                    Operator = Models::Filter10Operator.Includes,
+                                                    Field =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1451,7 +1474,7 @@ public class LedgerListPageResponseTest : TestBase
                                         {
                                             DiscountType =
                                                 Models::PercentageDiscountDiscountType.Percentage,
-                                            PercentageDiscount1 = 0.15,
+                                            PercentageDiscountValue = 0.15,
                                             AppliesToPriceIDs =
                                             [
                                                 "h74gfhdjvn7ujokd",
@@ -1461,8 +1484,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter17Field.PriceID,
-                                                    Operator = Models::Filter17Operator.Includes,
+                                                    Field =
+                                                        Models::PercentageDiscountFilterField.PriceID,
+                                                    Operator =
+                                                        Models::PercentageDiscountFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1483,8 +1508,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter2Field.PriceID,
-                                                    Operator = Models::Filter2Operator.Includes,
+                                                    Field = Models::MaximumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MaximumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1502,8 +1528,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter4Field.PriceID,
-                                                    Operator = Models::Filter4Operator.Includes,
+                                                    Field = Models::MinimumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MinimumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -1560,8 +1587,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1577,8 +1604,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1594,7 +1621,7 @@ public class LedgerListPageResponseTest : TestBase
                                     Amount = "amount",
                                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                                     PaymentProvider =
-                                        Models::PaymentAttemptModelPaymentProvider.Stripe,
+                                        Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                                     PaymentProviderID = "payment_provider_id",
                                     ReceiptPdf =
                                         "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -1646,8 +1673,8 @@ public class LedgerListPageResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter1Field.PriceID,
-                            Operator = Filter1Operator.Includes,
+                            Field = AffectedBlockFilterField.PriceID,
+                            Operator = AffectedBlockFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1708,7 +1735,7 @@ public class LedgerListPageResponseTest : TestBase
                             {
                                 ID = "cgZa3SXcsPTVyC4Y",
                                 Action =
-                                    Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                                    Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                                 Amount = "11.00",
                                 CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                                 CreditNote = new("id"),
@@ -1716,7 +1743,7 @@ public class LedgerListPageResponseTest : TestBase
                                 EndingBalance = "22.00",
                                 Invoice = new("gXcsPTVyC4YZa3Sc"),
                                 StartingBalance = "33.00",
-                                Type = Models::CustomerBalanceTransactionModelType.Increment,
+                                Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                             },
                         ],
                         CustomerTaxID = new()
@@ -1731,14 +1758,15 @@ public class LedgerListPageResponseTest : TestBase
                             new Models::PercentageDiscount()
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter17Field.PriceID,
-                                        Operator = Models::Filter17Operator.Includes,
+                                        Field = Models::PercentageDiscountFilterField.PriceID,
+                                        Operator =
+                                            Models::PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1774,8 +1802,10 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter10Field.PriceID,
-                                                Operator = Models::Filter10Operator.Includes,
+                                                Field =
+                                                    Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                Operator =
+                                                    Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -1846,7 +1876,7 @@ public class LedgerListPageResponseTest : TestBase
                                     {
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
-                                        PercentageDiscount1 = 0.15,
+                                        PercentageDiscountValue = 0.15,
                                         AppliesToPriceIDs =
                                         [
                                             "h74gfhdjvn7ujokd",
@@ -1856,8 +1886,10 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter17Field.PriceID,
-                                                Operator = Models::Filter17Operator.Includes,
+                                                Field =
+                                                    Models::PercentageDiscountFilterField.PriceID,
+                                                Operator =
+                                                    Models::PercentageDiscountFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -1878,8 +1910,8 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter2Field.PriceID,
-                                                Operator = Models::Filter2Operator.Includes,
+                                                Field = Models::MaximumFilterField.PriceID,
+                                                Operator = Models::MaximumFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -1897,8 +1929,8 @@ public class LedgerListPageResponseTest : TestBase
                                         [
                                             new()
                                             {
-                                                Field = Models::Filter4Field.PriceID,
-                                                Operator = Models::Filter4Operator.Includes,
+                                                Field = Models::MinimumFilterField.PriceID,
+                                                Operator = Models::MinimumFilterOperator.Includes,
                                                 Values = ["string"],
                                             },
                                         ],
@@ -1955,8 +1987,8 @@ public class LedgerListPageResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter2Field.PriceID,
-                                    Operator = Models::Filter2Operator.Includes,
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1972,8 +2004,8 @@ public class LedgerListPageResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Filter4Field.PriceID,
-                                    Operator = Models::Filter4Operator.Includes,
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1988,7 +2020,8 @@ public class LedgerListPageResponseTest : TestBase
                                 ID = "id",
                                 Amount = "amount",
                                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                                PaymentProvider = Models::PaymentAttemptModelPaymentProvider.Stripe,
+                                PaymentProvider =
+                                    Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                                 PaymentProviderID = "payment_provider_id",
                                 ReceiptPdf =
                                     "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -2052,8 +2085,8 @@ public class LedgerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter1Field.PriceID,
-                                Operator = Filter1Operator.Includes,
+                                Field = AffectedBlockFilterField.PriceID,
+                                Operator = AffectedBlockFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2118,7 +2151,7 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     ID = "cgZa3SXcsPTVyC4Y",
                                     Action =
-                                        Models::CustomerBalanceTransactionModelAction.AppliedToInvoice,
+                                        Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                                     Amount = "11.00",
                                     CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                                     CreditNote = new("id"),
@@ -2126,7 +2159,7 @@ public class LedgerListPageResponseTest : TestBase
                                     EndingBalance = "22.00",
                                     Invoice = new("gXcsPTVyC4YZa3Sc"),
                                     StartingBalance = "33.00",
-                                    Type = Models::CustomerBalanceTransactionModelType.Increment,
+                                    Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
                                 },
                             ],
                             CustomerTaxID = new()
@@ -2142,14 +2175,15 @@ public class LedgerListPageResponseTest : TestBase
                                 {
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Filter17Field.PriceID,
-                                            Operator = Models::Filter17Operator.Includes,
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2185,8 +2219,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter10Field.PriceID,
-                                                    Operator = Models::Filter10Operator.Includes,
+                                                    Field =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -2260,7 +2296,7 @@ public class LedgerListPageResponseTest : TestBase
                                         {
                                             DiscountType =
                                                 Models::PercentageDiscountDiscountType.Percentage,
-                                            PercentageDiscount1 = 0.15,
+                                            PercentageDiscountValue = 0.15,
                                             AppliesToPriceIDs =
                                             [
                                                 "h74gfhdjvn7ujokd",
@@ -2270,8 +2306,10 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter17Field.PriceID,
-                                                    Operator = Models::Filter17Operator.Includes,
+                                                    Field =
+                                                        Models::PercentageDiscountFilterField.PriceID,
+                                                    Operator =
+                                                        Models::PercentageDiscountFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -2292,8 +2330,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter2Field.PriceID,
-                                                    Operator = Models::Filter2Operator.Includes,
+                                                    Field = Models::MaximumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MaximumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -2311,8 +2350,9 @@ public class LedgerListPageResponseTest : TestBase
                                             [
                                                 new()
                                                 {
-                                                    Field = Models::Filter4Field.PriceID,
-                                                    Operator = Models::Filter4Operator.Includes,
+                                                    Field = Models::MinimumFilterField.PriceID,
+                                                    Operator =
+                                                        Models::MinimumFilterOperator.Includes,
                                                     Values = ["string"],
                                                 },
                                             ],
@@ -2369,8 +2409,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter2Field.PriceID,
-                                        Operator = Models::Filter2Operator.Includes,
+                                        Field = Models::MaximumFilterField.PriceID,
+                                        Operator = Models::MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -2386,8 +2426,8 @@ public class LedgerListPageResponseTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Filter4Field.PriceID,
-                                        Operator = Models::Filter4Operator.Includes,
+                                        Field = Models::MinimumFilterField.PriceID,
+                                        Operator = Models::MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -2403,7 +2443,7 @@ public class LedgerListPageResponseTest : TestBase
                                     Amount = "amount",
                                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                                     PaymentProvider =
-                                        Models::PaymentAttemptModelPaymentProvider.Stripe,
+                                        Models::InvoicePaymentAttemptPaymentProvider.Stripe,
                                     PaymentProviderID = "payment_provider_id",
                                     ReceiptPdf =
                                         "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",

@@ -3125,11 +3125,11 @@ public sealed record class Tiered : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilterModel>? CompositePriceFilters
+    public required IReadOnlyList<TieredCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilterModel>>(
+            return ModelBase.GetNullableClass<List<TieredCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -3509,17 +3509,19 @@ sealed class TieredCadenceConverter : JsonConverter<TieredCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilterModel, CompositePriceFilterModelFromRaw>))]
-public sealed record class CompositePriceFilterModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<TieredCompositePriceFilter, TieredCompositePriceFilterFromRaw>)
+)]
+public sealed record class TieredCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilterModelField> Field
+    public required ApiEnum<string, TieredCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilterModelField>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, TieredCompositePriceFilterField>>(
                 this.RawData,
                 "field"
             );
@@ -3530,11 +3532,11 @@ public sealed record class CompositePriceFilterModel : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilterModelOperator> Operator
+    public required ApiEnum<string, TieredCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilterModelOperator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, TieredCompositePriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -3558,22 +3560,22 @@ public sealed record class CompositePriceFilterModel : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilterModel() { }
+    public TieredCompositePriceFilter() { }
 
-    public CompositePriceFilterModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilterModel(FrozenDictionary<string, JsonElement> rawData)
+    TieredCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilterModel FromRawUnchecked(
+    public static TieredCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3581,18 +3583,18 @@ public sealed record class CompositePriceFilterModel : ModelBase
     }
 }
 
-class CompositePriceFilterModelFromRaw : IFromRaw<CompositePriceFilterModel>
+class TieredCompositePriceFilterFromRaw : IFromRaw<TieredCompositePriceFilter>
 {
-    public CompositePriceFilterModel FromRawUnchecked(
+    public TieredCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilterModel.FromRawUnchecked(rawData);
+    ) => TieredCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilterModelFieldConverter))]
-public enum CompositePriceFilterModelField
+[JsonConverter(typeof(TieredCompositePriceFilterFieldConverter))]
+public enum TieredCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -3601,9 +3603,10 @@ public enum CompositePriceFilterModelField
     PricingUnitID,
 }
 
-sealed class CompositePriceFilterModelFieldConverter : JsonConverter<CompositePriceFilterModelField>
+sealed class TieredCompositePriceFilterFieldConverter
+    : JsonConverter<TieredCompositePriceFilterField>
 {
-    public override CompositePriceFilterModelField Read(
+    public override TieredCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3611,18 +3614,18 @@ sealed class CompositePriceFilterModelFieldConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilterModelField.PriceID,
-            "item_id" => CompositePriceFilterModelField.ItemID,
-            "price_type" => CompositePriceFilterModelField.PriceType,
-            "currency" => CompositePriceFilterModelField.Currency,
-            "pricing_unit_id" => CompositePriceFilterModelField.PricingUnitID,
-            _ => (CompositePriceFilterModelField)(-1),
+            "price_id" => TieredCompositePriceFilterField.PriceID,
+            "item_id" => TieredCompositePriceFilterField.ItemID,
+            "price_type" => TieredCompositePriceFilterField.PriceType,
+            "currency" => TieredCompositePriceFilterField.Currency,
+            "pricing_unit_id" => TieredCompositePriceFilterField.PricingUnitID,
+            _ => (TieredCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilterModelField value,
+        TieredCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -3630,11 +3633,11 @@ sealed class CompositePriceFilterModelFieldConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilterModelField.PriceID => "price_id",
-                CompositePriceFilterModelField.ItemID => "item_id",
-                CompositePriceFilterModelField.PriceType => "price_type",
-                CompositePriceFilterModelField.Currency => "currency",
-                CompositePriceFilterModelField.PricingUnitID => "pricing_unit_id",
+                TieredCompositePriceFilterField.PriceID => "price_id",
+                TieredCompositePriceFilterField.ItemID => "item_id",
+                TieredCompositePriceFilterField.PriceType => "price_type",
+                TieredCompositePriceFilterField.Currency => "currency",
+                TieredCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -3647,17 +3650,17 @@ sealed class CompositePriceFilterModelFieldConverter : JsonConverter<CompositePr
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilterModelOperatorConverter))]
-public enum CompositePriceFilterModelOperator
+[JsonConverter(typeof(TieredCompositePriceFilterOperatorConverter))]
+public enum TieredCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilterModelOperatorConverter
-    : JsonConverter<CompositePriceFilterModelOperator>
+sealed class TieredCompositePriceFilterOperatorConverter
+    : JsonConverter<TieredCompositePriceFilterOperator>
 {
-    public override CompositePriceFilterModelOperator Read(
+    public override TieredCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3665,15 +3668,15 @@ sealed class CompositePriceFilterModelOperatorConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilterModelOperator.Includes,
-            "excludes" => CompositePriceFilterModelOperator.Excludes,
-            _ => (CompositePriceFilterModelOperator)(-1),
+            "includes" => TieredCompositePriceFilterOperator.Includes,
+            "excludes" => TieredCompositePriceFilterOperator.Excludes,
+            _ => (TieredCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilterModelOperator value,
+        TieredCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -3681,8 +3684,8 @@ sealed class CompositePriceFilterModelOperatorConverter
             writer,
             value switch
             {
-                CompositePriceFilterModelOperator.Includes => "includes",
-                CompositePriceFilterModelOperator.Excludes => "excludes",
+                TieredCompositePriceFilterOperator.Includes => "includes",
+                TieredCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -3992,11 +3995,11 @@ public sealed record class Bulk : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter1>? CompositePriceFilters
+    public required IReadOnlyList<BulkCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter1>>(
+            return ModelBase.GetNullableClass<List<BulkCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -4367,17 +4370,17 @@ sealed class BulkCadenceConverter : JsonConverter<BulkCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter1, CompositePriceFilter1FromRaw>))]
-public sealed record class CompositePriceFilter1 : ModelBase
+[JsonConverter(typeof(ModelConverter<BulkCompositePriceFilter, BulkCompositePriceFilterFromRaw>))]
+public sealed record class BulkCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter1Field> Field
+    public required ApiEnum<string, BulkCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter1Field>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, BulkCompositePriceFilterField>>(
                 this.RawData,
                 "field"
             );
@@ -4388,11 +4391,11 @@ public sealed record class CompositePriceFilter1 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter1Operator> Operator
+    public required ApiEnum<string, BulkCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter1Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, BulkCompositePriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -4416,22 +4419,22 @@ public sealed record class CompositePriceFilter1 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter1() { }
+    public BulkCompositePriceFilter() { }
 
-    public CompositePriceFilter1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter1(FrozenDictionary<string, JsonElement> rawData)
+    BulkCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter1 FromRawUnchecked(
+    public static BulkCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4439,18 +4442,18 @@ public sealed record class CompositePriceFilter1 : ModelBase
     }
 }
 
-class CompositePriceFilter1FromRaw : IFromRaw<CompositePriceFilter1>
+class BulkCompositePriceFilterFromRaw : IFromRaw<BulkCompositePriceFilter>
 {
-    public CompositePriceFilter1 FromRawUnchecked(
+    public BulkCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter1.FromRawUnchecked(rawData);
+    ) => BulkCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter1FieldConverter))]
-public enum CompositePriceFilter1Field
+[JsonConverter(typeof(BulkCompositePriceFilterFieldConverter))]
+public enum BulkCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -4459,9 +4462,9 @@ public enum CompositePriceFilter1Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter1FieldConverter : JsonConverter<CompositePriceFilter1Field>
+sealed class BulkCompositePriceFilterFieldConverter : JsonConverter<BulkCompositePriceFilterField>
 {
-    public override CompositePriceFilter1Field Read(
+    public override BulkCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4469,18 +4472,18 @@ sealed class CompositePriceFilter1FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter1Field.PriceID,
-            "item_id" => CompositePriceFilter1Field.ItemID,
-            "price_type" => CompositePriceFilter1Field.PriceType,
-            "currency" => CompositePriceFilter1Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter1Field.PricingUnitID,
-            _ => (CompositePriceFilter1Field)(-1),
+            "price_id" => BulkCompositePriceFilterField.PriceID,
+            "item_id" => BulkCompositePriceFilterField.ItemID,
+            "price_type" => BulkCompositePriceFilterField.PriceType,
+            "currency" => BulkCompositePriceFilterField.Currency,
+            "pricing_unit_id" => BulkCompositePriceFilterField.PricingUnitID,
+            _ => (BulkCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter1Field value,
+        BulkCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -4488,11 +4491,11 @@ sealed class CompositePriceFilter1FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter1Field.PriceID => "price_id",
-                CompositePriceFilter1Field.ItemID => "item_id",
-                CompositePriceFilter1Field.PriceType => "price_type",
-                CompositePriceFilter1Field.Currency => "currency",
-                CompositePriceFilter1Field.PricingUnitID => "pricing_unit_id",
+                BulkCompositePriceFilterField.PriceID => "price_id",
+                BulkCompositePriceFilterField.ItemID => "item_id",
+                BulkCompositePriceFilterField.PriceType => "price_type",
+                BulkCompositePriceFilterField.Currency => "currency",
+                BulkCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4505,16 +4508,17 @@ sealed class CompositePriceFilter1FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter1OperatorConverter))]
-public enum CompositePriceFilter1Operator
+[JsonConverter(typeof(BulkCompositePriceFilterOperatorConverter))]
+public enum BulkCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter1OperatorConverter : JsonConverter<CompositePriceFilter1Operator>
+sealed class BulkCompositePriceFilterOperatorConverter
+    : JsonConverter<BulkCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter1Operator Read(
+    public override BulkCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4522,15 +4526,15 @@ sealed class CompositePriceFilter1OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter1Operator.Includes,
-            "excludes" => CompositePriceFilter1Operator.Excludes,
-            _ => (CompositePriceFilter1Operator)(-1),
+            "includes" => BulkCompositePriceFilterOperator.Includes,
+            "excludes" => BulkCompositePriceFilterOperator.Excludes,
+            _ => (BulkCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter1Operator value,
+        BulkCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -4538,8 +4542,8 @@ sealed class CompositePriceFilter1OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter1Operator.Includes => "includes",
-                CompositePriceFilter1Operator.Excludes => "excludes",
+                BulkCompositePriceFilterOperator.Includes => "includes",
+                BulkCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4855,11 +4859,11 @@ public sealed record class BulkWithFilters : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter2>? CompositePriceFilters
+    public required IReadOnlyList<BulkWithFiltersCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter2>>(
+            return ModelBase.GetNullableClass<List<BulkWithFiltersCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -5183,18 +5187,30 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<Filter24> Filters
+    public required IReadOnlyList<BulkWithFiltersConfigFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter24>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<BulkWithFiltersConfigFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<Tier16> Tiers
+    public required IReadOnlyList<BulkWithFiltersConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier16>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<BulkWithFiltersConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -5243,8 +5259,10 @@ class BulkWithFiltersConfigFromRaw : IFromRaw<BulkWithFiltersConfig>
 /// <summary>
 /// Configuration for a single property filter
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Filter24, Filter24FromRaw>))]
-public sealed record class Filter24 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<BulkWithFiltersConfigFilter, BulkWithFiltersConfigFilterFromRaw>)
+)]
+public sealed record class BulkWithFiltersConfigFilter : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -5270,38 +5288,41 @@ public sealed record class Filter24 : ModelBase
         _ = this.PropertyValue;
     }
 
-    public Filter24() { }
+    public BulkWithFiltersConfigFilter() { }
 
-    public Filter24(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithFiltersConfigFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter24(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithFiltersConfigFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static BulkWithFiltersConfigFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter24FromRaw : IFromRaw<Filter24>
+class BulkWithFiltersConfigFilterFromRaw : IFromRaw<BulkWithFiltersConfigFilter>
 {
-    public Filter24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter24.FromRawUnchecked(rawData);
+    public BulkWithFiltersConfigFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithFiltersConfigFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier16, Tier16FromRaw>))]
-public sealed record class Tier16 : ModelBase
+[JsonConverter(typeof(ModelConverter<BulkWithFiltersConfigTier, BulkWithFiltersConfigTierFromRaw>))]
+public sealed record class BulkWithFiltersConfigTier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -5327,38 +5348,41 @@ public sealed record class Tier16 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier16() { }
+    public BulkWithFiltersConfigTier() { }
 
-    public Tier16(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithFiltersConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier16(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithFiltersConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier16 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static BulkWithFiltersConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Tier16(string unitAmount)
+    public BulkWithFiltersConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier16FromRaw : IFromRaw<Tier16>
+class BulkWithFiltersConfigTierFromRaw : IFromRaw<BulkWithFiltersConfigTier>
 {
-    public Tier16 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier16.FromRawUnchecked(rawData);
+    public BulkWithFiltersConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithFiltersConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(BulkWithFiltersCadenceConverter))]
@@ -5417,20 +5441,24 @@ sealed class BulkWithFiltersCadenceConverter : JsonConverter<BulkWithFiltersCade
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter2, CompositePriceFilter2FromRaw>))]
-public sealed record class CompositePriceFilter2 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        BulkWithFiltersCompositePriceFilter,
+        BulkWithFiltersCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class BulkWithFiltersCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter2Field> Field
+    public required ApiEnum<string, BulkWithFiltersCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter2Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, BulkWithFiltersCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -5438,14 +5466,13 @@ public sealed record class CompositePriceFilter2 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter2Operator> Operator
+    public required ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter2Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -5466,22 +5493,22 @@ public sealed record class CompositePriceFilter2 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter2() { }
+    public BulkWithFiltersCompositePriceFilter() { }
 
-    public CompositePriceFilter2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithFiltersCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter2(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithFiltersCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter2 FromRawUnchecked(
+    public static BulkWithFiltersCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5489,18 +5516,18 @@ public sealed record class CompositePriceFilter2 : ModelBase
     }
 }
 
-class CompositePriceFilter2FromRaw : IFromRaw<CompositePriceFilter2>
+class BulkWithFiltersCompositePriceFilterFromRaw : IFromRaw<BulkWithFiltersCompositePriceFilter>
 {
-    public CompositePriceFilter2 FromRawUnchecked(
+    public BulkWithFiltersCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter2.FromRawUnchecked(rawData);
+    ) => BulkWithFiltersCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter2FieldConverter))]
-public enum CompositePriceFilter2Field
+[JsonConverter(typeof(BulkWithFiltersCompositePriceFilterFieldConverter))]
+public enum BulkWithFiltersCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -5509,9 +5536,10 @@ public enum CompositePriceFilter2Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter2FieldConverter : JsonConverter<CompositePriceFilter2Field>
+sealed class BulkWithFiltersCompositePriceFilterFieldConverter
+    : JsonConverter<BulkWithFiltersCompositePriceFilterField>
 {
-    public override CompositePriceFilter2Field Read(
+    public override BulkWithFiltersCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5519,18 +5547,18 @@ sealed class CompositePriceFilter2FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter2Field.PriceID,
-            "item_id" => CompositePriceFilter2Field.ItemID,
-            "price_type" => CompositePriceFilter2Field.PriceType,
-            "currency" => CompositePriceFilter2Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter2Field.PricingUnitID,
-            _ => (CompositePriceFilter2Field)(-1),
+            "price_id" => BulkWithFiltersCompositePriceFilterField.PriceID,
+            "item_id" => BulkWithFiltersCompositePriceFilterField.ItemID,
+            "price_type" => BulkWithFiltersCompositePriceFilterField.PriceType,
+            "currency" => BulkWithFiltersCompositePriceFilterField.Currency,
+            "pricing_unit_id" => BulkWithFiltersCompositePriceFilterField.PricingUnitID,
+            _ => (BulkWithFiltersCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter2Field value,
+        BulkWithFiltersCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -5538,11 +5566,11 @@ sealed class CompositePriceFilter2FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter2Field.PriceID => "price_id",
-                CompositePriceFilter2Field.ItemID => "item_id",
-                CompositePriceFilter2Field.PriceType => "price_type",
-                CompositePriceFilter2Field.Currency => "currency",
-                CompositePriceFilter2Field.PricingUnitID => "pricing_unit_id",
+                BulkWithFiltersCompositePriceFilterField.PriceID => "price_id",
+                BulkWithFiltersCompositePriceFilterField.ItemID => "item_id",
+                BulkWithFiltersCompositePriceFilterField.PriceType => "price_type",
+                BulkWithFiltersCompositePriceFilterField.Currency => "currency",
+                BulkWithFiltersCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -5555,16 +5583,17 @@ sealed class CompositePriceFilter2FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter2OperatorConverter))]
-public enum CompositePriceFilter2Operator
+[JsonConverter(typeof(BulkWithFiltersCompositePriceFilterOperatorConverter))]
+public enum BulkWithFiltersCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter2OperatorConverter : JsonConverter<CompositePriceFilter2Operator>
+sealed class BulkWithFiltersCompositePriceFilterOperatorConverter
+    : JsonConverter<BulkWithFiltersCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter2Operator Read(
+    public override BulkWithFiltersCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5572,15 +5601,15 @@ sealed class CompositePriceFilter2OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter2Operator.Includes,
-            "excludes" => CompositePriceFilter2Operator.Excludes,
-            _ => (CompositePriceFilter2Operator)(-1),
+            "includes" => BulkWithFiltersCompositePriceFilterOperator.Includes,
+            "excludes" => BulkWithFiltersCompositePriceFilterOperator.Excludes,
+            _ => (BulkWithFiltersCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter2Operator value,
+        BulkWithFiltersCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -5588,8 +5617,8 @@ sealed class CompositePriceFilter2OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter2Operator.Includes => "includes",
-                CompositePriceFilter2Operator.Excludes => "excludes",
+                BulkWithFiltersCompositePriceFilterOperator.Includes => "includes",
+                BulkWithFiltersCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -5894,11 +5923,11 @@ public sealed record class Package : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter3>? CompositePriceFilters
+    public required IReadOnlyList<PackageCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter3>>(
+            return ModelBase.GetNullableClass<List<PackageCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -6278,17 +6307,19 @@ sealed class PackageCadenceConverter : JsonConverter<PackageCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter3, CompositePriceFilter3FromRaw>))]
-public sealed record class CompositePriceFilter3 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<PackageCompositePriceFilter, PackageCompositePriceFilterFromRaw>)
+)]
+public sealed record class PackageCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter3Field> Field
+    public required ApiEnum<string, PackageCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter3Field>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, PackageCompositePriceFilterField>>(
                 this.RawData,
                 "field"
             );
@@ -6299,11 +6330,11 @@ public sealed record class CompositePriceFilter3 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter3Operator> Operator
+    public required ApiEnum<string, PackageCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter3Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, PackageCompositePriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -6327,22 +6358,22 @@ public sealed record class CompositePriceFilter3 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter3() { }
+    public PackageCompositePriceFilter() { }
 
-    public CompositePriceFilter3(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PackageCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter3(FrozenDictionary<string, JsonElement> rawData)
+    PackageCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter3 FromRawUnchecked(
+    public static PackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -6350,18 +6381,18 @@ public sealed record class CompositePriceFilter3 : ModelBase
     }
 }
 
-class CompositePriceFilter3FromRaw : IFromRaw<CompositePriceFilter3>
+class PackageCompositePriceFilterFromRaw : IFromRaw<PackageCompositePriceFilter>
 {
-    public CompositePriceFilter3 FromRawUnchecked(
+    public PackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter3.FromRawUnchecked(rawData);
+    ) => PackageCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter3FieldConverter))]
-public enum CompositePriceFilter3Field
+[JsonConverter(typeof(PackageCompositePriceFilterFieldConverter))]
+public enum PackageCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -6370,9 +6401,10 @@ public enum CompositePriceFilter3Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter3FieldConverter : JsonConverter<CompositePriceFilter3Field>
+sealed class PackageCompositePriceFilterFieldConverter
+    : JsonConverter<PackageCompositePriceFilterField>
 {
-    public override CompositePriceFilter3Field Read(
+    public override PackageCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6380,18 +6412,18 @@ sealed class CompositePriceFilter3FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter3Field.PriceID,
-            "item_id" => CompositePriceFilter3Field.ItemID,
-            "price_type" => CompositePriceFilter3Field.PriceType,
-            "currency" => CompositePriceFilter3Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter3Field.PricingUnitID,
-            _ => (CompositePriceFilter3Field)(-1),
+            "price_id" => PackageCompositePriceFilterField.PriceID,
+            "item_id" => PackageCompositePriceFilterField.ItemID,
+            "price_type" => PackageCompositePriceFilterField.PriceType,
+            "currency" => PackageCompositePriceFilterField.Currency,
+            "pricing_unit_id" => PackageCompositePriceFilterField.PricingUnitID,
+            _ => (PackageCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter3Field value,
+        PackageCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -6399,11 +6431,11 @@ sealed class CompositePriceFilter3FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter3Field.PriceID => "price_id",
-                CompositePriceFilter3Field.ItemID => "item_id",
-                CompositePriceFilter3Field.PriceType => "price_type",
-                CompositePriceFilter3Field.Currency => "currency",
-                CompositePriceFilter3Field.PricingUnitID => "pricing_unit_id",
+                PackageCompositePriceFilterField.PriceID => "price_id",
+                PackageCompositePriceFilterField.ItemID => "item_id",
+                PackageCompositePriceFilterField.PriceType => "price_type",
+                PackageCompositePriceFilterField.Currency => "currency",
+                PackageCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -6416,16 +6448,17 @@ sealed class CompositePriceFilter3FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter3OperatorConverter))]
-public enum CompositePriceFilter3Operator
+[JsonConverter(typeof(PackageCompositePriceFilterOperatorConverter))]
+public enum PackageCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter3OperatorConverter : JsonConverter<CompositePriceFilter3Operator>
+sealed class PackageCompositePriceFilterOperatorConverter
+    : JsonConverter<PackageCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter3Operator Read(
+    public override PackageCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6433,15 +6466,15 @@ sealed class CompositePriceFilter3OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter3Operator.Includes,
-            "excludes" => CompositePriceFilter3Operator.Excludes,
-            _ => (CompositePriceFilter3Operator)(-1),
+            "includes" => PackageCompositePriceFilterOperator.Includes,
+            "excludes" => PackageCompositePriceFilterOperator.Excludes,
+            _ => (PackageCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter3Operator value,
+        PackageCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -6449,8 +6482,8 @@ sealed class CompositePriceFilter3OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter3Operator.Includes => "includes",
-                CompositePriceFilter3Operator.Excludes => "excludes",
+                PackageCompositePriceFilterOperator.Includes => "includes",
+                PackageCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -6754,11 +6787,11 @@ public sealed record class Matrix : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter4>? CompositePriceFilters
+    public required IReadOnlyList<MatrixCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter4>>(
+            return ModelBase.GetNullableClass<List<MatrixCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -7138,17 +7171,19 @@ sealed class MatrixCadenceConverter : JsonConverter<MatrixCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter4, CompositePriceFilter4FromRaw>))]
-public sealed record class CompositePriceFilter4 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<MatrixCompositePriceFilter, MatrixCompositePriceFilterFromRaw>)
+)]
+public sealed record class MatrixCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter4Field> Field
+    public required ApiEnum<string, MatrixCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter4Field>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, MatrixCompositePriceFilterField>>(
                 this.RawData,
                 "field"
             );
@@ -7159,11 +7194,11 @@ public sealed record class CompositePriceFilter4 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter4Operator> Operator
+    public required ApiEnum<string, MatrixCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter4Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, MatrixCompositePriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -7187,22 +7222,22 @@ public sealed record class CompositePriceFilter4 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter4() { }
+    public MatrixCompositePriceFilter() { }
 
-    public CompositePriceFilter4(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter4(FrozenDictionary<string, JsonElement> rawData)
+    MatrixCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter4 FromRawUnchecked(
+    public static MatrixCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -7210,18 +7245,18 @@ public sealed record class CompositePriceFilter4 : ModelBase
     }
 }
 
-class CompositePriceFilter4FromRaw : IFromRaw<CompositePriceFilter4>
+class MatrixCompositePriceFilterFromRaw : IFromRaw<MatrixCompositePriceFilter>
 {
-    public CompositePriceFilter4 FromRawUnchecked(
+    public MatrixCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter4.FromRawUnchecked(rawData);
+    ) => MatrixCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter4FieldConverter))]
-public enum CompositePriceFilter4Field
+[JsonConverter(typeof(MatrixCompositePriceFilterFieldConverter))]
+public enum MatrixCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -7230,9 +7265,10 @@ public enum CompositePriceFilter4Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter4FieldConverter : JsonConverter<CompositePriceFilter4Field>
+sealed class MatrixCompositePriceFilterFieldConverter
+    : JsonConverter<MatrixCompositePriceFilterField>
 {
-    public override CompositePriceFilter4Field Read(
+    public override MatrixCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -7240,18 +7276,18 @@ sealed class CompositePriceFilter4FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter4Field.PriceID,
-            "item_id" => CompositePriceFilter4Field.ItemID,
-            "price_type" => CompositePriceFilter4Field.PriceType,
-            "currency" => CompositePriceFilter4Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter4Field.PricingUnitID,
-            _ => (CompositePriceFilter4Field)(-1),
+            "price_id" => MatrixCompositePriceFilterField.PriceID,
+            "item_id" => MatrixCompositePriceFilterField.ItemID,
+            "price_type" => MatrixCompositePriceFilterField.PriceType,
+            "currency" => MatrixCompositePriceFilterField.Currency,
+            "pricing_unit_id" => MatrixCompositePriceFilterField.PricingUnitID,
+            _ => (MatrixCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter4Field value,
+        MatrixCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -7259,11 +7295,11 @@ sealed class CompositePriceFilter4FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter4Field.PriceID => "price_id",
-                CompositePriceFilter4Field.ItemID => "item_id",
-                CompositePriceFilter4Field.PriceType => "price_type",
-                CompositePriceFilter4Field.Currency => "currency",
-                CompositePriceFilter4Field.PricingUnitID => "pricing_unit_id",
+                MatrixCompositePriceFilterField.PriceID => "price_id",
+                MatrixCompositePriceFilterField.ItemID => "item_id",
+                MatrixCompositePriceFilterField.PriceType => "price_type",
+                MatrixCompositePriceFilterField.Currency => "currency",
+                MatrixCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -7276,16 +7312,17 @@ sealed class CompositePriceFilter4FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter4OperatorConverter))]
-public enum CompositePriceFilter4Operator
+[JsonConverter(typeof(MatrixCompositePriceFilterOperatorConverter))]
+public enum MatrixCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter4OperatorConverter : JsonConverter<CompositePriceFilter4Operator>
+sealed class MatrixCompositePriceFilterOperatorConverter
+    : JsonConverter<MatrixCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter4Operator Read(
+    public override MatrixCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -7293,15 +7330,15 @@ sealed class CompositePriceFilter4OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter4Operator.Includes,
-            "excludes" => CompositePriceFilter4Operator.Excludes,
-            _ => (CompositePriceFilter4Operator)(-1),
+            "includes" => MatrixCompositePriceFilterOperator.Includes,
+            "excludes" => MatrixCompositePriceFilterOperator.Excludes,
+            _ => (MatrixCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter4Operator value,
+        MatrixCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -7309,8 +7346,8 @@ sealed class CompositePriceFilter4OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter4Operator.Includes => "includes",
-                CompositePriceFilter4Operator.Excludes => "excludes",
+                MatrixCompositePriceFilterOperator.Includes => "includes",
+                MatrixCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -7614,11 +7651,11 @@ public sealed record class ThresholdTotalAmount : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter5>? CompositePriceFilters
+    public required IReadOnlyList<ThresholdTotalAmountCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter5>>(
+            return ModelBase.GetNullableClass<List<ThresholdTotalAmountCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -8008,20 +8045,24 @@ sealed class ThresholdTotalAmountCadenceConverter : JsonConverter<ThresholdTotal
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter5, CompositePriceFilter5FromRaw>))]
-public sealed record class CompositePriceFilter5 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ThresholdTotalAmountCompositePriceFilter,
+        ThresholdTotalAmountCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class ThresholdTotalAmountCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter5Field> Field
+    public required ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter5Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -8029,14 +8070,13 @@ public sealed record class CompositePriceFilter5 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter5Operator> Operator
+    public required ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter5Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -8057,22 +8097,24 @@ public sealed record class CompositePriceFilter5 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter5() { }
+    public ThresholdTotalAmountCompositePriceFilter() { }
 
-    public CompositePriceFilter5(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ThresholdTotalAmountCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter5(FrozenDictionary<string, JsonElement> rawData)
+    ThresholdTotalAmountCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter5 FromRawUnchecked(
+    public static ThresholdTotalAmountCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -8080,18 +8122,19 @@ public sealed record class CompositePriceFilter5 : ModelBase
     }
 }
 
-class CompositePriceFilter5FromRaw : IFromRaw<CompositePriceFilter5>
+class ThresholdTotalAmountCompositePriceFilterFromRaw
+    : IFromRaw<ThresholdTotalAmountCompositePriceFilter>
 {
-    public CompositePriceFilter5 FromRawUnchecked(
+    public ThresholdTotalAmountCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter5.FromRawUnchecked(rawData);
+    ) => ThresholdTotalAmountCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter5FieldConverter))]
-public enum CompositePriceFilter5Field
+[JsonConverter(typeof(ThresholdTotalAmountCompositePriceFilterFieldConverter))]
+public enum ThresholdTotalAmountCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -8100,9 +8143,10 @@ public enum CompositePriceFilter5Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter5FieldConverter : JsonConverter<CompositePriceFilter5Field>
+sealed class ThresholdTotalAmountCompositePriceFilterFieldConverter
+    : JsonConverter<ThresholdTotalAmountCompositePriceFilterField>
 {
-    public override CompositePriceFilter5Field Read(
+    public override ThresholdTotalAmountCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -8110,18 +8154,18 @@ sealed class CompositePriceFilter5FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter5Field.PriceID,
-            "item_id" => CompositePriceFilter5Field.ItemID,
-            "price_type" => CompositePriceFilter5Field.PriceType,
-            "currency" => CompositePriceFilter5Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter5Field.PricingUnitID,
-            _ => (CompositePriceFilter5Field)(-1),
+            "price_id" => ThresholdTotalAmountCompositePriceFilterField.PriceID,
+            "item_id" => ThresholdTotalAmountCompositePriceFilterField.ItemID,
+            "price_type" => ThresholdTotalAmountCompositePriceFilterField.PriceType,
+            "currency" => ThresholdTotalAmountCompositePriceFilterField.Currency,
+            "pricing_unit_id" => ThresholdTotalAmountCompositePriceFilterField.PricingUnitID,
+            _ => (ThresholdTotalAmountCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter5Field value,
+        ThresholdTotalAmountCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -8129,11 +8173,11 @@ sealed class CompositePriceFilter5FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter5Field.PriceID => "price_id",
-                CompositePriceFilter5Field.ItemID => "item_id",
-                CompositePriceFilter5Field.PriceType => "price_type",
-                CompositePriceFilter5Field.Currency => "currency",
-                CompositePriceFilter5Field.PricingUnitID => "pricing_unit_id",
+                ThresholdTotalAmountCompositePriceFilterField.PriceID => "price_id",
+                ThresholdTotalAmountCompositePriceFilterField.ItemID => "item_id",
+                ThresholdTotalAmountCompositePriceFilterField.PriceType => "price_type",
+                ThresholdTotalAmountCompositePriceFilterField.Currency => "currency",
+                ThresholdTotalAmountCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -8146,16 +8190,17 @@ sealed class CompositePriceFilter5FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter5OperatorConverter))]
-public enum CompositePriceFilter5Operator
+[JsonConverter(typeof(ThresholdTotalAmountCompositePriceFilterOperatorConverter))]
+public enum ThresholdTotalAmountCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter5OperatorConverter : JsonConverter<CompositePriceFilter5Operator>
+sealed class ThresholdTotalAmountCompositePriceFilterOperatorConverter
+    : JsonConverter<ThresholdTotalAmountCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter5Operator Read(
+    public override ThresholdTotalAmountCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -8163,15 +8208,15 @@ sealed class CompositePriceFilter5OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter5Operator.Includes,
-            "excludes" => CompositePriceFilter5Operator.Excludes,
-            _ => (CompositePriceFilter5Operator)(-1),
+            "includes" => ThresholdTotalAmountCompositePriceFilterOperator.Includes,
+            "excludes" => ThresholdTotalAmountCompositePriceFilterOperator.Excludes,
+            _ => (ThresholdTotalAmountCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter5Operator value,
+        ThresholdTotalAmountCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -8179,8 +8224,8 @@ sealed class CompositePriceFilter5OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter5Operator.Includes => "includes",
-                CompositePriceFilter5Operator.Excludes => "excludes",
+                ThresholdTotalAmountCompositePriceFilterOperator.Includes => "includes",
+                ThresholdTotalAmountCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -8446,14 +8491,13 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : Mode
     /// When the quantity consumed passes a provided threshold, the configured total
     /// will be charged
     /// </summary>
-    public required IReadOnlyList<ConsumptionTable1> ConsumptionTable
+    public required IReadOnlyList<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> ConsumptionTable
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ConsumptionTable1>>(
-                this.RawData,
-                "consumption_table"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable>
+            >(this.RawData, "consumption_table");
         }
         init { ModelBase.Set(this._rawData, "consumption_table", value); }
     }
@@ -8501,7 +8545,9 @@ public sealed record class ThresholdTotalAmountThresholdTotalAmountConfig : Mode
     }
 
     [SetsRequiredMembers]
-    public ThresholdTotalAmountThresholdTotalAmountConfig(List<ConsumptionTable1> consumptionTable)
+    public ThresholdTotalAmountThresholdTotalAmountConfig(
+        List<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> consumptionTable
+    )
         : this()
     {
         this.ConsumptionTable = consumptionTable;
@@ -8519,8 +8565,14 @@ class ThresholdTotalAmountThresholdTotalAmountConfigFromRaw
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ConsumptionTable1, ConsumptionTable1FromRaw>))]
-public sealed record class ConsumptionTable1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable,
+        ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableFromRaw
+    >)
+)]
+public sealed record class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+    : ModelBase
 {
     /// <summary>
     /// Quantity threshold
@@ -8546,22 +8598,26 @@ public sealed record class ConsumptionTable1 : ModelBase
         _ = this.TotalAmount;
     }
 
-    public ConsumptionTable1() { }
+    public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable() { }
 
-    public ConsumptionTable1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConsumptionTable1(FrozenDictionary<string, JsonElement> rawData)
+    ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ConsumptionTable1 FromRawUnchecked(
+    public static ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -8569,10 +8625,12 @@ public sealed record class ConsumptionTable1 : ModelBase
     }
 }
 
-class ConsumptionTable1FromRaw : IFromRaw<ConsumptionTable1>
+class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableFromRaw
+    : IFromRaw<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable>
 {
-    public ConsumptionTable1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        ConsumptionTable1.FromRawUnchecked(rawData);
+    public ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<TieredPackage, TieredPackageFromRaw>))]
@@ -8629,11 +8687,11 @@ public sealed record class TieredPackage : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter6>? CompositePriceFilters
+    public required IReadOnlyList<TieredPackageCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter6>>(
+            return ModelBase.GetNullableClass<List<TieredPackageCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -9019,20 +9077,24 @@ sealed class TieredPackageCadenceConverter : JsonConverter<TieredPackageCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter6, CompositePriceFilter6FromRaw>))]
-public sealed record class CompositePriceFilter6 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredPackageCompositePriceFilter,
+        TieredPackageCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class TieredPackageCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter6Field> Field
+    public required ApiEnum<string, TieredPackageCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter6Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredPackageCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -9040,14 +9102,13 @@ public sealed record class CompositePriceFilter6 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter6Operator> Operator
+    public required ApiEnum<string, TieredPackageCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter6Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredPackageCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -9068,22 +9129,22 @@ public sealed record class CompositePriceFilter6 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter6() { }
+    public TieredPackageCompositePriceFilter() { }
 
-    public CompositePriceFilter6(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredPackageCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter6(FrozenDictionary<string, JsonElement> rawData)
+    TieredPackageCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter6 FromRawUnchecked(
+    public static TieredPackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9091,18 +9152,18 @@ public sealed record class CompositePriceFilter6 : ModelBase
     }
 }
 
-class CompositePriceFilter6FromRaw : IFromRaw<CompositePriceFilter6>
+class TieredPackageCompositePriceFilterFromRaw : IFromRaw<TieredPackageCompositePriceFilter>
 {
-    public CompositePriceFilter6 FromRawUnchecked(
+    public TieredPackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter6.FromRawUnchecked(rawData);
+    ) => TieredPackageCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter6FieldConverter))]
-public enum CompositePriceFilter6Field
+[JsonConverter(typeof(TieredPackageCompositePriceFilterFieldConverter))]
+public enum TieredPackageCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -9111,9 +9172,10 @@ public enum CompositePriceFilter6Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter6FieldConverter : JsonConverter<CompositePriceFilter6Field>
+sealed class TieredPackageCompositePriceFilterFieldConverter
+    : JsonConverter<TieredPackageCompositePriceFilterField>
 {
-    public override CompositePriceFilter6Field Read(
+    public override TieredPackageCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -9121,18 +9183,18 @@ sealed class CompositePriceFilter6FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter6Field.PriceID,
-            "item_id" => CompositePriceFilter6Field.ItemID,
-            "price_type" => CompositePriceFilter6Field.PriceType,
-            "currency" => CompositePriceFilter6Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter6Field.PricingUnitID,
-            _ => (CompositePriceFilter6Field)(-1),
+            "price_id" => TieredPackageCompositePriceFilterField.PriceID,
+            "item_id" => TieredPackageCompositePriceFilterField.ItemID,
+            "price_type" => TieredPackageCompositePriceFilterField.PriceType,
+            "currency" => TieredPackageCompositePriceFilterField.Currency,
+            "pricing_unit_id" => TieredPackageCompositePriceFilterField.PricingUnitID,
+            _ => (TieredPackageCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter6Field value,
+        TieredPackageCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -9140,11 +9202,11 @@ sealed class CompositePriceFilter6FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter6Field.PriceID => "price_id",
-                CompositePriceFilter6Field.ItemID => "item_id",
-                CompositePriceFilter6Field.PriceType => "price_type",
-                CompositePriceFilter6Field.Currency => "currency",
-                CompositePriceFilter6Field.PricingUnitID => "pricing_unit_id",
+                TieredPackageCompositePriceFilterField.PriceID => "price_id",
+                TieredPackageCompositePriceFilterField.ItemID => "item_id",
+                TieredPackageCompositePriceFilterField.PriceType => "price_type",
+                TieredPackageCompositePriceFilterField.Currency => "currency",
+                TieredPackageCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -9157,16 +9219,17 @@ sealed class CompositePriceFilter6FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter6OperatorConverter))]
-public enum CompositePriceFilter6Operator
+[JsonConverter(typeof(TieredPackageCompositePriceFilterOperatorConverter))]
+public enum TieredPackageCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter6OperatorConverter : JsonConverter<CompositePriceFilter6Operator>
+sealed class TieredPackageCompositePriceFilterOperatorConverter
+    : JsonConverter<TieredPackageCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter6Operator Read(
+    public override TieredPackageCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -9174,15 +9237,15 @@ sealed class CompositePriceFilter6OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter6Operator.Includes,
-            "excludes" => CompositePriceFilter6Operator.Excludes,
-            _ => (CompositePriceFilter6Operator)(-1),
+            "includes" => TieredPackageCompositePriceFilterOperator.Includes,
+            "excludes" => TieredPackageCompositePriceFilterOperator.Excludes,
+            _ => (TieredPackageCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter6Operator value,
+        TieredPackageCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -9190,8 +9253,8 @@ sealed class CompositePriceFilter6OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter6Operator.Includes => "includes",
-                CompositePriceFilter6Operator.Excludes => "excludes",
+                TieredPackageCompositePriceFilterOperator.Includes => "includes",
+                TieredPackageCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -9468,9 +9531,15 @@ public sealed record class TieredPackageTieredPackageConfig : ModelBase
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required IReadOnlyList<Tier17> Tiers
+    public required IReadOnlyList<TieredPackageTieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier17>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<TieredPackageTieredPackageConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -9516,8 +9585,13 @@ class TieredPackageTieredPackageConfigFromRaw : IFromRaw<TieredPackageTieredPack
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier17, Tier17FromRaw>))]
-public sealed record class Tier17 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredPackageTieredPackageConfigTier,
+        TieredPackageTieredPackageConfigTierFromRaw
+    >)
+)]
+public sealed record class TieredPackageTieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -9543,31 +9617,34 @@ public sealed record class Tier17 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier17() { }
+    public TieredPackageTieredPackageConfigTier() { }
 
-    public Tier17(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredPackageTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier17(FrozenDictionary<string, JsonElement> rawData)
+    TieredPackageTieredPackageConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier17 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredPackageTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier17FromRaw : IFromRaw<Tier17>
+class TieredPackageTieredPackageConfigTierFromRaw : IFromRaw<TieredPackageTieredPackageConfigTier>
 {
-    public Tier17 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier17.FromRawUnchecked(rawData);
+    public TieredPackageTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<TieredWithMinimum, TieredWithMinimumFromRaw>))]
@@ -9624,11 +9701,11 @@ public sealed record class TieredWithMinimum : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter7>? CompositePriceFilters
+    public required IReadOnlyList<TieredWithMinimumCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter7>>(
+            return ModelBase.GetNullableClass<List<TieredWithMinimumCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -10016,20 +10093,24 @@ sealed class TieredWithMinimumCadenceConverter : JsonConverter<TieredWithMinimum
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter7, CompositePriceFilter7FromRaw>))]
-public sealed record class CompositePriceFilter7 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredWithMinimumCompositePriceFilter,
+        TieredWithMinimumCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class TieredWithMinimumCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter7Field> Field
+    public required ApiEnum<string, TieredWithMinimumCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter7Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredWithMinimumCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -10037,14 +10118,13 @@ public sealed record class CompositePriceFilter7 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter7Operator> Operator
+    public required ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter7Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -10065,22 +10145,22 @@ public sealed record class CompositePriceFilter7 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter7() { }
+    public TieredWithMinimumCompositePriceFilter() { }
 
-    public CompositePriceFilter7(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithMinimumCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter7(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithMinimumCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter7 FromRawUnchecked(
+    public static TieredWithMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -10088,18 +10168,18 @@ public sealed record class CompositePriceFilter7 : ModelBase
     }
 }
 
-class CompositePriceFilter7FromRaw : IFromRaw<CompositePriceFilter7>
+class TieredWithMinimumCompositePriceFilterFromRaw : IFromRaw<TieredWithMinimumCompositePriceFilter>
 {
-    public CompositePriceFilter7 FromRawUnchecked(
+    public TieredWithMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter7.FromRawUnchecked(rawData);
+    ) => TieredWithMinimumCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter7FieldConverter))]
-public enum CompositePriceFilter7Field
+[JsonConverter(typeof(TieredWithMinimumCompositePriceFilterFieldConverter))]
+public enum TieredWithMinimumCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -10108,9 +10188,10 @@ public enum CompositePriceFilter7Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter7FieldConverter : JsonConverter<CompositePriceFilter7Field>
+sealed class TieredWithMinimumCompositePriceFilterFieldConverter
+    : JsonConverter<TieredWithMinimumCompositePriceFilterField>
 {
-    public override CompositePriceFilter7Field Read(
+    public override TieredWithMinimumCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -10118,18 +10199,18 @@ sealed class CompositePriceFilter7FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter7Field.PriceID,
-            "item_id" => CompositePriceFilter7Field.ItemID,
-            "price_type" => CompositePriceFilter7Field.PriceType,
-            "currency" => CompositePriceFilter7Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter7Field.PricingUnitID,
-            _ => (CompositePriceFilter7Field)(-1),
+            "price_id" => TieredWithMinimumCompositePriceFilterField.PriceID,
+            "item_id" => TieredWithMinimumCompositePriceFilterField.ItemID,
+            "price_type" => TieredWithMinimumCompositePriceFilterField.PriceType,
+            "currency" => TieredWithMinimumCompositePriceFilterField.Currency,
+            "pricing_unit_id" => TieredWithMinimumCompositePriceFilterField.PricingUnitID,
+            _ => (TieredWithMinimumCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter7Field value,
+        TieredWithMinimumCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -10137,11 +10218,11 @@ sealed class CompositePriceFilter7FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter7Field.PriceID => "price_id",
-                CompositePriceFilter7Field.ItemID => "item_id",
-                CompositePriceFilter7Field.PriceType => "price_type",
-                CompositePriceFilter7Field.Currency => "currency",
-                CompositePriceFilter7Field.PricingUnitID => "pricing_unit_id",
+                TieredWithMinimumCompositePriceFilterField.PriceID => "price_id",
+                TieredWithMinimumCompositePriceFilterField.ItemID => "item_id",
+                TieredWithMinimumCompositePriceFilterField.PriceType => "price_type",
+                TieredWithMinimumCompositePriceFilterField.Currency => "currency",
+                TieredWithMinimumCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -10154,16 +10235,17 @@ sealed class CompositePriceFilter7FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter7OperatorConverter))]
-public enum CompositePriceFilter7Operator
+[JsonConverter(typeof(TieredWithMinimumCompositePriceFilterOperatorConverter))]
+public enum TieredWithMinimumCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter7OperatorConverter : JsonConverter<CompositePriceFilter7Operator>
+sealed class TieredWithMinimumCompositePriceFilterOperatorConverter
+    : JsonConverter<TieredWithMinimumCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter7Operator Read(
+    public override TieredWithMinimumCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -10171,15 +10253,15 @@ sealed class CompositePriceFilter7OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter7Operator.Includes,
-            "excludes" => CompositePriceFilter7Operator.Excludes,
-            _ => (CompositePriceFilter7Operator)(-1),
+            "includes" => TieredWithMinimumCompositePriceFilterOperator.Includes,
+            "excludes" => TieredWithMinimumCompositePriceFilterOperator.Excludes,
+            _ => (TieredWithMinimumCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter7Operator value,
+        TieredWithMinimumCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -10187,8 +10269,8 @@ sealed class CompositePriceFilter7OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter7Operator.Includes => "includes",
-                CompositePriceFilter7Operator.Excludes => "excludes",
+                TieredWithMinimumCompositePriceFilterOperator.Includes => "includes",
+                TieredWithMinimumCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -10454,9 +10536,15 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig : ModelBase
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
     /// are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<Tier18> Tiers
+    public required IReadOnlyList<TieredWithMinimumTieredWithMinimumConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier18>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<TieredWithMinimumTieredWithMinimumConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -10529,7 +10617,9 @@ public sealed record class TieredWithMinimumTieredWithMinimumConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithMinimumTieredWithMinimumConfig(List<Tier18> tiers)
+    public TieredWithMinimumTieredWithMinimumConfig(
+        List<TieredWithMinimumTieredWithMinimumConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -10547,8 +10637,13 @@ class TieredWithMinimumTieredWithMinimumConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier18, Tier18FromRaw>))]
-public sealed record class Tier18 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredWithMinimumTieredWithMinimumConfigTier,
+        TieredWithMinimumTieredWithMinimumConfigTierFromRaw
+    >)
+)]
+public sealed record class TieredWithMinimumTieredWithMinimumConfigTier : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -10584,31 +10679,37 @@ public sealed record class Tier18 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier18() { }
+    public TieredWithMinimumTieredWithMinimumConfigTier() { }
 
-    public Tier18(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithMinimumTieredWithMinimumConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier18(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithMinimumTieredWithMinimumConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier18 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredWithMinimumTieredWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier18FromRaw : IFromRaw<Tier18>
+class TieredWithMinimumTieredWithMinimumConfigTierFromRaw
+    : IFromRaw<TieredWithMinimumTieredWithMinimumConfigTier>
 {
-    public Tier18 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier18.FromRawUnchecked(rawData);
+    public TieredWithMinimumTieredWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithMinimumTieredWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<GroupedTiered, GroupedTieredFromRaw>))]
@@ -10665,11 +10766,11 @@ public sealed record class GroupedTiered : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter8>? CompositePriceFilters
+    public required IReadOnlyList<GroupedTieredCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter8>>(
+            return ModelBase.GetNullableClass<List<GroupedTieredCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -11055,20 +11156,24 @@ sealed class GroupedTieredCadenceConverter : JsonConverter<GroupedTieredCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter8, CompositePriceFilter8FromRaw>))]
-public sealed record class CompositePriceFilter8 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedTieredCompositePriceFilter,
+        GroupedTieredCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class GroupedTieredCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter8Field> Field
+    public required ApiEnum<string, GroupedTieredCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter8Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedTieredCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -11076,14 +11181,13 @@ public sealed record class CompositePriceFilter8 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter8Operator> Operator
+    public required ApiEnum<string, GroupedTieredCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter8Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedTieredCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -11104,22 +11208,22 @@ public sealed record class CompositePriceFilter8 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter8() { }
+    public GroupedTieredCompositePriceFilter() { }
 
-    public CompositePriceFilter8(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedTieredCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter8(FrozenDictionary<string, JsonElement> rawData)
+    GroupedTieredCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter8 FromRawUnchecked(
+    public static GroupedTieredCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -11127,18 +11231,18 @@ public sealed record class CompositePriceFilter8 : ModelBase
     }
 }
 
-class CompositePriceFilter8FromRaw : IFromRaw<CompositePriceFilter8>
+class GroupedTieredCompositePriceFilterFromRaw : IFromRaw<GroupedTieredCompositePriceFilter>
 {
-    public CompositePriceFilter8 FromRawUnchecked(
+    public GroupedTieredCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter8.FromRawUnchecked(rawData);
+    ) => GroupedTieredCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter8FieldConverter))]
-public enum CompositePriceFilter8Field
+[JsonConverter(typeof(GroupedTieredCompositePriceFilterFieldConverter))]
+public enum GroupedTieredCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -11147,9 +11251,10 @@ public enum CompositePriceFilter8Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter8FieldConverter : JsonConverter<CompositePriceFilter8Field>
+sealed class GroupedTieredCompositePriceFilterFieldConverter
+    : JsonConverter<GroupedTieredCompositePriceFilterField>
 {
-    public override CompositePriceFilter8Field Read(
+    public override GroupedTieredCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -11157,18 +11262,18 @@ sealed class CompositePriceFilter8FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter8Field.PriceID,
-            "item_id" => CompositePriceFilter8Field.ItemID,
-            "price_type" => CompositePriceFilter8Field.PriceType,
-            "currency" => CompositePriceFilter8Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter8Field.PricingUnitID,
-            _ => (CompositePriceFilter8Field)(-1),
+            "price_id" => GroupedTieredCompositePriceFilterField.PriceID,
+            "item_id" => GroupedTieredCompositePriceFilterField.ItemID,
+            "price_type" => GroupedTieredCompositePriceFilterField.PriceType,
+            "currency" => GroupedTieredCompositePriceFilterField.Currency,
+            "pricing_unit_id" => GroupedTieredCompositePriceFilterField.PricingUnitID,
+            _ => (GroupedTieredCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter8Field value,
+        GroupedTieredCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -11176,11 +11281,11 @@ sealed class CompositePriceFilter8FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter8Field.PriceID => "price_id",
-                CompositePriceFilter8Field.ItemID => "item_id",
-                CompositePriceFilter8Field.PriceType => "price_type",
-                CompositePriceFilter8Field.Currency => "currency",
-                CompositePriceFilter8Field.PricingUnitID => "pricing_unit_id",
+                GroupedTieredCompositePriceFilterField.PriceID => "price_id",
+                GroupedTieredCompositePriceFilterField.ItemID => "item_id",
+                GroupedTieredCompositePriceFilterField.PriceType => "price_type",
+                GroupedTieredCompositePriceFilterField.Currency => "currency",
+                GroupedTieredCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -11193,16 +11298,17 @@ sealed class CompositePriceFilter8FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter8OperatorConverter))]
-public enum CompositePriceFilter8Operator
+[JsonConverter(typeof(GroupedTieredCompositePriceFilterOperatorConverter))]
+public enum GroupedTieredCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter8OperatorConverter : JsonConverter<CompositePriceFilter8Operator>
+sealed class GroupedTieredCompositePriceFilterOperatorConverter
+    : JsonConverter<GroupedTieredCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter8Operator Read(
+    public override GroupedTieredCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -11210,15 +11316,15 @@ sealed class CompositePriceFilter8OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter8Operator.Includes,
-            "excludes" => CompositePriceFilter8Operator.Excludes,
-            _ => (CompositePriceFilter8Operator)(-1),
+            "includes" => GroupedTieredCompositePriceFilterOperator.Includes,
+            "excludes" => GroupedTieredCompositePriceFilterOperator.Excludes,
+            _ => (GroupedTieredCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter8Operator value,
+        GroupedTieredCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -11226,8 +11332,8 @@ sealed class CompositePriceFilter8OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter8Operator.Includes => "includes",
-                CompositePriceFilter8Operator.Excludes => "excludes",
+                GroupedTieredCompositePriceFilterOperator.Includes => "includes",
+                GroupedTieredCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -11454,9 +11560,15 @@ public sealed record class GroupedTieredGroupedTieredConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to each segment generated after grouping with the provided key
     /// </summary>
-    public required IReadOnlyList<Tier19> Tiers
+    public required IReadOnlyList<GroupedTieredGroupedTieredConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier19>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<GroupedTieredGroupedTieredConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -11502,8 +11614,13 @@ class GroupedTieredGroupedTieredConfigFromRaw : IFromRaw<GroupedTieredGroupedTie
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier19, Tier19FromRaw>))]
-public sealed record class Tier19 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedTieredGroupedTieredConfigTier,
+        GroupedTieredGroupedTieredConfigTierFromRaw
+    >)
+)]
+public sealed record class GroupedTieredGroupedTieredConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -11529,31 +11646,34 @@ public sealed record class Tier19 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier19() { }
+    public GroupedTieredGroupedTieredConfigTier() { }
 
-    public Tier19(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedTieredGroupedTieredConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier19(FrozenDictionary<string, JsonElement> rawData)
+    GroupedTieredGroupedTieredConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier19 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedTieredGroupedTieredConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier19FromRaw : IFromRaw<Tier19>
+class GroupedTieredGroupedTieredConfigTierFromRaw : IFromRaw<GroupedTieredGroupedTieredConfigTier>
 {
-    public Tier19 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier19.FromRawUnchecked(rawData);
+    public GroupedTieredGroupedTieredConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredGroupedTieredConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(GroupedTieredPriceTypeConverter))]
@@ -11657,11 +11777,11 @@ public sealed record class TieredPackageWithMinimum : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter9>? CompositePriceFilters
+    public required IReadOnlyList<TieredPackageWithMinimumCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter9>>(
+            return ModelBase.GetNullableClass<List<TieredPackageWithMinimumCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -12052,20 +12172,24 @@ sealed class TieredPackageWithMinimumCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter9, CompositePriceFilter9FromRaw>))]
-public sealed record class CompositePriceFilter9 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredPackageWithMinimumCompositePriceFilter,
+        TieredPackageWithMinimumCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class TieredPackageWithMinimumCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter9Field> Field
+    public required ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter9Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -12073,14 +12197,13 @@ public sealed record class CompositePriceFilter9 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter9Operator> Operator
+    public required ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter9Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -12101,22 +12224,24 @@ public sealed record class CompositePriceFilter9 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter9() { }
+    public TieredPackageWithMinimumCompositePriceFilter() { }
 
-    public CompositePriceFilter9(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredPackageWithMinimumCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter9(FrozenDictionary<string, JsonElement> rawData)
+    TieredPackageWithMinimumCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter9 FromRawUnchecked(
+    public static TieredPackageWithMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -12124,18 +12249,19 @@ public sealed record class CompositePriceFilter9 : ModelBase
     }
 }
 
-class CompositePriceFilter9FromRaw : IFromRaw<CompositePriceFilter9>
+class TieredPackageWithMinimumCompositePriceFilterFromRaw
+    : IFromRaw<TieredPackageWithMinimumCompositePriceFilter>
 {
-    public CompositePriceFilter9 FromRawUnchecked(
+    public TieredPackageWithMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter9.FromRawUnchecked(rawData);
+    ) => TieredPackageWithMinimumCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter9FieldConverter))]
-public enum CompositePriceFilter9Field
+[JsonConverter(typeof(TieredPackageWithMinimumCompositePriceFilterFieldConverter))]
+public enum TieredPackageWithMinimumCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -12144,9 +12270,10 @@ public enum CompositePriceFilter9Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter9FieldConverter : JsonConverter<CompositePriceFilter9Field>
+sealed class TieredPackageWithMinimumCompositePriceFilterFieldConverter
+    : JsonConverter<TieredPackageWithMinimumCompositePriceFilterField>
 {
-    public override CompositePriceFilter9Field Read(
+    public override TieredPackageWithMinimumCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -12154,18 +12281,18 @@ sealed class CompositePriceFilter9FieldConverter : JsonConverter<CompositePriceF
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter9Field.PriceID,
-            "item_id" => CompositePriceFilter9Field.ItemID,
-            "price_type" => CompositePriceFilter9Field.PriceType,
-            "currency" => CompositePriceFilter9Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter9Field.PricingUnitID,
-            _ => (CompositePriceFilter9Field)(-1),
+            "price_id" => TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+            "item_id" => TieredPackageWithMinimumCompositePriceFilterField.ItemID,
+            "price_type" => TieredPackageWithMinimumCompositePriceFilterField.PriceType,
+            "currency" => TieredPackageWithMinimumCompositePriceFilterField.Currency,
+            "pricing_unit_id" => TieredPackageWithMinimumCompositePriceFilterField.PricingUnitID,
+            _ => (TieredPackageWithMinimumCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter9Field value,
+        TieredPackageWithMinimumCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -12173,11 +12300,12 @@ sealed class CompositePriceFilter9FieldConverter : JsonConverter<CompositePriceF
             writer,
             value switch
             {
-                CompositePriceFilter9Field.PriceID => "price_id",
-                CompositePriceFilter9Field.ItemID => "item_id",
-                CompositePriceFilter9Field.PriceType => "price_type",
-                CompositePriceFilter9Field.Currency => "currency",
-                CompositePriceFilter9Field.PricingUnitID => "pricing_unit_id",
+                TieredPackageWithMinimumCompositePriceFilterField.PriceID => "price_id",
+                TieredPackageWithMinimumCompositePriceFilterField.ItemID => "item_id",
+                TieredPackageWithMinimumCompositePriceFilterField.PriceType => "price_type",
+                TieredPackageWithMinimumCompositePriceFilterField.Currency => "currency",
+                TieredPackageWithMinimumCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -12190,16 +12318,17 @@ sealed class CompositePriceFilter9FieldConverter : JsonConverter<CompositePriceF
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter9OperatorConverter))]
-public enum CompositePriceFilter9Operator
+[JsonConverter(typeof(TieredPackageWithMinimumCompositePriceFilterOperatorConverter))]
+public enum TieredPackageWithMinimumCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter9OperatorConverter : JsonConverter<CompositePriceFilter9Operator>
+sealed class TieredPackageWithMinimumCompositePriceFilterOperatorConverter
+    : JsonConverter<TieredPackageWithMinimumCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter9Operator Read(
+    public override TieredPackageWithMinimumCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -12207,15 +12336,15 @@ sealed class CompositePriceFilter9OperatorConverter : JsonConverter<CompositePri
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter9Operator.Includes,
-            "excludes" => CompositePriceFilter9Operator.Excludes,
-            _ => (CompositePriceFilter9Operator)(-1),
+            "includes" => TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
+            "excludes" => TieredPackageWithMinimumCompositePriceFilterOperator.Excludes,
+            _ => (TieredPackageWithMinimumCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter9Operator value,
+        TieredPackageWithMinimumCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -12223,8 +12352,8 @@ sealed class CompositePriceFilter9OperatorConverter : JsonConverter<CompositePri
             writer,
             value switch
             {
-                CompositePriceFilter9Operator.Includes => "includes",
-                CompositePriceFilter9Operator.Excludes => "excludes",
+                TieredPackageWithMinimumCompositePriceFilterOperator.Includes => "includes",
+                TieredPackageWithMinimumCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -12500,9 +12629,14 @@ public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfi
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<Tier20> Tiers
+    public required IReadOnlyList<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier20>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -12553,8 +12687,13 @@ class TieredPackageWithMinimumTieredPackageWithMinimumConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier20, Tier20FromRaw>))]
-public sealed record class Tier20 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredPackageWithMinimumTieredPackageWithMinimumConfigTier,
+        TieredPackageWithMinimumTieredPackageWithMinimumConfigTierFromRaw
+    >)
+)]
+public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfigTier : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -12590,31 +12729,39 @@ public sealed record class Tier20 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier20() { }
+    public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier() { }
 
-    public Tier20(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier20(FrozenDictionary<string, JsonElement> rawData)
+    TieredPackageWithMinimumTieredPackageWithMinimumConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier20 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredPackageWithMinimumTieredPackageWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier20FromRaw : IFromRaw<Tier20>
+class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierFromRaw
+    : IFromRaw<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier>
 {
-    public Tier20 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier20.FromRawUnchecked(rawData);
+    public TieredPackageWithMinimumTieredPackageWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageWithMinimumTieredPackageWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<PackageWithAllocation, PackageWithAllocationFromRaw>))]
@@ -12671,11 +12818,11 @@ public sealed record class PackageWithAllocation : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter10>? CompositePriceFilters
+    public required IReadOnlyList<PackageWithAllocationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter10>>(
+            return ModelBase.GetNullableClass<List<PackageWithAllocationCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -13065,20 +13212,24 @@ sealed class PackageWithAllocationCadenceConverter : JsonConverter<PackageWithAl
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter10, CompositePriceFilter10FromRaw>))]
-public sealed record class CompositePriceFilter10 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PackageWithAllocationCompositePriceFilter,
+        PackageWithAllocationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class PackageWithAllocationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter10Field> Field
+    public required ApiEnum<string, PackageWithAllocationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter10Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PackageWithAllocationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -13086,14 +13237,13 @@ public sealed record class CompositePriceFilter10 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter10Operator> Operator
+    public required ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter10Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -13114,22 +13264,24 @@ public sealed record class CompositePriceFilter10 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter10() { }
+    public PackageWithAllocationCompositePriceFilter() { }
 
-    public CompositePriceFilter10(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PackageWithAllocationCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter10(FrozenDictionary<string, JsonElement> rawData)
+    PackageWithAllocationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter10 FromRawUnchecked(
+    public static PackageWithAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -13137,18 +13289,19 @@ public sealed record class CompositePriceFilter10 : ModelBase
     }
 }
 
-class CompositePriceFilter10FromRaw : IFromRaw<CompositePriceFilter10>
+class PackageWithAllocationCompositePriceFilterFromRaw
+    : IFromRaw<PackageWithAllocationCompositePriceFilter>
 {
-    public CompositePriceFilter10 FromRawUnchecked(
+    public PackageWithAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter10.FromRawUnchecked(rawData);
+    ) => PackageWithAllocationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter10FieldConverter))]
-public enum CompositePriceFilter10Field
+[JsonConverter(typeof(PackageWithAllocationCompositePriceFilterFieldConverter))]
+public enum PackageWithAllocationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -13157,9 +13310,10 @@ public enum CompositePriceFilter10Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter10FieldConverter : JsonConverter<CompositePriceFilter10Field>
+sealed class PackageWithAllocationCompositePriceFilterFieldConverter
+    : JsonConverter<PackageWithAllocationCompositePriceFilterField>
 {
-    public override CompositePriceFilter10Field Read(
+    public override PackageWithAllocationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -13167,18 +13321,18 @@ sealed class CompositePriceFilter10FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter10Field.PriceID,
-            "item_id" => CompositePriceFilter10Field.ItemID,
-            "price_type" => CompositePriceFilter10Field.PriceType,
-            "currency" => CompositePriceFilter10Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter10Field.PricingUnitID,
-            _ => (CompositePriceFilter10Field)(-1),
+            "price_id" => PackageWithAllocationCompositePriceFilterField.PriceID,
+            "item_id" => PackageWithAllocationCompositePriceFilterField.ItemID,
+            "price_type" => PackageWithAllocationCompositePriceFilterField.PriceType,
+            "currency" => PackageWithAllocationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => PackageWithAllocationCompositePriceFilterField.PricingUnitID,
+            _ => (PackageWithAllocationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter10Field value,
+        PackageWithAllocationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -13186,11 +13340,11 @@ sealed class CompositePriceFilter10FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter10Field.PriceID => "price_id",
-                CompositePriceFilter10Field.ItemID => "item_id",
-                CompositePriceFilter10Field.PriceType => "price_type",
-                CompositePriceFilter10Field.Currency => "currency",
-                CompositePriceFilter10Field.PricingUnitID => "pricing_unit_id",
+                PackageWithAllocationCompositePriceFilterField.PriceID => "price_id",
+                PackageWithAllocationCompositePriceFilterField.ItemID => "item_id",
+                PackageWithAllocationCompositePriceFilterField.PriceType => "price_type",
+                PackageWithAllocationCompositePriceFilterField.Currency => "currency",
+                PackageWithAllocationCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -13203,16 +13357,17 @@ sealed class CompositePriceFilter10FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter10OperatorConverter))]
-public enum CompositePriceFilter10Operator
+[JsonConverter(typeof(PackageWithAllocationCompositePriceFilterOperatorConverter))]
+public enum PackageWithAllocationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter10OperatorConverter : JsonConverter<CompositePriceFilter10Operator>
+sealed class PackageWithAllocationCompositePriceFilterOperatorConverter
+    : JsonConverter<PackageWithAllocationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter10Operator Read(
+    public override PackageWithAllocationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -13220,15 +13375,15 @@ sealed class CompositePriceFilter10OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter10Operator.Includes,
-            "excludes" => CompositePriceFilter10Operator.Excludes,
-            _ => (CompositePriceFilter10Operator)(-1),
+            "includes" => PackageWithAllocationCompositePriceFilterOperator.Includes,
+            "excludes" => PackageWithAllocationCompositePriceFilterOperator.Excludes,
+            _ => (PackageWithAllocationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter10Operator value,
+        PackageWithAllocationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -13236,8 +13391,8 @@ sealed class CompositePriceFilter10OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter10Operator.Includes => "includes",
-                CompositePriceFilter10Operator.Excludes => "excludes",
+                PackageWithAllocationCompositePriceFilterOperator.Includes => "includes",
+                PackageWithAllocationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -13620,11 +13775,11 @@ public sealed record class UnitWithPercent : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter11>? CompositePriceFilters
+    public required IReadOnlyList<UnitWithPercentCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter11>>(
+            return ModelBase.GetNullableClass<List<UnitWithPercentCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -14010,20 +14165,24 @@ sealed class UnitWithPercentCadenceConverter : JsonConverter<UnitWithPercentCade
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter11, CompositePriceFilter11FromRaw>))]
-public sealed record class CompositePriceFilter11 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        UnitWithPercentCompositePriceFilter,
+        UnitWithPercentCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class UnitWithPercentCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter11Field> Field
+    public required ApiEnum<string, UnitWithPercentCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter11Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, UnitWithPercentCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -14031,14 +14190,13 @@ public sealed record class CompositePriceFilter11 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter11Operator> Operator
+    public required ApiEnum<string, UnitWithPercentCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter11Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, UnitWithPercentCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -14059,22 +14217,22 @@ public sealed record class CompositePriceFilter11 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter11() { }
+    public UnitWithPercentCompositePriceFilter() { }
 
-    public CompositePriceFilter11(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UnitWithPercentCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter11(FrozenDictionary<string, JsonElement> rawData)
+    UnitWithPercentCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter11 FromRawUnchecked(
+    public static UnitWithPercentCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -14082,18 +14240,18 @@ public sealed record class CompositePriceFilter11 : ModelBase
     }
 }
 
-class CompositePriceFilter11FromRaw : IFromRaw<CompositePriceFilter11>
+class UnitWithPercentCompositePriceFilterFromRaw : IFromRaw<UnitWithPercentCompositePriceFilter>
 {
-    public CompositePriceFilter11 FromRawUnchecked(
+    public UnitWithPercentCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter11.FromRawUnchecked(rawData);
+    ) => UnitWithPercentCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter11FieldConverter))]
-public enum CompositePriceFilter11Field
+[JsonConverter(typeof(UnitWithPercentCompositePriceFilterFieldConverter))]
+public enum UnitWithPercentCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -14102,9 +14260,10 @@ public enum CompositePriceFilter11Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter11FieldConverter : JsonConverter<CompositePriceFilter11Field>
+sealed class UnitWithPercentCompositePriceFilterFieldConverter
+    : JsonConverter<UnitWithPercentCompositePriceFilterField>
 {
-    public override CompositePriceFilter11Field Read(
+    public override UnitWithPercentCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -14112,18 +14271,18 @@ sealed class CompositePriceFilter11FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter11Field.PriceID,
-            "item_id" => CompositePriceFilter11Field.ItemID,
-            "price_type" => CompositePriceFilter11Field.PriceType,
-            "currency" => CompositePriceFilter11Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter11Field.PricingUnitID,
-            _ => (CompositePriceFilter11Field)(-1),
+            "price_id" => UnitWithPercentCompositePriceFilterField.PriceID,
+            "item_id" => UnitWithPercentCompositePriceFilterField.ItemID,
+            "price_type" => UnitWithPercentCompositePriceFilterField.PriceType,
+            "currency" => UnitWithPercentCompositePriceFilterField.Currency,
+            "pricing_unit_id" => UnitWithPercentCompositePriceFilterField.PricingUnitID,
+            _ => (UnitWithPercentCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter11Field value,
+        UnitWithPercentCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -14131,11 +14290,11 @@ sealed class CompositePriceFilter11FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter11Field.PriceID => "price_id",
-                CompositePriceFilter11Field.ItemID => "item_id",
-                CompositePriceFilter11Field.PriceType => "price_type",
-                CompositePriceFilter11Field.Currency => "currency",
-                CompositePriceFilter11Field.PricingUnitID => "pricing_unit_id",
+                UnitWithPercentCompositePriceFilterField.PriceID => "price_id",
+                UnitWithPercentCompositePriceFilterField.ItemID => "item_id",
+                UnitWithPercentCompositePriceFilterField.PriceType => "price_type",
+                UnitWithPercentCompositePriceFilterField.Currency => "currency",
+                UnitWithPercentCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -14148,16 +14307,17 @@ sealed class CompositePriceFilter11FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter11OperatorConverter))]
-public enum CompositePriceFilter11Operator
+[JsonConverter(typeof(UnitWithPercentCompositePriceFilterOperatorConverter))]
+public enum UnitWithPercentCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter11OperatorConverter : JsonConverter<CompositePriceFilter11Operator>
+sealed class UnitWithPercentCompositePriceFilterOperatorConverter
+    : JsonConverter<UnitWithPercentCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter11Operator Read(
+    public override UnitWithPercentCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -14165,15 +14325,15 @@ sealed class CompositePriceFilter11OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter11Operator.Includes,
-            "excludes" => CompositePriceFilter11Operator.Excludes,
-            _ => (CompositePriceFilter11Operator)(-1),
+            "includes" => UnitWithPercentCompositePriceFilterOperator.Includes,
+            "excludes" => UnitWithPercentCompositePriceFilterOperator.Excludes,
+            _ => (UnitWithPercentCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter11Operator value,
+        UnitWithPercentCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -14181,8 +14341,8 @@ sealed class CompositePriceFilter11OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter11Operator.Includes => "includes",
-                CompositePriceFilter11Operator.Excludes => "excludes",
+                UnitWithPercentCompositePriceFilterOperator.Includes => "includes",
+                UnitWithPercentCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -14552,11 +14712,11 @@ public sealed record class MatrixWithAllocation : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter12>? CompositePriceFilters
+    public required IReadOnlyList<MatrixWithAllocationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter12>>(
+            return ModelBase.GetNullableClass<List<MatrixWithAllocationCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -14946,20 +15106,24 @@ sealed class MatrixWithAllocationCadenceConverter : JsonConverter<MatrixWithAllo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter12, CompositePriceFilter12FromRaw>))]
-public sealed record class CompositePriceFilter12 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MatrixWithAllocationCompositePriceFilter,
+        MatrixWithAllocationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class MatrixWithAllocationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter12Field> Field
+    public required ApiEnum<string, MatrixWithAllocationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter12Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MatrixWithAllocationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -14967,14 +15131,13 @@ public sealed record class CompositePriceFilter12 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter12Operator> Operator
+    public required ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter12Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -14995,22 +15158,24 @@ public sealed record class CompositePriceFilter12 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter12() { }
+    public MatrixWithAllocationCompositePriceFilter() { }
 
-    public CompositePriceFilter12(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixWithAllocationCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter12(FrozenDictionary<string, JsonElement> rawData)
+    MatrixWithAllocationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter12 FromRawUnchecked(
+    public static MatrixWithAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -15018,18 +15183,19 @@ public sealed record class CompositePriceFilter12 : ModelBase
     }
 }
 
-class CompositePriceFilter12FromRaw : IFromRaw<CompositePriceFilter12>
+class MatrixWithAllocationCompositePriceFilterFromRaw
+    : IFromRaw<MatrixWithAllocationCompositePriceFilter>
 {
-    public CompositePriceFilter12 FromRawUnchecked(
+    public MatrixWithAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter12.FromRawUnchecked(rawData);
+    ) => MatrixWithAllocationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter12FieldConverter))]
-public enum CompositePriceFilter12Field
+[JsonConverter(typeof(MatrixWithAllocationCompositePriceFilterFieldConverter))]
+public enum MatrixWithAllocationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -15038,9 +15204,10 @@ public enum CompositePriceFilter12Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter12FieldConverter : JsonConverter<CompositePriceFilter12Field>
+sealed class MatrixWithAllocationCompositePriceFilterFieldConverter
+    : JsonConverter<MatrixWithAllocationCompositePriceFilterField>
 {
-    public override CompositePriceFilter12Field Read(
+    public override MatrixWithAllocationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -15048,18 +15215,18 @@ sealed class CompositePriceFilter12FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter12Field.PriceID,
-            "item_id" => CompositePriceFilter12Field.ItemID,
-            "price_type" => CompositePriceFilter12Field.PriceType,
-            "currency" => CompositePriceFilter12Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter12Field.PricingUnitID,
-            _ => (CompositePriceFilter12Field)(-1),
+            "price_id" => MatrixWithAllocationCompositePriceFilterField.PriceID,
+            "item_id" => MatrixWithAllocationCompositePriceFilterField.ItemID,
+            "price_type" => MatrixWithAllocationCompositePriceFilterField.PriceType,
+            "currency" => MatrixWithAllocationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => MatrixWithAllocationCompositePriceFilterField.PricingUnitID,
+            _ => (MatrixWithAllocationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter12Field value,
+        MatrixWithAllocationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -15067,11 +15234,11 @@ sealed class CompositePriceFilter12FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter12Field.PriceID => "price_id",
-                CompositePriceFilter12Field.ItemID => "item_id",
-                CompositePriceFilter12Field.PriceType => "price_type",
-                CompositePriceFilter12Field.Currency => "currency",
-                CompositePriceFilter12Field.PricingUnitID => "pricing_unit_id",
+                MatrixWithAllocationCompositePriceFilterField.PriceID => "price_id",
+                MatrixWithAllocationCompositePriceFilterField.ItemID => "item_id",
+                MatrixWithAllocationCompositePriceFilterField.PriceType => "price_type",
+                MatrixWithAllocationCompositePriceFilterField.Currency => "currency",
+                MatrixWithAllocationCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -15084,16 +15251,17 @@ sealed class CompositePriceFilter12FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter12OperatorConverter))]
-public enum CompositePriceFilter12Operator
+[JsonConverter(typeof(MatrixWithAllocationCompositePriceFilterOperatorConverter))]
+public enum MatrixWithAllocationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter12OperatorConverter : JsonConverter<CompositePriceFilter12Operator>
+sealed class MatrixWithAllocationCompositePriceFilterOperatorConverter
+    : JsonConverter<MatrixWithAllocationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter12Operator Read(
+    public override MatrixWithAllocationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -15101,15 +15269,15 @@ sealed class CompositePriceFilter12OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter12Operator.Includes,
-            "excludes" => CompositePriceFilter12Operator.Excludes,
-            _ => (CompositePriceFilter12Operator)(-1),
+            "includes" => MatrixWithAllocationCompositePriceFilterOperator.Includes,
+            "excludes" => MatrixWithAllocationCompositePriceFilterOperator.Excludes,
+            _ => (MatrixWithAllocationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter12Operator value,
+        MatrixWithAllocationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -15117,8 +15285,8 @@ sealed class CompositePriceFilter12OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter12Operator.Includes => "includes",
-                CompositePriceFilter12Operator.Excludes => "excludes",
+                MatrixWithAllocationCompositePriceFilterOperator.Includes => "includes",
+                MatrixWithAllocationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -15423,11 +15591,11 @@ public sealed record class TieredWithProration : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter13>? CompositePriceFilters
+    public required IReadOnlyList<TieredWithProrationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter13>>(
+            return ModelBase.GetNullableClass<List<TieredWithProrationCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -15815,20 +15983,24 @@ sealed class TieredWithProrationCadenceConverter : JsonConverter<TieredWithProra
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter13, CompositePriceFilter13FromRaw>))]
-public sealed record class CompositePriceFilter13 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredWithProrationCompositePriceFilter,
+        TieredWithProrationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class TieredWithProrationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter13Field> Field
+    public required ApiEnum<string, TieredWithProrationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter13Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredWithProrationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -15836,14 +16008,13 @@ public sealed record class CompositePriceFilter13 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter13Operator> Operator
+    public required ApiEnum<string, TieredWithProrationCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter13Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, TieredWithProrationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -15864,22 +16035,22 @@ public sealed record class CompositePriceFilter13 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter13() { }
+    public TieredWithProrationCompositePriceFilter() { }
 
-    public CompositePriceFilter13(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter13(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithProrationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter13 FromRawUnchecked(
+    public static TieredWithProrationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -15887,18 +16058,19 @@ public sealed record class CompositePriceFilter13 : ModelBase
     }
 }
 
-class CompositePriceFilter13FromRaw : IFromRaw<CompositePriceFilter13>
+class TieredWithProrationCompositePriceFilterFromRaw
+    : IFromRaw<TieredWithProrationCompositePriceFilter>
 {
-    public CompositePriceFilter13 FromRawUnchecked(
+    public TieredWithProrationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter13.FromRawUnchecked(rawData);
+    ) => TieredWithProrationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter13FieldConverter))]
-public enum CompositePriceFilter13Field
+[JsonConverter(typeof(TieredWithProrationCompositePriceFilterFieldConverter))]
+public enum TieredWithProrationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -15907,9 +16079,10 @@ public enum CompositePriceFilter13Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter13FieldConverter : JsonConverter<CompositePriceFilter13Field>
+sealed class TieredWithProrationCompositePriceFilterFieldConverter
+    : JsonConverter<TieredWithProrationCompositePriceFilterField>
 {
-    public override CompositePriceFilter13Field Read(
+    public override TieredWithProrationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -15917,18 +16090,18 @@ sealed class CompositePriceFilter13FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter13Field.PriceID,
-            "item_id" => CompositePriceFilter13Field.ItemID,
-            "price_type" => CompositePriceFilter13Field.PriceType,
-            "currency" => CompositePriceFilter13Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter13Field.PricingUnitID,
-            _ => (CompositePriceFilter13Field)(-1),
+            "price_id" => TieredWithProrationCompositePriceFilterField.PriceID,
+            "item_id" => TieredWithProrationCompositePriceFilterField.ItemID,
+            "price_type" => TieredWithProrationCompositePriceFilterField.PriceType,
+            "currency" => TieredWithProrationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => TieredWithProrationCompositePriceFilterField.PricingUnitID,
+            _ => (TieredWithProrationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter13Field value,
+        TieredWithProrationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -15936,11 +16109,11 @@ sealed class CompositePriceFilter13FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter13Field.PriceID => "price_id",
-                CompositePriceFilter13Field.ItemID => "item_id",
-                CompositePriceFilter13Field.PriceType => "price_type",
-                CompositePriceFilter13Field.Currency => "currency",
-                CompositePriceFilter13Field.PricingUnitID => "pricing_unit_id",
+                TieredWithProrationCompositePriceFilterField.PriceID => "price_id",
+                TieredWithProrationCompositePriceFilterField.ItemID => "item_id",
+                TieredWithProrationCompositePriceFilterField.PriceType => "price_type",
+                TieredWithProrationCompositePriceFilterField.Currency => "currency",
+                TieredWithProrationCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -15953,16 +16126,17 @@ sealed class CompositePriceFilter13FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter13OperatorConverter))]
-public enum CompositePriceFilter13Operator
+[JsonConverter(typeof(TieredWithProrationCompositePriceFilterOperatorConverter))]
+public enum TieredWithProrationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter13OperatorConverter : JsonConverter<CompositePriceFilter13Operator>
+sealed class TieredWithProrationCompositePriceFilterOperatorConverter
+    : JsonConverter<TieredWithProrationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter13Operator Read(
+    public override TieredWithProrationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -15970,15 +16144,15 @@ sealed class CompositePriceFilter13OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter13Operator.Includes,
-            "excludes" => CompositePriceFilter13Operator.Excludes,
-            _ => (CompositePriceFilter13Operator)(-1),
+            "includes" => TieredWithProrationCompositePriceFilterOperator.Includes,
+            "excludes" => TieredWithProrationCompositePriceFilterOperator.Excludes,
+            _ => (TieredWithProrationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter13Operator value,
+        TieredWithProrationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -15986,8 +16160,8 @@ sealed class CompositePriceFilter13OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter13Operator.Includes => "includes",
-                CompositePriceFilter13Operator.Excludes => "excludes",
+                TieredWithProrationCompositePriceFilterOperator.Includes => "includes",
+                TieredWithProrationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -16253,9 +16427,14 @@ public sealed record class TieredWithProrationTieredWithProrationConfig : ModelB
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<Tier21> Tiers
+    public required IReadOnlyList<TieredWithProrationTieredWithProrationConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier21>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<TieredWithProrationTieredWithProrationConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -16292,7 +16471,9 @@ public sealed record class TieredWithProrationTieredWithProrationConfig : ModelB
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationTieredWithProrationConfig(List<Tier21> tiers)
+    public TieredWithProrationTieredWithProrationConfig(
+        List<TieredWithProrationTieredWithProrationConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -16310,8 +16491,13 @@ class TieredWithProrationTieredWithProrationConfigFromRaw
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier21, Tier21FromRaw>))]
-public sealed record class Tier21 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        TieredWithProrationTieredWithProrationConfigTier,
+        TieredWithProrationTieredWithProrationConfigTierFromRaw
+    >)
+)]
+public sealed record class TieredWithProrationTieredWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -16337,31 +16523,37 @@ public sealed record class Tier21 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier21() { }
+    public TieredWithProrationTieredWithProrationConfigTier() { }
 
-    public Tier21(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithProrationTieredWithProrationConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier21(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithProrationTieredWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier21 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier21FromRaw : IFromRaw<Tier21>
+class TieredWithProrationTieredWithProrationConfigTierFromRaw
+    : IFromRaw<TieredWithProrationTieredWithProrationConfigTier>
 {
-    public Tier21 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier21.FromRawUnchecked(rawData);
+    public TieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithProrationTieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<UnitWithProration, UnitWithProrationFromRaw>))]
@@ -16418,11 +16610,11 @@ public sealed record class UnitWithProration : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter14>? CompositePriceFilters
+    public required IReadOnlyList<UnitWithProrationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter14>>(
+            return ModelBase.GetNullableClass<List<UnitWithProrationCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -16810,20 +17002,24 @@ sealed class UnitWithProrationCadenceConverter : JsonConverter<UnitWithProration
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter14, CompositePriceFilter14FromRaw>))]
-public sealed record class CompositePriceFilter14 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        UnitWithProrationCompositePriceFilter,
+        UnitWithProrationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class UnitWithProrationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter14Field> Field
+    public required ApiEnum<string, UnitWithProrationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter14Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, UnitWithProrationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -16831,14 +17027,13 @@ public sealed record class CompositePriceFilter14 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter14Operator> Operator
+    public required ApiEnum<string, UnitWithProrationCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter14Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, UnitWithProrationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -16859,22 +17054,22 @@ public sealed record class CompositePriceFilter14 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter14() { }
+    public UnitWithProrationCompositePriceFilter() { }
 
-    public CompositePriceFilter14(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UnitWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter14(FrozenDictionary<string, JsonElement> rawData)
+    UnitWithProrationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter14 FromRawUnchecked(
+    public static UnitWithProrationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -16882,18 +17077,18 @@ public sealed record class CompositePriceFilter14 : ModelBase
     }
 }
 
-class CompositePriceFilter14FromRaw : IFromRaw<CompositePriceFilter14>
+class UnitWithProrationCompositePriceFilterFromRaw : IFromRaw<UnitWithProrationCompositePriceFilter>
 {
-    public CompositePriceFilter14 FromRawUnchecked(
+    public UnitWithProrationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter14.FromRawUnchecked(rawData);
+    ) => UnitWithProrationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter14FieldConverter))]
-public enum CompositePriceFilter14Field
+[JsonConverter(typeof(UnitWithProrationCompositePriceFilterFieldConverter))]
+public enum UnitWithProrationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -16902,9 +17097,10 @@ public enum CompositePriceFilter14Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter14FieldConverter : JsonConverter<CompositePriceFilter14Field>
+sealed class UnitWithProrationCompositePriceFilterFieldConverter
+    : JsonConverter<UnitWithProrationCompositePriceFilterField>
 {
-    public override CompositePriceFilter14Field Read(
+    public override UnitWithProrationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -16912,18 +17108,18 @@ sealed class CompositePriceFilter14FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter14Field.PriceID,
-            "item_id" => CompositePriceFilter14Field.ItemID,
-            "price_type" => CompositePriceFilter14Field.PriceType,
-            "currency" => CompositePriceFilter14Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter14Field.PricingUnitID,
-            _ => (CompositePriceFilter14Field)(-1),
+            "price_id" => UnitWithProrationCompositePriceFilterField.PriceID,
+            "item_id" => UnitWithProrationCompositePriceFilterField.ItemID,
+            "price_type" => UnitWithProrationCompositePriceFilterField.PriceType,
+            "currency" => UnitWithProrationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => UnitWithProrationCompositePriceFilterField.PricingUnitID,
+            _ => (UnitWithProrationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter14Field value,
+        UnitWithProrationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -16931,11 +17127,11 @@ sealed class CompositePriceFilter14FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter14Field.PriceID => "price_id",
-                CompositePriceFilter14Field.ItemID => "item_id",
-                CompositePriceFilter14Field.PriceType => "price_type",
-                CompositePriceFilter14Field.Currency => "currency",
-                CompositePriceFilter14Field.PricingUnitID => "pricing_unit_id",
+                UnitWithProrationCompositePriceFilterField.PriceID => "price_id",
+                UnitWithProrationCompositePriceFilterField.ItemID => "item_id",
+                UnitWithProrationCompositePriceFilterField.PriceType => "price_type",
+                UnitWithProrationCompositePriceFilterField.Currency => "currency",
+                UnitWithProrationCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -16948,16 +17144,17 @@ sealed class CompositePriceFilter14FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter14OperatorConverter))]
-public enum CompositePriceFilter14Operator
+[JsonConverter(typeof(UnitWithProrationCompositePriceFilterOperatorConverter))]
+public enum UnitWithProrationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter14OperatorConverter : JsonConverter<CompositePriceFilter14Operator>
+sealed class UnitWithProrationCompositePriceFilterOperatorConverter
+    : JsonConverter<UnitWithProrationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter14Operator Read(
+    public override UnitWithProrationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -16965,15 +17162,15 @@ sealed class CompositePriceFilter14OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter14Operator.Includes,
-            "excludes" => CompositePriceFilter14Operator.Excludes,
-            _ => (CompositePriceFilter14Operator)(-1),
+            "includes" => UnitWithProrationCompositePriceFilterOperator.Includes,
+            "excludes" => UnitWithProrationCompositePriceFilterOperator.Excludes,
+            _ => (UnitWithProrationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter14Operator value,
+        UnitWithProrationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -16981,8 +17178,8 @@ sealed class CompositePriceFilter14OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter14Operator.Includes => "includes",
-                CompositePriceFilter14Operator.Excludes => "excludes",
+                UnitWithProrationCompositePriceFilterOperator.Includes => "includes",
+                UnitWithProrationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -17352,11 +17549,11 @@ public sealed record class GroupedAllocation : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter15>? CompositePriceFilters
+    public required IReadOnlyList<GroupedAllocationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter15>>(
+            return ModelBase.GetNullableClass<List<GroupedAllocationCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -17744,20 +17941,24 @@ sealed class GroupedAllocationCadenceConverter : JsonConverter<GroupedAllocation
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter15, CompositePriceFilter15FromRaw>))]
-public sealed record class CompositePriceFilter15 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedAllocationCompositePriceFilter,
+        GroupedAllocationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class GroupedAllocationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter15Field> Field
+    public required ApiEnum<string, GroupedAllocationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter15Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedAllocationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -17765,14 +17966,13 @@ public sealed record class CompositePriceFilter15 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter15Operator> Operator
+    public required ApiEnum<string, GroupedAllocationCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter15Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedAllocationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -17793,22 +17993,22 @@ public sealed record class CompositePriceFilter15 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter15() { }
+    public GroupedAllocationCompositePriceFilter() { }
 
-    public CompositePriceFilter15(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedAllocationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter15(FrozenDictionary<string, JsonElement> rawData)
+    GroupedAllocationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter15 FromRawUnchecked(
+    public static GroupedAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -17816,18 +18016,18 @@ public sealed record class CompositePriceFilter15 : ModelBase
     }
 }
 
-class CompositePriceFilter15FromRaw : IFromRaw<CompositePriceFilter15>
+class GroupedAllocationCompositePriceFilterFromRaw : IFromRaw<GroupedAllocationCompositePriceFilter>
 {
-    public CompositePriceFilter15 FromRawUnchecked(
+    public GroupedAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter15.FromRawUnchecked(rawData);
+    ) => GroupedAllocationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter15FieldConverter))]
-public enum CompositePriceFilter15Field
+[JsonConverter(typeof(GroupedAllocationCompositePriceFilterFieldConverter))]
+public enum GroupedAllocationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -17836,9 +18036,10 @@ public enum CompositePriceFilter15Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter15FieldConverter : JsonConverter<CompositePriceFilter15Field>
+sealed class GroupedAllocationCompositePriceFilterFieldConverter
+    : JsonConverter<GroupedAllocationCompositePriceFilterField>
 {
-    public override CompositePriceFilter15Field Read(
+    public override GroupedAllocationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -17846,18 +18047,18 @@ sealed class CompositePriceFilter15FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter15Field.PriceID,
-            "item_id" => CompositePriceFilter15Field.ItemID,
-            "price_type" => CompositePriceFilter15Field.PriceType,
-            "currency" => CompositePriceFilter15Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter15Field.PricingUnitID,
-            _ => (CompositePriceFilter15Field)(-1),
+            "price_id" => GroupedAllocationCompositePriceFilterField.PriceID,
+            "item_id" => GroupedAllocationCompositePriceFilterField.ItemID,
+            "price_type" => GroupedAllocationCompositePriceFilterField.PriceType,
+            "currency" => GroupedAllocationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => GroupedAllocationCompositePriceFilterField.PricingUnitID,
+            _ => (GroupedAllocationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter15Field value,
+        GroupedAllocationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -17865,11 +18066,11 @@ sealed class CompositePriceFilter15FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter15Field.PriceID => "price_id",
-                CompositePriceFilter15Field.ItemID => "item_id",
-                CompositePriceFilter15Field.PriceType => "price_type",
-                CompositePriceFilter15Field.Currency => "currency",
-                CompositePriceFilter15Field.PricingUnitID => "pricing_unit_id",
+                GroupedAllocationCompositePriceFilterField.PriceID => "price_id",
+                GroupedAllocationCompositePriceFilterField.ItemID => "item_id",
+                GroupedAllocationCompositePriceFilterField.PriceType => "price_type",
+                GroupedAllocationCompositePriceFilterField.Currency => "currency",
+                GroupedAllocationCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -17882,16 +18083,17 @@ sealed class CompositePriceFilter15FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter15OperatorConverter))]
-public enum CompositePriceFilter15Operator
+[JsonConverter(typeof(GroupedAllocationCompositePriceFilterOperatorConverter))]
+public enum GroupedAllocationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter15OperatorConverter : JsonConverter<CompositePriceFilter15Operator>
+sealed class GroupedAllocationCompositePriceFilterOperatorConverter
+    : JsonConverter<GroupedAllocationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter15Operator Read(
+    public override GroupedAllocationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -17899,15 +18101,15 @@ sealed class CompositePriceFilter15OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter15Operator.Includes,
-            "excludes" => CompositePriceFilter15Operator.Excludes,
-            _ => (CompositePriceFilter15Operator)(-1),
+            "includes" => GroupedAllocationCompositePriceFilterOperator.Includes,
+            "excludes" => GroupedAllocationCompositePriceFilterOperator.Excludes,
+            _ => (GroupedAllocationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter15Operator value,
+        GroupedAllocationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -17915,8 +18117,8 @@ sealed class CompositePriceFilter15OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter15Operator.Includes => "includes",
-                CompositePriceFilter15Operator.Excludes => "excludes",
+                GroupedAllocationCompositePriceFilterOperator.Includes => "includes",
+                GroupedAllocationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -18314,11 +18516,11 @@ public sealed record class BulkWithProration : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter16>? CompositePriceFilters
+    public required IReadOnlyList<BulkWithProrationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter16>>(
+            return ModelBase.GetNullableClass<List<BulkWithProrationCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -18649,9 +18851,15 @@ public sealed record class BulkWithProrationBulkWithProrationConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<Tier22> Tiers
+    public required IReadOnlyList<BulkWithProrationBulkWithProrationConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier22>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<BulkWithProrationBulkWithProrationConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -18688,7 +18896,9 @@ public sealed record class BulkWithProrationBulkWithProrationConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public BulkWithProrationBulkWithProrationConfig(List<Tier22> tiers)
+    public BulkWithProrationBulkWithProrationConfig(
+        List<BulkWithProrationBulkWithProrationConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -18706,8 +18916,13 @@ class BulkWithProrationBulkWithProrationConfigFromRaw
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier22, Tier22FromRaw>))]
-public sealed record class Tier22 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        BulkWithProrationBulkWithProrationConfigTier,
+        BulkWithProrationBulkWithProrationConfigTierFromRaw
+    >)
+)]
+public sealed record class BulkWithProrationBulkWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -18733,38 +18948,44 @@ public sealed record class Tier22 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier22() { }
+    public BulkWithProrationBulkWithProrationConfigTier() { }
 
-    public Tier22(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithProrationBulkWithProrationConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier22(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithProrationBulkWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier22 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static BulkWithProrationBulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Tier22(string unitAmount)
+    public BulkWithProrationBulkWithProrationConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier22FromRaw : IFromRaw<Tier22>
+class BulkWithProrationBulkWithProrationConfigTierFromRaw
+    : IFromRaw<BulkWithProrationBulkWithProrationConfigTier>
 {
-    public Tier22 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier22.FromRawUnchecked(rawData);
+    public BulkWithProrationBulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithProrationBulkWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(BulkWithProrationCadenceConverter))]
@@ -18823,20 +19044,24 @@ sealed class BulkWithProrationCadenceConverter : JsonConverter<BulkWithProration
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter16, CompositePriceFilter16FromRaw>))]
-public sealed record class CompositePriceFilter16 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        BulkWithProrationCompositePriceFilter,
+        BulkWithProrationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class BulkWithProrationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter16Field> Field
+    public required ApiEnum<string, BulkWithProrationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter16Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, BulkWithProrationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -18844,14 +19069,13 @@ public sealed record class CompositePriceFilter16 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter16Operator> Operator
+    public required ApiEnum<string, BulkWithProrationCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter16Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, BulkWithProrationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -18872,22 +19096,22 @@ public sealed record class CompositePriceFilter16 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter16() { }
+    public BulkWithProrationCompositePriceFilter() { }
 
-    public CompositePriceFilter16(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithProrationCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter16(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithProrationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter16 FromRawUnchecked(
+    public static BulkWithProrationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -18895,18 +19119,18 @@ public sealed record class CompositePriceFilter16 : ModelBase
     }
 }
 
-class CompositePriceFilter16FromRaw : IFromRaw<CompositePriceFilter16>
+class BulkWithProrationCompositePriceFilterFromRaw : IFromRaw<BulkWithProrationCompositePriceFilter>
 {
-    public CompositePriceFilter16 FromRawUnchecked(
+    public BulkWithProrationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter16.FromRawUnchecked(rawData);
+    ) => BulkWithProrationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter16FieldConverter))]
-public enum CompositePriceFilter16Field
+[JsonConverter(typeof(BulkWithProrationCompositePriceFilterFieldConverter))]
+public enum BulkWithProrationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -18915,9 +19139,10 @@ public enum CompositePriceFilter16Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter16FieldConverter : JsonConverter<CompositePriceFilter16Field>
+sealed class BulkWithProrationCompositePriceFilterFieldConverter
+    : JsonConverter<BulkWithProrationCompositePriceFilterField>
 {
-    public override CompositePriceFilter16Field Read(
+    public override BulkWithProrationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -18925,18 +19150,18 @@ sealed class CompositePriceFilter16FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter16Field.PriceID,
-            "item_id" => CompositePriceFilter16Field.ItemID,
-            "price_type" => CompositePriceFilter16Field.PriceType,
-            "currency" => CompositePriceFilter16Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter16Field.PricingUnitID,
-            _ => (CompositePriceFilter16Field)(-1),
+            "price_id" => BulkWithProrationCompositePriceFilterField.PriceID,
+            "item_id" => BulkWithProrationCompositePriceFilterField.ItemID,
+            "price_type" => BulkWithProrationCompositePriceFilterField.PriceType,
+            "currency" => BulkWithProrationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => BulkWithProrationCompositePriceFilterField.PricingUnitID,
+            _ => (BulkWithProrationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter16Field value,
+        BulkWithProrationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -18944,11 +19169,11 @@ sealed class CompositePriceFilter16FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter16Field.PriceID => "price_id",
-                CompositePriceFilter16Field.ItemID => "item_id",
-                CompositePriceFilter16Field.PriceType => "price_type",
-                CompositePriceFilter16Field.Currency => "currency",
-                CompositePriceFilter16Field.PricingUnitID => "pricing_unit_id",
+                BulkWithProrationCompositePriceFilterField.PriceID => "price_id",
+                BulkWithProrationCompositePriceFilterField.ItemID => "item_id",
+                BulkWithProrationCompositePriceFilterField.PriceType => "price_type",
+                BulkWithProrationCompositePriceFilterField.Currency => "currency",
+                BulkWithProrationCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -18961,16 +19186,17 @@ sealed class CompositePriceFilter16FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter16OperatorConverter))]
-public enum CompositePriceFilter16Operator
+[JsonConverter(typeof(BulkWithProrationCompositePriceFilterOperatorConverter))]
+public enum BulkWithProrationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter16OperatorConverter : JsonConverter<CompositePriceFilter16Operator>
+sealed class BulkWithProrationCompositePriceFilterOperatorConverter
+    : JsonConverter<BulkWithProrationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter16Operator Read(
+    public override BulkWithProrationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -18978,15 +19204,15 @@ sealed class CompositePriceFilter16OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter16Operator.Includes,
-            "excludes" => CompositePriceFilter16Operator.Excludes,
-            _ => (CompositePriceFilter16Operator)(-1),
+            "includes" => BulkWithProrationCompositePriceFilterOperator.Includes,
+            "excludes" => BulkWithProrationCompositePriceFilterOperator.Excludes,
+            _ => (BulkWithProrationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter16Operator value,
+        BulkWithProrationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -18994,8 +19220,8 @@ sealed class CompositePriceFilter16OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter16Operator.Includes => "includes",
-                CompositePriceFilter16Operator.Excludes => "excludes",
+                BulkWithProrationCompositePriceFilterOperator.Includes => "includes",
+                BulkWithProrationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -19301,11 +19527,11 @@ public sealed record class GroupedWithProratedMinimum : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter17>? CompositePriceFilters
+    public required IReadOnlyList<GroupedWithProratedMinimumCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter17>>(
+            return ModelBase.GetNullableClass<List<GroupedWithProratedMinimumCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -19700,20 +19926,24 @@ sealed class GroupedWithProratedMinimumCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter17, CompositePriceFilter17FromRaw>))]
-public sealed record class CompositePriceFilter17 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithProratedMinimumCompositePriceFilter,
+        GroupedWithProratedMinimumCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class GroupedWithProratedMinimumCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter17Field> Field
+    public required ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter17Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -19721,14 +19951,13 @@ public sealed record class CompositePriceFilter17 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter17Operator> Operator
+    public required ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter17Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -19749,22 +19978,24 @@ public sealed record class CompositePriceFilter17 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter17() { }
+    public GroupedWithProratedMinimumCompositePriceFilter() { }
 
-    public CompositePriceFilter17(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedWithProratedMinimumCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter17(FrozenDictionary<string, JsonElement> rawData)
+    GroupedWithProratedMinimumCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter17 FromRawUnchecked(
+    public static GroupedWithProratedMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -19772,18 +20003,19 @@ public sealed record class CompositePriceFilter17 : ModelBase
     }
 }
 
-class CompositePriceFilter17FromRaw : IFromRaw<CompositePriceFilter17>
+class GroupedWithProratedMinimumCompositePriceFilterFromRaw
+    : IFromRaw<GroupedWithProratedMinimumCompositePriceFilter>
 {
-    public CompositePriceFilter17 FromRawUnchecked(
+    public GroupedWithProratedMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter17.FromRawUnchecked(rawData);
+    ) => GroupedWithProratedMinimumCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter17FieldConverter))]
-public enum CompositePriceFilter17Field
+[JsonConverter(typeof(GroupedWithProratedMinimumCompositePriceFilterFieldConverter))]
+public enum GroupedWithProratedMinimumCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -19792,9 +20024,10 @@ public enum CompositePriceFilter17Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter17FieldConverter : JsonConverter<CompositePriceFilter17Field>
+sealed class GroupedWithProratedMinimumCompositePriceFilterFieldConverter
+    : JsonConverter<GroupedWithProratedMinimumCompositePriceFilterField>
 {
-    public override CompositePriceFilter17Field Read(
+    public override GroupedWithProratedMinimumCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -19802,18 +20035,18 @@ sealed class CompositePriceFilter17FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter17Field.PriceID,
-            "item_id" => CompositePriceFilter17Field.ItemID,
-            "price_type" => CompositePriceFilter17Field.PriceType,
-            "currency" => CompositePriceFilter17Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter17Field.PricingUnitID,
-            _ => (CompositePriceFilter17Field)(-1),
+            "price_id" => GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+            "item_id" => GroupedWithProratedMinimumCompositePriceFilterField.ItemID,
+            "price_type" => GroupedWithProratedMinimumCompositePriceFilterField.PriceType,
+            "currency" => GroupedWithProratedMinimumCompositePriceFilterField.Currency,
+            "pricing_unit_id" => GroupedWithProratedMinimumCompositePriceFilterField.PricingUnitID,
+            _ => (GroupedWithProratedMinimumCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter17Field value,
+        GroupedWithProratedMinimumCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -19821,11 +20054,12 @@ sealed class CompositePriceFilter17FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter17Field.PriceID => "price_id",
-                CompositePriceFilter17Field.ItemID => "item_id",
-                CompositePriceFilter17Field.PriceType => "price_type",
-                CompositePriceFilter17Field.Currency => "currency",
-                CompositePriceFilter17Field.PricingUnitID => "pricing_unit_id",
+                GroupedWithProratedMinimumCompositePriceFilterField.PriceID => "price_id",
+                GroupedWithProratedMinimumCompositePriceFilterField.ItemID => "item_id",
+                GroupedWithProratedMinimumCompositePriceFilterField.PriceType => "price_type",
+                GroupedWithProratedMinimumCompositePriceFilterField.Currency => "currency",
+                GroupedWithProratedMinimumCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -19838,16 +20072,17 @@ sealed class CompositePriceFilter17FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter17OperatorConverter))]
-public enum CompositePriceFilter17Operator
+[JsonConverter(typeof(GroupedWithProratedMinimumCompositePriceFilterOperatorConverter))]
+public enum GroupedWithProratedMinimumCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter17OperatorConverter : JsonConverter<CompositePriceFilter17Operator>
+sealed class GroupedWithProratedMinimumCompositePriceFilterOperatorConverter
+    : JsonConverter<GroupedWithProratedMinimumCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter17Operator Read(
+    public override GroupedWithProratedMinimumCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -19855,15 +20090,15 @@ sealed class CompositePriceFilter17OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter17Operator.Includes,
-            "excludes" => CompositePriceFilter17Operator.Excludes,
-            _ => (CompositePriceFilter17Operator)(-1),
+            "includes" => GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
+            "excludes" => GroupedWithProratedMinimumCompositePriceFilterOperator.Excludes,
+            _ => (GroupedWithProratedMinimumCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter17Operator value,
+        GroupedWithProratedMinimumCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -19871,8 +20106,8 @@ sealed class CompositePriceFilter17OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter17Operator.Includes => "includes",
-                CompositePriceFilter17Operator.Excludes => "excludes",
+                GroupedWithProratedMinimumCompositePriceFilterOperator.Includes => "includes",
+                GroupedWithProratedMinimumCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -20258,11 +20493,11 @@ public sealed record class GroupedWithMeteredMinimum : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter18>? CompositePriceFilters
+    public required IReadOnlyList<GroupedWithMeteredMinimumCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter18>>(
+            return ModelBase.GetNullableClass<List<GroupedWithMeteredMinimumCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -20657,20 +20892,24 @@ sealed class GroupedWithMeteredMinimumCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter18, CompositePriceFilter18FromRaw>))]
-public sealed record class CompositePriceFilter18 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithMeteredMinimumCompositePriceFilter,
+        GroupedWithMeteredMinimumCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class GroupedWithMeteredMinimumCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter18Field> Field
+    public required ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter18Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -20678,14 +20917,13 @@ public sealed record class CompositePriceFilter18 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter18Operator> Operator
+    public required ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter18Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -20706,22 +20944,24 @@ public sealed record class CompositePriceFilter18 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter18() { }
+    public GroupedWithMeteredMinimumCompositePriceFilter() { }
 
-    public CompositePriceFilter18(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedWithMeteredMinimumCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter18(FrozenDictionary<string, JsonElement> rawData)
+    GroupedWithMeteredMinimumCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter18 FromRawUnchecked(
+    public static GroupedWithMeteredMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -20729,18 +20969,19 @@ public sealed record class CompositePriceFilter18 : ModelBase
     }
 }
 
-class CompositePriceFilter18FromRaw : IFromRaw<CompositePriceFilter18>
+class GroupedWithMeteredMinimumCompositePriceFilterFromRaw
+    : IFromRaw<GroupedWithMeteredMinimumCompositePriceFilter>
 {
-    public CompositePriceFilter18 FromRawUnchecked(
+    public GroupedWithMeteredMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter18.FromRawUnchecked(rawData);
+    ) => GroupedWithMeteredMinimumCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter18FieldConverter))]
-public enum CompositePriceFilter18Field
+[JsonConverter(typeof(GroupedWithMeteredMinimumCompositePriceFilterFieldConverter))]
+public enum GroupedWithMeteredMinimumCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -20749,9 +20990,10 @@ public enum CompositePriceFilter18Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter18FieldConverter : JsonConverter<CompositePriceFilter18Field>
+sealed class GroupedWithMeteredMinimumCompositePriceFilterFieldConverter
+    : JsonConverter<GroupedWithMeteredMinimumCompositePriceFilterField>
 {
-    public override CompositePriceFilter18Field Read(
+    public override GroupedWithMeteredMinimumCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -20759,18 +21001,18 @@ sealed class CompositePriceFilter18FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter18Field.PriceID,
-            "item_id" => CompositePriceFilter18Field.ItemID,
-            "price_type" => CompositePriceFilter18Field.PriceType,
-            "currency" => CompositePriceFilter18Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter18Field.PricingUnitID,
-            _ => (CompositePriceFilter18Field)(-1),
+            "price_id" => GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+            "item_id" => GroupedWithMeteredMinimumCompositePriceFilterField.ItemID,
+            "price_type" => GroupedWithMeteredMinimumCompositePriceFilterField.PriceType,
+            "currency" => GroupedWithMeteredMinimumCompositePriceFilterField.Currency,
+            "pricing_unit_id" => GroupedWithMeteredMinimumCompositePriceFilterField.PricingUnitID,
+            _ => (GroupedWithMeteredMinimumCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter18Field value,
+        GroupedWithMeteredMinimumCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -20778,11 +21020,12 @@ sealed class CompositePriceFilter18FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter18Field.PriceID => "price_id",
-                CompositePriceFilter18Field.ItemID => "item_id",
-                CompositePriceFilter18Field.PriceType => "price_type",
-                CompositePriceFilter18Field.Currency => "currency",
-                CompositePriceFilter18Field.PricingUnitID => "pricing_unit_id",
+                GroupedWithMeteredMinimumCompositePriceFilterField.PriceID => "price_id",
+                GroupedWithMeteredMinimumCompositePriceFilterField.ItemID => "item_id",
+                GroupedWithMeteredMinimumCompositePriceFilterField.PriceType => "price_type",
+                GroupedWithMeteredMinimumCompositePriceFilterField.Currency => "currency",
+                GroupedWithMeteredMinimumCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -20795,16 +21038,17 @@ sealed class CompositePriceFilter18FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter18OperatorConverter))]
-public enum CompositePriceFilter18Operator
+[JsonConverter(typeof(GroupedWithMeteredMinimumCompositePriceFilterOperatorConverter))]
+public enum GroupedWithMeteredMinimumCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter18OperatorConverter : JsonConverter<CompositePriceFilter18Operator>
+sealed class GroupedWithMeteredMinimumCompositePriceFilterOperatorConverter
+    : JsonConverter<GroupedWithMeteredMinimumCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter18Operator Read(
+    public override GroupedWithMeteredMinimumCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -20812,15 +21056,15 @@ sealed class CompositePriceFilter18OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter18Operator.Includes,
-            "excludes" => CompositePriceFilter18Operator.Excludes,
-            _ => (CompositePriceFilter18Operator)(-1),
+            "includes" => GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
+            "excludes" => GroupedWithMeteredMinimumCompositePriceFilterOperator.Excludes,
+            _ => (GroupedWithMeteredMinimumCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter18Operator value,
+        GroupedWithMeteredMinimumCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -20828,8 +21072,8 @@ sealed class CompositePriceFilter18OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter18Operator.Includes => "includes",
-                CompositePriceFilter18Operator.Excludes => "excludes",
+                GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes => "includes",
+                GroupedWithMeteredMinimumCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -21075,11 +21319,13 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     /// <summary>
     /// Scale the unit rates by the scaling factor.
     /// </summary>
-    public required IReadOnlyList<ScalingFactor1> ScalingFactors
+    public required IReadOnlyList<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor> ScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ScalingFactor1>>(this.RawData, "scaling_factors");
+            return ModelBase.GetNotNullClass<
+                List<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor>
+            >(this.RawData, "scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "scaling_factors", value); }
     }
@@ -21097,9 +21343,14 @@ public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumCon
     /// Apply per unit pricing to each pricing value. The minimum amount is applied
     /// any unmatched usage.
     /// </summary>
-    public required IReadOnlyList<UnitAmount3> UnitAmounts
+    public required IReadOnlyList<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount> UnitAmounts
     {
-        get { return ModelBase.GetNotNullClass<List<UnitAmount3>>(this.RawData, "unit_amounts"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount>
+            >(this.RawData, "unit_amounts");
+        }
         init { ModelBase.Set(this._rawData, "unit_amounts", value); }
     }
 
@@ -21157,8 +21408,14 @@ class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigFromRaw
 /// <summary>
 /// Configuration for a scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ScalingFactor1, ScalingFactor1FromRaw>))]
-public sealed record class ScalingFactor1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor,
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactorFromRaw
+    >)
+)]
+public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
+    : ModelBase
 {
     /// <summary>
     /// Scaling factor
@@ -21184,38 +21441,55 @@ public sealed record class ScalingFactor1 : ModelBase
         _ = this.ScalingValue;
     }
 
-    public ScalingFactor1() { }
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor() { }
 
-    public ScalingFactor1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ScalingFactor1(FrozenDictionary<string, JsonElement> rawData)
+    GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ScalingFactor1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class ScalingFactor1FromRaw : IFromRaw<ScalingFactor1>
+class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactorFromRaw
+    : IFromRaw<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor>
 {
-    public ScalingFactor1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        ScalingFactor1.FromRawUnchecked(rawData);
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// Configuration for a unit amount
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount3, UnitAmount3FromRaw>))]
-public sealed record class UnitAmount3 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount,
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmountFromRaw
+    >)
+)]
+public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+    : ModelBase
 {
     /// <summary>
     /// Pricing value
@@ -21241,31 +21515,42 @@ public sealed record class UnitAmount3 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public UnitAmount3() { }
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount() { }
 
-    public UnitAmount3(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitAmount3(FrozenDictionary<string, JsonElement> rawData)
+    GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UnitAmount3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UnitAmount3FromRaw : IFromRaw<UnitAmount3>
+class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmountFromRaw
+    : IFromRaw<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount>
 {
-    public UnitAmount3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        UnitAmount3.FromRawUnchecked(rawData);
+    public GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(typeof(GroupedWithMeteredMinimumPriceTypeConverter))]
@@ -21371,14 +21656,13 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter19>? CompositePriceFilters
+    public required IReadOnlyList<GroupedWithMinMaxThresholdsCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter19>>(
-                this.RawData,
-                "composite_price_filters"
-            );
+            return ModelBase.GetNullableClass<
+                List<GroupedWithMinMaxThresholdsCompositePriceFilter>
+            >(this.RawData, "composite_price_filters");
         }
         init { ModelBase.Set(this._rawData, "composite_price_filters", value); }
     }
@@ -21770,20 +22054,24 @@ sealed class GroupedWithMinMaxThresholdsCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter19, CompositePriceFilter19FromRaw>))]
-public sealed record class CompositePriceFilter19 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedWithMinMaxThresholdsCompositePriceFilter,
+        GroupedWithMinMaxThresholdsCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class GroupedWithMinMaxThresholdsCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter19Field> Field
+    public required ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter19Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -21791,14 +22079,16 @@ public sealed record class CompositePriceFilter19 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter19Operator> Operator
+    public required ApiEnum<
+        string,
+        GroupedWithMinMaxThresholdsCompositePriceFilterOperator
+    > Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter19Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -21819,22 +22109,24 @@ public sealed record class CompositePriceFilter19 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter19() { }
+    public GroupedWithMinMaxThresholdsCompositePriceFilter() { }
 
-    public CompositePriceFilter19(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedWithMinMaxThresholdsCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter19(FrozenDictionary<string, JsonElement> rawData)
+    GroupedWithMinMaxThresholdsCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter19 FromRawUnchecked(
+    public static GroupedWithMinMaxThresholdsCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -21842,18 +22134,19 @@ public sealed record class CompositePriceFilter19 : ModelBase
     }
 }
 
-class CompositePriceFilter19FromRaw : IFromRaw<CompositePriceFilter19>
+class GroupedWithMinMaxThresholdsCompositePriceFilterFromRaw
+    : IFromRaw<GroupedWithMinMaxThresholdsCompositePriceFilter>
 {
-    public CompositePriceFilter19 FromRawUnchecked(
+    public GroupedWithMinMaxThresholdsCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter19.FromRawUnchecked(rawData);
+    ) => GroupedWithMinMaxThresholdsCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter19FieldConverter))]
-public enum CompositePriceFilter19Field
+[JsonConverter(typeof(GroupedWithMinMaxThresholdsCompositePriceFilterFieldConverter))]
+public enum GroupedWithMinMaxThresholdsCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -21862,9 +22155,10 @@ public enum CompositePriceFilter19Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter19FieldConverter : JsonConverter<CompositePriceFilter19Field>
+sealed class GroupedWithMinMaxThresholdsCompositePriceFilterFieldConverter
+    : JsonConverter<GroupedWithMinMaxThresholdsCompositePriceFilterField>
 {
-    public override CompositePriceFilter19Field Read(
+    public override GroupedWithMinMaxThresholdsCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -21872,18 +22166,18 @@ sealed class CompositePriceFilter19FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter19Field.PriceID,
-            "item_id" => CompositePriceFilter19Field.ItemID,
-            "price_type" => CompositePriceFilter19Field.PriceType,
-            "currency" => CompositePriceFilter19Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter19Field.PricingUnitID,
-            _ => (CompositePriceFilter19Field)(-1),
+            "price_id" => GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+            "item_id" => GroupedWithMinMaxThresholdsCompositePriceFilterField.ItemID,
+            "price_type" => GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceType,
+            "currency" => GroupedWithMinMaxThresholdsCompositePriceFilterField.Currency,
+            "pricing_unit_id" => GroupedWithMinMaxThresholdsCompositePriceFilterField.PricingUnitID,
+            _ => (GroupedWithMinMaxThresholdsCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter19Field value,
+        GroupedWithMinMaxThresholdsCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -21891,11 +22185,12 @@ sealed class CompositePriceFilter19FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter19Field.PriceID => "price_id",
-                CompositePriceFilter19Field.ItemID => "item_id",
-                CompositePriceFilter19Field.PriceType => "price_type",
-                CompositePriceFilter19Field.Currency => "currency",
-                CompositePriceFilter19Field.PricingUnitID => "pricing_unit_id",
+                GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID => "price_id",
+                GroupedWithMinMaxThresholdsCompositePriceFilterField.ItemID => "item_id",
+                GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceType => "price_type",
+                GroupedWithMinMaxThresholdsCompositePriceFilterField.Currency => "currency",
+                GroupedWithMinMaxThresholdsCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -21908,16 +22203,17 @@ sealed class CompositePriceFilter19FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter19OperatorConverter))]
-public enum CompositePriceFilter19Operator
+[JsonConverter(typeof(GroupedWithMinMaxThresholdsCompositePriceFilterOperatorConverter))]
+public enum GroupedWithMinMaxThresholdsCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter19OperatorConverter : JsonConverter<CompositePriceFilter19Operator>
+sealed class GroupedWithMinMaxThresholdsCompositePriceFilterOperatorConverter
+    : JsonConverter<GroupedWithMinMaxThresholdsCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter19Operator Read(
+    public override GroupedWithMinMaxThresholdsCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -21925,15 +22221,15 @@ sealed class CompositePriceFilter19OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter19Operator.Includes,
-            "excludes" => CompositePriceFilter19Operator.Excludes,
-            _ => (CompositePriceFilter19Operator)(-1),
+            "includes" => GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
+            "excludes" => GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Excludes,
+            _ => (GroupedWithMinMaxThresholdsCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter19Operator value,
+        GroupedWithMinMaxThresholdsCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -21941,8 +22237,8 @@ sealed class CompositePriceFilter19OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter19Operator.Includes => "includes",
-                CompositePriceFilter19Operator.Excludes => "excludes",
+                GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes => "includes",
+                GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -22333,11 +22629,11 @@ public sealed record class MatrixWithDisplayName : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter20>? CompositePriceFilters
+    public required IReadOnlyList<MatrixWithDisplayNameCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter20>>(
+            return ModelBase.GetNullableClass<List<MatrixWithDisplayNameCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -22727,20 +23023,24 @@ sealed class MatrixWithDisplayNameCadenceConverter : JsonConverter<MatrixWithDis
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter20, CompositePriceFilter20FromRaw>))]
-public sealed record class CompositePriceFilter20 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MatrixWithDisplayNameCompositePriceFilter,
+        MatrixWithDisplayNameCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class MatrixWithDisplayNameCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter20Field> Field
+    public required ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter20Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -22748,14 +23048,13 @@ public sealed record class CompositePriceFilter20 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter20Operator> Operator
+    public required ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter20Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -22776,22 +23075,24 @@ public sealed record class CompositePriceFilter20 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter20() { }
+    public MatrixWithDisplayNameCompositePriceFilter() { }
 
-    public CompositePriceFilter20(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixWithDisplayNameCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter20(FrozenDictionary<string, JsonElement> rawData)
+    MatrixWithDisplayNameCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter20 FromRawUnchecked(
+    public static MatrixWithDisplayNameCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -22799,18 +23100,19 @@ public sealed record class CompositePriceFilter20 : ModelBase
     }
 }
 
-class CompositePriceFilter20FromRaw : IFromRaw<CompositePriceFilter20>
+class MatrixWithDisplayNameCompositePriceFilterFromRaw
+    : IFromRaw<MatrixWithDisplayNameCompositePriceFilter>
 {
-    public CompositePriceFilter20 FromRawUnchecked(
+    public MatrixWithDisplayNameCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter20.FromRawUnchecked(rawData);
+    ) => MatrixWithDisplayNameCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter20FieldConverter))]
-public enum CompositePriceFilter20Field
+[JsonConverter(typeof(MatrixWithDisplayNameCompositePriceFilterFieldConverter))]
+public enum MatrixWithDisplayNameCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -22819,9 +23121,10 @@ public enum CompositePriceFilter20Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter20FieldConverter : JsonConverter<CompositePriceFilter20Field>
+sealed class MatrixWithDisplayNameCompositePriceFilterFieldConverter
+    : JsonConverter<MatrixWithDisplayNameCompositePriceFilterField>
 {
-    public override CompositePriceFilter20Field Read(
+    public override MatrixWithDisplayNameCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -22829,18 +23132,18 @@ sealed class CompositePriceFilter20FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter20Field.PriceID,
-            "item_id" => CompositePriceFilter20Field.ItemID,
-            "price_type" => CompositePriceFilter20Field.PriceType,
-            "currency" => CompositePriceFilter20Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter20Field.PricingUnitID,
-            _ => (CompositePriceFilter20Field)(-1),
+            "price_id" => MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+            "item_id" => MatrixWithDisplayNameCompositePriceFilterField.ItemID,
+            "price_type" => MatrixWithDisplayNameCompositePriceFilterField.PriceType,
+            "currency" => MatrixWithDisplayNameCompositePriceFilterField.Currency,
+            "pricing_unit_id" => MatrixWithDisplayNameCompositePriceFilterField.PricingUnitID,
+            _ => (MatrixWithDisplayNameCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter20Field value,
+        MatrixWithDisplayNameCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -22848,11 +23151,11 @@ sealed class CompositePriceFilter20FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter20Field.PriceID => "price_id",
-                CompositePriceFilter20Field.ItemID => "item_id",
-                CompositePriceFilter20Field.PriceType => "price_type",
-                CompositePriceFilter20Field.Currency => "currency",
-                CompositePriceFilter20Field.PricingUnitID => "pricing_unit_id",
+                MatrixWithDisplayNameCompositePriceFilterField.PriceID => "price_id",
+                MatrixWithDisplayNameCompositePriceFilterField.ItemID => "item_id",
+                MatrixWithDisplayNameCompositePriceFilterField.PriceType => "price_type",
+                MatrixWithDisplayNameCompositePriceFilterField.Currency => "currency",
+                MatrixWithDisplayNameCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -22865,16 +23168,17 @@ sealed class CompositePriceFilter20FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter20OperatorConverter))]
-public enum CompositePriceFilter20Operator
+[JsonConverter(typeof(MatrixWithDisplayNameCompositePriceFilterOperatorConverter))]
+public enum MatrixWithDisplayNameCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter20OperatorConverter : JsonConverter<CompositePriceFilter20Operator>
+sealed class MatrixWithDisplayNameCompositePriceFilterOperatorConverter
+    : JsonConverter<MatrixWithDisplayNameCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter20Operator Read(
+    public override MatrixWithDisplayNameCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -22882,15 +23186,15 @@ sealed class CompositePriceFilter20OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter20Operator.Includes,
-            "excludes" => CompositePriceFilter20Operator.Excludes,
-            _ => (CompositePriceFilter20Operator)(-1),
+            "includes" => MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
+            "excludes" => MatrixWithDisplayNameCompositePriceFilterOperator.Excludes,
+            _ => (MatrixWithDisplayNameCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter20Operator value,
+        MatrixWithDisplayNameCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -22898,8 +23202,8 @@ sealed class CompositePriceFilter20OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter20Operator.Includes => "includes",
-                CompositePriceFilter20Operator.Excludes => "excludes",
+                MatrixWithDisplayNameCompositePriceFilterOperator.Includes => "includes",
+                MatrixWithDisplayNameCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -23126,9 +23430,14 @@ public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfig : Mo
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required IReadOnlyList<UnitAmount4> UnitAmounts
+    public required IReadOnlyList<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount> UnitAmounts
     {
-        get { return ModelBase.GetNotNullClass<List<UnitAmount4>>(this.RawData, "unit_amounts"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount>
+            >(this.RawData, "unit_amounts");
+        }
         init { ModelBase.Set(this._rawData, "unit_amounts", value); }
     }
 
@@ -23177,8 +23486,13 @@ class MatrixWithDisplayNameMatrixWithDisplayNameConfigFromRaw
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount4, UnitAmount4FromRaw>))]
-public sealed record class UnitAmount4 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount,
+        MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmountFromRaw
+    >)
+)]
+public sealed record class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -23214,31 +23528,39 @@ public sealed record class UnitAmount4 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public UnitAmount4() { }
+    public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount() { }
 
-    public UnitAmount4(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitAmount4(FrozenDictionary<string, JsonElement> rawData)
+    MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UnitAmount4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UnitAmount4FromRaw : IFromRaw<UnitAmount4>
+class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmountFromRaw
+    : IFromRaw<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount>
 {
-    public UnitAmount4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        UnitAmount4.FromRawUnchecked(rawData);
+    public MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(MatrixWithDisplayNamePriceTypeConverter))]
@@ -23342,11 +23664,11 @@ public sealed record class GroupedTieredPackage : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter21>? CompositePriceFilters
+    public required IReadOnlyList<GroupedTieredPackageCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter21>>(
+            return ModelBase.GetNullableClass<List<GroupedTieredPackageCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -23736,20 +24058,24 @@ sealed class GroupedTieredPackageCadenceConverter : JsonConverter<GroupedTieredP
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter21, CompositePriceFilter21FromRaw>))]
-public sealed record class CompositePriceFilter21 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedTieredPackageCompositePriceFilter,
+        GroupedTieredPackageCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class GroupedTieredPackageCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter21Field> Field
+    public required ApiEnum<string, GroupedTieredPackageCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter21Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedTieredPackageCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -23757,14 +24083,13 @@ public sealed record class CompositePriceFilter21 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter21Operator> Operator
+    public required ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter21Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -23785,22 +24110,24 @@ public sealed record class CompositePriceFilter21 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter21() { }
+    public GroupedTieredPackageCompositePriceFilter() { }
 
-    public CompositePriceFilter21(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedTieredPackageCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter21(FrozenDictionary<string, JsonElement> rawData)
+    GroupedTieredPackageCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter21 FromRawUnchecked(
+    public static GroupedTieredPackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -23808,18 +24135,19 @@ public sealed record class CompositePriceFilter21 : ModelBase
     }
 }
 
-class CompositePriceFilter21FromRaw : IFromRaw<CompositePriceFilter21>
+class GroupedTieredPackageCompositePriceFilterFromRaw
+    : IFromRaw<GroupedTieredPackageCompositePriceFilter>
 {
-    public CompositePriceFilter21 FromRawUnchecked(
+    public GroupedTieredPackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter21.FromRawUnchecked(rawData);
+    ) => GroupedTieredPackageCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter21FieldConverter))]
-public enum CompositePriceFilter21Field
+[JsonConverter(typeof(GroupedTieredPackageCompositePriceFilterFieldConverter))]
+public enum GroupedTieredPackageCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -23828,9 +24156,10 @@ public enum CompositePriceFilter21Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter21FieldConverter : JsonConverter<CompositePriceFilter21Field>
+sealed class GroupedTieredPackageCompositePriceFilterFieldConverter
+    : JsonConverter<GroupedTieredPackageCompositePriceFilterField>
 {
-    public override CompositePriceFilter21Field Read(
+    public override GroupedTieredPackageCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -23838,18 +24167,18 @@ sealed class CompositePriceFilter21FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter21Field.PriceID,
-            "item_id" => CompositePriceFilter21Field.ItemID,
-            "price_type" => CompositePriceFilter21Field.PriceType,
-            "currency" => CompositePriceFilter21Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter21Field.PricingUnitID,
-            _ => (CompositePriceFilter21Field)(-1),
+            "price_id" => GroupedTieredPackageCompositePriceFilterField.PriceID,
+            "item_id" => GroupedTieredPackageCompositePriceFilterField.ItemID,
+            "price_type" => GroupedTieredPackageCompositePriceFilterField.PriceType,
+            "currency" => GroupedTieredPackageCompositePriceFilterField.Currency,
+            "pricing_unit_id" => GroupedTieredPackageCompositePriceFilterField.PricingUnitID,
+            _ => (GroupedTieredPackageCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter21Field value,
+        GroupedTieredPackageCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -23857,11 +24186,11 @@ sealed class CompositePriceFilter21FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter21Field.PriceID => "price_id",
-                CompositePriceFilter21Field.ItemID => "item_id",
-                CompositePriceFilter21Field.PriceType => "price_type",
-                CompositePriceFilter21Field.Currency => "currency",
-                CompositePriceFilter21Field.PricingUnitID => "pricing_unit_id",
+                GroupedTieredPackageCompositePriceFilterField.PriceID => "price_id",
+                GroupedTieredPackageCompositePriceFilterField.ItemID => "item_id",
+                GroupedTieredPackageCompositePriceFilterField.PriceType => "price_type",
+                GroupedTieredPackageCompositePriceFilterField.Currency => "currency",
+                GroupedTieredPackageCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -23874,16 +24203,17 @@ sealed class CompositePriceFilter21FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter21OperatorConverter))]
-public enum CompositePriceFilter21Operator
+[JsonConverter(typeof(GroupedTieredPackageCompositePriceFilterOperatorConverter))]
+public enum GroupedTieredPackageCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter21OperatorConverter : JsonConverter<CompositePriceFilter21Operator>
+sealed class GroupedTieredPackageCompositePriceFilterOperatorConverter
+    : JsonConverter<GroupedTieredPackageCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter21Operator Read(
+    public override GroupedTieredPackageCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -23891,15 +24221,15 @@ sealed class CompositePriceFilter21OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter21Operator.Includes,
-            "excludes" => CompositePriceFilter21Operator.Excludes,
-            _ => (CompositePriceFilter21Operator)(-1),
+            "includes" => GroupedTieredPackageCompositePriceFilterOperator.Includes,
+            "excludes" => GroupedTieredPackageCompositePriceFilterOperator.Excludes,
+            _ => (GroupedTieredPackageCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter21Operator value,
+        GroupedTieredPackageCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -23907,8 +24237,8 @@ sealed class CompositePriceFilter21OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter21Operator.Includes => "includes",
-                CompositePriceFilter21Operator.Excludes => "excludes",
+                GroupedTieredPackageCompositePriceFilterOperator.Includes => "includes",
+                GroupedTieredPackageCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -24145,9 +24475,14 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfig : Mode
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<Tier23> Tiers
+    public required IReadOnlyList<GroupedTieredPackageGroupedTieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier23>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<GroupedTieredPackageGroupedTieredPackageConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -24197,8 +24532,13 @@ class GroupedTieredPackageGroupedTieredPackageConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier23, Tier23FromRaw>))]
-public sealed record class Tier23 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedTieredPackageGroupedTieredPackageConfigTier,
+        GroupedTieredPackageGroupedTieredPackageConfigTierFromRaw
+    >)
+)]
+public sealed record class GroupedTieredPackageGroupedTieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -24224,31 +24564,39 @@ public sealed record class Tier23 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier23() { }
+    public GroupedTieredPackageGroupedTieredPackageConfigTier() { }
 
-    public Tier23(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedTieredPackageGroupedTieredPackageConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier23(FrozenDictionary<string, JsonElement> rawData)
+    GroupedTieredPackageGroupedTieredPackageConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedTieredPackageGroupedTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier23FromRaw : IFromRaw<Tier23>
+class GroupedTieredPackageGroupedTieredPackageConfigTierFromRaw
+    : IFromRaw<GroupedTieredPackageGroupedTieredPackageConfigTier>
 {
-    public Tier23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier23.FromRawUnchecked(rawData);
+    public GroupedTieredPackageGroupedTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredPackageGroupedTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(GroupedTieredPackagePriceTypeConverter))]
@@ -24352,11 +24700,11 @@ public sealed record class MaxGroupTieredPackage : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter22>? CompositePriceFilters
+    public required IReadOnlyList<MaxGroupTieredPackageCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter22>>(
+            return ModelBase.GetNullableClass<List<MaxGroupTieredPackageCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -24746,20 +25094,24 @@ sealed class MaxGroupTieredPackageCadenceConverter : JsonConverter<MaxGroupTiere
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter22, CompositePriceFilter22FromRaw>))]
-public sealed record class CompositePriceFilter22 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MaxGroupTieredPackageCompositePriceFilter,
+        MaxGroupTieredPackageCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class MaxGroupTieredPackageCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter22Field> Field
+    public required ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter22Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -24767,14 +25119,13 @@ public sealed record class CompositePriceFilter22 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter22Operator> Operator
+    public required ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter22Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -24795,22 +25146,24 @@ public sealed record class CompositePriceFilter22 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter22() { }
+    public MaxGroupTieredPackageCompositePriceFilter() { }
 
-    public CompositePriceFilter22(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MaxGroupTieredPackageCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter22(FrozenDictionary<string, JsonElement> rawData)
+    MaxGroupTieredPackageCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter22 FromRawUnchecked(
+    public static MaxGroupTieredPackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -24818,18 +25171,19 @@ public sealed record class CompositePriceFilter22 : ModelBase
     }
 }
 
-class CompositePriceFilter22FromRaw : IFromRaw<CompositePriceFilter22>
+class MaxGroupTieredPackageCompositePriceFilterFromRaw
+    : IFromRaw<MaxGroupTieredPackageCompositePriceFilter>
 {
-    public CompositePriceFilter22 FromRawUnchecked(
+    public MaxGroupTieredPackageCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter22.FromRawUnchecked(rawData);
+    ) => MaxGroupTieredPackageCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter22FieldConverter))]
-public enum CompositePriceFilter22Field
+[JsonConverter(typeof(MaxGroupTieredPackageCompositePriceFilterFieldConverter))]
+public enum MaxGroupTieredPackageCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -24838,9 +25192,10 @@ public enum CompositePriceFilter22Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter22FieldConverter : JsonConverter<CompositePriceFilter22Field>
+sealed class MaxGroupTieredPackageCompositePriceFilterFieldConverter
+    : JsonConverter<MaxGroupTieredPackageCompositePriceFilterField>
 {
-    public override CompositePriceFilter22Field Read(
+    public override MaxGroupTieredPackageCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -24848,18 +25203,18 @@ sealed class CompositePriceFilter22FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter22Field.PriceID,
-            "item_id" => CompositePriceFilter22Field.ItemID,
-            "price_type" => CompositePriceFilter22Field.PriceType,
-            "currency" => CompositePriceFilter22Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter22Field.PricingUnitID,
-            _ => (CompositePriceFilter22Field)(-1),
+            "price_id" => MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+            "item_id" => MaxGroupTieredPackageCompositePriceFilterField.ItemID,
+            "price_type" => MaxGroupTieredPackageCompositePriceFilterField.PriceType,
+            "currency" => MaxGroupTieredPackageCompositePriceFilterField.Currency,
+            "pricing_unit_id" => MaxGroupTieredPackageCompositePriceFilterField.PricingUnitID,
+            _ => (MaxGroupTieredPackageCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter22Field value,
+        MaxGroupTieredPackageCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -24867,11 +25222,11 @@ sealed class CompositePriceFilter22FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter22Field.PriceID => "price_id",
-                CompositePriceFilter22Field.ItemID => "item_id",
-                CompositePriceFilter22Field.PriceType => "price_type",
-                CompositePriceFilter22Field.Currency => "currency",
-                CompositePriceFilter22Field.PricingUnitID => "pricing_unit_id",
+                MaxGroupTieredPackageCompositePriceFilterField.PriceID => "price_id",
+                MaxGroupTieredPackageCompositePriceFilterField.ItemID => "item_id",
+                MaxGroupTieredPackageCompositePriceFilterField.PriceType => "price_type",
+                MaxGroupTieredPackageCompositePriceFilterField.Currency => "currency",
+                MaxGroupTieredPackageCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -24884,16 +25239,17 @@ sealed class CompositePriceFilter22FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter22OperatorConverter))]
-public enum CompositePriceFilter22Operator
+[JsonConverter(typeof(MaxGroupTieredPackageCompositePriceFilterOperatorConverter))]
+public enum MaxGroupTieredPackageCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter22OperatorConverter : JsonConverter<CompositePriceFilter22Operator>
+sealed class MaxGroupTieredPackageCompositePriceFilterOperatorConverter
+    : JsonConverter<MaxGroupTieredPackageCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter22Operator Read(
+    public override MaxGroupTieredPackageCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -24901,15 +25257,15 @@ sealed class CompositePriceFilter22OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter22Operator.Includes,
-            "excludes" => CompositePriceFilter22Operator.Excludes,
-            _ => (CompositePriceFilter22Operator)(-1),
+            "includes" => MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
+            "excludes" => MaxGroupTieredPackageCompositePriceFilterOperator.Excludes,
+            _ => (MaxGroupTieredPackageCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter22Operator value,
+        MaxGroupTieredPackageCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -24917,8 +25273,8 @@ sealed class CompositePriceFilter22OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter22Operator.Includes => "includes",
-                CompositePriceFilter22Operator.Excludes => "excludes",
+                MaxGroupTieredPackageCompositePriceFilterOperator.Includes => "includes",
+                MaxGroupTieredPackageCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -25154,9 +25510,14 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig : Mo
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required IReadOnlyList<Tier24> Tiers
+    public required IReadOnlyList<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier24>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -25206,8 +25567,13 @@ class MaxGroupTieredPackageMaxGroupTieredPackageConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier24, Tier24FromRaw>))]
-public sealed record class Tier24 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MaxGroupTieredPackageMaxGroupTieredPackageConfigTier,
+        MaxGroupTieredPackageMaxGroupTieredPackageConfigTierFromRaw
+    >)
+)]
+public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -25233,31 +25599,39 @@ public sealed record class Tier24 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier24() { }
+    public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier() { }
 
-    public Tier24(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier24(FrozenDictionary<string, JsonElement> rawData)
+    MaxGroupTieredPackageMaxGroupTieredPackageConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MaxGroupTieredPackageMaxGroupTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier24FromRaw : IFromRaw<Tier24>
+class MaxGroupTieredPackageMaxGroupTieredPackageConfigTierFromRaw
+    : IFromRaw<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier>
 {
-    public Tier24 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier24.FromRawUnchecked(rawData);
+    public MaxGroupTieredPackageMaxGroupTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaxGroupTieredPackageMaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(MaxGroupTieredPackagePriceTypeConverter))]
@@ -25362,14 +25736,13 @@ public sealed record class ScalableMatrixWithUnitPricing : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter23>? CompositePriceFilters
+    public required IReadOnlyList<ScalableMatrixWithUnitPricingCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter23>>(
-                this.RawData,
-                "composite_price_filters"
-            );
+            return ModelBase.GetNullableClass<
+                List<ScalableMatrixWithUnitPricingCompositePriceFilter>
+            >(this.RawData, "composite_price_filters");
         }
         init { ModelBase.Set(this._rawData, "composite_price_filters", value); }
     }
@@ -25760,20 +26133,24 @@ sealed class ScalableMatrixWithUnitPricingCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter23, CompositePriceFilter23FromRaw>))]
-public sealed record class CompositePriceFilter23 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithUnitPricingCompositePriceFilter,
+        ScalableMatrixWithUnitPricingCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithUnitPricingCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter23Field> Field
+    public required ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter23Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -25781,14 +26158,16 @@ public sealed record class CompositePriceFilter23 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter23Operator> Operator
+    public required ApiEnum<
+        string,
+        ScalableMatrixWithUnitPricingCompositePriceFilterOperator
+    > Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter23Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -25809,22 +26188,24 @@ public sealed record class CompositePriceFilter23 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter23() { }
+    public ScalableMatrixWithUnitPricingCompositePriceFilter() { }
 
-    public CompositePriceFilter23(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithUnitPricingCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter23(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithUnitPricingCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter23 FromRawUnchecked(
+    public static ScalableMatrixWithUnitPricingCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -25832,18 +26213,19 @@ public sealed record class CompositePriceFilter23 : ModelBase
     }
 }
 
-class CompositePriceFilter23FromRaw : IFromRaw<CompositePriceFilter23>
+class ScalableMatrixWithUnitPricingCompositePriceFilterFromRaw
+    : IFromRaw<ScalableMatrixWithUnitPricingCompositePriceFilter>
 {
-    public CompositePriceFilter23 FromRawUnchecked(
+    public ScalableMatrixWithUnitPricingCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter23.FromRawUnchecked(rawData);
+    ) => ScalableMatrixWithUnitPricingCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter23FieldConverter))]
-public enum CompositePriceFilter23Field
+[JsonConverter(typeof(ScalableMatrixWithUnitPricingCompositePriceFilterFieldConverter))]
+public enum ScalableMatrixWithUnitPricingCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -25852,9 +26234,10 @@ public enum CompositePriceFilter23Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter23FieldConverter : JsonConverter<CompositePriceFilter23Field>
+sealed class ScalableMatrixWithUnitPricingCompositePriceFilterFieldConverter
+    : JsonConverter<ScalableMatrixWithUnitPricingCompositePriceFilterField>
 {
-    public override CompositePriceFilter23Field Read(
+    public override ScalableMatrixWithUnitPricingCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -25862,18 +26245,19 @@ sealed class CompositePriceFilter23FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter23Field.PriceID,
-            "item_id" => CompositePriceFilter23Field.ItemID,
-            "price_type" => CompositePriceFilter23Field.PriceType,
-            "currency" => CompositePriceFilter23Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter23Field.PricingUnitID,
-            _ => (CompositePriceFilter23Field)(-1),
+            "price_id" => ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+            "item_id" => ScalableMatrixWithUnitPricingCompositePriceFilterField.ItemID,
+            "price_type" => ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceType,
+            "currency" => ScalableMatrixWithUnitPricingCompositePriceFilterField.Currency,
+            "pricing_unit_id" =>
+                ScalableMatrixWithUnitPricingCompositePriceFilterField.PricingUnitID,
+            _ => (ScalableMatrixWithUnitPricingCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter23Field value,
+        ScalableMatrixWithUnitPricingCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -25881,11 +26265,12 @@ sealed class CompositePriceFilter23FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter23Field.PriceID => "price_id",
-                CompositePriceFilter23Field.ItemID => "item_id",
-                CompositePriceFilter23Field.PriceType => "price_type",
-                CompositePriceFilter23Field.Currency => "currency",
-                CompositePriceFilter23Field.PricingUnitID => "pricing_unit_id",
+                ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID => "price_id",
+                ScalableMatrixWithUnitPricingCompositePriceFilterField.ItemID => "item_id",
+                ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceType => "price_type",
+                ScalableMatrixWithUnitPricingCompositePriceFilterField.Currency => "currency",
+                ScalableMatrixWithUnitPricingCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -25898,16 +26283,17 @@ sealed class CompositePriceFilter23FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter23OperatorConverter))]
-public enum CompositePriceFilter23Operator
+[JsonConverter(typeof(ScalableMatrixWithUnitPricingCompositePriceFilterOperatorConverter))]
+public enum ScalableMatrixWithUnitPricingCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter23OperatorConverter : JsonConverter<CompositePriceFilter23Operator>
+sealed class ScalableMatrixWithUnitPricingCompositePriceFilterOperatorConverter
+    : JsonConverter<ScalableMatrixWithUnitPricingCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter23Operator Read(
+    public override ScalableMatrixWithUnitPricingCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -25915,15 +26301,15 @@ sealed class CompositePriceFilter23OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter23Operator.Includes,
-            "excludes" => CompositePriceFilter23Operator.Excludes,
-            _ => (CompositePriceFilter23Operator)(-1),
+            "includes" => ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
+            "excludes" => ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Excludes,
+            _ => (ScalableMatrixWithUnitPricingCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter23Operator value,
+        ScalableMatrixWithUnitPricingCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -25931,8 +26317,8 @@ sealed class CompositePriceFilter23OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter23Operator.Includes => "includes",
-                CompositePriceFilter23Operator.Excludes => "excludes",
+                ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes => "includes",
+                ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -26208,14 +26594,13 @@ public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPr
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<MatrixScalingFactor3> MatrixScalingFactors
+    public required IReadOnlyList<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MatrixScalingFactor3>>(
-                this.RawData,
-                "matrix_scaling_factors"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+            >(this.RawData, "matrix_scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
     }
@@ -26297,8 +26682,14 @@ class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigFromRaw
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor3, MatrixScalingFactor3FromRaw>))]
-public sealed record class MatrixScalingFactor3 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+    : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -26334,22 +26725,26 @@ public sealed record class MatrixScalingFactor3 : ModelBase
         _ = this.SecondDimensionValue;
     }
 
-    public MatrixScalingFactor3() { }
+    public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
-    public MatrixScalingFactor3(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactor3(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixScalingFactor3 FromRawUnchecked(
+    public static ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -26357,11 +26752,15 @@ public sealed record class MatrixScalingFactor3 : ModelBase
     }
 }
 
-class MatrixScalingFactor3FromRaw : IFromRaw<MatrixScalingFactor3>
+class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    : IFromRaw<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
 {
-    public MatrixScalingFactor3 FromRawUnchecked(
+    public ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => MatrixScalingFactor3.FromRawUnchecked(rawData);
+    ) =>
+        ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(
@@ -26418,14 +26817,13 @@ public sealed record class ScalableMatrixWithTieredPricing : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter24>? CompositePriceFilters
+    public required IReadOnlyList<ScalableMatrixWithTieredPricingCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter24>>(
-                this.RawData,
-                "composite_price_filters"
-            );
+            return ModelBase.GetNullableClass<
+                List<ScalableMatrixWithTieredPricingCompositePriceFilter>
+            >(this.RawData, "composite_price_filters");
         }
         init { ModelBase.Set(this._rawData, "composite_price_filters", value); }
     }
@@ -26816,20 +27214,24 @@ sealed class ScalableMatrixWithTieredPricingCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter24, CompositePriceFilter24FromRaw>))]
-public sealed record class CompositePriceFilter24 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithTieredPricingCompositePriceFilter,
+        ScalableMatrixWithTieredPricingCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithTieredPricingCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter24Field> Field
+    public required ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter24Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -26837,14 +27239,16 @@ public sealed record class CompositePriceFilter24 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter24Operator> Operator
+    public required ApiEnum<
+        string,
+        ScalableMatrixWithTieredPricingCompositePriceFilterOperator
+    > Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter24Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -26865,22 +27269,26 @@ public sealed record class CompositePriceFilter24 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter24() { }
+    public ScalableMatrixWithTieredPricingCompositePriceFilter() { }
 
-    public CompositePriceFilter24(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithTieredPricingCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter24(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithTieredPricingCompositePriceFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter24 FromRawUnchecked(
+    public static ScalableMatrixWithTieredPricingCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -26888,18 +27296,19 @@ public sealed record class CompositePriceFilter24 : ModelBase
     }
 }
 
-class CompositePriceFilter24FromRaw : IFromRaw<CompositePriceFilter24>
+class ScalableMatrixWithTieredPricingCompositePriceFilterFromRaw
+    : IFromRaw<ScalableMatrixWithTieredPricingCompositePriceFilter>
 {
-    public CompositePriceFilter24 FromRawUnchecked(
+    public ScalableMatrixWithTieredPricingCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter24.FromRawUnchecked(rawData);
+    ) => ScalableMatrixWithTieredPricingCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter24FieldConverter))]
-public enum CompositePriceFilter24Field
+[JsonConverter(typeof(ScalableMatrixWithTieredPricingCompositePriceFilterFieldConverter))]
+public enum ScalableMatrixWithTieredPricingCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -26908,9 +27317,10 @@ public enum CompositePriceFilter24Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter24FieldConverter : JsonConverter<CompositePriceFilter24Field>
+sealed class ScalableMatrixWithTieredPricingCompositePriceFilterFieldConverter
+    : JsonConverter<ScalableMatrixWithTieredPricingCompositePriceFilterField>
 {
-    public override CompositePriceFilter24Field Read(
+    public override ScalableMatrixWithTieredPricingCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -26918,18 +27328,19 @@ sealed class CompositePriceFilter24FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter24Field.PriceID,
-            "item_id" => CompositePriceFilter24Field.ItemID,
-            "price_type" => CompositePriceFilter24Field.PriceType,
-            "currency" => CompositePriceFilter24Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter24Field.PricingUnitID,
-            _ => (CompositePriceFilter24Field)(-1),
+            "price_id" => ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+            "item_id" => ScalableMatrixWithTieredPricingCompositePriceFilterField.ItemID,
+            "price_type" => ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceType,
+            "currency" => ScalableMatrixWithTieredPricingCompositePriceFilterField.Currency,
+            "pricing_unit_id" =>
+                ScalableMatrixWithTieredPricingCompositePriceFilterField.PricingUnitID,
+            _ => (ScalableMatrixWithTieredPricingCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter24Field value,
+        ScalableMatrixWithTieredPricingCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -26937,11 +27348,12 @@ sealed class CompositePriceFilter24FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter24Field.PriceID => "price_id",
-                CompositePriceFilter24Field.ItemID => "item_id",
-                CompositePriceFilter24Field.PriceType => "price_type",
-                CompositePriceFilter24Field.Currency => "currency",
-                CompositePriceFilter24Field.PricingUnitID => "pricing_unit_id",
+                ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID => "price_id",
+                ScalableMatrixWithTieredPricingCompositePriceFilterField.ItemID => "item_id",
+                ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceType => "price_type",
+                ScalableMatrixWithTieredPricingCompositePriceFilterField.Currency => "currency",
+                ScalableMatrixWithTieredPricingCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -26954,16 +27366,17 @@ sealed class CompositePriceFilter24FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter24OperatorConverter))]
-public enum CompositePriceFilter24Operator
+[JsonConverter(typeof(ScalableMatrixWithTieredPricingCompositePriceFilterOperatorConverter))]
+public enum ScalableMatrixWithTieredPricingCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter24OperatorConverter : JsonConverter<CompositePriceFilter24Operator>
+sealed class ScalableMatrixWithTieredPricingCompositePriceFilterOperatorConverter
+    : JsonConverter<ScalableMatrixWithTieredPricingCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter24Operator Read(
+    public override ScalableMatrixWithTieredPricingCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -26971,15 +27384,15 @@ sealed class CompositePriceFilter24OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter24Operator.Includes,
-            "excludes" => CompositePriceFilter24Operator.Excludes,
-            _ => (CompositePriceFilter24Operator)(-1),
+            "includes" => ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
+            "excludes" => ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Excludes,
+            _ => (ScalableMatrixWithTieredPricingCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter24Operator value,
+        ScalableMatrixWithTieredPricingCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -26987,8 +27400,8 @@ sealed class CompositePriceFilter24OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter24Operator.Includes => "includes",
-                CompositePriceFilter24Operator.Excludes => "excludes",
+                ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes => "includes",
+                ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -27264,14 +27677,13 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<MatrixScalingFactor4> MatrixScalingFactors
+    public required IReadOnlyList<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MatrixScalingFactor4>>(
-                this.RawData,
-                "matrix_scaling_factors"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor>
+            >(this.RawData, "matrix_scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
     }
@@ -27279,9 +27691,14 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
     /// <summary>
     /// Tier pricing structure
     /// </summary>
-    public required IReadOnlyList<Tier25> Tiers
+    public required IReadOnlyList<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier25>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -27349,8 +27766,14 @@ class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigFromRa
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor4, MatrixScalingFactor4FromRaw>))]
-public sealed record class MatrixScalingFactor4 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor,
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactorFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+    : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -27386,22 +27809,27 @@ public sealed record class MatrixScalingFactor4 : ModelBase
         _ = this.SecondDimensionValue;
     }
 
-    public MatrixScalingFactor4() { }
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor()
+    { }
 
-    public MatrixScalingFactor4(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactor4(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixScalingFactor4 FromRawUnchecked(
+    public static ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -27409,18 +27837,28 @@ public sealed record class MatrixScalingFactor4 : ModelBase
     }
 }
 
-class MatrixScalingFactor4FromRaw : IFromRaw<MatrixScalingFactor4>
+class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactorFromRaw
+    : IFromRaw<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor>
 {
-    public MatrixScalingFactor4 FromRawUnchecked(
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => MatrixScalingFactor4.FromRawUnchecked(rawData);
+    ) =>
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier25, Tier25FromRaw>))]
-public sealed record class Tier25 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier,
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTierFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -27446,31 +27884,42 @@ public sealed record class Tier25 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier25() { }
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier() { }
 
-    public Tier25(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier25(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier25FromRaw : IFromRaw<Tier25>
+class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTierFromRaw
+    : IFromRaw<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier>
 {
-    public Tier25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier25.FromRawUnchecked(rawData);
+    public ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(typeof(ModelConverter<CumulativeGroupedBulk, CumulativeGroupedBulkFromRaw>))]
@@ -27527,11 +27976,11 @@ public sealed record class CumulativeGroupedBulk : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter25>? CompositePriceFilters
+    public required IReadOnlyList<CumulativeGroupedBulkCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter25>>(
+            return ModelBase.GetNullableClass<List<CumulativeGroupedBulkCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -27921,20 +28370,24 @@ sealed class CumulativeGroupedBulkCadenceConverter : JsonConverter<CumulativeGro
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter25, CompositePriceFilter25FromRaw>))]
-public sealed record class CompositePriceFilter25 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        CumulativeGroupedBulkCompositePriceFilter,
+        CumulativeGroupedBulkCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedBulkCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter25Field> Field
+    public required ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter25Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -27942,14 +28395,13 @@ public sealed record class CompositePriceFilter25 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter25Operator> Operator
+    public required ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter25Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -27970,22 +28422,24 @@ public sealed record class CompositePriceFilter25 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter25() { }
+    public CumulativeGroupedBulkCompositePriceFilter() { }
 
-    public CompositePriceFilter25(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CumulativeGroupedBulkCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter25(FrozenDictionary<string, JsonElement> rawData)
+    CumulativeGroupedBulkCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter25 FromRawUnchecked(
+    public static CumulativeGroupedBulkCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -27993,18 +28447,19 @@ public sealed record class CompositePriceFilter25 : ModelBase
     }
 }
 
-class CompositePriceFilter25FromRaw : IFromRaw<CompositePriceFilter25>
+class CumulativeGroupedBulkCompositePriceFilterFromRaw
+    : IFromRaw<CumulativeGroupedBulkCompositePriceFilter>
 {
-    public CompositePriceFilter25 FromRawUnchecked(
+    public CumulativeGroupedBulkCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter25.FromRawUnchecked(rawData);
+    ) => CumulativeGroupedBulkCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter25FieldConverter))]
-public enum CompositePriceFilter25Field
+[JsonConverter(typeof(CumulativeGroupedBulkCompositePriceFilterFieldConverter))]
+public enum CumulativeGroupedBulkCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -28013,9 +28468,10 @@ public enum CompositePriceFilter25Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter25FieldConverter : JsonConverter<CompositePriceFilter25Field>
+sealed class CumulativeGroupedBulkCompositePriceFilterFieldConverter
+    : JsonConverter<CumulativeGroupedBulkCompositePriceFilterField>
 {
-    public override CompositePriceFilter25Field Read(
+    public override CumulativeGroupedBulkCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -28023,18 +28479,18 @@ sealed class CompositePriceFilter25FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter25Field.PriceID,
-            "item_id" => CompositePriceFilter25Field.ItemID,
-            "price_type" => CompositePriceFilter25Field.PriceType,
-            "currency" => CompositePriceFilter25Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter25Field.PricingUnitID,
-            _ => (CompositePriceFilter25Field)(-1),
+            "price_id" => CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+            "item_id" => CumulativeGroupedBulkCompositePriceFilterField.ItemID,
+            "price_type" => CumulativeGroupedBulkCompositePriceFilterField.PriceType,
+            "currency" => CumulativeGroupedBulkCompositePriceFilterField.Currency,
+            "pricing_unit_id" => CumulativeGroupedBulkCompositePriceFilterField.PricingUnitID,
+            _ => (CumulativeGroupedBulkCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter25Field value,
+        CumulativeGroupedBulkCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -28042,11 +28498,11 @@ sealed class CompositePriceFilter25FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter25Field.PriceID => "price_id",
-                CompositePriceFilter25Field.ItemID => "item_id",
-                CompositePriceFilter25Field.PriceType => "price_type",
-                CompositePriceFilter25Field.Currency => "currency",
-                CompositePriceFilter25Field.PricingUnitID => "pricing_unit_id",
+                CumulativeGroupedBulkCompositePriceFilterField.PriceID => "price_id",
+                CumulativeGroupedBulkCompositePriceFilterField.ItemID => "item_id",
+                CumulativeGroupedBulkCompositePriceFilterField.PriceType => "price_type",
+                CumulativeGroupedBulkCompositePriceFilterField.Currency => "currency",
+                CumulativeGroupedBulkCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -28059,16 +28515,17 @@ sealed class CompositePriceFilter25FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter25OperatorConverter))]
-public enum CompositePriceFilter25Operator
+[JsonConverter(typeof(CumulativeGroupedBulkCompositePriceFilterOperatorConverter))]
+public enum CumulativeGroupedBulkCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter25OperatorConverter : JsonConverter<CompositePriceFilter25Operator>
+sealed class CumulativeGroupedBulkCompositePriceFilterOperatorConverter
+    : JsonConverter<CumulativeGroupedBulkCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter25Operator Read(
+    public override CumulativeGroupedBulkCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -28076,15 +28533,15 @@ sealed class CompositePriceFilter25OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter25Operator.Includes,
-            "excludes" => CompositePriceFilter25Operator.Excludes,
-            _ => (CompositePriceFilter25Operator)(-1),
+            "includes" => CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
+            "excludes" => CumulativeGroupedBulkCompositePriceFilterOperator.Excludes,
+            _ => (CumulativeGroupedBulkCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter25Operator value,
+        CumulativeGroupedBulkCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -28092,8 +28549,8 @@ sealed class CompositePriceFilter25OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter25Operator.Includes => "includes",
-                CompositePriceFilter25Operator.Excludes => "excludes",
+                CumulativeGroupedBulkCompositePriceFilterOperator.Includes => "includes",
+                CumulativeGroupedBulkCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -28311,14 +28768,13 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig : Mo
     /// <summary>
     /// Each tier lower bound must have the same group of values.
     /// </summary>
-    public required IReadOnlyList<DimensionValue1> DimensionValues
+    public required IReadOnlyList<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue> DimensionValues
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<DimensionValue1>>(
-                this.RawData,
-                "dimension_values"
-            );
+            return ModelBase.GetNotNullClass<
+                List<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue>
+            >(this.RawData, "dimension_values");
         }
         init { ModelBase.Set(this._rawData, "dimension_values", value); }
     }
@@ -28377,8 +28833,14 @@ class CumulativeGroupedBulkCumulativeGroupedBulkConfigFromRaw
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionValue1, DimensionValue1FromRaw>))]
-public sealed record class DimensionValue1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue,
+        CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValueFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
+    : ModelBase
 {
     /// <summary>
     /// Grouping key value
@@ -28414,31 +28876,39 @@ public sealed record class DimensionValue1 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public DimensionValue1() { }
+    public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue() { }
 
-    public DimensionValue1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionValue1(FrozenDictionary<string, JsonElement> rawData)
+    CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DimensionValue1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DimensionValue1FromRaw : IFromRaw<DimensionValue1>
+class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValueFromRaw
+    : IFromRaw<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue>
 {
-    public DimensionValue1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DimensionValue1.FromRawUnchecked(rawData);
+    public CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(CumulativeGroupedBulkPriceTypeConverter))]
@@ -28543,14 +29013,13 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter26>? CompositePriceFilters
+    public required IReadOnlyList<CumulativeGroupedAllocationCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter26>>(
-                this.RawData,
-                "composite_price_filters"
-            );
+            return ModelBase.GetNullableClass<
+                List<CumulativeGroupedAllocationCompositePriceFilter>
+            >(this.RawData, "composite_price_filters");
         }
         init { ModelBase.Set(this._rawData, "composite_price_filters", value); }
     }
@@ -28942,20 +29411,24 @@ sealed class CumulativeGroupedAllocationCadenceConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter26, CompositePriceFilter26FromRaw>))]
-public sealed record class CompositePriceFilter26 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        CumulativeGroupedAllocationCompositePriceFilter,
+        CumulativeGroupedAllocationCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class CumulativeGroupedAllocationCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter26Field> Field
+    public required ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter26Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -28963,14 +29436,16 @@ public sealed record class CompositePriceFilter26 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter26Operator> Operator
+    public required ApiEnum<
+        string,
+        CumulativeGroupedAllocationCompositePriceFilterOperator
+    > Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter26Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -28991,22 +29466,24 @@ public sealed record class CompositePriceFilter26 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter26() { }
+    public CumulativeGroupedAllocationCompositePriceFilter() { }
 
-    public CompositePriceFilter26(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CumulativeGroupedAllocationCompositePriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter26(FrozenDictionary<string, JsonElement> rawData)
+    CumulativeGroupedAllocationCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter26 FromRawUnchecked(
+    public static CumulativeGroupedAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -29014,18 +29491,19 @@ public sealed record class CompositePriceFilter26 : ModelBase
     }
 }
 
-class CompositePriceFilter26FromRaw : IFromRaw<CompositePriceFilter26>
+class CumulativeGroupedAllocationCompositePriceFilterFromRaw
+    : IFromRaw<CumulativeGroupedAllocationCompositePriceFilter>
 {
-    public CompositePriceFilter26 FromRawUnchecked(
+    public CumulativeGroupedAllocationCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter26.FromRawUnchecked(rawData);
+    ) => CumulativeGroupedAllocationCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter26FieldConverter))]
-public enum CompositePriceFilter26Field
+[JsonConverter(typeof(CumulativeGroupedAllocationCompositePriceFilterFieldConverter))]
+public enum CumulativeGroupedAllocationCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -29034,9 +29512,10 @@ public enum CompositePriceFilter26Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePriceFilter26Field>
+sealed class CumulativeGroupedAllocationCompositePriceFilterFieldConverter
+    : JsonConverter<CumulativeGroupedAllocationCompositePriceFilterField>
 {
-    public override CompositePriceFilter26Field Read(
+    public override CumulativeGroupedAllocationCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -29044,18 +29523,18 @@ sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter26Field.PriceID,
-            "item_id" => CompositePriceFilter26Field.ItemID,
-            "price_type" => CompositePriceFilter26Field.PriceType,
-            "currency" => CompositePriceFilter26Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter26Field.PricingUnitID,
-            _ => (CompositePriceFilter26Field)(-1),
+            "price_id" => CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+            "item_id" => CumulativeGroupedAllocationCompositePriceFilterField.ItemID,
+            "price_type" => CumulativeGroupedAllocationCompositePriceFilterField.PriceType,
+            "currency" => CumulativeGroupedAllocationCompositePriceFilterField.Currency,
+            "pricing_unit_id" => CumulativeGroupedAllocationCompositePriceFilterField.PricingUnitID,
+            _ => (CumulativeGroupedAllocationCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter26Field value,
+        CumulativeGroupedAllocationCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -29063,11 +29542,12 @@ sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter26Field.PriceID => "price_id",
-                CompositePriceFilter26Field.ItemID => "item_id",
-                CompositePriceFilter26Field.PriceType => "price_type",
-                CompositePriceFilter26Field.Currency => "currency",
-                CompositePriceFilter26Field.PricingUnitID => "pricing_unit_id",
+                CumulativeGroupedAllocationCompositePriceFilterField.PriceID => "price_id",
+                CumulativeGroupedAllocationCompositePriceFilterField.ItemID => "item_id",
+                CumulativeGroupedAllocationCompositePriceFilterField.PriceType => "price_type",
+                CumulativeGroupedAllocationCompositePriceFilterField.Currency => "currency",
+                CumulativeGroupedAllocationCompositePriceFilterField.PricingUnitID =>
+                    "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -29080,16 +29560,17 @@ sealed class CompositePriceFilter26FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter26OperatorConverter))]
-public enum CompositePriceFilter26Operator
+[JsonConverter(typeof(CumulativeGroupedAllocationCompositePriceFilterOperatorConverter))]
+public enum CumulativeGroupedAllocationCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePriceFilter26Operator>
+sealed class CumulativeGroupedAllocationCompositePriceFilterOperatorConverter
+    : JsonConverter<CumulativeGroupedAllocationCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter26Operator Read(
+    public override CumulativeGroupedAllocationCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -29097,15 +29578,15 @@ sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter26Operator.Includes,
-            "excludes" => CompositePriceFilter26Operator.Excludes,
-            _ => (CompositePriceFilter26Operator)(-1),
+            "includes" => CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
+            "excludes" => CumulativeGroupedAllocationCompositePriceFilterOperator.Excludes,
+            _ => (CumulativeGroupedAllocationCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter26Operator value,
+        CumulativeGroupedAllocationCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -29113,8 +29594,8 @@ sealed class CompositePriceFilter26OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter26Operator.Includes => "includes",
-                CompositePriceFilter26Operator.Excludes => "excludes",
+                CumulativeGroupedAllocationCompositePriceFilterOperator.Includes => "includes",
+                CumulativeGroupedAllocationCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -29505,11 +29986,11 @@ public sealed record class PriceMinimum : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter27>? CompositePriceFilters
+    public required IReadOnlyList<PriceMinimumCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter27>>(
+            return ModelBase.GetNullableClass<List<PriceMinimumCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -29895,20 +30376,24 @@ sealed class PriceMinimumCadenceConverter : JsonConverter<PriceMinimumCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter27, CompositePriceFilter27FromRaw>))]
-public sealed record class CompositePriceFilter27 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PriceMinimumCompositePriceFilter,
+        PriceMinimumCompositePriceFilterFromRaw
+    >)
+)]
+public sealed record class PriceMinimumCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter27Field> Field
+    public required ApiEnum<string, PriceMinimumCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter27Field>>(
-                this.RawData,
-                "field"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PriceMinimumCompositePriceFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -29916,14 +30401,13 @@ public sealed record class CompositePriceFilter27 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter27Operator> Operator
+    public required ApiEnum<string, PriceMinimumCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter27Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PriceMinimumCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -29944,22 +30428,22 @@ public sealed record class CompositePriceFilter27 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter27() { }
+    public PriceMinimumCompositePriceFilter() { }
 
-    public CompositePriceFilter27(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceMinimumCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter27(FrozenDictionary<string, JsonElement> rawData)
+    PriceMinimumCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter27 FromRawUnchecked(
+    public static PriceMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -29967,18 +30451,18 @@ public sealed record class CompositePriceFilter27 : ModelBase
     }
 }
 
-class CompositePriceFilter27FromRaw : IFromRaw<CompositePriceFilter27>
+class PriceMinimumCompositePriceFilterFromRaw : IFromRaw<PriceMinimumCompositePriceFilter>
 {
-    public CompositePriceFilter27 FromRawUnchecked(
+    public PriceMinimumCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter27.FromRawUnchecked(rawData);
+    ) => PriceMinimumCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter27FieldConverter))]
-public enum CompositePriceFilter27Field
+[JsonConverter(typeof(PriceMinimumCompositePriceFilterFieldConverter))]
+public enum PriceMinimumCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -29987,9 +30471,10 @@ public enum CompositePriceFilter27Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePriceFilter27Field>
+sealed class PriceMinimumCompositePriceFilterFieldConverter
+    : JsonConverter<PriceMinimumCompositePriceFilterField>
 {
-    public override CompositePriceFilter27Field Read(
+    public override PriceMinimumCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -29997,18 +30482,18 @@ sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter27Field.PriceID,
-            "item_id" => CompositePriceFilter27Field.ItemID,
-            "price_type" => CompositePriceFilter27Field.PriceType,
-            "currency" => CompositePriceFilter27Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter27Field.PricingUnitID,
-            _ => (CompositePriceFilter27Field)(-1),
+            "price_id" => PriceMinimumCompositePriceFilterField.PriceID,
+            "item_id" => PriceMinimumCompositePriceFilterField.ItemID,
+            "price_type" => PriceMinimumCompositePriceFilterField.PriceType,
+            "currency" => PriceMinimumCompositePriceFilterField.Currency,
+            "pricing_unit_id" => PriceMinimumCompositePriceFilterField.PricingUnitID,
+            _ => (PriceMinimumCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter27Field value,
+        PriceMinimumCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -30016,11 +30501,11 @@ sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter27Field.PriceID => "price_id",
-                CompositePriceFilter27Field.ItemID => "item_id",
-                CompositePriceFilter27Field.PriceType => "price_type",
-                CompositePriceFilter27Field.Currency => "currency",
-                CompositePriceFilter27Field.PricingUnitID => "pricing_unit_id",
+                PriceMinimumCompositePriceFilterField.PriceID => "price_id",
+                PriceMinimumCompositePriceFilterField.ItemID => "item_id",
+                PriceMinimumCompositePriceFilterField.PriceType => "price_type",
+                PriceMinimumCompositePriceFilterField.Currency => "currency",
+                PriceMinimumCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -30033,16 +30518,17 @@ sealed class CompositePriceFilter27FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter27OperatorConverter))]
-public enum CompositePriceFilter27Operator
+[JsonConverter(typeof(PriceMinimumCompositePriceFilterOperatorConverter))]
+public enum PriceMinimumCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePriceFilter27Operator>
+sealed class PriceMinimumCompositePriceFilterOperatorConverter
+    : JsonConverter<PriceMinimumCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter27Operator Read(
+    public override PriceMinimumCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -30050,15 +30536,15 @@ sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter27Operator.Includes,
-            "excludes" => CompositePriceFilter27Operator.Excludes,
-            _ => (CompositePriceFilter27Operator)(-1),
+            "includes" => PriceMinimumCompositePriceFilterOperator.Includes,
+            "excludes" => PriceMinimumCompositePriceFilterOperator.Excludes,
+            _ => (PriceMinimumCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter27Operator value,
+        PriceMinimumCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -30066,8 +30552,8 @@ sealed class CompositePriceFilter27OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter27Operator.Includes => "includes",
-                CompositePriceFilter27Operator.Excludes => "excludes",
+                PriceMinimumCompositePriceFilterOperator.Includes => "includes",
+                PriceMinimumCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -30447,11 +30933,11 @@ public sealed record class Percent : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter28>? CompositePriceFilters
+    public required IReadOnlyList<PercentCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter28>>(
+            return ModelBase.GetNullableClass<List<PercentCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -30831,17 +31317,19 @@ sealed class PercentCadenceConverter : JsonConverter<PercentCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter28, CompositePriceFilter28FromRaw>))]
-public sealed record class CompositePriceFilter28 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<PercentCompositePriceFilter, PercentCompositePriceFilterFromRaw>)
+)]
+public sealed record class PercentCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter28Field> Field
+    public required ApiEnum<string, PercentCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter28Field>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, PercentCompositePriceFilterField>>(
                 this.RawData,
                 "field"
             );
@@ -30852,11 +31340,11 @@ public sealed record class CompositePriceFilter28 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter28Operator> Operator
+    public required ApiEnum<string, PercentCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter28Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, PercentCompositePriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -30880,22 +31368,22 @@ public sealed record class CompositePriceFilter28 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter28() { }
+    public PercentCompositePriceFilter() { }
 
-    public CompositePriceFilter28(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PercentCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter28(FrozenDictionary<string, JsonElement> rawData)
+    PercentCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter28 FromRawUnchecked(
+    public static PercentCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -30903,18 +31391,18 @@ public sealed record class CompositePriceFilter28 : ModelBase
     }
 }
 
-class CompositePriceFilter28FromRaw : IFromRaw<CompositePriceFilter28>
+class PercentCompositePriceFilterFromRaw : IFromRaw<PercentCompositePriceFilter>
 {
-    public CompositePriceFilter28 FromRawUnchecked(
+    public PercentCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter28.FromRawUnchecked(rawData);
+    ) => PercentCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter28FieldConverter))]
-public enum CompositePriceFilter28Field
+[JsonConverter(typeof(PercentCompositePriceFilterFieldConverter))]
+public enum PercentCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -30923,9 +31411,10 @@ public enum CompositePriceFilter28Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePriceFilter28Field>
+sealed class PercentCompositePriceFilterFieldConverter
+    : JsonConverter<PercentCompositePriceFilterField>
 {
-    public override CompositePriceFilter28Field Read(
+    public override PercentCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -30933,18 +31422,18 @@ sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter28Field.PriceID,
-            "item_id" => CompositePriceFilter28Field.ItemID,
-            "price_type" => CompositePriceFilter28Field.PriceType,
-            "currency" => CompositePriceFilter28Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter28Field.PricingUnitID,
-            _ => (CompositePriceFilter28Field)(-1),
+            "price_id" => PercentCompositePriceFilterField.PriceID,
+            "item_id" => PercentCompositePriceFilterField.ItemID,
+            "price_type" => PercentCompositePriceFilterField.PriceType,
+            "currency" => PercentCompositePriceFilterField.Currency,
+            "pricing_unit_id" => PercentCompositePriceFilterField.PricingUnitID,
+            _ => (PercentCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter28Field value,
+        PercentCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -30952,11 +31441,11 @@ sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter28Field.PriceID => "price_id",
-                CompositePriceFilter28Field.ItemID => "item_id",
-                CompositePriceFilter28Field.PriceType => "price_type",
-                CompositePriceFilter28Field.Currency => "currency",
-                CompositePriceFilter28Field.PricingUnitID => "pricing_unit_id",
+                PercentCompositePriceFilterField.PriceID => "price_id",
+                PercentCompositePriceFilterField.ItemID => "item_id",
+                PercentCompositePriceFilterField.PriceType => "price_type",
+                PercentCompositePriceFilterField.Currency => "currency",
+                PercentCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -30969,16 +31458,17 @@ sealed class CompositePriceFilter28FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter28OperatorConverter))]
-public enum CompositePriceFilter28Operator
+[JsonConverter(typeof(PercentCompositePriceFilterOperatorConverter))]
+public enum PercentCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePriceFilter28Operator>
+sealed class PercentCompositePriceFilterOperatorConverter
+    : JsonConverter<PercentCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter28Operator Read(
+    public override PercentCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -30986,15 +31476,15 @@ sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter28Operator.Includes,
-            "excludes" => CompositePriceFilter28Operator.Excludes,
-            _ => (CompositePriceFilter28Operator)(-1),
+            "includes" => PercentCompositePriceFilterOperator.Includes,
+            "excludes" => PercentCompositePriceFilterOperator.Excludes,
+            _ => (PercentCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter28Operator value,
+        PercentCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -31002,8 +31492,8 @@ sealed class CompositePriceFilter28OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter28Operator.Includes => "includes",
-                CompositePriceFilter28Operator.Excludes => "excludes",
+                PercentCompositePriceFilterOperator.Includes => "includes",
+                PercentCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -31361,11 +31851,11 @@ public sealed record class EventOutput : ModelBase
         init { ModelBase.Set(this._rawData, "cadence", value); }
     }
 
-    public required IReadOnlyList<CompositePriceFilter29>? CompositePriceFilters
+    public required IReadOnlyList<EventOutputCompositePriceFilter>? CompositePriceFilters
     {
         get
         {
-            return ModelBase.GetNullableClass<List<CompositePriceFilter29>>(
+            return ModelBase.GetNullableClass<List<EventOutputCompositePriceFilter>>(
                 this.RawData,
                 "composite_price_filters"
             );
@@ -31751,17 +32241,19 @@ sealed class EventOutputCadenceConverter : JsonConverter<EventOutputCadence>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<CompositePriceFilter29, CompositePriceFilter29FromRaw>))]
-public sealed record class CompositePriceFilter29 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<EventOutputCompositePriceFilter, EventOutputCompositePriceFilterFromRaw>)
+)]
+public sealed record class EventOutputCompositePriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter29Field> Field
+    public required ApiEnum<string, EventOutputCompositePriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter29Field>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, EventOutputCompositePriceFilterField>>(
                 this.RawData,
                 "field"
             );
@@ -31772,14 +32264,13 @@ public sealed record class CompositePriceFilter29 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, CompositePriceFilter29Operator> Operator
+    public required ApiEnum<string, EventOutputCompositePriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CompositePriceFilter29Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, EventOutputCompositePriceFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -31800,22 +32291,22 @@ public sealed record class CompositePriceFilter29 : ModelBase
         _ = this.Values;
     }
 
-    public CompositePriceFilter29() { }
+    public EventOutputCompositePriceFilter() { }
 
-    public CompositePriceFilter29(IReadOnlyDictionary<string, JsonElement> rawData)
+    public EventOutputCompositePriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CompositePriceFilter29(FrozenDictionary<string, JsonElement> rawData)
+    EventOutputCompositePriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CompositePriceFilter29 FromRawUnchecked(
+    public static EventOutputCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -31823,18 +32314,18 @@ public sealed record class CompositePriceFilter29 : ModelBase
     }
 }
 
-class CompositePriceFilter29FromRaw : IFromRaw<CompositePriceFilter29>
+class EventOutputCompositePriceFilterFromRaw : IFromRaw<EventOutputCompositePriceFilter>
 {
-    public CompositePriceFilter29 FromRawUnchecked(
+    public EventOutputCompositePriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CompositePriceFilter29.FromRawUnchecked(rawData);
+    ) => EventOutputCompositePriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter29FieldConverter))]
-public enum CompositePriceFilter29Field
+[JsonConverter(typeof(EventOutputCompositePriceFilterFieldConverter))]
+public enum EventOutputCompositePriceFilterField
 {
     PriceID,
     ItemID,
@@ -31843,9 +32334,10 @@ public enum CompositePriceFilter29Field
     PricingUnitID,
 }
 
-sealed class CompositePriceFilter29FieldConverter : JsonConverter<CompositePriceFilter29Field>
+sealed class EventOutputCompositePriceFilterFieldConverter
+    : JsonConverter<EventOutputCompositePriceFilterField>
 {
-    public override CompositePriceFilter29Field Read(
+    public override EventOutputCompositePriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -31853,18 +32345,18 @@ sealed class CompositePriceFilter29FieldConverter : JsonConverter<CompositePrice
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => CompositePriceFilter29Field.PriceID,
-            "item_id" => CompositePriceFilter29Field.ItemID,
-            "price_type" => CompositePriceFilter29Field.PriceType,
-            "currency" => CompositePriceFilter29Field.Currency,
-            "pricing_unit_id" => CompositePriceFilter29Field.PricingUnitID,
-            _ => (CompositePriceFilter29Field)(-1),
+            "price_id" => EventOutputCompositePriceFilterField.PriceID,
+            "item_id" => EventOutputCompositePriceFilterField.ItemID,
+            "price_type" => EventOutputCompositePriceFilterField.PriceType,
+            "currency" => EventOutputCompositePriceFilterField.Currency,
+            "pricing_unit_id" => EventOutputCompositePriceFilterField.PricingUnitID,
+            _ => (EventOutputCompositePriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter29Field value,
+        EventOutputCompositePriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -31872,11 +32364,11 @@ sealed class CompositePriceFilter29FieldConverter : JsonConverter<CompositePrice
             writer,
             value switch
             {
-                CompositePriceFilter29Field.PriceID => "price_id",
-                CompositePriceFilter29Field.ItemID => "item_id",
-                CompositePriceFilter29Field.PriceType => "price_type",
-                CompositePriceFilter29Field.Currency => "currency",
-                CompositePriceFilter29Field.PricingUnitID => "pricing_unit_id",
+                EventOutputCompositePriceFilterField.PriceID => "price_id",
+                EventOutputCompositePriceFilterField.ItemID => "item_id",
+                EventOutputCompositePriceFilterField.PriceType => "price_type",
+                EventOutputCompositePriceFilterField.Currency => "currency",
+                EventOutputCompositePriceFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -31889,16 +32381,17 @@ sealed class CompositePriceFilter29FieldConverter : JsonConverter<CompositePrice
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(CompositePriceFilter29OperatorConverter))]
-public enum CompositePriceFilter29Operator
+[JsonConverter(typeof(EventOutputCompositePriceFilterOperatorConverter))]
+public enum EventOutputCompositePriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class CompositePriceFilter29OperatorConverter : JsonConverter<CompositePriceFilter29Operator>
+sealed class EventOutputCompositePriceFilterOperatorConverter
+    : JsonConverter<EventOutputCompositePriceFilterOperator>
 {
-    public override CompositePriceFilter29Operator Read(
+    public override EventOutputCompositePriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -31906,15 +32399,15 @@ sealed class CompositePriceFilter29OperatorConverter : JsonConverter<CompositePr
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => CompositePriceFilter29Operator.Includes,
-            "excludes" => CompositePriceFilter29Operator.Excludes,
-            _ => (CompositePriceFilter29Operator)(-1),
+            "includes" => EventOutputCompositePriceFilterOperator.Includes,
+            "excludes" => EventOutputCompositePriceFilterOperator.Excludes,
+            _ => (EventOutputCompositePriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CompositePriceFilter29Operator value,
+        EventOutputCompositePriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -31922,8 +32415,8 @@ sealed class CompositePriceFilter29OperatorConverter : JsonConverter<CompositePr
             writer,
             value switch
             {
-                CompositePriceFilter29Operator.Includes => "includes",
-                CompositePriceFilter29Operator.Excludes => "excludes",
+                EventOutputCompositePriceFilterOperator.Includes => "includes",
+                EventOutputCompositePriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

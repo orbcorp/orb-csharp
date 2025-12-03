@@ -19,7 +19,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -30,11 +30,11 @@ public class ItemTest : TestBase
 
         string expectedID = "id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<ExternalConnectionModel> expectedExternalConnections =
+        List<ItemExternalConnection> expectedExternalConnections =
         [
             new()
             {
-                ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                 ExternalEntityID = "external_entity_id",
             },
         ];
@@ -71,7 +71,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -97,7 +97,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -112,11 +112,11 @@ public class ItemTest : TestBase
 
         string expectedID = "id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<ExternalConnectionModel> expectedExternalConnections =
+        List<ItemExternalConnection> expectedExternalConnections =
         [
             new()
             {
-                ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                 ExternalEntityID = "external_entity_id",
             },
         ];
@@ -153,7 +153,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -176,7 +176,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -199,7 +199,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -221,7 +221,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -246,7 +246,7 @@ public class ItemTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -260,21 +260,21 @@ public class ItemTest : TestBase
     }
 }
 
-public class ExternalConnectionModelTest : TestBase
+public class ItemExternalConnectionTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ExternalConnectionModel
+        var model = new ItemExternalConnection
         {
-            ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+            ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
             ExternalEntityID = "external_entity_id",
         };
 
         ApiEnum<
             string,
-            ExternalConnectionModelExternalConnectionName
-        > expectedExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe;
+            ItemExternalConnectionExternalConnectionName
+        > expectedExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe;
         string expectedExternalEntityID = "external_entity_id";
 
         Assert.Equal(expectedExternalConnectionName, model.ExternalConnectionName);
@@ -284,14 +284,14 @@ public class ExternalConnectionModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ExternalConnectionModel
+        var model = new ItemExternalConnection
         {
-            ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+            ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
             ExternalEntityID = "external_entity_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ExternalConnectionModel>(json);
+        var deserialized = JsonSerializer.Deserialize<ItemExternalConnection>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -299,20 +299,20 @@ public class ExternalConnectionModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ExternalConnectionModel
+        var model = new ItemExternalConnection
         {
-            ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+            ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
             ExternalEntityID = "external_entity_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ExternalConnectionModel>(json);
+        var deserialized = JsonSerializer.Deserialize<ItemExternalConnection>(json);
         Assert.NotNull(deserialized);
 
         ApiEnum<
             string,
-            ExternalConnectionModelExternalConnectionName
-        > expectedExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe;
+            ItemExternalConnectionExternalConnectionName
+        > expectedExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe;
         string expectedExternalEntityID = "external_entity_id";
 
         Assert.Equal(expectedExternalConnectionName, deserialized.ExternalConnectionName);
@@ -322,9 +322,9 @@ public class ExternalConnectionModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ExternalConnectionModel
+        var model = new ItemExternalConnection
         {
-            ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+            ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
             ExternalEntityID = "external_entity_id",
         };
 

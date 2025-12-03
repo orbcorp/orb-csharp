@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,9 +11,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -28,19 +28,20 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -56,16 +57,18 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceCadence> expectedCadence =
-            NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual;
         string expectedItemID = "item_id";
-        MatrixWithDisplayNameConfig expectedMatrixWithDisplayNameConfig = new()
+        Subscriptions::MatrixWithDisplayNameConfig expectedMatrixWithDisplayNameConfig = new()
         {
             Dimension = "dimension",
             UnitAmounts =
@@ -78,25 +81,28 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                 },
             ],
         };
-        ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceModelType> expectedModelType =
-            NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -105,10 +111,10 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -142,9 +148,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -159,19 +165,20 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -187,16 +194,17 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -204,9 +212,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -221,19 +229,20 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -249,22 +258,25 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceCadence> expectedCadence =
-            NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual;
         string expectedItemID = "item_id";
-        MatrixWithDisplayNameConfig expectedMatrixWithDisplayNameConfig = new()
+        Subscriptions::MatrixWithDisplayNameConfig expectedMatrixWithDisplayNameConfig = new()
         {
             Dimension = "dimension",
             UnitAmounts =
@@ -277,25 +289,28 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                 },
             ],
         };
-        ApiEnum<string, NewSubscriptionMatrixWithDisplayNamePriceModelType> expectedModelType =
-            NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -304,10 +319,10 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -344,9 +359,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -361,19 +376,20 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -389,7 +405,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -401,9 +417,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -418,7 +434,8 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
         };
 
@@ -453,9 +470,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -470,7 +487,8 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
         };
 
@@ -480,9 +498,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -497,7 +515,8 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -546,9 +565,9 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionMatrixWithDisplayNamePrice
+        var model = new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice
         {
-            Cadence = NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceCadence.Annual,
             ItemID = "item_id",
             MatrixWithDisplayNameConfig = new()
             {
@@ -563,7 +582,8 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
                     },
                 ],
             },
-            ModelType = NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+            ModelType =
+                Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -590,7 +610,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixWithDisplayNameConfig
+        var model = new Subscriptions::MatrixWithDisplayNameConfig
         {
             Dimension = "dimension",
             UnitAmounts =
@@ -605,7 +625,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
         };
 
         string expectedDimension = "dimension";
-        List<UnitAmountModel> expectedUnitAmounts =
+        List<Subscriptions::MatrixWithDisplayNameConfigUnitAmount> expectedUnitAmounts =
         [
             new()
             {
@@ -626,7 +646,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixWithDisplayNameConfig
+        var model = new Subscriptions::MatrixWithDisplayNameConfig
         {
             Dimension = "dimension",
             UnitAmounts =
@@ -641,7 +661,9 @@ public class MatrixWithDisplayNameConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfig>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -649,7 +671,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixWithDisplayNameConfig
+        var model = new Subscriptions::MatrixWithDisplayNameConfig
         {
             Dimension = "dimension",
             UnitAmounts =
@@ -664,11 +686,13 @@ public class MatrixWithDisplayNameConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfig>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedDimension = "dimension";
-        List<UnitAmountModel> expectedUnitAmounts =
+        List<Subscriptions::MatrixWithDisplayNameConfigUnitAmount> expectedUnitAmounts =
         [
             new()
             {
@@ -689,7 +713,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixWithDisplayNameConfig
+        var model = new Subscriptions::MatrixWithDisplayNameConfig
         {
             Dimension = "dimension",
             UnitAmounts =
@@ -707,12 +731,12 @@ public class MatrixWithDisplayNameConfigTest : TestBase
     }
 }
 
-public class UnitAmountModelTest : TestBase
+public class MatrixWithDisplayNameConfigUnitAmountTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmountModel
+        var model = new Subscriptions::MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -731,7 +755,7 @@ public class UnitAmountModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmountModel
+        var model = new Subscriptions::MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -739,7 +763,8 @@ public class UnitAmountModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmountModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfigUnitAmount>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -747,7 +772,7 @@ public class UnitAmountModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmountModel
+        var model = new Subscriptions::MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -755,7 +780,8 @@ public class UnitAmountModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmountModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfigUnitAmount>(json);
         Assert.NotNull(deserialized);
 
         string expectedDimensionValue = "dimension_value";
@@ -770,7 +796,7 @@ public class UnitAmountModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmountModel
+        var model = new Subscriptions::MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",

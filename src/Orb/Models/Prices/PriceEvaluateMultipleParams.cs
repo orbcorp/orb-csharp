@@ -2574,11 +2574,11 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Prices.FilterModel> Filters
+    public required IReadOnlyList<PriceBulkWithFiltersBulkWithFiltersConfigFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Prices.FilterModel>>(
+            return ModelBase.GetNotNullClass<List<PriceBulkWithFiltersBulkWithFiltersConfigFilter>>(
                 this.RawData,
                 "filters"
             );
@@ -2589,11 +2589,11 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Prices.TierModel> Tiers
+    public required IReadOnlyList<PriceBulkWithFiltersBulkWithFiltersConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Prices.TierModel>>(
+            return ModelBase.GetNotNullClass<List<PriceBulkWithFiltersBulkWithFiltersConfigTier>>(
                 this.RawData,
                 "tiers"
             );
@@ -2651,11 +2651,11 @@ class PriceBulkWithFiltersBulkWithFiltersConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Prices.FilterModel,
-        global::Orb.Models.Prices.FilterModelFromRaw
+        PriceBulkWithFiltersBulkWithFiltersConfigFilter,
+        PriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
-public sealed record class FilterModel : ModelBase
+public sealed record class PriceBulkWithFiltersBulkWithFiltersConfigFilter : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -2681,22 +2681,24 @@ public sealed record class FilterModel : ModelBase
         _ = this.PropertyValue;
     }
 
-    public FilterModel() { }
+    public PriceBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
-    public FilterModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FilterModel(FrozenDictionary<string, JsonElement> rawData)
+    PriceBulkWithFiltersBulkWithFiltersConfigFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Prices.FilterModel FromRawUnchecked(
+    public static PriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2704,11 +2706,12 @@ public sealed record class FilterModel : ModelBase
     }
 }
 
-class FilterModelFromRaw : IFromRaw<global::Orb.Models.Prices.FilterModel>
+class PriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
+    : IFromRaw<PriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
-    public global::Orb.Models.Prices.FilterModel FromRawUnchecked(
+    public PriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Prices.FilterModel.FromRawUnchecked(rawData);
+    ) => PriceBulkWithFiltersBulkWithFiltersConfigFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -2716,11 +2719,11 @@ class FilterModelFromRaw : IFromRaw<global::Orb.Models.Prices.FilterModel>
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Prices.TierModel,
-        global::Orb.Models.Prices.TierModelFromRaw
+        PriceBulkWithFiltersBulkWithFiltersConfigTier,
+        PriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     >)
 )]
-public sealed record class TierModel : ModelBase
+public sealed record class PriceBulkWithFiltersBulkWithFiltersConfigTier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -2746,22 +2749,24 @@ public sealed record class TierModel : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public TierModel() { }
+    public PriceBulkWithFiltersBulkWithFiltersConfigTier() { }
 
-    public TierModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceBulkWithFiltersBulkWithFiltersConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TierModel(FrozenDictionary<string, JsonElement> rawData)
+    PriceBulkWithFiltersBulkWithFiltersConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Prices.TierModel FromRawUnchecked(
+    public static PriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2769,18 +2774,19 @@ public sealed record class TierModel : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TierModel(string unitAmount)
+    public PriceBulkWithFiltersBulkWithFiltersConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class TierModelFromRaw : IFromRaw<global::Orb.Models.Prices.TierModel>
+class PriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    : IFromRaw<PriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
-    public global::Orb.Models.Prices.TierModel FromRawUnchecked(
+    public PriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Prices.TierModel.FromRawUnchecked(rawData);
+    ) => PriceBulkWithFiltersBulkWithFiltersConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

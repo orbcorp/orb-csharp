@@ -402,9 +402,14 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig 
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
     /// are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<Tier15> Tiers
+    public required IReadOnlyList<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier15>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -479,7 +484,9 @@ public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfig 
     }
 
     [SetsRequiredMembers]
-    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(List<Tier15> tiers)
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfig(
+        List<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -497,8 +504,13 @@ class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier15, Tier15FromRaw>))]
-public sealed record class Tier15 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier,
+        NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -534,31 +546,39 @@ public sealed record class Tier15 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier15() { }
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier() { }
 
-    public Tier15(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier15(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier15 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier15FromRaw : IFromRaw<Tier15>
+class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTierFromRaw
+    : IFromRaw<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier>
 {
-    public Tier15 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier15.FromRawUnchecked(rawData);
+    public NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanTieredWithMinimumPriceConversionRateConfigConverter))]

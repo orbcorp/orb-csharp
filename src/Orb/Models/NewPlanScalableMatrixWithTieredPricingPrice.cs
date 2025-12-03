@@ -418,14 +418,13 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<MatrixScalingFactor1> MatrixScalingFactors
+    public required IReadOnlyList<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MatrixScalingFactor1>>(
-                this.RawData,
-                "matrix_scaling_factors"
-            );
+            return ModelBase.GetNotNullClass<
+                List<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor>
+            >(this.RawData, "matrix_scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
     }
@@ -433,9 +432,14 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     /// <summary>
     /// Tier pricing structure
     /// </summary>
-    public required IReadOnlyList<Tier12> Tiers
+    public required IReadOnlyList<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier12>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -503,8 +507,14 @@ class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricing
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor1, MatrixScalingFactor1FromRaw>))]
-public sealed record class MatrixScalingFactor1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor,
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactorFromRaw
+    >)
+)]
+public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+    : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -540,22 +550,27 @@ public sealed record class MatrixScalingFactor1 : ModelBase
         _ = this.SecondDimensionValue;
     }
 
-    public MatrixScalingFactor1() { }
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor()
+    { }
 
-    public MatrixScalingFactor1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactor1(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixScalingFactor1 FromRawUnchecked(
+    public static NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -563,18 +578,28 @@ public sealed record class MatrixScalingFactor1 : ModelBase
     }
 }
 
-class MatrixScalingFactor1FromRaw : IFromRaw<MatrixScalingFactor1>
+class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactorFromRaw
+    : IFromRaw<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor>
 {
-    public MatrixScalingFactor1 FromRawUnchecked(
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => MatrixScalingFactor1.FromRawUnchecked(rawData);
+    ) =>
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier12, Tier12FromRaw>))]
-public sealed record class Tier12 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier,
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -600,31 +625,43 @@ public sealed record class Tier12 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier12() { }
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier()
+    { }
 
-    public Tier12(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier12(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier12 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier12FromRaw : IFromRaw<Tier12>
+class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTierFromRaw
+    : IFromRaw<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier>
 {
-    public Tier12 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier12.FromRawUnchecked(rawData);
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(typeof(NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigConverter))]

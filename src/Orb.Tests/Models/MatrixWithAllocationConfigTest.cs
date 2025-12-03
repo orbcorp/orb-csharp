@@ -20,7 +20,7 @@ public class MatrixWithAllocationConfigTest : TestBase
         string expectedAllocation = "allocation";
         string expectedDefaultUnitAmount = "default_unit_amount";
         List<string?> expectedDimensions = ["string"];
-        List<MatrixValue> expectedMatrixValues =
+        List<MatrixWithAllocationConfigMatrixValue> expectedMatrixValues =
         [
             new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
         ];
@@ -74,7 +74,7 @@ public class MatrixWithAllocationConfigTest : TestBase
         string expectedAllocation = "allocation";
         string expectedDefaultUnitAmount = "default_unit_amount";
         List<string?> expectedDimensions = ["string"];
-        List<MatrixValue> expectedMatrixValues =
+        List<MatrixWithAllocationConfigMatrixValue> expectedMatrixValues =
         [
             new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
         ];
@@ -108,12 +108,16 @@ public class MatrixWithAllocationConfigTest : TestBase
     }
 }
 
-public class MatrixValueTest : TestBase
+public class MatrixWithAllocationConfigMatrixValueTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixValue { DimensionValues = ["string"], UnitAmount = "unit_amount" };
+        var model = new MatrixWithAllocationConfigMatrixValue
+        {
+            DimensionValues = ["string"],
+            UnitAmount = "unit_amount",
+        };
 
         List<string?> expectedDimensionValues = ["string"];
         string expectedUnitAmount = "unit_amount";
@@ -129,10 +133,14 @@ public class MatrixValueTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixValue { DimensionValues = ["string"], UnitAmount = "unit_amount" };
+        var model = new MatrixWithAllocationConfigMatrixValue
+        {
+            DimensionValues = ["string"],
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixValue>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConfigMatrixValue>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -140,10 +148,14 @@ public class MatrixValueTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixValue { DimensionValues = ["string"], UnitAmount = "unit_amount" };
+        var model = new MatrixWithAllocationConfigMatrixValue
+        {
+            DimensionValues = ["string"],
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixValue>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConfigMatrixValue>(json);
         Assert.NotNull(deserialized);
 
         List<string?> expectedDimensionValues = ["string"];
@@ -160,7 +172,11 @@ public class MatrixValueTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixValue { DimensionValues = ["string"], UnitAmount = "unit_amount" };
+        var model = new MatrixWithAllocationConfigMatrixValue
+        {
+            DimensionValues = ["string"],
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

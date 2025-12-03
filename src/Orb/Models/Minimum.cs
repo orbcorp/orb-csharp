@@ -29,9 +29,9 @@ public sealed record class Minimum : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this minimum to.
     /// </summary>
-    public required IReadOnlyList<Filter4> Filters
+    public required IReadOnlyList<MinimumFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter4>>(this.RawData, "filters"); }
+        get { return ModelBase.GetNotNullClass<List<MinimumFilter>>(this.RawData, "filters"); }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -86,17 +86,20 @@ class MinimumFromRaw : IFromRaw<Minimum>
         Minimum.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Filter4, Filter4FromRaw>))]
-public sealed record class Filter4 : ModelBase
+[JsonConverter(typeof(ModelConverter<MinimumFilter, MinimumFilterFromRaw>))]
+public sealed record class MinimumFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter4Field> Field
+    public required ApiEnum<string, MinimumFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter4Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -104,11 +107,11 @@ public sealed record class Filter4 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter4Operator> Operator
+    public required ApiEnum<string, MinimumFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter4Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -132,38 +135,38 @@ public sealed record class Filter4 : ModelBase
         _ = this.Values;
     }
 
-    public Filter4() { }
+    public MinimumFilter() { }
 
-    public Filter4(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter4(FrozenDictionary<string, JsonElement> rawData)
+    MinimumFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MinimumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter4FromRaw : IFromRaw<Filter4>
+class MinimumFilterFromRaw : IFromRaw<MinimumFilter>
 {
-    public Filter4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter4.FromRawUnchecked(rawData);
+    public MinimumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MinimumFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter4FieldConverter))]
-public enum Filter4Field
+[JsonConverter(typeof(MinimumFilterFieldConverter))]
+public enum MinimumFilterField
 {
     PriceID,
     ItemID,
@@ -172,9 +175,9 @@ public enum Filter4Field
     PricingUnitID,
 }
 
-sealed class Filter4FieldConverter : JsonConverter<Filter4Field>
+sealed class MinimumFilterFieldConverter : JsonConverter<MinimumFilterField>
 {
-    public override Filter4Field Read(
+    public override MinimumFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -182,18 +185,18 @@ sealed class Filter4FieldConverter : JsonConverter<Filter4Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter4Field.PriceID,
-            "item_id" => Filter4Field.ItemID,
-            "price_type" => Filter4Field.PriceType,
-            "currency" => Filter4Field.Currency,
-            "pricing_unit_id" => Filter4Field.PricingUnitID,
-            _ => (Filter4Field)(-1),
+            "price_id" => MinimumFilterField.PriceID,
+            "item_id" => MinimumFilterField.ItemID,
+            "price_type" => MinimumFilterField.PriceType,
+            "currency" => MinimumFilterField.Currency,
+            "pricing_unit_id" => MinimumFilterField.PricingUnitID,
+            _ => (MinimumFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter4Field value,
+        MinimumFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -201,11 +204,11 @@ sealed class Filter4FieldConverter : JsonConverter<Filter4Field>
             writer,
             value switch
             {
-                Filter4Field.PriceID => "price_id",
-                Filter4Field.ItemID => "item_id",
-                Filter4Field.PriceType => "price_type",
-                Filter4Field.Currency => "currency",
-                Filter4Field.PricingUnitID => "pricing_unit_id",
+                MinimumFilterField.PriceID => "price_id",
+                MinimumFilterField.ItemID => "item_id",
+                MinimumFilterField.PriceType => "price_type",
+                MinimumFilterField.Currency => "currency",
+                MinimumFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -218,16 +221,16 @@ sealed class Filter4FieldConverter : JsonConverter<Filter4Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter4OperatorConverter))]
-public enum Filter4Operator
+[JsonConverter(typeof(MinimumFilterOperatorConverter))]
+public enum MinimumFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter4OperatorConverter : JsonConverter<Filter4Operator>
+sealed class MinimumFilterOperatorConverter : JsonConverter<MinimumFilterOperator>
 {
-    public override Filter4Operator Read(
+    public override MinimumFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -235,15 +238,15 @@ sealed class Filter4OperatorConverter : JsonConverter<Filter4Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter4Operator.Includes,
-            "excludes" => Filter4Operator.Excludes,
-            _ => (Filter4Operator)(-1),
+            "includes" => MinimumFilterOperator.Includes,
+            "excludes" => MinimumFilterOperator.Excludes,
+            _ => (MinimumFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter4Operator value,
+        MinimumFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -251,8 +254,8 @@ sealed class Filter4OperatorConverter : JsonConverter<Filter4Operator>
             writer,
             value switch
             {
-                Filter4Operator.Includes => "includes",
-                Filter4Operator.Excludes => "excludes",
+                MinimumFilterOperator.Includes => "includes",
+                MinimumFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

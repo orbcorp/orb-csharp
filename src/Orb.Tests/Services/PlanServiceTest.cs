@@ -33,8 +33,8 @@ public class PlanServiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter11Field.ItemID,
-                                    Operator = Filter11Operator.Includes,
+                                    Field = NewAllocationPriceFilterField.ItemID,
+                                    Operator = NewAllocationPriceFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -42,7 +42,7 @@ public class PlanServiceTest : TestBase
                             PerUnitCostBasis = "per_unit_cost_basis",
                         },
                         PlanPhaseOrder = 0,
-                        Price1 = new NewPlanUnitPrice()
+                        PriceValue = new NewPlanUnitPrice()
                         {
                             Cadence = NewPlanUnitPriceCadence.Annual,
                             ItemID = "item_id",

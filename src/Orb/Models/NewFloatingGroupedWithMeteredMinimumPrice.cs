@@ -457,7 +457,7 @@ public sealed record class ScalingFactor : ModelBase
     /// <summary>
     /// Scaling factor
     /// </summary>
-    public required string ScalingFactor1
+    public required string ScalingFactorValue
     {
         get { return ModelBase.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { ModelBase.Set(this._rawData, "scaling_factor", value); }
@@ -474,7 +474,7 @@ public sealed record class ScalingFactor : ModelBase
 
     public override void Validate()
     {
-        _ = this.ScalingFactor1;
+        _ = this.ScalingFactorValue;
         _ = this.ScalingValue;
     }
 
@@ -523,7 +523,7 @@ public sealed record class UnitAmount : ModelBase
     /// <summary>
     /// Per unit amount
     /// </summary>
-    public required string UnitAmount1
+    public required string UnitAmountValue
     {
         get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
@@ -532,7 +532,7 @@ public sealed record class UnitAmount : ModelBase
     public override void Validate()
     {
         _ = this.PricingValue;
-        _ = this.UnitAmount1;
+        _ = this.UnitAmountValue;
     }
 
     public UnitAmount() { }

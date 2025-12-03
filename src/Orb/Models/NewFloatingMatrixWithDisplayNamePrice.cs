@@ -352,11 +352,14 @@ public sealed record class MatrixWithDisplayNameConfig : ModelBase
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required IReadOnlyList<UnitAmountModel> UnitAmounts
+    public required IReadOnlyList<MatrixWithDisplayNameConfigUnitAmount> UnitAmounts
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<UnitAmountModel>>(this.RawData, "unit_amounts");
+            return ModelBase.GetNotNullClass<List<MatrixWithDisplayNameConfigUnitAmount>>(
+                this.RawData,
+                "unit_amounts"
+            );
         }
         init { ModelBase.Set(this._rawData, "unit_amounts", value); }
     }
@@ -403,8 +406,13 @@ class MatrixWithDisplayNameConfigFromRaw : IFromRaw<MatrixWithDisplayNameConfig>
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmountModel, UnitAmountModelFromRaw>))]
-public sealed record class UnitAmountModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MatrixWithDisplayNameConfigUnitAmount,
+        MatrixWithDisplayNameConfigUnitAmountFromRaw
+    >)
+)]
+public sealed record class MatrixWithDisplayNameConfigUnitAmount : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -440,31 +448,34 @@ public sealed record class UnitAmountModel : ModelBase
         _ = this.UnitAmount;
     }
 
-    public UnitAmountModel() { }
+    public MatrixWithDisplayNameConfigUnitAmount() { }
 
-    public UnitAmountModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitAmountModel(FrozenDictionary<string, JsonElement> rawData)
+    MatrixWithDisplayNameConfigUnitAmount(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UnitAmountModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UnitAmountModelFromRaw : IFromRaw<UnitAmountModel>
+class MatrixWithDisplayNameConfigUnitAmountFromRaw : IFromRaw<MatrixWithDisplayNameConfigUnitAmount>
 {
-    public UnitAmountModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        UnitAmountModel.FromRawUnchecked(rawData);
+    public MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(rawData);
 }
 
 /// <summary>

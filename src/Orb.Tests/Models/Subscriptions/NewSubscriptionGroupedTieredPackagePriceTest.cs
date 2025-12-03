@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,9 +11,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -25,19 +25,20 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -53,15 +54,17 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionGroupedTieredPackagePriceCadence> expectedCadence =
-            NewSubscriptionGroupedTieredPackagePriceCadence.Annual;
-        GroupedTieredPackageConfig expectedGroupedTieredPackageConfig = new()
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual;
+        Subscriptions::GroupedTieredPackageConfig expectedGroupedTieredPackageConfig = new()
         {
             GroupingKey = "x",
             PackageSize = "package_size",
@@ -72,25 +75,28 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
             ],
         };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedTieredPackagePriceModelType> expectedModelType =
-            NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedTieredPackagePriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedTieredPackagePriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -99,10 +105,10 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -136,9 +142,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -150,19 +156,20 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -178,16 +185,17 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPackagePrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPackagePrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -195,9 +203,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -209,19 +217,20 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -237,21 +246,24 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPackagePrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPackagePrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionGroupedTieredPackagePriceCadence> expectedCadence =
-            NewSubscriptionGroupedTieredPackagePriceCadence.Annual;
-        GroupedTieredPackageConfig expectedGroupedTieredPackageConfig = new()
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual;
+        Subscriptions::GroupedTieredPackageConfig expectedGroupedTieredPackageConfig = new()
         {
             GroupingKey = "x",
             PackageSize = "package_size",
@@ -262,25 +274,28 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
             ],
         };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedTieredPackagePriceModelType> expectedModelType =
-            NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedTieredPackagePriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedTieredPackagePriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -289,10 +304,10 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -329,9 +344,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -343,19 +358,20 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -371,7 +387,7 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -383,9 +399,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -397,7 +413,8 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
         };
 
@@ -432,9 +449,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -446,7 +463,8 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
         };
 
@@ -456,9 +474,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -470,7 +488,8 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -519,9 +538,9 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionGroupedTieredPackagePrice
+        var model = new Subscriptions::NewSubscriptionGroupedTieredPackagePrice
         {
-            Cadence = NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedTieredPackagePriceCadence.Annual,
             GroupedTieredPackageConfig = new()
             {
                 GroupingKey = "x",
@@ -533,7 +552,8 @@ public class NewSubscriptionGroupedTieredPackagePriceTest : TestBase
                 ],
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedTieredPackagePriceModelType.GroupedTieredPackage,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -560,7 +580,7 @@ public class GroupedTieredPackageConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new GroupedTieredPackageConfig
+        var model = new Subscriptions::GroupedTieredPackageConfig
         {
             GroupingKey = "x",
             PackageSize = "package_size",
@@ -573,7 +593,7 @@ public class GroupedTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier9> expectedTiers =
+        List<Subscriptions::GroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -591,7 +611,7 @@ public class GroupedTieredPackageConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new GroupedTieredPackageConfig
+        var model = new Subscriptions::GroupedTieredPackageConfig
         {
             GroupingKey = "x",
             PackageSize = "package_size",
@@ -603,7 +623,9 @@ public class GroupedTieredPackageConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedTieredPackageConfig>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -611,7 +633,7 @@ public class GroupedTieredPackageConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new GroupedTieredPackageConfig
+        var model = new Subscriptions::GroupedTieredPackageConfig
         {
             GroupingKey = "x",
             PackageSize = "package_size",
@@ -623,12 +645,14 @@ public class GroupedTieredPackageConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedTieredPackageConfig>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier9> expectedTiers =
+        List<Subscriptions::GroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -646,7 +670,7 @@ public class GroupedTieredPackageConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new GroupedTieredPackageConfig
+        var model = new Subscriptions::GroupedTieredPackageConfig
         {
             GroupingKey = "x",
             PackageSize = "package_size",
@@ -661,12 +685,16 @@ public class GroupedTieredPackageConfigTest : TestBase
     }
 }
 
-public class Tier9Test : TestBase
+public class GroupedTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedPerUnit = "per_unit";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -678,10 +706,15 @@ public class Tier9Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier9>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::GroupedTieredPackageConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -689,10 +722,15 @@ public class Tier9Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier9>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::GroupedTieredPackageConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -705,7 +743,11 @@ public class Tier9Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }

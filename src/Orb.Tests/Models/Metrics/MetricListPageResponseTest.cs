@@ -29,7 +29,7 @@ public class MetricListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalConnectionName =
-                                    ExternalConnectionModelExternalConnectionName.Stripe,
+                                    ItemExternalConnectionExternalConnectionName.Stripe,
                                 ExternalEntityID = "external_entity_id",
                             },
                         ],
@@ -60,7 +60,7 @@ public class MetricListPageResponseTest : TestBase
                         new()
                         {
                             ExternalConnectionName =
-                                ExternalConnectionModelExternalConnectionName.Stripe,
+                                ItemExternalConnectionExternalConnectionName.Stripe,
                             ExternalEntityID = "external_entity_id",
                         },
                     ],
@@ -107,7 +107,7 @@ public class MetricListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalConnectionName =
-                                    ExternalConnectionModelExternalConnectionName.Stripe,
+                                    ItemExternalConnectionExternalConnectionName.Stripe,
                                 ExternalEntityID = "external_entity_id",
                             },
                         ],
@@ -149,7 +149,7 @@ public class MetricListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalConnectionName =
-                                    ExternalConnectionModelExternalConnectionName.Stripe,
+                                    ItemExternalConnectionExternalConnectionName.Stripe,
                                 ExternalEntityID = "external_entity_id",
                             },
                         ],
@@ -184,7 +184,7 @@ public class MetricListPageResponseTest : TestBase
                         new()
                         {
                             ExternalConnectionName =
-                                ExternalConnectionModelExternalConnectionName.Stripe,
+                                ItemExternalConnectionExternalConnectionName.Stripe,
                             ExternalEntityID = "external_entity_id",
                         },
                     ],
@@ -231,7 +231,7 @@ public class MetricListPageResponseTest : TestBase
                             new()
                             {
                                 ExternalConnectionName =
-                                    ExternalConnectionModelExternalConnectionName.Stripe,
+                                    ItemExternalConnectionExternalConnectionName.Stripe,
                                 ExternalEntityID = "external_entity_id",
                             },
                         ],

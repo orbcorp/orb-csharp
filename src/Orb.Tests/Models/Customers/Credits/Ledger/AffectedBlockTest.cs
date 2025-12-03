@@ -19,8 +19,8 @@ public class AffectedBlockTest : TestBase
             [
                 new()
                 {
-                    Field = Filter1Field.PriceID,
-                    Operator = Filter1Operator.Includes,
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29,12 +29,12 @@ public class AffectedBlockTest : TestBase
 
         string expectedID = "id";
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter1> expectedFilters =
+        List<AffectedBlockFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter1Field.PriceID,
-                Operator = Filter1Operator.Includes,
+                Field = AffectedBlockFilterField.PriceID,
+                Operator = AffectedBlockFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -61,8 +61,8 @@ public class AffectedBlockTest : TestBase
             [
                 new()
                 {
-                    Field = Filter1Field.PriceID,
-                    Operator = Filter1Operator.Includes,
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -86,8 +86,8 @@ public class AffectedBlockTest : TestBase
             [
                 new()
                 {
-                    Field = Filter1Field.PriceID,
-                    Operator = Filter1Operator.Includes,
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -100,12 +100,12 @@ public class AffectedBlockTest : TestBase
 
         string expectedID = "id";
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter1> expectedFilters =
+        List<AffectedBlockFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter1Field.PriceID,
-                Operator = Filter1Operator.Includes,
+                Field = AffectedBlockFilterField.PriceID,
+                Operator = AffectedBlockFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -132,8 +132,8 @@ public class AffectedBlockTest : TestBase
             [
                 new()
                 {
-                    Field = Filter1Field.PriceID,
-                    Operator = Filter1Operator.Includes,
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -144,20 +144,21 @@ public class AffectedBlockTest : TestBase
     }
 }
 
-public class Filter1Test : TestBase
+public class AffectedBlockFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter1
+        var model = new AffectedBlockFilter
         {
-            Field = Filter1Field.PriceID,
-            Operator = Filter1Operator.Includes,
+            Field = AffectedBlockFilterField.PriceID,
+            Operator = AffectedBlockFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter1Field> expectedField = Filter1Field.PriceID;
-        ApiEnum<string, Filter1Operator> expectedOperator = Filter1Operator.Includes;
+        ApiEnum<string, AffectedBlockFilterField> expectedField = AffectedBlockFilterField.PriceID;
+        ApiEnum<string, AffectedBlockFilterOperator> expectedOperator =
+            AffectedBlockFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -172,15 +173,15 @@ public class Filter1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter1
+        var model = new AffectedBlockFilter
         {
-            Field = Filter1Field.PriceID,
-            Operator = Filter1Operator.Includes,
+            Field = AffectedBlockFilterField.PriceID,
+            Operator = AffectedBlockFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter1>(json);
+        var deserialized = JsonSerializer.Deserialize<AffectedBlockFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -188,19 +189,20 @@ public class Filter1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter1
+        var model = new AffectedBlockFilter
         {
-            Field = Filter1Field.PriceID,
-            Operator = Filter1Operator.Includes,
+            Field = AffectedBlockFilterField.PriceID,
+            Operator = AffectedBlockFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter1>(json);
+        var deserialized = JsonSerializer.Deserialize<AffectedBlockFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter1Field> expectedField = Filter1Field.PriceID;
-        ApiEnum<string, Filter1Operator> expectedOperator = Filter1Operator.Includes;
+        ApiEnum<string, AffectedBlockFilterField> expectedField = AffectedBlockFilterField.PriceID;
+        ApiEnum<string, AffectedBlockFilterOperator> expectedOperator =
+            AffectedBlockFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -215,10 +217,10 @@ public class Filter1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter1
+        var model = new AffectedBlockFilter
         {
-            Field = Filter1Field.PriceID,
-            Operator = Filter1Operator.Includes,
+            Field = AffectedBlockFilterField.PriceID,
+            Operator = AffectedBlockFilterOperator.Includes,
             Values = ["string"],
         };
 

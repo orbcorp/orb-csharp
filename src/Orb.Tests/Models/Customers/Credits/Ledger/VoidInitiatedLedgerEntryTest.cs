@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.Customers.Credits.Ledger;
-using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
 
@@ -25,8 +25,8 @@ public class VoidInitiatedLedgerEntryTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter1Field.PriceID,
-                        Operator = Filter1Operator.Includes,
+                        Field = AffectedBlockFilterField.PriceID,
+                        Operator = AffectedBlockFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -57,15 +57,15 @@ public class VoidInitiatedLedgerEntryTest : TestBase
             [
                 new()
                 {
-                    Field = Filter1Field.PriceID,
-                    Operator = Filter1Operator.Includes,
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         string expectedCurrency = "currency";
-        Models::CustomerMinified expectedCustomer = new()
+        CustomerMinified expectedCustomer = new()
         {
             ID = "id",
             ExternalCustomerID = "external_customer_id",
@@ -125,8 +125,8 @@ public class VoidInitiatedLedgerEntryTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter1Field.PriceID,
-                        Operator = Filter1Operator.Includes,
+                        Field = AffectedBlockFilterField.PriceID,
+                        Operator = AffectedBlockFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -168,8 +168,8 @@ public class VoidInitiatedLedgerEntryTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter1Field.PriceID,
-                        Operator = Filter1Operator.Includes,
+                        Field = AffectedBlockFilterField.PriceID,
+                        Operator = AffectedBlockFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -204,15 +204,15 @@ public class VoidInitiatedLedgerEntryTest : TestBase
             [
                 new()
                 {
-                    Field = Filter1Field.PriceID,
-                    Operator = Filter1Operator.Includes,
+                    Field = AffectedBlockFilterField.PriceID,
+                    Operator = AffectedBlockFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         string expectedCurrency = "currency";
-        Models::CustomerMinified expectedCustomer = new()
+        CustomerMinified expectedCustomer = new()
         {
             ID = "id",
             ExternalCustomerID = "external_customer_id",
@@ -272,8 +272,8 @@ public class VoidInitiatedLedgerEntryTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter1Field.PriceID,
-                        Operator = Filter1Operator.Includes,
+                        Field = AffectedBlockFilterField.PriceID,
+                        Operator = AffectedBlockFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],

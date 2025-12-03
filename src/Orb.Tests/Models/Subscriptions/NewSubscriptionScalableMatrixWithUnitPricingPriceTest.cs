@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,12 +11,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -39,12 +40,12 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -60,53 +61,57 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionScalableMatrixWithUnitPricingPriceCadence> expectedCadence =
-            NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence
+        > expectedCadence =
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual;
         string expectedItemID = "item_id";
         ApiEnum<
             string,
-            NewSubscriptionScalableMatrixWithUnitPricingPriceModelType
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType
         > expectedModelType =
-            NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing;
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing;
         string expectedName = "Annual fee";
-        ScalableMatrixWithUnitPricingConfig expectedScalableMatrixWithUnitPricingConfig = new()
-        {
-            FirstDimension = "first_dimension",
-            MatrixScalingFactors =
-            [
-                new()
-                {
-                    FirstDimensionValue = "first_dimension_value",
-                    ScalingFactor = "scaling_factor",
-                    SecondDimensionValue = "second_dimension_value",
-                },
-            ],
-            UnitPrice = "unit_price",
-            Prorate = true,
-            SecondDimension = "second_dimension",
-        };
+        Subscriptions::ScalableMatrixWithUnitPricingConfig expectedScalableMatrixWithUnitPricingConfig =
+            new()
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                UnitPrice = "unit_price",
+                Prorate = true,
+                SecondDimension = "second_dimension",
+            };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -115,10 +120,10 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -155,12 +160,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -183,12 +189,12 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -204,7 +210,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -212,7 +218,9 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionScalableMatrixWithUnitPricingPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -220,12 +228,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -248,12 +257,12 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -269,7 +278,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -277,50 +286,56 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionScalableMatrixWithUnitPricingPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionScalableMatrixWithUnitPricingPriceCadence> expectedCadence =
-            NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence
+        > expectedCadence =
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual;
         string expectedItemID = "item_id";
         ApiEnum<
             string,
-            NewSubscriptionScalableMatrixWithUnitPricingPriceModelType
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType
         > expectedModelType =
-            NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing;
+            Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing;
         string expectedName = "Annual fee";
-        ScalableMatrixWithUnitPricingConfig expectedScalableMatrixWithUnitPricingConfig = new()
-        {
-            FirstDimension = "first_dimension",
-            MatrixScalingFactors =
-            [
-                new()
-                {
-                    FirstDimensionValue = "first_dimension_value",
-                    ScalingFactor = "scaling_factor",
-                    SecondDimensionValue = "second_dimension_value",
-                },
-            ],
-            UnitPrice = "unit_price",
-            Prorate = true,
-            SecondDimension = "second_dimension",
-        };
+        Subscriptions::ScalableMatrixWithUnitPricingConfig expectedScalableMatrixWithUnitPricingConfig =
+            new()
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                UnitPrice = "unit_price",
+                Prorate = true,
+                SecondDimension = "second_dimension",
+            };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -329,10 +344,10 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -372,12 +387,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -400,12 +416,12 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -421,7 +437,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -433,12 +449,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -489,12 +506,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -520,12 +538,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -590,12 +609,13 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionScalableMatrixWithUnitPricingPrice
+        var model = new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice
         {
-            Cadence = NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
+            Cadence =
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceCadence.Annual,
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
             Name = "Annual fee",
             ScalableMatrixWithUnitPricingConfig = new()
             {
@@ -638,7 +658,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -656,7 +676,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
         };
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactorModel> expectedMatrixScalingFactors =
+        List<Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -683,7 +703,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -701,7 +721,8 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ScalableMatrixWithUnitPricingConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -709,7 +730,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -727,11 +748,12 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ScalableMatrixWithUnitPricingConfig>(json);
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactorModel> expectedMatrixScalingFactors =
+        List<Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -758,7 +780,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -781,7 +803,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -805,7 +827,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -826,7 +848,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -853,7 +875,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new ScalableMatrixWithUnitPricingConfig
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfig
         {
             FirstDimension = "first_dimension",
             MatrixScalingFactors =
@@ -875,12 +897,12 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     }
 }
 
-public class MatrixScalingFactorModelTest : TestBase
+public class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -899,7 +921,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -907,7 +929,10 @@ public class MatrixScalingFactorModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactorModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -915,7 +940,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -923,7 +948,10 @@ public class MatrixScalingFactorModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactorModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimensionValue = "first_dimension_value";
@@ -938,7 +966,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -951,7 +979,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -964,7 +992,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -976,7 +1004,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -991,7 +1019,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new Subscriptions::ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",

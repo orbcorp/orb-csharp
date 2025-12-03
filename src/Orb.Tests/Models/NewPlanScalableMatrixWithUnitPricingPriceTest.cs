@@ -654,7 +654,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
         };
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactor2> expectedMatrixScalingFactors =
+        List<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -735,7 +735,7 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactor2> expectedMatrixScalingFactors =
+        List<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -879,17 +879,19 @@ public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPric
     }
 }
 
-public class MatrixScalingFactor2Test : TestBase
+public class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string expectedFirstDimensionValue = "first_dimension_value";
         string expectedScalingFactor = "scaling_factor";
@@ -903,15 +905,19 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor2>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -919,15 +925,19 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor2>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimensionValue = "first_dimension_value";
@@ -942,12 +952,13 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         model.Validate();
     }
@@ -955,11 +966,12 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-        };
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+            };
 
         Assert.Null(model.SecondDimensionValue);
         Assert.False(model.RawData.ContainsKey("second_dimension_value"));
@@ -968,11 +980,12 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-        };
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+            };
 
         model.Validate();
     }
@@ -980,13 +993,14 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
 
-            SecondDimensionValue = null,
-        };
+                SecondDimensionValue = null,
+            };
 
         Assert.Null(model.SecondDimensionValue);
         Assert.True(model.RawData.ContainsKey("second_dimension_value"));
@@ -995,13 +1009,14 @@ public class MatrixScalingFactor2Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new MatrixScalingFactor2
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
+        var model =
+            new NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
 
-            SecondDimensionValue = null,
-        };
+                SecondDimensionValue = null,
+            };
 
         model.Validate();
     }

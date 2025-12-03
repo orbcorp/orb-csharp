@@ -42,9 +42,12 @@ public sealed record class MaximumInterval : ModelBase
     /// <summary>
     /// The filters that determine which prices this maximum interval applies to.
     /// </summary>
-    public required IReadOnlyList<Filter3> Filters
+    public required IReadOnlyList<MaximumIntervalFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter3>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<MaximumIntervalFilter>>(this.RawData, "filters");
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -109,17 +112,20 @@ class MaximumIntervalFromRaw : IFromRaw<MaximumInterval>
         MaximumInterval.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Filter3, Filter3FromRaw>))]
-public sealed record class Filter3 : ModelBase
+[JsonConverter(typeof(ModelConverter<MaximumIntervalFilter, MaximumIntervalFilterFromRaw>))]
+public sealed record class MaximumIntervalFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter3Field> Field
+    public required ApiEnum<string, MaximumIntervalFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter3Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumIntervalFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -127,11 +133,11 @@ public sealed record class Filter3 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter3Operator> Operator
+    public required ApiEnum<string, MaximumIntervalFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter3Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumIntervalFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -155,38 +161,41 @@ public sealed record class Filter3 : ModelBase
         _ = this.Values;
     }
 
-    public Filter3() { }
+    public MaximumIntervalFilter() { }
 
-    public Filter3(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MaximumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter3(FrozenDictionary<string, JsonElement> rawData)
+    MaximumIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MaximumIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter3FromRaw : IFromRaw<Filter3>
+class MaximumIntervalFilterFromRaw : IFromRaw<MaximumIntervalFilter>
 {
-    public Filter3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter3.FromRawUnchecked(rawData);
+    public MaximumIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MaximumIntervalFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter3FieldConverter))]
-public enum Filter3Field
+[JsonConverter(typeof(MaximumIntervalFilterFieldConverter))]
+public enum MaximumIntervalFilterField
 {
     PriceID,
     ItemID,
@@ -195,9 +204,9 @@ public enum Filter3Field
     PricingUnitID,
 }
 
-sealed class Filter3FieldConverter : JsonConverter<Filter3Field>
+sealed class MaximumIntervalFilterFieldConverter : JsonConverter<MaximumIntervalFilterField>
 {
-    public override Filter3Field Read(
+    public override MaximumIntervalFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -205,18 +214,18 @@ sealed class Filter3FieldConverter : JsonConverter<Filter3Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter3Field.PriceID,
-            "item_id" => Filter3Field.ItemID,
-            "price_type" => Filter3Field.PriceType,
-            "currency" => Filter3Field.Currency,
-            "pricing_unit_id" => Filter3Field.PricingUnitID,
-            _ => (Filter3Field)(-1),
+            "price_id" => MaximumIntervalFilterField.PriceID,
+            "item_id" => MaximumIntervalFilterField.ItemID,
+            "price_type" => MaximumIntervalFilterField.PriceType,
+            "currency" => MaximumIntervalFilterField.Currency,
+            "pricing_unit_id" => MaximumIntervalFilterField.PricingUnitID,
+            _ => (MaximumIntervalFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter3Field value,
+        MaximumIntervalFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -224,11 +233,11 @@ sealed class Filter3FieldConverter : JsonConverter<Filter3Field>
             writer,
             value switch
             {
-                Filter3Field.PriceID => "price_id",
-                Filter3Field.ItemID => "item_id",
-                Filter3Field.PriceType => "price_type",
-                Filter3Field.Currency => "currency",
-                Filter3Field.PricingUnitID => "pricing_unit_id",
+                MaximumIntervalFilterField.PriceID => "price_id",
+                MaximumIntervalFilterField.ItemID => "item_id",
+                MaximumIntervalFilterField.PriceType => "price_type",
+                MaximumIntervalFilterField.Currency => "currency",
+                MaximumIntervalFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -241,16 +250,16 @@ sealed class Filter3FieldConverter : JsonConverter<Filter3Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter3OperatorConverter))]
-public enum Filter3Operator
+[JsonConverter(typeof(MaximumIntervalFilterOperatorConverter))]
+public enum MaximumIntervalFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter3OperatorConverter : JsonConverter<Filter3Operator>
+sealed class MaximumIntervalFilterOperatorConverter : JsonConverter<MaximumIntervalFilterOperator>
 {
-    public override Filter3Operator Read(
+    public override MaximumIntervalFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -258,15 +267,15 @@ sealed class Filter3OperatorConverter : JsonConverter<Filter3Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter3Operator.Includes,
-            "excludes" => Filter3Operator.Excludes,
-            _ => (Filter3Operator)(-1),
+            "includes" => MaximumIntervalFilterOperator.Includes,
+            "excludes" => MaximumIntervalFilterOperator.Excludes,
+            _ => (MaximumIntervalFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter3Operator value,
+        MaximumIntervalFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -274,8 +283,8 @@ sealed class Filter3OperatorConverter : JsonConverter<Filter3Operator>
             writer,
             value switch
             {
-                Filter3Operator.Includes => "includes",
-                Filter3Operator.Excludes => "excludes",
+                MaximumIntervalFilterOperator.Includes => "includes",
+                MaximumIntervalFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

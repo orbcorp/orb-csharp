@@ -557,7 +557,7 @@ public class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigTest : Te
             Prorate = true,
         };
 
-        List<ConsumptionTableModel> expectedConsumptionTable =
+        List<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable> expectedConsumptionTable =
         [
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
@@ -614,7 +614,7 @@ public class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigTest : Te
             );
         Assert.NotNull(deserialized);
 
-        List<ConsumptionTableModel> expectedConsumptionTable =
+        List<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable> expectedConsumptionTable =
         [
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
@@ -712,12 +712,13 @@ public class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigTest : Te
     }
 }
 
-public class ConsumptionTableModelTest : TestBase
+public class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTableTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ConsumptionTableModel
+        var model = new NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
         {
             Threshold = "threshold",
             TotalAmount = "total_amount",
@@ -733,14 +734,17 @@ public class ConsumptionTableModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ConsumptionTableModel
+        var model = new NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
         {
             Threshold = "threshold",
             TotalAmount = "total_amount",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTableModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -748,14 +752,17 @@ public class ConsumptionTableModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ConsumptionTableModel
+        var model = new NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
         {
             Threshold = "threshold",
             TotalAmount = "total_amount",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTableModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedThreshold = "threshold";
@@ -768,7 +775,7 @@ public class ConsumptionTableModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ConsumptionTableModel
+        var model = new NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
         {
             Threshold = "threshold",
             TotalAmount = "total_amount",

@@ -190,7 +190,7 @@ public class DataTest : TestBase
         };
 
         BillableMetric expectedBillableMetric = new() { ID = "id", Name = "name" };
-        List<Usage> expectedUsage =
+        List<DataUsage> expectedUsage =
         [
             new()
             {
@@ -257,7 +257,7 @@ public class DataTest : TestBase
         Assert.NotNull(deserialized);
 
         BillableMetric expectedBillableMetric = new() { ID = "id", Name = "name" };
-        List<Usage> expectedUsage =
+        List<DataUsage> expectedUsage =
         [
             new()
             {
@@ -349,12 +349,12 @@ public class BillableMetricTest : TestBase
     }
 }
 
-public class UsageTest : TestBase
+public class DataUsageTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Usage
+        var model = new DataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -373,7 +373,7 @@ public class UsageTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Usage
+        var model = new DataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -381,7 +381,7 @@ public class UsageTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Usage>(json);
+        var deserialized = JsonSerializer.Deserialize<DataUsage>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -389,7 +389,7 @@ public class UsageTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Usage
+        var model = new DataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -397,7 +397,7 @@ public class UsageTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Usage>(json);
+        var deserialized = JsonSerializer.Deserialize<DataUsage>(json);
         Assert.NotNull(deserialized);
 
         double expectedQuantity = 0;
@@ -412,7 +412,7 @@ public class UsageTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Usage
+        var model = new DataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -449,13 +449,13 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        List<DataModel> expectedData =
+        List<GroupedSubscriptionUsageData> expectedData =
         [
             new()
             {
@@ -474,7 +474,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                         TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
-                ViewMode = DataModelViewMode.Periodic,
+                ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -515,7 +515,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -551,7 +551,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -561,7 +561,7 @@ public class GroupedSubscriptionUsageTest : TestBase
         var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(json);
         Assert.NotNull(deserialized);
 
-        List<DataModel> expectedData =
+        List<GroupedSubscriptionUsageData> expectedData =
         [
             new()
             {
@@ -580,7 +580,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                         TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     },
                 ],
-                ViewMode = DataModelViewMode.Periodic,
+                ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -621,7 +621,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -654,7 +654,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
         };
@@ -687,7 +687,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
         };
@@ -719,7 +719,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
 
@@ -754,7 +754,7 @@ public class GroupedSubscriptionUsageTest : TestBase
                             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         },
                     ],
-                    ViewMode = DataModelViewMode.Periodic,
+                    ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
                 },
             ],
 
@@ -765,12 +765,12 @@ public class GroupedSubscriptionUsageTest : TestBase
     }
 }
 
-public class DataModelTest : TestBase
+public class GroupedSubscriptionUsageDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new GroupedSubscriptionUsageData
         {
             BillableMetric = new() { ID = "id", Name = "name" },
             MetricGroup = new() { PropertyKey = "property_key", PropertyValue = "property_value" },
@@ -783,16 +783,20 @@ public class DataModelTest : TestBase
                     TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            ViewMode = DataModelViewMode.Periodic,
+            ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
         };
 
-        DataModelBillableMetric expectedBillableMetric = new() { ID = "id", Name = "name" };
+        GroupedSubscriptionUsageDataBillableMetric expectedBillableMetric = new()
+        {
+            ID = "id",
+            Name = "name",
+        };
         MetricGroup expectedMetricGroup = new()
         {
             PropertyKey = "property_key",
             PropertyValue = "property_value",
         };
-        List<UsageModel> expectedUsage =
+        List<GroupedSubscriptionUsageDataUsage> expectedUsage =
         [
             new()
             {
@@ -801,7 +805,8 @@ public class DataModelTest : TestBase
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
         ];
-        ApiEnum<string, DataModelViewMode> expectedViewMode = DataModelViewMode.Periodic;
+        ApiEnum<string, GroupedSubscriptionUsageDataViewMode> expectedViewMode =
+            GroupedSubscriptionUsageDataViewMode.Periodic;
 
         Assert.Equal(expectedBillableMetric, model.BillableMetric);
         Assert.Equal(expectedMetricGroup, model.MetricGroup);
@@ -816,7 +821,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new GroupedSubscriptionUsageData
         {
             BillableMetric = new() { ID = "id", Name = "name" },
             MetricGroup = new() { PropertyKey = "property_key", PropertyValue = "property_value" },
@@ -829,11 +834,11 @@ public class DataModelTest : TestBase
                     TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            ViewMode = DataModelViewMode.Periodic,
+            ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageData>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -841,7 +846,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DataModel
+        var model = new GroupedSubscriptionUsageData
         {
             BillableMetric = new() { ID = "id", Name = "name" },
             MetricGroup = new() { PropertyKey = "property_key", PropertyValue = "property_value" },
@@ -854,20 +859,24 @@ public class DataModelTest : TestBase
                     TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            ViewMode = DataModelViewMode.Periodic,
+            ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageData>(json);
         Assert.NotNull(deserialized);
 
-        DataModelBillableMetric expectedBillableMetric = new() { ID = "id", Name = "name" };
+        GroupedSubscriptionUsageDataBillableMetric expectedBillableMetric = new()
+        {
+            ID = "id",
+            Name = "name",
+        };
         MetricGroup expectedMetricGroup = new()
         {
             PropertyKey = "property_key",
             PropertyValue = "property_value",
         };
-        List<UsageModel> expectedUsage =
+        List<GroupedSubscriptionUsageDataUsage> expectedUsage =
         [
             new()
             {
@@ -876,7 +885,8 @@ public class DataModelTest : TestBase
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
         ];
-        ApiEnum<string, DataModelViewMode> expectedViewMode = DataModelViewMode.Periodic;
+        ApiEnum<string, GroupedSubscriptionUsageDataViewMode> expectedViewMode =
+            GroupedSubscriptionUsageDataViewMode.Periodic;
 
         Assert.Equal(expectedBillableMetric, deserialized.BillableMetric);
         Assert.Equal(expectedMetricGroup, deserialized.MetricGroup);
@@ -891,7 +901,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DataModel
+        var model = new GroupedSubscriptionUsageData
         {
             BillableMetric = new() { ID = "id", Name = "name" },
             MetricGroup = new() { PropertyKey = "property_key", PropertyValue = "property_value" },
@@ -904,19 +914,19 @@ public class DataModelTest : TestBase
                     TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            ViewMode = DataModelViewMode.Periodic,
+            ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
         };
 
         model.Validate();
     }
 }
 
-public class DataModelBillableMetricTest : TestBase
+public class GroupedSubscriptionUsageDataBillableMetricTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DataModelBillableMetric { ID = "id", Name = "name" };
+        var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
         string expectedID = "id";
         string expectedName = "name";
@@ -928,10 +938,12 @@ public class DataModelBillableMetricTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DataModelBillableMetric { ID = "id", Name = "name" };
+        var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModelBillableMetric>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataBillableMetric>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -939,10 +951,12 @@ public class DataModelBillableMetricTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DataModelBillableMetric { ID = "id", Name = "name" };
+        var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModelBillableMetric>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataBillableMetric>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -955,7 +969,7 @@ public class DataModelBillableMetricTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DataModelBillableMetric { ID = "id", Name = "name" };
+        var model = new GroupedSubscriptionUsageDataBillableMetric { ID = "id", Name = "name" };
 
         model.Validate();
     }
@@ -1027,12 +1041,12 @@ public class MetricGroupTest : TestBase
     }
 }
 
-public class UsageModelTest : TestBase
+public class GroupedSubscriptionUsageDataUsageTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UsageModel
+        var model = new GroupedSubscriptionUsageDataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -1051,7 +1065,7 @@ public class UsageModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UsageModel
+        var model = new GroupedSubscriptionUsageDataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -1059,7 +1073,7 @@ public class UsageModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UsageModel>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataUsage>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1067,7 +1081,7 @@ public class UsageModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UsageModel
+        var model = new GroupedSubscriptionUsageDataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -1075,7 +1089,7 @@ public class UsageModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UsageModel>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsageDataUsage>(json);
         Assert.NotNull(deserialized);
 
         double expectedQuantity = 0;
@@ -1090,7 +1104,7 @@ public class UsageModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UsageModel
+        var model = new GroupedSubscriptionUsageDataUsage
         {
             Quantity = 0,
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),

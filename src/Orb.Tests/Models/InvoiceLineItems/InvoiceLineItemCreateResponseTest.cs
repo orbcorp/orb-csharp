@@ -28,8 +28,9 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -97,14 +98,14 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -125,8 +126,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -141,8 +142,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -203,8 +204,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter10Field.PriceID,
-                        Operator = Models::Filter10Operator.Includes,
+                        Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -271,14 +272,14 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -299,8 +300,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -315,8 +316,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -416,8 +417,9 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -485,14 +487,14 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -513,8 +515,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -529,8 +531,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -602,8 +604,9 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -671,14 +674,14 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -699,8 +702,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -715,8 +718,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -781,8 +784,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter10Field.PriceID,
-                        Operator = Models::Filter10Operator.Includes,
+                        Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -849,14 +852,14 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -877,8 +880,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -893,8 +896,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -994,8 +997,9 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter10Field.PriceID,
-                            Operator = Models::Filter10Operator.Includes,
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1063,14 +1067,14 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1091,8 +1095,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1107,8 +1111,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],

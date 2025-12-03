@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,11 +11,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
             BillableMetricID = "billable_metric_id",
@@ -23,12 +23,12 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -44,39 +44,42 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionUnitWithPercentPriceCadence> expectedCadence =
-            NewSubscriptionUnitWithPercentPriceCadence.Annual;
+        ApiEnum<string, Subscriptions::NewSubscriptionUnitWithPercentPriceCadence> expectedCadence =
+            Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionUnitWithPercentPriceModelType> expectedModelType =
-            NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionUnitWithPercentPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent;
         string expectedName = "Annual fee";
-        UnitWithPercentConfig expectedUnitWithPercentConfig = new()
+        Subscriptions::UnitWithPercentConfig expectedUnitWithPercentConfig = new()
         {
             Percent = "percent",
             UnitAmount = "unit_amount",
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionUnitWithPercentPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -85,10 +88,10 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -122,11 +125,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
             BillableMetricID = "billable_metric_id",
@@ -134,12 +137,12 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -155,14 +158,15 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitWithPercentPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithPercentPrice>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -170,11 +174,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
             BillableMetricID = "billable_metric_id",
@@ -182,12 +186,12 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -203,43 +207,47 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitWithPercentPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithPercentPrice>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionUnitWithPercentPriceCadence> expectedCadence =
-            NewSubscriptionUnitWithPercentPriceCadence.Annual;
+        ApiEnum<string, Subscriptions::NewSubscriptionUnitWithPercentPriceCadence> expectedCadence =
+            Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionUnitWithPercentPriceModelType> expectedModelType =
-            NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionUnitWithPercentPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent;
         string expectedName = "Annual fee";
-        UnitWithPercentConfig expectedUnitWithPercentConfig = new()
+        Subscriptions::UnitWithPercentConfig expectedUnitWithPercentConfig = new()
         {
             Percent = "percent",
             UnitAmount = "unit_amount",
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionUnitWithPercentPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -248,10 +256,10 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -288,11 +296,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
             BillableMetricID = "billable_metric_id",
@@ -300,12 +308,12 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -321,7 +329,7 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -333,11 +341,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
         };
@@ -373,11 +381,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
         };
@@ -388,11 +396,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
 
@@ -442,11 +450,11 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionUnitWithPercentPrice
+        var model = new Subscriptions::NewSubscriptionUnitWithPercentPrice
         {
-            Cadence = NewSubscriptionUnitWithPercentPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionUnitWithPercentPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
+            ModelType = Subscriptions::NewSubscriptionUnitWithPercentPriceModelType.UnitWithPercent,
             Name = "Annual fee",
             UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
 
@@ -474,7 +482,11 @@ public class UnitWithPercentConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitWithPercentConfig { Percent = "percent", UnitAmount = "unit_amount" };
+        var model = new Subscriptions::UnitWithPercentConfig
+        {
+            Percent = "percent",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedPercent = "percent";
         string expectedUnitAmount = "unit_amount";
@@ -486,10 +498,14 @@ public class UnitWithPercentConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitWithPercentConfig { Percent = "percent", UnitAmount = "unit_amount" };
+        var model = new Subscriptions::UnitWithPercentConfig
+        {
+            Percent = "percent",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithPercentConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -497,10 +513,14 @@ public class UnitWithPercentConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitWithPercentConfig { Percent = "percent", UnitAmount = "unit_amount" };
+        var model = new Subscriptions::UnitWithPercentConfig
+        {
+            Percent = "percent",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithPercentConfig>(json);
         Assert.NotNull(deserialized);
 
         string expectedPercent = "percent";
@@ -513,7 +533,11 @@ public class UnitWithPercentConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitWithPercentConfig { Percent = "percent", UnitAmount = "unit_amount" };
+        var model = new Subscriptions::UnitWithPercentConfig
+        {
+            Percent = "percent",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

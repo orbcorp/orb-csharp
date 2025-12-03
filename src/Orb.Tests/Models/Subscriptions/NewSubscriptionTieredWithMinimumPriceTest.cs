@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,11 +11,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -42,12 +43,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -63,19 +64,24 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionTieredWithMinimumPriceCadence> expectedCadence =
-            NewSubscriptionTieredWithMinimumPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionTieredWithMinimumPriceModelType> expectedModelType =
-            NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum;
         string expectedName = "Annual fee";
-        TieredWithMinimumConfig expectedTieredWithMinimumConfig = new()
+        Subscriptions::TieredWithMinimumConfig expectedTieredWithMinimumConfig = new()
         {
             Tiers =
             [
@@ -97,20 +103,20 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionTieredWithMinimumPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionTieredWithMinimumPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -119,10 +125,10 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -156,11 +162,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -187,12 +194,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -208,14 +215,15 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionTieredWithMinimumPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredWithMinimumPrice>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -223,11 +231,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -254,12 +263,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -275,23 +284,29 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionTieredWithMinimumPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredWithMinimumPrice>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionTieredWithMinimumPriceCadence> expectedCadence =
-            NewSubscriptionTieredWithMinimumPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionTieredWithMinimumPriceModelType> expectedModelType =
-            NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum;
         string expectedName = "Annual fee";
-        TieredWithMinimumConfig expectedTieredWithMinimumConfig = new()
+        Subscriptions::TieredWithMinimumConfig expectedTieredWithMinimumConfig = new()
         {
             Tiers =
             [
@@ -313,20 +328,20 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionTieredWithMinimumPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionTieredWithMinimumPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -335,10 +350,10 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -375,11 +390,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -406,12 +422,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -427,7 +443,7 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -439,11 +455,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -498,11 +515,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -532,11 +550,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -605,11 +624,12 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionTieredWithMinimumPrice
+        var model = new Subscriptions::NewSubscriptionTieredWithMinimumPrice
         {
-            Cadence = NewSubscriptionTieredWithMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionTieredWithMinimumPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
+            ModelType =
+                Subscriptions::NewSubscriptionTieredWithMinimumPriceModelType.TieredWithMinimum,
             Name = "Annual fee",
             TieredWithMinimumConfig = new()
             {
@@ -656,7 +676,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -677,7 +697,7 @@ public class TieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        List<Tier15> expectedTiers =
+        List<Subscriptions::TieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -707,7 +727,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -729,7 +749,7 @@ public class TieredWithMinimumConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -737,7 +757,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -759,10 +779,10 @@ public class TieredWithMinimumConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Tier15> expectedTiers =
+        List<Subscriptions::TieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -792,7 +812,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -819,7 +839,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -847,7 +867,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -872,7 +892,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -904,7 +924,7 @@ public class TieredWithMinimumConfigTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TieredWithMinimumConfig
+        var model = new Subscriptions::TieredWithMinimumConfig
         {
             Tiers =
             [
@@ -931,12 +951,12 @@ public class TieredWithMinimumConfigTest : TestBase
     }
 }
 
-public class Tier15Test : TestBase
+public class TieredWithMinimumConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier15
+        var model = new Subscriptions::TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -955,7 +975,7 @@ public class Tier15Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier15
+        var model = new Subscriptions::TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -963,7 +983,9 @@ public class Tier15Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier15>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfigTier>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -971,7 +993,7 @@ public class Tier15Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier15
+        var model = new Subscriptions::TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -979,7 +1001,9 @@ public class Tier15Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier15>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfigTier>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -994,7 +1018,7 @@ public class Tier15Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier15
+        var model = new Subscriptions::TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",

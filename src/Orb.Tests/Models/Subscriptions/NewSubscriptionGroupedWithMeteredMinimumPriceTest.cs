@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,9 +11,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -21,29 +21,29 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -59,46 +59,56 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionGroupedWithMeteredMinimumPriceCadence> expectedCadence =
-            NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual;
-        GroupedWithMeteredMinimumConfig expectedGroupedWithMeteredMinimumConfig = new()
-        {
-            GroupingKey = "x",
-            MinimumUnitAmount = "minimum_unit_amount",
-            PricingKey = "pricing_key",
-            ScalingFactors =
-            [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
-            ],
-            ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
-        };
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence
+        > expectedCadence =
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual;
+        Subscriptions::GroupedWithMeteredMinimumConfig expectedGroupedWithMeteredMinimumConfig =
+            new()
+            {
+                GroupingKey = "x",
+                MinimumUnitAmount = "minimum_unit_amount",
+                PricingKey = "pricing_key",
+                ScalingFactors =
+                [
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
+                ],
+                ScalingKey = "scaling_key",
+                UnitAmounts =
+                [
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+                ],
+            };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedWithMeteredMinimumPriceModelType> expectedModelType =
-            NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -107,10 +117,10 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -147,9 +157,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -157,29 +167,29 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -195,7 +205,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -203,7 +213,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionGroupedWithMeteredMinimumPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -211,9 +223,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -221,29 +233,29 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -259,7 +271,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -267,43 +279,55 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionGroupedWithMeteredMinimumPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionGroupedWithMeteredMinimumPriceCadence> expectedCadence =
-            NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual;
-        GroupedWithMeteredMinimumConfig expectedGroupedWithMeteredMinimumConfig = new()
-        {
-            GroupingKey = "x",
-            MinimumUnitAmount = "minimum_unit_amount",
-            PricingKey = "pricing_key",
-            ScalingFactors =
-            [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
-            ],
-            ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
-        };
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence
+        > expectedCadence =
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual;
+        Subscriptions::GroupedWithMeteredMinimumConfig expectedGroupedWithMeteredMinimumConfig =
+            new()
+            {
+                GroupingKey = "x",
+                MinimumUnitAmount = "minimum_unit_amount",
+                PricingKey = "pricing_key",
+                ScalingFactors =
+                [
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
+                ],
+                ScalingKey = "scaling_key",
+                UnitAmounts =
+                [
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+                ],
+            };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedWithMeteredMinimumPriceModelType> expectedModelType =
-            NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -312,10 +336,10 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -355,9 +379,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -365,29 +389,29 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -403,7 +427,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -415,9 +439,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -425,17 +449,17 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
         };
 
@@ -470,9 +494,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -480,17 +504,17 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
         };
 
@@ -500,9 +524,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -510,17 +534,17 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -569,9 +593,9 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionGroupedWithMeteredMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
             GroupedWithMeteredMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -579,17 +603,17 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -616,30 +640,33 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new GroupedWithMeteredMinimumConfig
+        var model = new Subscriptions::GroupedWithMeteredMinimumConfig
         {
             GroupingKey = "x",
             MinimumUnitAmount = "minimum_unit_amount",
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         string expectedGroupingKey = "x";
         string expectedMinimumUnitAmount = "minimum_unit_amount";
         string expectedPricingKey = "pricing_key";
-        List<ScalingFactor> expectedScalingFactors =
+        List<Subscriptions::ScalingFactor> expectedScalingFactors =
         [
-            new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+            new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
-        List<UnitAmount> expectedUnitAmounts =
+        List<Subscriptions::UnitAmount> expectedUnitAmounts =
         [
-            new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+            new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
         ];
 
         Assert.Equal(expectedGroupingKey, model.GroupingKey);
@@ -661,21 +688,25 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new GroupedWithMeteredMinimumConfig
+        var model = new Subscriptions::GroupedWithMeteredMinimumConfig
         {
             GroupingKey = "x",
             MinimumUnitAmount = "minimum_unit_amount",
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::GroupedWithMeteredMinimumConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -683,34 +714,38 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new GroupedWithMeteredMinimumConfig
+        var model = new Subscriptions::GroupedWithMeteredMinimumConfig
         {
             GroupingKey = "x",
             MinimumUnitAmount = "minimum_unit_amount",
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::GroupedWithMeteredMinimumConfig>(json);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
         string expectedMinimumUnitAmount = "minimum_unit_amount";
         string expectedPricingKey = "pricing_key";
-        List<ScalingFactor> expectedScalingFactors =
+        List<Subscriptions::ScalingFactor> expectedScalingFactors =
         [
-            new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+            new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
-        List<UnitAmount> expectedUnitAmounts =
+        List<Subscriptions::UnitAmount> expectedUnitAmounts =
         [
-            new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+            new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
         ];
 
         Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
@@ -732,17 +767,20 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new GroupedWithMeteredMinimumConfig
+        var model = new Subscriptions::GroupedWithMeteredMinimumConfig
         {
             GroupingKey = "x",
             MinimumUnitAmount = "minimum_unit_amount",
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         model.Validate();
@@ -754,30 +792,30 @@ public class ScalingFactorTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ScalingFactor
+        var model = new Subscriptions::ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
-        string expectedScalingFactor1 = "scaling_factor";
+        string expectedScalingFactorValue = "scaling_factor";
         string expectedScalingValue = "scaling_value";
 
-        Assert.Equal(expectedScalingFactor1, model.ScalingFactor1);
+        Assert.Equal(expectedScalingFactorValue, model.ScalingFactorValue);
         Assert.Equal(expectedScalingValue, model.ScalingValue);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ScalingFactor
+        var model = new Subscriptions::ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactor>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ScalingFactor>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -785,29 +823,29 @@ public class ScalingFactorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ScalingFactor
+        var model = new Subscriptions::ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactor>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ScalingFactor>(json);
         Assert.NotNull(deserialized);
 
-        string expectedScalingFactor1 = "scaling_factor";
+        string expectedScalingFactorValue = "scaling_factor";
         string expectedScalingValue = "scaling_value";
 
-        Assert.Equal(expectedScalingFactor1, deserialized.ScalingFactor1);
+        Assert.Equal(expectedScalingFactorValue, deserialized.ScalingFactorValue);
         Assert.Equal(expectedScalingValue, deserialized.ScalingValue);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new ScalingFactor
+        var model = new Subscriptions::ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
@@ -820,22 +858,30 @@ public class UnitAmountTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new Subscriptions::UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         string expectedPricingValue = "pricing_value";
-        string expectedUnitAmount1 = "unit_amount";
+        string expectedUnitAmountValue = "unit_amount";
 
         Assert.Equal(expectedPricingValue, model.PricingValue);
-        Assert.Equal(expectedUnitAmount1, model.UnitAmount1);
+        Assert.Equal(expectedUnitAmountValue, model.UnitAmountValue);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new Subscriptions::UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitAmount>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -843,23 +889,31 @@ public class UnitAmountTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new Subscriptions::UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitAmount>(json);
         Assert.NotNull(deserialized);
 
         string expectedPricingValue = "pricing_value";
-        string expectedUnitAmount1 = "unit_amount";
+        string expectedUnitAmountValue = "unit_amount";
 
         Assert.Equal(expectedPricingValue, deserialized.PricingValue);
-        Assert.Equal(expectedUnitAmount1, deserialized.UnitAmount1);
+        Assert.Equal(expectedUnitAmountValue, deserialized.UnitAmountValue);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new Subscriptions::UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         model.Validate();
     }

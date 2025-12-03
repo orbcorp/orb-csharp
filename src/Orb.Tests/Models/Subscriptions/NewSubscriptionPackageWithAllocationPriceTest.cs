@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,11 +11,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -28,12 +29,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -49,19 +50,24 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionPackageWithAllocationPriceCadence> expectedCadence =
-            NewSubscriptionPackageWithAllocationPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionPackageWithAllocationPriceModelType> expectedModelType =
-            NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation;
         string expectedName = "Annual fee";
-        PackageWithAllocationConfig expectedPackageWithAllocationConfig = new()
+        Subscriptions::PackageWithAllocationConfig expectedPackageWithAllocationConfig = new()
         {
             Allocation = "allocation",
             PackageAmount = "package_amount",
@@ -69,20 +75,20 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionPackageWithAllocationPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -91,10 +97,10 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -128,11 +134,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -145,12 +152,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -166,16 +173,17 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackageWithAllocationPrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -183,11 +191,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -200,12 +209,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -221,25 +230,31 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackageWithAllocationPrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionPackageWithAllocationPriceCadence> expectedCadence =
-            NewSubscriptionPackageWithAllocationPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionPackageWithAllocationPriceModelType> expectedModelType =
-            NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation;
         string expectedName = "Annual fee";
-        PackageWithAllocationConfig expectedPackageWithAllocationConfig = new()
+        Subscriptions::PackageWithAllocationConfig expectedPackageWithAllocationConfig = new()
         {
             Allocation = "allocation",
             PackageAmount = "package_amount",
@@ -247,20 +262,20 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionPackageWithAllocationPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -269,10 +284,10 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -309,11 +324,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -326,12 +342,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -347,7 +363,7 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -359,11 +375,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -404,11 +421,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -424,11 +442,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -483,11 +502,12 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionPackageWithAllocationPrice
+        var model = new Subscriptions::NewSubscriptionPackageWithAllocationPrice
         {
-            Cadence = NewSubscriptionPackageWithAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation,
             Name = "Annual fee",
             PackageWithAllocationConfig = new()
             {
@@ -520,7 +540,7 @@ public class PackageWithAllocationConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PackageWithAllocationConfig
+        var model = new Subscriptions::PackageWithAllocationConfig
         {
             Allocation = "allocation",
             PackageAmount = "package_amount",
@@ -539,7 +559,7 @@ public class PackageWithAllocationConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PackageWithAllocationConfig
+        var model = new Subscriptions::PackageWithAllocationConfig
         {
             Allocation = "allocation",
             PackageAmount = "package_amount",
@@ -547,7 +567,9 @@ public class PackageWithAllocationConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PackageWithAllocationConfig>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -555,7 +577,7 @@ public class PackageWithAllocationConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PackageWithAllocationConfig
+        var model = new Subscriptions::PackageWithAllocationConfig
         {
             Allocation = "allocation",
             PackageAmount = "package_amount",
@@ -563,7 +585,9 @@ public class PackageWithAllocationConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PackageWithAllocationConfig>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -578,7 +602,7 @@ public class PackageWithAllocationConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PackageWithAllocationConfig
+        var model = new Subscriptions::PackageWithAllocationConfig
         {
             Allocation = "allocation",
             PackageAmount = "package_amount",

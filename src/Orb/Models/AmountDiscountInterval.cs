@@ -63,9 +63,15 @@ public sealed record class AmountDiscountInterval : ModelBase
     /// <summary>
     /// The filters that determine which prices this discount interval applies to.
     /// </summary>
-    public required IReadOnlyList<Filter1> Filters
+    public required IReadOnlyList<AmountDiscountIntervalFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter1>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<AmountDiscountIntervalFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -166,17 +172,22 @@ sealed class AmountDiscountIntervalDiscountTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter1, Filter1FromRaw>))]
-public sealed record class Filter1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<AmountDiscountIntervalFilter, AmountDiscountIntervalFilterFromRaw>)
+)]
+public sealed record class AmountDiscountIntervalFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter1Field> Field
+    public required ApiEnum<string, AmountDiscountIntervalFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter1Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, AmountDiscountIntervalFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -184,11 +195,11 @@ public sealed record class Filter1 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter1Operator> Operator
+    public required ApiEnum<string, AmountDiscountIntervalFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter1Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, AmountDiscountIntervalFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -212,38 +223,41 @@ public sealed record class Filter1 : ModelBase
         _ = this.Values;
     }
 
-    public Filter1() { }
+    public AmountDiscountIntervalFilter() { }
 
-    public Filter1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AmountDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter1(FrozenDictionary<string, JsonElement> rawData)
+    AmountDiscountIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static AmountDiscountIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter1FromRaw : IFromRaw<Filter1>
+class AmountDiscountIntervalFilterFromRaw : IFromRaw<AmountDiscountIntervalFilter>
 {
-    public Filter1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter1.FromRawUnchecked(rawData);
+    public AmountDiscountIntervalFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AmountDiscountIntervalFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter1FieldConverter))]
-public enum Filter1Field
+[JsonConverter(typeof(AmountDiscountIntervalFilterFieldConverter))]
+public enum AmountDiscountIntervalFilterField
 {
     PriceID,
     ItemID,
@@ -252,9 +266,10 @@ public enum Filter1Field
     PricingUnitID,
 }
 
-sealed class Filter1FieldConverter : JsonConverter<Filter1Field>
+sealed class AmountDiscountIntervalFilterFieldConverter
+    : JsonConverter<AmountDiscountIntervalFilterField>
 {
-    public override Filter1Field Read(
+    public override AmountDiscountIntervalFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -262,18 +277,18 @@ sealed class Filter1FieldConverter : JsonConverter<Filter1Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter1Field.PriceID,
-            "item_id" => Filter1Field.ItemID,
-            "price_type" => Filter1Field.PriceType,
-            "currency" => Filter1Field.Currency,
-            "pricing_unit_id" => Filter1Field.PricingUnitID,
-            _ => (Filter1Field)(-1),
+            "price_id" => AmountDiscountIntervalFilterField.PriceID,
+            "item_id" => AmountDiscountIntervalFilterField.ItemID,
+            "price_type" => AmountDiscountIntervalFilterField.PriceType,
+            "currency" => AmountDiscountIntervalFilterField.Currency,
+            "pricing_unit_id" => AmountDiscountIntervalFilterField.PricingUnitID,
+            _ => (AmountDiscountIntervalFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter1Field value,
+        AmountDiscountIntervalFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -281,11 +296,11 @@ sealed class Filter1FieldConverter : JsonConverter<Filter1Field>
             writer,
             value switch
             {
-                Filter1Field.PriceID => "price_id",
-                Filter1Field.ItemID => "item_id",
-                Filter1Field.PriceType => "price_type",
-                Filter1Field.Currency => "currency",
-                Filter1Field.PricingUnitID => "pricing_unit_id",
+                AmountDiscountIntervalFilterField.PriceID => "price_id",
+                AmountDiscountIntervalFilterField.ItemID => "item_id",
+                AmountDiscountIntervalFilterField.PriceType => "price_type",
+                AmountDiscountIntervalFilterField.Currency => "currency",
+                AmountDiscountIntervalFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -298,16 +313,17 @@ sealed class Filter1FieldConverter : JsonConverter<Filter1Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter1OperatorConverter))]
-public enum Filter1Operator
+[JsonConverter(typeof(AmountDiscountIntervalFilterOperatorConverter))]
+public enum AmountDiscountIntervalFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter1OperatorConverter : JsonConverter<Filter1Operator>
+sealed class AmountDiscountIntervalFilterOperatorConverter
+    : JsonConverter<AmountDiscountIntervalFilterOperator>
 {
-    public override Filter1Operator Read(
+    public override AmountDiscountIntervalFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -315,15 +331,15 @@ sealed class Filter1OperatorConverter : JsonConverter<Filter1Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter1Operator.Includes,
-            "excludes" => Filter1Operator.Excludes,
-            _ => (Filter1Operator)(-1),
+            "includes" => AmountDiscountIntervalFilterOperator.Includes,
+            "excludes" => AmountDiscountIntervalFilterOperator.Excludes,
+            _ => (AmountDiscountIntervalFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter1Operator value,
+        AmountDiscountIntervalFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -331,8 +347,8 @@ sealed class Filter1OperatorConverter : JsonConverter<Filter1Operator>
             writer,
             value switch
             {
-                Filter1Operator.Includes => "includes",
-                Filter1Operator.Excludes => "excludes",
+                AmountDiscountIntervalFilterOperator.Includes => "includes",
+                AmountDiscountIntervalFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

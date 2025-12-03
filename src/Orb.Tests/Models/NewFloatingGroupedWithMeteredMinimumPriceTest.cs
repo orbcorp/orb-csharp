@@ -21,12 +21,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -73,10 +73,13 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
         string expectedItemID = "item_id";
         ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType> expectedModelType =
@@ -154,12 +157,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -218,12 +221,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -276,10 +279,13 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
         string expectedItemID = "item_id";
         ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType> expectedModelType =
@@ -360,12 +366,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -419,12 +425,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -471,12 +477,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -502,12 +508,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -566,12 +572,12 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
                 PricingKey = "pricing_key",
                 ScalingFactors =
                 [
-                    new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
                 ],
                 ScalingKey = "scaling_key",
                 UnitAmounts =
                 [
-                    new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
                 ],
             },
             ItemID = "item_id",
@@ -608,10 +614,13 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         string expectedGroupingKey = "x";
@@ -619,12 +628,12 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
         string expectedPricingKey = "pricing_key";
         List<ScalingFactor> expectedScalingFactors =
         [
-            new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+            new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
         List<UnitAmount> expectedUnitAmounts =
         [
-            new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+            new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
         ];
 
         Assert.Equal(expectedGroupingKey, model.GroupingKey);
@@ -653,10 +662,13 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -675,10 +687,13 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -690,12 +705,12 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
         string expectedPricingKey = "pricing_key";
         List<ScalingFactor> expectedScalingFactors =
         [
-            new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+            new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
         List<UnitAmount> expectedUnitAmounts =
         [
-            new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" },
+            new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
         ];
 
         Assert.Equal(expectedGroupingKey, deserialized.GroupingKey);
@@ -724,10 +739,13 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
             PricingKey = "pricing_key",
             ScalingFactors =
             [
-                new() { ScalingFactor1 = "scaling_factor", ScalingValue = "scaling_value" },
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
             ],
             ScalingKey = "scaling_key",
-            UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" }],
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
         };
 
         model.Validate();
@@ -741,14 +759,14 @@ public class ScalingFactorTest : TestBase
     {
         var model = new ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
-        string expectedScalingFactor1 = "scaling_factor";
+        string expectedScalingFactorValue = "scaling_factor";
         string expectedScalingValue = "scaling_value";
 
-        Assert.Equal(expectedScalingFactor1, model.ScalingFactor1);
+        Assert.Equal(expectedScalingFactorValue, model.ScalingFactorValue);
         Assert.Equal(expectedScalingValue, model.ScalingValue);
     }
 
@@ -757,7 +775,7 @@ public class ScalingFactorTest : TestBase
     {
         var model = new ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
@@ -772,7 +790,7 @@ public class ScalingFactorTest : TestBase
     {
         var model = new ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
@@ -780,10 +798,10 @@ public class ScalingFactorTest : TestBase
         var deserialized = JsonSerializer.Deserialize<ScalingFactor>(json);
         Assert.NotNull(deserialized);
 
-        string expectedScalingFactor1 = "scaling_factor";
+        string expectedScalingFactorValue = "scaling_factor";
         string expectedScalingValue = "scaling_value";
 
-        Assert.Equal(expectedScalingFactor1, deserialized.ScalingFactor1);
+        Assert.Equal(expectedScalingFactorValue, deserialized.ScalingFactorValue);
         Assert.Equal(expectedScalingValue, deserialized.ScalingValue);
     }
 
@@ -792,7 +810,7 @@ public class ScalingFactorTest : TestBase
     {
         var model = new ScalingFactor
         {
-            ScalingFactor1 = "scaling_factor",
+            ScalingFactorValue = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
@@ -805,19 +823,27 @@ public class UnitAmountTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         string expectedPricingValue = "pricing_value";
-        string expectedUnitAmount1 = "unit_amount";
+        string expectedUnitAmountValue = "unit_amount";
 
         Assert.Equal(expectedPricingValue, model.PricingValue);
-        Assert.Equal(expectedUnitAmount1, model.UnitAmount1);
+        Assert.Equal(expectedUnitAmountValue, model.UnitAmountValue);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<UnitAmount>(json);
@@ -828,23 +854,31 @@ public class UnitAmountTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<UnitAmount>(json);
         Assert.NotNull(deserialized);
 
         string expectedPricingValue = "pricing_value";
-        string expectedUnitAmount1 = "unit_amount";
+        string expectedUnitAmountValue = "unit_amount";
 
         Assert.Equal(expectedPricingValue, deserialized.PricingValue);
-        Assert.Equal(expectedUnitAmount1, deserialized.UnitAmount1);
+        Assert.Equal(expectedUnitAmountValue, deserialized.UnitAmountValue);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmount { PricingValue = "pricing_value", UnitAmount1 = "unit_amount" };
+        var model = new UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
 
         model.Validate();
     }

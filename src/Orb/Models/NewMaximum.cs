@@ -81,9 +81,9 @@ public sealed record class NewMaximum : ModelBase
     /// <summary>
     /// A list of filters that determine which prices this adjustment will apply to.
     /// </summary>
-    public IReadOnlyList<Filter13>? Filters
+    public IReadOnlyList<NewMaximumFilter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<Filter13>>(this.RawData, "filters"); }
+        get { return ModelBase.GetNullableClass<List<NewMaximumFilter>>(this.RawData, "filters"); }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -248,17 +248,20 @@ sealed class NewMaximumAppliesToAllConverter : JsonConverter<NewMaximumAppliesTo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter13, Filter13FromRaw>))]
-public sealed record class Filter13 : ModelBase
+[JsonConverter(typeof(ModelConverter<NewMaximumFilter, NewMaximumFilterFromRaw>))]
+public sealed record class NewMaximumFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter13Field> Field
+    public required ApiEnum<string, NewMaximumFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter13Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewMaximumFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -266,11 +269,11 @@ public sealed record class Filter13 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter13Operator> Operator
+    public required ApiEnum<string, NewMaximumFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter13Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewMaximumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -294,38 +297,40 @@ public sealed record class Filter13 : ModelBase
         _ = this.Values;
     }
 
-    public Filter13() { }
+    public NewMaximumFilter() { }
 
-    public Filter13(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewMaximumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter13(FrozenDictionary<string, JsonElement> rawData)
+    NewMaximumFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewMaximumFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter13FromRaw : IFromRaw<Filter13>
+class NewMaximumFilterFromRaw : IFromRaw<NewMaximumFilter>
 {
-    public Filter13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter13.FromRawUnchecked(rawData);
+    public NewMaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NewMaximumFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter13FieldConverter))]
-public enum Filter13Field
+[JsonConverter(typeof(NewMaximumFilterFieldConverter))]
+public enum NewMaximumFilterField
 {
     PriceID,
     ItemID,
@@ -334,9 +339,9 @@ public enum Filter13Field
     PricingUnitID,
 }
 
-sealed class Filter13FieldConverter : JsonConverter<Filter13Field>
+sealed class NewMaximumFilterFieldConverter : JsonConverter<NewMaximumFilterField>
 {
-    public override Filter13Field Read(
+    public override NewMaximumFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -344,18 +349,18 @@ sealed class Filter13FieldConverter : JsonConverter<Filter13Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter13Field.PriceID,
-            "item_id" => Filter13Field.ItemID,
-            "price_type" => Filter13Field.PriceType,
-            "currency" => Filter13Field.Currency,
-            "pricing_unit_id" => Filter13Field.PricingUnitID,
-            _ => (Filter13Field)(-1),
+            "price_id" => NewMaximumFilterField.PriceID,
+            "item_id" => NewMaximumFilterField.ItemID,
+            "price_type" => NewMaximumFilterField.PriceType,
+            "currency" => NewMaximumFilterField.Currency,
+            "pricing_unit_id" => NewMaximumFilterField.PricingUnitID,
+            _ => (NewMaximumFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter13Field value,
+        NewMaximumFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -363,11 +368,11 @@ sealed class Filter13FieldConverter : JsonConverter<Filter13Field>
             writer,
             value switch
             {
-                Filter13Field.PriceID => "price_id",
-                Filter13Field.ItemID => "item_id",
-                Filter13Field.PriceType => "price_type",
-                Filter13Field.Currency => "currency",
-                Filter13Field.PricingUnitID => "pricing_unit_id",
+                NewMaximumFilterField.PriceID => "price_id",
+                NewMaximumFilterField.ItemID => "item_id",
+                NewMaximumFilterField.PriceType => "price_type",
+                NewMaximumFilterField.Currency => "currency",
+                NewMaximumFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -380,16 +385,16 @@ sealed class Filter13FieldConverter : JsonConverter<Filter13Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter13OperatorConverter))]
-public enum Filter13Operator
+[JsonConverter(typeof(NewMaximumFilterOperatorConverter))]
+public enum NewMaximumFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter13OperatorConverter : JsonConverter<Filter13Operator>
+sealed class NewMaximumFilterOperatorConverter : JsonConverter<NewMaximumFilterOperator>
 {
-    public override Filter13Operator Read(
+    public override NewMaximumFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -397,15 +402,15 @@ sealed class Filter13OperatorConverter : JsonConverter<Filter13Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter13Operator.Includes,
-            "excludes" => Filter13Operator.Excludes,
-            _ => (Filter13Operator)(-1),
+            "includes" => NewMaximumFilterOperator.Includes,
+            "excludes" => NewMaximumFilterOperator.Excludes,
+            _ => (NewMaximumFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter13Operator value,
+        NewMaximumFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -413,8 +418,8 @@ sealed class Filter13OperatorConverter : JsonConverter<Filter13Operator>
             writer,
             value switch
             {
-                Filter13Operator.Includes => "includes",
-                Filter13Operator.Excludes => "excludes",
+                NewMaximumFilterOperator.Includes => "includes",
+                NewMaximumFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

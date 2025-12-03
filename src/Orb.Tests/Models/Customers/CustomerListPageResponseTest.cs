@@ -85,7 +85,8 @@ public class CustomerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -165,7 +166,8 @@ public class CustomerListPageResponseTest : TestBase
                     [
                         new()
                         {
-                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ProviderType =
+                                CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -264,7 +266,8 @@ public class CustomerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -358,7 +361,8 @@ public class CustomerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -442,7 +446,8 @@ public class CustomerListPageResponseTest : TestBase
                     [
                         new()
                         {
-                            ProviderType = PaymentProvider5ProviderType.Stripe,
+                            ProviderType =
+                                CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -541,7 +546,8 @@ public class CustomerListPageResponseTest : TestBase
                         [
                             new()
                             {
-                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],

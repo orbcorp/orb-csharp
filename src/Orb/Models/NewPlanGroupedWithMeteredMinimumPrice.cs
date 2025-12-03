@@ -387,14 +387,13 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     /// <summary>
     /// Scale the unit rates by the scaling factor.
     /// </summary>
-    public required IReadOnlyList<ScalingFactorModel> ScalingFactors
+    public required IReadOnlyList<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor> ScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ScalingFactorModel>>(
-                this.RawData,
-                "scaling_factors"
-            );
+            return ModelBase.GetNotNullClass<
+                List<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor>
+            >(this.RawData, "scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "scaling_factors", value); }
     }
@@ -412,9 +411,14 @@ public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeter
     /// Apply per unit pricing to each pricing value. The minimum amount is applied
     /// any unmatched usage.
     /// </summary>
-    public required IReadOnlyList<UnitAmount1> UnitAmounts
+    public required IReadOnlyList<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount> UnitAmounts
     {
-        get { return ModelBase.GetNotNullClass<List<UnitAmount1>>(this.RawData, "unit_amounts"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount>
+            >(this.RawData, "unit_amounts");
+        }
         init { ModelBase.Set(this._rawData, "unit_amounts", value); }
     }
 
@@ -475,8 +479,14 @@ class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigFromRa
 /// <summary>
 /// Configuration for a scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ScalingFactorModel, ScalingFactorModelFromRaw>))]
-public sealed record class ScalingFactorModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor,
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactorFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
+    : ModelBase
 {
     /// <summary>
     /// Scaling factor
@@ -502,22 +512,26 @@ public sealed record class ScalingFactorModel : ModelBase
         _ = this.ScalingValue;
     }
 
-    public ScalingFactorModel() { }
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor() { }
 
-    public ScalingFactorModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ScalingFactorModel(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ScalingFactorModel FromRawUnchecked(
+    public static NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -525,17 +539,28 @@ public sealed record class ScalingFactorModel : ModelBase
     }
 }
 
-class ScalingFactorModelFromRaw : IFromRaw<ScalingFactorModel>
+class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactorFromRaw
+    : IFromRaw<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor>
 {
-    public ScalingFactorModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        ScalingFactorModel.FromRawUnchecked(rawData);
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// Configuration for a unit amount
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount1, UnitAmount1FromRaw>))]
-public sealed record class UnitAmount1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount,
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmountFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
+    : ModelBase
 {
     /// <summary>
     /// Pricing value
@@ -561,31 +586,42 @@ public sealed record class UnitAmount1 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public UnitAmount1() { }
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount() { }
 
-    public UnitAmount1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitAmount1(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UnitAmount1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UnitAmount1FromRaw : IFromRaw<UnitAmount1>
+class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmountFromRaw
+    : IFromRaw<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount>
 {
-    public UnitAmount1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        UnitAmount1.FromRawUnchecked(rawData);
+    public NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

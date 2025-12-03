@@ -423,9 +423,15 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : ModelBase
     /// <summary>
     /// Tier pricing structure
     /// </summary>
-    public required IReadOnlyList<Tier3> Tiers
+    public required IReadOnlyList<ScalableMatrixWithTieredPricingConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier3>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<ScalableMatrixWithTieredPricingConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -554,8 +560,13 @@ class MatrixScalingFactorFromRaw : IFromRaw<MatrixScalingFactor>
 /// <summary>
 /// Configuration for a single tier entry with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier3, Tier3FromRaw>))]
-public sealed record class Tier3 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithTieredPricingConfigTier,
+        ScalableMatrixWithTieredPricingConfigTierFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithTieredPricingConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -581,31 +592,37 @@ public sealed record class Tier3 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier3() { }
+    public ScalableMatrixWithTieredPricingConfigTier() { }
 
-    public Tier3(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithTieredPricingConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier3(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithTieredPricingConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier3FromRaw : IFromRaw<Tier3>
+class ScalableMatrixWithTieredPricingConfigTierFromRaw
+    : IFromRaw<ScalableMatrixWithTieredPricingConfigTier>
 {
-    public Tier3 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier3.FromRawUnchecked(rawData);
+    public ScalableMatrixWithTieredPricingConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ScalableMatrixWithTieredPricingConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(

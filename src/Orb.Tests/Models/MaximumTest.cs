@@ -17,8 +17,8 @@ public class MaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26,12 +26,12 @@ public class MaximumTest : TestBase
         };
 
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter2> expectedFilters =
+        List<MaximumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter2Field.PriceID,
-                Operator = Filter2Operator.Includes,
+                Field = MaximumFilterField.PriceID,
+                Operator = MaximumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -60,8 +60,8 @@ public class MaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -84,8 +84,8 @@ public class MaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -97,12 +97,12 @@ public class MaximumTest : TestBase
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter2> expectedFilters =
+        List<MaximumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter2Field.PriceID,
-                Operator = Filter2Operator.Includes,
+                Field = MaximumFilterField.PriceID,
+                Operator = MaximumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -131,8 +131,8 @@ public class MaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -143,20 +143,20 @@ public class MaximumTest : TestBase
     }
 }
 
-public class Filter2Test : TestBase
+public class MaximumFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter2
+        var model = new MaximumFilter
         {
-            Field = Filter2Field.PriceID,
-            Operator = Filter2Operator.Includes,
+            Field = MaximumFilterField.PriceID,
+            Operator = MaximumFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter2Field> expectedField = Filter2Field.PriceID;
-        ApiEnum<string, Filter2Operator> expectedOperator = Filter2Operator.Includes;
+        ApiEnum<string, MaximumFilterField> expectedField = MaximumFilterField.PriceID;
+        ApiEnum<string, MaximumFilterOperator> expectedOperator = MaximumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -171,15 +171,15 @@ public class Filter2Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter2
+        var model = new MaximumFilter
         {
-            Field = Filter2Field.PriceID,
-            Operator = Filter2Operator.Includes,
+            Field = MaximumFilterField.PriceID,
+            Operator = MaximumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter2>(json);
+        var deserialized = JsonSerializer.Deserialize<MaximumFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -187,19 +187,19 @@ public class Filter2Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter2
+        var model = new MaximumFilter
         {
-            Field = Filter2Field.PriceID,
-            Operator = Filter2Operator.Includes,
+            Field = MaximumFilterField.PriceID,
+            Operator = MaximumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter2>(json);
+        var deserialized = JsonSerializer.Deserialize<MaximumFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter2Field> expectedField = Filter2Field.PriceID;
-        ApiEnum<string, Filter2Operator> expectedOperator = Filter2Operator.Includes;
+        ApiEnum<string, MaximumFilterField> expectedField = MaximumFilterField.PriceID;
+        ApiEnum<string, MaximumFilterOperator> expectedOperator = MaximumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -214,10 +214,10 @@ public class Filter2Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter2
+        var model = new MaximumFilter
         {
-            Field = Filter2Field.PriceID,
-            Operator = Filter2Operator.Includes,
+            Field = MaximumFilterField.PriceID,
+            Operator = MaximumFilterOperator.Includes,
             Values = ["string"],
         };
 

@@ -47,9 +47,15 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required IReadOnlyList<Filter21> Filters
+    public required IReadOnlyList<PlanPhaseMinimumAdjustmentFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter21>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<PlanPhaseMinimumAdjustmentFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -204,17 +210,24 @@ sealed class PlanPhaseMinimumAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter21, Filter21FromRaw>))]
-public sealed record class Filter21 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PlanPhaseMinimumAdjustmentFilter,
+        PlanPhaseMinimumAdjustmentFilterFromRaw
+    >)
+)]
+public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter21Field> Field
+    public required ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter21Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -222,14 +235,13 @@ public sealed record class Filter21 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter21Operator> Operator
+    public required ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter21Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -250,38 +262,41 @@ public sealed record class Filter21 : ModelBase
         _ = this.Values;
     }
 
-    public Filter21() { }
+    public PlanPhaseMinimumAdjustmentFilter() { }
 
-    public Filter21(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PlanPhaseMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter21(FrozenDictionary<string, JsonElement> rawData)
+    PlanPhaseMinimumAdjustmentFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter21 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static PlanPhaseMinimumAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter21FromRaw : IFromRaw<Filter21>
+class PlanPhaseMinimumAdjustmentFilterFromRaw : IFromRaw<PlanPhaseMinimumAdjustmentFilter>
 {
-    public Filter21 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter21.FromRawUnchecked(rawData);
+    public PlanPhaseMinimumAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PlanPhaseMinimumAdjustmentFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter21FieldConverter))]
-public enum Filter21Field
+[JsonConverter(typeof(PlanPhaseMinimumAdjustmentFilterFieldConverter))]
+public enum PlanPhaseMinimumAdjustmentFilterField
 {
     PriceID,
     ItemID,
@@ -290,9 +305,10 @@ public enum Filter21Field
     PricingUnitID,
 }
 
-sealed class Filter21FieldConverter : JsonConverter<Filter21Field>
+sealed class PlanPhaseMinimumAdjustmentFilterFieldConverter
+    : JsonConverter<PlanPhaseMinimumAdjustmentFilterField>
 {
-    public override Filter21Field Read(
+    public override PlanPhaseMinimumAdjustmentFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -300,18 +316,18 @@ sealed class Filter21FieldConverter : JsonConverter<Filter21Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter21Field.PriceID,
-            "item_id" => Filter21Field.ItemID,
-            "price_type" => Filter21Field.PriceType,
-            "currency" => Filter21Field.Currency,
-            "pricing_unit_id" => Filter21Field.PricingUnitID,
-            _ => (Filter21Field)(-1),
+            "price_id" => PlanPhaseMinimumAdjustmentFilterField.PriceID,
+            "item_id" => PlanPhaseMinimumAdjustmentFilterField.ItemID,
+            "price_type" => PlanPhaseMinimumAdjustmentFilterField.PriceType,
+            "currency" => PlanPhaseMinimumAdjustmentFilterField.Currency,
+            "pricing_unit_id" => PlanPhaseMinimumAdjustmentFilterField.PricingUnitID,
+            _ => (PlanPhaseMinimumAdjustmentFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter21Field value,
+        PlanPhaseMinimumAdjustmentFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -319,11 +335,11 @@ sealed class Filter21FieldConverter : JsonConverter<Filter21Field>
             writer,
             value switch
             {
-                Filter21Field.PriceID => "price_id",
-                Filter21Field.ItemID => "item_id",
-                Filter21Field.PriceType => "price_type",
-                Filter21Field.Currency => "currency",
-                Filter21Field.PricingUnitID => "pricing_unit_id",
+                PlanPhaseMinimumAdjustmentFilterField.PriceID => "price_id",
+                PlanPhaseMinimumAdjustmentFilterField.ItemID => "item_id",
+                PlanPhaseMinimumAdjustmentFilterField.PriceType => "price_type",
+                PlanPhaseMinimumAdjustmentFilterField.Currency => "currency",
+                PlanPhaseMinimumAdjustmentFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -336,16 +352,17 @@ sealed class Filter21FieldConverter : JsonConverter<Filter21Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter21OperatorConverter))]
-public enum Filter21Operator
+[JsonConverter(typeof(PlanPhaseMinimumAdjustmentFilterOperatorConverter))]
+public enum PlanPhaseMinimumAdjustmentFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter21OperatorConverter : JsonConverter<Filter21Operator>
+sealed class PlanPhaseMinimumAdjustmentFilterOperatorConverter
+    : JsonConverter<PlanPhaseMinimumAdjustmentFilterOperator>
 {
-    public override Filter21Operator Read(
+    public override PlanPhaseMinimumAdjustmentFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -353,15 +370,15 @@ sealed class Filter21OperatorConverter : JsonConverter<Filter21Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter21Operator.Includes,
-            "excludes" => Filter21Operator.Excludes,
-            _ => (Filter21Operator)(-1),
+            "includes" => PlanPhaseMinimumAdjustmentFilterOperator.Includes,
+            "excludes" => PlanPhaseMinimumAdjustmentFilterOperator.Excludes,
+            _ => (PlanPhaseMinimumAdjustmentFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter21Operator value,
+        PlanPhaseMinimumAdjustmentFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -369,8 +386,8 @@ sealed class Filter21OperatorConverter : JsonConverter<Filter21Operator>
             writer,
             value switch
             {
-                Filter21Operator.Includes => "includes",
-                Filter21Operator.Excludes => "excludes",
+                PlanPhaseMinimumAdjustmentFilterOperator.Includes => "includes",
+                PlanPhaseMinimumAdjustmentFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

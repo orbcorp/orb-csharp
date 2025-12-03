@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -12,26 +12,26 @@ public class AddTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Add
+        var model = new Subscriptions::Add
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             AllocationPrice = new()
             {
                 Amount = "10.00",
-                Cadence = Models::Cadence.Monthly,
+                Cadence = Cadence.Monthly,
                 Currency = "USD",
                 CustomExpiration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
                 },
                 ExpiresAtEndOfCadence = true,
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = NewAllocationPriceFilterField.ItemID,
+                        Operator = NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39,7 +39,7 @@ public class AddTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             CanDeferBilling = true,
-            Discounts = [new Amount(0)],
+            Discounts = [new Subscriptions::Amount(0)],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
@@ -53,12 +53,12 @@ public class AddTest : TestBase
             ],
             MaximumAmount = 0,
             MinimumAmount = 0,
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -66,13 +66,12 @@ public class AddTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -87,7 +86,7 @@ public class AddTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -95,24 +94,26 @@ public class AddTest : TestBase
             UsageCustomerIDs = ["string"],
         };
 
-        StartDate expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Models::NewAllocationPrice expectedAllocationPrice = new()
+        Subscriptions::StartDate expectedStartDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
+        NewAllocationPrice expectedAllocationPrice = new()
         {
             Amount = "10.00",
-            Cadence = Models::Cadence.Monthly,
+            Cadence = Cadence.Monthly,
             Currency = "USD",
             CustomExpiration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                DurationUnit = CustomExpirationDurationUnit.Day,
             },
             ExpiresAtEndOfCadence = true,
             Filters =
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -120,11 +121,11 @@ public class AddTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         bool expectedCanDeferBilling = true;
-        List<Discount> expectedDiscounts = [new Amount(0)];
-        EndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Subscriptions::Discount> expectedDiscounts = [new Subscriptions::Amount(0)];
+        Subscriptions::EndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedExternalPriceID = "external_price_id";
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
-        List<FixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
+        List<Subscriptions::FixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
         [
             new()
             {
@@ -134,12 +135,12 @@ public class AddTest : TestBase
         ];
         double expectedMaximumAmount = 0;
         double expectedMinimumAmount = 0;
-        PriceModel expectedPrice = new Models::NewFloatingUnitPrice()
+        Subscriptions::PriceModel expectedPrice = new NewFloatingUnitPrice()
         {
-            Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+            Cadence = NewFloatingUnitPriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+            ModelType = NewFloatingUnitPriceModelType.Unit,
             Name = "Annual fee",
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
             BillableMetricID = "billable_metric_id",
@@ -147,12 +148,12 @@ public class AddTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -167,7 +168,7 @@ public class AddTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -210,26 +211,26 @@ public class AddTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Add
+        var model = new Subscriptions::Add
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             AllocationPrice = new()
             {
                 Amount = "10.00",
-                Cadence = Models::Cadence.Monthly,
+                Cadence = Cadence.Monthly,
                 Currency = "USD",
                 CustomExpiration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
                 },
                 ExpiresAtEndOfCadence = true,
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = NewAllocationPriceFilterField.ItemID,
+                        Operator = NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -237,7 +238,7 @@ public class AddTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             CanDeferBilling = true,
-            Discounts = [new Amount(0)],
+            Discounts = [new Subscriptions::Amount(0)],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
@@ -251,12 +252,12 @@ public class AddTest : TestBase
             ],
             MaximumAmount = 0,
             MinimumAmount = 0,
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -264,13 +265,12 @@ public class AddTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -285,7 +285,7 @@ public class AddTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -294,7 +294,7 @@ public class AddTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Add>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Add>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -302,26 +302,26 @@ public class AddTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Add
+        var model = new Subscriptions::Add
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             AllocationPrice = new()
             {
                 Amount = "10.00",
-                Cadence = Models::Cadence.Monthly,
+                Cadence = Cadence.Monthly,
                 Currency = "USD",
                 CustomExpiration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
                 },
                 ExpiresAtEndOfCadence = true,
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = NewAllocationPriceFilterField.ItemID,
+                        Operator = NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -329,7 +329,7 @@ public class AddTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             CanDeferBilling = true,
-            Discounts = [new Amount(0)],
+            Discounts = [new Subscriptions::Amount(0)],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
@@ -343,12 +343,12 @@ public class AddTest : TestBase
             ],
             MaximumAmount = 0,
             MinimumAmount = 0,
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -356,13 +356,12 @@ public class AddTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -377,7 +376,7 @@ public class AddTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -386,27 +385,29 @@ public class AddTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Add>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Add>(json);
         Assert.NotNull(deserialized);
 
-        StartDate expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Models::NewAllocationPrice expectedAllocationPrice = new()
+        Subscriptions::StartDate expectedStartDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
+        NewAllocationPrice expectedAllocationPrice = new()
         {
             Amount = "10.00",
-            Cadence = Models::Cadence.Monthly,
+            Cadence = Cadence.Monthly,
             Currency = "USD",
             CustomExpiration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                DurationUnit = CustomExpirationDurationUnit.Day,
             },
             ExpiresAtEndOfCadence = true,
             Filters =
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -414,11 +415,11 @@ public class AddTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         bool expectedCanDeferBilling = true;
-        List<Discount> expectedDiscounts = [new Amount(0)];
-        EndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<Subscriptions::Discount> expectedDiscounts = [new Subscriptions::Amount(0)];
+        Subscriptions::EndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedExternalPriceID = "external_price_id";
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
-        List<FixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
+        List<Subscriptions::FixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
         [
             new()
             {
@@ -428,12 +429,12 @@ public class AddTest : TestBase
         ];
         double expectedMaximumAmount = 0;
         double expectedMinimumAmount = 0;
-        PriceModel expectedPrice = new Models::NewFloatingUnitPrice()
+        Subscriptions::PriceModel expectedPrice = new NewFloatingUnitPrice()
         {
-            Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+            Cadence = NewFloatingUnitPriceCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
-            ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+            ModelType = NewFloatingUnitPriceModelType.Unit,
             Name = "Annual fee",
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
             BillableMetricID = "billable_metric_id",
@@ -441,12 +442,12 @@ public class AddTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -461,7 +462,7 @@ public class AddTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -504,26 +505,26 @@ public class AddTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Add
+        var model = new Subscriptions::Add
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             AllocationPrice = new()
             {
                 Amount = "10.00",
-                Cadence = Models::Cadence.Monthly,
+                Cadence = Cadence.Monthly,
                 Currency = "USD",
                 CustomExpiration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    DurationUnit = CustomExpirationDurationUnit.Day,
                 },
                 ExpiresAtEndOfCadence = true,
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = NewAllocationPriceFilterField.ItemID,
+                        Operator = NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -531,7 +532,7 @@ public class AddTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             CanDeferBilling = true,
-            Discounts = [new Amount(0)],
+            Discounts = [new Subscriptions::Amount(0)],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             ExternalPriceID = "external_price_id",
             Filter = "my_property > 100 AND my_other_property = 'bar'",
@@ -545,12 +546,12 @@ public class AddTest : TestBase
             ],
             MaximumAmount = 0,
             MinimumAmount = 0,
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -558,13 +559,12 @@ public class AddTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -579,7 +579,7 @@ public class AddTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -593,7 +593,10 @@ public class AddTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Add { StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z") };
+        var model = new Subscriptions::Add
+        {
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
 
         Assert.Null(model.AllocationPrice);
         Assert.False(model.RawData.ContainsKey("allocation_price"));
@@ -624,7 +627,10 @@ public class AddTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Add { StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z") };
+        var model = new Subscriptions::Add
+        {
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
 
         model.Validate();
     }
@@ -632,7 +638,7 @@ public class AddTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Add
+        var model = new Subscriptions::Add
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
 
@@ -679,7 +685,7 @@ public class AddTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Add
+        var model = new Subscriptions::Add
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
 
@@ -706,7 +712,7 @@ public class AmountTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Amount { AmountDiscount = 0 };
+        var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
         double expectedAmountDiscount = 0;
         JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
@@ -718,10 +724,10 @@ public class AmountTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Amount { AmountDiscount = 0 };
+        var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Amount>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Amount>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -729,10 +735,10 @@ public class AmountTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Amount { AmountDiscount = 0 };
+        var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Amount>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Amount>(json);
         Assert.NotNull(deserialized);
 
         double expectedAmountDiscount = 0;
@@ -745,7 +751,7 @@ public class AmountTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Amount { AmountDiscount = 0 };
+        var model = new Subscriptions::Amount { AmountDiscount = 0 };
 
         model.Validate();
     }
@@ -756,7 +762,7 @@ public class PercentageTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Percentage { PercentageDiscount = 0.15 };
+        var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
         JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
             "\"percentage\""
@@ -770,10 +776,10 @@ public class PercentageTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Percentage { PercentageDiscount = 0.15 };
+        var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Percentage>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -781,10 +787,10 @@ public class PercentageTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Percentage { PercentageDiscount = 0.15 };
+        var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Percentage>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Percentage>(json);
         Assert.NotNull(deserialized);
 
         JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>(
@@ -799,18 +805,18 @@ public class PercentageTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Percentage { PercentageDiscount = 0.15 };
+        var model = new Subscriptions::Percentage { PercentageDiscount = 0.15 };
 
         model.Validate();
     }
 }
 
-public class DiscountUsageTest : TestBase
+public class UsageTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DiscountUsage { UsageDiscount = 2 };
+        var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
         JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
         double expectedUsageDiscount = 2;
@@ -822,10 +828,10 @@ public class DiscountUsageTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DiscountUsage { UsageDiscount = 2 };
+        var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DiscountUsage>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -833,10 +839,10 @@ public class DiscountUsageTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DiscountUsage { UsageDiscount = 2 };
+        var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DiscountUsage>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Usage>(json);
         Assert.NotNull(deserialized);
 
         JsonElement expectedDiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
@@ -849,7 +855,7 @@ public class DiscountUsageTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DiscountUsage { UsageDiscount = 2 };
+        var model = new Subscriptions::Usage { UsageDiscount = 2 };
 
         model.Validate();
     }
@@ -860,7 +866,7 @@ public class FixedFeeQuantityTransitionTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FixedFeeQuantityTransition
+        var model = new Subscriptions::FixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
@@ -876,14 +882,16 @@ public class FixedFeeQuantityTransitionTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FixedFeeQuantityTransition
+        var model = new Subscriptions::FixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityTransition>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::FixedFeeQuantityTransition>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -891,14 +899,16 @@ public class FixedFeeQuantityTransitionTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FixedFeeQuantityTransition
+        var model = new Subscriptions::FixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityTransition>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::FixedFeeQuantityTransition>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -911,7 +921,7 @@ public class FixedFeeQuantityTransitionTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FixedFeeQuantityTransition
+        var model = new Subscriptions::FixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
@@ -926,7 +936,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -937,7 +947,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -946,12 +956,12 @@ public class PriceModelBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -966,22 +976,23 @@ public class PriceModelBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        PriceModelBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig = new()
-        {
-            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-            Tiers =
-            [
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-            ],
-        };
-        ApiEnum<string, PriceModelBulkWithFiltersCadence> expectedCadence =
-            PriceModelBulkWithFiltersCadence.Annual;
+        Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig =
+            new()
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            };
+        ApiEnum<string, Subscriptions::PriceModelBulkWithFiltersCadence> expectedCadence =
+            Subscriptions::PriceModelBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
@@ -990,19 +1001,19 @@ public class PriceModelBulkWithFiltersTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1011,10 +1022,10 @@ public class PriceModelBulkWithFiltersTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1046,7 +1057,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1057,7 +1068,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1066,12 +1077,12 @@ public class PriceModelBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1086,13 +1097,15 @@ public class PriceModelBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelBulkWithFilters>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFilters>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1100,7 +1113,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1111,7 +1124,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1120,12 +1133,12 @@ public class PriceModelBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1140,26 +1153,29 @@ public class PriceModelBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelBulkWithFilters>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFilters>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        PriceModelBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig = new()
-        {
-            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-            Tiers =
-            [
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-            ],
-        };
-        ApiEnum<string, PriceModelBulkWithFiltersCadence> expectedCadence =
-            PriceModelBulkWithFiltersCadence.Annual;
+        Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig =
+            new()
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            };
+        ApiEnum<string, Subscriptions::PriceModelBulkWithFiltersCadence> expectedCadence =
+            Subscriptions::PriceModelBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
@@ -1168,19 +1184,19 @@ public class PriceModelBulkWithFiltersTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1189,10 +1205,10 @@ public class PriceModelBulkWithFiltersTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1227,7 +1243,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1238,7 +1254,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1247,12 +1263,12 @@ public class PriceModelBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1267,7 +1283,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -1278,7 +1294,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1289,7 +1305,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1322,7 +1338,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1333,7 +1349,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1345,7 +1361,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1356,7 +1372,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1401,7 +1417,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceModelBulkWithFilters
+        var model = new Subscriptions::PriceModelBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1412,7 +1428,7 @@ public class PriceModelBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceModelBulkWithFiltersCadence.Annual,
+            Cadence = Subscriptions::PriceModelBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1439,7 +1455,7 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelBulkWithFiltersBulkWithFiltersConfig
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig
         {
             Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
             Tiers =
@@ -1449,8 +1465,11 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        List<Filter1> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier3> expectedTiers =
+        List<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -1471,7 +1490,7 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelBulkWithFiltersBulkWithFiltersConfig
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig
         {
             Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
             Tiers =
@@ -1483,7 +1502,9 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceModelBulkWithFiltersBulkWithFiltersConfig>(json);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1491,7 +1512,7 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelBulkWithFiltersBulkWithFiltersConfig
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig
         {
             Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
             Tiers =
@@ -1503,11 +1524,16 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceModelBulkWithFiltersBulkWithFiltersConfig>(json);
+            JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        List<Filter1> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier3> expectedTiers =
+        List<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -1528,7 +1554,7 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelBulkWithFiltersBulkWithFiltersConfig
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfig
         {
             Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
             Tiers =
@@ -1542,12 +1568,16 @@ public class PriceModelBulkWithFiltersBulkWithFiltersConfigTest : TestBase
     }
 }
 
-public class Filter1Test : TestBase
+public class PriceModelBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string expectedPropertyKey = "x";
         string expectedPropertyValue = "x";
@@ -1559,10 +1589,17 @@ public class Filter1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1570,10 +1607,17 @@ public class Filter1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -1586,18 +1630,26 @@ public class Filter1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         model.Validate();
     }
 }
 
-public class Tier3Test : TestBase
+public class PriceModelBulkWithFiltersBulkWithFiltersConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier3 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -1609,10 +1661,17 @@ public class Tier3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier3 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1620,10 +1679,17 @@ public class Tier3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier3 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -1636,7 +1702,11 @@ public class Tier3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier3 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -1644,7 +1714,10 @@ public class Tier3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier3 { UnitAmount = "unit_amount" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -1653,7 +1726,10 @@ public class Tier3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier3 { UnitAmount = "unit_amount" };
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -1661,7 +1737,7 @@ public class Tier3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier3
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -1675,7 +1751,7 @@ public class Tier3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier3
+        var model = new Subscriptions::PriceModelBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -1691,9 +1767,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -1709,12 +1785,12 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1729,15 +1805,17 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        ApiEnum<string, PriceModelGroupedWithMinMaxThresholdsCadence> expectedCadence =
-            PriceModelGroupedWithMinMaxThresholdsCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence
+        > expectedCadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual;
         string expectedCurrency = "currency";
-        PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
+        Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
             new()
             {
                 GroupingKey = "x",
@@ -1752,19 +1830,19 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1773,10 +1851,10 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1811,9 +1889,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -1829,12 +1907,12 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1849,13 +1927,14 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelGroupedWithMinMaxThresholds>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholds>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1863,9 +1942,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -1881,12 +1960,12 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1901,19 +1980,22 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelGroupedWithMinMaxThresholds>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholds>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PriceModelGroupedWithMinMaxThresholdsCadence> expectedCadence =
-            PriceModelGroupedWithMinMaxThresholdsCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence
+        > expectedCadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual;
         string expectedCurrency = "currency";
-        PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
+        Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
             new()
             {
                 GroupingKey = "x",
@@ -1928,19 +2010,19 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1949,10 +2031,10 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1990,9 +2072,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -2008,12 +2090,12 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2028,7 +2110,7 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -2039,9 +2121,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -2081,9 +2163,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -2102,9 +2184,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -2156,9 +2238,9 @@ public class PriceModelGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholds
+        var model = new Subscriptions::PriceModelGroupedWithMinMaxThresholds
         {
-            Cadence = PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
+            Cadence = Subscriptions::PriceModelGroupedWithMinMaxThresholdsCadence.Annual,
             Currency = "currency",
             GroupedWithMinMaxThresholdsConfig = new()
             {
@@ -2192,13 +2274,14 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-        {
-            GroupingKey = "x",
-            MaximumCharge = "maximum_charge",
-            MinimumCharge = "minimum_charge",
-            PerUnitRate = "per_unit_rate",
-        };
+        var model =
+            new Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            };
 
         string expectedGroupingKey = "x";
         string expectedMaximumCharge = "maximum_charge";
@@ -2214,17 +2297,18 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-        {
-            GroupingKey = "x",
-            MaximumCharge = "maximum_charge",
-            MinimumCharge = "minimum_charge",
-            PerUnitRate = "per_unit_rate",
-        };
+        var model =
+            new Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 json
             );
 
@@ -2234,17 +2318,18 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-        {
-            GroupingKey = "x",
-            MaximumCharge = "maximum_charge",
-            MinimumCharge = "minimum_charge",
-            PerUnitRate = "per_unit_rate",
-        };
+        var model =
+            new Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            JsonSerializer.Deserialize<Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 json
             );
         Assert.NotNull(deserialized);
@@ -2263,13 +2348,14 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-        {
-            GroupingKey = "x",
-            MaximumCharge = "maximum_charge",
-            MinimumCharge = "minimum_charge",
-            PerUnitRate = "per_unit_rate",
-        };
+        var model =
+            new Subscriptions::PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            {
+                GroupingKey = "x",
+                MaximumCharge = "maximum_charge",
+                MinimumCharge = "minimum_charge",
+                PerUnitRate = "per_unit_rate",
+            };
 
         model.Validate();
     }
@@ -2280,9 +2366,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2298,12 +2384,12 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2318,14 +2404,16 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        ApiEnum<string, PriceModelCumulativeGroupedAllocationCadence> expectedCadence =
-            PriceModelCumulativeGroupedAllocationCadence.Annual;
-        PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
+        ApiEnum<
+            string,
+            Subscriptions::PriceModelCumulativeGroupedAllocationCadence
+        > expectedCadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual;
+        Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
             new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2341,19 +2429,19 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -2362,10 +2450,10 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -2400,9 +2488,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2418,12 +2506,12 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2438,13 +2526,14 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelCumulativeGroupedAllocation>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocation>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -2452,9 +2541,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2470,12 +2559,12 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2490,18 +2579,21 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelCumulativeGroupedAllocation>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocation>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PriceModelCumulativeGroupedAllocationCadence> expectedCadence =
-            PriceModelCumulativeGroupedAllocationCadence.Annual;
-        PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
+        ApiEnum<
+            string,
+            Subscriptions::PriceModelCumulativeGroupedAllocationCadence
+        > expectedCadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual;
+        Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
             new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2517,19 +2609,19 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -2538,10 +2630,10 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -2579,9 +2671,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2597,12 +2689,12 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2617,7 +2709,7 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -2628,9 +2720,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2670,9 +2762,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2691,9 +2783,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2745,9 +2837,9 @@ public class PriceModelCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocation
+        var model = new Subscriptions::PriceModelCumulativeGroupedAllocation
         {
-            Cadence = PriceModelCumulativeGroupedAllocationCadence.Annual,
+            Cadence = Subscriptions::PriceModelCumulativeGroupedAllocationCadence.Annual,
             CumulativeGroupedAllocationConfig = new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2781,13 +2873,14 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-        {
-            CumulativeAllocation = "cumulative_allocation",
-            GroupAllocation = "group_allocation",
-            GroupingKey = "x",
-            UnitAmount = "unit_amount",
-        };
+        var model =
+            new Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            };
 
         string expectedCumulativeAllocation = "cumulative_allocation";
         string expectedGroupAllocation = "group_allocation";
@@ -2803,17 +2896,18 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-        {
-            CumulativeAllocation = "cumulative_allocation",
-            GroupAllocation = "group_allocation",
-            GroupingKey = "x",
-            UnitAmount = "unit_amount",
-        };
+        var model =
+            new Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 json
             );
 
@@ -2823,17 +2917,18 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-        {
-            CumulativeAllocation = "cumulative_allocation",
-            GroupAllocation = "group_allocation",
-            GroupingKey = "x",
-            UnitAmount = "unit_amount",
-        };
+        var model =
+            new Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            JsonSerializer.Deserialize<Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 json
             );
         Assert.NotNull(deserialized);
@@ -2852,13 +2947,14 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-        {
-            CumulativeAllocation = "cumulative_allocation",
-            GroupAllocation = "group_allocation",
-            GroupingKey = "x",
-            UnitAmount = "unit_amount",
-        };
+        var model =
+            new Subscriptions::PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            {
+                CumulativeAllocation = "cumulative_allocation",
+                GroupAllocation = "group_allocation",
+                GroupingKey = "x",
+                UnitAmount = "unit_amount",
+            };
 
         model.Validate();
     }
@@ -2869,9 +2965,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -2881,12 +2977,12 @@ public class PriceModelPercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2901,32 +2997,33 @@ public class PriceModelPercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        ApiEnum<string, PriceModelPercentCadence> expectedCadence = PriceModelPercentCadence.Annual;
+        ApiEnum<string, Subscriptions::PriceModelPercentCadence> expectedCadence =
+            Subscriptions::PriceModelPercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
         string expectedName = "Annual fee";
-        PriceModelPercentPercentConfig expectedPercentConfig = new(0);
+        Subscriptions::PriceModelPercentPercentConfig expectedPercentConfig = new(0);
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelPercentConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelPercentConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -2935,10 +3032,10 @@ public class PriceModelPercentTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -2970,9 +3067,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -2982,12 +3079,12 @@ public class PriceModelPercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3002,13 +3099,13 @@ public class PriceModelPercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelPercent>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelPercent>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -3016,9 +3113,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3028,12 +3125,12 @@ public class PriceModelPercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3048,36 +3145,37 @@ public class PriceModelPercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelPercent>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelPercent>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PriceModelPercentCadence> expectedCadence = PriceModelPercentCadence.Annual;
+        ApiEnum<string, Subscriptions::PriceModelPercentCadence> expectedCadence =
+            Subscriptions::PriceModelPercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
         string expectedName = "Annual fee";
-        PriceModelPercentPercentConfig expectedPercentConfig = new(0);
+        Subscriptions::PriceModelPercentPercentConfig expectedPercentConfig = new(0);
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelPercentConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelPercentConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -3086,10 +3184,10 @@ public class PriceModelPercentTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -3124,9 +3222,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3136,12 +3234,12 @@ public class PriceModelPercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3156,7 +3254,7 @@ public class PriceModelPercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -3167,9 +3265,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3203,9 +3301,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3218,9 +3316,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3266,9 +3364,9 @@ public class PriceModelPercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceModelPercent
+        var model = new Subscriptions::PriceModelPercent
         {
-            Cadence = PriceModelPercentCadence.Annual,
+            Cadence = Subscriptions::PriceModelPercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3296,7 +3394,7 @@ public class PriceModelPercentPercentConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelPercentPercentConfig { Percent = 0 };
+        var model = new Subscriptions::PriceModelPercentPercentConfig { Percent = 0 };
 
         double expectedPercent = 0;
 
@@ -3306,10 +3404,11 @@ public class PriceModelPercentPercentConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelPercentPercentConfig { Percent = 0 };
+        var model = new Subscriptions::PriceModelPercentPercentConfig { Percent = 0 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelPercentPercentConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelPercentPercentConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -3317,10 +3416,11 @@ public class PriceModelPercentPercentConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelPercentPercentConfig { Percent = 0 };
+        var model = new Subscriptions::PriceModelPercentPercentConfig { Percent = 0 };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelPercentPercentConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelPercentPercentConfig>(json);
         Assert.NotNull(deserialized);
 
         double expectedPercent = 0;
@@ -3331,7 +3431,7 @@ public class PriceModelPercentPercentConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelPercentPercentConfig { Percent = 0 };
+        var model = new Subscriptions::PriceModelPercentPercentConfig { Percent = 0 };
 
         model.Validate();
     }
@@ -3342,9 +3442,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3359,12 +3459,12 @@ public class PriceModelEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3379,15 +3479,15 @@ public class PriceModelEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        ApiEnum<string, PriceModelEventOutputCadence> expectedCadence =
-            PriceModelEventOutputCadence.Annual;
+        ApiEnum<string, Subscriptions::PriceModelEventOutputCadence> expectedCadence =
+            Subscriptions::PriceModelEventOutputCadence.Annual;
         string expectedCurrency = "currency";
-        PriceModelEventOutputEventOutputConfig expectedEventOutputConfig = new()
+        Subscriptions::PriceModelEventOutputEventOutputConfig expectedEventOutputConfig = new()
         {
             UnitRatingKey = "x",
             DefaultUnitRate = "default_unit_rate",
@@ -3398,19 +3498,19 @@ public class PriceModelEventOutputTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelEventOutputConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelEventOutputConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -3419,10 +3519,10 @@ public class PriceModelEventOutputTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -3454,9 +3554,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3471,12 +3571,12 @@ public class PriceModelEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3491,13 +3591,13 @@ public class PriceModelEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelEventOutput>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutput>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -3505,9 +3605,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3522,12 +3622,12 @@ public class PriceModelEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3542,19 +3642,19 @@ public class PriceModelEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelEventOutput>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutput>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PriceModelEventOutputCadence> expectedCadence =
-            PriceModelEventOutputCadence.Annual;
+        ApiEnum<string, Subscriptions::PriceModelEventOutputCadence> expectedCadence =
+            Subscriptions::PriceModelEventOutputCadence.Annual;
         string expectedCurrency = "currency";
-        PriceModelEventOutputEventOutputConfig expectedEventOutputConfig = new()
+        Subscriptions::PriceModelEventOutputEventOutputConfig expectedEventOutputConfig = new()
         {
             UnitRatingKey = "x",
             DefaultUnitRate = "default_unit_rate",
@@ -3565,19 +3665,19 @@ public class PriceModelEventOutputTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceModelEventOutputConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::PriceModelEventOutputConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -3586,10 +3686,10 @@ public class PriceModelEventOutputTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -3624,9 +3724,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3641,12 +3741,12 @@ public class PriceModelEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3661,7 +3761,7 @@ public class PriceModelEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -3672,9 +3772,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3713,9 +3813,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3733,9 +3833,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3786,9 +3886,9 @@ public class PriceModelEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceModelEventOutput
+        var model = new Subscriptions::PriceModelEventOutput
         {
-            Cadence = PriceModelEventOutputCadence.Annual,
+            Cadence = Subscriptions::PriceModelEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3821,7 +3921,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
         {
             UnitRatingKey = "x",
             DefaultUnitRate = "default_unit_rate",
@@ -3840,7 +3940,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
         {
             UnitRatingKey = "x",
             DefaultUnitRate = "default_unit_rate",
@@ -3848,7 +3948,8 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelEventOutputEventOutputConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputEventOutputConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -3856,7 +3957,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
         {
             UnitRatingKey = "x",
             DefaultUnitRate = "default_unit_rate",
@@ -3864,7 +3965,8 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceModelEventOutputEventOutputConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::PriceModelEventOutputEventOutputConfig>(json);
         Assert.NotNull(deserialized);
 
         string expectedUnitRatingKey = "x";
@@ -3879,7 +3981,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
         {
             UnitRatingKey = "x",
             DefaultUnitRate = "default_unit_rate",
@@ -3892,7 +3994,10 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig { UnitRatingKey = "x" };
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
+        {
+            UnitRatingKey = "x",
+        };
 
         Assert.Null(model.DefaultUnitRate);
         Assert.False(model.RawData.ContainsKey("default_unit_rate"));
@@ -3903,7 +4008,10 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig { UnitRatingKey = "x" };
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
+        {
+            UnitRatingKey = "x",
+        };
 
         model.Validate();
     }
@@ -3911,7 +4019,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
         {
             UnitRatingKey = "x",
 
@@ -3928,7 +4036,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceModelEventOutputEventOutputConfig
+        var model = new Subscriptions::PriceModelEventOutputEventOutputConfig
         {
             UnitRatingKey = "x",
 
@@ -3940,19 +4048,19 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
     }
 }
 
-public class AddAdjustmentModelTest : TestBase
+public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Adjustment = new Models::NewPercentageDiscount()
+            Adjustment = new NewPercentageDiscount()
             {
-                AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
-                AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
                 AppliesToItemIDs = ["item_1", "item_2"],
                 AppliesToPriceIDs = ["price_1", "price_2"],
                 Currency = "currency",
@@ -3960,45 +4068,44 @@ public class AddAdjustmentModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 IsInvoiceLevel = true,
-                PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        AddAdjustmentModelStartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
-        AddAdjustmentModelAdjustment expectedAdjustment = new Models::NewPercentageDiscount()
-        {
-            AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
-            PercentageDiscount = 0,
-            AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
-            Currency = "currency",
-            Filters =
-            [
-                new()
-                {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            IsInvoiceLevel = true,
-            PriceType = Models::NewPercentageDiscountPriceType.Usage,
-        };
+        Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate expectedStartDate =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment expectedAdjustment =
+            new NewPercentageDiscount()
+            {
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                PercentageDiscount = 0,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = NewPercentageDiscountPriceType.Usage,
+            };
         string expectedAdjustmentID = "h74gfhdjvn7ujokd";
-        AddAdjustmentModelEndDate expectedEndDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate expectedEndDate =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedStartDate, model.StartDate);
         Assert.Equal(expectedAdjustment, model.Adjustment);
@@ -4009,14 +4116,14 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Adjustment = new Models::NewPercentageDiscount()
+            Adjustment = new NewPercentageDiscount()
             {
-                AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
-                AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
                 AppliesToItemIDs = ["item_1", "item_2"],
                 AppliesToPriceIDs = ["price_1", "price_2"],
                 Currency = "currency",
@@ -4024,20 +4131,23 @@ public class AddAdjustmentModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 IsInvoiceLevel = true,
-                PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AddAdjustmentModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -4045,14 +4155,14 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Adjustment = new Models::NewPercentageDiscount()
+            Adjustment = new NewPercentageDiscount()
             {
-                AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
-                AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
                 AppliesToItemIDs = ["item_1", "item_2"],
                 AppliesToPriceIDs = ["price_1", "price_2"],
                 Currency = "currency",
@@ -4060,49 +4170,51 @@ public class AddAdjustmentModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 IsInvoiceLevel = true,
-                PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AddAdjustmentModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        AddAdjustmentModelStartDate expectedStartDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
-        AddAdjustmentModelAdjustment expectedAdjustment = new Models::NewPercentageDiscount()
-        {
-            AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
-            PercentageDiscount = 0,
-            AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
-            Currency = "currency",
-            Filters =
-            [
-                new()
-                {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
-                    Values = ["string"],
-                },
-            ],
-            IsInvoiceLevel = true,
-            PriceType = Models::NewPercentageDiscountPriceType.Usage,
-        };
+        Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate expectedStartDate =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment expectedAdjustment =
+            new NewPercentageDiscount()
+            {
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                PercentageDiscount = 0,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = NewPercentageDiscountPriceType.Usage,
+            };
         string expectedAdjustmentID = "h74gfhdjvn7ujokd";
-        AddAdjustmentModelEndDate expectedEndDate = DateTimeOffset.Parse(
-            "2019-12-27T18:11:19.117Z"
-        );
+        Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate expectedEndDate =
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedStartDate, deserialized.StartDate);
         Assert.Equal(expectedAdjustment, deserialized.Adjustment);
@@ -4113,14 +4225,14 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Adjustment = new Models::NewPercentageDiscount()
+            Adjustment = new NewPercentageDiscount()
             {
-                AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
-                AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                AppliesToAll = NewPercentageDiscountAppliesToAll.True,
                 AppliesToItemIDs = ["item_1", "item_2"],
                 AppliesToPriceIDs = ["price_1", "price_2"],
                 Currency = "currency",
@@ -4128,13 +4240,13 @@ public class AddAdjustmentModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = NewPercentageDiscountFilterField.PriceID,
+                        Operator = NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 IsInvoiceLevel = true,
-                PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                PriceType = NewPercentageDiscountPriceType.Usage,
             },
             AdjustmentID = "h74gfhdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4146,7 +4258,7 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -4162,7 +4274,7 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -4173,7 +4285,7 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
 
@@ -4193,7 +4305,7 @@ public class AddAdjustmentModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new AddAdjustmentModel
+        var model = new Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment
         {
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
 
@@ -4211,7 +4323,7 @@ public class EditTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4233,9 +4345,11 @@ public class EditTest : TestBase
         string expectedPriceIntervalID = "sdfs6wdjvn7ujokd";
         long expectedBillingCycleDay = 0;
         bool expectedCanDeferBilling = true;
-        EditEndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::EditEndDate expectedEndDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
-        List<FixedFeeQuantityTransitionModel> expectedFixedFeeQuantityTransitions =
+        List<Subscriptions::EditFixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
         [
             new()
             {
@@ -4243,7 +4357,9 @@ public class EditTest : TestBase
                 Quantity = 5,
             },
         ];
-        EditStartDate expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
         List<string> expectedUsageCustomerIDs = ["string"];
 
         Assert.Equal(expectedPriceIntervalID, model.PriceIntervalID);
@@ -4273,7 +4389,7 @@ public class EditTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4293,7 +4409,7 @@ public class EditTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Edit>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Edit>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -4301,7 +4417,7 @@ public class EditTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4321,15 +4437,17 @@ public class EditTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Edit>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::Edit>(json);
         Assert.NotNull(deserialized);
 
         string expectedPriceIntervalID = "sdfs6wdjvn7ujokd";
         long expectedBillingCycleDay = 0;
         bool expectedCanDeferBilling = true;
-        EditEndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::EditEndDate expectedEndDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
         string expectedFilter = "my_property > 100 AND my_other_property = 'bar'";
-        List<FixedFeeQuantityTransitionModel> expectedFixedFeeQuantityTransitions =
+        List<Subscriptions::EditFixedFeeQuantityTransition> expectedFixedFeeQuantityTransitions =
         [
             new()
             {
@@ -4337,7 +4455,9 @@ public class EditTest : TestBase
                 Quantity = 5,
             },
         ];
-        EditStartDate expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
         List<string> expectedUsageCustomerIDs = ["string"];
 
         Assert.Equal(expectedPriceIntervalID, deserialized.PriceIntervalID);
@@ -4367,7 +4487,7 @@ public class EditTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4392,7 +4512,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4417,7 +4537,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4441,7 +4561,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4469,7 +4589,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             BillingCycleDay = 0,
@@ -4496,7 +4616,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4519,7 +4639,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4531,7 +4651,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4561,7 +4681,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Edit
+        var model = new Subscriptions::Edit
         {
             PriceIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4578,12 +4698,12 @@ public class EditTest : TestBase
     }
 }
 
-public class FixedFeeQuantityTransitionModelTest : TestBase
+public class EditFixedFeeQuantityTransitionTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FixedFeeQuantityTransitionModel
+        var model = new Subscriptions::EditFixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
@@ -4599,14 +4719,15 @@ public class FixedFeeQuantityTransitionModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FixedFeeQuantityTransitionModel
+        var model = new Subscriptions::EditFixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityTransitionModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::EditFixedFeeQuantityTransition>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -4614,14 +4735,15 @@ public class FixedFeeQuantityTransitionModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FixedFeeQuantityTransitionModel
+        var model = new Subscriptions::EditFixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FixedFeeQuantityTransitionModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::EditFixedFeeQuantityTransition>(json);
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -4634,7 +4756,7 @@ public class FixedFeeQuantityTransitionModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FixedFeeQuantityTransitionModel
+        var model = new Subscriptions::EditFixedFeeQuantityTransition
         {
             EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Quantity = 5,
@@ -4649,7 +4771,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4657,8 +4779,10 @@ public class EditAdjustmentTest : TestBase
         };
 
         string expectedAdjustmentIntervalID = "sdfs6wdjvn7ujokd";
-        EditAdjustmentEndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        EditAdjustmentStartDate expectedStartDate = DateTimeOffset.Parse(
+        Subscriptions::EditAdjustmentEndDate expectedEndDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
+        Subscriptions::EditAdjustmentStartDate expectedStartDate = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
 
@@ -4670,7 +4794,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4678,7 +4802,7 @@ public class EditAdjustmentTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EditAdjustment>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustment>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -4686,7 +4810,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4694,12 +4818,14 @@ public class EditAdjustmentTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EditAdjustment>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::EditAdjustment>(json);
         Assert.NotNull(deserialized);
 
         string expectedAdjustmentIntervalID = "sdfs6wdjvn7ujokd";
-        EditAdjustmentEndDate expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        EditAdjustmentStartDate expectedStartDate = DateTimeOffset.Parse(
+        Subscriptions::EditAdjustmentEndDate expectedEndDate = DateTimeOffset.Parse(
+            "2019-12-27T18:11:19.117Z"
+        );
+        Subscriptions::EditAdjustmentStartDate expectedStartDate = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
 
@@ -4711,7 +4837,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4724,7 +4850,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4737,7 +4863,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4749,7 +4875,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4765,7 +4891,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4780,7 +4906,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4793,7 +4919,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4805,7 +4931,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -4820,7 +4946,7 @@ public class EditAdjustmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new EditAdjustment
+        var model = new Subscriptions::EditAdjustment
         {
             AdjustmentIntervalID = "sdfs6wdjvn7ujokd",
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),

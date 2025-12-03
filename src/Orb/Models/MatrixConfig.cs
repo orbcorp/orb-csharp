@@ -34,15 +34,9 @@ public sealed record class MatrixConfig : ModelBase
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required IReadOnlyList<SharedMatrixValue> MatrixValues
+    public required IReadOnlyList<MatrixValue> MatrixValues
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<List<SharedMatrixValue>>(
-                this.RawData,
-                "matrix_values"
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<MatrixValue>>(this.RawData, "matrix_values"); }
         init { ModelBase.Set(this._rawData, "matrix_values", value); }
     }
 

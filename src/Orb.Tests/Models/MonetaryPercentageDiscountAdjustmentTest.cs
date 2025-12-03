@@ -20,8 +20,8 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter9Field.PriceID,
-                    Operator = Filter9Operator.Includes,
+                    Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36,12 +36,12 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
             MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount;
         string expectedAmount = "amount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter9> expectedFilters =
+        List<MonetaryPercentageDiscountAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter9Field.PriceID,
-                Operator = Filter9Operator.Includes,
+                Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -82,8 +82,8 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter9Field.PriceID,
-                    Operator = Filter9Operator.Includes,
+                    Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -112,8 +112,8 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter9Field.PriceID,
-                    Operator = Filter9Operator.Includes,
+                    Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -132,12 +132,12 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
             MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount;
         string expectedAmount = "amount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter9> expectedFilters =
+        List<MonetaryPercentageDiscountAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter9Field.PriceID,
-                Operator = Filter9Operator.Includes,
+                Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -178,8 +178,8 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter9Field.PriceID,
-                    Operator = Filter9Operator.Includes,
+                    Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -193,20 +193,22 @@ public class MonetaryPercentageDiscountAdjustmentTest : TestBase
     }
 }
 
-public class Filter9Test : TestBase
+public class MonetaryPercentageDiscountAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter9
+        var model = new MonetaryPercentageDiscountAdjustmentFilter
         {
-            Field = Filter9Field.PriceID,
-            Operator = Filter9Operator.Includes,
+            Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter9Field> expectedField = Filter9Field.PriceID;
-        ApiEnum<string, Filter9Operator> expectedOperator = Filter9Operator.Includes;
+        ApiEnum<string, MonetaryPercentageDiscountAdjustmentFilterField> expectedField =
+            MonetaryPercentageDiscountAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryPercentageDiscountAdjustmentFilterOperator> expectedOperator =
+            MonetaryPercentageDiscountAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -221,15 +223,17 @@ public class Filter9Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter9
+        var model = new MonetaryPercentageDiscountAdjustmentFilter
         {
-            Field = Filter9Field.PriceID,
-            Operator = Filter9Operator.Includes,
+            Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter9>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryPercentageDiscountAdjustmentFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -237,19 +241,23 @@ public class Filter9Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter9
+        var model = new MonetaryPercentageDiscountAdjustmentFilter
         {
-            Field = Filter9Field.PriceID,
-            Operator = Filter9Operator.Includes,
+            Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter9>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryPercentageDiscountAdjustmentFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter9Field> expectedField = Filter9Field.PriceID;
-        ApiEnum<string, Filter9Operator> expectedOperator = Filter9Operator.Includes;
+        ApiEnum<string, MonetaryPercentageDiscountAdjustmentFilterField> expectedField =
+            MonetaryPercentageDiscountAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryPercentageDiscountAdjustmentFilterOperator> expectedOperator =
+            MonetaryPercentageDiscountAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -264,10 +272,10 @@ public class Filter9Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter9
+        var model = new MonetaryPercentageDiscountAdjustmentFilter
         {
-            Field = Filter9Field.PriceID,
-            Operator = Filter9Operator.Includes,
+            Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

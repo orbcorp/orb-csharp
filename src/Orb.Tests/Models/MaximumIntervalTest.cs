@@ -19,8 +19,8 @@ public class MaximumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter3Field.PriceID,
-                    Operator = Filter3Operator.Includes,
+                    Field = MaximumIntervalFilterField.PriceID,
+                    Operator = MaximumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30,12 +30,12 @@ public class MaximumIntervalTest : TestBase
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter3> expectedFilters =
+        List<MaximumIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter3Field.PriceID,
-                Operator = Filter3Operator.Includes,
+                Field = MaximumIntervalFilterField.PriceID,
+                Operator = MaximumIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -71,8 +71,8 @@ public class MaximumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter3Field.PriceID,
-                    Operator = Filter3Operator.Includes,
+                    Field = MaximumIntervalFilterField.PriceID,
+                    Operator = MaximumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -97,8 +97,8 @@ public class MaximumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter3Field.PriceID,
-                    Operator = Filter3Operator.Includes,
+                    Field = MaximumIntervalFilterField.PriceID,
+                    Operator = MaximumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -112,12 +112,12 @@ public class MaximumIntervalTest : TestBase
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter3> expectedFilters =
+        List<MaximumIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter3Field.PriceID,
-                Operator = Filter3Operator.Includes,
+                Field = MaximumIntervalFilterField.PriceID,
+                Operator = MaximumIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -156,8 +156,8 @@ public class MaximumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter3Field.PriceID,
-                    Operator = Filter3Operator.Includes,
+                    Field = MaximumIntervalFilterField.PriceID,
+                    Operator = MaximumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -169,20 +169,22 @@ public class MaximumIntervalTest : TestBase
     }
 }
 
-public class Filter3Test : TestBase
+public class MaximumIntervalFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter3
+        var model = new MaximumIntervalFilter
         {
-            Field = Filter3Field.PriceID,
-            Operator = Filter3Operator.Includes,
+            Field = MaximumIntervalFilterField.PriceID,
+            Operator = MaximumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter3Field> expectedField = Filter3Field.PriceID;
-        ApiEnum<string, Filter3Operator> expectedOperator = Filter3Operator.Includes;
+        ApiEnum<string, MaximumIntervalFilterField> expectedField =
+            MaximumIntervalFilterField.PriceID;
+        ApiEnum<string, MaximumIntervalFilterOperator> expectedOperator =
+            MaximumIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -197,15 +199,15 @@ public class Filter3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter3
+        var model = new MaximumIntervalFilter
         {
-            Field = Filter3Field.PriceID,
-            Operator = Filter3Operator.Includes,
+            Field = MaximumIntervalFilterField.PriceID,
+            Operator = MaximumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter3>(json);
+        var deserialized = JsonSerializer.Deserialize<MaximumIntervalFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -213,19 +215,21 @@ public class Filter3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter3
+        var model = new MaximumIntervalFilter
         {
-            Field = Filter3Field.PriceID,
-            Operator = Filter3Operator.Includes,
+            Field = MaximumIntervalFilterField.PriceID,
+            Operator = MaximumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter3>(json);
+        var deserialized = JsonSerializer.Deserialize<MaximumIntervalFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter3Field> expectedField = Filter3Field.PriceID;
-        ApiEnum<string, Filter3Operator> expectedOperator = Filter3Operator.Includes;
+        ApiEnum<string, MaximumIntervalFilterField> expectedField =
+            MaximumIntervalFilterField.PriceID;
+        ApiEnum<string, MaximumIntervalFilterOperator> expectedOperator =
+            MaximumIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -240,10 +244,10 @@ public class Filter3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter3
+        var model = new MaximumIntervalFilter
         {
-            Field = Filter3Field.PriceID,
-            Operator = Filter3Operator.Includes,
+            Field = MaximumIntervalFilterField.PriceID,
+            Operator = MaximumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 

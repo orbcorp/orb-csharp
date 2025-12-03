@@ -18,7 +18,7 @@ public class MatrixConfigTest : TestBase
 
         string expectedDefaultUnitAmount = "default_unit_amount";
         List<string?> expectedDimensions = ["string"];
-        List<SharedMatrixValue> expectedMatrixValues =
+        List<MatrixValue> expectedMatrixValues =
         [
             new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
         ];
@@ -68,7 +68,7 @@ public class MatrixConfigTest : TestBase
 
         string expectedDefaultUnitAmount = "default_unit_amount";
         List<string?> expectedDimensions = ["string"];
-        List<SharedMatrixValue> expectedMatrixValues =
+        List<MatrixValue> expectedMatrixValues =
         [
             new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
         ];

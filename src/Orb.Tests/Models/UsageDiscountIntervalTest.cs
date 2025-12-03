@@ -20,8 +20,8 @@ public class UsageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter27Field.PriceID,
-                    Operator = Filter27Operator.Includes,
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33,12 +33,12 @@ public class UsageDiscountIntervalTest : TestBase
         ApiEnum<string, UsageDiscountIntervalDiscountType> expectedDiscountType =
             UsageDiscountIntervalDiscountType.Usage;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter27> expectedFilters =
+        List<UsageDiscountIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter27Field.PriceID,
-                Operator = Filter27Operator.Includes,
+                Field = UsageDiscountIntervalFilterField.PriceID,
+                Operator = UsageDiscountIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -76,8 +76,8 @@ public class UsageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter27Field.PriceID,
-                    Operator = Filter27Operator.Includes,
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -103,8 +103,8 @@ public class UsageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter27Field.PriceID,
-                    Operator = Filter27Operator.Includes,
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -120,12 +120,12 @@ public class UsageDiscountIntervalTest : TestBase
         ApiEnum<string, UsageDiscountIntervalDiscountType> expectedDiscountType =
             UsageDiscountIntervalDiscountType.Usage;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter27> expectedFilters =
+        List<UsageDiscountIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter27Field.PriceID,
-                Operator = Filter27Operator.Includes,
+                Field = UsageDiscountIntervalFilterField.PriceID,
+                Operator = UsageDiscountIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -166,8 +166,8 @@ public class UsageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter27Field.PriceID,
-                    Operator = Filter27Operator.Includes,
+                    Field = UsageDiscountIntervalFilterField.PriceID,
+                    Operator = UsageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -179,20 +179,22 @@ public class UsageDiscountIntervalTest : TestBase
     }
 }
 
-public class Filter27Test : TestBase
+public class UsageDiscountIntervalFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter27
+        var model = new UsageDiscountIntervalFilter
         {
-            Field = Filter27Field.PriceID,
-            Operator = Filter27Operator.Includes,
+            Field = UsageDiscountIntervalFilterField.PriceID,
+            Operator = UsageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter27Field> expectedField = Filter27Field.PriceID;
-        ApiEnum<string, Filter27Operator> expectedOperator = Filter27Operator.Includes;
+        ApiEnum<string, UsageDiscountIntervalFilterField> expectedField =
+            UsageDiscountIntervalFilterField.PriceID;
+        ApiEnum<string, UsageDiscountIntervalFilterOperator> expectedOperator =
+            UsageDiscountIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -207,15 +209,15 @@ public class Filter27Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter27
+        var model = new UsageDiscountIntervalFilter
         {
-            Field = Filter27Field.PriceID,
-            Operator = Filter27Operator.Includes,
+            Field = UsageDiscountIntervalFilterField.PriceID,
+            Operator = UsageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter27>(json);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountIntervalFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -223,19 +225,21 @@ public class Filter27Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter27
+        var model = new UsageDiscountIntervalFilter
         {
-            Field = Filter27Field.PriceID,
-            Operator = Filter27Operator.Includes,
+            Field = UsageDiscountIntervalFilterField.PriceID,
+            Operator = UsageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter27>(json);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountIntervalFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter27Field> expectedField = Filter27Field.PriceID;
-        ApiEnum<string, Filter27Operator> expectedOperator = Filter27Operator.Includes;
+        ApiEnum<string, UsageDiscountIntervalFilterField> expectedField =
+            UsageDiscountIntervalFilterField.PriceID;
+        ApiEnum<string, UsageDiscountIntervalFilterOperator> expectedOperator =
+            UsageDiscountIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -250,10 +254,10 @@ public class Filter27Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter27
+        var model = new UsageDiscountIntervalFilter
         {
-            Field = Filter27Field.PriceID,
-            Operator = Filter27Operator.Includes,
+            Field = UsageDiscountIntervalFilterField.PriceID,
+            Operator = UsageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 

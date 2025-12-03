@@ -18,8 +18,8 @@ public class TrialDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter25Field.PriceID,
-                    Operator = Filter25Operator.Includes,
+                    Field = TrialDiscountFilterField.PriceID,
+                    Operator = TrialDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31,12 +31,12 @@ public class TrialDiscountTest : TestBase
         ApiEnum<string, TrialDiscountDiscountType> expectedDiscountType =
             TrialDiscountDiscountType.Trial;
         List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
-        List<Filter25> expectedFilters =
+        List<TrialDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter25Field.PriceID,
-                Operator = Filter25Operator.Includes,
+                Field = TrialDiscountFilterField.PriceID,
+                Operator = TrialDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -71,8 +71,8 @@ public class TrialDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter25Field.PriceID,
-                    Operator = Filter25Operator.Includes,
+                    Field = TrialDiscountFilterField.PriceID,
+                    Operator = TrialDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -98,8 +98,8 @@ public class TrialDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter25Field.PriceID,
-                    Operator = Filter25Operator.Includes,
+                    Field = TrialDiscountFilterField.PriceID,
+                    Operator = TrialDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -115,12 +115,12 @@ public class TrialDiscountTest : TestBase
         ApiEnum<string, TrialDiscountDiscountType> expectedDiscountType =
             TrialDiscountDiscountType.Trial;
         List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
-        List<Filter25> expectedFilters =
+        List<TrialDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter25Field.PriceID,
-                Operator = Filter25Operator.Includes,
+                Field = TrialDiscountFilterField.PriceID,
+                Operator = TrialDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -155,8 +155,8 @@ public class TrialDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter25Field.PriceID,
-                    Operator = Filter25Operator.Includes,
+                    Field = TrialDiscountFilterField.PriceID,
+                    Operator = TrialDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -237,20 +237,21 @@ public class TrialDiscountTest : TestBase
     }
 }
 
-public class Filter25Test : TestBase
+public class TrialDiscountFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter25
+        var model = new TrialDiscountFilter
         {
-            Field = Filter25Field.PriceID,
-            Operator = Filter25Operator.Includes,
+            Field = TrialDiscountFilterField.PriceID,
+            Operator = TrialDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter25Field> expectedField = Filter25Field.PriceID;
-        ApiEnum<string, Filter25Operator> expectedOperator = Filter25Operator.Includes;
+        ApiEnum<string, TrialDiscountFilterField> expectedField = TrialDiscountFilterField.PriceID;
+        ApiEnum<string, TrialDiscountFilterOperator> expectedOperator =
+            TrialDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -265,15 +266,15 @@ public class Filter25Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter25
+        var model = new TrialDiscountFilter
         {
-            Field = Filter25Field.PriceID,
-            Operator = Filter25Operator.Includes,
+            Field = TrialDiscountFilterField.PriceID,
+            Operator = TrialDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter25>(json);
+        var deserialized = JsonSerializer.Deserialize<TrialDiscountFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -281,19 +282,20 @@ public class Filter25Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter25
+        var model = new TrialDiscountFilter
         {
-            Field = Filter25Field.PriceID,
-            Operator = Filter25Operator.Includes,
+            Field = TrialDiscountFilterField.PriceID,
+            Operator = TrialDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter25>(json);
+        var deserialized = JsonSerializer.Deserialize<TrialDiscountFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter25Field> expectedField = Filter25Field.PriceID;
-        ApiEnum<string, Filter25Operator> expectedOperator = Filter25Operator.Includes;
+        ApiEnum<string, TrialDiscountFilterField> expectedField = TrialDiscountFilterField.PriceID;
+        ApiEnum<string, TrialDiscountFilterOperator> expectedOperator =
+            TrialDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -308,10 +310,10 @@ public class Filter25Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter25
+        var model = new TrialDiscountFilter
         {
-            Field = Filter25Field.PriceID,
-            Operator = Filter25Operator.Includes,
+            Field = TrialDiscountFilterField.PriceID,
+            Operator = TrialDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 

@@ -76,14 +76,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -117,8 +117,9 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter10Field.PriceID,
-                                    Operator = Filter10Operator.Includes,
+                                    Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -186,14 +187,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -214,8 +215,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -230,8 +231,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -284,8 +285,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -301,8 +302,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -412,14 +413,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -436,7 +437,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             Invoices::InvoiceSource.Subscription;
         DateTimeOffset expectedIssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedIssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Invoices::LineItemModel> expectedLineItems =
+        List<Invoices::InvoiceFetchUpcomingResponseLineItem> expectedLineItems =
         [
             new()
             {
@@ -455,8 +456,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter10Field.PriceID,
-                                Operator = Filter10Operator.Includes,
+                                Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -523,14 +524,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     Discount = new PercentageDiscount()
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Filter17Field.PriceID,
-                                Operator = Filter17Operator.Includes,
+                                Field = PercentageDiscountFilterField.PriceID,
+                                Operator = PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -551,8 +552,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter2Field.PriceID,
-                                Operator = Filter2Operator.Includes,
+                                Field = MaximumFilterField.PriceID,
+                                Operator = MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -567,8 +568,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter4Field.PriceID,
-                                Operator = Filter4Operator.Includes,
+                                Field = MinimumFilterField.PriceID,
+                                Operator = MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -621,8 +622,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -638,8 +639,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -824,14 +825,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -865,8 +866,9 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter10Field.PriceID,
-                                    Operator = Filter10Operator.Includes,
+                                    Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -934,14 +936,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -962,8 +964,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -978,8 +980,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1032,8 +1034,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1049,8 +1051,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1167,14 +1169,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1208,8 +1210,9 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter10Field.PriceID,
-                                    Operator = Filter10Operator.Includes,
+                                    Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1277,14 +1280,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1305,8 +1308,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1321,8 +1324,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1375,8 +1378,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1392,8 +1395,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1507,14 +1510,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1531,7 +1534,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             Invoices::InvoiceSource.Subscription;
         DateTimeOffset expectedIssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedIssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Invoices::LineItemModel> expectedLineItems =
+        List<Invoices::InvoiceFetchUpcomingResponseLineItem> expectedLineItems =
         [
             new()
             {
@@ -1550,8 +1553,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter10Field.PriceID,
-                                Operator = Filter10Operator.Includes,
+                                Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1618,14 +1621,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     Discount = new PercentageDiscount()
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Filter17Field.PriceID,
-                                Operator = Filter17Operator.Includes,
+                                Field = PercentageDiscountFilterField.PriceID,
+                                Operator = PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1646,8 +1649,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter2Field.PriceID,
-                                Operator = Filter2Operator.Includes,
+                                Field = MaximumFilterField.PriceID,
+                                Operator = MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1662,8 +1665,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter4Field.PriceID,
-                                Operator = Filter4Operator.Includes,
+                                Field = MinimumFilterField.PriceID,
+                                Operator = MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1716,8 +1719,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1733,8 +1736,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1919,14 +1922,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1960,8 +1963,9 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter10Field.PriceID,
-                                    Operator = Filter10Operator.Includes,
+                                    Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2029,14 +2033,14 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2057,8 +2061,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2073,8 +2077,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2127,8 +2131,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2144,8 +2148,8 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2515,12 +2519,12 @@ public class CustomerBalanceTransactionTest : TestBase
     }
 }
 
-public class LineItemModelTest : TestBase
+public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Invoices::LineItemModel
+        var model = new Invoices::InvoiceFetchUpcomingResponseLineItem
         {
             ID = "id",
             AdjustedSubtotal = "5.00",
@@ -2536,8 +2540,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter10Field.PriceID,
-                            Operator = Filter10Operator.Includes,
+                            Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -2600,14 +2604,14 @@ public class LineItemModelTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -2628,8 +2632,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -2644,8 +2648,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -2705,8 +2709,8 @@ public class LineItemModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter10Field.PriceID,
-                        Operator = Filter10Operator.Includes,
+                        Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2769,14 +2773,14 @@ public class LineItemModelTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2793,8 +2797,8 @@ public class LineItemModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2809,8 +2813,8 @@ public class LineItemModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2893,7 +2897,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Invoices::LineItemModel
+        var model = new Invoices::InvoiceFetchUpcomingResponseLineItem
         {
             ID = "id",
             AdjustedSubtotal = "5.00",
@@ -2909,8 +2913,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter10Field.PriceID,
-                            Operator = Filter10Operator.Includes,
+                            Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -2973,14 +2977,14 @@ public class LineItemModelTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3001,8 +3005,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3017,8 +3021,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3065,7 +3069,8 @@ public class LineItemModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Invoices::LineItemModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Invoices::InvoiceFetchUpcomingResponseLineItem>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -3073,7 +3078,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Invoices::LineItemModel
+        var model = new Invoices::InvoiceFetchUpcomingResponseLineItem
         {
             ID = "id",
             AdjustedSubtotal = "5.00",
@@ -3089,8 +3094,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter10Field.PriceID,
-                            Operator = Filter10Operator.Includes,
+                            Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3153,14 +3158,14 @@ public class LineItemModelTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3181,8 +3186,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3197,8 +3202,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3245,7 +3250,8 @@ public class LineItemModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Invoices::LineItemModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Invoices::InvoiceFetchUpcomingResponseLineItem>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -3262,8 +3268,8 @@ public class LineItemModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter10Field.PriceID,
-                        Operator = Filter10Operator.Includes,
+                        Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3326,14 +3332,14 @@ public class LineItemModelTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3350,8 +3356,8 @@ public class LineItemModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3366,8 +3372,8 @@ public class LineItemModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3450,7 +3456,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Invoices::LineItemModel
+        var model = new Invoices::InvoiceFetchUpcomingResponseLineItem
         {
             ID = "id",
             AdjustedSubtotal = "5.00",
@@ -3466,8 +3472,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter10Field.PriceID,
-                            Operator = Filter10Operator.Includes,
+                            Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3530,14 +3536,14 @@ public class LineItemModelTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3558,8 +3564,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -3574,8 +3580,8 @@ public class LineItemModelTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],

@@ -376,9 +376,14 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required IReadOnlyList<Tier11> Tiers
+    public required IReadOnlyList<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier11>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -430,8 +435,14 @@ class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier11, Tier11FromRaw>))]
-public sealed record class Tier11 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier,
+        NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -457,31 +468,39 @@ public sealed record class Tier11 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier11() { }
+    public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier() { }
 
-    public Tier11(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier11(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier11 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier11FromRaw : IFromRaw<Tier11>
+class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTierFromRaw
+    : IFromRaw<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier>
 {
-    public Tier11 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier11.FromRawUnchecked(rawData);
+    public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -22,8 +22,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38,12 +38,12 @@ public class NewMaximumTest : TestBase
         List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
         List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
         string expectedCurrency = "currency";
-        List<Filter13> expectedFilters =
+        List<NewMaximumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter13Field.PriceID,
-                Operator = Filter13Operator.Includes,
+                Field = NewMaximumFilterField.PriceID,
+                Operator = NewMaximumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -88,8 +88,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -118,8 +118,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -138,12 +138,12 @@ public class NewMaximumTest : TestBase
         List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
         List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
         string expectedCurrency = "currency";
-        List<Filter13> expectedFilters =
+        List<NewMaximumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter13Field.PriceID,
-                Operator = Filter13Operator.Includes,
+                Field = NewMaximumFilterField.PriceID,
+                Operator = NewMaximumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -188,8 +188,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -215,8 +215,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -242,8 +242,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -268,8 +268,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -298,8 +298,8 @@ public class NewMaximumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter13Field.PriceID,
-                    Operator = Filter13Operator.Includes,
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -401,20 +401,21 @@ public class NewMaximumTest : TestBase
     }
 }
 
-public class Filter13Test : TestBase
+public class NewMaximumFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter13
+        var model = new NewMaximumFilter
         {
-            Field = Filter13Field.PriceID,
-            Operator = Filter13Operator.Includes,
+            Field = NewMaximumFilterField.PriceID,
+            Operator = NewMaximumFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter13Field> expectedField = Filter13Field.PriceID;
-        ApiEnum<string, Filter13Operator> expectedOperator = Filter13Operator.Includes;
+        ApiEnum<string, NewMaximumFilterField> expectedField = NewMaximumFilterField.PriceID;
+        ApiEnum<string, NewMaximumFilterOperator> expectedOperator =
+            NewMaximumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -429,15 +430,15 @@ public class Filter13Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter13
+        var model = new NewMaximumFilter
         {
-            Field = Filter13Field.PriceID,
-            Operator = Filter13Operator.Includes,
+            Field = NewMaximumFilterField.PriceID,
+            Operator = NewMaximumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter13>(json);
+        var deserialized = JsonSerializer.Deserialize<NewMaximumFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -445,19 +446,20 @@ public class Filter13Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter13
+        var model = new NewMaximumFilter
         {
-            Field = Filter13Field.PriceID,
-            Operator = Filter13Operator.Includes,
+            Field = NewMaximumFilterField.PriceID,
+            Operator = NewMaximumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter13>(json);
+        var deserialized = JsonSerializer.Deserialize<NewMaximumFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter13Field> expectedField = Filter13Field.PriceID;
-        ApiEnum<string, Filter13Operator> expectedOperator = Filter13Operator.Includes;
+        ApiEnum<string, NewMaximumFilterField> expectedField = NewMaximumFilterField.PriceID;
+        ApiEnum<string, NewMaximumFilterOperator> expectedOperator =
+            NewMaximumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -472,10 +474,10 @@ public class Filter13Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter13
+        var model = new NewMaximumFilter
         {
-            Field = Filter13Field.PriceID,
-            Operator = Filter13Operator.Includes,
+            Field = NewMaximumFilterField.PriceID,
+            Operator = NewMaximumFilterOperator.Includes,
             Values = ["string"],
         };
 

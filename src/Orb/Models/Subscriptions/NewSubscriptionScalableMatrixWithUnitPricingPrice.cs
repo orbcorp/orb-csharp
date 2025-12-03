@@ -424,12 +424,12 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.MatrixScalingFactorModel> MatrixScalingFactors
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                List<global::Orb.Models.Subscriptions.MatrixScalingFactorModel>
+                List<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
             >(this.RawData, "matrix_scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
@@ -513,11 +513,11 @@ class ScalableMatrixWithUnitPricingConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.MatrixScalingFactorModel,
-        global::Orb.Models.Subscriptions.MatrixScalingFactorModelFromRaw
+        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
+        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
     >)
 )]
-public sealed record class MatrixScalingFactorModel : ModelBase
+public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFactor : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -553,22 +553,26 @@ public sealed record class MatrixScalingFactorModel : ModelBase
         _ = this.SecondDimensionValue;
     }
 
-    public MatrixScalingFactorModel() { }
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
-    public MatrixScalingFactorModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactorModel(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.MatrixScalingFactorModel FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -576,12 +580,15 @@ public sealed record class MatrixScalingFactorModel : ModelBase
     }
 }
 
-class MatrixScalingFactorModelFromRaw
-    : IFromRaw<global::Orb.Models.Subscriptions.MatrixScalingFactorModel>
+class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
 {
-    public global::Orb.Models.Subscriptions.MatrixScalingFactorModel FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MatrixScalingFactorModel.FromRawUnchecked(rawData);
+    ) =>
+        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(

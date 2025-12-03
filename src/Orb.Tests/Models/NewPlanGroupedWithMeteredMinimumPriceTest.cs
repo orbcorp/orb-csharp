@@ -629,12 +629,12 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
         string expectedGroupingKey = "x";
         string expectedMinimumUnitAmount = "minimum_unit_amount";
         string expectedPricingKey = "pricing_key";
-        List<ScalingFactorModel> expectedScalingFactors =
+        List<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor> expectedScalingFactors =
         [
             new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
-        List<UnitAmount1> expectedUnitAmounts =
+        List<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount> expectedUnitAmounts =
         [
             new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
         ];
@@ -706,12 +706,12 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
         string expectedGroupingKey = "x";
         string expectedMinimumUnitAmount = "minimum_unit_amount";
         string expectedPricingKey = "pricing_key";
-        List<ScalingFactorModel> expectedScalingFactors =
+        List<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor> expectedScalingFactors =
         [
             new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
-        List<UnitAmount1> expectedUnitAmounts =
+        List<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount> expectedUnitAmounts =
         [
             new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
         ];
@@ -752,16 +752,18 @@ public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfi
     }
 }
 
-public class ScalingFactorModelTest : TestBase
+public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ScalingFactorModel
-        {
-            ScalingFactor = "scaling_factor",
-            ScalingValue = "scaling_value",
-        };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
+            {
+                ScalingFactor = "scaling_factor",
+                ScalingValue = "scaling_value",
+            };
 
         string expectedScalingFactor = "scaling_factor";
         string expectedScalingValue = "scaling_value";
@@ -773,14 +775,18 @@ public class ScalingFactorModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ScalingFactorModel
-        {
-            ScalingFactor = "scaling_factor",
-            ScalingValue = "scaling_value",
-        };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
+            {
+                ScalingFactor = "scaling_factor",
+                ScalingValue = "scaling_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactorModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -788,14 +794,18 @@ public class ScalingFactorModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ScalingFactorModel
-        {
-            ScalingFactor = "scaling_factor",
-            ScalingValue = "scaling_value",
-        };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
+            {
+                ScalingFactor = "scaling_factor",
+                ScalingValue = "scaling_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactorModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedScalingFactor = "scaling_factor";
@@ -808,22 +818,29 @@ public class ScalingFactorModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ScalingFactorModel
-        {
-            ScalingFactor = "scaling_factor",
-            ScalingValue = "scaling_value",
-        };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
+            {
+                ScalingFactor = "scaling_factor",
+                ScalingValue = "scaling_value",
+            };
 
         model.Validate();
     }
 }
 
-public class UnitAmount1Test : TestBase
+public class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmountTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmount1 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
+            {
+                PricingValue = "pricing_value",
+                UnitAmount = "unit_amount",
+            };
 
         string expectedPricingValue = "pricing_value";
         string expectedUnitAmount = "unit_amount";
@@ -835,10 +852,18 @@ public class UnitAmount1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmount1 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
+            {
+                PricingValue = "pricing_value",
+                UnitAmount = "unit_amount",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -846,10 +871,18 @@ public class UnitAmount1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmount1 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
+            {
+                PricingValue = "pricing_value",
+                UnitAmount = "unit_amount",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedPricingValue = "pricing_value";
@@ -862,7 +895,12 @@ public class UnitAmount1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmount1 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model =
+            new NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
+            {
+                PricingValue = "pricing_value",
+                UnitAmount = "unit_amount",
+            };
 
         model.Validate();
     }

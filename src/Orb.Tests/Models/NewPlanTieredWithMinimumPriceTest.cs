@@ -676,7 +676,7 @@ public class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        List<Tier15> expectedTiers =
+        List<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -763,7 +763,7 @@ public class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTest : TestBase
             JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceTieredWithMinimumConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Tier15> expectedTiers =
+        List<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -932,12 +932,12 @@ public class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTest : TestBase
     }
 }
 
-public class Tier15Test : TestBase
+public class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier15
+        var model = new NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -956,7 +956,7 @@ public class Tier15Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier15
+        var model = new NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -964,7 +964,10 @@ public class Tier15Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier15>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -972,7 +975,7 @@ public class Tier15Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier15
+        var model = new NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -980,7 +983,10 @@ public class Tier15Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier15>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -995,7 +1001,7 @@ public class Tier15Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier15
+        var model = new NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",

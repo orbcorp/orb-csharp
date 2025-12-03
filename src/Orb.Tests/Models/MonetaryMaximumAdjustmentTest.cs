@@ -20,8 +20,8 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter7Field.PriceID,
-                    Operator = Filter7Operator.Includes,
+                    Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36,12 +36,12 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             MonetaryMaximumAdjustmentAdjustmentType.Maximum;
         string expectedAmount = "amount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter7> expectedFilters =
+        List<MonetaryMaximumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter7Field.PriceID,
-                Operator = Filter7Operator.Includes,
+                Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -82,8 +82,8 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter7Field.PriceID,
-                    Operator = Filter7Operator.Includes,
+                    Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -112,8 +112,8 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter7Field.PriceID,
-                    Operator = Filter7Operator.Includes,
+                    Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -132,12 +132,12 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             MonetaryMaximumAdjustmentAdjustmentType.Maximum;
         string expectedAmount = "amount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter7> expectedFilters =
+        List<MonetaryMaximumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter7Field.PriceID,
-                Operator = Filter7Operator.Includes,
+                Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -178,8 +178,8 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter7Field.PriceID,
-                    Operator = Filter7Operator.Includes,
+                    Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -193,20 +193,22 @@ public class MonetaryMaximumAdjustmentTest : TestBase
     }
 }
 
-public class Filter7Test : TestBase
+public class MonetaryMaximumAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter7
+        var model = new MonetaryMaximumAdjustmentFilter
         {
-            Field = Filter7Field.PriceID,
-            Operator = Filter7Operator.Includes,
+            Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter7Field> expectedField = Filter7Field.PriceID;
-        ApiEnum<string, Filter7Operator> expectedOperator = Filter7Operator.Includes;
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterField> expectedField =
+            MonetaryMaximumAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator> expectedOperator =
+            MonetaryMaximumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -221,15 +223,15 @@ public class Filter7Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter7
+        var model = new MonetaryMaximumAdjustmentFilter
         {
-            Field = Filter7Field.PriceID,
-            Operator = Filter7Operator.Includes,
+            Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter7>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustmentFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -237,19 +239,21 @@ public class Filter7Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter7
+        var model = new MonetaryMaximumAdjustmentFilter
         {
-            Field = Filter7Field.PriceID,
-            Operator = Filter7Operator.Includes,
+            Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter7>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustmentFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter7Field> expectedField = Filter7Field.PriceID;
-        ApiEnum<string, Filter7Operator> expectedOperator = Filter7Operator.Includes;
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterField> expectedField =
+            MonetaryMaximumAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator> expectedOperator =
+            MonetaryMaximumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -264,10 +268,10 @@ public class Filter7Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter7
+        var model = new MonetaryMaximumAdjustmentFilter
         {
-            Field = Filter7Field.PriceID,
-            Operator = Filter7Operator.Includes,
+            Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

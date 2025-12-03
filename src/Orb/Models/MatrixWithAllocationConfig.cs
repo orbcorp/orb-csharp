@@ -45,9 +45,15 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     /// <summary>
     /// Matrix values configuration
     /// </summary>
-    public required IReadOnlyList<MatrixValue> MatrixValues
+    public required IReadOnlyList<MatrixWithAllocationConfigMatrixValue> MatrixValues
     {
-        get { return ModelBase.GetNotNullClass<List<MatrixValue>>(this.RawData, "matrix_values"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<MatrixWithAllocationConfigMatrixValue>>(
+                this.RawData,
+                "matrix_values"
+            );
+        }
         init { ModelBase.Set(this._rawData, "matrix_values", value); }
     }
 
@@ -95,8 +101,13 @@ class MatrixWithAllocationConfigFromRaw : IFromRaw<MatrixWithAllocationConfig>
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixValue, MatrixValueFromRaw>))]
-public sealed record class MatrixValue : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        MatrixWithAllocationConfigMatrixValue,
+        MatrixWithAllocationConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
@@ -124,29 +135,32 @@ public sealed record class MatrixValue : ModelBase
         _ = this.UnitAmount;
     }
 
-    public MatrixValue() { }
+    public MatrixWithAllocationConfigMatrixValue() { }
 
-    public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixWithAllocationConfigMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixValue(FrozenDictionary<string, JsonElement> rawData)
+    MatrixWithAllocationConfigMatrixValue(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MatrixWithAllocationConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class MatrixValueFromRaw : IFromRaw<MatrixValue>
+class MatrixWithAllocationConfigMatrixValueFromRaw : IFromRaw<MatrixWithAllocationConfigMatrixValue>
 {
-    public MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        MatrixValue.FromRawUnchecked(rawData);
+    public MatrixWithAllocationConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MatrixWithAllocationConfigMatrixValue.FromRawUnchecked(rawData);
 }

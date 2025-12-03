@@ -25,8 +25,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -48,8 +48,8 @@ public class AddAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
+                    Field = Models::NewPercentageDiscountFilterField.PriceID,
+                    Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -79,8 +79,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -113,8 +113,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -140,8 +140,8 @@ public class AddAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
+                    Field = Models::NewPercentageDiscountFilterField.PriceID,
+                    Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -171,8 +171,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -202,8 +202,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -233,8 +233,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -263,8 +263,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -296,8 +296,8 @@ public class AddAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -334,8 +334,8 @@ public class AddPriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -399,8 +399,8 @@ public class AddPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = Models::NewAllocationPriceFilterField.ItemID,
+                    Operator = Models::NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -472,8 +472,8 @@ public class AddPriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -548,8 +548,8 @@ public class AddPriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -617,8 +617,8 @@ public class AddPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = Models::NewAllocationPriceFilterField.ItemID,
+                    Operator = Models::NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -690,8 +690,8 @@ public class AddPriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2052,7 +2052,7 @@ public class TieredWithProrationConfigTest : TestBase
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        List<TierModel> expectedTiers =
+        List<TieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -2090,7 +2090,7 @@ public class TieredWithProrationConfigTest : TestBase
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<TierModel> expectedTiers =
+        List<TieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -2114,12 +2114,12 @@ public class TieredWithProrationConfigTest : TestBase
     }
 }
 
-public class TierModelTest : TestBase
+public class TieredWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
@@ -2135,14 +2135,14 @@ public class TierModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -2150,14 +2150,14 @@ public class TierModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -2170,7 +2170,7 @@ public class TierModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
@@ -4687,8 +4687,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4711,8 +4711,8 @@ public class ReplaceAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
+                    Field = Models::NewPercentageDiscountFilterField.PriceID,
+                    Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4744,8 +4744,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4779,8 +4779,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4807,8 +4807,8 @@ public class ReplaceAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
+                    Field = Models::NewPercentageDiscountFilterField.PriceID,
+                    Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4840,8 +4840,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4872,8 +4872,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4904,8 +4904,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4935,8 +4935,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4969,8 +4969,8 @@ public class ReplaceAdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5009,8 +5009,8 @@ public class ReplacePriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5075,8 +5075,8 @@ public class ReplacePriceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = Models::NewAllocationPriceFilterField.ItemID,
+                    Operator = Models::NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5150,8 +5150,8 @@ public class ReplacePriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5227,8 +5227,8 @@ public class ReplacePriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5297,8 +5297,8 @@ public class ReplacePriceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = Models::NewAllocationPriceFilterField.ItemID,
+                    Operator = Models::NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5372,8 +5372,8 @@ public class ReplacePriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6026,8 +6026,11 @@ public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTest : TestBas
             ],
         };
 
-        List<FilterModel> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier1> expectedTiers =
+        List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -6083,8 +6086,11 @@ public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTest : TestBas
             JsonSerializer.Deserialize<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<FilterModel> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier1> expectedTiers =
+        List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -6119,12 +6125,16 @@ public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTest : TestBas
     }
 }
 
-public class FilterModelTest : TestBase
+public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string expectedPropertyKey = "x";
         string expectedPropertyValue = "x";
@@ -6136,10 +6146,17 @@ public class FilterModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -6147,10 +6164,17 @@ public class FilterModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -6163,18 +6187,26 @@ public class FilterModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         model.Validate();
     }
 }
 
-public class Tier1Test : TestBase
+public class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -6186,10 +6218,17 @@ public class Tier1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -6197,10 +6236,17 @@ public class Tier1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -6213,7 +6259,11 @@ public class Tier1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -6221,7 +6271,10 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -6230,7 +6283,10 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount" };
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -6238,7 +6294,7 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier1
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -6252,7 +6308,7 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier1
+        var model = new ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -6740,7 +6796,7 @@ public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTest :
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        List<Tier2> expectedTiers =
+        List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -6784,7 +6840,7 @@ public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTest :
             );
         Assert.NotNull(deserialized);
 
-        List<Tier2> expectedTiers =
+        List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -6808,12 +6864,16 @@ public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTest :
     }
 }
 
-public class Tier2Test : TestBase
+public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier2 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -6825,10 +6885,17 @@ public class Tier2Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier2 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier2>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -6836,10 +6903,17 @@ public class Tier2Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier2 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier2>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -6852,7 +6926,11 @@ public class Tier2Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier2 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

@@ -556,7 +556,7 @@ public class NewPlanGroupedTieredPriceGroupedTieredConfigTest : TestBase
         };
 
         string expectedGroupingKey = "x";
-        List<Tier10> expectedTiers =
+        List<NewPlanGroupedTieredPriceGroupedTieredConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -611,7 +611,7 @@ public class NewPlanGroupedTieredPriceGroupedTieredConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
-        List<Tier10> expectedTiers =
+        List<NewPlanGroupedTieredPriceGroupedTieredConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -642,12 +642,16 @@ public class NewPlanGroupedTieredPriceGroupedTieredConfigTest : TestBase
     }
 }
 
-public class Tier10Test : TestBase
+public class NewPlanGroupedTieredPriceGroupedTieredConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier10 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanGroupedTieredPriceGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -659,10 +663,15 @@ public class Tier10Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier10 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanGroupedTieredPriceGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier10>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedTieredPriceGroupedTieredConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -670,10 +679,15 @@ public class Tier10Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier10 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanGroupedTieredPriceGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier10>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedTieredPriceGroupedTieredConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -686,7 +700,11 @@ public class Tier10Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier10 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanGroupedTieredPriceGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

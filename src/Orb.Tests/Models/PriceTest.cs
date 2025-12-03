@@ -57,14 +57,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -81,8 +81,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -97,8 +97,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -165,14 +165,14 @@ public class UnitTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -193,8 +193,8 @@ public class UnitTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -209,8 +209,8 @@ public class UnitTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -318,14 +318,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -342,8 +342,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -358,8 +358,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -433,14 +433,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -457,8 +457,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -473,8 +473,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -545,14 +545,14 @@ public class UnitTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -573,8 +573,8 @@ public class UnitTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -589,8 +589,8 @@ public class UnitTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -701,14 +701,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -725,8 +725,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -741,8 +741,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -813,14 +813,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -837,8 +837,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -853,8 +853,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -921,14 +921,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -945,8 +945,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -961,8 +961,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1028,14 +1028,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1052,8 +1052,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1068,8 +1068,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1138,14 +1138,14 @@ public class UnitTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1162,8 +1162,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1178,8 +1178,8 @@ public class UnitTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1301,8 +1301,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1336,14 +1336,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1360,8 +1360,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1376,8 +1376,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1417,12 +1417,12 @@ public class TieredTest : TestBase
         };
         ApiEnum<string, TieredBillingMode> expectedBillingMode = TieredBillingMode.InAdvance;
         ApiEnum<string, TieredCadence> expectedCadence = TieredCadence.OneTime;
-        List<CompositePriceFilterModel> expectedCompositePriceFilters =
+        List<TieredCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilterModelField.PriceID,
-                Operator = CompositePriceFilterModelOperator.Includes,
+                Field = TieredCompositePriceFilterField.PriceID,
+                Operator = TieredCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -1457,14 +1457,14 @@ public class TieredTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1485,8 +1485,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1501,8 +1501,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1587,8 +1587,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1622,14 +1622,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1646,8 +1646,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1662,8 +1662,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1714,8 +1714,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1749,14 +1749,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1773,8 +1773,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1789,8 +1789,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1834,12 +1834,12 @@ public class TieredTest : TestBase
         };
         ApiEnum<string, TieredBillingMode> expectedBillingMode = TieredBillingMode.InAdvance;
         ApiEnum<string, TieredCadence> expectedCadence = TieredCadence.OneTime;
-        List<CompositePriceFilterModel> expectedCompositePriceFilters =
+        List<TieredCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilterModelField.PriceID,
-                Operator = CompositePriceFilterModelOperator.Includes,
+                Field = TieredCompositePriceFilterField.PriceID,
+                Operator = TieredCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -1874,14 +1874,14 @@ public class TieredTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1902,8 +1902,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1918,8 +1918,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2007,8 +2007,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2042,14 +2042,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2066,8 +2066,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2082,8 +2082,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2131,8 +2131,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2166,14 +2166,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2190,8 +2190,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2206,8 +2206,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2251,8 +2251,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2286,14 +2286,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2310,8 +2310,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2326,8 +2326,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2370,8 +2370,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2405,14 +2405,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2429,8 +2429,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2445,8 +2445,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2492,8 +2492,8 @@ public class TieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilterModelField.PriceID,
-                    Operator = CompositePriceFilterModelOperator.Includes,
+                    Field = TieredCompositePriceFilterField.PriceID,
+                    Operator = TieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2527,14 +2527,14 @@ public class TieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2551,8 +2551,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2567,8 +2567,8 @@ public class TieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2600,22 +2600,22 @@ public class TieredTest : TestBase
     }
 }
 
-public class CompositePriceFilterModelTest : TestBase
+public class TieredCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilterModel
+        var model = new TieredCompositePriceFilter
         {
-            Field = CompositePriceFilterModelField.PriceID,
-            Operator = CompositePriceFilterModelOperator.Includes,
+            Field = TieredCompositePriceFilterField.PriceID,
+            Operator = TieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilterModelField> expectedField =
-            CompositePriceFilterModelField.PriceID;
-        ApiEnum<string, CompositePriceFilterModelOperator> expectedOperator =
-            CompositePriceFilterModelOperator.Includes;
+        ApiEnum<string, TieredCompositePriceFilterField> expectedField =
+            TieredCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredCompositePriceFilterOperator> expectedOperator =
+            TieredCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -2630,15 +2630,15 @@ public class CompositePriceFilterModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilterModel
+        var model = new TieredCompositePriceFilter
         {
-            Field = CompositePriceFilterModelField.PriceID,
-            Operator = CompositePriceFilterModelOperator.Includes,
+            Field = TieredCompositePriceFilterField.PriceID,
+            Operator = TieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilterModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -2646,21 +2646,21 @@ public class CompositePriceFilterModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilterModel
+        var model = new TieredCompositePriceFilter
         {
-            Field = CompositePriceFilterModelField.PriceID,
-            Operator = CompositePriceFilterModelOperator.Includes,
+            Field = TieredCompositePriceFilterField.PriceID,
+            Operator = TieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilterModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilterModelField> expectedField =
-            CompositePriceFilterModelField.PriceID;
-        ApiEnum<string, CompositePriceFilterModelOperator> expectedOperator =
-            CompositePriceFilterModelOperator.Includes;
+        ApiEnum<string, TieredCompositePriceFilterField> expectedField =
+            TieredCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredCompositePriceFilterOperator> expectedOperator =
+            TieredCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -2675,10 +2675,10 @@ public class CompositePriceFilterModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilterModel
+        var model = new TieredCompositePriceFilter
         {
-            Field = CompositePriceFilterModelField.PriceID,
-            Operator = CompositePriceFilterModelOperator.Includes,
+            Field = TieredCompositePriceFilterField.PriceID,
+            Operator = TieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -2703,8 +2703,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2738,14 +2738,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2762,8 +2762,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2778,8 +2778,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2809,12 +2809,12 @@ public class BulkTest : TestBase
             [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]
         );
         ApiEnum<string, BulkCadence> expectedCadence = BulkCadence.OneTime;
-        List<CompositePriceFilter1> expectedCompositePriceFilters =
+        List<BulkCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter1Field.PriceID,
-                Operator = CompositePriceFilter1Operator.Includes,
+                Field = BulkCompositePriceFilterField.PriceID,
+                Operator = BulkCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -2848,14 +2848,14 @@ public class BulkTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2876,8 +2876,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2892,8 +2892,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2966,8 +2966,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3001,14 +3001,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3025,8 +3025,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3041,8 +3041,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3081,8 +3081,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3116,14 +3116,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3140,8 +3140,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3156,8 +3156,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3191,12 +3191,12 @@ public class BulkTest : TestBase
             [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]
         );
         ApiEnum<string, BulkCadence> expectedCadence = BulkCadence.OneTime;
-        List<CompositePriceFilter1> expectedCompositePriceFilters =
+        List<BulkCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter1Field.PriceID,
-                Operator = CompositePriceFilter1Operator.Includes,
+                Field = BulkCompositePriceFilterField.PriceID,
+                Operator = BulkCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -3230,14 +3230,14 @@ public class BulkTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3258,8 +3258,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3274,8 +3274,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3351,8 +3351,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3386,14 +3386,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3410,8 +3410,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3426,8 +3426,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3463,8 +3463,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3498,14 +3498,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3522,8 +3522,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3538,8 +3538,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3571,8 +3571,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3606,14 +3606,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3630,8 +3630,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3646,8 +3646,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3678,8 +3678,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3713,14 +3713,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3737,8 +3737,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3753,8 +3753,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3788,8 +3788,8 @@ public class BulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter1Field.PriceID,
-                    Operator = CompositePriceFilter1Operator.Includes,
+                    Field = BulkCompositePriceFilterField.PriceID,
+                    Operator = BulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -3823,14 +3823,14 @@ public class BulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3847,8 +3847,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3863,8 +3863,8 @@ public class BulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -3883,22 +3883,22 @@ public class BulkTest : TestBase
     }
 }
 
-public class CompositePriceFilter1Test : TestBase
+public class BulkCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter1
+        var model = new BulkCompositePriceFilter
         {
-            Field = CompositePriceFilter1Field.PriceID,
-            Operator = CompositePriceFilter1Operator.Includes,
+            Field = BulkCompositePriceFilterField.PriceID,
+            Operator = BulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter1Field> expectedField =
-            CompositePriceFilter1Field.PriceID;
-        ApiEnum<string, CompositePriceFilter1Operator> expectedOperator =
-            CompositePriceFilter1Operator.Includes;
+        ApiEnum<string, BulkCompositePriceFilterField> expectedField =
+            BulkCompositePriceFilterField.PriceID;
+        ApiEnum<string, BulkCompositePriceFilterOperator> expectedOperator =
+            BulkCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -3913,15 +3913,15 @@ public class CompositePriceFilter1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter1
+        var model = new BulkCompositePriceFilter
         {
-            Field = CompositePriceFilter1Field.PriceID,
-            Operator = CompositePriceFilter1Operator.Includes,
+            Field = BulkCompositePriceFilterField.PriceID,
+            Operator = BulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter1>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -3929,21 +3929,21 @@ public class CompositePriceFilter1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter1
+        var model = new BulkCompositePriceFilter
         {
-            Field = CompositePriceFilter1Field.PriceID,
-            Operator = CompositePriceFilter1Operator.Includes,
+            Field = BulkCompositePriceFilterField.PriceID,
+            Operator = BulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter1>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter1Field> expectedField =
-            CompositePriceFilter1Field.PriceID;
-        ApiEnum<string, CompositePriceFilter1Operator> expectedOperator =
-            CompositePriceFilter1Operator.Includes;
+        ApiEnum<string, BulkCompositePriceFilterField> expectedField =
+            BulkCompositePriceFilterField.PriceID;
+        ApiEnum<string, BulkCompositePriceFilterOperator> expectedOperator =
+            BulkCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -3958,10 +3958,10 @@ public class CompositePriceFilter1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter1
+        var model = new BulkCompositePriceFilter
         {
-            Field = CompositePriceFilter1Field.PriceID,
-            Operator = CompositePriceFilter1Operator.Includes,
+            Field = BulkCompositePriceFilterField.PriceID,
+            Operator = BulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -3994,8 +3994,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4029,14 +4029,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4053,8 +4053,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4069,8 +4069,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4107,12 +4107,12 @@ public class BulkWithFiltersTest : TestBase
             ],
         };
         ApiEnum<string, BulkWithFiltersCadence> expectedCadence = BulkWithFiltersCadence.OneTime;
-        List<CompositePriceFilter2> expectedCompositePriceFilters =
+        List<BulkWithFiltersCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter2Field.PriceID,
-                Operator = CompositePriceFilter2Operator.Includes,
+                Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -4147,14 +4147,14 @@ public class BulkWithFiltersTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4175,8 +4175,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4191,8 +4191,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4276,8 +4276,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4311,14 +4311,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4335,8 +4335,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4351,8 +4351,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4399,8 +4399,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4434,14 +4434,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4458,8 +4458,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4474,8 +4474,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4516,12 +4516,12 @@ public class BulkWithFiltersTest : TestBase
             ],
         };
         ApiEnum<string, BulkWithFiltersCadence> expectedCadence = BulkWithFiltersCadence.OneTime;
-        List<CompositePriceFilter2> expectedCompositePriceFilters =
+        List<BulkWithFiltersCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter2Field.PriceID,
-                Operator = CompositePriceFilter2Operator.Includes,
+                Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -4556,14 +4556,14 @@ public class BulkWithFiltersTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4584,8 +4584,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4600,8 +4600,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4688,8 +4688,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4723,14 +4723,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4747,8 +4747,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4763,8 +4763,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4808,8 +4808,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4843,14 +4843,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4867,8 +4867,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4883,8 +4883,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4924,8 +4924,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4959,14 +4959,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4983,8 +4983,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4999,8 +4999,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5039,8 +5039,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5074,14 +5074,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5098,8 +5098,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5114,8 +5114,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5157,8 +5157,8 @@ public class BulkWithFiltersTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter2Field.PriceID,
-                    Operator = CompositePriceFilter2Operator.Includes,
+                    Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+                    Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5192,14 +5192,14 @@ public class BulkWithFiltersTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5216,8 +5216,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5232,8 +5232,8 @@ public class BulkWithFiltersTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5267,8 +5267,11 @@ public class BulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        List<Filter24> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier16> expectedTiers =
+        List<BulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<BulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -5322,8 +5325,11 @@ public class BulkWithFiltersConfigTest : TestBase
         var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Filter24> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier16> expectedTiers =
+        List<BulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<BulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -5358,12 +5364,12 @@ public class BulkWithFiltersConfigTest : TestBase
     }
 }
 
-public class Filter24Test : TestBase
+public class BulkWithFiltersConfigFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter24 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         string expectedPropertyKey = "x";
         string expectedPropertyValue = "x";
@@ -5375,10 +5381,10 @@ public class Filter24Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter24 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter24>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -5386,10 +5392,10 @@ public class Filter24Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter24 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter24>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigFilter>(json);
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -5402,18 +5408,22 @@ public class Filter24Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter24 { PropertyKey = "x", PropertyValue = "x" };
+        var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
         model.Validate();
     }
 }
 
-public class Tier16Test : TestBase
+public class BulkWithFiltersConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier16 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -5425,10 +5435,14 @@ public class Tier16Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier16 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier16>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -5436,10 +5450,14 @@ public class Tier16Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier16 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier16>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -5452,7 +5470,11 @@ public class Tier16Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier16 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -5460,7 +5482,7 @@ public class Tier16Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier16 { UnitAmount = "unit_amount" };
+        var model = new BulkWithFiltersConfigTier { UnitAmount = "unit_amount" };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -5469,7 +5491,7 @@ public class Tier16Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier16 { UnitAmount = "unit_amount" };
+        var model = new BulkWithFiltersConfigTier { UnitAmount = "unit_amount" };
 
         model.Validate();
     }
@@ -5477,7 +5499,7 @@ public class Tier16Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier16
+        var model = new BulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -5491,7 +5513,7 @@ public class Tier16Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier16
+        var model = new BulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -5502,22 +5524,22 @@ public class Tier16Test : TestBase
     }
 }
 
-public class CompositePriceFilter2Test : TestBase
+public class BulkWithFiltersCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter2
+        var model = new BulkWithFiltersCompositePriceFilter
         {
-            Field = CompositePriceFilter2Field.PriceID,
-            Operator = CompositePriceFilter2Operator.Includes,
+            Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+            Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter2Field> expectedField =
-            CompositePriceFilter2Field.PriceID;
-        ApiEnum<string, CompositePriceFilter2Operator> expectedOperator =
-            CompositePriceFilter2Operator.Includes;
+        ApiEnum<string, BulkWithFiltersCompositePriceFilterField> expectedField =
+            BulkWithFiltersCompositePriceFilterField.PriceID;
+        ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator> expectedOperator =
+            BulkWithFiltersCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -5532,15 +5554,15 @@ public class CompositePriceFilter2Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter2
+        var model = new BulkWithFiltersCompositePriceFilter
         {
-            Field = CompositePriceFilter2Field.PriceID,
-            Operator = CompositePriceFilter2Operator.Includes,
+            Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+            Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter2>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -5548,21 +5570,21 @@ public class CompositePriceFilter2Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter2
+        var model = new BulkWithFiltersCompositePriceFilter
         {
-            Field = CompositePriceFilter2Field.PriceID,
-            Operator = CompositePriceFilter2Operator.Includes,
+            Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+            Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter2>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter2Field> expectedField =
-            CompositePriceFilter2Field.PriceID;
-        ApiEnum<string, CompositePriceFilter2Operator> expectedOperator =
-            CompositePriceFilter2Operator.Includes;
+        ApiEnum<string, BulkWithFiltersCompositePriceFilterField> expectedField =
+            BulkWithFiltersCompositePriceFilterField.PriceID;
+        ApiEnum<string, BulkWithFiltersCompositePriceFilterOperator> expectedOperator =
+            BulkWithFiltersCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -5577,10 +5599,10 @@ public class CompositePriceFilter2Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter2
+        var model = new BulkWithFiltersCompositePriceFilter
         {
-            Field = CompositePriceFilter2Field.PriceID,
-            Operator = CompositePriceFilter2Operator.Includes,
+            Field = BulkWithFiltersCompositePriceFilterField.PriceID,
+            Operator = BulkWithFiltersCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -5604,8 +5626,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5639,14 +5661,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5663,8 +5685,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5679,8 +5701,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5708,12 +5730,12 @@ public class PackageTest : TestBase
         };
         ApiEnum<string, PackageBillingMode> expectedBillingMode = PackageBillingMode.InAdvance;
         ApiEnum<string, PackageCadence> expectedCadence = PackageCadence.OneTime;
-        List<CompositePriceFilter3> expectedCompositePriceFilters =
+        List<PackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter3Field.PriceID,
-                Operator = CompositePriceFilter3Operator.Includes,
+                Field = PackageCompositePriceFilterField.PriceID,
+                Operator = PackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -5748,14 +5770,14 @@ public class PackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5776,8 +5798,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5792,8 +5814,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5870,8 +5892,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -5905,14 +5927,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5929,8 +5951,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5945,8 +5967,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -5985,8 +6007,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6020,14 +6042,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6044,8 +6066,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6060,8 +6082,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6093,12 +6115,12 @@ public class PackageTest : TestBase
         };
         ApiEnum<string, PackageBillingMode> expectedBillingMode = PackageBillingMode.InAdvance;
         ApiEnum<string, PackageCadence> expectedCadence = PackageCadence.OneTime;
-        List<CompositePriceFilter3> expectedCompositePriceFilters =
+        List<PackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter3Field.PriceID,
-                Operator = CompositePriceFilter3Operator.Includes,
+                Field = PackageCompositePriceFilterField.PriceID,
+                Operator = PackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -6133,14 +6155,14 @@ public class PackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6161,8 +6183,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6177,8 +6199,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6258,8 +6280,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6293,14 +6315,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6317,8 +6339,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6333,8 +6355,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6370,8 +6392,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6405,14 +6427,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6429,8 +6451,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6445,8 +6467,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6478,8 +6500,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6513,14 +6535,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6537,8 +6559,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6553,8 +6575,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6585,8 +6607,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6620,14 +6642,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6644,8 +6666,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6660,8 +6682,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6695,8 +6717,8 @@ public class PackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter3Field.PriceID,
-                    Operator = CompositePriceFilter3Operator.Includes,
+                    Field = PackageCompositePriceFilterField.PriceID,
+                    Operator = PackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6730,14 +6752,14 @@ public class PackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6754,8 +6776,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6770,8 +6792,8 @@ public class PackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6791,22 +6813,22 @@ public class PackageTest : TestBase
     }
 }
 
-public class CompositePriceFilter3Test : TestBase
+public class PackageCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter3
+        var model = new PackageCompositePriceFilter
         {
-            Field = CompositePriceFilter3Field.PriceID,
-            Operator = CompositePriceFilter3Operator.Includes,
+            Field = PackageCompositePriceFilterField.PriceID,
+            Operator = PackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter3Field> expectedField =
-            CompositePriceFilter3Field.PriceID;
-        ApiEnum<string, CompositePriceFilter3Operator> expectedOperator =
-            CompositePriceFilter3Operator.Includes;
+        ApiEnum<string, PackageCompositePriceFilterField> expectedField =
+            PackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, PackageCompositePriceFilterOperator> expectedOperator =
+            PackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -6821,15 +6843,15 @@ public class CompositePriceFilter3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter3
+        var model = new PackageCompositePriceFilter
         {
-            Field = CompositePriceFilter3Field.PriceID,
-            Operator = CompositePriceFilter3Operator.Includes,
+            Field = PackageCompositePriceFilterField.PriceID,
+            Operator = PackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter3>(json);
+        var deserialized = JsonSerializer.Deserialize<PackageCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -6837,21 +6859,21 @@ public class CompositePriceFilter3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter3
+        var model = new PackageCompositePriceFilter
         {
-            Field = CompositePriceFilter3Field.PriceID,
-            Operator = CompositePriceFilter3Operator.Includes,
+            Field = PackageCompositePriceFilterField.PriceID,
+            Operator = PackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter3>(json);
+        var deserialized = JsonSerializer.Deserialize<PackageCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter3Field> expectedField =
-            CompositePriceFilter3Field.PriceID;
-        ApiEnum<string, CompositePriceFilter3Operator> expectedOperator =
-            CompositePriceFilter3Operator.Includes;
+        ApiEnum<string, PackageCompositePriceFilterField> expectedField =
+            PackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, PackageCompositePriceFilterOperator> expectedOperator =
+            PackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -6866,10 +6888,10 @@ public class CompositePriceFilter3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter3
+        var model = new PackageCompositePriceFilter
         {
-            Field = CompositePriceFilter3Field.PriceID,
-            Operator = CompositePriceFilter3Operator.Includes,
+            Field = PackageCompositePriceFilterField.PriceID,
+            Operator = PackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -6893,8 +6915,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -6928,14 +6950,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6958,8 +6980,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -6974,8 +6996,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7002,12 +7024,12 @@ public class MatrixTest : TestBase
         };
         ApiEnum<string, MatrixBillingMode> expectedBillingMode = MatrixBillingMode.InAdvance;
         ApiEnum<string, MatrixCadence> expectedCadence = MatrixCadence.OneTime;
-        List<CompositePriceFilter4> expectedCompositePriceFilters =
+        List<MatrixCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter4Field.PriceID,
-                Operator = CompositePriceFilter4Operator.Includes,
+                Field = MatrixCompositePriceFilterField.PriceID,
+                Operator = MatrixCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -7042,14 +7064,14 @@ public class MatrixTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7076,8 +7098,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7092,8 +7114,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7165,8 +7187,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7200,14 +7222,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7230,8 +7252,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7246,8 +7268,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7285,8 +7307,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7320,14 +7342,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7350,8 +7372,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7366,8 +7388,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7398,12 +7420,12 @@ public class MatrixTest : TestBase
         };
         ApiEnum<string, MatrixBillingMode> expectedBillingMode = MatrixBillingMode.InAdvance;
         ApiEnum<string, MatrixCadence> expectedCadence = MatrixCadence.OneTime;
-        List<CompositePriceFilter4> expectedCompositePriceFilters =
+        List<MatrixCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter4Field.PriceID,
-                Operator = CompositePriceFilter4Operator.Includes,
+                Field = MatrixCompositePriceFilterField.PriceID,
+                Operator = MatrixCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -7438,14 +7460,14 @@ public class MatrixTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7472,8 +7494,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7488,8 +7510,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7564,8 +7586,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7599,14 +7621,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7629,8 +7651,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7645,8 +7667,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7681,8 +7703,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7716,14 +7738,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7746,8 +7768,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7762,8 +7784,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7794,8 +7816,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7829,14 +7851,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7859,8 +7881,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7875,8 +7897,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7906,8 +7928,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -7941,14 +7963,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7971,8 +7993,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -7987,8 +8009,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8021,8 +8043,8 @@ public class MatrixTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter4Field.PriceID,
-                    Operator = CompositePriceFilter4Operator.Includes,
+                    Field = MatrixCompositePriceFilterField.PriceID,
+                    Operator = MatrixCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8056,14 +8078,14 @@ public class MatrixTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8086,8 +8108,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8102,8 +8124,8 @@ public class MatrixTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8122,22 +8144,22 @@ public class MatrixTest : TestBase
     }
 }
 
-public class CompositePriceFilter4Test : TestBase
+public class MatrixCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter4
+        var model = new MatrixCompositePriceFilter
         {
-            Field = CompositePriceFilter4Field.PriceID,
-            Operator = CompositePriceFilter4Operator.Includes,
+            Field = MatrixCompositePriceFilterField.PriceID,
+            Operator = MatrixCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter4Field> expectedField =
-            CompositePriceFilter4Field.PriceID;
-        ApiEnum<string, CompositePriceFilter4Operator> expectedOperator =
-            CompositePriceFilter4Operator.Includes;
+        ApiEnum<string, MatrixCompositePriceFilterField> expectedField =
+            MatrixCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixCompositePriceFilterOperator> expectedOperator =
+            MatrixCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -8152,15 +8174,15 @@ public class CompositePriceFilter4Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter4
+        var model = new MatrixCompositePriceFilter
         {
-            Field = CompositePriceFilter4Field.PriceID,
-            Operator = CompositePriceFilter4Operator.Includes,
+            Field = MatrixCompositePriceFilterField.PriceID,
+            Operator = MatrixCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter4>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -8168,21 +8190,21 @@ public class CompositePriceFilter4Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter4
+        var model = new MatrixCompositePriceFilter
         {
-            Field = CompositePriceFilter4Field.PriceID,
-            Operator = CompositePriceFilter4Operator.Includes,
+            Field = MatrixCompositePriceFilterField.PriceID,
+            Operator = MatrixCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter4>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter4Field> expectedField =
-            CompositePriceFilter4Field.PriceID;
-        ApiEnum<string, CompositePriceFilter4Operator> expectedOperator =
-            CompositePriceFilter4Operator.Includes;
+        ApiEnum<string, MatrixCompositePriceFilterField> expectedField =
+            MatrixCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixCompositePriceFilterOperator> expectedOperator =
+            MatrixCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -8197,10 +8219,10 @@ public class CompositePriceFilter4Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter4
+        var model = new MatrixCompositePriceFilter
         {
-            Field = CompositePriceFilter4Field.PriceID,
-            Operator = CompositePriceFilter4Operator.Includes,
+            Field = MatrixCompositePriceFilterField.PriceID,
+            Operator = MatrixCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -8224,8 +8246,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8259,14 +8281,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8283,8 +8305,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8299,8 +8321,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8338,12 +8360,12 @@ public class ThresholdTotalAmountTest : TestBase
             ThresholdTotalAmountBillingMode.InAdvance;
         ApiEnum<string, ThresholdTotalAmountCadence> expectedCadence =
             ThresholdTotalAmountCadence.OneTime;
-        List<CompositePriceFilter5> expectedCompositePriceFilters =
+        List<ThresholdTotalAmountCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter5Field.PriceID,
-                Operator = CompositePriceFilter5Operator.Includes,
+                Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -8378,14 +8400,14 @@ public class ThresholdTotalAmountTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8406,8 +8428,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8422,8 +8444,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8507,8 +8529,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8542,14 +8564,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8566,8 +8588,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8582,8 +8604,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8630,8 +8652,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8665,14 +8687,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8689,8 +8711,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8705,8 +8727,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8748,12 +8770,12 @@ public class ThresholdTotalAmountTest : TestBase
             ThresholdTotalAmountBillingMode.InAdvance;
         ApiEnum<string, ThresholdTotalAmountCadence> expectedCadence =
             ThresholdTotalAmountCadence.OneTime;
-        List<CompositePriceFilter5> expectedCompositePriceFilters =
+        List<ThresholdTotalAmountCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter5Field.PriceID,
-                Operator = CompositePriceFilter5Operator.Includes,
+                Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -8788,14 +8810,14 @@ public class ThresholdTotalAmountTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8816,8 +8838,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8832,8 +8854,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8920,8 +8942,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -8955,14 +8977,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8979,8 +9001,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -8995,8 +9017,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9040,8 +9062,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9075,14 +9097,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9099,8 +9121,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9115,8 +9137,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9156,8 +9178,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9191,14 +9213,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9215,8 +9237,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9231,8 +9253,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9271,8 +9293,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9306,14 +9328,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9330,8 +9352,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9346,8 +9368,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9389,8 +9411,8 @@ public class ThresholdTotalAmountTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter5Field.PriceID,
-                    Operator = CompositePriceFilter5Operator.Includes,
+                    Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+                    Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9424,14 +9446,14 @@ public class ThresholdTotalAmountTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9448,8 +9470,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9464,8 +9486,8 @@ public class ThresholdTotalAmountTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9493,22 +9515,22 @@ public class ThresholdTotalAmountTest : TestBase
     }
 }
 
-public class CompositePriceFilter5Test : TestBase
+public class ThresholdTotalAmountCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter5
+        var model = new ThresholdTotalAmountCompositePriceFilter
         {
-            Field = CompositePriceFilter5Field.PriceID,
-            Operator = CompositePriceFilter5Operator.Includes,
+            Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+            Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter5Field> expectedField =
-            CompositePriceFilter5Field.PriceID;
-        ApiEnum<string, CompositePriceFilter5Operator> expectedOperator =
-            CompositePriceFilter5Operator.Includes;
+        ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField> expectedField =
+            ThresholdTotalAmountCompositePriceFilterField.PriceID;
+        ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator> expectedOperator =
+            ThresholdTotalAmountCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -9523,15 +9545,17 @@ public class CompositePriceFilter5Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter5
+        var model = new ThresholdTotalAmountCompositePriceFilter
         {
-            Field = CompositePriceFilter5Field.PriceID,
-            Operator = CompositePriceFilter5Operator.Includes,
+            Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+            Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter5>(json);
+        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -9539,21 +9563,23 @@ public class CompositePriceFilter5Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter5
+        var model = new ThresholdTotalAmountCompositePriceFilter
         {
-            Field = CompositePriceFilter5Field.PriceID,
-            Operator = CompositePriceFilter5Operator.Includes,
+            Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+            Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter5>(json);
+        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter5Field> expectedField =
-            CompositePriceFilter5Field.PriceID;
-        ApiEnum<string, CompositePriceFilter5Operator> expectedOperator =
-            CompositePriceFilter5Operator.Includes;
+        ApiEnum<string, ThresholdTotalAmountCompositePriceFilterField> expectedField =
+            ThresholdTotalAmountCompositePriceFilterField.PriceID;
+        ApiEnum<string, ThresholdTotalAmountCompositePriceFilterOperator> expectedOperator =
+            ThresholdTotalAmountCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -9568,10 +9594,10 @@ public class CompositePriceFilter5Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter5
+        var model = new ThresholdTotalAmountCompositePriceFilter
         {
-            Field = CompositePriceFilter5Field.PriceID,
-            Operator = CompositePriceFilter5Operator.Includes,
+            Field = ThresholdTotalAmountCompositePriceFilterField.PriceID,
+            Operator = ThresholdTotalAmountCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -9594,7 +9620,7 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigTest : TestBase
             Prorate = true,
         };
 
-        List<ConsumptionTable1> expectedConsumptionTable =
+        List<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> expectedConsumptionTable =
         [
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
@@ -9647,7 +9673,7 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigTest : TestBase
             JsonSerializer.Deserialize<ThresholdTotalAmountThresholdTotalAmountConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<ConsumptionTable1> expectedConsumptionTable =
+        List<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> expectedConsumptionTable =
         [
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
@@ -9745,12 +9771,16 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigTest : TestBase
     }
 }
 
-public class ConsumptionTable1Test : TestBase
+public class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ConsumptionTable1 { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         string expectedThreshold = "threshold";
         string expectedTotalAmount = "total_amount";
@@ -9762,10 +9792,17 @@ public class ConsumptionTable1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ConsumptionTable1 { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTable1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -9773,10 +9810,17 @@ public class ConsumptionTable1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ConsumptionTable1 { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTable1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedThreshold = "threshold";
@@ -9789,7 +9833,11 @@ public class ConsumptionTable1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ConsumptionTable1 { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         model.Validate();
     }
@@ -9811,8 +9859,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9846,14 +9894,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9870,8 +9918,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9886,8 +9934,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -9924,12 +9972,12 @@ public class TieredPackageTest : TestBase
         ApiEnum<string, TieredPackageBillingMode> expectedBillingMode =
             TieredPackageBillingMode.InAdvance;
         ApiEnum<string, TieredPackageCadence> expectedCadence = TieredPackageCadence.OneTime;
-        List<CompositePriceFilter6> expectedCompositePriceFilters =
+        List<TieredPackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter6Field.PriceID,
-                Operator = CompositePriceFilter6Operator.Includes,
+                Field = TieredPackageCompositePriceFilterField.PriceID,
+                Operator = TieredPackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -9964,14 +10012,14 @@ public class TieredPackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -9992,8 +10040,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10008,8 +10056,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10093,8 +10141,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10128,14 +10176,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10152,8 +10200,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10168,8 +10216,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10216,8 +10264,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10251,14 +10299,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10275,8 +10323,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10291,8 +10339,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10333,12 +10381,12 @@ public class TieredPackageTest : TestBase
         ApiEnum<string, TieredPackageBillingMode> expectedBillingMode =
             TieredPackageBillingMode.InAdvance;
         ApiEnum<string, TieredPackageCadence> expectedCadence = TieredPackageCadence.OneTime;
-        List<CompositePriceFilter6> expectedCompositePriceFilters =
+        List<TieredPackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter6Field.PriceID,
-                Operator = CompositePriceFilter6Operator.Includes,
+                Field = TieredPackageCompositePriceFilterField.PriceID,
+                Operator = TieredPackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -10373,14 +10421,14 @@ public class TieredPackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10401,8 +10449,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10417,8 +10465,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10505,8 +10553,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10540,14 +10588,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10564,8 +10612,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10580,8 +10628,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10625,8 +10673,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10660,14 +10708,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10684,8 +10732,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10700,8 +10748,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10741,8 +10789,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10776,14 +10824,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10800,8 +10848,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10816,8 +10864,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10856,8 +10904,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -10891,14 +10939,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10915,8 +10963,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10931,8 +10979,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -10974,8 +11022,8 @@ public class TieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter6Field.PriceID,
-                    Operator = CompositePriceFilter6Operator.Includes,
+                    Field = TieredPackageCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11009,14 +11057,14 @@ public class TieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11033,8 +11081,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11049,8 +11097,8 @@ public class TieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11078,22 +11126,22 @@ public class TieredPackageTest : TestBase
     }
 }
 
-public class CompositePriceFilter6Test : TestBase
+public class TieredPackageCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter6
+        var model = new TieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter6Field.PriceID,
-            Operator = CompositePriceFilter6Operator.Includes,
+            Field = TieredPackageCompositePriceFilterField.PriceID,
+            Operator = TieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter6Field> expectedField =
-            CompositePriceFilter6Field.PriceID;
-        ApiEnum<string, CompositePriceFilter6Operator> expectedOperator =
-            CompositePriceFilter6Operator.Includes;
+        ApiEnum<string, TieredPackageCompositePriceFilterField> expectedField =
+            TieredPackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredPackageCompositePriceFilterOperator> expectedOperator =
+            TieredPackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -11108,15 +11156,15 @@ public class CompositePriceFilter6Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter6
+        var model = new TieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter6Field.PriceID,
-            Operator = CompositePriceFilter6Operator.Includes,
+            Field = TieredPackageCompositePriceFilterField.PriceID,
+            Operator = TieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter6>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -11124,21 +11172,21 @@ public class CompositePriceFilter6Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter6
+        var model = new TieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter6Field.PriceID,
-            Operator = CompositePriceFilter6Operator.Includes,
+            Field = TieredPackageCompositePriceFilterField.PriceID,
+            Operator = TieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter6>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter6Field> expectedField =
-            CompositePriceFilter6Field.PriceID;
-        ApiEnum<string, CompositePriceFilter6Operator> expectedOperator =
-            CompositePriceFilter6Operator.Includes;
+        ApiEnum<string, TieredPackageCompositePriceFilterField> expectedField =
+            TieredPackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredPackageCompositePriceFilterOperator> expectedOperator =
+            TieredPackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -11153,10 +11201,10 @@ public class CompositePriceFilter6Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter6
+        var model = new TieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter6Field.PriceID,
-            Operator = CompositePriceFilter6Operator.Includes,
+            Field = TieredPackageCompositePriceFilterField.PriceID,
+            Operator = TieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -11180,7 +11228,7 @@ public class TieredPackageTieredPackageConfigTest : TestBase
         };
 
         string expectedPackageSize = "package_size";
-        List<Tier17> expectedTiers =
+        List<TieredPackageTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -11231,7 +11279,7 @@ public class TieredPackageTieredPackageConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedPackageSize = "package_size";
-        List<Tier17> expectedTiers =
+        List<TieredPackageTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -11262,12 +11310,16 @@ public class TieredPackageTieredPackageConfigTest : TestBase
     }
 }
 
-public class Tier17Test : TestBase
+public class TieredPackageTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier17 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new TieredPackageTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedPerUnit = "per_unit";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -11279,10 +11331,14 @@ public class Tier17Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier17 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new TieredPackageTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier17>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageTieredPackageConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -11290,10 +11346,14 @@ public class Tier17Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier17 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new TieredPackageTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier17>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageTieredPackageConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -11306,7 +11366,11 @@ public class Tier17Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier17 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new TieredPackageTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -11328,8 +11392,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11363,14 +11427,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11387,8 +11451,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11403,8 +11467,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11453,12 +11517,12 @@ public class TieredWithMinimumTest : TestBase
             TieredWithMinimumBillingMode.InAdvance;
         ApiEnum<string, TieredWithMinimumCadence> expectedCadence =
             TieredWithMinimumCadence.OneTime;
-        List<CompositePriceFilter7> expectedCompositePriceFilters =
+        List<TieredWithMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter7Field.PriceID,
-                Operator = CompositePriceFilter7Operator.Includes,
+                Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -11493,14 +11557,14 @@ public class TieredWithMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11521,8 +11585,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11537,8 +11601,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11633,8 +11697,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11668,14 +11732,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11692,8 +11756,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11708,8 +11772,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11767,8 +11831,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11802,14 +11866,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11826,8 +11890,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11842,8 +11906,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -11896,12 +11960,12 @@ public class TieredWithMinimumTest : TestBase
             TieredWithMinimumBillingMode.InAdvance;
         ApiEnum<string, TieredWithMinimumCadence> expectedCadence =
             TieredWithMinimumCadence.OneTime;
-        List<CompositePriceFilter7> expectedCompositePriceFilters =
+        List<TieredWithMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter7Field.PriceID,
-                Operator = CompositePriceFilter7Operator.Includes,
+                Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -11936,14 +12000,14 @@ public class TieredWithMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11964,8 +12028,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -11980,8 +12044,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -12079,8 +12143,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -12114,14 +12178,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12138,8 +12202,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12154,8 +12218,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12210,8 +12274,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -12245,14 +12309,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12269,8 +12333,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12285,8 +12349,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12337,8 +12401,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -12372,14 +12436,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12396,8 +12460,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12412,8 +12476,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12463,8 +12527,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -12498,14 +12562,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12522,8 +12586,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12538,8 +12602,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12592,8 +12656,8 @@ public class TieredWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter7Field.PriceID,
-                    Operator = CompositePriceFilter7Operator.Includes,
+                    Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -12627,14 +12691,14 @@ public class TieredWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12651,8 +12715,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12667,8 +12731,8 @@ public class TieredWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -12707,22 +12771,22 @@ public class TieredWithMinimumTest : TestBase
     }
 }
 
-public class CompositePriceFilter7Test : TestBase
+public class TieredWithMinimumCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter7
+        var model = new TieredWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter7Field.PriceID,
-            Operator = CompositePriceFilter7Operator.Includes,
+            Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter7Field> expectedField =
-            CompositePriceFilter7Field.PriceID;
-        ApiEnum<string, CompositePriceFilter7Operator> expectedOperator =
-            CompositePriceFilter7Operator.Includes;
+        ApiEnum<string, TieredWithMinimumCompositePriceFilterField> expectedField =
+            TieredWithMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator> expectedOperator =
+            TieredWithMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -12737,15 +12801,15 @@ public class CompositePriceFilter7Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter7
+        var model = new TieredWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter7Field.PriceID,
-            Operator = CompositePriceFilter7Operator.Includes,
+            Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter7>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -12753,21 +12817,21 @@ public class CompositePriceFilter7Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter7
+        var model = new TieredWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter7Field.PriceID,
-            Operator = CompositePriceFilter7Operator.Includes,
+            Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter7>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter7Field> expectedField =
-            CompositePriceFilter7Field.PriceID;
-        ApiEnum<string, CompositePriceFilter7Operator> expectedOperator =
-            CompositePriceFilter7Operator.Includes;
+        ApiEnum<string, TieredWithMinimumCompositePriceFilterField> expectedField =
+            TieredWithMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredWithMinimumCompositePriceFilterOperator> expectedOperator =
+            TieredWithMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -12782,10 +12846,10 @@ public class CompositePriceFilter7Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter7
+        var model = new TieredWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter7Field.PriceID,
-            Operator = CompositePriceFilter7Operator.Includes,
+            Field = TieredWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -12819,7 +12883,7 @@ public class TieredWithMinimumTieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        List<Tier18> expectedTiers =
+        List<TieredWithMinimumTieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -12908,7 +12972,7 @@ public class TieredWithMinimumTieredWithMinimumConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Tier18> expectedTiers =
+        List<TieredWithMinimumTieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -13077,12 +13141,12 @@ public class TieredWithMinimumTieredWithMinimumConfigTest : TestBase
     }
 }
 
-public class Tier18Test : TestBase
+public class TieredWithMinimumTieredWithMinimumConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier18
+        var model = new TieredWithMinimumTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -13101,7 +13165,7 @@ public class Tier18Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier18
+        var model = new TieredWithMinimumTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -13109,7 +13173,9 @@ public class Tier18Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier18>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumTieredWithMinimumConfigTier>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -13117,7 +13183,7 @@ public class Tier18Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier18
+        var model = new TieredWithMinimumTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -13125,7 +13191,9 @@ public class Tier18Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier18>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumTieredWithMinimumConfigTier>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -13140,7 +13208,7 @@ public class Tier18Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier18
+        var model = new TieredWithMinimumTieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -13167,8 +13235,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13202,14 +13270,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13235,8 +13303,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13251,8 +13319,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13280,12 +13348,12 @@ public class GroupedTieredTest : TestBase
         ApiEnum<string, GroupedTieredBillingMode> expectedBillingMode =
             GroupedTieredBillingMode.InAdvance;
         ApiEnum<string, GroupedTieredCadence> expectedCadence = GroupedTieredCadence.OneTime;
-        List<CompositePriceFilter8> expectedCompositePriceFilters =
+        List<GroupedTieredCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter8Field.PriceID,
-                Operator = CompositePriceFilter8Operator.Includes,
+                Field = GroupedTieredCompositePriceFilterField.PriceID,
+                Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -13320,14 +13388,14 @@ public class GroupedTieredTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13357,8 +13425,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13373,8 +13441,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13449,8 +13517,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13484,14 +13552,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13517,8 +13585,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13533,8 +13601,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13572,8 +13640,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13607,14 +13675,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13640,8 +13708,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13656,8 +13724,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13689,12 +13757,12 @@ public class GroupedTieredTest : TestBase
         ApiEnum<string, GroupedTieredBillingMode> expectedBillingMode =
             GroupedTieredBillingMode.InAdvance;
         ApiEnum<string, GroupedTieredCadence> expectedCadence = GroupedTieredCadence.OneTime;
-        List<CompositePriceFilter8> expectedCompositePriceFilters =
+        List<GroupedTieredCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter8Field.PriceID,
-                Operator = CompositePriceFilter8Operator.Includes,
+                Field = GroupedTieredCompositePriceFilterField.PriceID,
+                Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -13729,14 +13797,14 @@ public class GroupedTieredTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13766,8 +13834,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13782,8 +13850,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13861,8 +13929,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -13896,14 +13964,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13929,8 +13997,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13945,8 +14013,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -13981,8 +14049,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14016,14 +14084,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14049,8 +14117,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14065,8 +14133,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14097,8 +14165,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14132,14 +14200,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14165,8 +14233,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14181,8 +14249,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14212,8 +14280,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14247,14 +14315,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14280,8 +14348,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14296,8 +14364,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14330,8 +14398,8 @@ public class GroupedTieredTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter8Field.PriceID,
-                    Operator = CompositePriceFilter8Operator.Includes,
+                    Field = GroupedTieredCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14365,14 +14433,14 @@ public class GroupedTieredTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14398,8 +14466,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14414,8 +14482,8 @@ public class GroupedTieredTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14434,22 +14502,22 @@ public class GroupedTieredTest : TestBase
     }
 }
 
-public class CompositePriceFilter8Test : TestBase
+public class GroupedTieredCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter8
+        var model = new GroupedTieredCompositePriceFilter
         {
-            Field = CompositePriceFilter8Field.PriceID,
-            Operator = CompositePriceFilter8Operator.Includes,
+            Field = GroupedTieredCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter8Field> expectedField =
-            CompositePriceFilter8Field.PriceID;
-        ApiEnum<string, CompositePriceFilter8Operator> expectedOperator =
-            CompositePriceFilter8Operator.Includes;
+        ApiEnum<string, GroupedTieredCompositePriceFilterField> expectedField =
+            GroupedTieredCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedTieredCompositePriceFilterOperator> expectedOperator =
+            GroupedTieredCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -14464,15 +14532,15 @@ public class CompositePriceFilter8Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter8
+        var model = new GroupedTieredCompositePriceFilter
         {
-            Field = CompositePriceFilter8Field.PriceID,
-            Operator = CompositePriceFilter8Operator.Includes,
+            Field = GroupedTieredCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter8>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -14480,21 +14548,21 @@ public class CompositePriceFilter8Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter8
+        var model = new GroupedTieredCompositePriceFilter
         {
-            Field = CompositePriceFilter8Field.PriceID,
-            Operator = CompositePriceFilter8Operator.Includes,
+            Field = GroupedTieredCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter8>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter8Field> expectedField =
-            CompositePriceFilter8Field.PriceID;
-        ApiEnum<string, CompositePriceFilter8Operator> expectedOperator =
-            CompositePriceFilter8Operator.Includes;
+        ApiEnum<string, GroupedTieredCompositePriceFilterField> expectedField =
+            GroupedTieredCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedTieredCompositePriceFilterOperator> expectedOperator =
+            GroupedTieredCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -14509,10 +14577,10 @@ public class CompositePriceFilter8Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter8
+        var model = new GroupedTieredCompositePriceFilter
         {
-            Field = CompositePriceFilter8Field.PriceID,
-            Operator = CompositePriceFilter8Operator.Includes,
+            Field = GroupedTieredCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -14536,7 +14604,7 @@ public class GroupedTieredGroupedTieredConfigTest : TestBase
         };
 
         string expectedGroupingKey = "x";
-        List<Tier19> expectedTiers =
+        List<GroupedTieredGroupedTieredConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -14587,7 +14655,7 @@ public class GroupedTieredGroupedTieredConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
-        List<Tier19> expectedTiers =
+        List<GroupedTieredGroupedTieredConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -14618,12 +14686,16 @@ public class GroupedTieredGroupedTieredConfigTest : TestBase
     }
 }
 
-public class Tier19Test : TestBase
+public class GroupedTieredGroupedTieredConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier19 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new GroupedTieredGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -14635,10 +14707,14 @@ public class Tier19Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier19 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new GroupedTieredGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier19>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredGroupedTieredConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -14646,10 +14722,14 @@ public class Tier19Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier19 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new GroupedTieredGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier19>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredGroupedTieredConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -14662,7 +14742,11 @@ public class Tier19Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier19 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new GroupedTieredGroupedTieredConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -14684,8 +14768,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14719,14 +14803,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14743,8 +14827,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14759,8 +14843,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -14808,12 +14892,12 @@ public class TieredPackageWithMinimumTest : TestBase
             TieredPackageWithMinimumBillingMode.InAdvance;
         ApiEnum<string, TieredPackageWithMinimumCadence> expectedCadence =
             TieredPackageWithMinimumCadence.OneTime;
-        List<CompositePriceFilter9> expectedCompositePriceFilters =
+        List<TieredPackageWithMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter9Field.PriceID,
-                Operator = CompositePriceFilter9Operator.Includes,
+                Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -14848,14 +14932,14 @@ public class TieredPackageWithMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14876,8 +14960,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14892,8 +14976,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -14988,8 +15072,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15023,14 +15107,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15047,8 +15131,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15063,8 +15147,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15121,8 +15205,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15156,14 +15240,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15180,8 +15264,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15196,8 +15280,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15249,12 +15333,12 @@ public class TieredPackageWithMinimumTest : TestBase
             TieredPackageWithMinimumBillingMode.InAdvance;
         ApiEnum<string, TieredPackageWithMinimumCadence> expectedCadence =
             TieredPackageWithMinimumCadence.OneTime;
-        List<CompositePriceFilter9> expectedCompositePriceFilters =
+        List<TieredPackageWithMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter9Field.PriceID,
-                Operator = CompositePriceFilter9Operator.Includes,
+                Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -15289,14 +15373,14 @@ public class TieredPackageWithMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15317,8 +15401,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15333,8 +15417,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15435,8 +15519,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15470,14 +15554,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15494,8 +15578,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15510,8 +15594,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15565,8 +15649,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15600,14 +15684,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15624,8 +15708,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15640,8 +15724,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15691,8 +15775,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15726,14 +15810,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15750,8 +15834,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15766,8 +15850,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15816,8 +15900,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15851,14 +15935,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15875,8 +15959,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15891,8 +15975,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -15944,8 +16028,8 @@ public class TieredPackageWithMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter9Field.PriceID,
-                    Operator = CompositePriceFilter9Operator.Includes,
+                    Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+                    Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -15979,14 +16063,14 @@ public class TieredPackageWithMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16003,8 +16087,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16019,8 +16103,8 @@ public class TieredPackageWithMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16058,22 +16142,22 @@ public class TieredPackageWithMinimumTest : TestBase
     }
 }
 
-public class CompositePriceFilter9Test : TestBase
+public class TieredPackageWithMinimumCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter9
+        var model = new TieredPackageWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter9Field.PriceID,
-            Operator = CompositePriceFilter9Operator.Includes,
+            Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter9Field> expectedField =
-            CompositePriceFilter9Field.PriceID;
-        ApiEnum<string, CompositePriceFilter9Operator> expectedOperator =
-            CompositePriceFilter9Operator.Includes;
+        ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField> expectedField =
+            TieredPackageWithMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator> expectedOperator =
+            TieredPackageWithMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -16088,15 +16172,17 @@ public class CompositePriceFilter9Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter9
+        var model = new TieredPackageWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter9Field.PriceID,
-            Operator = CompositePriceFilter9Operator.Includes,
+            Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter9>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -16104,21 +16190,23 @@ public class CompositePriceFilter9Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter9
+        var model = new TieredPackageWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter9Field.PriceID,
-            Operator = CompositePriceFilter9Operator.Includes,
+            Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter9>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter9Field> expectedField =
-            CompositePriceFilter9Field.PriceID;
-        ApiEnum<string, CompositePriceFilter9Operator> expectedOperator =
-            CompositePriceFilter9Operator.Includes;
+        ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterField> expectedField =
+            TieredPackageWithMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredPackageWithMinimumCompositePriceFilterOperator> expectedOperator =
+            TieredPackageWithMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -16133,10 +16221,10 @@ public class CompositePriceFilter9Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter9
+        var model = new TieredPackageWithMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter9Field.PriceID,
-            Operator = CompositePriceFilter9Operator.Includes,
+            Field = TieredPackageWithMinimumCompositePriceFilterField.PriceID,
+            Operator = TieredPackageWithMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -16170,7 +16258,7 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTest : TestBa
         };
 
         double expectedPackageSize = 0;
-        List<Tier20> expectedTiers =
+        List<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -16257,7 +16345,7 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTest : TestBa
         Assert.NotNull(deserialized);
 
         double expectedPackageSize = 0;
-        List<Tier20> expectedTiers =
+        List<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -16308,12 +16396,12 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTest : TestBa
     }
 }
 
-public class Tier20Test : TestBase
+public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier20
+        var model = new TieredPackageWithMinimumTieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -16332,7 +16420,7 @@ public class Tier20Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier20
+        var model = new TieredPackageWithMinimumTieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -16340,7 +16428,10 @@ public class Tier20Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier20>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -16348,7 +16439,7 @@ public class Tier20Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier20
+        var model = new TieredPackageWithMinimumTieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -16356,7 +16447,10 @@ public class Tier20Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier20>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -16371,7 +16465,7 @@ public class Tier20Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier20
+        var model = new TieredPackageWithMinimumTieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -16398,8 +16492,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16433,14 +16527,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16457,8 +16551,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16473,8 +16567,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16509,12 +16603,12 @@ public class PackageWithAllocationTest : TestBase
             PackageWithAllocationBillingMode.InAdvance;
         ApiEnum<string, PackageWithAllocationCadence> expectedCadence =
             PackageWithAllocationCadence.OneTime;
-        List<CompositePriceFilter10> expectedCompositePriceFilters =
+        List<PackageWithAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter10Field.PriceID,
-                Operator = CompositePriceFilter10Operator.Includes,
+                Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -16549,14 +16643,14 @@ public class PackageWithAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16577,8 +16671,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16593,8 +16687,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16675,8 +16769,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16710,14 +16804,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16734,8 +16828,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16750,8 +16844,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16795,8 +16889,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16830,14 +16924,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16854,8 +16948,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16870,8 +16964,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -16910,12 +17004,12 @@ public class PackageWithAllocationTest : TestBase
             PackageWithAllocationBillingMode.InAdvance;
         ApiEnum<string, PackageWithAllocationCadence> expectedCadence =
             PackageWithAllocationCadence.OneTime;
-        List<CompositePriceFilter10> expectedCompositePriceFilters =
+        List<PackageWithAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter10Field.PriceID,
-                Operator = CompositePriceFilter10Operator.Includes,
+                Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -16950,14 +17044,14 @@ public class PackageWithAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16978,8 +17072,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -16994,8 +17088,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17079,8 +17173,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17114,14 +17208,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17138,8 +17232,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17154,8 +17248,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17196,8 +17290,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17231,14 +17325,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17255,8 +17349,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17271,8 +17365,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17309,8 +17403,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17344,14 +17438,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17368,8 +17462,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17384,8 +17478,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17421,8 +17515,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17456,14 +17550,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17480,8 +17574,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17496,8 +17590,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17536,8 +17630,8 @@ public class PackageWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter10Field.PriceID,
-                    Operator = CompositePriceFilter10Operator.Includes,
+                    Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17571,14 +17665,14 @@ public class PackageWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17595,8 +17689,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17611,8 +17705,8 @@ public class PackageWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17637,22 +17731,22 @@ public class PackageWithAllocationTest : TestBase
     }
 }
 
-public class CompositePriceFilter10Test : TestBase
+public class PackageWithAllocationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter10
+        var model = new PackageWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter10Field.PriceID,
-            Operator = CompositePriceFilter10Operator.Includes,
+            Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+            Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter10Field> expectedField =
-            CompositePriceFilter10Field.PriceID;
-        ApiEnum<string, CompositePriceFilter10Operator> expectedOperator =
-            CompositePriceFilter10Operator.Includes;
+        ApiEnum<string, PackageWithAllocationCompositePriceFilterField> expectedField =
+            PackageWithAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator> expectedOperator =
+            PackageWithAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -17667,15 +17761,17 @@ public class CompositePriceFilter10Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter10
+        var model = new PackageWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter10Field.PriceID,
-            Operator = CompositePriceFilter10Operator.Includes,
+            Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+            Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter10>(json);
+        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -17683,21 +17779,23 @@ public class CompositePriceFilter10Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter10
+        var model = new PackageWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter10Field.PriceID,
-            Operator = CompositePriceFilter10Operator.Includes,
+            Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+            Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter10>(json);
+        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter10Field> expectedField =
-            CompositePriceFilter10Field.PriceID;
-        ApiEnum<string, CompositePriceFilter10Operator> expectedOperator =
-            CompositePriceFilter10Operator.Includes;
+        ApiEnum<string, PackageWithAllocationCompositePriceFilterField> expectedField =
+            PackageWithAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, PackageWithAllocationCompositePriceFilterOperator> expectedOperator =
+            PackageWithAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -17712,10 +17810,10 @@ public class CompositePriceFilter10Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter10
+        var model = new PackageWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter10Field.PriceID,
-            Operator = CompositePriceFilter10Operator.Includes,
+            Field = PackageWithAllocationCompositePriceFilterField.PriceID,
+            Operator = PackageWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -17815,8 +17913,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17850,14 +17948,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17874,8 +17972,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17890,8 +17988,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -17920,12 +18018,12 @@ public class UnitWithPercentTest : TestBase
         ApiEnum<string, UnitWithPercentBillingMode> expectedBillingMode =
             UnitWithPercentBillingMode.InAdvance;
         ApiEnum<string, UnitWithPercentCadence> expectedCadence = UnitWithPercentCadence.OneTime;
-        List<CompositePriceFilter11> expectedCompositePriceFilters =
+        List<UnitWithPercentCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter11Field.PriceID,
-                Operator = CompositePriceFilter11Operator.Includes,
+                Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -17960,14 +18058,14 @@ public class UnitWithPercentTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -17988,8 +18086,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18004,8 +18102,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18085,8 +18183,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18120,14 +18218,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18144,8 +18242,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18160,8 +18258,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18200,8 +18298,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18235,14 +18333,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18259,8 +18357,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18275,8 +18373,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18309,12 +18407,12 @@ public class UnitWithPercentTest : TestBase
         ApiEnum<string, UnitWithPercentBillingMode> expectedBillingMode =
             UnitWithPercentBillingMode.InAdvance;
         ApiEnum<string, UnitWithPercentCadence> expectedCadence = UnitWithPercentCadence.OneTime;
-        List<CompositePriceFilter11> expectedCompositePriceFilters =
+        List<UnitWithPercentCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter11Field.PriceID,
-                Operator = CompositePriceFilter11Operator.Includes,
+                Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -18349,14 +18447,14 @@ public class UnitWithPercentTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18377,8 +18475,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18393,8 +18491,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18477,8 +18575,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18512,14 +18610,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18536,8 +18634,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18552,8 +18650,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18589,8 +18687,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18624,14 +18722,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18648,8 +18746,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18664,8 +18762,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18697,8 +18795,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18732,14 +18830,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18756,8 +18854,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18772,8 +18870,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18804,8 +18902,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18839,14 +18937,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18863,8 +18961,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18879,8 +18977,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18914,8 +19012,8 @@ public class UnitWithPercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter11Field.PriceID,
-                    Operator = CompositePriceFilter11Operator.Includes,
+                    Field = UnitWithPercentCompositePriceFilterField.PriceID,
+                    Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -18949,14 +19047,14 @@ public class UnitWithPercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18973,8 +19071,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -18989,8 +19087,8 @@ public class UnitWithPercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19010,22 +19108,22 @@ public class UnitWithPercentTest : TestBase
     }
 }
 
-public class CompositePriceFilter11Test : TestBase
+public class UnitWithPercentCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter11
+        var model = new UnitWithPercentCompositePriceFilter
         {
-            Field = CompositePriceFilter11Field.PriceID,
-            Operator = CompositePriceFilter11Operator.Includes,
+            Field = UnitWithPercentCompositePriceFilterField.PriceID,
+            Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter11Field> expectedField =
-            CompositePriceFilter11Field.PriceID;
-        ApiEnum<string, CompositePriceFilter11Operator> expectedOperator =
-            CompositePriceFilter11Operator.Includes;
+        ApiEnum<string, UnitWithPercentCompositePriceFilterField> expectedField =
+            UnitWithPercentCompositePriceFilterField.PriceID;
+        ApiEnum<string, UnitWithPercentCompositePriceFilterOperator> expectedOperator =
+            UnitWithPercentCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -19040,15 +19138,15 @@ public class CompositePriceFilter11Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter11
+        var model = new UnitWithPercentCompositePriceFilter
         {
-            Field = CompositePriceFilter11Field.PriceID,
-            Operator = CompositePriceFilter11Operator.Includes,
+            Field = UnitWithPercentCompositePriceFilterField.PriceID,
+            Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter11>(json);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -19056,21 +19154,21 @@ public class CompositePriceFilter11Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter11
+        var model = new UnitWithPercentCompositePriceFilter
         {
-            Field = CompositePriceFilter11Field.PriceID,
-            Operator = CompositePriceFilter11Operator.Includes,
+            Field = UnitWithPercentCompositePriceFilterField.PriceID,
+            Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter11>(json);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter11Field> expectedField =
-            CompositePriceFilter11Field.PriceID;
-        ApiEnum<string, CompositePriceFilter11Operator> expectedOperator =
-            CompositePriceFilter11Operator.Includes;
+        ApiEnum<string, UnitWithPercentCompositePriceFilterField> expectedField =
+            UnitWithPercentCompositePriceFilterField.PriceID;
+        ApiEnum<string, UnitWithPercentCompositePriceFilterOperator> expectedOperator =
+            UnitWithPercentCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -19085,10 +19183,10 @@ public class CompositePriceFilter11Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter11
+        var model = new UnitWithPercentCompositePriceFilter
         {
-            Field = CompositePriceFilter11Field.PriceID,
-            Operator = CompositePriceFilter11Operator.Includes,
+            Field = UnitWithPercentCompositePriceFilterField.PriceID,
+            Operator = UnitWithPercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -19178,8 +19276,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19213,14 +19311,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19244,8 +19342,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19260,8 +19358,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19290,12 +19388,12 @@ public class MatrixWithAllocationTest : TestBase
             MatrixWithAllocationBillingMode.InAdvance;
         ApiEnum<string, MatrixWithAllocationCadence> expectedCadence =
             MatrixWithAllocationCadence.OneTime;
-        List<CompositePriceFilter12> expectedCompositePriceFilters =
+        List<MatrixWithAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter12Field.PriceID,
-                Operator = CompositePriceFilter12Operator.Includes,
+                Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -19330,14 +19428,14 @@ public class MatrixWithAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19365,8 +19463,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19381,8 +19479,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19457,8 +19555,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19492,14 +19590,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19523,8 +19621,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19539,8 +19637,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19578,8 +19676,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19613,14 +19711,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19644,8 +19742,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19660,8 +19758,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19694,12 +19792,12 @@ public class MatrixWithAllocationTest : TestBase
             MatrixWithAllocationBillingMode.InAdvance;
         ApiEnum<string, MatrixWithAllocationCadence> expectedCadence =
             MatrixWithAllocationCadence.OneTime;
-        List<CompositePriceFilter12> expectedCompositePriceFilters =
+        List<MatrixWithAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter12Field.PriceID,
-                Operator = CompositePriceFilter12Operator.Includes,
+                Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -19734,14 +19832,14 @@ public class MatrixWithAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19769,8 +19867,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19785,8 +19883,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19864,8 +19962,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -19899,14 +19997,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19930,8 +20028,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19946,8 +20044,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -19982,8 +20080,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20017,14 +20115,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20048,8 +20146,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20064,8 +20162,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20096,8 +20194,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20131,14 +20229,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20162,8 +20260,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20178,8 +20276,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20209,8 +20307,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20244,14 +20342,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20275,8 +20373,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20291,8 +20389,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20325,8 +20423,8 @@ public class MatrixWithAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter12Field.PriceID,
-                    Operator = CompositePriceFilter12Operator.Includes,
+                    Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20360,14 +20458,14 @@ public class MatrixWithAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20391,8 +20489,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20407,8 +20505,8 @@ public class MatrixWithAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20427,22 +20525,22 @@ public class MatrixWithAllocationTest : TestBase
     }
 }
 
-public class CompositePriceFilter12Test : TestBase
+public class MatrixWithAllocationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter12
+        var model = new MatrixWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter12Field.PriceID,
-            Operator = CompositePriceFilter12Operator.Includes,
+            Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+            Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter12Field> expectedField =
-            CompositePriceFilter12Field.PriceID;
-        ApiEnum<string, CompositePriceFilter12Operator> expectedOperator =
-            CompositePriceFilter12Operator.Includes;
+        ApiEnum<string, MatrixWithAllocationCompositePriceFilterField> expectedField =
+            MatrixWithAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator> expectedOperator =
+            MatrixWithAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -20457,15 +20555,17 @@ public class CompositePriceFilter12Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter12
+        var model = new MatrixWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter12Field.PriceID,
-            Operator = CompositePriceFilter12Operator.Includes,
+            Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+            Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter12>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -20473,21 +20573,23 @@ public class CompositePriceFilter12Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter12
+        var model = new MatrixWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter12Field.PriceID,
-            Operator = CompositePriceFilter12Operator.Includes,
+            Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+            Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter12>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter12Field> expectedField =
-            CompositePriceFilter12Field.PriceID;
-        ApiEnum<string, CompositePriceFilter12Operator> expectedOperator =
-            CompositePriceFilter12Operator.Includes;
+        ApiEnum<string, MatrixWithAllocationCompositePriceFilterField> expectedField =
+            MatrixWithAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixWithAllocationCompositePriceFilterOperator> expectedOperator =
+            MatrixWithAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -20502,10 +20604,10 @@ public class CompositePriceFilter12Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter12
+        var model = new MatrixWithAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter12Field.PriceID,
-            Operator = CompositePriceFilter12Operator.Includes,
+            Field = MatrixWithAllocationCompositePriceFilterField.PriceID,
+            Operator = MatrixWithAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -20529,8 +20631,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20564,14 +20666,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20588,8 +20690,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20604,8 +20706,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20637,12 +20739,12 @@ public class TieredWithProrationTest : TestBase
             TieredWithProrationBillingMode.InAdvance;
         ApiEnum<string, TieredWithProrationCadence> expectedCadence =
             TieredWithProrationCadence.OneTime;
-        List<CompositePriceFilter13> expectedCompositePriceFilters =
+        List<TieredWithProrationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter13Field.PriceID,
-                Operator = CompositePriceFilter13Operator.Includes,
+                Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -20677,14 +20779,14 @@ public class TieredWithProrationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20705,8 +20807,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20721,8 +20823,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20800,8 +20902,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20835,14 +20937,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20859,8 +20961,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20875,8 +20977,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20917,8 +21019,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -20952,14 +21054,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20976,8 +21078,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -20992,8 +21094,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21029,12 +21131,12 @@ public class TieredWithProrationTest : TestBase
             TieredWithProrationBillingMode.InAdvance;
         ApiEnum<string, TieredWithProrationCadence> expectedCadence =
             TieredWithProrationCadence.OneTime;
-        List<CompositePriceFilter13> expectedCompositePriceFilters =
+        List<TieredWithProrationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter13Field.PriceID,
-                Operator = CompositePriceFilter13Operator.Includes,
+                Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -21069,14 +21171,14 @@ public class TieredWithProrationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21097,8 +21199,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21113,8 +21215,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21195,8 +21297,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21230,14 +21332,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21254,8 +21356,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21270,8 +21372,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21309,8 +21411,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21344,14 +21446,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21368,8 +21470,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21384,8 +21486,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21419,8 +21521,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21454,14 +21556,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21478,8 +21580,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21494,8 +21596,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21528,8 +21630,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21563,14 +21665,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21587,8 +21689,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21603,8 +21705,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21640,8 +21742,8 @@ public class TieredWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter13Field.PriceID,
-                    Operator = CompositePriceFilter13Operator.Includes,
+                    Field = TieredWithProrationCompositePriceFilterField.PriceID,
+                    Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -21675,14 +21777,14 @@ public class TieredWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21699,8 +21801,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21715,8 +21817,8 @@ public class TieredWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -21738,22 +21840,22 @@ public class TieredWithProrationTest : TestBase
     }
 }
 
-public class CompositePriceFilter13Test : TestBase
+public class TieredWithProrationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter13
+        var model = new TieredWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter13Field.PriceID,
-            Operator = CompositePriceFilter13Operator.Includes,
+            Field = TieredWithProrationCompositePriceFilterField.PriceID,
+            Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter13Field> expectedField =
-            CompositePriceFilter13Field.PriceID;
-        ApiEnum<string, CompositePriceFilter13Operator> expectedOperator =
-            CompositePriceFilter13Operator.Includes;
+        ApiEnum<string, TieredWithProrationCompositePriceFilterField> expectedField =
+            TieredWithProrationCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredWithProrationCompositePriceFilterOperator> expectedOperator =
+            TieredWithProrationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -21768,15 +21870,17 @@ public class CompositePriceFilter13Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter13
+        var model = new TieredWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter13Field.PriceID,
-            Operator = CompositePriceFilter13Operator.Includes,
+            Field = TieredWithProrationCompositePriceFilterField.PriceID,
+            Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter13>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -21784,21 +21888,23 @@ public class CompositePriceFilter13Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter13
+        var model = new TieredWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter13Field.PriceID,
-            Operator = CompositePriceFilter13Operator.Includes,
+            Field = TieredWithProrationCompositePriceFilterField.PriceID,
+            Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter13>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter13Field> expectedField =
-            CompositePriceFilter13Field.PriceID;
-        ApiEnum<string, CompositePriceFilter13Operator> expectedOperator =
-            CompositePriceFilter13Operator.Includes;
+        ApiEnum<string, TieredWithProrationCompositePriceFilterField> expectedField =
+            TieredWithProrationCompositePriceFilterField.PriceID;
+        ApiEnum<string, TieredWithProrationCompositePriceFilterOperator> expectedOperator =
+            TieredWithProrationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -21813,10 +21919,10 @@ public class CompositePriceFilter13Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter13
+        var model = new TieredWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter13Field.PriceID,
-            Operator = CompositePriceFilter13Operator.Includes,
+            Field = TieredWithProrationCompositePriceFilterField.PriceID,
+            Operator = TieredWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -21834,7 +21940,7 @@ public class TieredWithProrationTieredWithProrationConfigTest : TestBase
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        List<Tier21> expectedTiers =
+        List<TieredWithProrationTieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -21876,7 +21982,7 @@ public class TieredWithProrationTieredWithProrationConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Tier21> expectedTiers =
+        List<TieredWithProrationTieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -21900,12 +22006,16 @@ public class TieredWithProrationTieredWithProrationConfigTest : TestBase
     }
 }
 
-public class Tier21Test : TestBase
+public class TieredWithProrationTieredWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier21 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -21917,10 +22027,15 @@ public class Tier21Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier21 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier21>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<TieredWithProrationTieredWithProrationConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -21928,10 +22043,15 @@ public class Tier21Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier21 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier21>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<TieredWithProrationTieredWithProrationConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -21944,7 +22064,11 @@ public class Tier21Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier21 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationTieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -21966,8 +22090,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22001,14 +22125,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22025,8 +22149,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22041,8 +22165,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22072,12 +22196,12 @@ public class UnitWithProrationTest : TestBase
             UnitWithProrationBillingMode.InAdvance;
         ApiEnum<string, UnitWithProrationCadence> expectedCadence =
             UnitWithProrationCadence.OneTime;
-        List<CompositePriceFilter14> expectedCompositePriceFilters =
+        List<UnitWithProrationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter14Field.PriceID,
-                Operator = CompositePriceFilter14Operator.Includes,
+                Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -22112,14 +22236,14 @@ public class UnitWithProrationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22140,8 +22264,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22156,8 +22280,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22235,8 +22359,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22270,14 +22394,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22294,8 +22418,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22310,8 +22434,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22350,8 +22474,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22385,14 +22509,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22409,8 +22533,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22425,8 +22549,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22460,12 +22584,12 @@ public class UnitWithProrationTest : TestBase
             UnitWithProrationBillingMode.InAdvance;
         ApiEnum<string, UnitWithProrationCadence> expectedCadence =
             UnitWithProrationCadence.OneTime;
-        List<CompositePriceFilter14> expectedCompositePriceFilters =
+        List<UnitWithProrationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter14Field.PriceID,
-                Operator = CompositePriceFilter14Operator.Includes,
+                Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -22500,14 +22624,14 @@ public class UnitWithProrationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22528,8 +22652,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22544,8 +22668,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22626,8 +22750,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22661,14 +22785,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22685,8 +22809,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22701,8 +22825,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22738,8 +22862,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22773,14 +22897,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22797,8 +22921,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22813,8 +22937,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22846,8 +22970,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22881,14 +23005,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22905,8 +23029,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22921,8 +23045,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -22953,8 +23077,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -22988,14 +23112,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23012,8 +23136,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23028,8 +23152,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23063,8 +23187,8 @@ public class UnitWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter14Field.PriceID,
-                    Operator = CompositePriceFilter14Operator.Includes,
+                    Field = UnitWithProrationCompositePriceFilterField.PriceID,
+                    Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23098,14 +23222,14 @@ public class UnitWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23122,8 +23246,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23138,8 +23262,8 @@ public class UnitWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23159,22 +23283,22 @@ public class UnitWithProrationTest : TestBase
     }
 }
 
-public class CompositePriceFilter14Test : TestBase
+public class UnitWithProrationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter14
+        var model = new UnitWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter14Field.PriceID,
-            Operator = CompositePriceFilter14Operator.Includes,
+            Field = UnitWithProrationCompositePriceFilterField.PriceID,
+            Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter14Field> expectedField =
-            CompositePriceFilter14Field.PriceID;
-        ApiEnum<string, CompositePriceFilter14Operator> expectedOperator =
-            CompositePriceFilter14Operator.Includes;
+        ApiEnum<string, UnitWithProrationCompositePriceFilterField> expectedField =
+            UnitWithProrationCompositePriceFilterField.PriceID;
+        ApiEnum<string, UnitWithProrationCompositePriceFilterOperator> expectedOperator =
+            UnitWithProrationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -23189,15 +23313,15 @@ public class CompositePriceFilter14Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter14
+        var model = new UnitWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter14Field.PriceID,
-            Operator = CompositePriceFilter14Operator.Includes,
+            Field = UnitWithProrationCompositePriceFilterField.PriceID,
+            Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter14>(json);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -23205,21 +23329,21 @@ public class CompositePriceFilter14Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter14
+        var model = new UnitWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter14Field.PriceID,
-            Operator = CompositePriceFilter14Operator.Includes,
+            Field = UnitWithProrationCompositePriceFilterField.PriceID,
+            Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter14>(json);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter14Field> expectedField =
-            CompositePriceFilter14Field.PriceID;
-        ApiEnum<string, CompositePriceFilter14Operator> expectedOperator =
-            CompositePriceFilter14Operator.Includes;
+        ApiEnum<string, UnitWithProrationCompositePriceFilterField> expectedField =
+            UnitWithProrationCompositePriceFilterField.PriceID;
+        ApiEnum<string, UnitWithProrationCompositePriceFilterOperator> expectedOperator =
+            UnitWithProrationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -23234,10 +23358,10 @@ public class CompositePriceFilter14Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter14
+        var model = new UnitWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter14Field.PriceID,
-            Operator = CompositePriceFilter14Operator.Includes,
+            Field = UnitWithProrationCompositePriceFilterField.PriceID,
+            Operator = UnitWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -23311,8 +23435,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23346,14 +23470,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23376,8 +23500,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23392,8 +23516,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23422,12 +23546,12 @@ public class GroupedAllocationTest : TestBase
             GroupedAllocationBillingMode.InAdvance;
         ApiEnum<string, GroupedAllocationCadence> expectedCadence =
             GroupedAllocationCadence.OneTime;
-        List<CompositePriceFilter15> expectedCompositePriceFilters =
+        List<GroupedAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter15Field.PriceID,
-                Operator = CompositePriceFilter15Operator.Includes,
+                Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -23462,14 +23586,14 @@ public class GroupedAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23496,8 +23620,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23512,8 +23636,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23588,8 +23712,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23623,14 +23747,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23653,8 +23777,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23669,8 +23793,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23708,8 +23832,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23743,14 +23867,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23773,8 +23897,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23789,8 +23913,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -23823,12 +23947,12 @@ public class GroupedAllocationTest : TestBase
             GroupedAllocationBillingMode.InAdvance;
         ApiEnum<string, GroupedAllocationCadence> expectedCadence =
             GroupedAllocationCadence.OneTime;
-        List<CompositePriceFilter15> expectedCompositePriceFilters =
+        List<GroupedAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter15Field.PriceID,
-                Operator = CompositePriceFilter15Operator.Includes,
+                Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -23863,14 +23987,14 @@ public class GroupedAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23897,8 +24021,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23913,8 +24037,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -23992,8 +24116,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24027,14 +24151,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24057,8 +24181,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24073,8 +24197,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24109,8 +24233,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24144,14 +24268,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24174,8 +24298,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24190,8 +24314,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24222,8 +24346,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24257,14 +24381,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24287,8 +24411,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24303,8 +24427,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24334,8 +24458,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24369,14 +24493,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24399,8 +24523,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24415,8 +24539,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24449,8 +24573,8 @@ public class GroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter15Field.PriceID,
-                    Operator = CompositePriceFilter15Operator.Includes,
+                    Field = GroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24484,14 +24608,14 @@ public class GroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24514,8 +24638,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24530,8 +24654,8 @@ public class GroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24550,22 +24674,22 @@ public class GroupedAllocationTest : TestBase
     }
 }
 
-public class CompositePriceFilter15Test : TestBase
+public class GroupedAllocationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter15
+        var model = new GroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter15Field.PriceID,
-            Operator = CompositePriceFilter15Operator.Includes,
+            Field = GroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter15Field> expectedField =
-            CompositePriceFilter15Field.PriceID;
-        ApiEnum<string, CompositePriceFilter15Operator> expectedOperator =
-            CompositePriceFilter15Operator.Includes;
+        ApiEnum<string, GroupedAllocationCompositePriceFilterField> expectedField =
+            GroupedAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedAllocationCompositePriceFilterOperator> expectedOperator =
+            GroupedAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -24580,15 +24704,15 @@ public class CompositePriceFilter15Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter15
+        var model = new GroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter15Field.PriceID,
-            Operator = CompositePriceFilter15Operator.Includes,
+            Field = GroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter15>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -24596,21 +24720,21 @@ public class CompositePriceFilter15Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter15
+        var model = new GroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter15Field.PriceID,
-            Operator = CompositePriceFilter15Operator.Includes,
+            Field = GroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter15>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter15Field> expectedField =
-            CompositePriceFilter15Field.PriceID;
-        ApiEnum<string, CompositePriceFilter15Operator> expectedOperator =
-            CompositePriceFilter15Operator.Includes;
+        ApiEnum<string, GroupedAllocationCompositePriceFilterField> expectedField =
+            GroupedAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedAllocationCompositePriceFilterOperator> expectedOperator =
+            GroupedAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -24625,10 +24749,10 @@ public class CompositePriceFilter15Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter15
+        var model = new GroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter15Field.PriceID,
-            Operator = CompositePriceFilter15Operator.Includes,
+            Field = GroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = GroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -24736,8 +24860,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24771,14 +24895,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24795,8 +24919,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24811,8 +24935,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -24847,12 +24971,12 @@ public class BulkWithProrationTest : TestBase
         );
         ApiEnum<string, BulkWithProrationCadence> expectedCadence =
             BulkWithProrationCadence.OneTime;
-        List<CompositePriceFilter16> expectedCompositePriceFilters =
+        List<BulkWithProrationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter16Field.PriceID,
-                Operator = CompositePriceFilter16Operator.Includes,
+                Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -24887,14 +25011,14 @@ public class BulkWithProrationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24915,8 +25039,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -24931,8 +25055,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25013,8 +25137,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25048,14 +25172,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25072,8 +25196,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25088,8 +25212,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25133,8 +25257,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25168,14 +25292,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25192,8 +25316,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25208,8 +25332,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25248,12 +25372,12 @@ public class BulkWithProrationTest : TestBase
         );
         ApiEnum<string, BulkWithProrationCadence> expectedCadence =
             BulkWithProrationCadence.OneTime;
-        List<CompositePriceFilter16> expectedCompositePriceFilters =
+        List<BulkWithProrationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter16Field.PriceID,
-                Operator = CompositePriceFilter16Operator.Includes,
+                Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -25288,14 +25412,14 @@ public class BulkWithProrationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25316,8 +25440,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25332,8 +25456,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25417,8 +25541,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25452,14 +25576,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25476,8 +25600,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25492,8 +25616,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25534,8 +25658,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25569,14 +25693,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25593,8 +25717,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25609,8 +25733,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25647,8 +25771,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25682,14 +25806,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25706,8 +25830,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25722,8 +25846,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25759,8 +25883,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25794,14 +25918,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25818,8 +25942,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25834,8 +25958,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25874,8 +25998,8 @@ public class BulkWithProrationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter16Field.PriceID,
-                    Operator = CompositePriceFilter16Operator.Includes,
+                    Field = BulkWithProrationCompositePriceFilterField.PriceID,
+                    Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -25909,14 +26033,14 @@ public class BulkWithProrationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25933,8 +26057,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25949,8 +26073,8 @@ public class BulkWithProrationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -25983,7 +26107,7 @@ public class BulkWithProrationBulkWithProrationConfigTest : TestBase
             ],
         };
 
-        List<Tier22> expectedTiers =
+        List<BulkWithProrationBulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -26034,7 +26158,7 @@ public class BulkWithProrationBulkWithProrationConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Tier22> expectedTiers =
+        List<BulkWithProrationBulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -26063,12 +26187,16 @@ public class BulkWithProrationBulkWithProrationConfigTest : TestBase
     }
 }
 
-public class Tier22Test : TestBase
+public class BulkWithProrationBulkWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier22 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -26080,10 +26208,16 @@ public class Tier22Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier22 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier22>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationBulkWithProrationConfigTier>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -26091,10 +26225,16 @@ public class Tier22Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier22 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier22>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationBulkWithProrationConfigTier>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -26107,7 +26247,11 @@ public class Tier22Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier22 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -26115,7 +26259,7 @@ public class Tier22Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier22 { UnitAmount = "unit_amount" };
+        var model = new BulkWithProrationBulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -26124,7 +26268,7 @@ public class Tier22Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier22 { UnitAmount = "unit_amount" };
+        var model = new BulkWithProrationBulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         model.Validate();
     }
@@ -26132,7 +26276,7 @@ public class Tier22Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier22
+        var model = new BulkWithProrationBulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -26146,7 +26290,7 @@ public class Tier22Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier22
+        var model = new BulkWithProrationBulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -26157,22 +26301,22 @@ public class Tier22Test : TestBase
     }
 }
 
-public class CompositePriceFilter16Test : TestBase
+public class BulkWithProrationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter16
+        var model = new BulkWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter16Field.PriceID,
-            Operator = CompositePriceFilter16Operator.Includes,
+            Field = BulkWithProrationCompositePriceFilterField.PriceID,
+            Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter16Field> expectedField =
-            CompositePriceFilter16Field.PriceID;
-        ApiEnum<string, CompositePriceFilter16Operator> expectedOperator =
-            CompositePriceFilter16Operator.Includes;
+        ApiEnum<string, BulkWithProrationCompositePriceFilterField> expectedField =
+            BulkWithProrationCompositePriceFilterField.PriceID;
+        ApiEnum<string, BulkWithProrationCompositePriceFilterOperator> expectedOperator =
+            BulkWithProrationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -26187,15 +26331,15 @@ public class CompositePriceFilter16Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter16
+        var model = new BulkWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter16Field.PriceID,
-            Operator = CompositePriceFilter16Operator.Includes,
+            Field = BulkWithProrationCompositePriceFilterField.PriceID,
+            Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter16>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -26203,21 +26347,21 @@ public class CompositePriceFilter16Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter16
+        var model = new BulkWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter16Field.PriceID,
-            Operator = CompositePriceFilter16Operator.Includes,
+            Field = BulkWithProrationCompositePriceFilterField.PriceID,
+            Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter16>(json);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter16Field> expectedField =
-            CompositePriceFilter16Field.PriceID;
-        ApiEnum<string, CompositePriceFilter16Operator> expectedOperator =
-            CompositePriceFilter16Operator.Includes;
+        ApiEnum<string, BulkWithProrationCompositePriceFilterField> expectedField =
+            BulkWithProrationCompositePriceFilterField.PriceID;
+        ApiEnum<string, BulkWithProrationCompositePriceFilterOperator> expectedOperator =
+            BulkWithProrationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -26232,10 +26376,10 @@ public class CompositePriceFilter16Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter16
+        var model = new BulkWithProrationCompositePriceFilter
         {
-            Field = CompositePriceFilter16Field.PriceID,
-            Operator = CompositePriceFilter16Operator.Includes,
+            Field = BulkWithProrationCompositePriceFilterField.PriceID,
+            Operator = BulkWithProrationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -26259,8 +26403,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26294,14 +26438,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26324,8 +26468,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26340,8 +26484,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26370,12 +26514,12 @@ public class GroupedWithProratedMinimumTest : TestBase
             GroupedWithProratedMinimumBillingMode.InAdvance;
         ApiEnum<string, GroupedWithProratedMinimumCadence> expectedCadence =
             GroupedWithProratedMinimumCadence.OneTime;
-        List<CompositePriceFilter17> expectedCompositePriceFilters =
+        List<GroupedWithProratedMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter17Field.PriceID,
-                Operator = CompositePriceFilter17Operator.Includes,
+                Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -26410,14 +26554,14 @@ public class GroupedWithProratedMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26445,8 +26589,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26461,8 +26605,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26540,8 +26684,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26575,14 +26719,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26605,8 +26749,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26621,8 +26765,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26660,8 +26804,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26695,14 +26839,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26725,8 +26869,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26741,8 +26885,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -26775,12 +26919,12 @@ public class GroupedWithProratedMinimumTest : TestBase
             GroupedWithProratedMinimumBillingMode.InAdvance;
         ApiEnum<string, GroupedWithProratedMinimumCadence> expectedCadence =
             GroupedWithProratedMinimumCadence.OneTime;
-        List<CompositePriceFilter17> expectedCompositePriceFilters =
+        List<GroupedWithProratedMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter17Field.PriceID,
-                Operator = CompositePriceFilter17Operator.Includes,
+                Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -26815,14 +26959,14 @@ public class GroupedWithProratedMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26850,8 +26994,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26866,8 +27010,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26948,8 +27092,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26983,14 +27127,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27013,8 +27157,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27029,8 +27173,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27065,8 +27209,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27100,14 +27244,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27130,8 +27274,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27146,8 +27290,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27178,8 +27322,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27213,14 +27357,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27243,8 +27387,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27259,8 +27403,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27290,8 +27434,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27325,14 +27469,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27355,8 +27499,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27371,8 +27515,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27405,8 +27549,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter17Field.PriceID,
-                    Operator = CompositePriceFilter17Operator.Includes,
+                    Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27440,14 +27584,14 @@ public class GroupedWithProratedMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27470,8 +27614,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27486,8 +27630,8 @@ public class GroupedWithProratedMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27506,22 +27650,22 @@ public class GroupedWithProratedMinimumTest : TestBase
     }
 }
 
-public class CompositePriceFilter17Test : TestBase
+public class GroupedWithProratedMinimumCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter17
+        var model = new GroupedWithProratedMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter17Field.PriceID,
-            Operator = CompositePriceFilter17Operator.Includes,
+            Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter17Field> expectedField =
-            CompositePriceFilter17Field.PriceID;
-        ApiEnum<string, CompositePriceFilter17Operator> expectedOperator =
-            CompositePriceFilter17Operator.Includes;
+        ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField> expectedField =
+            GroupedWithProratedMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator> expectedOperator =
+            GroupedWithProratedMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -27536,15 +27680,16 @@ public class CompositePriceFilter17Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter17
+        var model = new GroupedWithProratedMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter17Field.PriceID,
-            Operator = CompositePriceFilter17Operator.Includes,
+            Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter17>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithProratedMinimumCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -27552,21 +27697,22 @@ public class CompositePriceFilter17Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter17
+        var model = new GroupedWithProratedMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter17Field.PriceID,
-            Operator = CompositePriceFilter17Operator.Includes,
+            Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter17>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithProratedMinimumCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter17Field> expectedField =
-            CompositePriceFilter17Field.PriceID;
-        ApiEnum<string, CompositePriceFilter17Operator> expectedOperator =
-            CompositePriceFilter17Operator.Includes;
+        ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField> expectedField =
+            GroupedWithProratedMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterOperator> expectedOperator =
+            GroupedWithProratedMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -27581,10 +27727,10 @@ public class CompositePriceFilter17Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter17
+        var model = new GroupedWithProratedMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter17Field.PriceID,
-            Operator = CompositePriceFilter17Operator.Includes,
+            Field = GroupedWithProratedMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithProratedMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -27688,8 +27834,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27723,14 +27869,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27762,8 +27908,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27778,8 +27924,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -27808,12 +27954,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
             GroupedWithMeteredMinimumBillingMode.InAdvance;
         ApiEnum<string, GroupedWithMeteredMinimumCadence> expectedCadence =
             GroupedWithMeteredMinimumCadence.OneTime;
-        List<CompositePriceFilter18> expectedCompositePriceFilters =
+        List<GroupedWithMeteredMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter18Field.PriceID,
-                Operator = CompositePriceFilter18Operator.Includes,
+                Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -27848,14 +27994,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27892,8 +28038,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27908,8 +28054,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -27987,8 +28133,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28022,14 +28168,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28061,8 +28207,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28077,8 +28223,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28116,8 +28262,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28151,14 +28297,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28190,8 +28336,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28206,8 +28352,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28240,12 +28386,12 @@ public class GroupedWithMeteredMinimumTest : TestBase
             GroupedWithMeteredMinimumBillingMode.InAdvance;
         ApiEnum<string, GroupedWithMeteredMinimumCadence> expectedCadence =
             GroupedWithMeteredMinimumCadence.OneTime;
-        List<CompositePriceFilter18> expectedCompositePriceFilters =
+        List<GroupedWithMeteredMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter18Field.PriceID,
-                Operator = CompositePriceFilter18Operator.Includes,
+                Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -28280,14 +28426,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28324,8 +28470,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28340,8 +28486,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28422,8 +28568,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28457,14 +28603,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28496,8 +28642,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28512,8 +28658,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28548,8 +28694,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28583,14 +28729,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28622,8 +28768,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28638,8 +28784,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28670,8 +28816,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28705,14 +28851,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28744,8 +28890,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28760,8 +28906,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28791,8 +28937,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28826,14 +28972,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28865,8 +29011,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28881,8 +29027,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28915,8 +29061,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter18Field.PriceID,
-                    Operator = CompositePriceFilter18Operator.Includes,
+                    Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -28950,14 +29096,14 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -28989,8 +29135,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29005,8 +29151,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29025,22 +29171,22 @@ public class GroupedWithMeteredMinimumTest : TestBase
     }
 }
 
-public class CompositePriceFilter18Test : TestBase
+public class GroupedWithMeteredMinimumCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter18
+        var model = new GroupedWithMeteredMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter18Field.PriceID,
-            Operator = CompositePriceFilter18Operator.Includes,
+            Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter18Field> expectedField =
-            CompositePriceFilter18Field.PriceID;
-        ApiEnum<string, CompositePriceFilter18Operator> expectedOperator =
-            CompositePriceFilter18Operator.Includes;
+        ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField> expectedField =
+            GroupedWithMeteredMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator> expectedOperator =
+            GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -29055,15 +29201,16 @@ public class CompositePriceFilter18Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter18
+        var model = new GroupedWithMeteredMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter18Field.PriceID,
-            Operator = CompositePriceFilter18Operator.Includes,
+            Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter18>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -29071,21 +29218,22 @@ public class CompositePriceFilter18Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter18
+        var model = new GroupedWithMeteredMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter18Field.PriceID,
-            Operator = CompositePriceFilter18Operator.Includes,
+            Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter18>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter18Field> expectedField =
-            CompositePriceFilter18Field.PriceID;
-        ApiEnum<string, CompositePriceFilter18Operator> expectedOperator =
-            CompositePriceFilter18Operator.Includes;
+        ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField> expectedField =
+            GroupedWithMeteredMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterOperator> expectedOperator =
+            GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -29100,10 +29248,10 @@ public class CompositePriceFilter18Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter18
+        var model = new GroupedWithMeteredMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter18Field.PriceID,
-            Operator = CompositePriceFilter18Operator.Includes,
+            Field = GroupedWithMeteredMinimumCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMeteredMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -29132,12 +29280,12 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigTest : Test
         string expectedGroupingKey = "x";
         string expectedMinimumUnitAmount = "minimum_unit_amount";
         string expectedPricingKey = "pricing_key";
-        List<ScalingFactor1> expectedScalingFactors =
+        List<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor> expectedScalingFactors =
         [
             new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
-        List<UnitAmount3> expectedUnitAmounts =
+        List<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount> expectedUnitAmounts =
         [
             new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
         ];
@@ -29209,12 +29357,12 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigTest : Test
         string expectedGroupingKey = "x";
         string expectedMinimumUnitAmount = "minimum_unit_amount";
         string expectedPricingKey = "pricing_key";
-        List<ScalingFactor1> expectedScalingFactors =
+        List<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor> expectedScalingFactors =
         [
             new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
         ];
         string expectedScalingKey = "scaling_key";
-        List<UnitAmount3> expectedUnitAmounts =
+        List<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount> expectedUnitAmounts =
         [
             new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
         ];
@@ -29255,12 +29403,12 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigTest : Test
     }
 }
 
-public class ScalingFactor1Test : TestBase
+public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactorTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ScalingFactor1
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
         {
             ScalingFactor = "scaling_factor",
             ScalingValue = "scaling_value",
@@ -29276,14 +29424,17 @@ public class ScalingFactor1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ScalingFactor1
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
         {
             ScalingFactor = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactor1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -29291,14 +29442,17 @@ public class ScalingFactor1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ScalingFactor1
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
         {
             ScalingFactor = "scaling_factor",
             ScalingValue = "scaling_value",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactor1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedScalingFactor = "scaling_factor";
@@ -29311,7 +29465,7 @@ public class ScalingFactor1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ScalingFactor1
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
         {
             ScalingFactor = "scaling_factor",
             ScalingValue = "scaling_value",
@@ -29321,12 +29475,16 @@ public class ScalingFactor1Test : TestBase
     }
 }
 
-public class UnitAmount3Test : TestBase
+public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmountTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmount3 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedPricingValue = "pricing_value";
         string expectedUnitAmount = "unit_amount";
@@ -29338,10 +29496,17 @@ public class UnitAmount3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmount3 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -29349,10 +29514,17 @@ public class UnitAmount3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmount3 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedPricingValue = "pricing_value";
@@ -29365,7 +29537,11 @@ public class UnitAmount3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmount3 { PricingValue = "pricing_value", UnitAmount = "unit_amount" };
+        var model = new GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -29387,8 +29563,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29422,14 +29598,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29453,8 +29629,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29469,8 +29645,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29499,12 +29675,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             GroupedWithMinMaxThresholdsBillingMode.InAdvance;
         ApiEnum<string, GroupedWithMinMaxThresholdsCadence> expectedCadence =
             GroupedWithMinMaxThresholdsCadence.OneTime;
-        List<CompositePriceFilter19> expectedCompositePriceFilters =
+        List<GroupedWithMinMaxThresholdsCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter19Field.PriceID,
-                Operator = CompositePriceFilter19Operator.Includes,
+                Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -29539,14 +29715,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29574,8 +29750,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29590,8 +29766,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29669,8 +29845,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29704,14 +29880,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29735,8 +29911,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29751,8 +29927,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29790,8 +29966,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29825,14 +30001,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29856,8 +30032,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29872,8 +30048,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -29906,12 +30082,12 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             GroupedWithMinMaxThresholdsBillingMode.InAdvance;
         ApiEnum<string, GroupedWithMinMaxThresholdsCadence> expectedCadence =
             GroupedWithMinMaxThresholdsCadence.OneTime;
-        List<CompositePriceFilter19> expectedCompositePriceFilters =
+        List<GroupedWithMinMaxThresholdsCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter19Field.PriceID,
-                Operator = CompositePriceFilter19Operator.Includes,
+                Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -29946,14 +30122,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29981,8 +30157,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -29997,8 +30173,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30079,8 +30255,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30114,14 +30290,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30145,8 +30321,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30161,8 +30337,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30197,8 +30373,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30232,14 +30408,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30263,8 +30439,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30279,8 +30455,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30311,8 +30487,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30346,14 +30522,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30377,8 +30553,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30393,8 +30569,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30424,8 +30600,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30459,14 +30635,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30490,8 +30666,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30506,8 +30682,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30540,8 +30716,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter19Field.PriceID,
-                    Operator = CompositePriceFilter19Operator.Includes,
+                    Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+                    Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30575,14 +30751,14 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30606,8 +30782,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30622,8 +30798,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30642,22 +30818,22 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
     }
 }
 
-public class CompositePriceFilter19Test : TestBase
+public class GroupedWithMinMaxThresholdsCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter19
+        var model = new GroupedWithMinMaxThresholdsCompositePriceFilter
         {
-            Field = CompositePriceFilter19Field.PriceID,
-            Operator = CompositePriceFilter19Operator.Includes,
+            Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter19Field> expectedField =
-            CompositePriceFilter19Field.PriceID;
-        ApiEnum<string, CompositePriceFilter19Operator> expectedOperator =
-            CompositePriceFilter19Operator.Includes;
+        ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField> expectedField =
+            GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterOperator> expectedOperator =
+            GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -30672,15 +30848,16 @@ public class CompositePriceFilter19Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter19
+        var model = new GroupedWithMinMaxThresholdsCompositePriceFilter
         {
-            Field = CompositePriceFilter19Field.PriceID,
-            Operator = CompositePriceFilter19Operator.Includes,
+            Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter19>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -30688,21 +30865,22 @@ public class CompositePriceFilter19Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter19
+        var model = new GroupedWithMinMaxThresholdsCompositePriceFilter
         {
-            Field = CompositePriceFilter19Field.PriceID,
-            Operator = CompositePriceFilter19Operator.Includes,
+            Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter19>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter19Field> expectedField =
-            CompositePriceFilter19Field.PriceID;
-        ApiEnum<string, CompositePriceFilter19Operator> expectedOperator =
-            CompositePriceFilter19Operator.Includes;
+        ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField> expectedField =
+            GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterOperator> expectedOperator =
+            GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -30717,10 +30895,10 @@ public class CompositePriceFilter19Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter19
+        var model = new GroupedWithMinMaxThresholdsCompositePriceFilter
         {
-            Field = CompositePriceFilter19Field.PriceID,
-            Operator = CompositePriceFilter19Operator.Includes,
+            Field = GroupedWithMinMaxThresholdsCompositePriceFilterField.PriceID,
+            Operator = GroupedWithMinMaxThresholdsCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -30826,8 +31004,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30861,14 +31039,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30898,8 +31076,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30914,8 +31092,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -30944,12 +31122,12 @@ public class MatrixWithDisplayNameTest : TestBase
             MatrixWithDisplayNameBillingMode.InAdvance;
         ApiEnum<string, MatrixWithDisplayNameCadence> expectedCadence =
             MatrixWithDisplayNameCadence.OneTime;
-        List<CompositePriceFilter20> expectedCompositePriceFilters =
+        List<MatrixWithDisplayNameCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter20Field.PriceID,
-                Operator = CompositePriceFilter20Operator.Includes,
+                Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -30984,14 +31162,14 @@ public class MatrixWithDisplayNameTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31025,8 +31203,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31041,8 +31219,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31117,8 +31295,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31152,14 +31330,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31189,8 +31367,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31205,8 +31383,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31244,8 +31422,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31279,14 +31457,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31316,8 +31494,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31332,8 +31510,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31366,12 +31544,12 @@ public class MatrixWithDisplayNameTest : TestBase
             MatrixWithDisplayNameBillingMode.InAdvance;
         ApiEnum<string, MatrixWithDisplayNameCadence> expectedCadence =
             MatrixWithDisplayNameCadence.OneTime;
-        List<CompositePriceFilter20> expectedCompositePriceFilters =
+        List<MatrixWithDisplayNameCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter20Field.PriceID,
-                Operator = CompositePriceFilter20Operator.Includes,
+                Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -31406,14 +31584,14 @@ public class MatrixWithDisplayNameTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31447,8 +31625,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31463,8 +31641,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31542,8 +31720,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31577,14 +31755,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31614,8 +31792,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31630,8 +31808,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31666,8 +31844,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31701,14 +31879,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31738,8 +31916,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31754,8 +31932,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31786,8 +31964,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31821,14 +31999,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31858,8 +32036,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31874,8 +32052,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31905,8 +32083,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -31940,14 +32118,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31977,8 +32155,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -31993,8 +32171,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32027,8 +32205,8 @@ public class MatrixWithDisplayNameTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter20Field.PriceID,
-                    Operator = CompositePriceFilter20Operator.Includes,
+                    Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+                    Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32062,14 +32240,14 @@ public class MatrixWithDisplayNameTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32099,8 +32277,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32115,8 +32293,8 @@ public class MatrixWithDisplayNameTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32135,22 +32313,22 @@ public class MatrixWithDisplayNameTest : TestBase
     }
 }
 
-public class CompositePriceFilter20Test : TestBase
+public class MatrixWithDisplayNameCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter20
+        var model = new MatrixWithDisplayNameCompositePriceFilter
         {
-            Field = CompositePriceFilter20Field.PriceID,
-            Operator = CompositePriceFilter20Operator.Includes,
+            Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+            Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter20Field> expectedField =
-            CompositePriceFilter20Field.PriceID;
-        ApiEnum<string, CompositePriceFilter20Operator> expectedOperator =
-            CompositePriceFilter20Operator.Includes;
+        ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField> expectedField =
+            MatrixWithDisplayNameCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator> expectedOperator =
+            MatrixWithDisplayNameCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -32165,15 +32343,17 @@ public class CompositePriceFilter20Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter20
+        var model = new MatrixWithDisplayNameCompositePriceFilter
         {
-            Field = CompositePriceFilter20Field.PriceID,
-            Operator = CompositePriceFilter20Operator.Includes,
+            Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+            Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter20>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -32181,21 +32361,23 @@ public class CompositePriceFilter20Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter20
+        var model = new MatrixWithDisplayNameCompositePriceFilter
         {
-            Field = CompositePriceFilter20Field.PriceID,
-            Operator = CompositePriceFilter20Operator.Includes,
+            Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+            Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter20>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter20Field> expectedField =
-            CompositePriceFilter20Field.PriceID;
-        ApiEnum<string, CompositePriceFilter20Operator> expectedOperator =
-            CompositePriceFilter20Operator.Includes;
+        ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterField> expectedField =
+            MatrixWithDisplayNameCompositePriceFilterField.PriceID;
+        ApiEnum<string, MatrixWithDisplayNameCompositePriceFilterOperator> expectedOperator =
+            MatrixWithDisplayNameCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -32210,10 +32392,10 @@ public class CompositePriceFilter20Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter20
+        var model = new MatrixWithDisplayNameCompositePriceFilter
         {
-            Field = CompositePriceFilter20Field.PriceID,
-            Operator = CompositePriceFilter20Operator.Includes,
+            Field = MatrixWithDisplayNameCompositePriceFilterField.PriceID,
+            Operator = MatrixWithDisplayNameCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -32241,7 +32423,7 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigTest : TestBase
         };
 
         string expectedDimension = "dimension";
-        List<UnitAmount4> expectedUnitAmounts =
+        List<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount> expectedUnitAmounts =
         [
             new()
             {
@@ -32306,7 +32488,7 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedDimension = "dimension";
-        List<UnitAmount4> expectedUnitAmounts =
+        List<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount> expectedUnitAmounts =
         [
             new()
             {
@@ -32345,12 +32527,12 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigTest : TestBase
     }
 }
 
-public class UnitAmount4Test : TestBase
+public class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmountTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmount4
+        var model = new MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -32369,7 +32551,7 @@ public class UnitAmount4Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmount4
+        var model = new MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -32377,7 +32559,10 @@ public class UnitAmount4Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount4>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -32385,7 +32570,7 @@ public class UnitAmount4Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmount4
+        var model = new MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -32393,7 +32578,10 @@ public class UnitAmount4Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount4>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedDimensionValue = "dimension_value";
@@ -32408,7 +32596,7 @@ public class UnitAmount4Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmount4
+        var model = new MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -32435,8 +32623,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32470,14 +32658,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32504,8 +32692,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32520,8 +32708,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32550,12 +32738,12 @@ public class GroupedTieredPackageTest : TestBase
             GroupedTieredPackageBillingMode.InAdvance;
         ApiEnum<string, GroupedTieredPackageCadence> expectedCadence =
             GroupedTieredPackageCadence.OneTime;
-        List<CompositePriceFilter21> expectedCompositePriceFilters =
+        List<GroupedTieredPackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter21Field.PriceID,
-                Operator = CompositePriceFilter21Operator.Includes,
+                Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -32590,14 +32778,14 @@ public class GroupedTieredPackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32628,8 +32816,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32644,8 +32832,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32720,8 +32908,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32755,14 +32943,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32789,8 +32977,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32805,8 +32993,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32844,8 +33032,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -32879,14 +33067,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32913,8 +33101,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32929,8 +33117,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -32963,12 +33151,12 @@ public class GroupedTieredPackageTest : TestBase
             GroupedTieredPackageBillingMode.InAdvance;
         ApiEnum<string, GroupedTieredPackageCadence> expectedCadence =
             GroupedTieredPackageCadence.OneTime;
-        List<CompositePriceFilter21> expectedCompositePriceFilters =
+        List<GroupedTieredPackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter21Field.PriceID,
-                Operator = CompositePriceFilter21Operator.Includes,
+                Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -33003,14 +33191,14 @@ public class GroupedTieredPackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33041,8 +33229,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33057,8 +33245,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33136,8 +33324,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33171,14 +33359,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33205,8 +33393,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33221,8 +33409,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33257,8 +33445,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33292,14 +33480,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33326,8 +33514,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33342,8 +33530,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33374,8 +33562,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33409,14 +33597,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33443,8 +33631,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33459,8 +33647,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33490,8 +33678,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33525,14 +33713,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33559,8 +33747,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33575,8 +33763,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33609,8 +33797,8 @@ public class GroupedTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter21Field.PriceID,
-                    Operator = CompositePriceFilter21Operator.Includes,
+                    Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33644,14 +33832,14 @@ public class GroupedTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33678,8 +33866,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33694,8 +33882,8 @@ public class GroupedTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -33714,22 +33902,22 @@ public class GroupedTieredPackageTest : TestBase
     }
 }
 
-public class CompositePriceFilter21Test : TestBase
+public class GroupedTieredPackageCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter21
+        var model = new GroupedTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter21Field.PriceID,
-            Operator = CompositePriceFilter21Operator.Includes,
+            Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter21Field> expectedField =
-            CompositePriceFilter21Field.PriceID;
-        ApiEnum<string, CompositePriceFilter21Operator> expectedOperator =
-            CompositePriceFilter21Operator.Includes;
+        ApiEnum<string, GroupedTieredPackageCompositePriceFilterField> expectedField =
+            GroupedTieredPackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator> expectedOperator =
+            GroupedTieredPackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -33744,15 +33932,17 @@ public class CompositePriceFilter21Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter21
+        var model = new GroupedTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter21Field.PriceID,
-            Operator = CompositePriceFilter21Operator.Includes,
+            Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter21>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -33760,21 +33950,23 @@ public class CompositePriceFilter21Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter21
+        var model = new GroupedTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter21Field.PriceID,
-            Operator = CompositePriceFilter21Operator.Includes,
+            Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter21>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter21Field> expectedField =
-            CompositePriceFilter21Field.PriceID;
-        ApiEnum<string, CompositePriceFilter21Operator> expectedOperator =
-            CompositePriceFilter21Operator.Includes;
+        ApiEnum<string, GroupedTieredPackageCompositePriceFilterField> expectedField =
+            GroupedTieredPackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, GroupedTieredPackageCompositePriceFilterOperator> expectedOperator =
+            GroupedTieredPackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -33789,10 +33981,10 @@ public class CompositePriceFilter21Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter21
+        var model = new GroupedTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter21Field.PriceID,
-            Operator = CompositePriceFilter21Operator.Includes,
+            Field = GroupedTieredPackageCompositePriceFilterField.PriceID,
+            Operator = GroupedTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -33818,7 +34010,7 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier23> expectedTiers =
+        List<GroupedTieredPackageGroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -33875,7 +34067,7 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier23> expectedTiers =
+        List<GroupedTieredPackageGroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -33908,12 +34100,16 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTest : TestBase
     }
 }
 
-public class Tier23Test : TestBase
+public class GroupedTieredPackageGroupedTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier23 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedPerUnit = "per_unit";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -33925,10 +34121,15 @@ public class Tier23Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier23 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier23>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedTieredPackageGroupedTieredPackageConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -33936,10 +34137,15 @@ public class Tier23Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier23 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier23>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedTieredPackageGroupedTieredPackageConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -33952,7 +34158,11 @@ public class Tier23Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier23 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -33974,8 +34184,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34009,14 +34219,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34043,8 +34253,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34059,8 +34269,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34089,12 +34299,12 @@ public class MaxGroupTieredPackageTest : TestBase
             MaxGroupTieredPackageBillingMode.InAdvance;
         ApiEnum<string, MaxGroupTieredPackageCadence> expectedCadence =
             MaxGroupTieredPackageCadence.OneTime;
-        List<CompositePriceFilter22> expectedCompositePriceFilters =
+        List<MaxGroupTieredPackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter22Field.PriceID,
-                Operator = CompositePriceFilter22Operator.Includes,
+                Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -34129,14 +34339,14 @@ public class MaxGroupTieredPackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34167,8 +34377,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34183,8 +34393,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34259,8 +34469,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34294,14 +34504,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34328,8 +34538,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34344,8 +34554,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34383,8 +34593,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34418,14 +34628,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34452,8 +34662,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34468,8 +34678,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34502,12 +34712,12 @@ public class MaxGroupTieredPackageTest : TestBase
             MaxGroupTieredPackageBillingMode.InAdvance;
         ApiEnum<string, MaxGroupTieredPackageCadence> expectedCadence =
             MaxGroupTieredPackageCadence.OneTime;
-        List<CompositePriceFilter22> expectedCompositePriceFilters =
+        List<MaxGroupTieredPackageCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter22Field.PriceID,
-                Operator = CompositePriceFilter22Operator.Includes,
+                Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -34542,14 +34752,14 @@ public class MaxGroupTieredPackageTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34580,8 +34790,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34596,8 +34806,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34675,8 +34885,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34710,14 +34920,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34744,8 +34954,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34760,8 +34970,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34796,8 +35006,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34831,14 +35041,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34865,8 +35075,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34881,8 +35091,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34913,8 +35123,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -34948,14 +35158,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34982,8 +35192,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -34998,8 +35208,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35029,8 +35239,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35064,14 +35274,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35098,8 +35308,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35114,8 +35324,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35148,8 +35358,8 @@ public class MaxGroupTieredPackageTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter22Field.PriceID,
-                    Operator = CompositePriceFilter22Operator.Includes,
+                    Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+                    Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35183,14 +35393,14 @@ public class MaxGroupTieredPackageTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35217,8 +35427,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35233,8 +35443,8 @@ public class MaxGroupTieredPackageTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35253,22 +35463,22 @@ public class MaxGroupTieredPackageTest : TestBase
     }
 }
 
-public class CompositePriceFilter22Test : TestBase
+public class MaxGroupTieredPackageCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter22
+        var model = new MaxGroupTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter22Field.PriceID,
-            Operator = CompositePriceFilter22Operator.Includes,
+            Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+            Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter22Field> expectedField =
-            CompositePriceFilter22Field.PriceID;
-        ApiEnum<string, CompositePriceFilter22Operator> expectedOperator =
-            CompositePriceFilter22Operator.Includes;
+        ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField> expectedField =
+            MaxGroupTieredPackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator> expectedOperator =
+            MaxGroupTieredPackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -35283,15 +35493,17 @@ public class CompositePriceFilter22Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter22
+        var model = new MaxGroupTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter22Field.PriceID,
-            Operator = CompositePriceFilter22Operator.Includes,
+            Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+            Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter22>(json);
+        var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -35299,21 +35511,23 @@ public class CompositePriceFilter22Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter22
+        var model = new MaxGroupTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter22Field.PriceID,
-            Operator = CompositePriceFilter22Operator.Includes,
+            Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+            Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter22>(json);
+        var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter22Field> expectedField =
-            CompositePriceFilter22Field.PriceID;
-        ApiEnum<string, CompositePriceFilter22Operator> expectedOperator =
-            CompositePriceFilter22Operator.Includes;
+        ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterField> expectedField =
+            MaxGroupTieredPackageCompositePriceFilterField.PriceID;
+        ApiEnum<string, MaxGroupTieredPackageCompositePriceFilterOperator> expectedOperator =
+            MaxGroupTieredPackageCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -35328,10 +35542,10 @@ public class CompositePriceFilter22Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter22
+        var model = new MaxGroupTieredPackageCompositePriceFilter
         {
-            Field = CompositePriceFilter22Field.PriceID,
-            Operator = CompositePriceFilter22Operator.Includes,
+            Field = MaxGroupTieredPackageCompositePriceFilterField.PriceID,
+            Operator = MaxGroupTieredPackageCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -35357,7 +35571,7 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier24> expectedTiers =
+        List<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -35414,7 +35628,7 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier24> expectedTiers =
+        List<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -35447,12 +35661,16 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTest : TestBase
     }
 }
 
-public class Tier24Test : TestBase
+public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier24 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new MaxGroupTieredPackageMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -35464,10 +35682,15 @@ public class Tier24Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier24 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new MaxGroupTieredPackageMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier24>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -35475,10 +35698,15 @@ public class Tier24Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier24 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new MaxGroupTieredPackageMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier24>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -35491,7 +35719,11 @@ public class Tier24Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier24 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new MaxGroupTieredPackageMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -35513,8 +35745,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35548,14 +35780,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35572,8 +35804,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35588,8 +35820,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35634,12 +35866,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             ScalableMatrixWithUnitPricingBillingMode.InAdvance;
         ApiEnum<string, ScalableMatrixWithUnitPricingCadence> expectedCadence =
             ScalableMatrixWithUnitPricingCadence.OneTime;
-        List<CompositePriceFilter23> expectedCompositePriceFilters =
+        List<ScalableMatrixWithUnitPricingCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter23Field.PriceID,
-                Operator = CompositePriceFilter23Operator.Includes,
+                Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -35674,14 +35906,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35702,8 +35934,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35718,8 +35950,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35814,8 +36046,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35849,14 +36081,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35873,8 +36105,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35889,8 +36121,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -35944,8 +36176,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35979,14 +36211,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36003,8 +36235,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36019,8 +36251,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36069,12 +36301,12 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             ScalableMatrixWithUnitPricingBillingMode.InAdvance;
         ApiEnum<string, ScalableMatrixWithUnitPricingCadence> expectedCadence =
             ScalableMatrixWithUnitPricingCadence.OneTime;
-        List<CompositePriceFilter23> expectedCompositePriceFilters =
+        List<ScalableMatrixWithUnitPricingCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter23Field.PriceID,
-                Operator = CompositePriceFilter23Operator.Includes,
+                Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -36109,14 +36341,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36137,8 +36369,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36153,8 +36385,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36252,8 +36484,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36287,14 +36519,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36311,8 +36543,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36327,8 +36559,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36379,8 +36611,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36414,14 +36646,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36438,8 +36670,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36454,8 +36686,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36502,8 +36734,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36537,14 +36769,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36561,8 +36793,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36577,8 +36809,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36624,8 +36856,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36659,14 +36891,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36683,8 +36915,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36699,8 +36931,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36749,8 +36981,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter23Field.PriceID,
-                    Operator = CompositePriceFilter23Operator.Includes,
+                    Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36784,14 +37016,14 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36808,8 +37040,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36824,8 +37056,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -36860,22 +37092,24 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
     }
 }
 
-public class CompositePriceFilter23Test : TestBase
+public class ScalableMatrixWithUnitPricingCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter23
+        var model = new ScalableMatrixWithUnitPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter23Field.PriceID,
-            Operator = CompositePriceFilter23Operator.Includes,
+            Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter23Field> expectedField =
-            CompositePriceFilter23Field.PriceID;
-        ApiEnum<string, CompositePriceFilter23Operator> expectedOperator =
-            CompositePriceFilter23Operator.Includes;
+        ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField> expectedField =
+            ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID;
+        ApiEnum<
+            string,
+            ScalableMatrixWithUnitPricingCompositePriceFilterOperator
+        > expectedOperator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -36890,15 +37124,16 @@ public class CompositePriceFilter23Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter23
+        var model = new ScalableMatrixWithUnitPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter23Field.PriceID,
-            Operator = CompositePriceFilter23Operator.Includes,
+            Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter23>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -36906,21 +37141,24 @@ public class CompositePriceFilter23Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter23
+        var model = new ScalableMatrixWithUnitPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter23Field.PriceID,
-            Operator = CompositePriceFilter23Operator.Includes,
+            Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter23>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter23Field> expectedField =
-            CompositePriceFilter23Field.PriceID;
-        ApiEnum<string, CompositePriceFilter23Operator> expectedOperator =
-            CompositePriceFilter23Operator.Includes;
+        ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField> expectedField =
+            ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID;
+        ApiEnum<
+            string,
+            ScalableMatrixWithUnitPricingCompositePriceFilterOperator
+        > expectedOperator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -36935,10 +37173,10 @@ public class CompositePriceFilter23Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter23
+        var model = new ScalableMatrixWithUnitPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter23Field.PriceID,
-            Operator = CompositePriceFilter23Operator.Includes,
+            Field = ScalableMatrixWithUnitPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithUnitPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -36969,7 +37207,7 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigTes
         };
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactor3> expectedMatrixScalingFactors =
+        List<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -37050,7 +37288,7 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigTes
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactor3> expectedMatrixScalingFactors =
+        List<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -37194,17 +37432,19 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigTes
     }
 }
 
-public class MatrixScalingFactor3Test : TestBase
+public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string expectedFirstDimensionValue = "first_dimension_value";
         string expectedScalingFactor = "scaling_factor";
@@ -37218,15 +37458,19 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -37234,15 +37478,19 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimensionValue = "first_dimension_value";
@@ -37257,12 +37505,13 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         model.Validate();
     }
@@ -37270,11 +37519,12 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-        };
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+            };
 
         Assert.Null(model.SecondDimensionValue);
         Assert.False(model.RawData.ContainsKey("second_dimension_value"));
@@ -37283,11 +37533,12 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-        };
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+            };
 
         model.Validate();
     }
@@ -37295,13 +37546,14 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
 
-            SecondDimensionValue = null,
-        };
+                SecondDimensionValue = null,
+            };
 
         Assert.Null(model.SecondDimensionValue);
         Assert.True(model.RawData.ContainsKey("second_dimension_value"));
@@ -37310,13 +37562,14 @@ public class MatrixScalingFactor3Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new MatrixScalingFactor3
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
+        var model =
+            new ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
 
-            SecondDimensionValue = null,
-        };
+                SecondDimensionValue = null,
+            };
 
         model.Validate();
     }
@@ -37338,8 +37591,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37373,14 +37626,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37397,8 +37650,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37413,8 +37666,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37462,12 +37715,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             ScalableMatrixWithTieredPricingBillingMode.InAdvance;
         ApiEnum<string, ScalableMatrixWithTieredPricingCadence> expectedCadence =
             ScalableMatrixWithTieredPricingCadence.OneTime;
-        List<CompositePriceFilter24> expectedCompositePriceFilters =
+        List<ScalableMatrixWithTieredPricingCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter24Field.PriceID,
-                Operator = CompositePriceFilter24Operator.Includes,
+                Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -37502,14 +37755,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37530,8 +37783,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37546,8 +37799,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37645,8 +37898,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37680,14 +37933,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37704,8 +37957,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37720,8 +37973,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37778,8 +38031,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37813,14 +38066,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37837,8 +38090,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37853,8 +38106,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37906,12 +38159,12 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             ScalableMatrixWithTieredPricingBillingMode.InAdvance;
         ApiEnum<string, ScalableMatrixWithTieredPricingCadence> expectedCadence =
             ScalableMatrixWithTieredPricingCadence.OneTime;
-        List<CompositePriceFilter24> expectedCompositePriceFilters =
+        List<ScalableMatrixWithTieredPricingCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter24Field.PriceID,
-                Operator = CompositePriceFilter24Operator.Includes,
+                Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -37946,14 +38199,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37974,8 +38227,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37990,8 +38243,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38092,8 +38345,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38127,14 +38380,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38151,8 +38404,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38167,8 +38420,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38222,8 +38475,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38257,14 +38510,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38281,8 +38534,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38297,8 +38550,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38348,8 +38601,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38383,14 +38636,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38407,8 +38660,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38423,8 +38676,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38473,8 +38726,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38508,14 +38761,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38532,8 +38785,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38548,8 +38801,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38601,8 +38854,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter24Field.PriceID,
-                    Operator = CompositePriceFilter24Operator.Includes,
+                    Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+                    Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38636,14 +38889,14 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38660,8 +38913,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38676,8 +38929,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -38715,22 +38968,24 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
     }
 }
 
-public class CompositePriceFilter24Test : TestBase
+public class ScalableMatrixWithTieredPricingCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter24
+        var model = new ScalableMatrixWithTieredPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter24Field.PriceID,
-            Operator = CompositePriceFilter24Operator.Includes,
+            Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter24Field> expectedField =
-            CompositePriceFilter24Field.PriceID;
-        ApiEnum<string, CompositePriceFilter24Operator> expectedOperator =
-            CompositePriceFilter24Operator.Includes;
+        ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField> expectedField =
+            ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID;
+        ApiEnum<
+            string,
+            ScalableMatrixWithTieredPricingCompositePriceFilterOperator
+        > expectedOperator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -38745,15 +39000,16 @@ public class CompositePriceFilter24Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter24
+        var model = new ScalableMatrixWithTieredPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter24Field.PriceID,
-            Operator = CompositePriceFilter24Operator.Includes,
+            Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter24>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -38761,21 +39017,24 @@ public class CompositePriceFilter24Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter24
+        var model = new ScalableMatrixWithTieredPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter24Field.PriceID,
-            Operator = CompositePriceFilter24Operator.Includes,
+            Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter24>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter24Field> expectedField =
-            CompositePriceFilter24Field.PriceID;
-        ApiEnum<string, CompositePriceFilter24Operator> expectedOperator =
-            CompositePriceFilter24Operator.Includes;
+        ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField> expectedField =
+            ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID;
+        ApiEnum<
+            string,
+            ScalableMatrixWithTieredPricingCompositePriceFilterOperator
+        > expectedOperator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -38790,10 +39049,10 @@ public class CompositePriceFilter24Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter24
+        var model = new ScalableMatrixWithTieredPricingCompositePriceFilter
         {
-            Field = CompositePriceFilter24Field.PriceID,
-            Operator = CompositePriceFilter24Operator.Includes,
+            Field = ScalableMatrixWithTieredPricingCompositePriceFilterField.PriceID,
+            Operator = ScalableMatrixWithTieredPricingCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -38827,7 +39086,7 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
         };
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactor4> expectedMatrixScalingFactors =
+        List<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -38836,7 +39095,7 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
                 SecondDimensionValue = "second_dimension_value",
             },
         ];
-        List<Tier25> expectedTiers =
+        List<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -38920,7 +39179,7 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactor4> expectedMatrixScalingFactors =
+        List<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -38929,7 +39188,7 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
                 SecondDimensionValue = "second_dimension_value",
             },
         ];
-        List<Tier25> expectedTiers =
+        List<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -39083,17 +39342,19 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
     }
 }
 
-public class MatrixScalingFactor4Test : TestBase
+public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string expectedFirstDimensionValue = "first_dimension_value";
         string expectedScalingFactor = "scaling_factor";
@@ -39107,15 +39368,19 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor4>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -39123,15 +39388,19 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor4>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimensionValue = "first_dimension_value";
@@ -39146,12 +39415,13 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-            SecondDimensionValue = "second_dimension_value",
-        };
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
 
         model.Validate();
     }
@@ -39159,11 +39429,12 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-        };
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+            };
 
         Assert.Null(model.SecondDimensionValue);
         Assert.False(model.RawData.ContainsKey("second_dimension_value"));
@@ -39172,11 +39443,12 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
-        };
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+            };
 
         model.Validate();
     }
@@ -39184,13 +39456,14 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
 
-            SecondDimensionValue = null,
-        };
+                SecondDimensionValue = null,
+            };
 
         Assert.Null(model.SecondDimensionValue);
         Assert.True(model.RawData.ContainsKey("second_dimension_value"));
@@ -39199,24 +39472,29 @@ public class MatrixScalingFactor4Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new MatrixScalingFactor4
-        {
-            FirstDimensionValue = "first_dimension_value",
-            ScalingFactor = "scaling_factor",
+        var model =
+            new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
 
-            SecondDimensionValue = null,
-        };
+                SecondDimensionValue = null,
+            };
 
         model.Validate();
     }
 }
 
-public class Tier25Test : TestBase
+public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier25 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -39228,10 +39506,17 @@ public class Tier25Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier25 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier25>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -39239,10 +39524,17 @@ public class Tier25Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier25 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier25>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -39255,7 +39547,11 @@ public class Tier25Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier25 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -39277,8 +39573,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39325,14 +39621,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39349,8 +39645,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39365,8 +39661,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39395,12 +39691,12 @@ public class CumulativeGroupedBulkTest : TestBase
             CumulativeGroupedBulkBillingMode.InAdvance;
         ApiEnum<string, CumulativeGroupedBulkCadence> expectedCadence =
             CumulativeGroupedBulkCadence.OneTime;
-        List<CompositePriceFilter25> expectedCompositePriceFilters =
+        List<CumulativeGroupedBulkCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter25Field.PriceID,
-                Operator = CompositePriceFilter25Operator.Includes,
+                Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -39448,14 +39744,14 @@ public class CumulativeGroupedBulkTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39476,8 +39772,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39492,8 +39788,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39568,8 +39864,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39616,14 +39912,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39640,8 +39936,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39656,8 +39952,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39695,8 +39991,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39743,14 +40039,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39767,8 +40063,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39783,8 +40079,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39817,12 +40113,12 @@ public class CumulativeGroupedBulkTest : TestBase
             CumulativeGroupedBulkBillingMode.InAdvance;
         ApiEnum<string, CumulativeGroupedBulkCadence> expectedCadence =
             CumulativeGroupedBulkCadence.OneTime;
-        List<CompositePriceFilter25> expectedCompositePriceFilters =
+        List<CumulativeGroupedBulkCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter25Field.PriceID,
-                Operator = CompositePriceFilter25Operator.Includes,
+                Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -39870,14 +40166,14 @@ public class CumulativeGroupedBulkTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39898,8 +40194,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39914,8 +40210,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -39993,8 +40289,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40041,14 +40337,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40065,8 +40361,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40081,8 +40377,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40117,8 +40413,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40165,14 +40461,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40189,8 +40485,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40205,8 +40501,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40237,8 +40533,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40285,14 +40581,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40309,8 +40605,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40325,8 +40621,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40356,8 +40652,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40404,14 +40700,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40428,8 +40724,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40444,8 +40740,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40478,8 +40774,8 @@ public class CumulativeGroupedBulkTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter25Field.PriceID,
-                    Operator = CompositePriceFilter25Operator.Includes,
+                    Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40526,14 +40822,14 @@ public class CumulativeGroupedBulkTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40550,8 +40846,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40566,8 +40862,8 @@ public class CumulativeGroupedBulkTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40586,22 +40882,22 @@ public class CumulativeGroupedBulkTest : TestBase
     }
 }
 
-public class CompositePriceFilter25Test : TestBase
+public class CumulativeGroupedBulkCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter25
+        var model = new CumulativeGroupedBulkCompositePriceFilter
         {
-            Field = CompositePriceFilter25Field.PriceID,
-            Operator = CompositePriceFilter25Operator.Includes,
+            Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter25Field> expectedField =
-            CompositePriceFilter25Field.PriceID;
-        ApiEnum<string, CompositePriceFilter25Operator> expectedOperator =
-            CompositePriceFilter25Operator.Includes;
+        ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField> expectedField =
+            CumulativeGroupedBulkCompositePriceFilterField.PriceID;
+        ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator> expectedOperator =
+            CumulativeGroupedBulkCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -40616,15 +40912,17 @@ public class CompositePriceFilter25Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter25
+        var model = new CumulativeGroupedBulkCompositePriceFilter
         {
-            Field = CompositePriceFilter25Field.PriceID,
-            Operator = CompositePriceFilter25Operator.Includes,
+            Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter25>(json);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkCompositePriceFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -40632,21 +40930,23 @@ public class CompositePriceFilter25Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter25
+        var model = new CumulativeGroupedBulkCompositePriceFilter
         {
-            Field = CompositePriceFilter25Field.PriceID,
-            Operator = CompositePriceFilter25Operator.Includes,
+            Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter25>(json);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkCompositePriceFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter25Field> expectedField =
-            CompositePriceFilter25Field.PriceID;
-        ApiEnum<string, CompositePriceFilter25Operator> expectedOperator =
-            CompositePriceFilter25Operator.Includes;
+        ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterField> expectedField =
+            CumulativeGroupedBulkCompositePriceFilterField.PriceID;
+        ApiEnum<string, CumulativeGroupedBulkCompositePriceFilterOperator> expectedOperator =
+            CumulativeGroupedBulkCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -40661,10 +40961,10 @@ public class CompositePriceFilter25Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter25
+        var model = new CumulativeGroupedBulkCompositePriceFilter
         {
-            Field = CompositePriceFilter25Field.PriceID,
-            Operator = CompositePriceFilter25Operator.Includes,
+            Field = CumulativeGroupedBulkCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedBulkCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -40691,7 +40991,7 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigTest : TestBase
             Group = "group",
         };
 
-        List<DimensionValue1> expectedDimensionValues =
+        List<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue> expectedDimensionValues =
         [
             new()
             {
@@ -40756,7 +41056,7 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigTest : TestBase
             JsonSerializer.Deserialize<CumulativeGroupedBulkCumulativeGroupedBulkConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<DimensionValue1> expectedDimensionValues =
+        List<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue> expectedDimensionValues =
         [
             new()
             {
@@ -40796,12 +41096,12 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigTest : TestBase
     }
 }
 
-public class DimensionValue1Test : TestBase
+public class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValueTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DimensionValue1
+        var model = new CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -40820,7 +41120,7 @@ public class DimensionValue1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DimensionValue1
+        var model = new CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -40828,7 +41128,10 @@ public class DimensionValue1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValue1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -40836,7 +41139,7 @@ public class DimensionValue1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DimensionValue1
+        var model = new CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -40844,7 +41147,10 @@ public class DimensionValue1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValue1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -40859,7 +41165,7 @@ public class DimensionValue1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DimensionValue1
+        var model = new CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -40886,8 +41192,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40928,14 +41234,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40952,8 +41258,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40968,8 +41274,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -40998,12 +41304,12 @@ public class CumulativeGroupedAllocationTest : TestBase
             CumulativeGroupedAllocationBillingMode.InAdvance;
         ApiEnum<string, CumulativeGroupedAllocationCadence> expectedCadence =
             CumulativeGroupedAllocationCadence.OneTime;
-        List<CompositePriceFilter26> expectedCompositePriceFilters =
+        List<CumulativeGroupedAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter26Field.PriceID,
-                Operator = CompositePriceFilter26Operator.Includes,
+                Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -41045,14 +41351,14 @@ public class CumulativeGroupedAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41073,8 +41379,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41089,8 +41395,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41168,8 +41474,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41210,14 +41516,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41234,8 +41540,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41250,8 +41556,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41289,8 +41595,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41331,14 +41637,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41355,8 +41661,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41371,8 +41677,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41405,12 +41711,12 @@ public class CumulativeGroupedAllocationTest : TestBase
             CumulativeGroupedAllocationBillingMode.InAdvance;
         ApiEnum<string, CumulativeGroupedAllocationCadence> expectedCadence =
             CumulativeGroupedAllocationCadence.OneTime;
-        List<CompositePriceFilter26> expectedCompositePriceFilters =
+        List<CumulativeGroupedAllocationCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter26Field.PriceID,
-                Operator = CompositePriceFilter26Operator.Includes,
+                Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -41452,14 +41758,14 @@ public class CumulativeGroupedAllocationTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41480,8 +41786,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41496,8 +41802,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41578,8 +41884,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41620,14 +41926,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41644,8 +41950,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41660,8 +41966,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41696,8 +42002,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41738,14 +42044,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41762,8 +42068,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41778,8 +42084,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41810,8 +42116,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41852,14 +42158,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41876,8 +42182,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41892,8 +42198,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41923,8 +42229,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -41965,14 +42271,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -41989,8 +42295,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42005,8 +42311,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42039,8 +42345,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter26Field.PriceID,
-                    Operator = CompositePriceFilter26Operator.Includes,
+                    Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+                    Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42081,14 +42387,14 @@ public class CumulativeGroupedAllocationTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42105,8 +42411,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42121,8 +42427,8 @@ public class CumulativeGroupedAllocationTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42141,22 +42447,22 @@ public class CumulativeGroupedAllocationTest : TestBase
     }
 }
 
-public class CompositePriceFilter26Test : TestBase
+public class CumulativeGroupedAllocationCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter26
+        var model = new CumulativeGroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter26Field.PriceID,
-            Operator = CompositePriceFilter26Operator.Includes,
+            Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter26Field> expectedField =
-            CompositePriceFilter26Field.PriceID;
-        ApiEnum<string, CompositePriceFilter26Operator> expectedOperator =
-            CompositePriceFilter26Operator.Includes;
+        ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField> expectedField =
+            CumulativeGroupedAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterOperator> expectedOperator =
+            CumulativeGroupedAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -42171,15 +42477,16 @@ public class CompositePriceFilter26Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter26
+        var model = new CumulativeGroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter26Field.PriceID,
-            Operator = CompositePriceFilter26Operator.Includes,
+            Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter26>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -42187,21 +42494,22 @@ public class CompositePriceFilter26Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter26
+        var model = new CumulativeGroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter26Field.PriceID,
-            Operator = CompositePriceFilter26Operator.Includes,
+            Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter26>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter26Field> expectedField =
-            CompositePriceFilter26Field.PriceID;
-        ApiEnum<string, CompositePriceFilter26Operator> expectedOperator =
-            CompositePriceFilter26Operator.Includes;
+        ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField> expectedField =
+            CumulativeGroupedAllocationCompositePriceFilterField.PriceID;
+        ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterOperator> expectedOperator =
+            CumulativeGroupedAllocationCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -42216,10 +42524,10 @@ public class CompositePriceFilter26Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter26
+        var model = new CumulativeGroupedAllocationCompositePriceFilter
         {
-            Field = CompositePriceFilter26Field.PriceID,
-            Operator = CompositePriceFilter26Operator.Includes,
+            Field = CumulativeGroupedAllocationCompositePriceFilterField.PriceID,
+            Operator = CumulativeGroupedAllocationCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -42325,8 +42633,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42360,14 +42668,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42384,8 +42692,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42400,8 +42708,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42430,12 +42738,12 @@ public class PriceMinimumTest : TestBase
         ApiEnum<string, PriceMinimumBillingMode> expectedBillingMode =
             PriceMinimumBillingMode.InAdvance;
         ApiEnum<string, PriceMinimumCadence> expectedCadence = PriceMinimumCadence.OneTime;
-        List<CompositePriceFilter27> expectedCompositePriceFilters =
+        List<PriceMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter27Field.PriceID,
-                Operator = CompositePriceFilter27Operator.Includes,
+                Field = PriceMinimumCompositePriceFilterField.PriceID,
+                Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -42470,14 +42778,14 @@ public class PriceMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42498,8 +42806,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42514,8 +42822,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42592,8 +42900,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42627,14 +42935,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42651,8 +42959,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42667,8 +42975,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42707,8 +43015,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42742,14 +43050,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42766,8 +43074,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42782,8 +43090,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -42816,12 +43124,12 @@ public class PriceMinimumTest : TestBase
         ApiEnum<string, PriceMinimumBillingMode> expectedBillingMode =
             PriceMinimumBillingMode.InAdvance;
         ApiEnum<string, PriceMinimumCadence> expectedCadence = PriceMinimumCadence.OneTime;
-        List<CompositePriceFilter27> expectedCompositePriceFilters =
+        List<PriceMinimumCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter27Field.PriceID,
-                Operator = CompositePriceFilter27Operator.Includes,
+                Field = PriceMinimumCompositePriceFilterField.PriceID,
+                Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -42856,14 +43164,14 @@ public class PriceMinimumTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42884,8 +43192,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42900,8 +43208,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -42981,8 +43289,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43016,14 +43324,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43040,8 +43348,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43056,8 +43364,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43093,8 +43401,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43128,14 +43436,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43152,8 +43460,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43168,8 +43476,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43201,8 +43509,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43236,14 +43544,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43260,8 +43568,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43276,8 +43584,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43308,8 +43616,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43343,14 +43651,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43367,8 +43675,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43383,8 +43691,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43418,8 +43726,8 @@ public class PriceMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter27Field.PriceID,
-                    Operator = CompositePriceFilter27Operator.Includes,
+                    Field = PriceMinimumCompositePriceFilterField.PriceID,
+                    Operator = PriceMinimumCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43453,14 +43761,14 @@ public class PriceMinimumTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43477,8 +43785,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43493,8 +43801,8 @@ public class PriceMinimumTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43514,22 +43822,22 @@ public class PriceMinimumTest : TestBase
     }
 }
 
-public class CompositePriceFilter27Test : TestBase
+public class PriceMinimumCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter27
+        var model = new PriceMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter27Field.PriceID,
-            Operator = CompositePriceFilter27Operator.Includes,
+            Field = PriceMinimumCompositePriceFilterField.PriceID,
+            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter27Field> expectedField =
-            CompositePriceFilter27Field.PriceID;
-        ApiEnum<string, CompositePriceFilter27Operator> expectedOperator =
-            CompositePriceFilter27Operator.Includes;
+        ApiEnum<string, PriceMinimumCompositePriceFilterField> expectedField =
+            PriceMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, PriceMinimumCompositePriceFilterOperator> expectedOperator =
+            PriceMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -43544,15 +43852,15 @@ public class CompositePriceFilter27Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter27
+        var model = new PriceMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter27Field.PriceID,
-            Operator = CompositePriceFilter27Operator.Includes,
+            Field = PriceMinimumCompositePriceFilterField.PriceID,
+            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter27>(json);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimumCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -43560,21 +43868,21 @@ public class CompositePriceFilter27Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter27
+        var model = new PriceMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter27Field.PriceID,
-            Operator = CompositePriceFilter27Operator.Includes,
+            Field = PriceMinimumCompositePriceFilterField.PriceID,
+            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter27>(json);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimumCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter27Field> expectedField =
-            CompositePriceFilter27Field.PriceID;
-        ApiEnum<string, CompositePriceFilter27Operator> expectedOperator =
-            CompositePriceFilter27Operator.Includes;
+        ApiEnum<string, PriceMinimumCompositePriceFilterField> expectedField =
+            PriceMinimumCompositePriceFilterField.PriceID;
+        ApiEnum<string, PriceMinimumCompositePriceFilterOperator> expectedOperator =
+            PriceMinimumCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -43589,10 +43897,10 @@ public class CompositePriceFilter27Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter27
+        var model = new PriceMinimumCompositePriceFilter
         {
-            Field = CompositePriceFilter27Field.PriceID,
-            Operator = CompositePriceFilter27Operator.Includes,
+            Field = PriceMinimumCompositePriceFilterField.PriceID,
+            Operator = PriceMinimumCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -43728,8 +44036,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43763,14 +44071,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43787,8 +44095,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43803,8 +44111,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -43832,12 +44140,12 @@ public class PercentTest : TestBase
         };
         ApiEnum<string, PercentBillingMode> expectedBillingMode = PercentBillingMode.InAdvance;
         ApiEnum<string, PercentCadence> expectedCadence = PercentCadence.OneTime;
-        List<CompositePriceFilter28> expectedCompositePriceFilters =
+        List<PercentCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter28Field.PriceID,
-                Operator = CompositePriceFilter28Operator.Includes,
+                Field = PercentCompositePriceFilterField.PriceID,
+                Operator = PercentCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -43872,14 +44180,14 @@ public class PercentTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43900,8 +44208,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43916,8 +44224,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43990,8 +44298,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44025,14 +44333,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44049,8 +44357,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44065,8 +44373,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44105,8 +44413,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44140,14 +44448,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44164,8 +44472,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44180,8 +44488,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44213,12 +44521,12 @@ public class PercentTest : TestBase
         };
         ApiEnum<string, PercentBillingMode> expectedBillingMode = PercentBillingMode.InAdvance;
         ApiEnum<string, PercentCadence> expectedCadence = PercentCadence.OneTime;
-        List<CompositePriceFilter28> expectedCompositePriceFilters =
+        List<PercentCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter28Field.PriceID,
-                Operator = CompositePriceFilter28Operator.Includes,
+                Field = PercentCompositePriceFilterField.PriceID,
+                Operator = PercentCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -44253,14 +44561,14 @@ public class PercentTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44281,8 +44589,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44297,8 +44605,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44374,8 +44682,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44409,14 +44717,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44433,8 +44741,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44449,8 +44757,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44486,8 +44794,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44521,14 +44829,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44545,8 +44853,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44561,8 +44869,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44594,8 +44902,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44629,14 +44937,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44653,8 +44961,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44669,8 +44977,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44701,8 +45009,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44736,14 +45044,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44760,8 +45068,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44776,8 +45084,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44811,8 +45119,8 @@ public class PercentTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter28Field.PriceID,
-                    Operator = CompositePriceFilter28Operator.Includes,
+                    Field = PercentCompositePriceFilterField.PriceID,
+                    Operator = PercentCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -44846,14 +45154,14 @@ public class PercentTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44870,8 +45178,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44886,8 +45194,8 @@ public class PercentTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -44907,22 +45215,22 @@ public class PercentTest : TestBase
     }
 }
 
-public class CompositePriceFilter28Test : TestBase
+public class PercentCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter28
+        var model = new PercentCompositePriceFilter
         {
-            Field = CompositePriceFilter28Field.PriceID,
-            Operator = CompositePriceFilter28Operator.Includes,
+            Field = PercentCompositePriceFilterField.PriceID,
+            Operator = PercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter28Field> expectedField =
-            CompositePriceFilter28Field.PriceID;
-        ApiEnum<string, CompositePriceFilter28Operator> expectedOperator =
-            CompositePriceFilter28Operator.Includes;
+        ApiEnum<string, PercentCompositePriceFilterField> expectedField =
+            PercentCompositePriceFilterField.PriceID;
+        ApiEnum<string, PercentCompositePriceFilterOperator> expectedOperator =
+            PercentCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -44937,15 +45245,15 @@ public class CompositePriceFilter28Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter28
+        var model = new PercentCompositePriceFilter
         {
-            Field = CompositePriceFilter28Field.PriceID,
-            Operator = CompositePriceFilter28Operator.Includes,
+            Field = PercentCompositePriceFilterField.PriceID,
+            Operator = PercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter28>(json);
+        var deserialized = JsonSerializer.Deserialize<PercentCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -44953,21 +45261,21 @@ public class CompositePriceFilter28Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter28
+        var model = new PercentCompositePriceFilter
         {
-            Field = CompositePriceFilter28Field.PriceID,
-            Operator = CompositePriceFilter28Operator.Includes,
+            Field = PercentCompositePriceFilterField.PriceID,
+            Operator = PercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter28>(json);
+        var deserialized = JsonSerializer.Deserialize<PercentCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter28Field> expectedField =
-            CompositePriceFilter28Field.PriceID;
-        ApiEnum<string, CompositePriceFilter28Operator> expectedOperator =
-            CompositePriceFilter28Operator.Includes;
+        ApiEnum<string, PercentCompositePriceFilterField> expectedField =
+            PercentCompositePriceFilterField.PriceID;
+        ApiEnum<string, PercentCompositePriceFilterOperator> expectedOperator =
+            PercentCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -44982,10 +45290,10 @@ public class CompositePriceFilter28Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter28
+        var model = new PercentCompositePriceFilter
         {
-            Field = CompositePriceFilter28Field.PriceID,
-            Operator = CompositePriceFilter28Operator.Includes,
+            Field = PercentCompositePriceFilterField.PriceID,
+            Operator = PercentCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -45055,8 +45363,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45090,14 +45398,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45120,8 +45428,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45136,8 +45444,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45165,12 +45473,12 @@ public class EventOutputTest : TestBase
         ApiEnum<string, EventOutputBillingMode> expectedBillingMode =
             EventOutputBillingMode.InAdvance;
         ApiEnum<string, EventOutputCadence> expectedCadence = EventOutputCadence.OneTime;
-        List<CompositePriceFilter29> expectedCompositePriceFilters =
+        List<EventOutputCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter29Field.PriceID,
-                Operator = CompositePriceFilter29Operator.Includes,
+                Field = EventOutputCompositePriceFilterField.PriceID,
+                Operator = EventOutputCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -45205,14 +45513,14 @@ public class EventOutputTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45239,8 +45547,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45255,8 +45563,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45328,8 +45636,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45363,14 +45671,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45393,8 +45701,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45409,8 +45717,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45448,8 +45756,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45483,14 +45791,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45513,8 +45821,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45529,8 +45837,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45562,12 +45870,12 @@ public class EventOutputTest : TestBase
         ApiEnum<string, EventOutputBillingMode> expectedBillingMode =
             EventOutputBillingMode.InAdvance;
         ApiEnum<string, EventOutputCadence> expectedCadence = EventOutputCadence.OneTime;
-        List<CompositePriceFilter29> expectedCompositePriceFilters =
+        List<EventOutputCompositePriceFilter> expectedCompositePriceFilters =
         [
             new()
             {
-                Field = CompositePriceFilter29Field.PriceID,
-                Operator = CompositePriceFilter29Operator.Includes,
+                Field = EventOutputCompositePriceFilterField.PriceID,
+                Operator = EventOutputCompositePriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -45602,14 +45910,14 @@ public class EventOutputTest : TestBase
         SharedDiscount expectedDiscount = new PercentageDiscount()
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Filter17Field.PriceID,
-                    Operator = Filter17Operator.Includes,
+                    Field = PercentageDiscountFilterField.PriceID,
+                    Operator = PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45636,8 +45944,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = Filter2Field.PriceID,
-                    Operator = Filter2Operator.Includes,
+                    Field = MaximumFilterField.PriceID,
+                    Operator = MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45652,8 +45960,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45728,8 +46036,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45763,14 +46071,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45793,8 +46101,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45809,8 +46117,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45845,8 +46153,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45880,14 +46188,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45910,8 +46218,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45926,8 +46234,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -45958,8 +46266,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -45993,14 +46301,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46023,8 +46331,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46039,8 +46347,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46070,8 +46378,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -46105,14 +46413,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46135,8 +46443,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46151,8 +46459,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46185,8 +46493,8 @@ public class EventOutputTest : TestBase
             [
                 new()
                 {
-                    Field = CompositePriceFilter29Field.PriceID,
-                    Operator = CompositePriceFilter29Operator.Includes,
+                    Field = EventOutputCompositePriceFilterField.PriceID,
+                    Operator = EventOutputCompositePriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -46220,14 +46528,14 @@ public class EventOutputTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46250,8 +46558,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46266,8 +46574,8 @@ public class EventOutputTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -46286,22 +46594,22 @@ public class EventOutputTest : TestBase
     }
 }
 
-public class CompositePriceFilter29Test : TestBase
+public class EventOutputCompositePriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CompositePriceFilter29
+        var model = new EventOutputCompositePriceFilter
         {
-            Field = CompositePriceFilter29Field.PriceID,
-            Operator = CompositePriceFilter29Operator.Includes,
+            Field = EventOutputCompositePriceFilterField.PriceID,
+            Operator = EventOutputCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, CompositePriceFilter29Field> expectedField =
-            CompositePriceFilter29Field.PriceID;
-        ApiEnum<string, CompositePriceFilter29Operator> expectedOperator =
-            CompositePriceFilter29Operator.Includes;
+        ApiEnum<string, EventOutputCompositePriceFilterField> expectedField =
+            EventOutputCompositePriceFilterField.PriceID;
+        ApiEnum<string, EventOutputCompositePriceFilterOperator> expectedOperator =
+            EventOutputCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -46316,15 +46624,15 @@ public class CompositePriceFilter29Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CompositePriceFilter29
+        var model = new EventOutputCompositePriceFilter
         {
-            Field = CompositePriceFilter29Field.PriceID,
-            Operator = CompositePriceFilter29Operator.Includes,
+            Field = EventOutputCompositePriceFilterField.PriceID,
+            Operator = EventOutputCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter29>(json);
+        var deserialized = JsonSerializer.Deserialize<EventOutputCompositePriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -46332,21 +46640,21 @@ public class CompositePriceFilter29Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CompositePriceFilter29
+        var model = new EventOutputCompositePriceFilter
         {
-            Field = CompositePriceFilter29Field.PriceID,
-            Operator = CompositePriceFilter29Operator.Includes,
+            Field = EventOutputCompositePriceFilterField.PriceID,
+            Operator = EventOutputCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter29>(json);
+        var deserialized = JsonSerializer.Deserialize<EventOutputCompositePriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, CompositePriceFilter29Field> expectedField =
-            CompositePriceFilter29Field.PriceID;
-        ApiEnum<string, CompositePriceFilter29Operator> expectedOperator =
-            CompositePriceFilter29Operator.Includes;
+        ApiEnum<string, EventOutputCompositePriceFilterField> expectedField =
+            EventOutputCompositePriceFilterField.PriceID;
+        ApiEnum<string, EventOutputCompositePriceFilterOperator> expectedOperator =
+            EventOutputCompositePriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -46361,10 +46669,10 @@ public class CompositePriceFilter29Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CompositePriceFilter29
+        var model = new EventOutputCompositePriceFilter
         {
-            Field = CompositePriceFilter29Field.PriceID,
-            Operator = CompositePriceFilter29Operator.Includes,
+            Field = EventOutputCompositePriceFilterField.PriceID,
+            Operator = EventOutputCompositePriceFilterOperator.Includes,
             Values = ["string"],
         };
 

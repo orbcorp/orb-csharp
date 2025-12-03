@@ -229,9 +229,9 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "billable_metric", value); }
     }
 
-    public required IReadOnlyList<Usage> Usage
+    public required IReadOnlyList<DataUsage> Usage
     {
-        get { return ModelBase.GetNotNullClass<List<Usage>>(this.RawData, "usage"); }
+        get { return ModelBase.GetNotNullClass<List<DataUsage>>(this.RawData, "usage"); }
         init { ModelBase.Set(this._rawData, "usage", value); }
     }
 
@@ -332,8 +332,8 @@ class BillableMetricFromRaw : IFromRaw<BillableMetric>
         BillableMetric.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Usage, UsageFromRaw>))]
-public sealed record class Usage : ModelBase
+[JsonConverter(typeof(ModelConverter<DataUsage, DataUsageFromRaw>))]
+public sealed record class DataUsage : ModelBase
 {
     public required double Quantity
     {
@@ -372,31 +372,31 @@ public sealed record class Usage : ModelBase
         _ = this.TimeframeStart;
     }
 
-    public Usage() { }
+    public DataUsage() { }
 
-    public Usage(IReadOnlyDictionary<string, JsonElement> rawData)
+    public DataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Usage(FrozenDictionary<string, JsonElement> rawData)
+    DataUsage(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static DataUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UsageFromRaw : IFromRaw<Usage>
+class DataUsageFromRaw : IFromRaw<DataUsage>
 {
-    public Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Usage.FromRawUnchecked(rawData);
+    public DataUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DataUsage.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(DataViewModeConverter))]
@@ -446,9 +446,15 @@ sealed class DataViewModeConverter : JsonConverter<DataViewMode>
 [JsonConverter(typeof(ModelConverter<GroupedSubscriptionUsage, GroupedSubscriptionUsageFromRaw>))]
 public sealed record class GroupedSubscriptionUsage : ModelBase
 {
-    public required IReadOnlyList<DataModel> Data
+    public required IReadOnlyList<GroupedSubscriptionUsageData> Data
     {
-        get { return ModelBase.GetNotNullClass<List<DataModel>>(this.RawData, "data"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<GroupedSubscriptionUsageData>>(
+                this.RawData,
+                "data"
+            );
+        }
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
@@ -496,7 +502,7 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
     }
 
     [SetsRequiredMembers]
-    public GroupedSubscriptionUsage(List<DataModel> data)
+    public GroupedSubscriptionUsage(List<GroupedSubscriptionUsageData> data)
         : this()
     {
         this.Data = data;
@@ -510,14 +516,16 @@ class GroupedSubscriptionUsageFromRaw : IFromRaw<GroupedSubscriptionUsage>
     ) => GroupedSubscriptionUsage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<DataModel, DataModelFromRaw>))]
-public sealed record class DataModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<GroupedSubscriptionUsageData, GroupedSubscriptionUsageDataFromRaw>)
+)]
+public sealed record class GroupedSubscriptionUsageData : ModelBase
 {
-    public required DataModelBillableMetric BillableMetric
+    public required GroupedSubscriptionUsageDataBillableMetric BillableMetric
     {
         get
         {
-            return ModelBase.GetNotNullClass<DataModelBillableMetric>(
+            return ModelBase.GetNotNullClass<GroupedSubscriptionUsageDataBillableMetric>(
                 this.RawData,
                 "billable_metric"
             );
@@ -531,17 +539,23 @@ public sealed record class DataModel : ModelBase
         init { ModelBase.Set(this._rawData, "metric_group", value); }
     }
 
-    public required IReadOnlyList<UsageModel> Usage
-    {
-        get { return ModelBase.GetNotNullClass<List<UsageModel>>(this.RawData, "usage"); }
-        init { ModelBase.Set(this._rawData, "usage", value); }
-    }
-
-    public required ApiEnum<string, DataModelViewMode> ViewMode
+    public required IReadOnlyList<GroupedSubscriptionUsageDataUsage> Usage
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DataModelViewMode>>(
+            return ModelBase.GetNotNullClass<List<GroupedSubscriptionUsageDataUsage>>(
+                this.RawData,
+                "usage"
+            );
+        }
+        init { ModelBase.Set(this._rawData, "usage", value); }
+    }
+
+    public required ApiEnum<string, GroupedSubscriptionUsageDataViewMode> ViewMode
+    {
+        get
+        {
+            return ModelBase.GetNotNullClass<ApiEnum<string, GroupedSubscriptionUsageDataViewMode>>(
                 this.RawData,
                 "view_mode"
             );
@@ -560,35 +574,43 @@ public sealed record class DataModel : ModelBase
         this.ViewMode.Validate();
     }
 
-    public DataModel() { }
+    public GroupedSubscriptionUsageData() { }
 
-    public DataModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedSubscriptionUsageData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DataModel(FrozenDictionary<string, JsonElement> rawData)
+    GroupedSubscriptionUsageData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedSubscriptionUsageData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DataModelFromRaw : IFromRaw<DataModel>
+class GroupedSubscriptionUsageDataFromRaw : IFromRaw<GroupedSubscriptionUsageData>
 {
-    public DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DataModel.FromRawUnchecked(rawData);
+    public GroupedSubscriptionUsageData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedSubscriptionUsageData.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<DataModelBillableMetric, DataModelBillableMetricFromRaw>))]
-public sealed record class DataModelBillableMetric : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedSubscriptionUsageDataBillableMetric,
+        GroupedSubscriptionUsageDataBillableMetricFromRaw
+    >)
+)]
+public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBase
 {
     public required string ID
     {
@@ -608,22 +630,24 @@ public sealed record class DataModelBillableMetric : ModelBase
         _ = this.Name;
     }
 
-    public DataModelBillableMetric() { }
+    public GroupedSubscriptionUsageDataBillableMetric() { }
 
-    public DataModelBillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedSubscriptionUsageDataBillableMetric(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DataModelBillableMetric(FrozenDictionary<string, JsonElement> rawData)
+    GroupedSubscriptionUsageDataBillableMetric(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DataModelBillableMetric FromRawUnchecked(
+    public static GroupedSubscriptionUsageDataBillableMetric FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -631,11 +655,12 @@ public sealed record class DataModelBillableMetric : ModelBase
     }
 }
 
-class DataModelBillableMetricFromRaw : IFromRaw<DataModelBillableMetric>
+class GroupedSubscriptionUsageDataBillableMetricFromRaw
+    : IFromRaw<GroupedSubscriptionUsageDataBillableMetric>
 {
-    public DataModelBillableMetric FromRawUnchecked(
+    public GroupedSubscriptionUsageDataBillableMetric FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DataModelBillableMetric.FromRawUnchecked(rawData);
+    ) => GroupedSubscriptionUsageDataBillableMetric.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<MetricGroup, MetricGroupFromRaw>))]
@@ -686,8 +711,13 @@ class MetricGroupFromRaw : IFromRaw<MetricGroup>
         MetricGroup.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<UsageModel, UsageModelFromRaw>))]
-public sealed record class UsageModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        GroupedSubscriptionUsageDataUsage,
+        GroupedSubscriptionUsageDataUsageFromRaw
+    >)
+)]
+public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
 {
     public required double Quantity
     {
@@ -726,43 +756,47 @@ public sealed record class UsageModel : ModelBase
         _ = this.TimeframeStart;
     }
 
-    public UsageModel() { }
+    public GroupedSubscriptionUsageDataUsage() { }
 
-    public UsageModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedSubscriptionUsageDataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UsageModel(FrozenDictionary<string, JsonElement> rawData)
+    GroupedSubscriptionUsageDataUsage(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UsageModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedSubscriptionUsageDataUsage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UsageModelFromRaw : IFromRaw<UsageModel>
+class GroupedSubscriptionUsageDataUsageFromRaw : IFromRaw<GroupedSubscriptionUsageDataUsage>
 {
-    public UsageModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        UsageModel.FromRawUnchecked(rawData);
+    public GroupedSubscriptionUsageDataUsage FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedSubscriptionUsageDataUsage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(DataModelViewModeConverter))]
-public enum DataModelViewMode
+[JsonConverter(typeof(GroupedSubscriptionUsageDataViewModeConverter))]
+public enum GroupedSubscriptionUsageDataViewMode
 {
     Periodic,
     Cumulative,
 }
 
-sealed class DataModelViewModeConverter : JsonConverter<DataModelViewMode>
+sealed class GroupedSubscriptionUsageDataViewModeConverter
+    : JsonConverter<GroupedSubscriptionUsageDataViewMode>
 {
-    public override DataModelViewMode Read(
+    public override GroupedSubscriptionUsageDataViewMode Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -770,15 +804,15 @@ sealed class DataModelViewModeConverter : JsonConverter<DataModelViewMode>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "periodic" => DataModelViewMode.Periodic,
-            "cumulative" => DataModelViewMode.Cumulative,
-            _ => (DataModelViewMode)(-1),
+            "periodic" => GroupedSubscriptionUsageDataViewMode.Periodic,
+            "cumulative" => GroupedSubscriptionUsageDataViewMode.Cumulative,
+            _ => (GroupedSubscriptionUsageDataViewMode)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DataModelViewMode value,
+        GroupedSubscriptionUsageDataViewMode value,
         JsonSerializerOptions options
     )
     {
@@ -786,8 +820,8 @@ sealed class DataModelViewModeConverter : JsonConverter<DataModelViewMode>
             writer,
             value switch
             {
-                DataModelViewMode.Periodic => "periodic",
-                DataModelViewMode.Cumulative => "cumulative",
+                GroupedSubscriptionUsageDataViewMode.Periodic => "periodic",
+                GroupedSubscriptionUsageDataViewMode.Cumulative => "cumulative",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

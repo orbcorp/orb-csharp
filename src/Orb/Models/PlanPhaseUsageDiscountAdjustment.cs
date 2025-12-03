@@ -50,9 +50,15 @@ public sealed record class PlanPhaseUsageDiscountAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required IReadOnlyList<Filter23> Filters
+    public required IReadOnlyList<PlanPhaseUsageDiscountAdjustmentFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter23>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<PlanPhaseUsageDiscountAdjustmentFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -197,17 +203,24 @@ sealed class PlanPhaseUsageDiscountAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter23, Filter23FromRaw>))]
-public sealed record class Filter23 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PlanPhaseUsageDiscountAdjustmentFilter,
+        PlanPhaseUsageDiscountAdjustmentFilterFromRaw
+    >)
+)]
+public sealed record class PlanPhaseUsageDiscountAdjustmentFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter23Field> Field
+    public required ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter23Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -215,14 +228,13 @@ public sealed record class Filter23 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter23Operator> Operator
+    public required ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter23Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -243,38 +255,42 @@ public sealed record class Filter23 : ModelBase
         _ = this.Values;
     }
 
-    public Filter23() { }
+    public PlanPhaseUsageDiscountAdjustmentFilter() { }
 
-    public Filter23(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PlanPhaseUsageDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter23(FrozenDictionary<string, JsonElement> rawData)
+    PlanPhaseUsageDiscountAdjustmentFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static PlanPhaseUsageDiscountAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter23FromRaw : IFromRaw<Filter23>
+class PlanPhaseUsageDiscountAdjustmentFilterFromRaw
+    : IFromRaw<PlanPhaseUsageDiscountAdjustmentFilter>
 {
-    public Filter23 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter23.FromRawUnchecked(rawData);
+    public PlanPhaseUsageDiscountAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PlanPhaseUsageDiscountAdjustmentFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter23FieldConverter))]
-public enum Filter23Field
+[JsonConverter(typeof(PlanPhaseUsageDiscountAdjustmentFilterFieldConverter))]
+public enum PlanPhaseUsageDiscountAdjustmentFilterField
 {
     PriceID,
     ItemID,
@@ -283,9 +299,10 @@ public enum Filter23Field
     PricingUnitID,
 }
 
-sealed class Filter23FieldConverter : JsonConverter<Filter23Field>
+sealed class PlanPhaseUsageDiscountAdjustmentFilterFieldConverter
+    : JsonConverter<PlanPhaseUsageDiscountAdjustmentFilterField>
 {
-    public override Filter23Field Read(
+    public override PlanPhaseUsageDiscountAdjustmentFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -293,18 +310,18 @@ sealed class Filter23FieldConverter : JsonConverter<Filter23Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter23Field.PriceID,
-            "item_id" => Filter23Field.ItemID,
-            "price_type" => Filter23Field.PriceType,
-            "currency" => Filter23Field.Currency,
-            "pricing_unit_id" => Filter23Field.PricingUnitID,
-            _ => (Filter23Field)(-1),
+            "price_id" => PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+            "item_id" => PlanPhaseUsageDiscountAdjustmentFilterField.ItemID,
+            "price_type" => PlanPhaseUsageDiscountAdjustmentFilterField.PriceType,
+            "currency" => PlanPhaseUsageDiscountAdjustmentFilterField.Currency,
+            "pricing_unit_id" => PlanPhaseUsageDiscountAdjustmentFilterField.PricingUnitID,
+            _ => (PlanPhaseUsageDiscountAdjustmentFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter23Field value,
+        PlanPhaseUsageDiscountAdjustmentFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -312,11 +329,11 @@ sealed class Filter23FieldConverter : JsonConverter<Filter23Field>
             writer,
             value switch
             {
-                Filter23Field.PriceID => "price_id",
-                Filter23Field.ItemID => "item_id",
-                Filter23Field.PriceType => "price_type",
-                Filter23Field.Currency => "currency",
-                Filter23Field.PricingUnitID => "pricing_unit_id",
+                PlanPhaseUsageDiscountAdjustmentFilterField.PriceID => "price_id",
+                PlanPhaseUsageDiscountAdjustmentFilterField.ItemID => "item_id",
+                PlanPhaseUsageDiscountAdjustmentFilterField.PriceType => "price_type",
+                PlanPhaseUsageDiscountAdjustmentFilterField.Currency => "currency",
+                PlanPhaseUsageDiscountAdjustmentFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -329,16 +346,17 @@ sealed class Filter23FieldConverter : JsonConverter<Filter23Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter23OperatorConverter))]
-public enum Filter23Operator
+[JsonConverter(typeof(PlanPhaseUsageDiscountAdjustmentFilterOperatorConverter))]
+public enum PlanPhaseUsageDiscountAdjustmentFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter23OperatorConverter : JsonConverter<Filter23Operator>
+sealed class PlanPhaseUsageDiscountAdjustmentFilterOperatorConverter
+    : JsonConverter<PlanPhaseUsageDiscountAdjustmentFilterOperator>
 {
-    public override Filter23Operator Read(
+    public override PlanPhaseUsageDiscountAdjustmentFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -346,15 +364,15 @@ sealed class Filter23OperatorConverter : JsonConverter<Filter23Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter23Operator.Includes,
-            "excludes" => Filter23Operator.Excludes,
-            _ => (Filter23Operator)(-1),
+            "includes" => PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
+            "excludes" => PlanPhaseUsageDiscountAdjustmentFilterOperator.Excludes,
+            _ => (PlanPhaseUsageDiscountAdjustmentFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter23Operator value,
+        PlanPhaseUsageDiscountAdjustmentFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -362,8 +380,8 @@ sealed class Filter23OperatorConverter : JsonConverter<Filter23Operator>
             writer,
             value switch
             {
-                Filter23Operator.Includes => "includes",
-                Filter23Operator.Excludes => "excludes",
+                PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes => "includes",
+                PlanPhaseUsageDiscountAdjustmentFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

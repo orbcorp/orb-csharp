@@ -298,11 +298,11 @@ public sealed record class BulkWithProrationConfig : ModelBase
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier8> Tiers
+    public required IReadOnlyList<BulkWithProrationConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier8>>(
+            return ModelBase.GetNotNullClass<List<BulkWithProrationConfigTier>>(
                 this.RawData,
                 "tiers"
             );
@@ -341,7 +341,7 @@ public sealed record class BulkWithProrationConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public BulkWithProrationConfig(List<global::Orb.Models.Subscriptions.Tier8> tiers)
+    public BulkWithProrationConfig(List<BulkWithProrationConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;
@@ -360,12 +360,9 @@ class BulkWithProrationConfigFromRaw
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier8,
-        global::Orb.Models.Subscriptions.Tier8FromRaw
-    >)
+    typeof(ModelConverter<BulkWithProrationConfigTier, BulkWithProrationConfigTierFromRaw>)
 )]
-public sealed record class Tier8 : ModelBase
+public sealed record class BulkWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -391,22 +388,22 @@ public sealed record class Tier8 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier8() { }
+    public BulkWithProrationConfigTier() { }
 
-    public Tier8(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier8(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier8 FromRawUnchecked(
+    public static BulkWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -414,18 +411,18 @@ public sealed record class Tier8 : ModelBase
     }
 
     [SetsRequiredMembers]
-    public Tier8(string unitAmount)
+    public BulkWithProrationConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier8FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier8>
+class BulkWithProrationConfigTierFromRaw : IFromRaw<BulkWithProrationConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier8 FromRawUnchecked(
+    public BulkWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier8.FromRawUnchecked(rawData);
+    ) => BulkWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

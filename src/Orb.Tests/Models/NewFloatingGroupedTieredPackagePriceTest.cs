@@ -552,7 +552,7 @@ public class GroupedTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<TierModel> expectedTiers =
+        List<GroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -607,7 +607,7 @@ public class GroupedTieredPackageConfigTest : TestBase
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<TierModel> expectedTiers =
+        List<GroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -640,12 +640,16 @@ public class GroupedTieredPackageConfigTest : TestBase
     }
 }
 
-public class TierModelTest : TestBase
+public class GroupedTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TierModel { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedPerUnit = "per_unit";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -657,10 +661,14 @@ public class TierModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TierModel { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -668,10 +676,14 @@ public class TierModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TierModel { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -684,7 +696,11 @@ public class TierModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TierModel { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new GroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }

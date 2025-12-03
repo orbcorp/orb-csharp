@@ -6,12 +6,12 @@ using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
 
-public class BodyModelIncrementTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BodyModelIncrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
         {
             Amount = 0,
             Currency = "currency",
@@ -22,8 +22,9 @@ public class BodyModelIncrementTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -59,37 +60,38 @@ public class BodyModelIncrementTest : TestBase
         string expectedDescription = "description";
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<FilterModel> expectedFilters =
+        List<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter> expectedFilters =
         [
             new()
             {
-                Field = FilterModelField.ItemID,
-                Operator = FilterModelOperator.Includes,
+                Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
-        BodyModelIncrementInvoiceSettings expectedInvoiceSettings = new()
-        {
-            AutoCollection = true,
-            CustomDueDate =
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings expectedInvoiceSettings =
+            new()
+            {
+                AutoCollection = true,
+                CustomDueDate =
 #if NET
-            DateOnly
+                DateOnly
 #else
-            DateTimeOffset
+                DateTimeOffset
 #endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
+                .Parse("2019-12-27"),
+                InvoiceDate =
 #if NET
-            DateOnly
+                DateOnly
 #else
-            DateTimeOffset
+                DateTimeOffset
 #endif
-            .Parse("2019-12-27"),
-            ItemID = "item_id",
-            Memo = "memo",
-            NetTerms = 0,
-            RequireSuccessfulPayment = true,
-        };
+                .Parse("2019-12-27"),
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
@@ -118,7 +120,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BodyModelIncrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
         {
             Amount = 0,
             Currency = "currency",
@@ -129,8 +131,9 @@ public class BodyModelIncrementTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -161,7 +164,8 @@ public class BodyModelIncrementTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelIncrement>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -169,7 +173,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BodyModelIncrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
         {
             Amount = 0,
             Currency = "currency",
@@ -180,8 +184,9 @@ public class BodyModelIncrementTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -212,7 +217,8 @@ public class BodyModelIncrementTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelIncrement>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(json);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -221,37 +227,38 @@ public class BodyModelIncrementTest : TestBase
         string expectedDescription = "description";
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<FilterModel> expectedFilters =
+        List<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter> expectedFilters =
         [
             new()
             {
-                Field = FilterModelField.ItemID,
-                Operator = FilterModelOperator.Includes,
+                Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
-        BodyModelIncrementInvoiceSettings expectedInvoiceSettings = new()
-        {
-            AutoCollection = true,
-            CustomDueDate =
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings expectedInvoiceSettings =
+            new()
+            {
+                AutoCollection = true,
+                CustomDueDate =
 #if NET
-            DateOnly
+                DateOnly
 #else
-            DateTimeOffset
+                DateTimeOffset
 #endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
+                .Parse("2019-12-27"),
+                InvoiceDate =
 #if NET
-            DateOnly
+                DateOnly
 #else
-            DateTimeOffset
+                DateTimeOffset
 #endif
-            .Parse("2019-12-27"),
-            ItemID = "item_id",
-            Memo = "memo",
-            NetTerms = 0,
-            RequireSuccessfulPayment = true,
-        };
+                .Parse("2019-12-27"),
+                ItemID = "item_id",
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
 
@@ -280,7 +287,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BodyModelIncrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
         {
             Amount = 0,
             Currency = "currency",
@@ -291,8 +298,9 @@ public class BodyModelIncrementTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                    Operator =
+                        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -328,7 +336,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelIncrement { Amount = 0 };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement { Amount = 0 };
 
         Assert.Null(model.Currency);
         Assert.False(model.RawData.ContainsKey("currency"));
@@ -351,7 +359,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelIncrement { Amount = 0 };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement { Amount = 0 };
 
         model.Validate();
     }
@@ -359,7 +367,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new BodyModelIncrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
         {
             Amount = 0,
 
@@ -394,7 +402,7 @@ public class BodyModelIncrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelIncrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrement
         {
             Amount = 0,
 
@@ -412,20 +420,25 @@ public class BodyModelIncrementTest : TestBase
     }
 }
 
-public class FilterModelTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FilterModel
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, FilterModelField> expectedField = FilterModelField.ItemID;
-        ApiEnum<string, FilterModelOperator> expectedOperator = FilterModelOperator.Includes;
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> expectedField =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID;
+        ApiEnum<
+            string,
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator
+        > expectedOperator =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -440,15 +453,18 @@ public class FilterModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FilterModel
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -456,19 +472,27 @@ public class FilterModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FilterModel
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, FilterModelField> expectedField = FilterModelField.ItemID;
-        ApiEnum<string, FilterModelOperator> expectedOperator = FilterModelOperator.Includes;
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> expectedField =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID;
+        ApiEnum<
+            string,
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator
+        > expectedOperator =
+            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -483,10 +507,10 @@ public class FilterModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FilterModel
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            Operator = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
             Values = ["string"],
         };
 
@@ -494,12 +518,12 @@ public class FilterModelTest : TestBase
     }
 }
 
-public class BodyModelIncrementInvoiceSettingsTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -523,20 +547,20 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
         };
 
         bool expectedAutoCollection = true;
-        BodyModelIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
 #if NET
-        DateOnly
+            DateOnly
 #else
-        DateTimeOffset
+            DateTimeOffset
 #endif
-        .Parse("2019-12-27");
-        BodyModelIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
+            .Parse("2019-12-27");
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
 #if NET
-        DateOnly
+            DateOnly
 #else
-        DateTimeOffset
+            DateTimeOffset
 #endif
-        .Parse("2019-12-27");
+            .Parse("2019-12-27");
         string expectedItemID = "item_id";
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
@@ -554,7 +578,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -578,7 +602,10 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelIncrementInvoiceSettings>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -586,7 +613,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -610,24 +637,27 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelIncrementInvoiceSettings>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         bool expectedAutoCollection = true;
-        BodyModelIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
 #if NET
-        DateOnly
+            DateOnly
 #else
-        DateTimeOffset
+            DateTimeOffset
 #endif
-        .Parse("2019-12-27");
-        BodyModelIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
+            .Parse("2019-12-27");
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
 #if NET
-        DateOnly
+            DateOnly
 #else
-        DateTimeOffset
+            DateTimeOffset
 #endif
-        .Parse("2019-12-27");
+            .Parse("2019-12-27");
         string expectedItemID = "item_id";
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
@@ -645,7 +675,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -674,7 +704,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -703,7 +733,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -731,7 +761,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -763,7 +793,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             CustomDueDate =
@@ -794,7 +824,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             RequireSuccessfulPayment = true,
@@ -815,7 +845,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             RequireSuccessfulPayment = true,
@@ -827,7 +857,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             RequireSuccessfulPayment = true,
@@ -854,7 +884,7 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelIncrementInvoiceSettings
+        var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
             RequireSuccessfulPayment = true,
@@ -870,12 +900,12 @@ public class BodyModelIncrementInvoiceSettingsTest : TestBase
     }
 }
 
-public class BodyModelDecrementTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyDecrementTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BodyModelDecrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
         {
             Amount = 0,
             Currency = "currency",
@@ -905,7 +935,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BodyModelDecrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
         {
             Amount = 0,
             Currency = "currency",
@@ -914,7 +944,8 @@ public class BodyModelDecrementTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelDecrement>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -922,7 +953,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BodyModelDecrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
         {
             Amount = 0,
             Currency = "currency",
@@ -931,7 +962,8 @@ public class BodyModelDecrementTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelDecrement>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(json);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -956,7 +988,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BodyModelDecrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
         {
             Amount = 0,
             Currency = "currency",
@@ -970,7 +1002,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelDecrement { Amount = 0 };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement { Amount = 0 };
 
         Assert.Null(model.Currency);
         Assert.False(model.RawData.ContainsKey("currency"));
@@ -983,7 +1015,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelDecrement { Amount = 0 };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement { Amount = 0 };
 
         model.Validate();
     }
@@ -991,7 +1023,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new BodyModelDecrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
         {
             Amount = 0,
 
@@ -1011,7 +1043,7 @@ public class BodyModelDecrementTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelDecrement
+        var model = new LedgerCreateEntryByExternalIDParamsBodyDecrement
         {
             Amount = 0,
 
@@ -1024,12 +1056,12 @@ public class BodyModelDecrementTest : TestBase
     }
 }
 
-public class BodyModelExpirationChangeTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1088,7 +1120,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1106,7 +1138,10 @@ public class BodyModelExpirationChangeTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelExpirationChange>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1114,7 +1149,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1132,7 +1167,10 @@ public class BodyModelExpirationChangeTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelExpirationChange>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
@@ -1177,7 +1215,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1200,7 +1238,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1228,7 +1266,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1245,7 +1283,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1280,7 +1318,7 @@ public class BodyModelExpirationChangeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelExpirationChange
+        var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
             TargetExpiryDate =
 #if NET
@@ -1302,19 +1340,19 @@ public class BodyModelExpirationChangeTest : TestBase
     }
 }
 
-public class BodyModelVoidTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BodyModelVoid
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
         {
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
             Description = "description",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            VoidReason = BodyModelVoidVoidReason.Refund,
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
         };
 
         double expectedAmount = 0;
@@ -1323,8 +1361,8 @@ public class BodyModelVoidTest : TestBase
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
-        ApiEnum<string, BodyModelVoidVoidReason> expectedVoidReason =
-            BodyModelVoidVoidReason.Refund;
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> expectedVoidReason =
+            LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund;
 
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedBlockID, model.BlockID);
@@ -1344,18 +1382,20 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BodyModelVoid
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
         {
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
             Description = "description",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            VoidReason = BodyModelVoidVoidReason.Refund,
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelVoid>(json);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1363,18 +1403,20 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BodyModelVoid
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
         {
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
             Description = "description",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            VoidReason = BodyModelVoidVoidReason.Refund,
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelVoid>(json);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -1383,8 +1425,8 @@ public class BodyModelVoidTest : TestBase
         string expectedCurrency = "currency";
         string expectedDescription = "description";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
-        ApiEnum<string, BodyModelVoidVoidReason> expectedVoidReason =
-            BodyModelVoidVoidReason.Refund;
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> expectedVoidReason =
+            LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund;
 
         Assert.Equal(expectedAmount, deserialized.Amount);
         Assert.Equal(expectedBlockID, deserialized.BlockID);
@@ -1404,14 +1446,14 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BodyModelVoid
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
         {
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
             Description = "description",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-            VoidReason = BodyModelVoidVoidReason.Refund,
+            VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
         };
 
         model.Validate();
@@ -1420,7 +1462,11 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelVoid { Amount = 0, BlockID = "block_id" };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
 
         Assert.Null(model.Currency);
         Assert.False(model.RawData.ContainsKey("currency"));
@@ -1435,7 +1481,11 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelVoid { Amount = 0, BlockID = "block_id" };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
 
         model.Validate();
     }
@@ -1443,7 +1493,7 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new BodyModelVoid
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1467,7 +1517,7 @@ public class BodyModelVoidTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelVoid
+        var model = new LedgerCreateEntryByExternalIDParamsBodyVoid
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1482,12 +1532,12 @@ public class BodyModelVoidTest : TestBase
     }
 }
 
-public class BodyModelAmendmentTest : TestBase
+public class LedgerCreateEntryByExternalIDParamsBodyAmendmentTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BodyModelAmendment
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1520,7 +1570,7 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BodyModelAmendment
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1530,7 +1580,8 @@ public class BodyModelAmendmentTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelAmendment>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1538,7 +1589,7 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BodyModelAmendment
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1548,7 +1599,8 @@ public class BodyModelAmendmentTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BodyModelAmendment>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(json);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -1575,7 +1627,7 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BodyModelAmendment
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1590,7 +1642,11 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BodyModelAmendment { Amount = 0, BlockID = "block_id" };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
 
         Assert.Null(model.Currency);
         Assert.False(model.RawData.ContainsKey("currency"));
@@ -1603,7 +1659,11 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BodyModelAmendment { Amount = 0, BlockID = "block_id" };
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+        };
 
         model.Validate();
     }
@@ -1611,7 +1671,7 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new BodyModelAmendment
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
         {
             Amount = 0,
             BlockID = "block_id",
@@ -1632,7 +1692,7 @@ public class BodyModelAmendmentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new BodyModelAmendment
+        var model = new LedgerCreateEntryByExternalIDParamsBodyAmendment
         {
             Amount = 0,
             BlockID = "block_id",

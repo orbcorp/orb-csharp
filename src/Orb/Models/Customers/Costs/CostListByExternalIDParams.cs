@@ -155,11 +155,11 @@ public sealed record class CostListByExternalIDParams : ParamsBase
     /// period, or incremental day-by-day costs. If your customer has minimums or
     /// discounts, it's strongly recommended that you use the default cumulative behavior.
     /// </summary>
-    public ApiEnum<string, ViewModeModel>? ViewMode
+    public ApiEnum<string, CostListByExternalIDParamsViewMode>? ViewMode
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ViewModeModel>>(
+            return ModelBase.GetNullableClass<ApiEnum<string, CostListByExternalIDParamsViewMode>>(
                 this.RawQueryData,
                 "view_mode"
             );
@@ -230,16 +230,17 @@ public sealed record class CostListByExternalIDParams : ParamsBase
 /// period, or incremental day-by-day costs. If your customer has minimums or discounts,
 /// it's strongly recommended that you use the default cumulative behavior.
 /// </summary>
-[JsonConverter(typeof(ViewModeModelConverter))]
-public enum ViewModeModel
+[JsonConverter(typeof(CostListByExternalIDParamsViewModeConverter))]
+public enum CostListByExternalIDParamsViewMode
 {
     Periodic,
     Cumulative,
 }
 
-sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
+sealed class CostListByExternalIDParamsViewModeConverter
+    : JsonConverter<CostListByExternalIDParamsViewMode>
 {
-    public override ViewModeModel Read(
+    public override CostListByExternalIDParamsViewMode Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -247,15 +248,15 @@ sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "periodic" => ViewModeModel.Periodic,
-            "cumulative" => ViewModeModel.Cumulative,
-            _ => (ViewModeModel)(-1),
+            "periodic" => CostListByExternalIDParamsViewMode.Periodic,
+            "cumulative" => CostListByExternalIDParamsViewMode.Cumulative,
+            _ => (CostListByExternalIDParamsViewMode)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ViewModeModel value,
+        CostListByExternalIDParamsViewMode value,
         JsonSerializerOptions options
     )
     {
@@ -263,8 +264,8 @@ sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
             writer,
             value switch
             {
-                ViewModeModel.Periodic => "periodic",
-                ViewModeModel.Cumulative => "cumulative",
+                CostListByExternalIDParamsViewMode.Periodic => "periodic",
+                CostListByExternalIDParamsViewMode.Cumulative => "cumulative",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

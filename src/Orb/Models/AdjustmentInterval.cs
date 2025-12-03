@@ -18,15 +18,9 @@ public sealed record class AdjustmentInterval : ModelBase
         init { ModelBase.Set(this._rawData, "id", value); }
     }
 
-    public required AdjustmentIntervalAdjustment Adjustment
+    public required Adjustment Adjustment
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<AdjustmentIntervalAdjustment>(
-                this.RawData,
-                "adjustment"
-            );
-        }
+        get { return ModelBase.GetNotNullClass<Adjustment>(this.RawData, "adjustment"); }
         init { ModelBase.Set(this._rawData, "adjustment", value); }
     }
 
@@ -107,8 +101,8 @@ class AdjustmentIntervalFromRaw : IFromRaw<AdjustmentInterval>
         AdjustmentInterval.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(AdjustmentIntervalAdjustmentConverter))]
-public record class AdjustmentIntervalAdjustment
+[JsonConverter(typeof(AdjustmentConverter))]
+public record class Adjustment
 {
     public object? Value { get; } = null;
 
@@ -189,46 +183,37 @@ public record class AdjustmentIntervalAdjustment
         }
     }
 
-    public AdjustmentIntervalAdjustment(
-        PlanPhaseUsageDiscountAdjustment value,
-        JsonElement? json = null
-    )
+    public Adjustment(PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(
-        PlanPhaseAmountDiscountAdjustment value,
-        JsonElement? json = null
-    )
+    public Adjustment(PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(
-        PlanPhasePercentageDiscountAdjustment value,
-        JsonElement? json = null
-    )
+    public Adjustment(PlanPhasePercentageDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentIntervalAdjustment(JsonElement json)
+    public Adjustment(JsonElement json)
     {
         this._json = json;
     }
@@ -295,9 +280,7 @@ public record class AdjustmentIntervalAdjustment
                 planPhaseMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException(
-                    "Data did not match any variant of AdjustmentIntervalAdjustment"
-                );
+                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
@@ -316,43 +299,32 @@ public record class AdjustmentIntervalAdjustment
             PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(value),
             PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
             PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AdjustmentIntervalAdjustment"
-            ),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public static implicit operator AdjustmentIntervalAdjustment(
-        PlanPhaseUsageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(PlanPhaseUsageDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator AdjustmentIntervalAdjustment(
-        PlanPhaseAmountDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(PlanPhaseAmountDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator AdjustmentIntervalAdjustment(
-        PlanPhasePercentageDiscountAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(PlanPhasePercentageDiscountAdjustment value) =>
+        new(value);
 
-    public static implicit operator AdjustmentIntervalAdjustment(
-        PlanPhaseMinimumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(PlanPhaseMinimumAdjustment value) => new(value);
 
-    public static implicit operator AdjustmentIntervalAdjustment(
-        PlanPhaseMaximumAdjustment value
-    ) => new(value);
+    public static implicit operator Adjustment(PlanPhaseMaximumAdjustment value) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException(
-                "Data did not match any variant of AdjustmentIntervalAdjustment"
-            );
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
-    public virtual bool Equals(AdjustmentIntervalAdjustment? other)
+    public virtual bool Equals(Adjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -363,9 +335,9 @@ public record class AdjustmentIntervalAdjustment
     }
 }
 
-sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentIntervalAdjustment>
+sealed class AdjustmentConverter : JsonConverter<Adjustment>
 {
-    public override AdjustmentIntervalAdjustment? Read(
+    public override Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -498,14 +470,14 @@ sealed class AdjustmentIntervalAdjustmentConverter : JsonConverter<AdjustmentInt
             }
             default:
             {
-                return new AdjustmentIntervalAdjustment(json);
+                return new Adjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AdjustmentIntervalAdjustment value,
+        Adjustment value,
         JsonSerializerOptions options
     )
     {

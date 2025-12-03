@@ -633,7 +633,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
         };
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactorModel> expectedMatrixScalingFactors =
+        List<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -708,7 +708,7 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
-        List<MatrixScalingFactorModel> expectedMatrixScalingFactors =
+        List<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> expectedMatrixScalingFactors =
         [
             new()
             {
@@ -852,12 +852,12 @@ public class ScalableMatrixWithUnitPricingConfigTest : TestBase
     }
 }
 
-public class MatrixScalingFactorModelTest : TestBase
+public class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -876,7 +876,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -884,7 +884,10 @@ public class MatrixScalingFactorModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactorModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -892,7 +895,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -900,7 +903,10 @@ public class MatrixScalingFactorModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactorModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimensionValue = "first_dimension_value";
@@ -915,7 +921,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -928,7 +934,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -941,7 +947,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -953,7 +959,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",
@@ -968,7 +974,7 @@ public class MatrixScalingFactorModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new MatrixScalingFactorModel
+        var model = new ScalableMatrixWithUnitPricingConfigMatrixScalingFactor
         {
             FirstDimensionValue = "first_dimension_value",
             ScalingFactor = "scaling_factor",

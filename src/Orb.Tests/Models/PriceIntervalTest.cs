@@ -74,14 +74,14 @@ public class PriceIntervalTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -102,8 +102,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -118,8 +118,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -207,14 +207,14 @@ public class PriceIntervalTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -231,8 +231,8 @@ public class PriceIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -247,8 +247,8 @@ public class PriceIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -363,14 +363,14 @@ public class PriceIntervalTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -391,8 +391,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -407,8 +407,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -503,14 +503,14 @@ public class PriceIntervalTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -531,8 +531,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -547,8 +547,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -640,14 +640,14 @@ public class PriceIntervalTest : TestBase
             Discount = new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Filter17Field.PriceID,
-                        Operator = Filter17Operator.Includes,
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -664,8 +664,8 @@ public class PriceIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter2Field.PriceID,
-                        Operator = Filter2Operator.Includes,
+                        Field = MaximumFilterField.PriceID,
+                        Operator = MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -680,8 +680,8 @@ public class PriceIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter4Field.PriceID,
-                        Operator = Filter4Operator.Includes,
+                        Field = MinimumFilterField.PriceID,
+                        Operator = MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -799,14 +799,14 @@ public class PriceIntervalTest : TestBase
                 Discount = new PercentageDiscount()
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Filter17Field.PriceID,
-                            Operator = Filter17Operator.Includes,
+                            Field = PercentageDiscountFilterField.PriceID,
+                            Operator = PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -827,8 +827,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter2Field.PriceID,
-                            Operator = Filter2Operator.Includes,
+                            Field = MaximumFilterField.PriceID,
+                            Operator = MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -843,8 +843,8 @@ public class PriceIntervalTest : TestBase
                     [
                         new()
                         {
-                            Field = Filter4Field.PriceID,
-                            Operator = Filter4Operator.Includes,
+                            Field = MinimumFilterField.PriceID,
+                            Operator = MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],

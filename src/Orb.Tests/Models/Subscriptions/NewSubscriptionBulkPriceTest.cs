@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,24 +11,24 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -44,36 +44,36 @@ public class NewSubscriptionBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        Models::BulkConfig expectedBulkConfig = new(
+        BulkConfig expectedBulkConfig = new(
             [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]
         );
-        ApiEnum<string, NewSubscriptionBulkPriceCadence> expectedCadence =
-            NewSubscriptionBulkPriceCadence.Annual;
+        ApiEnum<string, Subscriptions::NewSubscriptionBulkPriceCadence> expectedCadence =
+            Subscriptions::NewSubscriptionBulkPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, ModelType> expectedModelType = ModelType.Bulk;
+        ApiEnum<string, Subscriptions::ModelType> expectedModelType = Subscriptions::ModelType.Bulk;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionBulkPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionBulkPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -82,10 +82,10 @@ public class NewSubscriptionBulkPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -119,24 +119,24 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -152,14 +152,16 @@ public class NewSubscriptionBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkPrice>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkPrice>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -167,24 +169,24 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -200,40 +202,42 @@ public class NewSubscriptionBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkPrice>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkPrice>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        Models::BulkConfig expectedBulkConfig = new(
+        BulkConfig expectedBulkConfig = new(
             [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]
         );
-        ApiEnum<string, NewSubscriptionBulkPriceCadence> expectedCadence =
-            NewSubscriptionBulkPriceCadence.Annual;
+        ApiEnum<string, Subscriptions::NewSubscriptionBulkPriceCadence> expectedCadence =
+            Subscriptions::NewSubscriptionBulkPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, ModelType> expectedModelType = ModelType.Bulk;
+        ApiEnum<string, Subscriptions::ModelType> expectedModelType = Subscriptions::ModelType.Bulk;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionBulkPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionBulkPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -242,10 +246,10 @@ public class NewSubscriptionBulkPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -282,24 +286,24 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -315,7 +319,7 @@ public class NewSubscriptionBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -327,12 +331,12 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
         };
 
@@ -367,12 +371,12 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
         };
 
@@ -382,12 +386,12 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -436,12 +440,12 @@ public class NewSubscriptionBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionBulkPrice
+        var model = new Subscriptions::NewSubscriptionBulkPrice
         {
             BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
-            Cadence = NewSubscriptionBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = ModelType.Bulk,
+            ModelType = Subscriptions::ModelType.Bulk,
             Name = "Annual fee",
 
             BillableMetricID = null,

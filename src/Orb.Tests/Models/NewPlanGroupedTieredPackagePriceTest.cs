@@ -570,7 +570,7 @@ public class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTest : Te
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier9> expectedTiers =
+        List<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -631,7 +631,7 @@ public class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTest : Te
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier9> expectedTiers =
+        List<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -664,12 +664,16 @@ public class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTest : Te
     }
 }
 
-public class Tier9Test : TestBase
+public class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedPerUnit = "per_unit";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -681,10 +685,17 @@ public class Tier9Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier9>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -692,10 +703,17 @@ public class Tier9Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier9>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -708,7 +726,11 @@ public class Tier9Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier9 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }

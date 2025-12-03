@@ -584,7 +584,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
         };
 
         string expectedDimension = "dimension";
-        List<UnitAmountModel> expectedUnitAmounts =
+        List<MatrixWithDisplayNameConfigUnitAmount> expectedUnitAmounts =
         [
             new()
             {
@@ -647,7 +647,7 @@ public class MatrixWithDisplayNameConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedDimension = "dimension";
-        List<UnitAmountModel> expectedUnitAmounts =
+        List<MatrixWithDisplayNameConfigUnitAmount> expectedUnitAmounts =
         [
             new()
             {
@@ -686,12 +686,12 @@ public class MatrixWithDisplayNameConfigTest : TestBase
     }
 }
 
-public class UnitAmountModelTest : TestBase
+public class MatrixWithDisplayNameConfigUnitAmountTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnitAmountModel
+        var model = new MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -710,7 +710,7 @@ public class UnitAmountModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnitAmountModel
+        var model = new MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -718,7 +718,7 @@ public class UnitAmountModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmountModel>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfigUnitAmount>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -726,7 +726,7 @@ public class UnitAmountModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnitAmountModel
+        var model = new MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",
@@ -734,7 +734,7 @@ public class UnitAmountModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmountModel>(json);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfigUnitAmount>(json);
         Assert.NotNull(deserialized);
 
         string expectedDimensionValue = "dimension_value";
@@ -749,7 +749,7 @@ public class UnitAmountModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnitAmountModel
+        var model = new MatrixWithDisplayNameConfigUnitAmount
         {
             DimensionValue = "dimension_value",
             DisplayName = "display_name",

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,11 +11,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -31,12 +32,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -52,19 +53,24 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionThresholdTotalAmountPriceCadence> expectedCadence =
-            NewSubscriptionThresholdTotalAmountPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionThresholdTotalAmountPriceModelType> expectedModelType =
-            NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount;
         string expectedName = "Annual fee";
-        ThresholdTotalAmountConfig expectedThresholdTotalAmountConfig = new()
+        Subscriptions::ThresholdTotalAmountConfig expectedThresholdTotalAmountConfig = new()
         {
             ConsumptionTable =
             [
@@ -75,20 +81,20 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionThresholdTotalAmountPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -97,10 +103,10 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -134,11 +140,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -154,12 +161,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -175,16 +182,17 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionThresholdTotalAmountPrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -192,11 +200,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -212,12 +221,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -233,25 +242,31 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionThresholdTotalAmountPrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionThresholdTotalAmountPriceCadence> expectedCadence =
-            NewSubscriptionThresholdTotalAmountPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionThresholdTotalAmountPriceModelType> expectedModelType =
-            NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount;
         string expectedName = "Annual fee";
-        ThresholdTotalAmountConfig expectedThresholdTotalAmountConfig = new()
+        Subscriptions::ThresholdTotalAmountConfig expectedThresholdTotalAmountConfig = new()
         {
             ConsumptionTable =
             [
@@ -262,20 +277,20 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
         };
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionThresholdTotalAmountPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -284,10 +299,10 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -324,11 +339,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -344,12 +360,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -365,7 +381,7 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -377,11 +393,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -425,11 +442,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -448,11 +466,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -510,11 +529,12 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionThresholdTotalAmountPrice
+        var model = new Subscriptions::NewSubscriptionThresholdTotalAmountPrice
         {
-            Cadence = NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionThresholdTotalAmountPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+            ModelType =
+                Subscriptions::NewSubscriptionThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
             Name = "Annual fee",
             ThresholdTotalAmountConfig = new()
             {
@@ -550,7 +570,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -560,7 +580,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
             Prorate = true,
         };
 
-        List<ConsumptionTable> expectedConsumptionTable =
+        List<Subscriptions::ConsumptionTable> expectedConsumptionTable =
         [
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
@@ -578,7 +598,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -589,7 +609,9 @@ public class ThresholdTotalAmountConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ThresholdTotalAmountConfig>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -597,7 +619,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -608,10 +630,12 @@ public class ThresholdTotalAmountConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ThresholdTotalAmountConfig>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        List<ConsumptionTable> expectedConsumptionTable =
+        List<Subscriptions::ConsumptionTable> expectedConsumptionTable =
         [
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
             new() { Threshold = "threshold", TotalAmount = "total_amount" },
@@ -629,7 +653,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -645,7 +669,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -661,7 +685,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -676,7 +700,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -694,7 +718,7 @@ public class ThresholdTotalAmountConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new ThresholdTotalAmountConfig
+        var model = new Subscriptions::ThresholdTotalAmountConfig
         {
             ConsumptionTable =
             [
@@ -714,7 +738,11 @@ public class ConsumptionTableTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new Subscriptions::ConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         string expectedThreshold = "threshold";
         string expectedTotalAmount = "total_amount";
@@ -726,10 +754,14 @@ public class ConsumptionTableTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new Subscriptions::ConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTable>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ConsumptionTable>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -737,10 +769,14 @@ public class ConsumptionTableTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new Subscriptions::ConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTable>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ConsumptionTable>(json);
         Assert.NotNull(deserialized);
 
         string expectedThreshold = "threshold";
@@ -753,7 +789,11 @@ public class ConsumptionTableTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
+        var model = new Subscriptions::ConsumptionTable
+        {
+            Threshold = "threshold",
+            TotalAmount = "total_amount",
+        };
 
         model.Validate();
     }

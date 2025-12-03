@@ -167,11 +167,11 @@ public sealed record class CustomerUpdateParams : ParamsBase
     /// Payment configuration for the customer, applicable when using Orb Invoicing
     /// with a supported payment provider such as Stripe.
     /// </summary>
-    public PaymentConfigurationModel? PaymentConfiguration
+    public CustomerUpdateParamsPaymentConfiguration? PaymentConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<PaymentConfigurationModel>(
+            return ModelBase.GetNullableClass<CustomerUpdateParamsPaymentConfiguration>(
                 this.RawBodyData,
                 "payment_configuration"
             );
@@ -186,11 +186,11 @@ public sealed record class CustomerUpdateParams : ParamsBase
     /// `bill.com`, `netsuite`), any product mappings must first be configured with
     /// the Orb team.
     /// </summary>
-    public ApiEnum<string, PaymentProvider2>? PaymentProvider
+    public ApiEnum<string, CustomerUpdateParamsPaymentProvider>? PaymentProvider
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, PaymentProvider2>>(
+            return ModelBase.GetNullableClass<ApiEnum<string, CustomerUpdateParamsPaymentProvider>>(
                 this.RawBodyData,
                 "payment_provider"
             );
@@ -229,11 +229,11 @@ public sealed record class CustomerUpdateParams : ParamsBase
         init { ModelBase.Set(this._rawBodyData, "shipping_address", value); }
     }
 
-    public TaxConfigurationModel? TaxConfiguration
+    public CustomerUpdateParamsTaxConfiguration? TaxConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<TaxConfigurationModel>(
+            return ModelBase.GetNullableClass<CustomerUpdateParamsTaxConfiguration>(
                 this.RawBodyData,
                 "tax_configuration"
             );
@@ -422,20 +422,24 @@ public sealed record class CustomerUpdateParams : ParamsBase
 /// Payment configuration for the customer, applicable when using Orb Invoicing with
 /// a supported payment provider such as Stripe.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PaymentConfigurationModel, PaymentConfigurationModelFromRaw>))]
-public sealed record class PaymentConfigurationModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        CustomerUpdateParamsPaymentConfiguration,
+        CustomerUpdateParamsPaymentConfigurationFromRaw
+    >)
+)]
+public sealed record class CustomerUpdateParamsPaymentConfiguration : ModelBase
 {
     /// <summary>
     /// Provider-specific payment configuration.
     /// </summary>
-    public IReadOnlyList<PaymentProvider1>? PaymentProviders
+    public IReadOnlyList<CustomerUpdateParamsPaymentConfigurationPaymentProvider>? PaymentProviders
     {
         get
         {
-            return ModelBase.GetNullableClass<List<PaymentProvider1>>(
-                this.RawData,
-                "payment_providers"
-            );
+            return ModelBase.GetNullableClass<
+                List<CustomerUpdateParamsPaymentConfigurationPaymentProvider>
+            >(this.RawData, "payment_providers");
         }
         init
         {
@@ -456,22 +460,24 @@ public sealed record class PaymentConfigurationModel : ModelBase
         }
     }
 
-    public PaymentConfigurationModel() { }
+    public CustomerUpdateParamsPaymentConfiguration() { }
 
-    public PaymentConfigurationModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CustomerUpdateParamsPaymentConfiguration(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PaymentConfigurationModel(FrozenDictionary<string, JsonElement> rawData)
+    CustomerUpdateParamsPaymentConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PaymentConfigurationModel FromRawUnchecked(
+    public static CustomerUpdateParamsPaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -479,27 +485,35 @@ public sealed record class PaymentConfigurationModel : ModelBase
     }
 }
 
-class PaymentConfigurationModelFromRaw : IFromRaw<PaymentConfigurationModel>
+class CustomerUpdateParamsPaymentConfigurationFromRaw
+    : IFromRaw<CustomerUpdateParamsPaymentConfiguration>
 {
-    public PaymentConfigurationModel FromRawUnchecked(
+    public CustomerUpdateParamsPaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PaymentConfigurationModel.FromRawUnchecked(rawData);
+    ) => CustomerUpdateParamsPaymentConfiguration.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<PaymentProvider1, PaymentProvider1FromRaw>))]
-public sealed record class PaymentProvider1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        CustomerUpdateParamsPaymentConfigurationPaymentProvider,
+        CustomerUpdateParamsPaymentConfigurationPaymentProviderFromRaw
+    >)
+)]
+public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvider : ModelBase
 {
     /// <summary>
     /// The payment provider to configure.
     /// </summary>
-    public required ApiEnum<string, PaymentProvider1ProviderType> ProviderType
+    public required ApiEnum<
+        string,
+        CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType
+    > ProviderType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, PaymentProvider1ProviderType>>(
-                this.RawData,
-                "provider_type"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType>
+            >(this.RawData, "provider_type");
         }
         init { ModelBase.Set(this._rawData, "provider_type", value); }
     }
@@ -537,22 +551,26 @@ public sealed record class PaymentProvider1 : ModelBase
         _ = this.ExcludedPaymentMethodTypes;
     }
 
-    public PaymentProvider1() { }
+    public CustomerUpdateParamsPaymentConfigurationPaymentProvider() { }
 
-    public PaymentProvider1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PaymentProvider1(FrozenDictionary<string, JsonElement> rawData)
+    CustomerUpdateParamsPaymentConfigurationPaymentProvider(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PaymentProvider1 FromRawUnchecked(
+    public static CustomerUpdateParamsPaymentConfigurationPaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -560,31 +578,41 @@ public sealed record class PaymentProvider1 : ModelBase
     }
 
     [SetsRequiredMembers]
-    public PaymentProvider1(ApiEnum<string, PaymentProvider1ProviderType> providerType)
+    public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
+        ApiEnum<
+            string,
+            CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType
+        > providerType
+    )
         : this()
     {
         this.ProviderType = providerType;
     }
 }
 
-class PaymentProvider1FromRaw : IFromRaw<PaymentProvider1>
+class CustomerUpdateParamsPaymentConfigurationPaymentProviderFromRaw
+    : IFromRaw<CustomerUpdateParamsPaymentConfigurationPaymentProvider>
 {
-    public PaymentProvider1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        PaymentProvider1.FromRawUnchecked(rawData);
+    public CustomerUpdateParamsPaymentConfigurationPaymentProvider FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CustomerUpdateParamsPaymentConfigurationPaymentProvider.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The payment provider to configure.
 /// </summary>
-[JsonConverter(typeof(PaymentProvider1ProviderTypeConverter))]
-public enum PaymentProvider1ProviderType
+[JsonConverter(
+    typeof(CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderTypeConverter)
+)]
+public enum CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType
 {
     Stripe,
 }
 
-sealed class PaymentProvider1ProviderTypeConverter : JsonConverter<PaymentProvider1ProviderType>
+sealed class CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderTypeConverter
+    : JsonConverter<CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType>
 {
-    public override PaymentProvider1ProviderType Read(
+    public override CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -592,14 +620,14 @@ sealed class PaymentProvider1ProviderTypeConverter : JsonConverter<PaymentProvid
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => PaymentProvider1ProviderType.Stripe,
-            _ => (PaymentProvider1ProviderType)(-1),
+            "stripe" => CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+            _ => (CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PaymentProvider1ProviderType value,
+        CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType value,
         JsonSerializerOptions options
     )
     {
@@ -607,7 +635,8 @@ sealed class PaymentProvider1ProviderTypeConverter : JsonConverter<PaymentProvid
             writer,
             value switch
             {
-                PaymentProvider1ProviderType.Stripe => "stripe",
+                CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType.Stripe =>
+                    "stripe",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -624,8 +653,8 @@ sealed class PaymentProvider1ProviderTypeConverter : JsonConverter<PaymentProvid
 /// `bill.com`, `netsuite`), any product mappings must first be configured with the
 /// Orb team.
 /// </summary>
-[JsonConverter(typeof(PaymentProvider2Converter))]
-public enum PaymentProvider2
+[JsonConverter(typeof(CustomerUpdateParamsPaymentProviderConverter))]
+public enum CustomerUpdateParamsPaymentProvider
 {
     Quickbooks,
     BillCom,
@@ -634,9 +663,10 @@ public enum PaymentProvider2
     Netsuite,
 }
 
-sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
+sealed class CustomerUpdateParamsPaymentProviderConverter
+    : JsonConverter<CustomerUpdateParamsPaymentProvider>
 {
-    public override PaymentProvider2 Read(
+    public override CustomerUpdateParamsPaymentProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -644,18 +674,18 @@ sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "quickbooks" => PaymentProvider2.Quickbooks,
-            "bill.com" => PaymentProvider2.BillCom,
-            "stripe_charge" => PaymentProvider2.StripeCharge,
-            "stripe_invoice" => PaymentProvider2.StripeInvoice,
-            "netsuite" => PaymentProvider2.Netsuite,
-            _ => (PaymentProvider2)(-1),
+            "quickbooks" => CustomerUpdateParamsPaymentProvider.Quickbooks,
+            "bill.com" => CustomerUpdateParamsPaymentProvider.BillCom,
+            "stripe_charge" => CustomerUpdateParamsPaymentProvider.StripeCharge,
+            "stripe_invoice" => CustomerUpdateParamsPaymentProvider.StripeInvoice,
+            "netsuite" => CustomerUpdateParamsPaymentProvider.Netsuite,
+            _ => (CustomerUpdateParamsPaymentProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PaymentProvider2 value,
+        CustomerUpdateParamsPaymentProvider value,
         JsonSerializerOptions options
     )
     {
@@ -663,11 +693,11 @@ sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
             writer,
             value switch
             {
-                PaymentProvider2.Quickbooks => "quickbooks",
-                PaymentProvider2.BillCom => "bill.com",
-                PaymentProvider2.StripeCharge => "stripe_charge",
-                PaymentProvider2.StripeInvoice => "stripe_invoice",
-                PaymentProvider2.Netsuite => "netsuite",
+                CustomerUpdateParamsPaymentProvider.Quickbooks => "quickbooks",
+                CustomerUpdateParamsPaymentProvider.BillCom => "bill.com",
+                CustomerUpdateParamsPaymentProvider.StripeCharge => "stripe_charge",
+                CustomerUpdateParamsPaymentProvider.StripeInvoice => "stripe_invoice",
+                CustomerUpdateParamsPaymentProvider.Netsuite => "netsuite",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -677,8 +707,8 @@ sealed class PaymentProvider2Converter : JsonConverter<PaymentProvider2>
     }
 }
 
-[JsonConverter(typeof(TaxConfigurationModelConverter))]
-public record class TaxConfigurationModel
+[JsonConverter(typeof(CustomerUpdateParamsTaxConfigurationConverter))]
+public record class CustomerUpdateParamsTaxConfiguration
 {
     public object? Value { get; } = null;
 
@@ -719,43 +749,61 @@ public record class TaxConfigurationModel
         }
     }
 
-    public TaxConfigurationModel(NewAvalaraTaxConfiguration value, JsonElement? json = null)
+    public CustomerUpdateParamsTaxConfiguration(
+        NewAvalaraTaxConfiguration value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public TaxConfigurationModel(NewTaxJarConfiguration value, JsonElement? json = null)
+    public CustomerUpdateParamsTaxConfiguration(
+        NewTaxJarConfiguration value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public TaxConfigurationModel(NewSphereConfiguration value, JsonElement? json = null)
+    public CustomerUpdateParamsTaxConfiguration(
+        NewSphereConfiguration value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public TaxConfigurationModel(TaxConfigurationModelNumeral value, JsonElement? json = null)
+    public CustomerUpdateParamsTaxConfiguration(
+        CustomerUpdateParamsTaxConfigurationNumeral value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public TaxConfigurationModel(TaxConfigurationModelAnrok value, JsonElement? json = null)
+    public CustomerUpdateParamsTaxConfiguration(
+        CustomerUpdateParamsTaxConfigurationAnrok value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public TaxConfigurationModel(TaxConfigurationModelStripe value, JsonElement? json = null)
+    public CustomerUpdateParamsTaxConfiguration(
+        CustomerUpdateParamsTaxConfigurationStripe value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public TaxConfigurationModel(JsonElement json)
+    public CustomerUpdateParamsTaxConfiguration(JsonElement json)
     {
         this._json = json;
     }
@@ -778,21 +826,27 @@ public record class TaxConfigurationModel
         return value != null;
     }
 
-    public bool TryPickNumeral([NotNullWhen(true)] out TaxConfigurationModelNumeral? value)
+    public bool TryPickNumeral(
+        [NotNullWhen(true)] out CustomerUpdateParamsTaxConfigurationNumeral? value
+    )
     {
-        value = this.Value as TaxConfigurationModelNumeral;
+        value = this.Value as CustomerUpdateParamsTaxConfigurationNumeral;
         return value != null;
     }
 
-    public bool TryPickAnrok([NotNullWhen(true)] out TaxConfigurationModelAnrok? value)
+    public bool TryPickAnrok(
+        [NotNullWhen(true)] out CustomerUpdateParamsTaxConfigurationAnrok? value
+    )
     {
-        value = this.Value as TaxConfigurationModelAnrok;
+        value = this.Value as CustomerUpdateParamsTaxConfigurationAnrok;
         return value != null;
     }
 
-    public bool TryPickStripe([NotNullWhen(true)] out TaxConfigurationModelStripe? value)
+    public bool TryPickStripe(
+        [NotNullWhen(true)] out CustomerUpdateParamsTaxConfigurationStripe? value
+    )
     {
-        value = this.Value as TaxConfigurationModelStripe;
+        value = this.Value as CustomerUpdateParamsTaxConfigurationStripe;
         return value != null;
     }
 
@@ -800,9 +854,9 @@ public record class TaxConfigurationModel
         System::Action<NewAvalaraTaxConfiguration> newAvalara,
         System::Action<NewTaxJarConfiguration> newTaxJar,
         System::Action<NewSphereConfiguration> newSphere,
-        System::Action<TaxConfigurationModelNumeral> numeral,
-        System::Action<TaxConfigurationModelAnrok> anrok,
-        System::Action<TaxConfigurationModelStripe> stripe
+        System::Action<CustomerUpdateParamsTaxConfigurationNumeral> numeral,
+        System::Action<CustomerUpdateParamsTaxConfigurationAnrok> anrok,
+        System::Action<CustomerUpdateParamsTaxConfigurationStripe> stripe
     )
     {
         switch (this.Value)
@@ -816,18 +870,18 @@ public record class TaxConfigurationModel
             case NewSphereConfiguration value:
                 newSphere(value);
                 break;
-            case TaxConfigurationModelNumeral value:
+            case CustomerUpdateParamsTaxConfigurationNumeral value:
                 numeral(value);
                 break;
-            case TaxConfigurationModelAnrok value:
+            case CustomerUpdateParamsTaxConfigurationAnrok value:
                 anrok(value);
                 break;
-            case TaxConfigurationModelStripe value:
+            case CustomerUpdateParamsTaxConfigurationStripe value:
                 stripe(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of TaxConfigurationModel"
+                    "Data did not match any variant of CustomerUpdateParamsTaxConfiguration"
                 );
         }
     }
@@ -836,9 +890,9 @@ public record class TaxConfigurationModel
         System::Func<NewAvalaraTaxConfiguration, T> newAvalara,
         System::Func<NewTaxJarConfiguration, T> newTaxJar,
         System::Func<NewSphereConfiguration, T> newSphere,
-        System::Func<TaxConfigurationModelNumeral, T> numeral,
-        System::Func<TaxConfigurationModelAnrok, T> anrok,
-        System::Func<TaxConfigurationModelStripe, T> stripe
+        System::Func<CustomerUpdateParamsTaxConfigurationNumeral, T> numeral,
+        System::Func<CustomerUpdateParamsTaxConfigurationAnrok, T> anrok,
+        System::Func<CustomerUpdateParamsTaxConfigurationStripe, T> stripe
     )
     {
         return this.Value switch
@@ -846,44 +900,50 @@ public record class TaxConfigurationModel
             NewAvalaraTaxConfiguration value => newAvalara(value),
             NewTaxJarConfiguration value => newTaxJar(value),
             NewSphereConfiguration value => newSphere(value),
-            TaxConfigurationModelNumeral value => numeral(value),
-            TaxConfigurationModelAnrok value => anrok(value),
-            TaxConfigurationModelStripe value => stripe(value),
+            CustomerUpdateParamsTaxConfigurationNumeral value => numeral(value),
+            CustomerUpdateParamsTaxConfigurationAnrok value => anrok(value),
+            CustomerUpdateParamsTaxConfigurationStripe value => stripe(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of TaxConfigurationModel"
+                "Data did not match any variant of CustomerUpdateParamsTaxConfiguration"
             ),
         };
     }
 
-    public static implicit operator TaxConfigurationModel(NewAvalaraTaxConfiguration value) =>
-        new(value);
+    public static implicit operator CustomerUpdateParamsTaxConfiguration(
+        NewAvalaraTaxConfiguration value
+    ) => new(value);
 
-    public static implicit operator TaxConfigurationModel(NewTaxJarConfiguration value) =>
-        new(value);
+    public static implicit operator CustomerUpdateParamsTaxConfiguration(
+        NewTaxJarConfiguration value
+    ) => new(value);
 
-    public static implicit operator TaxConfigurationModel(NewSphereConfiguration value) =>
-        new(value);
+    public static implicit operator CustomerUpdateParamsTaxConfiguration(
+        NewSphereConfiguration value
+    ) => new(value);
 
-    public static implicit operator TaxConfigurationModel(TaxConfigurationModelNumeral value) =>
-        new(value);
+    public static implicit operator CustomerUpdateParamsTaxConfiguration(
+        CustomerUpdateParamsTaxConfigurationNumeral value
+    ) => new(value);
 
-    public static implicit operator TaxConfigurationModel(TaxConfigurationModelAnrok value) =>
-        new(value);
+    public static implicit operator CustomerUpdateParamsTaxConfiguration(
+        CustomerUpdateParamsTaxConfigurationAnrok value
+    ) => new(value);
 
-    public static implicit operator TaxConfigurationModel(TaxConfigurationModelStripe value) =>
-        new(value);
+    public static implicit operator CustomerUpdateParamsTaxConfiguration(
+        CustomerUpdateParamsTaxConfigurationStripe value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of TaxConfigurationModel"
+                "Data did not match any variant of CustomerUpdateParamsTaxConfiguration"
             );
         }
     }
 
-    public virtual bool Equals(TaxConfigurationModel? other)
+    public virtual bool Equals(CustomerUpdateParamsTaxConfiguration? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -894,9 +954,10 @@ public record class TaxConfigurationModel
     }
 }
 
-sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationModel?>
+sealed class CustomerUpdateParamsTaxConfigurationConverter
+    : JsonConverter<CustomerUpdateParamsTaxConfiguration?>
 {
-    public override TaxConfigurationModel? Read(
+    public override CustomerUpdateParamsTaxConfiguration? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -985,10 +1046,11 @@ sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationMode
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TaxConfigurationModelNumeral>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfigurationNumeral>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -1007,10 +1069,11 @@ sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationMode
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TaxConfigurationModelAnrok>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfigurationAnrok>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -1029,10 +1092,11 @@ sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationMode
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TaxConfigurationModelStripe>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfigurationStripe>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -1049,14 +1113,14 @@ sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationMode
             }
             default:
             {
-                return new TaxConfigurationModel(json);
+                return new CustomerUpdateParamsTaxConfiguration(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TaxConfigurationModel? value,
+        CustomerUpdateParamsTaxConfiguration? value,
         JsonSerializerOptions options
     )
     {
@@ -1065,9 +1129,12 @@ sealed class TaxConfigurationModelConverter : JsonConverter<TaxConfigurationMode
 }
 
 [JsonConverter(
-    typeof(ModelConverter<TaxConfigurationModelNumeral, TaxConfigurationModelNumeralFromRaw>)
+    typeof(ModelConverter<
+        CustomerUpdateParamsTaxConfigurationNumeral,
+        CustomerUpdateParamsTaxConfigurationNumeralFromRaw
+    >)
 )]
-public sealed record class TaxConfigurationModelNumeral : ModelBase
+public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1106,12 +1173,14 @@ public sealed record class TaxConfigurationModelNumeral : ModelBase
         _ = this.AutomaticTaxEnabled;
     }
 
-    public TaxConfigurationModelNumeral()
+    public CustomerUpdateParamsTaxConfigurationNumeral()
     {
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
     }
 
-    public TaxConfigurationModelNumeral(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CustomerUpdateParamsTaxConfigurationNumeral(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -1120,13 +1189,13 @@ public sealed record class TaxConfigurationModelNumeral : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TaxConfigurationModelNumeral(FrozenDictionary<string, JsonElement> rawData)
+    CustomerUpdateParamsTaxConfigurationNumeral(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static TaxConfigurationModelNumeral FromRawUnchecked(
+    public static CustomerUpdateParamsTaxConfigurationNumeral FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1134,24 +1203,28 @@ public sealed record class TaxConfigurationModelNumeral : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TaxConfigurationModelNumeral(bool taxExempt)
+    public CustomerUpdateParamsTaxConfigurationNumeral(bool taxExempt)
         : this()
     {
         this.TaxExempt = taxExempt;
     }
 }
 
-class TaxConfigurationModelNumeralFromRaw : IFromRaw<TaxConfigurationModelNumeral>
+class CustomerUpdateParamsTaxConfigurationNumeralFromRaw
+    : IFromRaw<CustomerUpdateParamsTaxConfigurationNumeral>
 {
-    public TaxConfigurationModelNumeral FromRawUnchecked(
+    public CustomerUpdateParamsTaxConfigurationNumeral FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TaxConfigurationModelNumeral.FromRawUnchecked(rawData);
+    ) => CustomerUpdateParamsTaxConfigurationNumeral.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
-    typeof(ModelConverter<TaxConfigurationModelAnrok, TaxConfigurationModelAnrokFromRaw>)
+    typeof(ModelConverter<
+        CustomerUpdateParamsTaxConfigurationAnrok,
+        CustomerUpdateParamsTaxConfigurationAnrokFromRaw
+    >)
 )]
-public sealed record class TaxConfigurationModelAnrok : ModelBase
+public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1190,12 +1263,14 @@ public sealed record class TaxConfigurationModelAnrok : ModelBase
         _ = this.AutomaticTaxEnabled;
     }
 
-    public TaxConfigurationModelAnrok()
+    public CustomerUpdateParamsTaxConfigurationAnrok()
     {
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
     }
 
-    public TaxConfigurationModelAnrok(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CustomerUpdateParamsTaxConfigurationAnrok(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -1204,13 +1279,13 @@ public sealed record class TaxConfigurationModelAnrok : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TaxConfigurationModelAnrok(FrozenDictionary<string, JsonElement> rawData)
+    CustomerUpdateParamsTaxConfigurationAnrok(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static TaxConfigurationModelAnrok FromRawUnchecked(
+    public static CustomerUpdateParamsTaxConfigurationAnrok FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1218,24 +1293,28 @@ public sealed record class TaxConfigurationModelAnrok : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TaxConfigurationModelAnrok(bool taxExempt)
+    public CustomerUpdateParamsTaxConfigurationAnrok(bool taxExempt)
         : this()
     {
         this.TaxExempt = taxExempt;
     }
 }
 
-class TaxConfigurationModelAnrokFromRaw : IFromRaw<TaxConfigurationModelAnrok>
+class CustomerUpdateParamsTaxConfigurationAnrokFromRaw
+    : IFromRaw<CustomerUpdateParamsTaxConfigurationAnrok>
 {
-    public TaxConfigurationModelAnrok FromRawUnchecked(
+    public CustomerUpdateParamsTaxConfigurationAnrok FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TaxConfigurationModelAnrok.FromRawUnchecked(rawData);
+    ) => CustomerUpdateParamsTaxConfigurationAnrok.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
-    typeof(ModelConverter<TaxConfigurationModelStripe, TaxConfigurationModelStripeFromRaw>)
+    typeof(ModelConverter<
+        CustomerUpdateParamsTaxConfigurationStripe,
+        CustomerUpdateParamsTaxConfigurationStripeFromRaw
+    >)
 )]
-public sealed record class TaxConfigurationModelStripe : ModelBase
+public sealed record class CustomerUpdateParamsTaxConfigurationStripe : ModelBase
 {
     public required bool TaxExempt
     {
@@ -1274,12 +1353,14 @@ public sealed record class TaxConfigurationModelStripe : ModelBase
         _ = this.AutomaticTaxEnabled;
     }
 
-    public TaxConfigurationModelStripe()
+    public CustomerUpdateParamsTaxConfigurationStripe()
     {
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
     }
 
-    public TaxConfigurationModelStripe(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CustomerUpdateParamsTaxConfigurationStripe(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -1288,13 +1369,13 @@ public sealed record class TaxConfigurationModelStripe : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TaxConfigurationModelStripe(FrozenDictionary<string, JsonElement> rawData)
+    CustomerUpdateParamsTaxConfigurationStripe(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static TaxConfigurationModelStripe FromRawUnchecked(
+    public static CustomerUpdateParamsTaxConfigurationStripe FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1302,16 +1383,17 @@ public sealed record class TaxConfigurationModelStripe : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TaxConfigurationModelStripe(bool taxExempt)
+    public CustomerUpdateParamsTaxConfigurationStripe(bool taxExempt)
         : this()
     {
         this.TaxExempt = taxExempt;
     }
 }
 
-class TaxConfigurationModelStripeFromRaw : IFromRaw<TaxConfigurationModelStripe>
+class CustomerUpdateParamsTaxConfigurationStripeFromRaw
+    : IFromRaw<CustomerUpdateParamsTaxConfigurationStripe>
 {
-    public TaxConfigurationModelStripe FromRawUnchecked(
+    public CustomerUpdateParamsTaxConfigurationStripe FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TaxConfigurationModelStripe.FromRawUnchecked(rawData);
+    ) => CustomerUpdateParamsTaxConfigurationStripe.FromRawUnchecked(rawData);
 }

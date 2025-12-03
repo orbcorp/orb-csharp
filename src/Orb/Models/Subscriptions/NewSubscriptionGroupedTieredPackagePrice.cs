@@ -380,14 +380,13 @@ public sealed record class GroupedTieredPackageConfig : ModelBase
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier9> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier9>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -438,11 +437,11 @@ class GroupedTieredPackageConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier9,
-        global::Orb.Models.Subscriptions.Tier9FromRaw
+        global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier,
+        global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTierFromRaw
     >)
 )]
-public sealed record class Tier9 : ModelBase
+public sealed record class GroupedTieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -468,22 +467,22 @@ public sealed record class Tier9 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier9() { }
+    public GroupedTieredPackageConfigTier() { }
 
-    public Tier9(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier9(FrozenDictionary<string, JsonElement> rawData)
+    GroupedTieredPackageConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier9 FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -491,11 +490,12 @@ public sealed record class Tier9 : ModelBase
     }
 }
 
-class Tier9FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier9>
+class GroupedTieredPackageConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier9 FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier9.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Subscriptions.GroupedTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

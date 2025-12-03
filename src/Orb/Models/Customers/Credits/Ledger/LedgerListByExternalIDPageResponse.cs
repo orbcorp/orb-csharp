@@ -17,13 +17,14 @@ namespace Orb.Models.Customers.Credits.Ledger;
 )]
 public sealed record class LedgerListByExternalIDPageResponse : ModelBase
 {
-    public required IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.DataModel> Data
+    public required IReadOnlyList<LedgerListByExternalIDPageResponseData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                List<global::Orb.Models.Customers.Credits.Ledger.DataModel>
-            >(this.RawData, "data");
+            return ModelBase.GetNotNullClass<List<LedgerListByExternalIDPageResponseData>>(
+                this.RawData,
+                "data"
+            );
         }
         init { ModelBase.Set(this._rawData, "data", value); }
     }
@@ -83,8 +84,8 @@ class LedgerListByExternalIDPageResponseFromRaw : IFromRaw<LedgerListByExternalI
 /// The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
 /// credits within Orb.
 /// </summary>
-[JsonConverter(typeof(DataModelConverter))]
-public record class DataModel
+[JsonConverter(typeof(LedgerListByExternalIDPageResponseDataConverter))]
+public record class LedgerListByExternalIDPageResponseData
 {
     public object? Value { get; } = null;
 
@@ -303,49 +304,67 @@ public record class DataModel
         }
     }
 
-    public DataModel(IncrementLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        IncrementLedgerEntry value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(DecrementLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        DecrementLedgerEntry value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(ExpirationChangeLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        ExpirationChangeLedgerEntry value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(CreditBlockExpiryLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        CreditBlockExpiryLedgerEntry value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(VoidLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(VoidLedgerEntry value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(VoidInitiatedLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        VoidInitiatedLedgerEntry value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(AmendmentLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        AmendmentLedgerEntry value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DataModel(JsonElement json)
+    public LedgerListByExternalIDPageResponseData(JsonElement json)
     {
         this._json = json;
     }
@@ -432,7 +451,9 @@ public record class DataModel
                 amendmentLedgerEntry(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of DataModel");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of LedgerListByExternalIDPageResponseData"
+                );
         }
     }
 
@@ -455,35 +476,36 @@ public record class DataModel
             VoidLedgerEntry value => voidLedgerEntry(value),
             VoidInitiatedLedgerEntry value => voidInitiatedLedgerEntry(value),
             AmendmentLedgerEntry value => amendmentLedgerEntry(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of DataModel"),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerListByExternalIDPageResponseData"
+            ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+    public static implicit operator LedgerListByExternalIDPageResponseData(
         IncrementLedgerEntry value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+    public static implicit operator LedgerListByExternalIDPageResponseData(
         DecrementLedgerEntry value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+    public static implicit operator LedgerListByExternalIDPageResponseData(
         ExpirationChangeLedgerEntry value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+    public static implicit operator LedgerListByExternalIDPageResponseData(
         CreditBlockExpiryLedgerEntry value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
-        VoidLedgerEntry value
-    ) => new(value);
+    public static implicit operator LedgerListByExternalIDPageResponseData(VoidLedgerEntry value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+    public static implicit operator LedgerListByExternalIDPageResponseData(
         VoidInitiatedLedgerEntry value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Customers.Credits.Ledger.DataModel(
+    public static implicit operator LedgerListByExternalIDPageResponseData(
         AmendmentLedgerEntry value
     ) => new(value);
 
@@ -491,11 +513,13 @@ public record class DataModel
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of DataModel");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerListByExternalIDPageResponseData"
+            );
         }
     }
 
-    public virtual bool Equals(global::Orb.Models.Customers.Credits.Ledger.DataModel? other)
+    public virtual bool Equals(LedgerListByExternalIDPageResponseData? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -506,10 +530,10 @@ public record class DataModel
     }
 }
 
-sealed class DataModelConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.DataModel>
+sealed class LedgerListByExternalIDPageResponseDataConverter
+    : JsonConverter<LedgerListByExternalIDPageResponseData>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.DataModel? Read(
+    public override LedgerListByExternalIDPageResponseData? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -681,14 +705,14 @@ sealed class DataModelConverter
             }
             default:
             {
-                return new global::Orb.Models.Customers.Credits.Ledger.DataModel(json);
+                return new LedgerListByExternalIDPageResponseData(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.DataModel value,
+        LedgerListByExternalIDPageResponseData value,
         JsonSerializerOptions options
     )
     {

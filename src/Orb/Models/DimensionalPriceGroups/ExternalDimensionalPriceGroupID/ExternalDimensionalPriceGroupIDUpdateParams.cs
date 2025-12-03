@@ -30,7 +30,7 @@ public sealed record class ExternalDimensionalPriceGroupIDUpdateParams : ParamsB
     /// field to identify a dimensional price group by an existing identifier in
     /// your system.
     /// </summary>
-    public string? ExternalDimensionalPriceGroupID1
+    public string? ExternalDimensionalPriceGroupIDValue
     {
         get
         {

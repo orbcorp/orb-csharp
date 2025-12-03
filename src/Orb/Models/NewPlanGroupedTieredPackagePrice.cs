@@ -377,9 +377,14 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<Tier9> Tiers
+    public required IReadOnlyList<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier9>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -431,8 +436,14 @@ class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier9, Tier9FromRaw>))]
-public sealed record class Tier9 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier,
+        NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -458,31 +469,39 @@ public sealed record class Tier9 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier9() { }
+    public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier() { }
 
-    public Tier9(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier9(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier9 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier9FromRaw : IFromRaw<Tier9>
+class NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTierFromRaw
+    : IFromRaw<NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier>
 {
-    public Tier9 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier9.FromRawUnchecked(rawData);
+    public NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedTieredPackagePriceGroupedTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

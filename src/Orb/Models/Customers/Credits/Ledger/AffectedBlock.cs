@@ -27,13 +27,11 @@ public sealed record class AffectedBlock : ModelBase
         init { ModelBase.Set(this._rawData, "expiry_date", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.Filter1> Filters
+    public required IReadOnlyList<AffectedBlockFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                List<global::Orb.Models.Customers.Credits.Ledger.Filter1>
-            >(this.RawData, "filters");
+            return ModelBase.GetNotNullClass<List<AffectedBlockFilter>>(this.RawData, "filters");
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
@@ -82,24 +80,20 @@ class AffectedBlockFromRaw : IFromRaw<AffectedBlock>
         AffectedBlock.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(ModelConverter<
-        global::Orb.Models.Customers.Credits.Ledger.Filter1,
-        global::Orb.Models.Customers.Credits.Ledger.Filter1FromRaw
-    >)
-)]
-public sealed record class Filter1 : ModelBase
+[JsonConverter(typeof(ModelConverter<AffectedBlockFilter, AffectedBlockFilterFromRaw>))]
+public sealed record class AffectedBlockFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Field> Field
+    public required ApiEnum<string, AffectedBlockFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Field>
-            >(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, AffectedBlockFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -107,16 +101,14 @@ public sealed record class Filter1 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<
-        string,
-        global::Orb.Models.Customers.Credits.Ledger.Filter1Operator
-    > Operator
+    public required ApiEnum<string, AffectedBlockFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Filter1Operator>
-            >(this.RawData, "operator");
+            return ModelBase.GetNotNullClass<ApiEnum<string, AffectedBlockFilterOperator>>(
+                this.RawData,
+                "operator"
+            );
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -137,22 +129,22 @@ public sealed record class Filter1 : ModelBase
         _ = this.Values;
     }
 
-    public Filter1() { }
+    public AffectedBlockFilter() { }
 
-    public Filter1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AffectedBlockFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter1(FrozenDictionary<string, JsonElement> rawData)
+    AffectedBlockFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Customers.Credits.Ledger.Filter1 FromRawUnchecked(
+    public static AffectedBlockFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -160,18 +152,17 @@ public sealed record class Filter1 : ModelBase
     }
 }
 
-class Filter1FromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter1>
+class AffectedBlockFilterFromRaw : IFromRaw<AffectedBlockFilter>
 {
-    public global::Orb.Models.Customers.Credits.Ledger.Filter1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.Credits.Ledger.Filter1.FromRawUnchecked(rawData);
+    public AffectedBlockFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AffectedBlockFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.Filter1FieldConverter))]
-public enum Filter1Field
+[JsonConverter(typeof(AffectedBlockFilterFieldConverter))]
+public enum AffectedBlockFilterField
 {
     PriceID,
     ItemID,
@@ -180,10 +171,9 @@ public enum Filter1Field
     PricingUnitID,
 }
 
-sealed class Filter1FieldConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Filter1Field>
+sealed class AffectedBlockFilterFieldConverter : JsonConverter<AffectedBlockFilterField>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Filter1Field Read(
+    public override AffectedBlockFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -191,24 +181,18 @@ sealed class Filter1FieldConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceID,
-            "item_id" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.ItemID,
-            "price_type" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceType,
-            "currency" => global::Orb.Models.Customers.Credits.Ledger.Filter1Field.Currency,
-            "pricing_unit_id" => global::Orb
-                .Models
-                .Customers
-                .Credits
-                .Ledger
-                .Filter1Field
-                .PricingUnitID,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Filter1Field)(-1),
+            "price_id" => AffectedBlockFilterField.PriceID,
+            "item_id" => AffectedBlockFilterField.ItemID,
+            "price_type" => AffectedBlockFilterField.PriceType,
+            "currency" => AffectedBlockFilterField.Currency,
+            "pricing_unit_id" => AffectedBlockFilterField.PricingUnitID,
+            _ => (AffectedBlockFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Filter1Field value,
+        AffectedBlockFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -216,12 +200,11 @@ sealed class Filter1FieldConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceID => "price_id",
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.ItemID => "item_id",
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PriceType => "price_type",
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.Currency => "currency",
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Field.PricingUnitID =>
-                    "pricing_unit_id",
+                AffectedBlockFilterField.PriceID => "price_id",
+                AffectedBlockFilterField.ItemID => "item_id",
+                AffectedBlockFilterField.PriceType => "price_type",
+                AffectedBlockFilterField.Currency => "currency",
+                AffectedBlockFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -234,17 +217,16 @@ sealed class Filter1FieldConverter
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.Filter1OperatorConverter))]
-public enum Filter1Operator
+[JsonConverter(typeof(AffectedBlockFilterOperatorConverter))]
+public enum AffectedBlockFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter1OperatorConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Filter1Operator>
+sealed class AffectedBlockFilterOperatorConverter : JsonConverter<AffectedBlockFilterOperator>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Filter1Operator Read(
+    public override AffectedBlockFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -252,15 +234,15 @@ sealed class Filter1OperatorConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Filter1Operator)(-1),
+            "includes" => AffectedBlockFilterOperator.Includes,
+            "excludes" => AffectedBlockFilterOperator.Excludes,
+            _ => (AffectedBlockFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Filter1Operator value,
+        AffectedBlockFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -268,8 +250,8 @@ sealed class Filter1OperatorConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Includes => "includes",
-                global::Orb.Models.Customers.Credits.Ledger.Filter1Operator.Excludes => "excludes",
+                AffectedBlockFilterOperator.Includes => "includes",
+                AffectedBlockFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

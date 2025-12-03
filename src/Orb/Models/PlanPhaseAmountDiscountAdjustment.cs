@@ -60,9 +60,15 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required IReadOnlyList<Filter19> Filters
+    public required IReadOnlyList<PlanPhaseAmountDiscountAdjustmentFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter19>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<PlanPhaseAmountDiscountAdjustmentFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -197,17 +203,24 @@ sealed class PlanPhaseAmountDiscountAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter19, Filter19FromRaw>))]
-public sealed record class Filter19 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PlanPhaseAmountDiscountAdjustmentFilter,
+        PlanPhaseAmountDiscountAdjustmentFilterFromRaw
+    >)
+)]
+public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter19Field> Field
+    public required ApiEnum<string, PlanPhaseAmountDiscountAdjustmentFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter19Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PlanPhaseAmountDiscountAdjustmentFilterField>
+            >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -215,14 +228,13 @@ public sealed record class Filter19 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter19Operator> Operator
+    public required ApiEnum<string, PlanPhaseAmountDiscountAdjustmentFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter19Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, PlanPhaseAmountDiscountAdjustmentFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -243,38 +255,42 @@ public sealed record class Filter19 : ModelBase
         _ = this.Values;
     }
 
-    public Filter19() { }
+    public PlanPhaseAmountDiscountAdjustmentFilter() { }
 
-    public Filter19(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PlanPhaseAmountDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter19(FrozenDictionary<string, JsonElement> rawData)
+    PlanPhaseAmountDiscountAdjustmentFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter19 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static PlanPhaseAmountDiscountAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter19FromRaw : IFromRaw<Filter19>
+class PlanPhaseAmountDiscountAdjustmentFilterFromRaw
+    : IFromRaw<PlanPhaseAmountDiscountAdjustmentFilter>
 {
-    public Filter19 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter19.FromRawUnchecked(rawData);
+    public PlanPhaseAmountDiscountAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PlanPhaseAmountDiscountAdjustmentFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter19FieldConverter))]
-public enum Filter19Field
+[JsonConverter(typeof(PlanPhaseAmountDiscountAdjustmentFilterFieldConverter))]
+public enum PlanPhaseAmountDiscountAdjustmentFilterField
 {
     PriceID,
     ItemID,
@@ -283,9 +299,10 @@ public enum Filter19Field
     PricingUnitID,
 }
 
-sealed class Filter19FieldConverter : JsonConverter<Filter19Field>
+sealed class PlanPhaseAmountDiscountAdjustmentFilterFieldConverter
+    : JsonConverter<PlanPhaseAmountDiscountAdjustmentFilterField>
 {
-    public override Filter19Field Read(
+    public override PlanPhaseAmountDiscountAdjustmentFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -293,18 +310,18 @@ sealed class Filter19FieldConverter : JsonConverter<Filter19Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter19Field.PriceID,
-            "item_id" => Filter19Field.ItemID,
-            "price_type" => Filter19Field.PriceType,
-            "currency" => Filter19Field.Currency,
-            "pricing_unit_id" => Filter19Field.PricingUnitID,
-            _ => (Filter19Field)(-1),
+            "price_id" => PlanPhaseAmountDiscountAdjustmentFilterField.PriceID,
+            "item_id" => PlanPhaseAmountDiscountAdjustmentFilterField.ItemID,
+            "price_type" => PlanPhaseAmountDiscountAdjustmentFilterField.PriceType,
+            "currency" => PlanPhaseAmountDiscountAdjustmentFilterField.Currency,
+            "pricing_unit_id" => PlanPhaseAmountDiscountAdjustmentFilterField.PricingUnitID,
+            _ => (PlanPhaseAmountDiscountAdjustmentFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter19Field value,
+        PlanPhaseAmountDiscountAdjustmentFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -312,11 +329,11 @@ sealed class Filter19FieldConverter : JsonConverter<Filter19Field>
             writer,
             value switch
             {
-                Filter19Field.PriceID => "price_id",
-                Filter19Field.ItemID => "item_id",
-                Filter19Field.PriceType => "price_type",
-                Filter19Field.Currency => "currency",
-                Filter19Field.PricingUnitID => "pricing_unit_id",
+                PlanPhaseAmountDiscountAdjustmentFilterField.PriceID => "price_id",
+                PlanPhaseAmountDiscountAdjustmentFilterField.ItemID => "item_id",
+                PlanPhaseAmountDiscountAdjustmentFilterField.PriceType => "price_type",
+                PlanPhaseAmountDiscountAdjustmentFilterField.Currency => "currency",
+                PlanPhaseAmountDiscountAdjustmentFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -329,16 +346,17 @@ sealed class Filter19FieldConverter : JsonConverter<Filter19Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter19OperatorConverter))]
-public enum Filter19Operator
+[JsonConverter(typeof(PlanPhaseAmountDiscountAdjustmentFilterOperatorConverter))]
+public enum PlanPhaseAmountDiscountAdjustmentFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter19OperatorConverter : JsonConverter<Filter19Operator>
+sealed class PlanPhaseAmountDiscountAdjustmentFilterOperatorConverter
+    : JsonConverter<PlanPhaseAmountDiscountAdjustmentFilterOperator>
 {
-    public override Filter19Operator Read(
+    public override PlanPhaseAmountDiscountAdjustmentFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -346,15 +364,15 @@ sealed class Filter19OperatorConverter : JsonConverter<Filter19Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter19Operator.Includes,
-            "excludes" => Filter19Operator.Excludes,
-            _ => (Filter19Operator)(-1),
+            "includes" => PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes,
+            "excludes" => PlanPhaseAmountDiscountAdjustmentFilterOperator.Excludes,
+            _ => (PlanPhaseAmountDiscountAdjustmentFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter19Operator value,
+        PlanPhaseAmountDiscountAdjustmentFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -362,8 +380,8 @@ sealed class Filter19OperatorConverter : JsonConverter<Filter19Operator>
             writer,
             value switch
             {
-                Filter19Operator.Includes => "includes",
-                Filter19Operator.Excludes => "excludes",
+                PlanPhaseAmountDiscountAdjustmentFilterOperator.Includes => "includes",
+                PlanPhaseAmountDiscountAdjustmentFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,9 +11,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -21,19 +21,20 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -49,40 +50,45 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionGroupedAllocationPriceCadence> expectedCadence =
-            NewSubscriptionGroupedAllocationPriceCadence.Annual;
-        GroupedAllocationConfig expectedGroupedAllocationConfig = new()
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedAllocationPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual;
+        Subscriptions::GroupedAllocationConfig expectedGroupedAllocationConfig = new()
         {
             Allocation = "allocation",
             GroupingKey = "x",
             OverageUnitRate = "overage_unit_rate",
         };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedAllocationPriceModelType> expectedModelType =
-            NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedAllocationPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedAllocationPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -91,10 +97,10 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -128,9 +134,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -138,19 +144,20 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -166,14 +173,15 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionGroupedAllocationPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedAllocationPrice>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -181,9 +189,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -191,19 +199,20 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -219,44 +228,50 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionGroupedAllocationPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedAllocationPrice>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionGroupedAllocationPriceCadence> expectedCadence =
-            NewSubscriptionGroupedAllocationPriceCadence.Annual;
-        GroupedAllocationConfig expectedGroupedAllocationConfig = new()
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedAllocationPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual;
+        Subscriptions::GroupedAllocationConfig expectedGroupedAllocationConfig = new()
         {
             Allocation = "allocation",
             GroupingKey = "x",
             OverageUnitRate = "overage_unit_rate",
         };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedAllocationPriceModelType> expectedModelType =
-            NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedAllocationPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedAllocationPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -265,10 +280,10 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -305,9 +320,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -315,19 +330,20 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -343,7 +359,7 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -355,9 +371,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -365,7 +381,8 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
         };
 
@@ -400,9 +417,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -410,7 +427,8 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
         };
 
@@ -420,9 +438,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -430,7 +448,8 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -479,9 +498,9 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionGroupedAllocationPrice
+        var model = new Subscriptions::NewSubscriptionGroupedAllocationPrice
         {
-            Cadence = NewSubscriptionGroupedAllocationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedAllocationPriceCadence.Annual,
             GroupedAllocationConfig = new()
             {
                 Allocation = "allocation",
@@ -489,7 +508,8 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
                 OverageUnitRate = "overage_unit_rate",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedAllocationPriceModelType.GroupedAllocation,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -516,7 +536,7 @@ public class GroupedAllocationConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new GroupedAllocationConfig
+        var model = new Subscriptions::GroupedAllocationConfig
         {
             Allocation = "allocation",
             GroupingKey = "x",
@@ -535,7 +555,7 @@ public class GroupedAllocationConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new GroupedAllocationConfig
+        var model = new Subscriptions::GroupedAllocationConfig
         {
             Allocation = "allocation",
             GroupingKey = "x",
@@ -543,7 +563,7 @@ public class GroupedAllocationConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedAllocationConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -551,7 +571,7 @@ public class GroupedAllocationConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new GroupedAllocationConfig
+        var model = new Subscriptions::GroupedAllocationConfig
         {
             Allocation = "allocation",
             GroupingKey = "x",
@@ -559,7 +579,7 @@ public class GroupedAllocationConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedAllocationConfig>(json);
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -574,7 +594,7 @@ public class GroupedAllocationConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new GroupedAllocationConfig
+        var model = new Subscriptions::GroupedAllocationConfig
         {
             Allocation = "allocation",
             GroupingKey = "x",

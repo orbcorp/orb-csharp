@@ -17,9 +17,15 @@ namespace Orb.Models.Customers.Credits;
 )]
 public sealed record class CreditListByExternalIDPageResponse : ModelBase
 {
-    public required IReadOnlyList<DataModel> Data
+    public required IReadOnlyList<CreditListByExternalIDPageResponseData> Data
     {
-        get { return ModelBase.GetNotNullClass<List<DataModel>>(this.RawData, "data"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<CreditListByExternalIDPageResponseData>>(
+                this.RawData,
+                "data"
+            );
+        }
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
@@ -74,8 +80,13 @@ class CreditListByExternalIDPageResponseFromRaw : IFromRaw<CreditListByExternalI
     ) => CreditListByExternalIDPageResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<DataModel, DataModelFromRaw>))]
-public sealed record class DataModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        CreditListByExternalIDPageResponseData,
+        CreditListByExternalIDPageResponseDataFromRaw
+    >)
+)]
+public sealed record class CreditListByExternalIDPageResponseData : ModelBase
 {
     public required string ID
     {
@@ -110,13 +121,14 @@ public sealed record class DataModel : ModelBase
         init { ModelBase.Set(this._rawData, "expiry_date", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Customers.Credits.FilterModel> Filters
+    public required IReadOnlyList<CreditListByExternalIDPageResponseDataFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                List<global::Orb.Models.Customers.Credits.FilterModel>
-            >(this.RawData, "filters");
+            return ModelBase.GetNotNullClass<List<CreditListByExternalIDPageResponseDataFilter>>(
+                this.RawData,
+                "filters"
+            );
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
@@ -133,14 +145,13 @@ public sealed record class DataModel : ModelBase
         init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
-    public required ApiEnum<string, DataModelStatus> Status
+    public required ApiEnum<string, CreditListByExternalIDPageResponseDataStatus> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DataModelStatus>>(
-                this.RawData,
-                "status"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, CreditListByExternalIDPageResponseDataStatus>
+            >(this.RawData, "status");
         }
         init { ModelBase.Set(this._rawData, "status", value); }
     }
@@ -160,31 +171,35 @@ public sealed record class DataModel : ModelBase
         this.Status.Validate();
     }
 
-    public DataModel() { }
+    public CreditListByExternalIDPageResponseData() { }
 
-    public DataModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CreditListByExternalIDPageResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DataModel(FrozenDictionary<string, JsonElement> rawData)
+    CreditListByExternalIDPageResponseData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static CreditListByExternalIDPageResponseData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DataModelFromRaw : IFromRaw<DataModel>
+class CreditListByExternalIDPageResponseDataFromRaw
+    : IFromRaw<CreditListByExternalIDPageResponseData>
 {
-    public DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DataModel.FromRawUnchecked(rawData);
+    public CreditListByExternalIDPageResponseData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => CreditListByExternalIDPageResponseData.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -192,21 +207,21 @@ class DataModelFromRaw : IFromRaw<DataModel>
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Customers.Credits.FilterModel,
-        global::Orb.Models.Customers.Credits.FilterModelFromRaw
+        CreditListByExternalIDPageResponseDataFilter,
+        CreditListByExternalIDPageResponseDataFilterFromRaw
     >)
 )]
-public sealed record class FilterModel : ModelBase
+public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelField> Field
+    public required ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField> Field
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelField>
+                ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField>
             >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
@@ -215,15 +230,12 @@ public sealed record class FilterModel : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<
-        string,
-        global::Orb.Models.Customers.Credits.FilterModelOperator
-    > Operator
+    public required ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator> Operator
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.FilterModelOperator>
+                ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator>
             >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
@@ -245,22 +257,24 @@ public sealed record class FilterModel : ModelBase
         _ = this.Values;
     }
 
-    public FilterModel() { }
+    public CreditListByExternalIDPageResponseDataFilter() { }
 
-    public FilterModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CreditListByExternalIDPageResponseDataFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FilterModel(FrozenDictionary<string, JsonElement> rawData)
+    CreditListByExternalIDPageResponseDataFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Customers.Credits.FilterModel FromRawUnchecked(
+    public static CreditListByExternalIDPageResponseDataFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -268,26 +282,27 @@ public sealed record class FilterModel : ModelBase
     }
 }
 
-class FilterModelFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.FilterModel>
+class CreditListByExternalIDPageResponseDataFilterFromRaw
+    : IFromRaw<CreditListByExternalIDPageResponseDataFilter>
 {
-    public global::Orb.Models.Customers.Credits.FilterModel FromRawUnchecked(
+    public CreditListByExternalIDPageResponseDataFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.Credits.FilterModel.FromRawUnchecked(rawData);
+    ) => CreditListByExternalIDPageResponseDataFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.FilterModelFieldConverter))]
-public enum FilterModelField
+[JsonConverter(typeof(CreditListByExternalIDPageResponseDataFilterFieldConverter))]
+public enum CreditListByExternalIDPageResponseDataFilterField
 {
     ItemID,
 }
 
-sealed class FilterModelFieldConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.FilterModelField>
+sealed class CreditListByExternalIDPageResponseDataFilterFieldConverter
+    : JsonConverter<CreditListByExternalIDPageResponseDataFilterField>
 {
-    public override global::Orb.Models.Customers.Credits.FilterModelField Read(
+    public override CreditListByExternalIDPageResponseDataFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -295,14 +310,14 @@ sealed class FilterModelFieldConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => global::Orb.Models.Customers.Credits.FilterModelField.ItemID,
-            _ => (global::Orb.Models.Customers.Credits.FilterModelField)(-1),
+            "item_id" => CreditListByExternalIDPageResponseDataFilterField.ItemID,
+            _ => (CreditListByExternalIDPageResponseDataFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.FilterModelField value,
+        CreditListByExternalIDPageResponseDataFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -310,7 +325,7 @@ sealed class FilterModelFieldConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.FilterModelField.ItemID => "item_id",
+                CreditListByExternalIDPageResponseDataFilterField.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -323,17 +338,17 @@ sealed class FilterModelFieldConverter
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.FilterModelOperatorConverter))]
-public enum FilterModelOperator
+[JsonConverter(typeof(CreditListByExternalIDPageResponseDataFilterOperatorConverter))]
+public enum CreditListByExternalIDPageResponseDataFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class FilterModelOperatorConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.FilterModelOperator>
+sealed class CreditListByExternalIDPageResponseDataFilterOperatorConverter
+    : JsonConverter<CreditListByExternalIDPageResponseDataFilterOperator>
 {
-    public override global::Orb.Models.Customers.Credits.FilterModelOperator Read(
+    public override CreditListByExternalIDPageResponseDataFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -341,15 +356,15 @@ sealed class FilterModelOperatorConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.FilterModelOperator.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.FilterModelOperator.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.FilterModelOperator)(-1),
+            "includes" => CreditListByExternalIDPageResponseDataFilterOperator.Includes,
+            "excludes" => CreditListByExternalIDPageResponseDataFilterOperator.Excludes,
+            _ => (CreditListByExternalIDPageResponseDataFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.FilterModelOperator value,
+        CreditListByExternalIDPageResponseDataFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -357,8 +372,8 @@ sealed class FilterModelOperatorConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.FilterModelOperator.Includes => "includes",
-                global::Orb.Models.Customers.Credits.FilterModelOperator.Excludes => "excludes",
+                CreditListByExternalIDPageResponseDataFilterOperator.Includes => "includes",
+                CreditListByExternalIDPageResponseDataFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -368,16 +383,17 @@ sealed class FilterModelOperatorConverter
     }
 }
 
-[JsonConverter(typeof(DataModelStatusConverter))]
-public enum DataModelStatus
+[JsonConverter(typeof(CreditListByExternalIDPageResponseDataStatusConverter))]
+public enum CreditListByExternalIDPageResponseDataStatus
 {
     Active,
     PendingPayment,
 }
 
-sealed class DataModelStatusConverter : JsonConverter<DataModelStatus>
+sealed class CreditListByExternalIDPageResponseDataStatusConverter
+    : JsonConverter<CreditListByExternalIDPageResponseDataStatus>
 {
-    public override DataModelStatus Read(
+    public override CreditListByExternalIDPageResponseDataStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -385,15 +401,15 @@ sealed class DataModelStatusConverter : JsonConverter<DataModelStatus>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => DataModelStatus.Active,
-            "pending_payment" => DataModelStatus.PendingPayment,
-            _ => (DataModelStatus)(-1),
+            "active" => CreditListByExternalIDPageResponseDataStatus.Active,
+            "pending_payment" => CreditListByExternalIDPageResponseDataStatus.PendingPayment,
+            _ => (CreditListByExternalIDPageResponseDataStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DataModelStatus value,
+        CreditListByExternalIDPageResponseDataStatus value,
         JsonSerializerOptions options
     )
     {
@@ -401,8 +417,8 @@ sealed class DataModelStatusConverter : JsonConverter<DataModelStatus>
             writer,
             value switch
             {
-                DataModelStatus.Active => "active",
-                DataModelStatus.PendingPayment => "pending_payment",
+                CreditListByExternalIDPageResponseDataStatus.Active => "active",
+                CreditListByExternalIDPageResponseDataStatus.PendingPayment => "pending_payment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

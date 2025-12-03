@@ -17,8 +17,8 @@ public class MinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -26,12 +26,12 @@ public class MinimumTest : TestBase
         };
 
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter4> expectedFilters =
+        List<MinimumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter4Field.PriceID,
-                Operator = Filter4Operator.Includes,
+                Field = MinimumFilterField.PriceID,
+                Operator = MinimumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -60,8 +60,8 @@ public class MinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -84,8 +84,8 @@ public class MinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -97,12 +97,12 @@ public class MinimumTest : TestBase
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter4> expectedFilters =
+        List<MinimumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter4Field.PriceID,
-                Operator = Filter4Operator.Includes,
+                Field = MinimumFilterField.PriceID,
+                Operator = MinimumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -131,8 +131,8 @@ public class MinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter4Field.PriceID,
-                    Operator = Filter4Operator.Includes,
+                    Field = MinimumFilterField.PriceID,
+                    Operator = MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -143,20 +143,20 @@ public class MinimumTest : TestBase
     }
 }
 
-public class Filter4Test : TestBase
+public class MinimumFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter4
+        var model = new MinimumFilter
         {
-            Field = Filter4Field.PriceID,
-            Operator = Filter4Operator.Includes,
+            Field = MinimumFilterField.PriceID,
+            Operator = MinimumFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter4Field> expectedField = Filter4Field.PriceID;
-        ApiEnum<string, Filter4Operator> expectedOperator = Filter4Operator.Includes;
+        ApiEnum<string, MinimumFilterField> expectedField = MinimumFilterField.PriceID;
+        ApiEnum<string, MinimumFilterOperator> expectedOperator = MinimumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -171,15 +171,15 @@ public class Filter4Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter4
+        var model = new MinimumFilter
         {
-            Field = Filter4Field.PriceID,
-            Operator = Filter4Operator.Includes,
+            Field = MinimumFilterField.PriceID,
+            Operator = MinimumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter4>(json);
+        var deserialized = JsonSerializer.Deserialize<MinimumFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -187,19 +187,19 @@ public class Filter4Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter4
+        var model = new MinimumFilter
         {
-            Field = Filter4Field.PriceID,
-            Operator = Filter4Operator.Includes,
+            Field = MinimumFilterField.PriceID,
+            Operator = MinimumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter4>(json);
+        var deserialized = JsonSerializer.Deserialize<MinimumFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter4Field> expectedField = Filter4Field.PriceID;
-        ApiEnum<string, Filter4Operator> expectedOperator = Filter4Operator.Includes;
+        ApiEnum<string, MinimumFilterField> expectedField = MinimumFilterField.PriceID;
+        ApiEnum<string, MinimumFilterOperator> expectedOperator = MinimumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -214,10 +214,10 @@ public class Filter4Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter4
+        var model = new MinimumFilter
         {
-            Field = Filter4Field.PriceID,
-            Operator = Filter4Operator.Includes,
+            Field = MinimumFilterField.PriceID,
+            Operator = MinimumFilterOperator.Includes,
             Values = ["string"],
         };
 

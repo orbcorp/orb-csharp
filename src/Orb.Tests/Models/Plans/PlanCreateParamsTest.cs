@@ -28,8 +28,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -37,7 +37,7 @@ public class PriceTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             PlanPhaseOrder = 0,
-            Price1 = new Models::NewPlanUnitPrice()
+            PriceValue = new Models::NewPlanUnitPrice()
             {
                 Cadence = Models::NewPlanUnitPriceCadence.Annual,
                 ItemID = "item_id",
@@ -93,8 +93,8 @@ public class PriceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = Models::NewAllocationPriceFilterField.ItemID,
+                    Operator = Models::NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -102,7 +102,7 @@ public class PriceTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         long expectedPlanPhaseOrder = 0;
-        PricePrice expectedPrice1 = new Models::NewPlanUnitPrice()
+        PricePrice expectedPriceValue = new Models::NewPlanUnitPrice()
         {
             Cadence = Models::NewPlanUnitPriceCadence.Annual,
             ItemID = "item_id",
@@ -143,7 +143,7 @@ public class PriceTest : TestBase
 
         Assert.Equal(expectedAllocationPrice, model.AllocationPrice);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
-        Assert.Equal(expectedPrice1, model.Price1);
+        Assert.Equal(expectedPriceValue, model.PriceValue);
     }
 
     [Fact]
@@ -166,8 +166,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -175,7 +175,7 @@ public class PriceTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             PlanPhaseOrder = 0,
-            Price1 = new Models::NewPlanUnitPrice()
+            PriceValue = new Models::NewPlanUnitPrice()
             {
                 Cadence = Models::NewPlanUnitPriceCadence.Annual,
                 ItemID = "item_id",
@@ -242,8 +242,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -251,7 +251,7 @@ public class PriceTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             PlanPhaseOrder = 0,
-            Price1 = new Models::NewPlanUnitPrice()
+            PriceValue = new Models::NewPlanUnitPrice()
             {
                 Cadence = Models::NewPlanUnitPriceCadence.Annual,
                 ItemID = "item_id",
@@ -311,8 +311,8 @@ public class PriceTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter11Field.ItemID,
-                    Operator = Models::Filter11Operator.Includes,
+                    Field = Models::NewAllocationPriceFilterField.ItemID,
+                    Operator = Models::NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -320,7 +320,7 @@ public class PriceTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
         long expectedPlanPhaseOrder = 0;
-        PricePrice expectedPrice1 = new Models::NewPlanUnitPrice()
+        PricePrice expectedPriceValue = new Models::NewPlanUnitPrice()
         {
             Cadence = Models::NewPlanUnitPriceCadence.Annual,
             ItemID = "item_id",
@@ -361,7 +361,7 @@ public class PriceTest : TestBase
 
         Assert.Equal(expectedAllocationPrice, deserialized.AllocationPrice);
         Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
-        Assert.Equal(expectedPrice1, deserialized.Price1);
+        Assert.Equal(expectedPriceValue, deserialized.PriceValue);
     }
 
     [Fact]
@@ -384,8 +384,8 @@ public class PriceTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter11Field.ItemID,
-                        Operator = Models::Filter11Operator.Includes,
+                        Field = Models::NewAllocationPriceFilterField.ItemID,
+                        Operator = Models::NewAllocationPriceFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -393,7 +393,7 @@ public class PriceTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             },
             PlanPhaseOrder = 0,
-            Price1 = new Models::NewPlanUnitPrice()
+            PriceValue = new Models::NewPlanUnitPrice()
             {
                 Cadence = Models::NewPlanUnitPriceCadence.Annual,
                 ItemID = "item_id",
@@ -446,7 +446,7 @@ public class PriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("allocation_price"));
         Assert.Null(model.PlanPhaseOrder);
         Assert.False(model.RawData.ContainsKey("plan_phase_order"));
-        Assert.Null(model.Price1);
+        Assert.Null(model.PriceValue);
         Assert.False(model.RawData.ContainsKey("price"));
     }
 
@@ -465,14 +465,14 @@ public class PriceTest : TestBase
         {
             AllocationPrice = null,
             PlanPhaseOrder = null,
-            Price1 = null,
+            PriceValue = null,
         };
 
         Assert.Null(model.AllocationPrice);
         Assert.True(model.RawData.ContainsKey("allocation_price"));
         Assert.Null(model.PlanPhaseOrder);
         Assert.True(model.RawData.ContainsKey("plan_phase_order"));
-        Assert.Null(model.Price1);
+        Assert.Null(model.PriceValue);
         Assert.True(model.RawData.ContainsKey("price"));
     }
 
@@ -483,7 +483,7 @@ public class PriceTest : TestBase
         {
             AllocationPrice = null,
             PlanPhaseOrder = null,
-            Price1 = null,
+            PriceValue = null,
         };
 
         model.Validate();
@@ -1746,7 +1746,7 @@ public class TieredWithProrationConfigTest : TestBase
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        List<TierModel> expectedTiers =
+        List<TieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -1784,7 +1784,7 @@ public class TieredWithProrationConfigTest : TestBase
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<TierModel> expectedTiers =
+        List<TieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -1808,12 +1808,12 @@ public class TieredWithProrationConfigTest : TestBase
     }
 }
 
-public class TierModelTest : TestBase
+public class TieredWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
@@ -1829,14 +1829,14 @@ public class TierModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1844,14 +1844,14 @@ public class TierModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -1864,7 +1864,7 @@ public class TierModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TierModel
+        var model = new TieredWithProrationConfigTier
         {
             TierLowerBound = "tier_lower_bound",
             UnitAmount = "unit_amount",
@@ -4181,7 +4181,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4193,8 +4193,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4204,7 +4204,7 @@ public class AdjustmentTest : TestBase
             PlanPhaseOrder = 0,
         };
 
-        AdjustmentAdjustment expectedAdjustment1 = new Models::NewPercentageDiscount()
+        AdjustmentAdjustment expectedAdjustmentValue = new Models::NewPercentageDiscount()
         {
             AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
@@ -4216,8 +4216,8 @@ public class AdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
+                    Field = Models::NewPercentageDiscountFilterField.PriceID,
+                    Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4226,7 +4226,7 @@ public class AdjustmentTest : TestBase
         };
         long expectedPlanPhaseOrder = 0;
 
-        Assert.Equal(expectedAdjustment1, model.Adjustment1);
+        Assert.Equal(expectedAdjustmentValue, model.AdjustmentValue);
         Assert.Equal(expectedPlanPhaseOrder, model.PlanPhaseOrder);
     }
 
@@ -4235,7 +4235,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4247,8 +4247,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4269,7 +4269,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4281,8 +4281,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4296,7 +4296,7 @@ public class AdjustmentTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
         Assert.NotNull(deserialized);
 
-        AdjustmentAdjustment expectedAdjustment1 = new Models::NewPercentageDiscount()
+        AdjustmentAdjustment expectedAdjustmentValue = new Models::NewPercentageDiscount()
         {
             AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
@@ -4308,8 +4308,8 @@ public class AdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter15Field.PriceID,
-                    Operator = Models::Filter15Operator.Includes,
+                    Field = Models::NewPercentageDiscountFilterField.PriceID,
+                    Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -4318,7 +4318,7 @@ public class AdjustmentTest : TestBase
         };
         long expectedPlanPhaseOrder = 0;
 
-        Assert.Equal(expectedAdjustment1, deserialized.Adjustment1);
+        Assert.Equal(expectedAdjustmentValue, deserialized.AdjustmentValue);
         Assert.Equal(expectedPlanPhaseOrder, deserialized.PlanPhaseOrder);
     }
 
@@ -4327,7 +4327,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4339,8 +4339,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4358,7 +4358,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4370,8 +4370,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4389,7 +4389,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4401,8 +4401,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4419,7 +4419,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4431,8 +4431,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -4452,7 +4452,7 @@ public class AdjustmentTest : TestBase
     {
         var model = new Adjustment
         {
-            Adjustment1 = new Models::NewPercentageDiscount()
+            AdjustmentValue = new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -4464,8 +4464,8 @@ public class AdjustmentTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter15Field.PriceID,
-                        Operator = Models::Filter15Operator.Includes,
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],

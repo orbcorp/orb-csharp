@@ -681,7 +681,7 @@ public class ScalableMatrixWithTieredPricingConfigTest : TestBase
                 SecondDimensionValue = "second_dimension_value",
             },
         ];
-        List<Tier3> expectedTiers =
+        List<ScalableMatrixWithTieredPricingConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -768,7 +768,7 @@ public class ScalableMatrixWithTieredPricingConfigTest : TestBase
                 SecondDimensionValue = "second_dimension_value",
             },
         ];
-        List<Tier3> expectedTiers =
+        List<ScalableMatrixWithTieredPricingConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -1050,12 +1050,16 @@ public class MatrixScalingFactorTest : TestBase
     }
 }
 
-public class Tier3Test : TestBase
+public class ScalableMatrixWithTieredPricingConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier3 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -1067,10 +1071,16 @@ public class Tier3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier3 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier3>(json);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConfigTier>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1078,10 +1088,16 @@ public class Tier3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier3 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier3>(json);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConfigTier>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -1094,7 +1110,11 @@ public class Tier3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier3 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new ScalableMatrixWithTieredPricingConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

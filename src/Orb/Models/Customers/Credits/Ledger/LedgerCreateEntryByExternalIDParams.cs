@@ -104,9 +104,15 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
 
     public string? ExternalCustomerID { get; init; }
 
-    public required BodyModel Body
+    public required LedgerCreateEntryByExternalIDParamsBody Body
     {
-        get { return ModelBase.GetNotNullClass<BodyModel>(this.RawBodyData, "body"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<LedgerCreateEntryByExternalIDParamsBody>(
+                this.RawBodyData,
+                "body"
+            );
+        }
         init { ModelBase.Set(this._rawBodyData, "body", value); }
     }
 
@@ -179,8 +185,8 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(BodyModelConverter))]
-public record class BodyModel
+[JsonConverter(typeof(LedgerCreateEntryByExternalIDParamsBodyConverter))]
+public record class LedgerCreateEntryByExternalIDParamsBody
 {
     public object? Value { get; } = null;
 
@@ -275,139 +281,182 @@ public record class BodyModel
         }
     }
 
-    public BodyModel(BodyModelIncrement value, JsonElement? json = null)
+    public LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyIncrement value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public BodyModel(BodyModelDecrement value, JsonElement? json = null)
+    public LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyDecrement value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public BodyModel(BodyModelExpirationChange value, JsonElement? json = null)
+    public LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyExpirationChange value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public BodyModel(BodyModelVoid value, JsonElement? json = null)
+    public LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyVoid value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public BodyModel(BodyModelAmendment value, JsonElement? json = null)
+    public LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyAmendment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public BodyModel(JsonElement json)
+    public LedgerCreateEntryByExternalIDParamsBody(JsonElement json)
     {
         this._json = json;
     }
 
-    public bool TryPickIncrement([NotNullWhen(true)] out BodyModelIncrement? value)
+    public bool TryPickIncrement(
+        [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyIncrement? value
+    )
     {
-        value = this.Value as BodyModelIncrement;
+        value = this.Value as LedgerCreateEntryByExternalIDParamsBodyIncrement;
         return value != null;
     }
 
-    public bool TryPickDecrement([NotNullWhen(true)] out BodyModelDecrement? value)
+    public bool TryPickDecrement(
+        [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyDecrement? value
+    )
     {
-        value = this.Value as BodyModelDecrement;
+        value = this.Value as LedgerCreateEntryByExternalIDParamsBodyDecrement;
         return value != null;
     }
 
-    public bool TryPickExpirationChange([NotNullWhen(true)] out BodyModelExpirationChange? value)
+    public bool TryPickExpirationChange(
+        [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyExpirationChange? value
+    )
     {
-        value = this.Value as BodyModelExpirationChange;
+        value = this.Value as LedgerCreateEntryByExternalIDParamsBodyExpirationChange;
         return value != null;
     }
 
-    public bool TryPickVoid([NotNullWhen(true)] out BodyModelVoid? value)
+    public bool TryPickVoid(
+        [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyVoid? value
+    )
     {
-        value = this.Value as BodyModelVoid;
+        value = this.Value as LedgerCreateEntryByExternalIDParamsBodyVoid;
         return value != null;
     }
 
-    public bool TryPickAmendment([NotNullWhen(true)] out BodyModelAmendment? value)
+    public bool TryPickAmendment(
+        [NotNullWhen(true)] out LedgerCreateEntryByExternalIDParamsBodyAmendment? value
+    )
     {
-        value = this.Value as BodyModelAmendment;
+        value = this.Value as LedgerCreateEntryByExternalIDParamsBodyAmendment;
         return value != null;
     }
 
     public void Switch(
-        System::Action<BodyModelIncrement> increment,
-        System::Action<BodyModelDecrement> decrement,
-        System::Action<BodyModelExpirationChange> expirationChange,
-        System::Action<BodyModelVoid> void1,
-        System::Action<BodyModelAmendment> amendment
+        System::Action<LedgerCreateEntryByExternalIDParamsBodyIncrement> increment,
+        System::Action<LedgerCreateEntryByExternalIDParamsBodyDecrement> decrement,
+        System::Action<LedgerCreateEntryByExternalIDParamsBodyExpirationChange> expirationChange,
+        System::Action<LedgerCreateEntryByExternalIDParamsBodyVoid> void1,
+        System::Action<LedgerCreateEntryByExternalIDParamsBodyAmendment> amendment
     )
     {
         switch (this.Value)
         {
-            case BodyModelIncrement value:
+            case LedgerCreateEntryByExternalIDParamsBodyIncrement value:
                 increment(value);
                 break;
-            case BodyModelDecrement value:
+            case LedgerCreateEntryByExternalIDParamsBodyDecrement value:
                 decrement(value);
                 break;
-            case BodyModelExpirationChange value:
+            case LedgerCreateEntryByExternalIDParamsBodyExpirationChange value:
                 expirationChange(value);
                 break;
-            case BodyModelVoid value:
+            case LedgerCreateEntryByExternalIDParamsBodyVoid value:
                 void1(value);
                 break;
-            case BodyModelAmendment value:
+            case LedgerCreateEntryByExternalIDParamsBodyAmendment value:
                 amendment(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of BodyModel");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBody"
+                );
         }
     }
 
     public T Match<T>(
-        System::Func<BodyModelIncrement, T> increment,
-        System::Func<BodyModelDecrement, T> decrement,
-        System::Func<BodyModelExpirationChange, T> expirationChange,
-        System::Func<BodyModelVoid, T> void1,
-        System::Func<BodyModelAmendment, T> amendment
+        System::Func<LedgerCreateEntryByExternalIDParamsBodyIncrement, T> increment,
+        System::Func<LedgerCreateEntryByExternalIDParamsBodyDecrement, T> decrement,
+        System::Func<LedgerCreateEntryByExternalIDParamsBodyExpirationChange, T> expirationChange,
+        System::Func<LedgerCreateEntryByExternalIDParamsBodyVoid, T> void1,
+        System::Func<LedgerCreateEntryByExternalIDParamsBodyAmendment, T> amendment
     )
     {
         return this.Value switch
         {
-            BodyModelIncrement value => increment(value),
-            BodyModelDecrement value => decrement(value),
-            BodyModelExpirationChange value => expirationChange(value),
-            BodyModelVoid value => void1(value),
-            BodyModelAmendment value => amendment(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of BodyModel"),
+            LedgerCreateEntryByExternalIDParamsBodyIncrement value => increment(value),
+            LedgerCreateEntryByExternalIDParamsBodyDecrement value => decrement(value),
+            LedgerCreateEntryByExternalIDParamsBodyExpirationChange value => expirationChange(
+                value
+            ),
+            LedgerCreateEntryByExternalIDParamsBodyVoid value => void1(value),
+            LedgerCreateEntryByExternalIDParamsBodyAmendment value => amendment(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBody"
+            ),
         };
     }
 
-    public static implicit operator BodyModel(BodyModelIncrement value) => new(value);
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyIncrement value
+    ) => new(value);
 
-    public static implicit operator BodyModel(BodyModelDecrement value) => new(value);
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyDecrement value
+    ) => new(value);
 
-    public static implicit operator BodyModel(BodyModelExpirationChange value) => new(value);
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyExpirationChange value
+    ) => new(value);
 
-    public static implicit operator BodyModel(BodyModelVoid value) => new(value);
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyVoid value
+    ) => new(value);
 
-    public static implicit operator BodyModel(BodyModelAmendment value) => new(value);
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBody(
+        LedgerCreateEntryByExternalIDParamsBodyAmendment value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of BodyModel");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBody"
+            );
         }
     }
 
-    public virtual bool Equals(BodyModel? other)
+    public virtual bool Equals(LedgerCreateEntryByExternalIDParamsBody? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -418,9 +467,10 @@ public record class BodyModel
     }
 }
 
-sealed class BodyModelConverter : JsonConverter<BodyModel>
+sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
+    : JsonConverter<LedgerCreateEntryByExternalIDParamsBody>
 {
-    public override BodyModel? Read(
+    public override LedgerCreateEntryByExternalIDParamsBody? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -443,10 +493,11 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BodyModelIncrement>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -465,10 +516,11 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BodyModelDecrement>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -487,10 +539,11 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BodyModelExpirationChange>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -509,7 +562,11 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BodyModelVoid>(json, options);
+                    var deserialized =
+                        JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -528,10 +585,11 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<BodyModelAmendment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -548,14 +606,14 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
             }
             default:
             {
-                return new BodyModel(json);
+                return new LedgerCreateEntryByExternalIDParamsBody(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        BodyModel value,
+        LedgerCreateEntryByExternalIDParamsBody value,
         JsonSerializerOptions options
     )
     {
@@ -563,8 +621,13 @@ sealed class BodyModelConverter : JsonConverter<BodyModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelIncrement, BodyModelIncrementFromRaw>))]
-public sealed record class BodyModelIncrement : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        LedgerCreateEntryByExternalIDParamsBodyIncrement,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw
+    >)
+)]
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -635,12 +698,12 @@ public sealed record class BodyModelIncrement : ModelBase
     /// Optional filter to specify which items this credit block applies to. If not
     /// specified, the block will apply to all items for the pricing unit.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.FilterModel>? Filters
+    public IReadOnlyList<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>? Filters
     {
         get
         {
             return ModelBase.GetNullableClass<
-                List<global::Orb.Models.Customers.Credits.Ledger.FilterModel>
+                List<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
             >(this.RawData, "filters");
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
@@ -651,11 +714,11 @@ public sealed record class BodyModelIncrement : ModelBase
     /// added credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
     /// as the calculation of the invoice total is done on that basis.
     /// </summary>
-    public BodyModelIncrementInvoiceSettings? InvoiceSettings
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings? InvoiceSettings
     {
         get
         {
-            return ModelBase.GetNullableClass<BodyModelIncrementInvoiceSettings>(
+            return ModelBase.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
                 this.RawData,
                 "invoice_settings"
             );
@@ -715,12 +778,14 @@ public sealed record class BodyModelIncrement : ModelBase
         _ = this.PerUnitCostBasis;
     }
 
-    public BodyModelIncrement()
+    public LedgerCreateEntryByExternalIDParamsBodyIncrement()
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"increment\"");
     }
 
-    public BodyModelIncrement(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrement(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -729,13 +794,13 @@ public sealed record class BodyModelIncrement : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BodyModelIncrement(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyIncrement(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BodyModelIncrement FromRawUnchecked(
+    public static LedgerCreateEntryByExternalIDParamsBodyIncrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -743,17 +808,19 @@ public sealed record class BodyModelIncrement : ModelBase
     }
 
     [SetsRequiredMembers]
-    public BodyModelIncrement(double amount)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrement(double amount)
         : this()
     {
         this.Amount = amount;
     }
 }
 
-class BodyModelIncrementFromRaw : IFromRaw<BodyModelIncrement>
+class LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrement>
 {
-    public BodyModelIncrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        BodyModelIncrement.FromRawUnchecked(rawData);
+    public LedgerCreateEntryByExternalIDParamsBodyIncrement FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => LedgerCreateEntryByExternalIDParamsBodyIncrement.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -761,24 +828,24 @@ class BodyModelIncrementFromRaw : IFromRaw<BodyModelIncrement>
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Customers.Credits.Ledger.FilterModel,
-        global::Orb.Models.Customers.Credits.Ledger.FilterModelFromRaw
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilter,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFromRaw
     >)
 )]
-public sealed record class FilterModel : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilter : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
     public required ApiEnum<
         string,
-        global::Orb.Models.Customers.Credits.Ledger.FilterModelField
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField
     > Field
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelField>
+                ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
             >(this.RawData, "field");
         }
         init { ModelBase.Set(this._rawData, "field", value); }
@@ -789,13 +856,13 @@ public sealed record class FilterModel : ModelBase
     /// </summary>
     public required ApiEnum<
         string,
-        global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator
     > Operator
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator>
+                ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
             >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
@@ -817,22 +884,26 @@ public sealed record class FilterModel : ModelBase
         _ = this.Values;
     }
 
-    public FilterModel() { }
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter() { }
 
-    public FilterModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FilterModel(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Customers.Credits.Ledger.FilterModel FromRawUnchecked(
+    public static LedgerCreateEntryByExternalIDParamsBodyIncrementFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -840,26 +911,27 @@ public sealed record class FilterModel : ModelBase
     }
 }
 
-class FilterModelFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.FilterModel>
+class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
 {
-    public global::Orb.Models.Customers.Credits.Ledger.FilterModel FromRawUnchecked(
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.Credits.Ledger.FilterModel.FromRawUnchecked(rawData);
+    ) => LedgerCreateEntryByExternalIDParamsBodyIncrementFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FilterModelFieldConverter))]
-public enum FilterModelField
+[JsonConverter(typeof(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFieldConverter))]
+public enum LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField
 {
     ItemID,
 }
 
-sealed class FilterModelFieldConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.FilterModelField>
+sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFieldConverter
+    : JsonConverter<LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.FilterModelField Read(
+    public override LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -867,14 +939,14 @@ sealed class FilterModelFieldConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => global::Orb.Models.Customers.Credits.Ledger.FilterModelField.ItemID,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.FilterModelField)(-1),
+            "item_id" => LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+            _ => (LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.FilterModelField value,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -882,7 +954,7 @@ sealed class FilterModelFieldConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.FilterModelField.ItemID => "item_id",
+                LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -895,17 +967,17 @@ sealed class FilterModelFieldConverter
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FilterModelOperatorConverter))]
-public enum FilterModelOperator
+[JsonConverter(typeof(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperatorConverter))]
+public enum LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class FilterModelOperatorConverter
-    : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator>
+sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperatorConverter
+    : JsonConverter<LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator Read(
+    public override LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -913,15 +985,15 @@ sealed class FilterModelOperatorConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator)(-1),
+            "includes" => LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+            "excludes" => LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Excludes,
+            _ => (LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator value,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -929,9 +1001,9 @@ sealed class FilterModelOperatorConverter
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Includes =>
+                LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes =>
                     "includes",
-                global::Orb.Models.Customers.Credits.Ledger.FilterModelOperator.Excludes =>
+                LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Excludes =>
                     "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -949,11 +1021,12 @@ sealed class FilterModelOperatorConverter
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        BodyModelIncrementInvoiceSettings,
-        BodyModelIncrementInvoiceSettingsFromRaw
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw
     >)
 )]
-public sealed record class BodyModelIncrementInvoiceSettings : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+    : ModelBase
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -969,11 +1042,11 @@ public sealed record class BodyModelIncrementInvoiceSettings : ModelBase
     /// An optional custom due date for the invoice. If not set, the due date will
     /// be calculated based on the `net_terms` value.
     /// </summary>
-    public BodyModelIncrementInvoiceSettingsCustomDueDate? CustomDueDate
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate? CustomDueDate
     {
         get
         {
-            return ModelBase.GetNullableClass<BodyModelIncrementInvoiceSettingsCustomDueDate>(
+            return ModelBase.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
                 this.RawData,
                 "custom_due_date"
             );
@@ -986,11 +1059,11 @@ public sealed record class BodyModelIncrementInvoiceSettings : ModelBase
     /// the customer's timezone. If not provided, the invoice date will default to
     /// the credit block's effective date.
     /// </summary>
-    public BodyModelIncrementInvoiceSettingsInvoiceDate? InvoiceDate
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate? InvoiceDate
     {
         get
         {
-            return ModelBase.GetNullableClass<BodyModelIncrementInvoiceSettingsInvoiceDate>(
+            return ModelBase.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
                 this.RawData,
                 "invoice_date"
             );
@@ -1063,22 +1136,26 @@ public sealed record class BodyModelIncrementInvoiceSettings : ModelBase
         _ = this.RequireSuccessfulPayment;
     }
 
-    public BodyModelIncrementInvoiceSettings() { }
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings() { }
 
-    public BodyModelIncrementInvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BodyModelIncrementInvoiceSettings(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BodyModelIncrementInvoiceSettings FromRawUnchecked(
+    public static LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1086,26 +1163,29 @@ public sealed record class BodyModelIncrementInvoiceSettings : ModelBase
     }
 
     [SetsRequiredMembers]
-    public BodyModelIncrementInvoiceSettings(bool autoCollection)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(bool autoCollection)
         : this()
     {
         this.AutoCollection = autoCollection;
     }
 }
 
-class BodyModelIncrementInvoiceSettingsFromRaw : IFromRaw<BodyModelIncrementInvoiceSettings>
+class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>
 {
-    public BodyModelIncrementInvoiceSettings FromRawUnchecked(
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => BodyModelIncrementInvoiceSettings.FromRawUnchecked(rawData);
+    ) => LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// An optional custom due date for the invoice. If not set, the due date will be
 /// calculated based on the `net_terms` value.
 /// </summary>
-[JsonConverter(typeof(BodyModelIncrementInvoiceSettingsCustomDueDateConverter))]
-public record class BodyModelIncrementInvoiceSettingsCustomDueDate
+[JsonConverter(
+    typeof(LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateConverter)
+)]
+public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate
 {
     public object? Value { get; } = null;
 
@@ -1116,7 +1196,7 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public BodyModelIncrementInvoiceSettingsCustomDueDate(
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
 #if NET
         System::DateOnly
 #else
@@ -1130,7 +1210,7 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
         this._json = json;
     }
 
-    public BodyModelIncrementInvoiceSettingsCustomDueDate(
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
         System::DateTimeOffset value,
         JsonElement? json = null
     )
@@ -1139,7 +1219,9 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
         this._json = json;
     }
 
-    public BodyModelIncrementInvoiceSettingsCustomDueDate(JsonElement json)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
+        JsonElement json
+    )
     {
         this._json = json;
     }
@@ -1195,7 +1277,7 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
+                    "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate"
                 );
         }
     }
@@ -1221,12 +1303,12 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
             value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
+                "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate"
             ),
         };
     }
 
-    public static implicit operator BodyModelIncrementInvoiceSettingsCustomDueDate(
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
 #if NET
         System::DateOnly
 #else
@@ -1235,7 +1317,7 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
         value
     ) => new(value);
 
-    public static implicit operator BodyModelIncrementInvoiceSettingsCustomDueDate(
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
         System::DateTimeOffset value
     ) => new(value);
 
@@ -1244,12 +1326,14 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of BodyModelIncrementInvoiceSettingsCustomDueDate"
+                "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate"
             );
         }
     }
 
-    public virtual bool Equals(BodyModelIncrementInvoiceSettingsCustomDueDate? other)
+    public virtual bool Equals(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate? other
+    )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1260,10 +1344,10 @@ public record class BodyModelIncrementInvoiceSettingsCustomDueDate
     }
 }
 
-sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
-    : JsonConverter<BodyModelIncrementInvoiceSettingsCustomDueDate?>
+sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateConverter
+    : JsonConverter<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate?>
 {
-    public override BodyModelIncrementInvoiceSettingsCustomDueDate? Read(
+    public override LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1299,7 +1383,7 @@ sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
 
     public override void Write(
         Utf8JsonWriter writer,
-        BodyModelIncrementInvoiceSettingsCustomDueDate? value,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate? value,
         JsonSerializerOptions options
     )
     {
@@ -1312,8 +1396,10 @@ sealed class BodyModelIncrementInvoiceSettingsCustomDueDateConverter
 /// customer's timezone. If not provided, the invoice date will default to the credit
 /// block's effective date.
 /// </summary>
-[JsonConverter(typeof(BodyModelIncrementInvoiceSettingsInvoiceDateConverter))]
-public record class BodyModelIncrementInvoiceSettingsInvoiceDate
+[JsonConverter(
+    typeof(LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateConverter)
+)]
+public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate
 {
     public object? Value { get; } = null;
 
@@ -1324,7 +1410,7 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public BodyModelIncrementInvoiceSettingsInvoiceDate(
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
 #if NET
         System::DateOnly
 #else
@@ -1338,7 +1424,7 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
         this._json = json;
     }
 
-    public BodyModelIncrementInvoiceSettingsInvoiceDate(
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
         System::DateTimeOffset value,
         JsonElement? json = null
     )
@@ -1347,7 +1433,9 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
         this._json = json;
     }
 
-    public BodyModelIncrementInvoiceSettingsInvoiceDate(JsonElement json)
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
+        JsonElement json
+    )
     {
         this._json = json;
     }
@@ -1403,7 +1491,7 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
+                    "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate"
                 );
         }
     }
@@ -1429,12 +1517,12 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
             value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
+                "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate"
             ),
         };
     }
 
-    public static implicit operator BodyModelIncrementInvoiceSettingsInvoiceDate(
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
 #if NET
         System::DateOnly
 #else
@@ -1443,7 +1531,7 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
         value
     ) => new(value);
 
-    public static implicit operator BodyModelIncrementInvoiceSettingsInvoiceDate(
+    public static implicit operator LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
         System::DateTimeOffset value
     ) => new(value);
 
@@ -1452,12 +1540,14 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of BodyModelIncrementInvoiceSettingsInvoiceDate"
+                "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate"
             );
         }
     }
 
-    public virtual bool Equals(BodyModelIncrementInvoiceSettingsInvoiceDate? other)
+    public virtual bool Equals(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate? other
+    )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1468,10 +1558,10 @@ public record class BodyModelIncrementInvoiceSettingsInvoiceDate
     }
 }
 
-sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
-    : JsonConverter<BodyModelIncrementInvoiceSettingsInvoiceDate?>
+sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateConverter
+    : JsonConverter<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate?>
 {
-    public override BodyModelIncrementInvoiceSettingsInvoiceDate? Read(
+    public override LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1507,7 +1597,7 @@ sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
 
     public override void Write(
         Utf8JsonWriter writer,
-        BodyModelIncrementInvoiceSettingsInvoiceDate? value,
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate? value,
         JsonSerializerOptions options
     )
     {
@@ -1515,8 +1605,13 @@ sealed class BodyModelIncrementInvoiceSettingsInvoiceDateConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelDecrement, BodyModelDecrementFromRaw>))]
-public sealed record class BodyModelDecrement : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        LedgerCreateEntryByExternalIDParamsBodyDecrement,
+        LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw
+    >)
+)]
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -1589,12 +1684,14 @@ public sealed record class BodyModelDecrement : ModelBase
         _ = this.Metadata;
     }
 
-    public BodyModelDecrement()
+    public LedgerCreateEntryByExternalIDParamsBodyDecrement()
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"decrement\"");
     }
 
-    public BodyModelDecrement(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyDecrement(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -1603,13 +1700,13 @@ public sealed record class BodyModelDecrement : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BodyModelDecrement(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyDecrement(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BodyModelDecrement FromRawUnchecked(
+    public static LedgerCreateEntryByExternalIDParamsBodyDecrement FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1617,21 +1714,28 @@ public sealed record class BodyModelDecrement : ModelBase
     }
 
     [SetsRequiredMembers]
-    public BodyModelDecrement(double amount)
+    public LedgerCreateEntryByExternalIDParamsBodyDecrement(double amount)
         : this()
     {
         this.Amount = amount;
     }
 }
 
-class BodyModelDecrementFromRaw : IFromRaw<BodyModelDecrement>
+class LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyDecrement>
 {
-    public BodyModelDecrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        BodyModelDecrement.FromRawUnchecked(rawData);
+    public LedgerCreateEntryByExternalIDParamsBodyDecrement FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => LedgerCreateEntryByExternalIDParamsBodyDecrement.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelExpirationChange, BodyModelExpirationChangeFromRaw>))]
-public sealed record class BodyModelExpirationChange : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        LedgerCreateEntryByExternalIDParamsBodyExpirationChange,
+        LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw
+    >)
+)]
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChange : ModelBase
 {
     public JsonElement EntryType
     {
@@ -1755,12 +1859,14 @@ public sealed record class BodyModelExpirationChange : ModelBase
         _ = this.Metadata;
     }
 
-    public BodyModelExpirationChange()
+    public LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"expiration_change\"");
     }
 
-    public BodyModelExpirationChange(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -1769,13 +1875,15 @@ public sealed record class BodyModelExpirationChange : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BodyModelExpirationChange(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BodyModelExpirationChange FromRawUnchecked(
+    public static LedgerCreateEntryByExternalIDParamsBodyExpirationChange FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1783,28 +1891,35 @@ public sealed record class BodyModelExpirationChange : ModelBase
     }
 
     [SetsRequiredMembers]
-    public BodyModelExpirationChange(
+    public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
 #if NET
         System::DateOnly
 #else
         System::DateTimeOffset
 #endif
-        targetExpiryDate)
+        targetExpiryDate
+    )
         : this()
     {
         this.TargetExpiryDate = targetExpiryDate;
     }
 }
 
-class BodyModelExpirationChangeFromRaw : IFromRaw<BodyModelExpirationChange>
+class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>
 {
-    public BodyModelExpirationChange FromRawUnchecked(
+    public LedgerCreateEntryByExternalIDParamsBodyExpirationChange FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => BodyModelExpirationChange.FromRawUnchecked(rawData);
+    ) => LedgerCreateEntryByExternalIDParamsBodyExpirationChange.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelVoid, BodyModelVoidFromRaw>))]
-public sealed record class BodyModelVoid : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        LedgerCreateEntryByExternalIDParamsBodyVoid,
+        LedgerCreateEntryByExternalIDParamsBodyVoidFromRaw
+    >)
+)]
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -1872,14 +1987,13 @@ public sealed record class BodyModelVoid : ModelBase
     /// <summary>
     /// Can only be specified when `entry_type=void`. The reason for the void.
     /// </summary>
-    public ApiEnum<string, BodyModelVoidVoidReason>? VoidReason
+    public ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>? VoidReason
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, BodyModelVoidVoidReason>>(
-                this.RawData,
-                "void_reason"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+            >(this.RawData, "void_reason");
         }
         init { ModelBase.Set(this._rawData, "void_reason", value); }
     }
@@ -1903,12 +2017,14 @@ public sealed record class BodyModelVoid : ModelBase
         this.VoidReason?.Validate();
     }
 
-    public BodyModelVoid()
+    public LedgerCreateEntryByExternalIDParamsBodyVoid()
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
 
-    public BodyModelVoid(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyVoid(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -1917,36 +2033,41 @@ public sealed record class BodyModelVoid : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BodyModelVoid(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyVoid(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BodyModelVoid FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static LedgerCreateEntryByExternalIDParamsBodyVoid FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class BodyModelVoidFromRaw : IFromRaw<BodyModelVoid>
+class LedgerCreateEntryByExternalIDParamsBodyVoidFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyVoid>
 {
-    public BodyModelVoid FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        BodyModelVoid.FromRawUnchecked(rawData);
+    public LedgerCreateEntryByExternalIDParamsBodyVoid FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => LedgerCreateEntryByExternalIDParamsBodyVoid.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Can only be specified when `entry_type=void`. The reason for the void.
 /// </summary>
-[JsonConverter(typeof(BodyModelVoidVoidReasonConverter))]
-public enum BodyModelVoidVoidReason
+[JsonConverter(typeof(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReasonConverter))]
+public enum LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason
 {
     Refund,
 }
 
-sealed class BodyModelVoidVoidReasonConverter : JsonConverter<BodyModelVoidVoidReason>
+sealed class LedgerCreateEntryByExternalIDParamsBodyVoidVoidReasonConverter
+    : JsonConverter<LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
 {
-    public override BodyModelVoidVoidReason Read(
+    public override LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1954,14 +2075,14 @@ sealed class BodyModelVoidVoidReasonConverter : JsonConverter<BodyModelVoidVoidR
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "refund" => BodyModelVoidVoidReason.Refund,
-            _ => (BodyModelVoidVoidReason)(-1),
+            "refund" => LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+            _ => (LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        BodyModelVoidVoidReason value,
+        LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason value,
         JsonSerializerOptions options
     )
     {
@@ -1969,7 +2090,7 @@ sealed class BodyModelVoidVoidReasonConverter : JsonConverter<BodyModelVoidVoidR
             writer,
             value switch
             {
-                BodyModelVoidVoidReason.Refund => "refund",
+                LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund => "refund",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1979,8 +2100,13 @@ sealed class BodyModelVoidVoidReasonConverter : JsonConverter<BodyModelVoidVoidR
     }
 }
 
-[JsonConverter(typeof(ModelConverter<BodyModelAmendment, BodyModelAmendmentFromRaw>))]
-public sealed record class BodyModelAmendment : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        LedgerCreateEntryByExternalIDParamsBodyAmendment,
+        LedgerCreateEntryByExternalIDParamsBodyAmendmentFromRaw
+    >)
+)]
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : ModelBase
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2063,12 +2189,14 @@ public sealed record class BodyModelAmendment : ModelBase
         _ = this.Metadata;
     }
 
-    public BodyModelAmendment()
+    public LedgerCreateEntryByExternalIDParamsBodyAmendment()
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
 
-    public BodyModelAmendment(IReadOnlyDictionary<string, JsonElement> rawData)
+    public LedgerCreateEntryByExternalIDParamsBodyAmendment(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -2077,13 +2205,13 @@ public sealed record class BodyModelAmendment : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BodyModelAmendment(FrozenDictionary<string, JsonElement> rawData)
+    LedgerCreateEntryByExternalIDParamsBodyAmendment(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static BodyModelAmendment FromRawUnchecked(
+    public static LedgerCreateEntryByExternalIDParamsBodyAmendment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2091,8 +2219,10 @@ public sealed record class BodyModelAmendment : ModelBase
     }
 }
 
-class BodyModelAmendmentFromRaw : IFromRaw<BodyModelAmendment>
+class LedgerCreateEntryByExternalIDParamsBodyAmendmentFromRaw
+    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyAmendment>
 {
-    public BodyModelAmendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        BodyModelAmendment.FromRawUnchecked(rawData);
+    public LedgerCreateEntryByExternalIDParamsBodyAmendment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => LedgerCreateEntryByExternalIDParamsBodyAmendment.FromRawUnchecked(rawData);
 }

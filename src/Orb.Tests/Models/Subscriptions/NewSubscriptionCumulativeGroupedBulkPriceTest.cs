@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,9 +11,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -28,19 +28,20 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -56,15 +57,17 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionCumulativeGroupedBulkPriceCadence> expectedCadence =
-            NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual;
-        CumulativeGroupedBulkConfig expectedCumulativeGroupedBulkConfig = new()
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual;
+        Subscriptions::CumulativeGroupedBulkConfig expectedCumulativeGroupedBulkConfig = new()
         {
             DimensionValues =
             [
@@ -78,25 +81,28 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             Group = "group",
         };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionCumulativeGroupedBulkPriceModelType> expectedModelType =
-            NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -105,10 +111,10 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -142,9 +148,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -159,19 +165,20 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -187,16 +194,17 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionCumulativeGroupedBulkPrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -204,9 +212,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -221,19 +229,20 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -249,21 +258,24 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionCumulativeGroupedBulkPrice>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionCumulativeGroupedBulkPriceCadence> expectedCadence =
-            NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual;
-        CumulativeGroupedBulkConfig expectedCumulativeGroupedBulkConfig = new()
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual;
+        Subscriptions::CumulativeGroupedBulkConfig expectedCumulativeGroupedBulkConfig = new()
         {
             DimensionValues =
             [
@@ -277,25 +289,28 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             Group = "group",
         };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionCumulativeGroupedBulkPriceModelType> expectedModelType =
-            NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -304,10 +319,10 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -344,9 +359,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -361,19 +376,20 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -389,7 +405,7 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -401,9 +417,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -418,7 +434,8 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
         };
 
@@ -453,9 +470,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -470,7 +487,8 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
         };
 
@@ -480,9 +498,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -497,7 +515,8 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -546,9 +565,9 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionCumulativeGroupedBulkPrice
+        var model = new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice
         {
-            Cadence = NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceCadence.Annual,
             CumulativeGroupedBulkConfig = new()
             {
                 DimensionValues =
@@ -563,7 +582,8 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
                 Group = "group",
             },
             ItemID = "item_id",
-            ModelType = NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+            ModelType =
+                Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -590,7 +610,7 @@ public class CumulativeGroupedBulkConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CumulativeGroupedBulkConfig
+        var model = new Subscriptions::CumulativeGroupedBulkConfig
         {
             DimensionValues =
             [
@@ -604,7 +624,7 @@ public class CumulativeGroupedBulkConfigTest : TestBase
             Group = "group",
         };
 
-        List<DimensionValue> expectedDimensionValues =
+        List<Subscriptions::DimensionValue> expectedDimensionValues =
         [
             new()
             {
@@ -626,7 +646,7 @@ public class CumulativeGroupedBulkConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CumulativeGroupedBulkConfig
+        var model = new Subscriptions::CumulativeGroupedBulkConfig
         {
             DimensionValues =
             [
@@ -641,7 +661,9 @@ public class CumulativeGroupedBulkConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::CumulativeGroupedBulkConfig>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -649,7 +671,7 @@ public class CumulativeGroupedBulkConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CumulativeGroupedBulkConfig
+        var model = new Subscriptions::CumulativeGroupedBulkConfig
         {
             DimensionValues =
             [
@@ -664,10 +686,12 @@ public class CumulativeGroupedBulkConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::CumulativeGroupedBulkConfig>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        List<DimensionValue> expectedDimensionValues =
+        List<Subscriptions::DimensionValue> expectedDimensionValues =
         [
             new()
             {
@@ -689,7 +713,7 @@ public class CumulativeGroupedBulkConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CumulativeGroupedBulkConfig
+        var model = new Subscriptions::CumulativeGroupedBulkConfig
         {
             DimensionValues =
             [
@@ -712,7 +736,7 @@ public class DimensionValueTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DimensionValue
+        var model = new Subscriptions::DimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -731,7 +755,7 @@ public class DimensionValueTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DimensionValue
+        var model = new Subscriptions::DimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -739,7 +763,7 @@ public class DimensionValueTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValue>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DimensionValue>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -747,7 +771,7 @@ public class DimensionValueTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DimensionValue
+        var model = new Subscriptions::DimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -755,7 +779,7 @@ public class DimensionValueTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValue>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DimensionValue>(json);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -770,7 +794,7 @@ public class DimensionValueTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DimensionValue
+        var model = new Subscriptions::DimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
