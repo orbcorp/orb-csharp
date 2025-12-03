@@ -8,7 +8,7 @@ using Orb.Models.Metrics;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class MetricService : IMetricService
 {
     /// <inheritdoc/>

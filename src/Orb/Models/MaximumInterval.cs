@@ -73,6 +73,7 @@ public sealed record class MaximumInterval : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AppliesToPriceIntervalIDs;
@@ -100,6 +101,7 @@ public sealed record class MaximumInterval : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MaximumIntervalFromRaw.FromRawUnchecked"/>
     public static MaximumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -108,6 +110,7 @@ public sealed record class MaximumInterval : ModelBase
 
 class MaximumIntervalFromRaw : IFromRaw<MaximumInterval>
 {
+    /// <inheritdoc/>
     public MaximumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MaximumInterval.FromRawUnchecked(rawData);
 }
@@ -154,6 +157,7 @@ public sealed record class MaximumIntervalFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -176,6 +180,7 @@ public sealed record class MaximumIntervalFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MaximumIntervalFilterFromRaw.FromRawUnchecked"/>
     public static MaximumIntervalFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -186,6 +191,7 @@ public sealed record class MaximumIntervalFilter : ModelBase
 
 class MaximumIntervalFilterFromRaw : IFromRaw<MaximumIntervalFilter>
 {
+    /// <inheritdoc/>
     public MaximumIntervalFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MaximumIntervalFilter.FromRawUnchecked(rawData);

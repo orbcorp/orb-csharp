@@ -126,6 +126,7 @@ public sealed record class NewPercentageDiscount : ModelBase
         init { ModelBase.Set(this._rawData, "price_type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.AdjustmentType.Validate();
@@ -157,6 +158,7 @@ public sealed record class NewPercentageDiscount : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewPercentageDiscountFromRaw.FromRawUnchecked"/>
     public static NewPercentageDiscount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -167,6 +169,7 @@ public sealed record class NewPercentageDiscount : ModelBase
 
 class NewPercentageDiscountFromRaw : IFromRaw<NewPercentageDiscount>
 {
+    /// <inheritdoc/>
     public NewPercentageDiscount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewPercentageDiscount.FromRawUnchecked(rawData);
@@ -303,6 +306,7 @@ public sealed record class NewPercentageDiscountFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -325,6 +329,7 @@ public sealed record class NewPercentageDiscountFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewPercentageDiscountFilterFromRaw.FromRawUnchecked"/>
     public static NewPercentageDiscountFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -335,6 +340,7 @@ public sealed record class NewPercentageDiscountFilter : ModelBase
 
 class NewPercentageDiscountFilterFromRaw : IFromRaw<NewPercentageDiscountFilter>
 {
+    /// <inheritdoc/>
     public NewPercentageDiscountFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewPercentageDiscountFilter.FromRawUnchecked(rawData);

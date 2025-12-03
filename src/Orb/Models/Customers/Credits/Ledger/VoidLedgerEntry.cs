@@ -126,6 +126,7 @@ public sealed record class VoidLedgerEntry : ModelBase
         init { ModelBase.Set(this._rawData, "void_reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -160,6 +161,7 @@ public sealed record class VoidLedgerEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="VoidLedgerEntryFromRaw.FromRawUnchecked"/>
     public static VoidLedgerEntry FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -168,6 +170,7 @@ public sealed record class VoidLedgerEntry : ModelBase
 
 class VoidLedgerEntryFromRaw : IFromRaw<VoidLedgerEntry>
 {
+    /// <inheritdoc/>
     public VoidLedgerEntry FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         VoidLedgerEntry.FromRawUnchecked(rawData);
 }

@@ -46,6 +46,7 @@ public sealed record class Address : ModelBase
         init { ModelBase.Set(this._rawData, "state", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.City;
@@ -71,6 +72,7 @@ public sealed record class Address : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AddressFromRaw.FromRawUnchecked"/>
     public static Address FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -79,6 +81,7 @@ public sealed record class Address : ModelBase
 
 class AddressFromRaw : IFromRaw<Address>
 {
+    /// <inheritdoc/>
     public Address FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Address.FromRawUnchecked(rawData);
 }

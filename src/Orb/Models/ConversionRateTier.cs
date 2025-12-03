@@ -37,6 +37,7 @@ public sealed record class ConversionRateTier : ModelBase
         init { ModelBase.Set(this._rawData, "last_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FirstUnit;
@@ -59,6 +60,7 @@ public sealed record class ConversionRateTier : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ConversionRateTierFromRaw.FromRawUnchecked"/>
     public static ConversionRateTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -69,6 +71,7 @@ public sealed record class ConversionRateTier : ModelBase
 
 class ConversionRateTierFromRaw : IFromRaw<ConversionRateTier>
 {
+    /// <inheritdoc/>
     public ConversionRateTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ConversionRateTier.FromRawUnchecked(rawData);
 }

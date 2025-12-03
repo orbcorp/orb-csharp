@@ -40,6 +40,7 @@ public sealed record class NewSphereConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -62,6 +63,7 @@ public sealed record class NewSphereConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewSphereConfigurationFromRaw.FromRawUnchecked"/>
     public static NewSphereConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -72,6 +74,7 @@ public sealed record class NewSphereConfiguration : ModelBase
 
 class NewSphereConfigurationFromRaw : IFromRaw<NewSphereConfiguration>
 {
+    /// <inheritdoc/>
     public NewSphereConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewSphereConfiguration.FromRawUnchecked(rawData);

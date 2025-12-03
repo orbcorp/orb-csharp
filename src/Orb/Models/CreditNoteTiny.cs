@@ -19,6 +19,7 @@ public sealed record class CreditNoteTiny : ModelBase
         init { ModelBase.Set(this._rawData, "id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -39,6 +40,7 @@ public sealed record class CreditNoteTiny : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CreditNoteTinyFromRaw.FromRawUnchecked"/>
     public static CreditNoteTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -54,6 +56,7 @@ public sealed record class CreditNoteTiny : ModelBase
 
 class CreditNoteTinyFromRaw : IFromRaw<CreditNoteTiny>
 {
+    /// <inheritdoc/>
     public CreditNoteTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         CreditNoteTiny.FromRawUnchecked(rawData);
 }

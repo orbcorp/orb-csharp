@@ -364,6 +364,7 @@ public sealed record class Customer : ModelBase
         init { ModelBase.Set(this._rawData, "reporting_configuration", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -408,6 +409,7 @@ public sealed record class Customer : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerFromRaw.FromRawUnchecked"/>
     public static Customer FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -416,6 +418,7 @@ public sealed record class Customer : ModelBase
 
 class CustomerFromRaw : IFromRaw<Customer>
 {
+    /// <inheritdoc/>
     public Customer FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Customer.FromRawUnchecked(rawData);
 }
@@ -438,6 +441,7 @@ public sealed record class Hierarchy : ModelBase
         init { ModelBase.Set(this._rawData, "parent", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Children)
@@ -462,6 +466,7 @@ public sealed record class Hierarchy : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="HierarchyFromRaw.FromRawUnchecked"/>
     public static Hierarchy FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -470,6 +475,7 @@ public sealed record class Hierarchy : ModelBase
 
 class HierarchyFromRaw : IFromRaw<Hierarchy>
 {
+    /// <inheritdoc/>
     public Hierarchy FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Hierarchy.FromRawUnchecked(rawData);
 }
@@ -554,6 +560,7 @@ public sealed record class AccountingSyncConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "excluded", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.AccountingProviders)
@@ -578,6 +585,7 @@ public sealed record class AccountingSyncConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AccountingSyncConfigurationFromRaw.FromRawUnchecked"/>
     public static AccountingSyncConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -588,6 +596,7 @@ public sealed record class AccountingSyncConfiguration : ModelBase
 
 class AccountingSyncConfigurationFromRaw : IFromRaw<AccountingSyncConfiguration>
 {
+    /// <inheritdoc/>
     public AccountingSyncConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AccountingSyncConfiguration.FromRawUnchecked(rawData);
@@ -614,6 +623,7 @@ public sealed record class AccountingProvider : ModelBase
         init { ModelBase.Set(this._rawData, "provider_type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ExternalProviderID;
@@ -635,6 +645,7 @@ public sealed record class AccountingProvider : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AccountingProviderFromRaw.FromRawUnchecked"/>
     public static AccountingProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -645,6 +656,7 @@ public sealed record class AccountingProvider : ModelBase
 
 class AccountingProviderFromRaw : IFromRaw<AccountingProvider>
 {
+    /// <inheritdoc/>
     public AccountingProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AccountingProvider.FromRawUnchecked(rawData);
 }
@@ -725,6 +737,7 @@ public sealed record class CustomerPaymentConfiguration : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.PaymentProviders ?? [])
@@ -748,6 +761,7 @@ public sealed record class CustomerPaymentConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerPaymentConfigurationFromRaw.FromRawUnchecked"/>
     public static CustomerPaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -758,6 +772,7 @@ public sealed record class CustomerPaymentConfiguration : ModelBase
 
 class CustomerPaymentConfigurationFromRaw : IFromRaw<CustomerPaymentConfiguration>
 {
+    /// <inheritdoc/>
     public CustomerPaymentConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerPaymentConfiguration.FromRawUnchecked(rawData);
@@ -815,6 +830,7 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : ModelBa
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.ProviderType.Validate();
@@ -838,6 +854,7 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : ModelBa
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerPaymentConfigurationPaymentProviderFromRaw.FromRawUnchecked"/>
     public static CustomerPaymentConfigurationPaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -858,6 +875,7 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : ModelBa
 class CustomerPaymentConfigurationPaymentProviderFromRaw
     : IFromRaw<CustomerPaymentConfigurationPaymentProvider>
 {
+    /// <inheritdoc/>
     public CustomerPaymentConfigurationPaymentProvider FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerPaymentConfigurationPaymentProvider.FromRawUnchecked(rawData);
@@ -917,6 +935,7 @@ public sealed record class ReportingConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "exempt", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Exempt;
@@ -937,6 +956,7 @@ public sealed record class ReportingConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ReportingConfigurationFromRaw.FromRawUnchecked"/>
     public static ReportingConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -954,6 +974,7 @@ public sealed record class ReportingConfiguration : ModelBase
 
 class ReportingConfigurationFromRaw : IFromRaw<ReportingConfiguration>
 {
+    /// <inheritdoc/>
     public ReportingConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ReportingConfiguration.FromRawUnchecked(rawData);

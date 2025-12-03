@@ -57,6 +57,7 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
         init { ModelBase.Set(this._rawData, "matrix_values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Allocation;
@@ -83,6 +84,7 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MatrixWithAllocationConfigFromRaw.FromRawUnchecked"/>
     public static MatrixWithAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -93,6 +95,7 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
 
 class MatrixWithAllocationConfigFromRaw : IFromRaw<MatrixWithAllocationConfig>
 {
+    /// <inheritdoc/>
     public MatrixWithAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MatrixWithAllocationConfig.FromRawUnchecked(rawData);
@@ -129,6 +132,7 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.DimensionValues;
@@ -150,6 +154,7 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MatrixWithAllocationConfigMatrixValueFromRaw.FromRawUnchecked"/>
     public static MatrixWithAllocationConfigMatrixValue FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -160,6 +165,7 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
 
 class MatrixWithAllocationConfigMatrixValueFromRaw : IFromRaw<MatrixWithAllocationConfigMatrixValue>
 {
+    /// <inheritdoc/>
     public MatrixWithAllocationConfigMatrixValue FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MatrixWithAllocationConfigMatrixValue.FromRawUnchecked(rawData);

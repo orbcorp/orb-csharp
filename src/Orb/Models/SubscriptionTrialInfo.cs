@@ -17,6 +17,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase
         init { ModelBase.Set(this._rawData, "end_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EndDate;
@@ -37,6 +38,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionTrialInfoFromRaw.FromRawUnchecked"/>
     public static SubscriptionTrialInfo FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -54,6 +56,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase
 
 class SubscriptionTrialInfoFromRaw : IFromRaw<SubscriptionTrialInfo>
 {
+    /// <inheritdoc/>
     public SubscriptionTrialInfo FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionTrialInfo.FromRawUnchecked(rawData);

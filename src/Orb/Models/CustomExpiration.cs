@@ -30,6 +30,7 @@ public sealed record class CustomExpiration : ModelBase
         init { ModelBase.Set(this._rawData, "duration_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Duration;
@@ -51,6 +52,7 @@ public sealed record class CustomExpiration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomExpirationFromRaw.FromRawUnchecked"/>
     public static CustomExpiration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -61,6 +63,7 @@ public sealed record class CustomExpiration : ModelBase
 
 class CustomExpirationFromRaw : IFromRaw<CustomExpiration>
 {
+    /// <inheritdoc/>
     public CustomExpiration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         CustomExpiration.FromRawUnchecked(rawData);
 }

@@ -72,6 +72,7 @@ public sealed record class MatrixSubLineItem : ModelBase
         init { ModelBase.Set(this._rawData, "scaled_quantity", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -98,6 +99,7 @@ public sealed record class MatrixSubLineItem : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MatrixSubLineItemFromRaw.FromRawUnchecked"/>
     public static MatrixSubLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -108,6 +110,7 @@ public sealed record class MatrixSubLineItem : ModelBase
 
 class MatrixSubLineItemFromRaw : IFromRaw<MatrixSubLineItem>
 {
+    /// <inheritdoc/>
     public MatrixSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MatrixSubLineItem.FromRawUnchecked(rawData);
 }

@@ -16,6 +16,7 @@ public sealed record class TopLevelPingResponse : ModelBase
         init { ModelBase.Set(this._rawData, "response", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Response;
@@ -36,6 +37,7 @@ public sealed record class TopLevelPingResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopLevelPingResponseFromRaw.FromRawUnchecked"/>
     public static TopLevelPingResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -53,6 +55,7 @@ public sealed record class TopLevelPingResponse : ModelBase
 
 class TopLevelPingResponseFromRaw : IFromRaw<TopLevelPingResponse>
 {
+    /// <inheritdoc/>
     public TopLevelPingResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopLevelPingResponse.FromRawUnchecked(rawData);

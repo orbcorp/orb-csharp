@@ -39,6 +39,7 @@ public sealed record class UnitConfig : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -60,6 +61,7 @@ public sealed record class UnitConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UnitConfigFromRaw.FromRawUnchecked"/>
     public static UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -75,6 +77,7 @@ public sealed record class UnitConfig : ModelBase
 
 class UnitConfigFromRaw : IFromRaw<UnitConfig>
 {
+    /// <inheritdoc/>
     public UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         UnitConfig.FromRawUnchecked(rawData);
 }

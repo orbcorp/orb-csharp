@@ -88,6 +88,7 @@ public sealed record class UsageDiscountInterval : ModelBase
         init { ModelBase.Set(this._rawData, "usage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AppliesToPriceIntervalIDs;
@@ -116,6 +117,7 @@ public sealed record class UsageDiscountInterval : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UsageDiscountIntervalFromRaw.FromRawUnchecked"/>
     public static UsageDiscountInterval FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -126,6 +128,7 @@ public sealed record class UsageDiscountInterval : ModelBase
 
 class UsageDiscountIntervalFromRaw : IFromRaw<UsageDiscountInterval>
 {
+    /// <inheritdoc/>
     public UsageDiscountInterval FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UsageDiscountInterval.FromRawUnchecked(rawData);
@@ -217,6 +220,7 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -239,6 +243,7 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UsageDiscountIntervalFilterFromRaw.FromRawUnchecked"/>
     public static UsageDiscountIntervalFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -249,6 +254,7 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
 
 class UsageDiscountIntervalFilterFromRaw : IFromRaw<UsageDiscountIntervalFilter>
 {
+    /// <inheritdoc/>
     public UsageDiscountIntervalFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UsageDiscountIntervalFilter.FromRawUnchecked(rawData);

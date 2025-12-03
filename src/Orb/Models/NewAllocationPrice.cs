@@ -107,6 +107,7 @@ public sealed record class NewAllocationPrice : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -137,6 +138,7 @@ public sealed record class NewAllocationPrice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewAllocationPriceFromRaw.FromRawUnchecked"/>
     public static NewAllocationPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -147,6 +149,7 @@ public sealed record class NewAllocationPrice : ModelBase
 
 class NewAllocationPriceFromRaw : IFromRaw<NewAllocationPrice>
 {
+    /// <inheritdoc/>
     public NewAllocationPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         NewAllocationPrice.FromRawUnchecked(rawData);
 }
@@ -248,6 +251,7 @@ public sealed record class NewAllocationPriceFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -270,6 +274,7 @@ public sealed record class NewAllocationPriceFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewAllocationPriceFilterFromRaw.FromRawUnchecked"/>
     public static NewAllocationPriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -280,6 +285,7 @@ public sealed record class NewAllocationPriceFilter : ModelBase
 
 class NewAllocationPriceFilterFromRaw : IFromRaw<NewAllocationPriceFilter>
 {
+    /// <inheritdoc/>
     public NewAllocationPriceFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewAllocationPriceFilter.FromRawUnchecked(rawData);

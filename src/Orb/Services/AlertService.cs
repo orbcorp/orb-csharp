@@ -8,7 +8,7 @@ using Orb.Models.Alerts;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class AlertService : IAlertService
 {
     /// <inheritdoc/>

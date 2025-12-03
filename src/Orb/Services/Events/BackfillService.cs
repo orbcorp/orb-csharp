@@ -8,7 +8,7 @@ using Orb.Models.Events.Backfills;
 
 namespace Orb.Services.Events;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class BackfillService : IBackfillService
 {
     /// <inheritdoc/>

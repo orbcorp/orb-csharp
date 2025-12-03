@@ -111,6 +111,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -147,6 +148,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryAmountDiscountAdjustmentFromRaw.FromRawUnchecked"/>
     public static MonetaryAmountDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -157,6 +159,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : ModelBase
 
 class MonetaryAmountDiscountAdjustmentFromRaw : IFromRaw<MonetaryAmountDiscountAdjustment>
 {
+    /// <inheritdoc/>
     public MonetaryAmountDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryAmountDiscountAdjustment.FromRawUnchecked(rawData);
@@ -248,6 +251,7 @@ public sealed record class MonetaryAmountDiscountAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -270,6 +274,7 @@ public sealed record class MonetaryAmountDiscountAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryAmountDiscountAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static MonetaryAmountDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -281,6 +286,7 @@ public sealed record class MonetaryAmountDiscountAdjustmentFilter : ModelBase
 class MonetaryAmountDiscountAdjustmentFilterFromRaw
     : IFromRaw<MonetaryAmountDiscountAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public MonetaryAmountDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryAmountDiscountAdjustmentFilter.FromRawUnchecked(rawData);

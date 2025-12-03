@@ -8,7 +8,7 @@ using Orb.Models.Customers.Costs;
 
 namespace Orb.Services.Customers;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class CostService : ICostService
 {
     /// <inheritdoc/>

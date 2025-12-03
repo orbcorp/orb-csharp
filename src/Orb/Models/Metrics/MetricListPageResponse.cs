@@ -28,6 +28,7 @@ public sealed record class MetricListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -52,6 +53,7 @@ public sealed record class MetricListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MetricListPageResponseFromRaw.FromRawUnchecked"/>
     public static MetricListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -62,6 +64,7 @@ public sealed record class MetricListPageResponse : ModelBase
 
 class MetricListPageResponseFromRaw : IFromRaw<MetricListPageResponse>
 {
+    /// <inheritdoc/>
     public MetricListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MetricListPageResponse.FromRawUnchecked(rawData);

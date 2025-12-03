@@ -114,6 +114,7 @@ public sealed record class CreditBlockExpiryLedgerEntry : ModelBase
         init { ModelBase.Set(this._rawData, "starting_balance", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -146,6 +147,7 @@ public sealed record class CreditBlockExpiryLedgerEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CreditBlockExpiryLedgerEntryFromRaw.FromRawUnchecked"/>
     public static CreditBlockExpiryLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -156,6 +158,7 @@ public sealed record class CreditBlockExpiryLedgerEntry : ModelBase
 
 class CreditBlockExpiryLedgerEntryFromRaw : IFromRaw<CreditBlockExpiryLedgerEntry>
 {
+    /// <inheritdoc/>
     public CreditBlockExpiryLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CreditBlockExpiryLedgerEntry.FromRawUnchecked(rawData);

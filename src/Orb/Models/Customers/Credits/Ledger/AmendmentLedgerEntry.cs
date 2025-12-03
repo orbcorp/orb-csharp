@@ -114,6 +114,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase
         init { ModelBase.Set(this._rawData, "starting_balance", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -146,6 +147,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AmendmentLedgerEntryFromRaw.FromRawUnchecked"/>
     public static AmendmentLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -156,6 +158,7 @@ public sealed record class AmendmentLedgerEntry : ModelBase
 
 class AmendmentLedgerEntryFromRaw : IFromRaw<AmendmentLedgerEntry>
 {
+    /// <inheritdoc/>
     public AmendmentLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AmendmentLedgerEntry.FromRawUnchecked(rawData);

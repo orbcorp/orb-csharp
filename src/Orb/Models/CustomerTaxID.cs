@@ -136,6 +136,7 @@ public sealed record class CustomerTaxID : ModelBase
         init { ModelBase.Set(this._rawData, "value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Country.Validate();
@@ -158,6 +159,7 @@ public sealed record class CustomerTaxID : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerTaxIDFromRaw.FromRawUnchecked"/>
     public static CustomerTaxID FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -166,6 +168,7 @@ public sealed record class CustomerTaxID : ModelBase
 
 class CustomerTaxIDFromRaw : IFromRaw<CustomerTaxID>
 {
+    /// <inheritdoc/>
     public CustomerTaxID FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         CustomerTaxID.FromRawUnchecked(rawData);
 }

@@ -135,6 +135,7 @@ public sealed record class BackfillRevertResponse : ModelBase
         init { ModelBase.Set(this._rawData, "deprecation_filter", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -165,6 +166,7 @@ public sealed record class BackfillRevertResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BackfillRevertResponseFromRaw.FromRawUnchecked"/>
     public static BackfillRevertResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -175,6 +177,7 @@ public sealed record class BackfillRevertResponse : ModelBase
 
 class BackfillRevertResponseFromRaw : IFromRaw<BackfillRevertResponse>
 {
+    /// <inheritdoc/>
     public BackfillRevertResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => BackfillRevertResponse.FromRawUnchecked(rawData);

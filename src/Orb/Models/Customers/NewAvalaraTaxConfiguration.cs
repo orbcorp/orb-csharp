@@ -48,6 +48,7 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "tax_exemption_code", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -71,6 +72,7 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewAvalaraTaxConfigurationFromRaw.FromRawUnchecked"/>
     public static NewAvalaraTaxConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -81,6 +83,7 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
 
 class NewAvalaraTaxConfigurationFromRaw : IFromRaw<NewAvalaraTaxConfiguration>
 {
+    /// <inheritdoc/>
     public NewAvalaraTaxConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewAvalaraTaxConfiguration.FromRawUnchecked(rawData);

@@ -22,6 +22,7 @@ public sealed record class PaginationMetadata : ModelBase
         init { ModelBase.Set(this._rawData, "next_cursor", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.HasMore;
@@ -43,6 +44,7 @@ public sealed record class PaginationMetadata : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PaginationMetadataFromRaw.FromRawUnchecked"/>
     public static PaginationMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -53,6 +55,7 @@ public sealed record class PaginationMetadata : ModelBase
 
 class PaginationMetadataFromRaw : IFromRaw<PaginationMetadata>
 {
+    /// <inheritdoc/>
     public PaginationMetadata FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         PaginationMetadata.FromRawUnchecked(rawData);
 }

@@ -110,6 +110,7 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
         init { ModelBase.Set(this._rawData, "type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -139,6 +140,7 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BalanceTransactionCreateResponseFromRaw.FromRawUnchecked"/>
     public static BalanceTransactionCreateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -149,6 +151,7 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
 
 class BalanceTransactionCreateResponseFromRaw : IFromRaw<BalanceTransactionCreateResponse>
 {
+    /// <inheritdoc/>
     public BalanceTransactionCreateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => BalanceTransactionCreateResponse.FromRawUnchecked(rawData);

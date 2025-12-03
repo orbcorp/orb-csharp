@@ -8,7 +8,7 @@ using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class SubscriptionChangeService : ISubscriptionChangeService
 {
     /// <inheritdoc/>

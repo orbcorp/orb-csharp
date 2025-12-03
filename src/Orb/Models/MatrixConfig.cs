@@ -40,6 +40,7 @@ public sealed record class MatrixConfig : ModelBase
         init { ModelBase.Set(this._rawData, "matrix_values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.DefaultUnitAmount;
@@ -65,6 +66,7 @@ public sealed record class MatrixConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MatrixConfigFromRaw.FromRawUnchecked"/>
     public static MatrixConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -73,6 +75,7 @@ public sealed record class MatrixConfig : ModelBase
 
 class MatrixConfigFromRaw : IFromRaw<MatrixConfig>
 {
+    /// <inheritdoc/>
     public MatrixConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MatrixConfig.FromRawUnchecked(rawData);
 }

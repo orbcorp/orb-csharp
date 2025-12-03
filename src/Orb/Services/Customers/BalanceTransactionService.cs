@@ -8,7 +8,7 @@ using Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Services.Customers;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class BalanceTransactionService : IBalanceTransactionService
 {
     /// <inheritdoc/>

@@ -44,6 +44,7 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "year", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Day;
@@ -66,6 +67,7 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BillingCycleAnchorConfigurationFromRaw.FromRawUnchecked"/>
     public static BillingCycleAnchorConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -83,6 +85,7 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
 
 class BillingCycleAnchorConfigurationFromRaw : IFromRaw<BillingCycleAnchorConfiguration>
 {
+    /// <inheritdoc/>
     public BillingCycleAnchorConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => BillingCycleAnchorConfiguration.FromRawUnchecked(rawData);

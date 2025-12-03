@@ -97,6 +97,7 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
         init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -124,6 +125,7 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpCreateByExternalIDResponseFromRaw.FromRawUnchecked"/>
     public static TopUpCreateByExternalIDResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -134,6 +136,7 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
 
 class TopUpCreateByExternalIDResponseFromRaw : IFromRaw<TopUpCreateByExternalIDResponse>
 {
+    /// <inheritdoc/>
     public TopUpCreateByExternalIDResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopUpCreateByExternalIDResponse.FromRawUnchecked(rawData);

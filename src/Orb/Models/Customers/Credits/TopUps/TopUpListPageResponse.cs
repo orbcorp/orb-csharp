@@ -35,6 +35,7 @@ public sealed record class TopUpListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -59,6 +60,7 @@ public sealed record class TopUpListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpListPageResponseFromRaw.FromRawUnchecked"/>
     public static TopUpListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -69,6 +71,7 @@ public sealed record class TopUpListPageResponse : ModelBase
 
 class TopUpListPageResponseFromRaw : IFromRaw<TopUpListPageResponse>
 {
+    /// <inheritdoc/>
     public TopUpListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopUpListPageResponse.FromRawUnchecked(rawData);
@@ -166,6 +169,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -193,6 +197,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Customers.Credits.TopUps.DataFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Customers.Credits.TopUps.Data FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -203,6 +208,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.TopUps.Data>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Customers.Credits.TopUps.Data FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Customers.Credits.TopUps.Data.FromRawUnchecked(rawData);

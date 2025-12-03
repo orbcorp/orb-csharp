@@ -19,6 +19,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
         init { ModelBase.Set(this._rawData, "dimension_values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.DimensionValues;
@@ -39,6 +40,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubLineItemMatrixConfigFromRaw.FromRawUnchecked"/>
     public static SubLineItemMatrixConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -56,6 +58,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
 
 class SubLineItemMatrixConfigFromRaw : IFromRaw<SubLineItemMatrixConfig>
 {
+    /// <inheritdoc/>
     public SubLineItemMatrixConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubLineItemMatrixConfig.FromRawUnchecked(rawData);

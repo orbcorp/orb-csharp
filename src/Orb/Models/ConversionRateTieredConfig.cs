@@ -21,6 +21,7 @@ public sealed record class ConversionRateTieredConfig : ModelBase
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -44,6 +45,7 @@ public sealed record class ConversionRateTieredConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ConversionRateTieredConfigFromRaw.FromRawUnchecked"/>
     public static ConversionRateTieredConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -61,6 +63,7 @@ public sealed record class ConversionRateTieredConfig : ModelBase
 
 class ConversionRateTieredConfigFromRaw : IFromRaw<ConversionRateTieredConfig>
 {
+    /// <inheritdoc/>
     public ConversionRateTieredConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ConversionRateTieredConfig.FromRawUnchecked(rawData);

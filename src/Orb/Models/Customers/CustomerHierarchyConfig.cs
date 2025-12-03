@@ -38,6 +38,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
         init { ModelBase.Set(this._rawData, "parent_customer_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ChildCustomerIDs;
@@ -59,6 +60,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerHierarchyConfigFromRaw.FromRawUnchecked"/>
     public static CustomerHierarchyConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -69,6 +71,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
 
 class CustomerHierarchyConfigFromRaw : IFromRaw<CustomerHierarchyConfig>
 {
+    /// <inheritdoc/>
     public CustomerHierarchyConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CustomerHierarchyConfig.FromRawUnchecked(rawData);

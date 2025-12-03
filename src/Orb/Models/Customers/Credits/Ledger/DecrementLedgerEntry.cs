@@ -132,6 +132,7 @@ public sealed record class DecrementLedgerEntry : ModelBase
         init { ModelBase.Set(this._rawData, "price_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -167,6 +168,7 @@ public sealed record class DecrementLedgerEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DecrementLedgerEntryFromRaw.FromRawUnchecked"/>
     public static DecrementLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -177,6 +179,7 @@ public sealed record class DecrementLedgerEntry : ModelBase
 
 class DecrementLedgerEntryFromRaw : IFromRaw<DecrementLedgerEntry>
 {
+    /// <inheritdoc/>
     public DecrementLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => DecrementLedgerEntry.FromRawUnchecked(rawData);

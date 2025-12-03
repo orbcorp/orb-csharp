@@ -47,6 +47,7 @@ public sealed record class Allocation : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AllowsRollover;
@@ -73,6 +74,7 @@ public sealed record class Allocation : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AllocationFromRaw.FromRawUnchecked"/>
     public static Allocation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -81,6 +83,7 @@ public sealed record class Allocation : ModelBase
 
 class AllocationFromRaw : IFromRaw<Allocation>
 {
+    /// <inheritdoc/>
     public Allocation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Allocation.FromRawUnchecked(rawData);
 }
@@ -118,6 +121,7 @@ public sealed record class Filter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -140,6 +144,7 @@ public sealed record class Filter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
     public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -148,6 +153,7 @@ public sealed record class Filter : ModelBase
 
 class FilterFromRaw : IFromRaw<Filter>
 {
+    /// <inheritdoc/>
     public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Filter.FromRawUnchecked(rawData);
 }

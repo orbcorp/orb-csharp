@@ -30,6 +30,7 @@ public sealed record class CreditListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -54,6 +55,7 @@ public sealed record class CreditListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CreditListPageResponseFromRaw.FromRawUnchecked"/>
     public static CreditListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -64,6 +66,7 @@ public sealed record class CreditListPageResponse : ModelBase
 
 class CreditListPageResponseFromRaw : IFromRaw<CreditListPageResponse>
 {
+    /// <inheritdoc/>
     public CreditListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CreditListPageResponse.FromRawUnchecked(rawData);
@@ -140,6 +143,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "status", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -170,6 +174,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
     public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -178,6 +183,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<Data>
 {
+    /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Data.FromRawUnchecked(rawData);
 }
@@ -230,6 +236,7 @@ public sealed record class Filter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -252,6 +259,7 @@ public sealed record class Filter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Customers.Credits.FilterFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Customers.Credits.Filter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -262,6 +270,7 @@ public sealed record class Filter : ModelBase
 
 class FilterFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Filter>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Customers.Credits.Filter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Customers.Credits.Filter.FromRawUnchecked(rawData);

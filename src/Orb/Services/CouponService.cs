@@ -9,7 +9,7 @@ using Coupons = Orb.Services.Coupons;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class CouponService : ICouponService
 {
     /// <inheritdoc/>

@@ -27,6 +27,7 @@ public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -50,6 +51,7 @@ public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PriceEvaluatePreviewEventsResponseFromRaw.FromRawUnchecked"/>
     public static PriceEvaluatePreviewEventsResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -67,6 +69,7 @@ public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
 
 class PriceEvaluatePreviewEventsResponseFromRaw : IFromRaw<PriceEvaluatePreviewEventsResponse>
 {
+    /// <inheritdoc/>
     public PriceEvaluatePreviewEventsResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PriceEvaluatePreviewEventsResponse.FromRawUnchecked(rawData);
@@ -131,6 +134,7 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
         init { ModelBase.Set(this._rawData, "price_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Currency;
@@ -158,6 +162,7 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PriceEvaluatePreviewEventsResponseDataFromRaw.FromRawUnchecked"/>
     public static PriceEvaluatePreviewEventsResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -169,6 +174,7 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
 class PriceEvaluatePreviewEventsResponseDataFromRaw
     : IFromRaw<PriceEvaluatePreviewEventsResponseData>
 {
+    /// <inheritdoc/>
     public PriceEvaluatePreviewEventsResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PriceEvaluatePreviewEventsResponseData.FromRawUnchecked(rawData);

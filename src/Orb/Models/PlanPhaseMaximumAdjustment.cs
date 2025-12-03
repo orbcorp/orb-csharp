@@ -107,6 +107,7 @@ public sealed record class PlanPhaseMaximumAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -143,6 +144,7 @@ public sealed record class PlanPhaseMaximumAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseMaximumAdjustmentFromRaw.FromRawUnchecked"/>
     public static PlanPhaseMaximumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -153,6 +155,7 @@ public sealed record class PlanPhaseMaximumAdjustment : ModelBase
 
 class PlanPhaseMaximumAdjustmentFromRaw : IFromRaw<PlanPhaseMaximumAdjustment>
 {
+    /// <inheritdoc/>
     public PlanPhaseMaximumAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseMaximumAdjustment.FromRawUnchecked(rawData);
@@ -245,6 +248,7 @@ public sealed record class PlanPhaseMaximumAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -267,6 +271,7 @@ public sealed record class PlanPhaseMaximumAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhaseMaximumAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static PlanPhaseMaximumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -277,6 +282,7 @@ public sealed record class PlanPhaseMaximumAdjustmentFilter : ModelBase
 
 class PlanPhaseMaximumAdjustmentFilterFromRaw : IFromRaw<PlanPhaseMaximumAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public PlanPhaseMaximumAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhaseMaximumAdjustmentFilter.FromRawUnchecked(rawData);

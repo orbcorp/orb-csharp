@@ -189,6 +189,7 @@ public sealed record class SharedCreditNote : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -230,6 +231,7 @@ public sealed record class SharedCreditNote : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SharedCreditNoteFromRaw.FromRawUnchecked"/>
     public static SharedCreditNote FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -240,6 +242,7 @@ public sealed record class SharedCreditNote : ModelBase
 
 class SharedCreditNoteFromRaw : IFromRaw<SharedCreditNote>
 {
+    /// <inheritdoc/>
     public SharedCreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         SharedCreditNote.FromRawUnchecked(rawData);
 }
@@ -357,6 +360,7 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
         init { ModelBase.Set(this._rawData, "start_time_inclusive", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -392,6 +396,7 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SharedCreditNoteLineItemFromRaw.FromRawUnchecked"/>
     public static SharedCreditNoteLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -402,6 +407,7 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
 
 class SharedCreditNoteLineItemFromRaw : IFromRaw<SharedCreditNoteLineItem>
 {
+    /// <inheritdoc/>
     public SharedCreditNoteLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SharedCreditNoteLineItem.FromRawUnchecked(rawData);
@@ -461,6 +467,7 @@ public sealed record class Discount : ModelBase
         init { ModelBase.Set(this._rawData, "reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -487,6 +494,7 @@ public sealed record class Discount : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DiscountFromRaw.FromRawUnchecked"/>
     public static Discount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -495,6 +503,7 @@ public sealed record class Discount : ModelBase
 
 class DiscountFromRaw : IFromRaw<Discount>
 {
+    /// <inheritdoc/>
     public Discount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Discount.FromRawUnchecked(rawData);
 }
@@ -591,6 +600,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AmountApplied;
@@ -618,6 +628,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MaximumAmountAdjustmentFromRaw.FromRawUnchecked"/>
     public static MaximumAmountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -628,6 +639,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase
 
 class MaximumAmountAdjustmentFromRaw : IFromRaw<MaximumAmountAdjustment>
 {
+    /// <inheritdoc/>
     public MaximumAmountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MaximumAmountAdjustment.FromRawUnchecked(rawData);
@@ -690,6 +702,7 @@ public sealed record class AppliesToPrice : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -711,6 +724,7 @@ public sealed record class AppliesToPrice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AppliesToPriceFromRaw.FromRawUnchecked"/>
     public static AppliesToPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -719,6 +733,7 @@ public sealed record class AppliesToPrice : ModelBase
 
 class AppliesToPriceFromRaw : IFromRaw<AppliesToPrice>
 {
+    /// <inheritdoc/>
     public AppliesToPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AppliesToPrice.FromRawUnchecked(rawData);
 }
@@ -858,6 +873,7 @@ public sealed record class SharedCreditNoteDiscount : ModelBase
         init { ModelBase.Set(this._rawData, "reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AmountApplied;
@@ -885,6 +901,7 @@ public sealed record class SharedCreditNoteDiscount : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SharedCreditNoteDiscountFromRaw.FromRawUnchecked"/>
     public static SharedCreditNoteDiscount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -895,6 +912,7 @@ public sealed record class SharedCreditNoteDiscount : ModelBase
 
 class SharedCreditNoteDiscountFromRaw : IFromRaw<SharedCreditNoteDiscount>
 {
+    /// <inheritdoc/>
     public SharedCreditNoteDiscount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SharedCreditNoteDiscount.FromRawUnchecked(rawData);
@@ -962,6 +980,7 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -983,6 +1002,7 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SharedCreditNoteDiscountAppliesToPriceFromRaw.FromRawUnchecked"/>
     public static SharedCreditNoteDiscountAppliesToPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -994,6 +1014,7 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
 class SharedCreditNoteDiscountAppliesToPriceFromRaw
     : IFromRaw<SharedCreditNoteDiscountAppliesToPrice>
 {
+    /// <inheritdoc/>
     public SharedCreditNoteDiscountAppliesToPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SharedCreditNoteDiscountAppliesToPrice.FromRawUnchecked(rawData);

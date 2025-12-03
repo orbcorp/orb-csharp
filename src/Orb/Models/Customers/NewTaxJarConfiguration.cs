@@ -40,6 +40,7 @@ public sealed record class NewTaxJarConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TaxExempt;
@@ -62,6 +63,7 @@ public sealed record class NewTaxJarConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewTaxJarConfigurationFromRaw.FromRawUnchecked"/>
     public static NewTaxJarConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -72,6 +74,7 @@ public sealed record class NewTaxJarConfiguration : ModelBase
 
 class NewTaxJarConfigurationFromRaw : IFromRaw<NewTaxJarConfiguration>
 {
+    /// <inheritdoc/>
     public NewTaxJarConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewTaxJarConfiguration.FromRawUnchecked(rawData);

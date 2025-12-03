@@ -37,6 +37,7 @@ public sealed record class TaxAmount : ModelBase
         init { ModelBase.Set(this._rawData, "tax_rate_percentage", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -59,6 +60,7 @@ public sealed record class TaxAmount : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TaxAmountFromRaw.FromRawUnchecked"/>
     public static TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -67,6 +69,7 @@ public sealed record class TaxAmount : ModelBase
 
 class TaxAmountFromRaw : IFromRaw<TaxAmount>
 {
+    /// <inheritdoc/>
     public TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TaxAmount.FromRawUnchecked(rawData);
 }

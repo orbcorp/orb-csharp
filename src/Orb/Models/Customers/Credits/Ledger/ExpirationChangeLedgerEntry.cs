@@ -127,6 +127,7 @@ public sealed record class ExpirationChangeLedgerEntry : ModelBase
         init { ModelBase.Set(this._rawData, "starting_balance", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -160,6 +161,7 @@ public sealed record class ExpirationChangeLedgerEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ExpirationChangeLedgerEntryFromRaw.FromRawUnchecked"/>
     public static ExpirationChangeLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -170,6 +172,7 @@ public sealed record class ExpirationChangeLedgerEntry : ModelBase
 
 class ExpirationChangeLedgerEntryFromRaw : IFromRaw<ExpirationChangeLedgerEntry>
 {
+    /// <inheritdoc/>
     public ExpirationChangeLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ExpirationChangeLedgerEntry.FromRawUnchecked(rawData);

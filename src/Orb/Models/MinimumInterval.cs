@@ -73,6 +73,7 @@ public sealed record class MinimumInterval : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AppliesToPriceIntervalIDs;
@@ -100,6 +101,7 @@ public sealed record class MinimumInterval : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MinimumIntervalFromRaw.FromRawUnchecked"/>
     public static MinimumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -108,6 +110,7 @@ public sealed record class MinimumInterval : ModelBase
 
 class MinimumIntervalFromRaw : IFromRaw<MinimumInterval>
 {
+    /// <inheritdoc/>
     public MinimumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MinimumInterval.FromRawUnchecked(rawData);
 }
@@ -154,6 +157,7 @@ public sealed record class MinimumIntervalFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -176,6 +180,7 @@ public sealed record class MinimumIntervalFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MinimumIntervalFilterFromRaw.FromRawUnchecked"/>
     public static MinimumIntervalFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -186,6 +191,7 @@ public sealed record class MinimumIntervalFilter : ModelBase
 
 class MinimumIntervalFilterFromRaw : IFromRaw<MinimumIntervalFilter>
 {
+    /// <inheritdoc/>
     public MinimumIntervalFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MinimumIntervalFilter.FromRawUnchecked(rawData);

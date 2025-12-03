@@ -113,6 +113,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -149,6 +150,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhasePercentageDiscountAdjustmentFromRaw.FromRawUnchecked"/>
     public static PlanPhasePercentageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -159,6 +161,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustment : ModelBase
 
 class PlanPhasePercentageDiscountAdjustmentFromRaw : IFromRaw<PlanPhasePercentageDiscountAdjustment>
 {
+    /// <inheritdoc/>
     public PlanPhasePercentageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhasePercentageDiscountAdjustment.FromRawUnchecked(rawData);
@@ -253,6 +256,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustmentFilter : ModelBa
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -277,6 +281,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustmentFilter : ModelBa
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanPhasePercentageDiscountAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static PlanPhasePercentageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -288,6 +293,7 @@ public sealed record class PlanPhasePercentageDiscountAdjustmentFilter : ModelBa
 class PlanPhasePercentageDiscountAdjustmentFilterFromRaw
     : IFromRaw<PlanPhasePercentageDiscountAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public PlanPhasePercentageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => PlanPhasePercentageDiscountAdjustmentFilter.FromRawUnchecked(rawData);

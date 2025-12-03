@@ -24,6 +24,7 @@ public sealed record class Threshold : ModelBase
         init { ModelBase.Set(this._rawData, "value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Value;
@@ -44,6 +45,7 @@ public sealed record class Threshold : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ThresholdFromRaw.FromRawUnchecked"/>
     public static Threshold FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -59,6 +61,7 @@ public sealed record class Threshold : ModelBase
 
 class ThresholdFromRaw : IFromRaw<Threshold>
 {
+    /// <inheritdoc/>
     public Threshold FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Threshold.FromRawUnchecked(rawData);
 }

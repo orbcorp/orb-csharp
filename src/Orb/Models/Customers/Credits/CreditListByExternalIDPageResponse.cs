@@ -41,6 +41,7 @@ public sealed record class CreditListByExternalIDPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -65,6 +66,7 @@ public sealed record class CreditListByExternalIDPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CreditListByExternalIDPageResponseFromRaw.FromRawUnchecked"/>
     public static CreditListByExternalIDPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -75,6 +77,7 @@ public sealed record class CreditListByExternalIDPageResponse : ModelBase
 
 class CreditListByExternalIDPageResponseFromRaw : IFromRaw<CreditListByExternalIDPageResponse>
 {
+    /// <inheritdoc/>
     public CreditListByExternalIDPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CreditListByExternalIDPageResponse.FromRawUnchecked(rawData);
@@ -156,6 +159,7 @@ public sealed record class CreditListByExternalIDPageResponseData : ModelBase
         init { ModelBase.Set(this._rawData, "status", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -186,6 +190,7 @@ public sealed record class CreditListByExternalIDPageResponseData : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CreditListByExternalIDPageResponseDataFromRaw.FromRawUnchecked"/>
     public static CreditListByExternalIDPageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -197,6 +202,7 @@ public sealed record class CreditListByExternalIDPageResponseData : ModelBase
 class CreditListByExternalIDPageResponseDataFromRaw
     : IFromRaw<CreditListByExternalIDPageResponseData>
 {
+    /// <inheritdoc/>
     public CreditListByExternalIDPageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CreditListByExternalIDPageResponseData.FromRawUnchecked(rawData);
@@ -250,6 +256,7 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -274,6 +281,7 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CreditListByExternalIDPageResponseDataFilterFromRaw.FromRawUnchecked"/>
     public static CreditListByExternalIDPageResponseDataFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -285,6 +293,7 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
 class CreditListByExternalIDPageResponseDataFilterFromRaw
     : IFromRaw<CreditListByExternalIDPageResponseDataFilter>
 {
+    /// <inheritdoc/>
     public CreditListByExternalIDPageResponseDataFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CreditListByExternalIDPageResponseDataFilter.FromRawUnchecked(rawData);

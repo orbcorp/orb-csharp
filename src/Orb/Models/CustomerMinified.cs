@@ -22,6 +22,7 @@ public sealed record class CustomerMinified : ModelBase
         init { ModelBase.Set(this._rawData, "external_customer_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -43,6 +44,7 @@ public sealed record class CustomerMinified : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CustomerMinifiedFromRaw.FromRawUnchecked"/>
     public static CustomerMinified FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -53,6 +55,7 @@ public sealed record class CustomerMinified : ModelBase
 
 class CustomerMinifiedFromRaw : IFromRaw<CustomerMinified>
 {
+    /// <inheritdoc/>
     public CustomerMinified FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         CustomerMinified.FromRawUnchecked(rawData);
 }

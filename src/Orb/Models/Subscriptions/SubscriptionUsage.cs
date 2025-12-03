@@ -38,18 +38,68 @@ public record class SubscriptionUsage
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="UngroupedSubscriptionUsage"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUngrouped(out var value)) {
+    ///     // `value` is of type `UngroupedSubscriptionUsage`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUngrouped([NotNullWhen(true)] out UngroupedSubscriptionUsage? value)
     {
         value = this.Value as UngroupedSubscriptionUsage;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="GroupedSubscriptionUsage"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickGrouped(out var value)) {
+    ///     // `value` is of type `GroupedSubscriptionUsage`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickGrouped([NotNullWhen(true)] out GroupedSubscriptionUsage? value)
     {
         value = this.Value as GroupedSubscriptionUsage;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (UngroupedSubscriptionUsage value) => {...},
+    ///     (GroupedSubscriptionUsage value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<UngroupedSubscriptionUsage> ungrouped,
         System::Action<GroupedSubscriptionUsage> grouped
@@ -70,6 +120,27 @@ public record class SubscriptionUsage
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (UngroupedSubscriptionUsage value) => {...},
+    ///     (GroupedSubscriptionUsage value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<UngroupedSubscriptionUsage, T> ungrouped,
         System::Func<GroupedSubscriptionUsage, T> grouped
@@ -90,6 +161,16 @@ public record class SubscriptionUsage
 
     public static implicit operator SubscriptionUsage(GroupedSubscriptionUsage value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -175,6 +256,7 @@ public sealed record class UngroupedSubscriptionUsage : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -198,6 +280,7 @@ public sealed record class UngroupedSubscriptionUsage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="UngroupedSubscriptionUsageFromRaw.FromRawUnchecked"/>
     public static UngroupedSubscriptionUsage FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -215,6 +298,7 @@ public sealed record class UngroupedSubscriptionUsage : ModelBase
 
 class UngroupedSubscriptionUsageFromRaw : IFromRaw<UngroupedSubscriptionUsage>
 {
+    /// <inheritdoc/>
     public UngroupedSubscriptionUsage FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => UngroupedSubscriptionUsage.FromRawUnchecked(rawData);
@@ -247,6 +331,7 @@ public sealed record class Data : ModelBase
         init { ModelBase.Set(this._rawData, "view_mode", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.BillableMetric.Validate();
@@ -272,6 +357,7 @@ public sealed record class Data : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
     public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -280,6 +366,7 @@ public sealed record class Data : ModelBase
 
 class DataFromRaw : IFromRaw<Data>
 {
+    /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Data.FromRawUnchecked(rawData);
 }
@@ -299,6 +386,7 @@ public sealed record class BillableMetric : ModelBase
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -320,6 +408,7 @@ public sealed record class BillableMetric : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BillableMetricFromRaw.FromRawUnchecked"/>
     public static BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -328,6 +417,7 @@ public sealed record class BillableMetric : ModelBase
 
 class BillableMetricFromRaw : IFromRaw<BillableMetric>
 {
+    /// <inheritdoc/>
     public BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BillableMetric.FromRawUnchecked(rawData);
 }
@@ -365,6 +455,7 @@ public sealed record class DataUsage : ModelBase
         init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Quantity;
@@ -387,6 +478,7 @@ public sealed record class DataUsage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DataUsageFromRaw.FromRawUnchecked"/>
     public static DataUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -395,6 +487,7 @@ public sealed record class DataUsage : ModelBase
 
 class DataUsageFromRaw : IFromRaw<DataUsage>
 {
+    /// <inheritdoc/>
     public DataUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         DataUsage.FromRawUnchecked(rawData);
 }
@@ -470,6 +563,7 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -494,6 +588,7 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="GroupedSubscriptionUsageFromRaw.FromRawUnchecked"/>
     public static GroupedSubscriptionUsage FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -511,6 +606,7 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
 
 class GroupedSubscriptionUsageFromRaw : IFromRaw<GroupedSubscriptionUsage>
 {
+    /// <inheritdoc/>
     public GroupedSubscriptionUsage FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => GroupedSubscriptionUsage.FromRawUnchecked(rawData);
@@ -563,6 +659,7 @@ public sealed record class GroupedSubscriptionUsageData : ModelBase
         init { ModelBase.Set(this._rawData, "view_mode", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.BillableMetric.Validate();
@@ -589,6 +686,7 @@ public sealed record class GroupedSubscriptionUsageData : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="GroupedSubscriptionUsageDataFromRaw.FromRawUnchecked"/>
     public static GroupedSubscriptionUsageData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -599,6 +697,7 @@ public sealed record class GroupedSubscriptionUsageData : ModelBase
 
 class GroupedSubscriptionUsageDataFromRaw : IFromRaw<GroupedSubscriptionUsageData>
 {
+    /// <inheritdoc/>
     public GroupedSubscriptionUsageData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => GroupedSubscriptionUsageData.FromRawUnchecked(rawData);
@@ -624,6 +723,7 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBas
         init { ModelBase.Set(this._rawData, "name", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -647,6 +747,7 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBas
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="GroupedSubscriptionUsageDataBillableMetricFromRaw.FromRawUnchecked"/>
     public static GroupedSubscriptionUsageDataBillableMetric FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -658,6 +759,7 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBas
 class GroupedSubscriptionUsageDataBillableMetricFromRaw
     : IFromRaw<GroupedSubscriptionUsageDataBillableMetric>
 {
+    /// <inheritdoc/>
     public GroupedSubscriptionUsageDataBillableMetric FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => GroupedSubscriptionUsageDataBillableMetric.FromRawUnchecked(rawData);
@@ -678,6 +780,7 @@ public sealed record class MetricGroup : ModelBase
         init { ModelBase.Set(this._rawData, "property_value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PropertyKey;
@@ -699,6 +802,7 @@ public sealed record class MetricGroup : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MetricGroupFromRaw.FromRawUnchecked"/>
     public static MetricGroup FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -707,6 +811,7 @@ public sealed record class MetricGroup : ModelBase
 
 class MetricGroupFromRaw : IFromRaw<MetricGroup>
 {
+    /// <inheritdoc/>
     public MetricGroup FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MetricGroup.FromRawUnchecked(rawData);
 }
@@ -749,6 +854,7 @@ public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
         init { ModelBase.Set(this._rawData, "timeframe_start", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Quantity;
@@ -771,6 +877,7 @@ public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="GroupedSubscriptionUsageDataUsageFromRaw.FromRawUnchecked"/>
     public static GroupedSubscriptionUsageDataUsage FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -781,6 +888,7 @@ public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
 
 class GroupedSubscriptionUsageDataUsageFromRaw : IFromRaw<GroupedSubscriptionUsageDataUsage>
 {
+    /// <inheritdoc/>
     public GroupedSubscriptionUsageDataUsage FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => GroupedSubscriptionUsageDataUsage.FromRawUnchecked(rawData);

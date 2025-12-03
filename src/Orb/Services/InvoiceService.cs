@@ -9,7 +9,7 @@ using Orb.Models.Invoices;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class InvoiceService : IInvoiceService
 {
     /// <inheritdoc/>

@@ -9,7 +9,7 @@ using Orb.Models.Prices.ExternalPriceID;
 
 namespace Orb.Services.Prices;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ExternalPriceIDService : IExternalPriceIDService
 {
     /// <inheritdoc/>

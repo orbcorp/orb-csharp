@@ -8,7 +8,7 @@ using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Services.Customers.Credits;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class TopUpService : ITopUpService
 {
     /// <inheritdoc/>

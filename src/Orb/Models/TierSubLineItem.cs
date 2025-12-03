@@ -57,6 +57,7 @@ public sealed record class TierSubLineItem : ModelBase
         init { ModelBase.Set(this._rawData, "type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -82,6 +83,7 @@ public sealed record class TierSubLineItem : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TierSubLineItemFromRaw.FromRawUnchecked"/>
     public static TierSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -90,6 +92,7 @@ public sealed record class TierSubLineItem : ModelBase
 
 class TierSubLineItemFromRaw : IFromRaw<TierSubLineItem>
 {
+    /// <inheritdoc/>
     public TierSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TierSubLineItem.FromRawUnchecked(rawData);
 }
@@ -115,6 +118,7 @@ public sealed record class TierConfig : ModelBase
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FirstUnit;
@@ -137,6 +141,7 @@ public sealed record class TierConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TierConfigFromRaw.FromRawUnchecked"/>
     public static TierConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -145,6 +150,7 @@ public sealed record class TierConfig : ModelBase
 
 class TierConfigFromRaw : IFromRaw<TierConfig>
 {
+    /// <inheritdoc/>
     public TierConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TierConfig.FromRawUnchecked(rawData);
 }

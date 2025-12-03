@@ -42,6 +42,7 @@ public sealed record class AffectedBlock : ModelBase
         init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -68,6 +69,7 @@ public sealed record class AffectedBlock : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AffectedBlockFromRaw.FromRawUnchecked"/>
     public static AffectedBlock FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -76,6 +78,7 @@ public sealed record class AffectedBlock : ModelBase
 
 class AffectedBlockFromRaw : IFromRaw<AffectedBlock>
 {
+    /// <inheritdoc/>
     public AffectedBlock FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AffectedBlock.FromRawUnchecked(rawData);
 }
@@ -122,6 +125,7 @@ public sealed record class AffectedBlockFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -144,6 +148,7 @@ public sealed record class AffectedBlockFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AffectedBlockFilterFromRaw.FromRawUnchecked"/>
     public static AffectedBlockFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -154,6 +159,7 @@ public sealed record class AffectedBlockFilter : ModelBase
 
 class AffectedBlockFilterFromRaw : IFromRaw<AffectedBlockFilter>
 {
+    /// <inheritdoc/>
     public AffectedBlockFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AffectedBlockFilter.FromRawUnchecked(rawData);
 }

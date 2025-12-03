@@ -31,6 +31,7 @@ public sealed record class FixedFeeQuantityTransition : ModelBase
         init { ModelBase.Set(this._rawData, "quantity", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EffectiveDate;
@@ -53,6 +54,7 @@ public sealed record class FixedFeeQuantityTransition : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FixedFeeQuantityTransitionFromRaw.FromRawUnchecked"/>
     public static FixedFeeQuantityTransition FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -63,6 +65,7 @@ public sealed record class FixedFeeQuantityTransition : ModelBase
 
 class FixedFeeQuantityTransitionFromRaw : IFromRaw<FixedFeeQuantityTransition>
 {
+    /// <inheritdoc/>
     public FixedFeeQuantityTransition FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => FixedFeeQuantityTransition.FromRawUnchecked(rawData);

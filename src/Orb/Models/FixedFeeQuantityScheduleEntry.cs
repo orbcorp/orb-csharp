@@ -37,6 +37,7 @@ public sealed record class FixedFeeQuantityScheduleEntry : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EndDate;
@@ -60,6 +61,7 @@ public sealed record class FixedFeeQuantityScheduleEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="FixedFeeQuantityScheduleEntryFromRaw.FromRawUnchecked"/>
     public static FixedFeeQuantityScheduleEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -70,6 +72,7 @@ public sealed record class FixedFeeQuantityScheduleEntry : ModelBase
 
 class FixedFeeQuantityScheduleEntryFromRaw : IFromRaw<FixedFeeQuantityScheduleEntry>
 {
+    /// <inheritdoc/>
     public FixedFeeQuantityScheduleEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => FixedFeeQuantityScheduleEntry.FromRawUnchecked(rawData);

@@ -36,6 +36,7 @@ public sealed record class EventIngestResponse : ModelBase
         init { ModelBase.Set(this._rawData, "debug", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.ValidationFailed)
@@ -60,6 +61,7 @@ public sealed record class EventIngestResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="EventIngestResponseFromRaw.FromRawUnchecked"/>
     public static EventIngestResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -77,6 +79,7 @@ public sealed record class EventIngestResponse : ModelBase
 
 class EventIngestResponseFromRaw : IFromRaw<EventIngestResponse>
 {
+    /// <inheritdoc/>
     public EventIngestResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         EventIngestResponse.FromRawUnchecked(rawData);
 }
@@ -102,6 +105,7 @@ public sealed record class ValidationFailed : ModelBase
         init { ModelBase.Set(this._rawData, "validation_errors", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.IdempotencyKey;
@@ -123,6 +127,7 @@ public sealed record class ValidationFailed : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ValidationFailedFromRaw.FromRawUnchecked"/>
     public static ValidationFailed FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -133,6 +138,7 @@ public sealed record class ValidationFailed : ModelBase
 
 class ValidationFailedFromRaw : IFromRaw<ValidationFailed>
 {
+    /// <inheritdoc/>
     public ValidationFailed FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ValidationFailed.FromRawUnchecked(rawData);
 }
@@ -156,6 +162,7 @@ public sealed record class Debug : ModelBase
         init { ModelBase.Set(this._rawData, "ingested", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Duplicate;
@@ -177,6 +184,7 @@ public sealed record class Debug : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DebugFromRaw.FromRawUnchecked"/>
     public static Debug FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -185,6 +193,7 @@ public sealed record class Debug : ModelBase
 
 class DebugFromRaw : IFromRaw<Debug>
 {
+    /// <inheritdoc/>
     public Debug FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Debug.FromRawUnchecked(rawData);
 }

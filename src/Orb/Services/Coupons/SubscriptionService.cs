@@ -9,7 +9,7 @@ using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Services.Coupons;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscriptionService
 {
     /// <inheritdoc/>

@@ -9,7 +9,7 @@ using Orb.Services.Customers;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class CustomerService : ICustomerService
 {
     /// <inheritdoc/>

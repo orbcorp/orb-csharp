@@ -129,6 +129,7 @@ public sealed record class Alert : ModelBase
         init { ModelBase.Set(this._rawData, "balance_alert_status", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -165,6 +166,7 @@ public sealed record class Alert : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AlertFromRaw.FromRawUnchecked"/>
     public static Alert FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -173,6 +175,7 @@ public sealed record class Alert : ModelBase
 
 class AlertFromRaw : IFromRaw<Alert>
 {
+    /// <inheritdoc/>
     public Alert FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Alert.FromRawUnchecked(rawData);
 }
@@ -189,6 +192,7 @@ public sealed record class Metric : ModelBase
         init { ModelBase.Set(this._rawData, "id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -209,6 +213,7 @@ public sealed record class Metric : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MetricFromRaw.FromRawUnchecked"/>
     public static Metric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -224,6 +229,7 @@ public sealed record class Metric : ModelBase
 
 class MetricFromRaw : IFromRaw<Metric>
 {
+    /// <inheritdoc/>
     public Metric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Metric.FromRawUnchecked(rawData);
 }
@@ -263,6 +269,7 @@ public sealed record class Plan : ModelBase
         init { ModelBase.Set(this._rawData, "plan_version", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -286,6 +293,7 @@ public sealed record class Plan : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="PlanFromRaw.FromRawUnchecked"/>
     public static Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -294,6 +302,7 @@ public sealed record class Plan : ModelBase
 
 class PlanFromRaw : IFromRaw<Plan>
 {
+    /// <inheritdoc/>
     public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Plan.FromRawUnchecked(rawData);
 }
@@ -378,6 +387,7 @@ public sealed record class BalanceAlertStatus : ModelBase
         init { ModelBase.Set(this._rawData, "threshold_value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.InAlert;
@@ -399,6 +409,7 @@ public sealed record class BalanceAlertStatus : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="BalanceAlertStatusFromRaw.FromRawUnchecked"/>
     public static BalanceAlertStatus FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -409,6 +420,7 @@ public sealed record class BalanceAlertStatus : ModelBase
 
 class BalanceAlertStatusFromRaw : IFromRaw<BalanceAlertStatus>
 {
+    /// <inheritdoc/>
     public BalanceAlertStatus FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BalanceAlertStatus.FromRawUnchecked(rawData);
 }

@@ -295,18 +295,63 @@ public record class LedgerCreateEntryByExternalIDResponse
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="IncrementLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickIncrementLedgerEntry(out var value)) {
+    ///     // `value` is of type `IncrementLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickIncrementLedgerEntry([NotNullWhen(true)] out IncrementLedgerEntry? value)
     {
         value = this.Value as IncrementLedgerEntry;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="DecrementLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDecrementLedgerEntry(out var value)) {
+    ///     // `value` is of type `DecrementLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDecrementLedgerEntry([NotNullWhen(true)] out DecrementLedgerEntry? value)
     {
         value = this.Value as DecrementLedgerEntry;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ExpirationChangeLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickExpirationChangeLedgerEntry(out var value)) {
+    ///     // `value` is of type `ExpirationChangeLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickExpirationChangeLedgerEntry(
         [NotNullWhen(true)] out ExpirationChangeLedgerEntry? value
     )
@@ -315,6 +360,21 @@ public record class LedgerCreateEntryByExternalIDResponse
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="CreditBlockExpiryLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickCreditBlockExpiryLedgerEntry(out var value)) {
+    ///     // `value` is of type `CreditBlockExpiryLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickCreditBlockExpiryLedgerEntry(
         [NotNullWhen(true)] out CreditBlockExpiryLedgerEntry? value
     )
@@ -323,12 +383,42 @@ public record class LedgerCreateEntryByExternalIDResponse
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="VoidLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickVoidLedgerEntry(out var value)) {
+    ///     // `value` is of type `VoidLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickVoidLedgerEntry([NotNullWhen(true)] out VoidLedgerEntry? value)
     {
         value = this.Value as VoidLedgerEntry;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="VoidInitiatedLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickVoidInitiatedLedgerEntry(out var value)) {
+    ///     // `value` is of type `VoidInitiatedLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickVoidInitiatedLedgerEntry(
         [NotNullWhen(true)] out VoidInitiatedLedgerEntry? value
     )
@@ -337,12 +427,52 @@ public record class LedgerCreateEntryByExternalIDResponse
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="AmendmentLedgerEntry"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAmendmentLedgerEntry(out var value)) {
+    ///     // `value` is of type `AmendmentLedgerEntry`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAmendmentLedgerEntry([NotNullWhen(true)] out AmendmentLedgerEntry? value)
     {
         value = this.Value as AmendmentLedgerEntry;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (IncrementLedgerEntry value) => {...},
+    ///     (DecrementLedgerEntry value) => {...},
+    ///     (ExpirationChangeLedgerEntry value) => {...},
+    ///     (CreditBlockExpiryLedgerEntry value) => {...},
+    ///     (VoidLedgerEntry value) => {...},
+    ///     (VoidInitiatedLedgerEntry value) => {...},
+    ///     (AmendmentLedgerEntry value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<IncrementLedgerEntry> incrementLedgerEntry,
         System::Action<DecrementLedgerEntry> decrementLedgerEntry,
@@ -383,6 +513,32 @@ public record class LedgerCreateEntryByExternalIDResponse
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (IncrementLedgerEntry value) => {...},
+    ///     (DecrementLedgerEntry value) => {...},
+    ///     (ExpirationChangeLedgerEntry value) => {...},
+    ///     (CreditBlockExpiryLedgerEntry value) => {...},
+    ///     (VoidLedgerEntry value) => {...},
+    ///     (VoidInitiatedLedgerEntry value) => {...},
+    ///     (AmendmentLedgerEntry value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<IncrementLedgerEntry, T> incrementLedgerEntry,
         System::Func<DecrementLedgerEntry, T> decrementLedgerEntry,
@@ -435,6 +591,16 @@ public record class LedgerCreateEntryByExternalIDResponse
         AmendmentLedgerEntry value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)

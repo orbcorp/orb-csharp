@@ -107,6 +107,7 @@ public sealed record class MonetaryUsageDiscountAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "usage_discount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -143,6 +144,7 @@ public sealed record class MonetaryUsageDiscountAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryUsageDiscountAdjustmentFromRaw.FromRawUnchecked"/>
     public static MonetaryUsageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -153,6 +155,7 @@ public sealed record class MonetaryUsageDiscountAdjustment : ModelBase
 
 class MonetaryUsageDiscountAdjustmentFromRaw : IFromRaw<MonetaryUsageDiscountAdjustment>
 {
+    /// <inheritdoc/>
     public MonetaryUsageDiscountAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryUsageDiscountAdjustment.FromRawUnchecked(rawData);
@@ -245,6 +248,7 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -267,6 +271,7 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="MonetaryUsageDiscountAdjustmentFilterFromRaw.FromRawUnchecked"/>
     public static MonetaryUsageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -277,6 +282,7 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : ModelBase
 
 class MonetaryUsageDiscountAdjustmentFilterFromRaw : IFromRaw<MonetaryUsageDiscountAdjustmentFilter>
 {
+    /// <inheritdoc/>
     public MonetaryUsageDiscountAdjustmentFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => MonetaryUsageDiscountAdjustmentFilter.FromRawUnchecked(rawData);

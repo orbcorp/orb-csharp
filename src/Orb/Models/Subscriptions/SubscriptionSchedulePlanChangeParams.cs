@@ -544,6 +544,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -692,6 +693,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Adjustment.Validate();
@@ -717,6 +719,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddAdjustmentFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -737,6 +740,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
 class SubscriptionSchedulePlanChangeParamsAddAdjustmentFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddAdjustment>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsAddAdjustment.FromRawUnchecked(rawData);
@@ -835,36 +839,134 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPercentageDiscount(out var value)) {
+    ///     // `value` is of type `NewPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
     {
         value = this.Value as NewPercentageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewUsageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewUsageDiscount(out var value)) {
+    ///     // `value` is of type `NewUsageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewUsageDiscount([NotNullWhen(true)] out NewUsageDiscount? value)
     {
         value = this.Value as NewUsageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewAmountDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewAmountDiscount(out var value)) {
+    ///     // `value` is of type `NewAmountDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewAmountDiscount([NotNullWhen(true)] out NewAmountDiscount? value)
     {
         value = this.Value as NewAmountDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMinimum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMinimum(out var value)) {
+    ///     // `value` is of type `NewMinimum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMinimum([NotNullWhen(true)] out NewMinimum? value)
     {
         value = this.Value as NewMinimum;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMaximum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMaximum(out var value)) {
+    ///     // `value` is of type `NewMaximum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMaximum([NotNullWhen(true)] out NewMaximum? value)
     {
         value = this.Value as NewMaximum;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewPercentageDiscount> newPercentageDiscount,
         System::Action<NewUsageDiscount> newUsageDiscount,
@@ -897,6 +999,30 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewPercentageDiscount, T> newPercentageDiscount,
         System::Func<NewUsageDiscount, T> newUsageDiscount,
@@ -938,6 +1064,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
         NewMaximum value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1221,6 +1357,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.AllocationPrice?.Validate();
@@ -1255,6 +1392,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPriceFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1266,6 +1404,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
 class SubscriptionSchedulePlanChangeParamsAddPriceFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPrice>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsAddPrice.FromRawUnchecked(rawData);
@@ -2093,12 +2232,42 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionUnitPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionUnit(out var value)) {
+    ///     // `value` is of type `NewSubscriptionUnitPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionUnit([NotNullWhen(true)] out NewSubscriptionUnitPrice? value)
     {
         value = this.Value as NewSubscriptionUnitPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTiered(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTiered(
         [NotNullWhen(true)] out NewSubscriptionTieredPrice? value
     )
@@ -2107,12 +2276,42 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionBulk(out var value)) {
+    ///     // `value` is of type `NewSubscriptionBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionBulk([NotNullWhen(true)] out NewSubscriptionBulkPrice? value)
     {
         value = this.Value as NewSubscriptionBulkPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickBulkWithFilters(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickBulkWithFilters(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters? value
@@ -2122,6 +2321,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionPackage(
         [NotNullWhen(true)] out NewSubscriptionPackagePrice? value
     )
@@ -2130,6 +2344,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMatrixPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMatrix(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMatrixPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMatrix(
         [NotNullWhen(true)] out NewSubscriptionMatrixPrice? value
     )
@@ -2138,6 +2367,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionThresholdTotalAmountPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionThresholdTotalAmount(out var value)) {
+    ///     // `value` is of type `NewSubscriptionThresholdTotalAmountPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionThresholdTotalAmount(
         [NotNullWhen(true)] out NewSubscriptionThresholdTotalAmountPrice? value
     )
@@ -2146,6 +2390,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTieredPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTieredPackage(
         [NotNullWhen(true)] out NewSubscriptionTieredPackagePrice? value
     )
@@ -2154,6 +2413,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTieredWithMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTieredWithMinimum(
         [NotNullWhen(true)] out NewSubscriptionTieredWithMinimumPrice? value
     )
@@ -2162,6 +2436,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedTiered(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedTiered(
         [NotNullWhen(true)] out NewSubscriptionGroupedTieredPrice? value
     )
@@ -2170,6 +2459,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredPackageWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTieredPackageWithMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredPackageWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTieredPackageWithMinimum(
         [NotNullWhen(true)] out NewSubscriptionTieredPackageWithMinimumPrice? value
     )
@@ -2178,6 +2482,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionPackageWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionPackageWithAllocation(out var value)) {
+    ///     // `value` is of type `NewSubscriptionPackageWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionPackageWithAllocation(
         [NotNullWhen(true)] out NewSubscriptionPackageWithAllocationPrice? value
     )
@@ -2186,6 +2505,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionUnitWithPercentPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionUnitWithPercent(out var value)) {
+    ///     // `value` is of type `NewSubscriptionUnitWithPercentPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionUnitWithPercent(
         [NotNullWhen(true)] out NewSubscriptionUnitWithPercentPrice? value
     )
@@ -2194,6 +2528,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMatrixWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMatrixWithAllocation(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMatrixWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMatrixWithAllocation(
         [NotNullWhen(true)] out NewSubscriptionMatrixWithAllocationPrice? value
     )
@@ -2202,6 +2551,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredWithProration(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTieredWithProration(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration? value
@@ -2211,6 +2575,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionUnitWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionUnitWithProration(out var value)) {
+    ///     // `value` is of type `NewSubscriptionUnitWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionUnitWithProration(
         [NotNullWhen(true)] out NewSubscriptionUnitWithProrationPrice? value
     )
@@ -2219,6 +2598,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedAllocation(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedAllocation(
         [NotNullWhen(true)] out NewSubscriptionGroupedAllocationPrice? value
     )
@@ -2227,6 +2621,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionBulkWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionBulkWithProration(out var value)) {
+    ///     // `value` is of type `NewSubscriptionBulkWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionBulkWithProration(
         [NotNullWhen(true)] out NewSubscriptionBulkWithProrationPrice? value
     )
@@ -2235,6 +2644,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedWithProratedMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedWithProratedMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedWithProratedMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedWithProratedMinimum(
         [NotNullWhen(true)] out NewSubscriptionGroupedWithProratedMinimumPrice? value
     )
@@ -2243,6 +2667,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedWithMeteredMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedWithMeteredMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedWithMeteredMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedWithMeteredMinimum(
         [NotNullWhen(true)] out NewSubscriptionGroupedWithMeteredMinimumPrice? value
     )
@@ -2251,6 +2690,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickGroupedWithMinMaxThresholds(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickGroupedWithMinMaxThresholds(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds? value
@@ -2262,6 +2716,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMatrixWithDisplayNamePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMatrixWithDisplayName(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMatrixWithDisplayNamePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMatrixWithDisplayName(
         [NotNullWhen(true)] out NewSubscriptionMatrixWithDisplayNamePrice? value
     )
@@ -2270,6 +2739,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedTieredPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedTieredPackage(
         [NotNullWhen(true)] out NewSubscriptionGroupedTieredPackagePrice? value
     )
@@ -2278,6 +2762,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMaxGroupTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMaxGroupTieredPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMaxGroupTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMaxGroupTieredPackage(
         [NotNullWhen(true)] out NewSubscriptionMaxGroupTieredPackagePrice? value
     )
@@ -2286,6 +2785,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionScalableMatrixWithUnitPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionScalableMatrixWithUnitPricing(out var value)) {
+    ///     // `value` is of type `NewSubscriptionScalableMatrixWithUnitPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionScalableMatrixWithUnitPricing(
         [NotNullWhen(true)] out NewSubscriptionScalableMatrixWithUnitPricingPrice? value
     )
@@ -2294,6 +2808,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionScalableMatrixWithTieredPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionScalableMatrixWithTieredPricing(out var value)) {
+    ///     // `value` is of type `NewSubscriptionScalableMatrixWithTieredPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionScalableMatrixWithTieredPricing(
         [NotNullWhen(true)] out NewSubscriptionScalableMatrixWithTieredPricingPrice? value
     )
@@ -2302,6 +2831,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionCumulativeGroupedBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionCumulativeGroupedBulk(out var value)) {
+    ///     // `value` is of type `NewSubscriptionCumulativeGroupedBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionCumulativeGroupedBulk(
         [NotNullWhen(true)] out NewSubscriptionCumulativeGroupedBulkPrice? value
     )
@@ -2310,6 +2854,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickCumulativeGroupedAllocation(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickCumulativeGroupedAllocation(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation? value
@@ -2321,6 +2880,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMinimumCompositePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMinimumComposite(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMinimumCompositePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMinimumComposite(
         [NotNullWhen(true)] out NewSubscriptionMinimumCompositePrice? value
     )
@@ -2329,6 +2903,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePricePercent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercent(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePricePercent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPercent(
         [NotNullWhen(true)] out SubscriptionSchedulePlanChangeParamsAddPricePricePercent? value
     )
@@ -2337,6 +2926,21 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickEventOutput(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickEventOutput(
         [NotNullWhen(true)] out SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput? value
     )
@@ -2345,6 +2949,55 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewSubscriptionUnitPrice value) => {...},
+    ///     (NewSubscriptionTieredPrice value) => {...},
+    ///     (NewSubscriptionBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters value) => {...},
+    ///     (NewSubscriptionPackagePrice value) => {...},
+    ///     (NewSubscriptionMatrixPrice value) => {...},
+    ///     (NewSubscriptionThresholdTotalAmountPrice value) => {...},
+    ///     (NewSubscriptionTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionTieredWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPrice value) => {...},
+    ///     (NewSubscriptionTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionPackageWithAllocationPrice value) => {...},
+    ///     (NewSubscriptionUnitWithPercentPrice value) => {...},
+    ///     (NewSubscriptionMatrixWithAllocationPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value) => {...},
+    ///     (NewSubscriptionUnitWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedAllocationPrice value) => {...},
+    ///     (NewSubscriptionBulkWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds value) => {...},
+    ///     (NewSubscriptionMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewSubscriptionCumulativeGroupedBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation value) => {...},
+    ///     (NewSubscriptionMinimumCompositePrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePricePercent value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewSubscriptionUnitPrice> newSubscriptionUnit,
         System::Action<NewSubscriptionTieredPrice> newSubscriptionTiered,
@@ -2481,6 +3134,56 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewSubscriptionUnitPrice value) => {...},
+    ///     (NewSubscriptionTieredPrice value) => {...},
+    ///     (NewSubscriptionBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters value) => {...},
+    ///     (NewSubscriptionPackagePrice value) => {...},
+    ///     (NewSubscriptionMatrixPrice value) => {...},
+    ///     (NewSubscriptionThresholdTotalAmountPrice value) => {...},
+    ///     (NewSubscriptionTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionTieredWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPrice value) => {...},
+    ///     (NewSubscriptionTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionPackageWithAllocationPrice value) => {...},
+    ///     (NewSubscriptionUnitWithPercentPrice value) => {...},
+    ///     (NewSubscriptionMatrixWithAllocationPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value) => {...},
+    ///     (NewSubscriptionUnitWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedAllocationPrice value) => {...},
+    ///     (NewSubscriptionBulkWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds value) => {...},
+    ///     (NewSubscriptionMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewSubscriptionCumulativeGroupedBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation value) => {...},
+    ///     (NewSubscriptionMinimumCompositePrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePricePercent value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewSubscriptionUnitPrice, T> newSubscriptionUnit,
         System::Func<NewSubscriptionTieredPrice, T> newSubscriptionTiered,
@@ -2751,6 +3454,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -3744,6 +4457,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.BulkWithFiltersConfig.Validate();
@@ -3798,6 +4512,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3809,6 +4524,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters.FromRawUnchecked(rawData);
@@ -3854,6 +4570,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Filters)
@@ -3886,6 +4603,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3897,6 +4615,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -3935,6 +4654,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         init { ModelBase.Set(this._rawData, "property_value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PropertyKey;
@@ -3961,6 +4681,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3972,6 +4693,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4010,6 +4732,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
         init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -4036,6 +4759,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4056,6 +4780,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4177,18 +4902,68 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -4209,6 +4984,27 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -4232,6 +5028,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -4565,6 +5371,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -4619,6 +5426,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4630,6 +5438,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4739,6 +5548,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -4767,6 +5577,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4787,6 +5598,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4825,6 +5637,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TierLowerBound;
@@ -4851,6 +5664,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4862,6 +5676,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4909,18 +5724,68 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -4941,6 +5806,27 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -4964,6 +5850,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -5297,6 +6193,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -5355,6 +6252,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -5366,6 +6264,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
 class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -5499,6 +6398,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
         init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.GroupingKey;
@@ -5527,6 +6427,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -5538,6 +6439,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
 class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -5585,18 +6487,68 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -5617,6 +6569,27 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -5640,6 +6613,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -5973,6 +6956,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -6031,6 +7015,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6042,6 +7027,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
 class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -6175,6 +7161,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CumulativeAllocation;
@@ -6203,6 +7190,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6214,6 +7202,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
 class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -6261,18 +7250,68 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -6293,6 +7332,27 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -6316,6 +7376,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -6645,6 +7715,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -6699,6 +7770,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePricePercentFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6710,6 +7782,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
 class SubscriptionSchedulePlanChangeParamsAddPricePricePercentFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePricePercent>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsAddPricePricePercent.FromRawUnchecked(rawData);
@@ -6802,6 +7875,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
         init { ModelBase.Set(this._rawData, "percent", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Percent;
@@ -6826,6 +7900,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6844,6 +7919,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
 class SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -6891,18 +7967,68 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -6923,6 +8049,27 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -6946,6 +8093,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -7275,6 +8432,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -7329,6 +8487,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7340,6 +8499,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
 class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput.FromRawUnchecked(rawData);
@@ -7459,6 +8619,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
         init { ModelBase.Set(this._rawData, "grouping_key", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitRatingKey;
@@ -7485,6 +8646,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7505,6 +8667,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
 class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -7552,18 +8715,68 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -7584,6 +8797,27 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -7607,6 +8841,16 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -7784,6 +9028,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment 
         init { ModelBase.Set(this._rawData, "adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AdjustmentID;
@@ -7808,6 +9053,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment 
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsRemoveAdjustmentFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsRemoveAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7826,6 +9072,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment 
 class SubscriptionSchedulePlanChangeParamsRemoveAdjustmentFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsRemoveAdjustment>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsRemoveAdjustment.FromRawUnchecked(rawData);
@@ -7857,6 +9104,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Mod
         init { ModelBase.Set(this._rawData, "price_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ExternalPriceID;
@@ -7880,6 +9128,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Mod
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsRemovePriceFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsRemovePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7891,6 +9140,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Mod
 class SubscriptionSchedulePlanChangeParamsRemovePriceFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsRemovePrice>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsRemovePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsRemovePrice.FromRawUnchecked(rawData);
@@ -7928,6 +9178,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
         init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Adjustment.Validate();
@@ -7953,6 +9204,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplaceAdjustmentFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplaceAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7964,6 +9216,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
 class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplaceAdjustment>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsReplaceAdjustment.FromRawUnchecked(rawData);
@@ -8062,36 +9315,134 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPercentageDiscount(out var value)) {
+    ///     // `value` is of type `NewPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
     {
         value = this.Value as NewPercentageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewUsageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewUsageDiscount(out var value)) {
+    ///     // `value` is of type `NewUsageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewUsageDiscount([NotNullWhen(true)] out NewUsageDiscount? value)
     {
         value = this.Value as NewUsageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewAmountDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewAmountDiscount(out var value)) {
+    ///     // `value` is of type `NewAmountDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewAmountDiscount([NotNullWhen(true)] out NewAmountDiscount? value)
     {
         value = this.Value as NewAmountDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMinimum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMinimum(out var value)) {
+    ///     // `value` is of type `NewMinimum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMinimum([NotNullWhen(true)] out NewMinimum? value)
     {
         value = this.Value as NewMinimum;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMaximum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMaximum(out var value)) {
+    ///     // `value` is of type `NewMaximum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMaximum([NotNullWhen(true)] out NewMaximum? value)
     {
         value = this.Value as NewMaximum;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewPercentageDiscount> newPercentageDiscount,
         System::Action<NewUsageDiscount> newUsageDiscount,
@@ -8124,6 +9475,30 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewPercentageDiscount, T> newPercentageDiscount,
         System::Func<NewUsageDiscount, T> newUsageDiscount,
@@ -8165,6 +9540,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
         NewMaximum value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -8432,6 +9817,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
         init { ModelBase.Set(this._rawData, "price_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ReplacesPriceID;
@@ -8465,6 +9851,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePriceFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -8483,6 +9870,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
 class SubscriptionSchedulePlanChangeParamsReplacePriceFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePrice>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsReplacePrice.FromRawUnchecked(rawData);
@@ -9310,12 +10698,42 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionUnitPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionUnit(out var value)) {
+    ///     // `value` is of type `NewSubscriptionUnitPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionUnit([NotNullWhen(true)] out NewSubscriptionUnitPrice? value)
     {
         value = this.Value as NewSubscriptionUnitPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTiered(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTiered(
         [NotNullWhen(true)] out NewSubscriptionTieredPrice? value
     )
@@ -9324,12 +10742,42 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionBulk(out var value)) {
+    ///     // `value` is of type `NewSubscriptionBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionBulk([NotNullWhen(true)] out NewSubscriptionBulkPrice? value)
     {
         value = this.Value as NewSubscriptionBulkPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickBulkWithFilters(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickBulkWithFilters(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters? value
@@ -9339,6 +10787,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionPackage(
         [NotNullWhen(true)] out NewSubscriptionPackagePrice? value
     )
@@ -9347,6 +10810,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMatrixPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMatrix(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMatrixPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMatrix(
         [NotNullWhen(true)] out NewSubscriptionMatrixPrice? value
     )
@@ -9355,6 +10833,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionThresholdTotalAmountPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionThresholdTotalAmount(out var value)) {
+    ///     // `value` is of type `NewSubscriptionThresholdTotalAmountPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionThresholdTotalAmount(
         [NotNullWhen(true)] out NewSubscriptionThresholdTotalAmountPrice? value
     )
@@ -9363,6 +10856,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTieredPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTieredPackage(
         [NotNullWhen(true)] out NewSubscriptionTieredPackagePrice? value
     )
@@ -9371,6 +10879,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTieredWithMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTieredWithMinimum(
         [NotNullWhen(true)] out NewSubscriptionTieredWithMinimumPrice? value
     )
@@ -9379,6 +10902,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedTiered(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedTiered(
         [NotNullWhen(true)] out NewSubscriptionGroupedTieredPrice? value
     )
@@ -9387,6 +10925,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionTieredPackageWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionTieredPackageWithMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionTieredPackageWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionTieredPackageWithMinimum(
         [NotNullWhen(true)] out NewSubscriptionTieredPackageWithMinimumPrice? value
     )
@@ -9395,6 +10948,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionPackageWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionPackageWithAllocation(out var value)) {
+    ///     // `value` is of type `NewSubscriptionPackageWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionPackageWithAllocation(
         [NotNullWhen(true)] out NewSubscriptionPackageWithAllocationPrice? value
     )
@@ -9403,6 +10971,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionUnitWithPercentPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionUnitWithPercent(out var value)) {
+    ///     // `value` is of type `NewSubscriptionUnitWithPercentPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionUnitWithPercent(
         [NotNullWhen(true)] out NewSubscriptionUnitWithPercentPrice? value
     )
@@ -9411,6 +10994,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMatrixWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMatrixWithAllocation(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMatrixWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMatrixWithAllocation(
         [NotNullWhen(true)] out NewSubscriptionMatrixWithAllocationPrice? value
     )
@@ -9419,6 +11017,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredWithProration(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTieredWithProration(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration? value
@@ -9429,6 +11042,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionUnitWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionUnitWithProration(out var value)) {
+    ///     // `value` is of type `NewSubscriptionUnitWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionUnitWithProration(
         [NotNullWhen(true)] out NewSubscriptionUnitWithProrationPrice? value
     )
@@ -9437,6 +11065,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedAllocation(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedAllocation(
         [NotNullWhen(true)] out NewSubscriptionGroupedAllocationPrice? value
     )
@@ -9445,6 +11088,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionBulkWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionBulkWithProration(out var value)) {
+    ///     // `value` is of type `NewSubscriptionBulkWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionBulkWithProration(
         [NotNullWhen(true)] out NewSubscriptionBulkWithProrationPrice? value
     )
@@ -9453,6 +11111,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedWithProratedMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedWithProratedMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedWithProratedMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedWithProratedMinimum(
         [NotNullWhen(true)] out NewSubscriptionGroupedWithProratedMinimumPrice? value
     )
@@ -9461,6 +11134,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedWithMeteredMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedWithMeteredMinimum(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedWithMeteredMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedWithMeteredMinimum(
         [NotNullWhen(true)] out NewSubscriptionGroupedWithMeteredMinimumPrice? value
     )
@@ -9469,6 +11157,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickGroupedWithMinMaxThresholds(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickGroupedWithMinMaxThresholds(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds? value
@@ -9480,6 +11183,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMatrixWithDisplayNamePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMatrixWithDisplayName(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMatrixWithDisplayNamePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMatrixWithDisplayName(
         [NotNullWhen(true)] out NewSubscriptionMatrixWithDisplayNamePrice? value
     )
@@ -9488,6 +11206,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionGroupedTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionGroupedTieredPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionGroupedTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionGroupedTieredPackage(
         [NotNullWhen(true)] out NewSubscriptionGroupedTieredPackagePrice? value
     )
@@ -9496,6 +11229,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMaxGroupTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMaxGroupTieredPackage(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMaxGroupTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMaxGroupTieredPackage(
         [NotNullWhen(true)] out NewSubscriptionMaxGroupTieredPackagePrice? value
     )
@@ -9504,6 +11252,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionScalableMatrixWithUnitPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionScalableMatrixWithUnitPricing(out var value)) {
+    ///     // `value` is of type `NewSubscriptionScalableMatrixWithUnitPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionScalableMatrixWithUnitPricing(
         [NotNullWhen(true)] out NewSubscriptionScalableMatrixWithUnitPricingPrice? value
     )
@@ -9512,6 +11275,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionScalableMatrixWithTieredPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionScalableMatrixWithTieredPricing(out var value)) {
+    ///     // `value` is of type `NewSubscriptionScalableMatrixWithTieredPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionScalableMatrixWithTieredPricing(
         [NotNullWhen(true)] out NewSubscriptionScalableMatrixWithTieredPricingPrice? value
     )
@@ -9520,6 +11298,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionCumulativeGroupedBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionCumulativeGroupedBulk(out var value)) {
+    ///     // `value` is of type `NewSubscriptionCumulativeGroupedBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionCumulativeGroupedBulk(
         [NotNullWhen(true)] out NewSubscriptionCumulativeGroupedBulkPrice? value
     )
@@ -9528,6 +11321,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickCumulativeGroupedAllocation(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickCumulativeGroupedAllocation(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation? value
@@ -9539,6 +11347,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewSubscriptionMinimumCompositePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewSubscriptionMinimumComposite(out var value)) {
+    ///     // `value` is of type `NewSubscriptionMinimumCompositePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewSubscriptionMinimumComposite(
         [NotNullWhen(true)] out NewSubscriptionMinimumCompositePrice? value
     )
@@ -9547,6 +11370,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePricePercent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercent(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePricePercent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPercent(
         [NotNullWhen(true)] out SubscriptionSchedulePlanChangeParamsReplacePricePricePercent? value
     )
@@ -9555,6 +11393,21 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickEventOutput(out var value)) {
+    ///     // `value` is of type `SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickEventOutput(
         [NotNullWhen(true)]
             out SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput? value
@@ -9564,6 +11417,55 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewSubscriptionUnitPrice value) => {...},
+    ///     (NewSubscriptionTieredPrice value) => {...},
+    ///     (NewSubscriptionBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters value) => {...},
+    ///     (NewSubscriptionPackagePrice value) => {...},
+    ///     (NewSubscriptionMatrixPrice value) => {...},
+    ///     (NewSubscriptionThresholdTotalAmountPrice value) => {...},
+    ///     (NewSubscriptionTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionTieredWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPrice value) => {...},
+    ///     (NewSubscriptionTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionPackageWithAllocationPrice value) => {...},
+    ///     (NewSubscriptionUnitWithPercentPrice value) => {...},
+    ///     (NewSubscriptionMatrixWithAllocationPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value) => {...},
+    ///     (NewSubscriptionUnitWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedAllocationPrice value) => {...},
+    ///     (NewSubscriptionBulkWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds value) => {...},
+    ///     (NewSubscriptionMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewSubscriptionCumulativeGroupedBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation value) => {...},
+    ///     (NewSubscriptionMinimumCompositePrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePricePercent value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewSubscriptionUnitPrice> newSubscriptionUnit,
         System::Action<NewSubscriptionTieredPrice> newSubscriptionTiered,
@@ -9700,6 +11602,56 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewSubscriptionUnitPrice value) => {...},
+    ///     (NewSubscriptionTieredPrice value) => {...},
+    ///     (NewSubscriptionBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters value) => {...},
+    ///     (NewSubscriptionPackagePrice value) => {...},
+    ///     (NewSubscriptionMatrixPrice value) => {...},
+    ///     (NewSubscriptionThresholdTotalAmountPrice value) => {...},
+    ///     (NewSubscriptionTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionTieredWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPrice value) => {...},
+    ///     (NewSubscriptionTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewSubscriptionPackageWithAllocationPrice value) => {...},
+    ///     (NewSubscriptionUnitWithPercentPrice value) => {...},
+    ///     (NewSubscriptionMatrixWithAllocationPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value) => {...},
+    ///     (NewSubscriptionUnitWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedAllocationPrice value) => {...},
+    ///     (NewSubscriptionBulkWithProrationPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewSubscriptionGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds value) => {...},
+    ///     (NewSubscriptionMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewSubscriptionGroupedTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewSubscriptionScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewSubscriptionCumulativeGroupedBulkPrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation value) => {...},
+    ///     (NewSubscriptionMinimumCompositePrice value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePricePercent value) => {...},
+    ///     (SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewSubscriptionUnitPrice, T> newSubscriptionUnit,
         System::Func<NewSubscriptionTieredPrice, T> newSubscriptionTiered,
@@ -9973,6 +11925,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -10966,6 +12928,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.BulkWithFiltersConfig.Validate();
@@ -11020,6 +12983,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11031,6 +12995,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11079,6 +13044,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Filters)
@@ -11111,6 +13077,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11122,6 +13089,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11160,6 +13128,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "property_value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PropertyKey;
@@ -11186,6 +13155,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11197,6 +13167,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11235,6 +13206,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -11261,6 +13233,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11281,6 +13254,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11402,18 +13376,68 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -11434,6 +13458,27 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -11457,6 +13502,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -11790,6 +13845,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -11844,6 +13900,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11855,6 +13912,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11966,6 +14024,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -11994,6 +14053,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12014,6 +14074,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -12052,6 +14113,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TierLowerBound;
@@ -12078,6 +14140,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12089,6 +14152,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -12136,18 +14200,68 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -12168,6 +14282,27 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -12191,6 +14326,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -12524,6 +14669,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -12582,6 +14728,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12593,6 +14740,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -12726,6 +14874,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.GroupingKey;
@@ -12754,6 +14903,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12765,6 +14915,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -12812,18 +14963,68 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -12844,6 +15045,27 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -12867,6 +15089,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -13200,6 +15432,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -13258,6 +15491,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -13269,6 +15503,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -13402,6 +15637,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CumulativeAllocation;
@@ -13430,6 +15666,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -13441,6 +15678,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -13488,18 +15726,68 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -13520,6 +15808,27 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -13543,6 +15852,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -13872,6 +16191,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -13926,6 +16246,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePricePercentFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -13937,6 +16258,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePricePercent>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsReplacePricePricePercent.FromRawUnchecked(rawData);
@@ -14035,6 +16357,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "percent", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Percent;
@@ -14059,6 +16382,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -14077,6 +16401,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -14124,18 +16449,68 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -14156,6 +16531,27 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -14179,6 +16575,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -14512,6 +16918,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -14566,6 +16973,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -14577,6 +16985,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput.FromRawUnchecked(rawData);
@@ -14698,6 +17107,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
         init { ModelBase.Set(this._rawData, "grouping_key", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitRatingKey;
@@ -14724,6 +17134,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfigFromRaw.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -14744,6 +17155,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfigFromRaw
     : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>
 {
+    /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -14791,18 +17203,68 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -14823,6 +17285,27 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -14846,6 +17329,16 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)

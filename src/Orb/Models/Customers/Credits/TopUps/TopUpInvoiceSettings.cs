@@ -63,6 +63,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AutoCollection;
@@ -86,6 +87,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpInvoiceSettingsFromRaw.FromRawUnchecked"/>
     public static TopUpInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -96,6 +98,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
 
 class TopUpInvoiceSettingsFromRaw : IFromRaw<TopUpInvoiceSettings>
 {
+    /// <inheritdoc/>
     public TopUpInvoiceSettings FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopUpInvoiceSettings.FromRawUnchecked(rawData);

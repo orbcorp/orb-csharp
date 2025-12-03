@@ -28,6 +28,7 @@ public sealed record class CouponListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -52,6 +53,7 @@ public sealed record class CouponListPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="CouponListPageResponseFromRaw.FromRawUnchecked"/>
     public static CouponListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -62,6 +64,7 @@ public sealed record class CouponListPageResponse : ModelBase
 
 class CouponListPageResponseFromRaw : IFromRaw<CouponListPageResponse>
 {
+    /// <inheritdoc/>
     public CouponListPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => CouponListPageResponse.FromRawUnchecked(rawData);

@@ -41,6 +41,7 @@ public sealed record class TopUpListByExternalIDPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Data)
@@ -65,6 +66,7 @@ public sealed record class TopUpListByExternalIDPageResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpListByExternalIDPageResponseFromRaw.FromRawUnchecked"/>
     public static TopUpListByExternalIDPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -75,6 +77,7 @@ public sealed record class TopUpListByExternalIDPageResponse : ModelBase
 
 class TopUpListByExternalIDPageResponseFromRaw : IFromRaw<TopUpListByExternalIDPageResponse>
 {
+    /// <inheritdoc/>
     public TopUpListByExternalIDPageResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopUpListByExternalIDPageResponse.FromRawUnchecked(rawData);
@@ -171,6 +174,7 @@ public sealed record class TopUpListByExternalIDPageResponseData : ModelBase
         init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -198,6 +202,7 @@ public sealed record class TopUpListByExternalIDPageResponseData : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="TopUpListByExternalIDPageResponseDataFromRaw.FromRawUnchecked"/>
     public static TopUpListByExternalIDPageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -208,6 +213,7 @@ public sealed record class TopUpListByExternalIDPageResponseData : ModelBase
 
 class TopUpListByExternalIDPageResponseDataFromRaw : IFromRaw<TopUpListByExternalIDPageResponseData>
 {
+    /// <inheritdoc/>
     public TopUpListByExternalIDPageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TopUpListByExternalIDPageResponseData.FromRawUnchecked(rawData);

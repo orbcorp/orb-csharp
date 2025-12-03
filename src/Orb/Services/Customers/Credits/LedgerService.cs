@@ -8,7 +8,7 @@ using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Services.Customers.Credits;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class LedgerService : ILedgerService
 {
     /// <inheritdoc/>

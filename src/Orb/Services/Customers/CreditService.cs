@@ -9,7 +9,7 @@ using Orb.Services.Customers.Credits;
 
 namespace Orb.Services.Customers;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class CreditService : ICreditService
 {
     /// <inheritdoc/>

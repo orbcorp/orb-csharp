@@ -153,6 +153,7 @@ public sealed record class ExternalPlanIDCreatePlanVersionParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static ExternalPlanIDCreatePlanVersionParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -224,6 +225,7 @@ public sealed record class AddAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Adjustment.Validate();
@@ -245,6 +247,7 @@ public sealed record class AddAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.AddAdjustmentFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.AddAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -262,6 +265,7 @@ public sealed record class AddAdjustment : ModelBase
 
 class AddAdjustmentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.AddAdjustment>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.AddAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.AddAdjustment.FromRawUnchecked(rawData);
@@ -345,36 +349,134 @@ public record class Adjustment
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPercentageDiscount(out var value)) {
+    ///     // `value` is of type `NewPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
     {
         value = this.Value as NewPercentageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewUsageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewUsageDiscount(out var value)) {
+    ///     // `value` is of type `NewUsageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewUsageDiscount([NotNullWhen(true)] out NewUsageDiscount? value)
     {
         value = this.Value as NewUsageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewAmountDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewAmountDiscount(out var value)) {
+    ///     // `value` is of type `NewAmountDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewAmountDiscount([NotNullWhen(true)] out NewAmountDiscount? value)
     {
         value = this.Value as NewAmountDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMinimum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMinimum(out var value)) {
+    ///     // `value` is of type `NewMinimum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMinimum([NotNullWhen(true)] out NewMinimum? value)
     {
         value = this.Value as NewMinimum;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMaximum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMaximum(out var value)) {
+    ///     // `value` is of type `NewMaximum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMaximum([NotNullWhen(true)] out NewMaximum? value)
     {
         value = this.Value as NewMaximum;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewPercentageDiscount> newPercentageDiscount,
         System::Action<NewUsageDiscount> newUsageDiscount,
@@ -405,6 +507,30 @@ public record class Adjustment
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewPercentageDiscount, T> newPercentageDiscount,
         System::Func<NewUsageDiscount, T> newUsageDiscount,
@@ -444,6 +570,16 @@ public record class Adjustment
         NewMaximum value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -643,6 +779,7 @@ public sealed record class AddPrice : ModelBase
         init { ModelBase.Set(this._rawData, "price", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.AllocationPrice?.Validate();
@@ -665,6 +802,7 @@ public sealed record class AddPrice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.AddPriceFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.AddPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -675,6 +813,7 @@ public sealed record class AddPrice : ModelBase
 
 class AddPriceFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.AddPrice>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.AddPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.AddPrice.FromRawUnchecked(rawData);
@@ -1418,24 +1557,84 @@ public record class Price
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanUnitPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanUnit(out var value)) {
+    ///     // `value` is of type `NewPlanUnitPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out NewPlanUnitPrice? value)
     {
         value = this.Value as NewPlanUnitPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTiered(out var value)) {
+    ///     // `value` is of type `NewPlanTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTiered([NotNullWhen(true)] out NewPlanTieredPrice? value)
     {
         value = this.Value as NewPlanTieredPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanBulk(out var value)) {
+    ///     // `value` is of type `NewPlanBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanBulk([NotNullWhen(true)] out NewPlanBulkPrice? value)
     {
         value = this.Value as NewPlanBulkPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickBulkWithFilters(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickBulkWithFilters(
         [NotNullWhen(true)] out global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters? value
     )
@@ -1444,18 +1643,63 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanPackage(out var value)) {
+    ///     // `value` is of type `NewPlanPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanPackage([NotNullWhen(true)] out NewPlanPackagePrice? value)
     {
         value = this.Value as NewPlanPackagePrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMatrixPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMatrix(out var value)) {
+    ///     // `value` is of type `NewPlanMatrixPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMatrix([NotNullWhen(true)] out NewPlanMatrixPrice? value)
     {
         value = this.Value as NewPlanMatrixPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanThresholdTotalAmountPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanThresholdTotalAmount(out var value)) {
+    ///     // `value` is of type `NewPlanThresholdTotalAmountPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanThresholdTotalAmount(
         [NotNullWhen(true)] out NewPlanThresholdTotalAmountPrice? value
     )
@@ -1464,6 +1708,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTieredPackage(out var value)) {
+    ///     // `value` is of type `NewPlanTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTieredPackage(
         [NotNullWhen(true)] out NewPlanTieredPackagePrice? value
     )
@@ -1472,6 +1731,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTieredWithMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanTieredWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTieredWithMinimum(
         [NotNullWhen(true)] out NewPlanTieredWithMinimumPrice? value
     )
@@ -1480,6 +1754,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedTiered(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedTiered(
         [NotNullWhen(true)] out NewPlanGroupedTieredPrice? value
     )
@@ -1488,6 +1777,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredPackageWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTieredPackageWithMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanTieredPackageWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTieredPackageWithMinimum(
         [NotNullWhen(true)] out NewPlanTieredPackageWithMinimumPrice? value
     )
@@ -1496,6 +1800,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanPackageWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanPackageWithAllocation(out var value)) {
+    ///     // `value` is of type `NewPlanPackageWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanPackageWithAllocation(
         [NotNullWhen(true)] out NewPlanPackageWithAllocationPrice? value
     )
@@ -1504,6 +1823,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanUnitWithPercentPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanUnitWithPercent(out var value)) {
+    ///     // `value` is of type `NewPlanUnitWithPercentPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanUnitWithPercent(
         [NotNullWhen(true)] out NewPlanUnitWithPercentPrice? value
     )
@@ -1512,6 +1846,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMatrixWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMatrixWithAllocation(out var value)) {
+    ///     // `value` is of type `NewPlanMatrixWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMatrixWithAllocation(
         [NotNullWhen(true)] out NewPlanMatrixWithAllocationPrice? value
     )
@@ -1520,6 +1869,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.TieredWithProration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredWithProration(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.TieredWithProration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTieredWithProration(
         [NotNullWhen(true)] out global::Orb.Models.Beta.ExternalPlanID.TieredWithProration? value
     )
@@ -1528,6 +1892,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanUnitWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanUnitWithProration(out var value)) {
+    ///     // `value` is of type `NewPlanUnitWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanUnitWithProration(
         [NotNullWhen(true)] out NewPlanUnitWithProrationPrice? value
     )
@@ -1536,6 +1915,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedAllocation(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedAllocation(
         [NotNullWhen(true)] out NewPlanGroupedAllocationPrice? value
     )
@@ -1544,6 +1938,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanBulkWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanBulkWithProration(out var value)) {
+    ///     // `value` is of type `NewPlanBulkWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanBulkWithProration(
         [NotNullWhen(true)] out NewPlanBulkWithProrationPrice? value
     )
@@ -1552,6 +1961,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedWithProratedMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedWithProratedMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedWithProratedMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedWithProratedMinimum(
         [NotNullWhen(true)] out NewPlanGroupedWithProratedMinimumPrice? value
     )
@@ -1560,6 +1984,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedWithMeteredMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedWithMeteredMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedWithMeteredMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedWithMeteredMinimum(
         [NotNullWhen(true)] out NewPlanGroupedWithMeteredMinimumPrice? value
     )
@@ -1568,6 +2007,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickGroupedWithMinMaxThresholds(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickGroupedWithMinMaxThresholds(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds? value
@@ -1577,6 +2031,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMatrixWithDisplayNamePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMatrixWithDisplayName(out var value)) {
+    ///     // `value` is of type `NewPlanMatrixWithDisplayNamePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMatrixWithDisplayName(
         [NotNullWhen(true)] out NewPlanMatrixWithDisplayNamePrice? value
     )
@@ -1585,6 +2054,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedTieredPackage(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedTieredPackage(
         [NotNullWhen(true)] out NewPlanGroupedTieredPackagePrice? value
     )
@@ -1593,6 +2077,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMaxGroupTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMaxGroupTieredPackage(out var value)) {
+    ///     // `value` is of type `NewPlanMaxGroupTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMaxGroupTieredPackage(
         [NotNullWhen(true)] out NewPlanMaxGroupTieredPackagePrice? value
     )
@@ -1601,6 +2100,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanScalableMatrixWithUnitPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanScalableMatrixWithUnitPricing(out var value)) {
+    ///     // `value` is of type `NewPlanScalableMatrixWithUnitPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanScalableMatrixWithUnitPricing(
         [NotNullWhen(true)] out NewPlanScalableMatrixWithUnitPricingPrice? value
     )
@@ -1609,6 +2123,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanScalableMatrixWithTieredPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanScalableMatrixWithTieredPricing(out var value)) {
+    ///     // `value` is of type `NewPlanScalableMatrixWithTieredPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanScalableMatrixWithTieredPricing(
         [NotNullWhen(true)] out NewPlanScalableMatrixWithTieredPricingPrice? value
     )
@@ -1617,6 +2146,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanCumulativeGroupedBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanCumulativeGroupedBulk(out var value)) {
+    ///     // `value` is of type `NewPlanCumulativeGroupedBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanCumulativeGroupedBulk(
         [NotNullWhen(true)] out NewPlanCumulativeGroupedBulkPrice? value
     )
@@ -1625,6 +2169,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickCumulativeGroupedAllocation(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickCumulativeGroupedAllocation(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation? value
@@ -1634,6 +2193,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMinimumCompositePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMinimumComposite(out var value)) {
+    ///     // `value` is of type `NewPlanMinimumCompositePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMinimumComposite(
         [NotNullWhen(true)] out NewPlanMinimumCompositePrice? value
     )
@@ -1642,6 +2216,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.Percent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercent(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.Percent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPercent(
         [NotNullWhen(true)] out global::Orb.Models.Beta.ExternalPlanID.Percent? value
     )
@@ -1650,6 +2239,21 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.EventOutput"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickEventOutput(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.EventOutput`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickEventOutput(
         [NotNullWhen(true)] out global::Orb.Models.Beta.ExternalPlanID.EventOutput? value
     )
@@ -1658,6 +2262,55 @@ public record class Price
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewPlanUnitPrice value) => {...},
+    ///     (NewPlanTieredPrice value) => {...},
+    ///     (NewPlanBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters value) => {...},
+    ///     (NewPlanPackagePrice value) => {...},
+    ///     (NewPlanMatrixPrice value) => {...},
+    ///     (NewPlanThresholdTotalAmountPrice value) => {...},
+    ///     (NewPlanTieredPackagePrice value) => {...},
+    ///     (NewPlanTieredWithMinimumPrice value) => {...},
+    ///     (NewPlanGroupedTieredPrice value) => {...},
+    ///     (NewPlanTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewPlanPackageWithAllocationPrice value) => {...},
+    ///     (NewPlanUnitWithPercentPrice value) => {...},
+    ///     (NewPlanMatrixWithAllocationPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.TieredWithProration value) => {...},
+    ///     (NewPlanUnitWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedAllocationPrice value) => {...},
+    ///     (NewPlanBulkWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewPlanGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds value) => {...},
+    ///     (NewPlanMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewPlanGroupedTieredPackagePrice value) => {...},
+    ///     (NewPlanMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewPlanScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewPlanScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewPlanCumulativeGroupedBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation value) => {...},
+    ///     (NewPlanMinimumCompositePrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.Percent value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.EventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewPlanUnitPrice> newPlanUnit,
         System::Action<NewPlanTieredPrice> newPlanTiered,
@@ -1792,6 +2445,56 @@ public record class Price
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewPlanUnitPrice value) => {...},
+    ///     (NewPlanTieredPrice value) => {...},
+    ///     (NewPlanBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters value) => {...},
+    ///     (NewPlanPackagePrice value) => {...},
+    ///     (NewPlanMatrixPrice value) => {...},
+    ///     (NewPlanThresholdTotalAmountPrice value) => {...},
+    ///     (NewPlanTieredPackagePrice value) => {...},
+    ///     (NewPlanTieredWithMinimumPrice value) => {...},
+    ///     (NewPlanGroupedTieredPrice value) => {...},
+    ///     (NewPlanTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewPlanPackageWithAllocationPrice value) => {...},
+    ///     (NewPlanUnitWithPercentPrice value) => {...},
+    ///     (NewPlanMatrixWithAllocationPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.TieredWithProration value) => {...},
+    ///     (NewPlanUnitWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedAllocationPrice value) => {...},
+    ///     (NewPlanBulkWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewPlanGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds value) => {...},
+    ///     (NewPlanMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewPlanGroupedTieredPackagePrice value) => {...},
+    ///     (NewPlanMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewPlanScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewPlanScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewPlanCumulativeGroupedBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation value) => {...},
+    ///     (NewPlanMinimumCompositePrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.Percent value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.EventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewPlanUnitPrice, T> newPlanUnit,
         System::Func<NewPlanTieredPrice, T> newPlanTiered,
@@ -2011,6 +2714,16 @@ public record class Price
         global::Orb.Models.Beta.ExternalPlanID.EventOutput value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -2977,6 +3690,7 @@ public sealed record class BulkWithFilters : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.BulkWithFiltersConfig.Validate();
@@ -3027,6 +3741,7 @@ public sealed record class BulkWithFilters : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3037,6 +3752,7 @@ public sealed record class BulkWithFilters : ModelBase
 
 class BulkWithFiltersFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.BulkWithFilters.FromRawUnchecked(rawData);
@@ -3083,6 +3799,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Filters)
@@ -3110,6 +3827,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3121,6 +3839,7 @@ public sealed record class BulkWithFiltersConfig : ModelBase
 class BulkWithFiltersConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.BulkWithFiltersConfig.FromRawUnchecked(rawData);
@@ -3155,6 +3874,7 @@ public sealed record class Filter : ModelBase
         init { ModelBase.Set(this._rawData, "property_value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PropertyKey;
@@ -3176,6 +3896,7 @@ public sealed record class Filter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.FilterFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.Filter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3186,6 +3907,7 @@ public sealed record class Filter : ModelBase
 
 class FilterFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Filter>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.Filter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.Filter.FromRawUnchecked(rawData);
@@ -3220,6 +3942,7 @@ public sealed record class Tier : ModelBase
         init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -3241,6 +3964,7 @@ public sealed record class Tier : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.TierFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.Tier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3258,6 +3982,7 @@ public sealed record class Tier : ModelBase
 
 class TierFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Tier>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.Tier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.Tier.FromRawUnchecked(rawData);
@@ -3351,18 +4076,68 @@ public record class ConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -3383,6 +4158,27 @@ public record class ConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -3406,6 +4202,16 @@ public record class ConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -3731,6 +4537,7 @@ public sealed record class TieredWithProration : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -3781,6 +4588,7 @@ public sealed record class TieredWithProration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.TieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3792,6 +4600,7 @@ public sealed record class TieredWithProration : ModelBase
 class TieredWithProrationFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProration>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.TieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.TieredWithProration.FromRawUnchecked(rawData);
@@ -3899,6 +4708,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -3922,6 +4732,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -3942,6 +4753,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
 class TieredWithProrationConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfig.FromRawUnchecked(rawData);
@@ -3976,6 +4788,7 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TierLowerBound;
@@ -3997,6 +4810,7 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigTierFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4008,6 +4822,7 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
 class TieredWithProrationConfigTierFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigTier>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4053,18 +4868,68 @@ public record class TieredWithProrationConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -4085,6 +4950,27 @@ public record class TieredWithProrationConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -4108,6 +4994,16 @@ public record class TieredWithProrationConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -4440,6 +5336,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -4494,6 +5391,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4505,6 +5403,7 @@ public sealed record class GroupedWithMinMaxThresholds : ModelBase
 class GroupedWithMinMaxThresholdsFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4666,6 +5565,7 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
         init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.GroupingKey;
@@ -4689,6 +5589,7 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -4700,6 +5601,7 @@ public sealed record class GroupedWithMinMaxThresholdsConfig : ModelBase
 class GroupedWithMinMaxThresholdsConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -4745,18 +5647,68 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -4777,6 +5729,27 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -4800,6 +5773,16 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -5132,6 +6115,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -5186,6 +6170,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -5197,6 +6182,7 @@ public sealed record class CumulativeGroupedAllocation : ModelBase
 class CumulativeGroupedAllocationFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -5358,6 +6344,7 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CumulativeAllocation;
@@ -5381,6 +6368,7 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -5392,6 +6380,7 @@ public sealed record class CumulativeGroupedAllocationConfig : ModelBase
 class CumulativeGroupedAllocationConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -5437,18 +6426,68 @@ public record class CumulativeGroupedAllocationConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -5469,6 +6508,27 @@ public record class CumulativeGroupedAllocationConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -5492,6 +6552,16 @@ public record class CumulativeGroupedAllocationConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -5818,6 +6888,7 @@ public sealed record class Percent : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -5868,6 +6939,7 @@ public sealed record class Percent : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.PercentFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.Percent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -5878,6 +6950,7 @@ public sealed record class Percent : ModelBase
 
 class PercentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.Percent>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.Percent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.Percent.FromRawUnchecked(rawData);
@@ -5963,6 +7036,7 @@ public sealed record class PercentConfig : ModelBase
         init { ModelBase.Set(this._rawData, "percent", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Percent;
@@ -5983,6 +7057,7 @@ public sealed record class PercentConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.PercentConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.PercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6000,6 +7075,7 @@ public sealed record class PercentConfig : ModelBase
 
 class PercentConfigFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.PercentConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.PercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.PercentConfig.FromRawUnchecked(rawData);
@@ -6040,18 +7116,68 @@ public record class PercentConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -6072,6 +7198,27 @@ public record class PercentConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -6095,6 +7242,16 @@ public record class PercentConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -6422,6 +7579,7 @@ public sealed record class EventOutput : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -6472,6 +7630,7 @@ public sealed record class EventOutput : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.EventOutputFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.EventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6482,6 +7641,7 @@ public sealed record class EventOutput : ModelBase
 
 class EventOutputFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.EventOutput>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.EventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.EventOutput.FromRawUnchecked(rawData);
@@ -6589,6 +7749,7 @@ public sealed record class EventOutputConfig : ModelBase
         init { ModelBase.Set(this._rawData, "grouping_key", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitRatingKey;
@@ -6611,6 +7772,7 @@ public sealed record class EventOutputConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.EventOutputConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6628,6 +7790,7 @@ public sealed record class EventOutputConfig : ModelBase
 
 class EventOutputConfigFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.EventOutputConfig.FromRawUnchecked(rawData);
@@ -6670,18 +7833,68 @@ public record class EventOutputConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -6702,6 +7915,27 @@ public record class EventOutputConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -6725,6 +7959,16 @@ public record class EventOutputConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -6859,6 +8103,7 @@ public sealed record class RemoveAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AdjustmentID;
@@ -6880,6 +8125,7 @@ public sealed record class RemoveAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustmentFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6897,6 +8143,7 @@ public sealed record class RemoveAdjustment : ModelBase
 
 class RemoveAdjustmentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.RemoveAdjustment.FromRawUnchecked(rawData);
@@ -6928,6 +8175,7 @@ public sealed record class RemovePrice : ModelBase
         init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PriceID;
@@ -6949,6 +8197,7 @@ public sealed record class RemovePrice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.RemovePriceFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.RemovePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -6966,6 +8215,7 @@ public sealed record class RemovePrice : ModelBase
 
 class RemovePriceFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.RemovePrice>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.RemovePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.RemovePrice.FromRawUnchecked(rawData);
@@ -7012,6 +8262,7 @@ public sealed record class ReplaceAdjustment : ModelBase
         init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Adjustment.Validate();
@@ -7034,6 +8285,7 @@ public sealed record class ReplaceAdjustment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7044,6 +8296,7 @@ public sealed record class ReplaceAdjustment : ModelBase
 
 class ReplaceAdjustmentFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustment.FromRawUnchecked(rawData);
@@ -7127,36 +8380,134 @@ public record class ReplaceAdjustmentAdjustment
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPercentageDiscount(out var value)) {
+    ///     // `value` is of type `NewPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPercentageDiscount([NotNullWhen(true)] out NewPercentageDiscount? value)
     {
         value = this.Value as NewPercentageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewUsageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewUsageDiscount(out var value)) {
+    ///     // `value` is of type `NewUsageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewUsageDiscount([NotNullWhen(true)] out NewUsageDiscount? value)
     {
         value = this.Value as NewUsageDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewAmountDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewAmountDiscount(out var value)) {
+    ///     // `value` is of type `NewAmountDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewAmountDiscount([NotNullWhen(true)] out NewAmountDiscount? value)
     {
         value = this.Value as NewAmountDiscount;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMinimum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMinimum(out var value)) {
+    ///     // `value` is of type `NewMinimum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMinimum([NotNullWhen(true)] out NewMinimum? value)
     {
         value = this.Value as NewMinimum;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewMaximum"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewMaximum(out var value)) {
+    ///     // `value` is of type `NewMaximum`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewMaximum([NotNullWhen(true)] out NewMaximum? value)
     {
         value = this.Value as NewMaximum;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewPercentageDiscount> newPercentageDiscount,
         System::Action<NewUsageDiscount> newUsageDiscount,
@@ -7189,6 +8540,30 @@ public record class ReplaceAdjustmentAdjustment
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewPercentageDiscount value) => {...},
+    ///     (NewUsageDiscount value) => {...},
+    ///     (NewAmountDiscount value) => {...},
+    ///     (NewMinimum value) => {...},
+    ///     (NewMaximum value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewPercentageDiscount, T> newPercentageDiscount,
         System::Func<NewUsageDiscount, T> newUsageDiscount,
@@ -7230,6 +8605,16 @@ public record class ReplaceAdjustmentAdjustment
         NewMaximum value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -7443,6 +8828,7 @@ public sealed record class ReplacePrice : ModelBase
         init { ModelBase.Set(this._rawData, "price", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ReplacesPriceID;
@@ -7466,6 +8852,7 @@ public sealed record class ReplacePrice : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePriceFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -7483,6 +8870,7 @@ public sealed record class ReplacePrice : ModelBase
 
 class ReplacePriceFromRaw : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePrice>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.ReplacePrice.FromRawUnchecked(rawData);
@@ -8238,24 +9626,84 @@ public record class ReplacePricePrice
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanUnitPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanUnit(out var value)) {
+    ///     // `value` is of type `NewPlanUnitPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanUnit([NotNullWhen(true)] out NewPlanUnitPrice? value)
     {
         value = this.Value as NewPlanUnitPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTiered(out var value)) {
+    ///     // `value` is of type `NewPlanTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTiered([NotNullWhen(true)] out NewPlanTieredPrice? value)
     {
         value = this.Value as NewPlanTieredPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanBulk(out var value)) {
+    ///     // `value` is of type `NewPlanBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanBulk([NotNullWhen(true)] out NewPlanBulkPrice? value)
     {
         value = this.Value as NewPlanBulkPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickBulkWithFilters(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickBulkWithFilters(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters? value
@@ -8266,18 +9714,63 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanPackage(out var value)) {
+    ///     // `value` is of type `NewPlanPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanPackage([NotNullWhen(true)] out NewPlanPackagePrice? value)
     {
         value = this.Value as NewPlanPackagePrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMatrixPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMatrix(out var value)) {
+    ///     // `value` is of type `NewPlanMatrixPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMatrix([NotNullWhen(true)] out NewPlanMatrixPrice? value)
     {
         value = this.Value as NewPlanMatrixPrice;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanThresholdTotalAmountPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanThresholdTotalAmount(out var value)) {
+    ///     // `value` is of type `NewPlanThresholdTotalAmountPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanThresholdTotalAmount(
         [NotNullWhen(true)] out NewPlanThresholdTotalAmountPrice? value
     )
@@ -8286,6 +9779,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTieredPackage(out var value)) {
+    ///     // `value` is of type `NewPlanTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTieredPackage(
         [NotNullWhen(true)] out NewPlanTieredPackagePrice? value
     )
@@ -8294,6 +9802,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTieredWithMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanTieredWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTieredWithMinimum(
         [NotNullWhen(true)] out NewPlanTieredWithMinimumPrice? value
     )
@@ -8302,6 +9825,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedTieredPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedTiered(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedTieredPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedTiered(
         [NotNullWhen(true)] out NewPlanGroupedTieredPrice? value
     )
@@ -8310,6 +9848,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanTieredPackageWithMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanTieredPackageWithMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanTieredPackageWithMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanTieredPackageWithMinimum(
         [NotNullWhen(true)] out NewPlanTieredPackageWithMinimumPrice? value
     )
@@ -8318,6 +9871,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanPackageWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanPackageWithAllocation(out var value)) {
+    ///     // `value` is of type `NewPlanPackageWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanPackageWithAllocation(
         [NotNullWhen(true)] out NewPlanPackageWithAllocationPrice? value
     )
@@ -8326,6 +9894,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanUnitWithPercentPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanUnitWithPercent(out var value)) {
+    ///     // `value` is of type `NewPlanUnitWithPercentPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanUnitWithPercent(
         [NotNullWhen(true)] out NewPlanUnitWithPercentPrice? value
     )
@@ -8334,6 +9917,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMatrixWithAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMatrixWithAllocation(out var value)) {
+    ///     // `value` is of type `NewPlanMatrixWithAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMatrixWithAllocation(
         [NotNullWhen(true)] out NewPlanMatrixWithAllocationPrice? value
     )
@@ -8342,6 +9940,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredWithProration(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTieredWithProration(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration? value
@@ -8353,6 +9966,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanUnitWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanUnitWithProration(out var value)) {
+    ///     // `value` is of type `NewPlanUnitWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanUnitWithProration(
         [NotNullWhen(true)] out NewPlanUnitWithProrationPrice? value
     )
@@ -8361,6 +9989,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedAllocationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedAllocation(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedAllocationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedAllocation(
         [NotNullWhen(true)] out NewPlanGroupedAllocationPrice? value
     )
@@ -8369,6 +10012,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanBulkWithProrationPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanBulkWithProration(out var value)) {
+    ///     // `value` is of type `NewPlanBulkWithProrationPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanBulkWithProration(
         [NotNullWhen(true)] out NewPlanBulkWithProrationPrice? value
     )
@@ -8377,6 +10035,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedWithProratedMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedWithProratedMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedWithProratedMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedWithProratedMinimum(
         [NotNullWhen(true)] out NewPlanGroupedWithProratedMinimumPrice? value
     )
@@ -8385,6 +10058,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedWithMeteredMinimumPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedWithMeteredMinimum(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedWithMeteredMinimumPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedWithMeteredMinimum(
         [NotNullWhen(true)] out NewPlanGroupedWithMeteredMinimumPrice? value
     )
@@ -8393,6 +10081,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickGroupedWithMinMaxThresholds(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickGroupedWithMinMaxThresholds(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds? value
@@ -8404,6 +10107,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMatrixWithDisplayNamePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMatrixWithDisplayName(out var value)) {
+    ///     // `value` is of type `NewPlanMatrixWithDisplayNamePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMatrixWithDisplayName(
         [NotNullWhen(true)] out NewPlanMatrixWithDisplayNamePrice? value
     )
@@ -8412,6 +10130,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanGroupedTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanGroupedTieredPackage(out var value)) {
+    ///     // `value` is of type `NewPlanGroupedTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanGroupedTieredPackage(
         [NotNullWhen(true)] out NewPlanGroupedTieredPackagePrice? value
     )
@@ -8420,6 +10153,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMaxGroupTieredPackagePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMaxGroupTieredPackage(out var value)) {
+    ///     // `value` is of type `NewPlanMaxGroupTieredPackagePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMaxGroupTieredPackage(
         [NotNullWhen(true)] out NewPlanMaxGroupTieredPackagePrice? value
     )
@@ -8428,6 +10176,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanScalableMatrixWithUnitPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanScalableMatrixWithUnitPricing(out var value)) {
+    ///     // `value` is of type `NewPlanScalableMatrixWithUnitPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanScalableMatrixWithUnitPricing(
         [NotNullWhen(true)] out NewPlanScalableMatrixWithUnitPricingPrice? value
     )
@@ -8436,6 +10199,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanScalableMatrixWithTieredPricingPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanScalableMatrixWithTieredPricing(out var value)) {
+    ///     // `value` is of type `NewPlanScalableMatrixWithTieredPricingPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanScalableMatrixWithTieredPricing(
         [NotNullWhen(true)] out NewPlanScalableMatrixWithTieredPricingPrice? value
     )
@@ -8444,6 +10222,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanCumulativeGroupedBulkPrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanCumulativeGroupedBulk(out var value)) {
+    ///     // `value` is of type `NewPlanCumulativeGroupedBulkPrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanCumulativeGroupedBulk(
         [NotNullWhen(true)] out NewPlanCumulativeGroupedBulkPrice? value
     )
@@ -8452,6 +10245,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickCumulativeGroupedAllocation(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickCumulativeGroupedAllocation(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation? value
@@ -8463,6 +10271,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="NewPlanMinimumCompositePrice"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickNewPlanMinimumComposite(out var value)) {
+    ///     // `value` is of type `NewPlanMinimumCompositePrice`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickNewPlanMinimumComposite(
         [NotNullWhen(true)] out NewPlanMinimumCompositePrice? value
     )
@@ -8471,6 +10294,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPercent(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPercent(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent? value
@@ -8480,6 +10318,21 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickEventOutput(out var value)) {
+    ///     // `value` is of type `global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickEventOutput(
         [NotNullWhen(true)]
             out global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput? value
@@ -8489,6 +10342,55 @@ public record class ReplacePricePrice
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (NewPlanUnitPrice value) => {...},
+    ///     (NewPlanTieredPrice value) => {...},
+    ///     (NewPlanBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters value) => {...},
+    ///     (NewPlanPackagePrice value) => {...},
+    ///     (NewPlanMatrixPrice value) => {...},
+    ///     (NewPlanThresholdTotalAmountPrice value) => {...},
+    ///     (NewPlanTieredPackagePrice value) => {...},
+    ///     (NewPlanTieredWithMinimumPrice value) => {...},
+    ///     (NewPlanGroupedTieredPrice value) => {...},
+    ///     (NewPlanTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewPlanPackageWithAllocationPrice value) => {...},
+    ///     (NewPlanUnitWithPercentPrice value) => {...},
+    ///     (NewPlanMatrixWithAllocationPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration value) => {...},
+    ///     (NewPlanUnitWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedAllocationPrice value) => {...},
+    ///     (NewPlanBulkWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewPlanGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds value) => {...},
+    ///     (NewPlanMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewPlanGroupedTieredPackagePrice value) => {...},
+    ///     (NewPlanMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewPlanScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewPlanScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewPlanCumulativeGroupedBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation value) => {...},
+    ///     (NewPlanMinimumCompositePrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<NewPlanUnitPrice> newPlanUnit,
         System::Action<NewPlanTieredPrice> newPlanTiered,
@@ -8625,6 +10527,56 @@ public record class ReplacePricePrice
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (NewPlanUnitPrice value) => {...},
+    ///     (NewPlanTieredPrice value) => {...},
+    ///     (NewPlanBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters value) => {...},
+    ///     (NewPlanPackagePrice value) => {...},
+    ///     (NewPlanMatrixPrice value) => {...},
+    ///     (NewPlanThresholdTotalAmountPrice value) => {...},
+    ///     (NewPlanTieredPackagePrice value) => {...},
+    ///     (NewPlanTieredWithMinimumPrice value) => {...},
+    ///     (NewPlanGroupedTieredPrice value) => {...},
+    ///     (NewPlanTieredPackageWithMinimumPrice value) => {...},
+    ///     (NewPlanPackageWithAllocationPrice value) => {...},
+    ///     (NewPlanUnitWithPercentPrice value) => {...},
+    ///     (NewPlanMatrixWithAllocationPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration value) => {...},
+    ///     (NewPlanUnitWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedAllocationPrice value) => {...},
+    ///     (NewPlanBulkWithProrationPrice value) => {...},
+    ///     (NewPlanGroupedWithProratedMinimumPrice value) => {...},
+    ///     (NewPlanGroupedWithMeteredMinimumPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds value) => {...},
+    ///     (NewPlanMatrixWithDisplayNamePrice value) => {...},
+    ///     (NewPlanGroupedTieredPackagePrice value) => {...},
+    ///     (NewPlanMaxGroupTieredPackagePrice value) => {...},
+    ///     (NewPlanScalableMatrixWithUnitPricingPrice value) => {...},
+    ///     (NewPlanScalableMatrixWithTieredPricingPrice value) => {...},
+    ///     (NewPlanCumulativeGroupedBulkPrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation value) => {...},
+    ///     (NewPlanMinimumCompositePrice value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent value) => {...},
+    ///     (global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<NewPlanUnitPrice, T> newPlanUnit,
         System::Func<NewPlanTieredPrice, T> newPlanTiered,
@@ -8853,6 +10805,16 @@ public record class ReplacePricePrice
         global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -9828,6 +11790,7 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.BulkWithFiltersConfig.Validate();
@@ -9878,6 +11841,7 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -9889,6 +11853,7 @@ public sealed record class ReplacePricePriceBulkWithFilters : ModelBase
 class ReplacePricePriceBulkWithFiltersFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -9936,6 +11901,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Filters)
@@ -9967,6 +11933,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -9978,6 +11945,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
 class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -10015,6 +11983,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
         init { ModelBase.Set(this._rawData, "property_value", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PropertyKey;
@@ -10040,6 +12009,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -10051,6 +12021,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
 class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -10088,6 +12059,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
         init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitAmount;
@@ -10113,6 +12085,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -10131,6 +12104,7 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
 class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -10300,18 +12274,68 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -10332,6 +12356,27 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -10355,6 +12400,16 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -10687,6 +12742,7 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -10737,6 +12793,7 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -10748,6 +12805,7 @@ public sealed record class ReplacePricePriceTieredWithProration : ModelBase
 class ReplacePricePriceTieredWithProrationFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -10907,6 +12965,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.Tiers)
@@ -10934,6 +12993,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -10954,6 +13014,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 class ReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -10992,6 +13053,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.TierLowerBound;
@@ -11017,6 +13079,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11028,6 +13091,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11073,18 +13137,68 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -11105,6 +13219,27 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -11128,6 +13263,16 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -11460,6 +13605,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -11516,6 +13662,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11527,6 +13674,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholds : ModelB
 class ReplacePricePriceGroupedWithMinMaxThresholdsFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11708,6 +13856,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWi
         init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.GroupingKey;
@@ -11735,6 +13884,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWi
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -11746,6 +13896,7 @@ public sealed record class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWi
 class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -11791,18 +13942,68 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -11823,6 +14024,27 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -11846,6 +14068,16 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -12178,6 +14410,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -12234,6 +14467,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12245,6 +14479,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocation : ModelB
 class ReplacePricePriceCumulativeGroupedAllocationFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -12426,6 +14661,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativ
         init { ModelBase.Set(this._rawData, "unit_amount", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CumulativeAllocation;
@@ -12453,6 +14689,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativ
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12464,6 +14701,7 @@ public sealed record class ReplacePricePriceCumulativeGroupedAllocationCumulativ
 class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -12509,18 +14747,68 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -12541,6 +14829,27 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -12564,6 +14873,16 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -12896,6 +15215,7 @@ public sealed record class ReplacePricePricePercent : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -12946,6 +15266,7 @@ public sealed record class ReplacePricePricePercent : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -12957,6 +15278,7 @@ public sealed record class ReplacePricePricePercent : ModelBase
 class ReplacePricePricePercentFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercent.FromRawUnchecked(rawData);
@@ -13080,6 +15402,7 @@ public sealed record class ReplacePricePricePercentPercentConfig : ModelBase
         init { ModelBase.Set(this._rawData, "percent", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Percent;
@@ -13100,6 +15423,7 @@ public sealed record class ReplacePricePricePercentPercentConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -13118,6 +15442,7 @@ public sealed record class ReplacePricePricePercentPercentConfig : ModelBase
 class ReplacePricePricePercentPercentConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -13163,18 +15488,68 @@ public record class ReplacePricePricePercentConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -13195,6 +15570,27 @@ public record class ReplacePricePricePercentConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -13218,6 +15614,16 @@ public record class ReplacePricePricePercentConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -13550,6 +15956,7 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
         init { ModelBase.Set(this._rawData, "reference_id", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Cadence.Validate();
@@ -13600,6 +16007,7 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -13611,6 +16019,7 @@ public sealed record class ReplacePricePriceEventOutput : ModelBase
 class ReplacePricePriceEventOutputFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -13774,6 +16183,7 @@ public sealed record class ReplacePricePriceEventOutputEventOutputConfig : Model
         init { ModelBase.Set(this._rawData, "grouping_key", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.UnitRatingKey;
@@ -13798,6 +16208,7 @@ public sealed record class ReplacePricePriceEventOutputEventOutputConfig : Model
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfigFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -13816,6 +16227,7 @@ public sealed record class ReplacePricePriceEventOutputEventOutputConfig : Model
 class ReplacePricePriceEventOutputEventOutputConfigFromRaw
     : IFromRaw<global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
@@ -13861,18 +16273,68 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
     {
         value = this.Value as SharedUnitConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
     {
         value = this.Value as SharedTieredConversionRateConfig;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<SharedUnitConversionRateConfig> unit,
         System::Action<SharedTieredConversionRateConfig> tiered
@@ -13893,6 +16355,27 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) => {...},
+    ///     (SharedTieredConversionRateConfig value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<SharedUnitConversionRateConfig, T> unit,
         System::Func<SharedTieredConversionRateConfig, T> tiered
@@ -13916,6 +16399,16 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
         SharedTieredConversionRateConfig value
     ) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)

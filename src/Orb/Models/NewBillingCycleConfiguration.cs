@@ -37,6 +37,7 @@ public sealed record class NewBillingCycleConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "duration_unit", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Duration;
@@ -58,6 +59,7 @@ public sealed record class NewBillingCycleConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewBillingCycleConfigurationFromRaw.FromRawUnchecked"/>
     public static NewBillingCycleConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -68,6 +70,7 @@ public sealed record class NewBillingCycleConfiguration : ModelBase
 
 class NewBillingCycleConfigurationFromRaw : IFromRaw<NewBillingCycleConfiguration>
 {
+    /// <inheritdoc/>
     public NewBillingCycleConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewBillingCycleConfiguration.FromRawUnchecked(rawData);

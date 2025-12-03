@@ -30,6 +30,7 @@ public sealed record class NewAccountingSyncConfiguration : ModelBase
         init { ModelBase.Set(this._rawData, "excluded", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         foreach (var item in this.AccountingProviders ?? [])
@@ -54,6 +55,7 @@ public sealed record class NewAccountingSyncConfiguration : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="NewAccountingSyncConfigurationFromRaw.FromRawUnchecked"/>
     public static NewAccountingSyncConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -64,6 +66,7 @@ public sealed record class NewAccountingSyncConfiguration : ModelBase
 
 class NewAccountingSyncConfigurationFromRaw : IFromRaw<NewAccountingSyncConfiguration>
 {
+    /// <inheritdoc/>
     public NewAccountingSyncConfiguration FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => NewAccountingSyncConfiguration.FromRawUnchecked(rawData);

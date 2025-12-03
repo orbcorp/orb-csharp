@@ -22,6 +22,7 @@ public sealed record class AccountingProviderConfig : ModelBase
         init { ModelBase.Set(this._rawData, "provider_type", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ExternalProviderID;
@@ -43,6 +44,7 @@ public sealed record class AccountingProviderConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AccountingProviderConfigFromRaw.FromRawUnchecked"/>
     public static AccountingProviderConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -53,6 +55,7 @@ public sealed record class AccountingProviderConfig : ModelBase
 
 class AccountingProviderConfigFromRaw : IFromRaw<AccountingProviderConfig>
 {
+    /// <inheritdoc/>
     public AccountingProviderConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => AccountingProviderConfig.FromRawUnchecked(rawData);

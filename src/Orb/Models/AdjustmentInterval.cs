@@ -63,6 +63,7 @@ public sealed record class AdjustmentInterval : ModelBase
         init { ModelBase.Set(this._rawData, "start_date", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -87,6 +88,7 @@ public sealed record class AdjustmentInterval : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AdjustmentIntervalFromRaw.FromRawUnchecked"/>
     public static AdjustmentInterval FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -97,6 +99,7 @@ public sealed record class AdjustmentInterval : ModelBase
 
 class AdjustmentIntervalFromRaw : IFromRaw<AdjustmentInterval>
 {
+    /// <inheritdoc/>
     public AdjustmentInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AdjustmentInterval.FromRawUnchecked(rawData);
 }
@@ -218,6 +221,21 @@ public record class Adjustment
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PlanPhaseUsageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseUsageDiscount(out var value)) {
+    ///     // `value` is of type `PlanPhaseUsageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseUsageDiscount(
         [NotNullWhen(true)] out PlanPhaseUsageDiscountAdjustment? value
     )
@@ -226,6 +244,21 @@ public record class Adjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PlanPhaseAmountDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseAmountDiscount(out var value)) {
+    ///     // `value` is of type `PlanPhaseAmountDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseAmountDiscount(
         [NotNullWhen(true)] out PlanPhaseAmountDiscountAdjustment? value
     )
@@ -234,6 +267,21 @@ public record class Adjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PlanPhasePercentageDiscountAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhasePercentageDiscount(out var value)) {
+    ///     // `value` is of type `PlanPhasePercentageDiscountAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhasePercentageDiscount(
         [NotNullWhen(true)] out PlanPhasePercentageDiscountAdjustment? value
     )
@@ -242,18 +290,71 @@ public record class Adjustment
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PlanPhaseMinimumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseMinimum(out var value)) {
+    ///     // `value` is of type `PlanPhaseMinimumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseMinimum([NotNullWhen(true)] out PlanPhaseMinimumAdjustment? value)
     {
         value = this.Value as PlanPhaseMinimumAdjustment;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PlanPhaseMaximumAdjustment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickPlanPhaseMaximum(out var value)) {
+    ///     // `value` is of type `PlanPhaseMaximumAdjustment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickPlanPhaseMaximum([NotNullWhen(true)] out PlanPhaseMaximumAdjustment? value)
     {
         value = this.Value as PlanPhaseMaximumAdjustment;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (PlanPhaseUsageDiscountAdjustment value) => {...},
+    ///     (PlanPhaseAmountDiscountAdjustment value) => {...},
+    ///     (PlanPhasePercentageDiscountAdjustment value) => {...},
+    ///     (PlanPhaseMinimumAdjustment value) => {...},
+    ///     (PlanPhaseMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
         System::Action<PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
@@ -284,6 +385,30 @@ public record class Adjustment
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (PlanPhaseUsageDiscountAdjustment value) => {...},
+    ///     (PlanPhaseAmountDiscountAdjustment value) => {...},
+    ///     (PlanPhasePercentageDiscountAdjustment value) => {...},
+    ///     (PlanPhaseMinimumAdjustment value) => {...},
+    ///     (PlanPhaseMaximumAdjustment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
         System::Func<PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
@@ -316,6 +441,16 @@ public record class Adjustment
 
     public static implicit operator Adjustment(PlanPhaseMaximumAdjustment value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)

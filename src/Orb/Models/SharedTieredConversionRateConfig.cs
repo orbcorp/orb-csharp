@@ -41,6 +41,7 @@ public sealed record class SharedTieredConversionRateConfig : ModelBase
         init { ModelBase.Set(this._rawData, "tiered_config", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.ConversionRateType.Validate();
@@ -62,6 +63,7 @@ public sealed record class SharedTieredConversionRateConfig : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SharedTieredConversionRateConfigFromRaw.FromRawUnchecked"/>
     public static SharedTieredConversionRateConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -72,6 +74,7 @@ public sealed record class SharedTieredConversionRateConfig : ModelBase
 
 class SharedTieredConversionRateConfigFromRaw : IFromRaw<SharedTieredConversionRateConfig>
 {
+    /// <inheritdoc/>
     public SharedTieredConversionRateConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SharedTieredConversionRateConfig.FromRawUnchecked(rawData);

@@ -9,7 +9,7 @@ using Orb.Models.CreditNotes;
 
 namespace Orb.Services;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class CreditNoteService : ICreditNoteService
 {
     /// <inheritdoc/>

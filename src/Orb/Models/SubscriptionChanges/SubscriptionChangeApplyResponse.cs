@@ -87,6 +87,7 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
         init { ModelBase.Set(this._rawData, "cancelled_at", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -112,6 +113,7 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="SubscriptionChangeApplyResponseFromRaw.FromRawUnchecked"/>
     public static SubscriptionChangeApplyResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -122,6 +124,7 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
 
 class SubscriptionChangeApplyResponseFromRaw : IFromRaw<SubscriptionChangeApplyResponse>
 {
+    /// <inheritdoc/>
     public SubscriptionChangeApplyResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => SubscriptionChangeApplyResponse.FromRawUnchecked(rawData);

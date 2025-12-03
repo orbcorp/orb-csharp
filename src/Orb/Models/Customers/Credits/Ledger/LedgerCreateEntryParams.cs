@@ -137,6 +137,7 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
     public static LedgerCreateEntryParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -307,36 +308,134 @@ public record class Body
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Increment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickIncrement(out var value)) {
+    ///     // `value` is of type `Increment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickIncrement([NotNullWhen(true)] out Increment? value)
     {
         value = this.Value as Increment;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Decrement"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDecrement(out var value)) {
+    ///     // `value` is of type `Decrement`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDecrement([NotNullWhen(true)] out Decrement? value)
     {
         value = this.Value as Decrement;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ExpirationChange"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickExpirationChange(out var value)) {
+    ///     // `value` is of type `ExpirationChange`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickExpirationChange([NotNullWhen(true)] out ExpirationChange? value)
     {
         value = this.Value as ExpirationChange;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Void"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickVoid(out var value)) {
+    ///     // `value` is of type `Void`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickVoid([NotNullWhen(true)] out Void? value)
     {
         value = this.Value as Void;
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="Amendment"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickAmendment(out var value)) {
+    ///     // `value` is of type `Amendment`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickAmendment([NotNullWhen(true)] out Amendment? value)
     {
         value = this.Value as Amendment;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (Increment value) => {...},
+    ///     (Decrement value) => {...},
+    ///     (ExpirationChange value) => {...},
+    ///     (Void value) => {...},
+    ///     (Amendment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<Increment> increment,
         System::Action<Decrement> decrement,
@@ -367,6 +466,30 @@ public record class Body
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (Increment value) => {...},
+    ///     (Decrement value) => {...},
+    ///     (ExpirationChange value) => {...},
+    ///     (Void value) => {...},
+    ///     (Amendment value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<Increment, T> increment,
         System::Func<Decrement, T> decrement,
@@ -396,6 +519,16 @@ public record class Body
 
     public static implicit operator Body(Amendment value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -668,6 +801,7 @@ public sealed record class Increment : ModelBase
         init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -713,6 +847,7 @@ public sealed record class Increment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IncrementFromRaw.FromRawUnchecked"/>
     public static Increment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -728,6 +863,7 @@ public sealed record class Increment : ModelBase
 
 class IncrementFromRaw : IFromRaw<Increment>
 {
+    /// <inheritdoc/>
     public Increment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Increment.FromRawUnchecked(rawData);
 }
@@ -780,6 +916,7 @@ public sealed record class Filter : ModelBase
         init { ModelBase.Set(this._rawData, "values", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         this.Field.Validate();
@@ -802,6 +939,7 @@ public sealed record class Filter : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw.FromRawUnchecked"/>
     public static global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -812,6 +950,7 @@ public sealed record class Filter : ModelBase
 
 class FilterFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter>
 {
+    /// <inheritdoc/>
     public global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => global::Orb.Models.Customers.Credits.Ledger.Filter.FromRawUnchecked(rawData);
@@ -1001,6 +1140,7 @@ public sealed record class InvoiceSettings : ModelBase
         }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.AutoCollection;
@@ -1027,6 +1167,7 @@ public sealed record class InvoiceSettings : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="InvoiceSettingsFromRaw.FromRawUnchecked"/>
     public static InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1042,6 +1183,7 @@ public sealed record class InvoiceSettings : ModelBase
 
 class InvoiceSettingsFromRaw : IFromRaw<InvoiceSettings>
 {
+    /// <inheritdoc/>
     public InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         InvoiceSettings.FromRawUnchecked(rawData);
 }
@@ -1085,6 +1227,33 @@ public record class CustomDueDate
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// "/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDate(out var value)) {
+    ///     // `value` is of type `
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// `
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDate([NotNullWhen(true)] out
 #if NET
         System::DateOnly
@@ -1103,12 +1272,53 @@ public record class CustomDueDate
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="System::DateTimeOffset"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDateTime(out var value)) {
+    ///     // `value` is of type `System::DateTimeOffset`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
         value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<
 #if NET
@@ -1141,6 +1351,33 @@ public record class CustomDueDate
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<
 #if NET
@@ -1177,6 +1414,16 @@ public record class CustomDueDate
 
     public static implicit operator CustomDueDate(System::DateTimeOffset value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1282,6 +1529,33 @@ public record class InvoiceDate
         this._json = json;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// "/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDate(out var value)) {
+    ///     // `value` is of type `
+    /// #if NET
+    /// System::DateOnly
+    /// #else
+    /// System::DateTimeOffset
+    /// #endif
+    /// `
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDate([NotNullWhen(true)] out
 #if NET
         System::DateOnly
@@ -1300,12 +1574,53 @@ public record class InvoiceDate
         return value != null;
     }
 
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="System::DateTimeOffset"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDateTime(out var value)) {
+    ///     // `value` is of type `System::DateTimeOffset`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public bool TryPickDateTime([NotNullWhen(true)] out System::DateTimeOffset? value)
     {
         value = this.Value as System::DateTimeOffset?;
         return value != null;
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public void Switch(
         System::Action<
 #if NET
@@ -1336,6 +1651,33 @@ public record class InvoiceDate
         }
     }
 
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (
+    ///     #if NET
+    ///     System::DateOnly
+    ///     #else
+    ///     System::DateTimeOffset
+    ///     #endif
+    ///      value) => {...},
+    ///     (System::DateTimeOffset value) => {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
     public T Match<T>(
         System::Func<
 #if NET
@@ -1370,6 +1712,16 @@ public record class InvoiceDate
 
     public static implicit operator InvoiceDate(System::DateTimeOffset value) => new(value);
 
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public void Validate()
     {
         if (this.Value == null)
@@ -1492,6 +1844,7 @@ public sealed record class Decrement : ModelBase
         init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -1529,6 +1882,7 @@ public sealed record class Decrement : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="DecrementFromRaw.FromRawUnchecked"/>
     public static Decrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1544,6 +1898,7 @@ public sealed record class Decrement : ModelBase
 
 class DecrementFromRaw : IFromRaw<Decrement>
 {
+    /// <inheritdoc/>
     public Decrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Decrement.FromRawUnchecked(rawData);
 }
@@ -1653,6 +2008,7 @@ public sealed record class ExpirationChange : ModelBase
         init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         if (
@@ -1693,6 +2049,7 @@ public sealed record class ExpirationChange : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="ExpirationChangeFromRaw.FromRawUnchecked"/>
     public static ExpirationChange FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -1716,6 +2073,7 @@ public sealed record class ExpirationChange : ModelBase
 
 class ExpirationChangeFromRaw : IFromRaw<ExpirationChange>
 {
+    /// <inheritdoc/>
     public ExpirationChange FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ExpirationChange.FromRawUnchecked(rawData);
 }
@@ -1801,6 +2159,7 @@ public sealed record class Void : ModelBase
         init { ModelBase.Set(this._rawData, "void_reason", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -1840,6 +2199,7 @@ public sealed record class Void : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="VoidFromRaw.FromRawUnchecked"/>
     public static Void FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -1848,6 +2208,7 @@ public sealed record class Void : ModelBase
 
 class VoidFromRaw : IFromRaw<Void>
 {
+    /// <inheritdoc/>
     public Void FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Void.FromRawUnchecked(rawData);
 }
@@ -1962,6 +2323,7 @@ public sealed record class Amendment : ModelBase
         init { ModelBase.Set(this._rawData, "metadata", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Amount;
@@ -2000,6 +2362,7 @@ public sealed record class Amendment : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="AmendmentFromRaw.FromRawUnchecked"/>
     public static Amendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
@@ -2008,6 +2371,7 @@ public sealed record class Amendment : ModelBase
 
 class AmendmentFromRaw : IFromRaw<Amendment>
 {
+    /// <inheritdoc/>
     public Amendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Amendment.FromRawUnchecked(rawData);
 }

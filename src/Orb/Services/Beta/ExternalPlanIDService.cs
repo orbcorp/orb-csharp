@@ -10,7 +10,7 @@ using Orb.Models.Plans;
 
 namespace Orb.Services.Beta;
 
-/// <inheritdoc />
+/// <inheritdoc/>
 public sealed class ExternalPlanIDService : IExternalPlanIDService
 {
     /// <inheritdoc/>

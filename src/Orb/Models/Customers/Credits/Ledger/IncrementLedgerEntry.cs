@@ -123,6 +123,7 @@ public sealed record class IncrementLedgerEntry : ModelBase
         init { ModelBase.Set(this._rawData, "created_invoices", value); }
     }
 
+    /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
@@ -159,6 +160,7 @@ public sealed record class IncrementLedgerEntry : ModelBase
     }
 #pragma warning restore CS8618
 
+    /// <inheritdoc cref="IncrementLedgerEntryFromRaw.FromRawUnchecked"/>
     public static IncrementLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
@@ -169,6 +171,7 @@ public sealed record class IncrementLedgerEntry : ModelBase
 
 class IncrementLedgerEntryFromRaw : IFromRaw<IncrementLedgerEntry>
 {
+    /// <inheritdoc/>
     public IncrementLedgerEntry FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => IncrementLedgerEntry.FromRawUnchecked(rawData);
