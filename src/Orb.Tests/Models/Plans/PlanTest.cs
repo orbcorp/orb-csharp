@@ -27,8 +27,9 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter23Field.PriceID,
-                            Operator = Models::Filter23Operator.Includes,
+                            Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -53,14 +54,14 @@ public class PlanTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -75,8 +76,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -91,8 +92,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -110,21 +111,21 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIDs = ["string"],
@@ -132,8 +133,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -147,8 +148,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -212,14 +213,14 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -240,8 +241,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -256,8 +257,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -288,7 +289,7 @@ public class PlanTest : TestBase
         };
 
         string expectedID = "id";
-        List<AdjustmentModel> expectedAdjustments =
+        List<PlanAdjustment> expectedAdjustments =
         [
             new Models::PlanPhaseUsageDiscountAdjustment()
             {
@@ -300,8 +301,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter23Field.PriceID,
-                        Operator = Models::Filter23Operator.Includes,
+                        Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -326,14 +327,14 @@ public class PlanTest : TestBase
         Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Models::Filter17Field.PriceID,
-                    Operator = Models::Filter17Operator.Includes,
+                    Field = Models::PercentageDiscountFilterField.PriceID,
+                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -348,8 +349,8 @@ public class PlanTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter2Field.PriceID,
-                    Operator = Models::Filter2Operator.Includes,
+                    Field = Models::MaximumFilterField.PriceID,
+                    Operator = Models::MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -364,8 +365,8 @@ public class PlanTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter4Field.PriceID,
-                    Operator = Models::Filter4Operator.Includes,
+                    Field = Models::MinimumFilterField.PriceID,
+                    Operator = Models::MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -374,7 +375,7 @@ public class PlanTest : TestBase
         string expectedMinimumAmount = "minimum_amount";
         string expectedName = "name";
         long expectedNetTerms = 0;
-        List<PlanPhaseModel> expectedPlanPhases =
+        List<PlanPlanPhase> expectedPlanPhases =
         [
             new()
             {
@@ -383,21 +384,21 @@ public class PlanTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
                     Reason = "reason",
                 },
                 Duration = 0,
-                DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                 Maximum = new()
                 {
                     AppliesToPriceIDs = ["string"],
@@ -405,8 +406,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -420,8 +421,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -485,14 +486,14 @@ public class PlanTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -513,8 +514,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -529,8 +530,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -625,8 +626,9 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter23Field.PriceID,
-                            Operator = Models::Filter23Operator.Includes,
+                            Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -651,14 +653,14 @@ public class PlanTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -673,8 +675,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -689,8 +691,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -708,21 +710,21 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIDs = ["string"],
@@ -730,8 +732,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -745,8 +747,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -810,14 +812,14 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -838,8 +840,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -854,8 +856,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -909,8 +911,9 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter23Field.PriceID,
-                            Operator = Models::Filter23Operator.Includes,
+                            Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -935,14 +938,14 @@ public class PlanTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -957,8 +960,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -973,8 +976,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -992,21 +995,21 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIDs = ["string"],
@@ -1014,8 +1017,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1029,8 +1032,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1094,14 +1097,14 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1122,8 +1125,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1138,8 +1141,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1174,7 +1177,7 @@ public class PlanTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
-        List<AdjustmentModel> expectedAdjustments =
+        List<PlanAdjustment> expectedAdjustments =
         [
             new Models::PlanPhaseUsageDiscountAdjustment()
             {
@@ -1186,8 +1189,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter23Field.PriceID,
-                        Operator = Models::Filter23Operator.Includes,
+                        Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1212,14 +1215,14 @@ public class PlanTest : TestBase
         Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Models::Filter17Field.PriceID,
-                    Operator = Models::Filter17Operator.Includes,
+                    Field = Models::PercentageDiscountFilterField.PriceID,
+                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1234,8 +1237,8 @@ public class PlanTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter2Field.PriceID,
-                    Operator = Models::Filter2Operator.Includes,
+                    Field = Models::MaximumFilterField.PriceID,
+                    Operator = Models::MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1250,8 +1253,8 @@ public class PlanTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter4Field.PriceID,
-                    Operator = Models::Filter4Operator.Includes,
+                    Field = Models::MinimumFilterField.PriceID,
+                    Operator = Models::MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1260,7 +1263,7 @@ public class PlanTest : TestBase
         string expectedMinimumAmount = "minimum_amount";
         string expectedName = "name";
         long expectedNetTerms = 0;
-        List<PlanPhaseModel> expectedPlanPhases =
+        List<PlanPlanPhase> expectedPlanPhases =
         [
             new()
             {
@@ -1269,21 +1272,21 @@ public class PlanTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
                     Reason = "reason",
                 },
                 Duration = 0,
-                DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                 Maximum = new()
                 {
                     AppliesToPriceIDs = ["string"],
@@ -1291,8 +1294,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1306,8 +1309,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1371,14 +1374,14 @@ public class PlanTest : TestBase
                 Discount = new Models::PercentageDiscount()
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                    PercentageDiscount1 = 0.15,
+                    PercentageDiscountValue = 0.15,
                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
                         {
-                            Field = Models::Filter17Field.PriceID,
-                            Operator = Models::Filter17Operator.Includes,
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1399,8 +1402,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter2Field.PriceID,
-                            Operator = Models::Filter2Operator.Includes,
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1415,8 +1418,8 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter4Field.PriceID,
-                            Operator = Models::Filter4Operator.Includes,
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1511,8 +1514,9 @@ public class PlanTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Filter23Field.PriceID,
-                            Operator = Models::Filter23Operator.Includes,
+                            Field = Models::PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
@@ -1537,14 +1541,14 @@ public class PlanTest : TestBase
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1559,8 +1563,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1575,8 +1579,8 @@ public class PlanTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1594,21 +1598,21 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = PlanPhaseModelDurationUnit.Daily,
+                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIDs = ["string"],
@@ -1616,8 +1620,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1631,8 +1635,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1696,14 +1700,14 @@ public class PlanTest : TestBase
                     Discount = new Models::PercentageDiscount()
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Models::Filter17Field.PriceID,
-                                Operator = Models::Filter17Operator.Includes,
+                                Field = Models::PercentageDiscountFilterField.PriceID,
+                                Operator = Models::PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1724,8 +1728,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter2Field.PriceID,
-                                Operator = Models::Filter2Operator.Includes,
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1740,8 +1744,8 @@ public class PlanTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Filter4Field.PriceID,
-                                Operator = Models::Filter4Operator.Includes,
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -1849,33 +1853,33 @@ public class BasePlanTest : TestBase
     }
 }
 
-public class PlanPhaseModelTest : TestBase
+public class PlanPlanPhaseTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PlanPhaseModel
+        var model = new PlanPlanPhase
         {
             ID = "id",
             Description = "description",
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 Reason = "reason",
             },
             Duration = 0,
-            DurationUnit = PlanPhaseModelDurationUnit.Daily,
+            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
                 AppliesToPriceIDs = ["string"],
@@ -1883,8 +1887,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1898,8 +1902,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -1915,22 +1919,22 @@ public class PlanPhaseModelTest : TestBase
         Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Models::Filter17Field.PriceID,
-                    Operator = Models::Filter17Operator.Includes,
+                    Field = Models::PercentageDiscountFilterField.PriceID,
+                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             Reason = "reason",
         };
         long expectedDuration = 0;
-        ApiEnum<string, PlanPhaseModelDurationUnit> expectedDurationUnit =
-            PlanPhaseModelDurationUnit.Daily;
+        ApiEnum<string, PlanPlanPhaseDurationUnit> expectedDurationUnit =
+            PlanPlanPhaseDurationUnit.Daily;
         Models::Maximum expectedMaximum = new()
         {
             AppliesToPriceIDs = ["string"],
@@ -1938,8 +1942,8 @@ public class PlanPhaseModelTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter2Field.PriceID,
-                    Operator = Models::Filter2Operator.Includes,
+                    Field = Models::MaximumFilterField.PriceID,
+                    Operator = Models::MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1953,8 +1957,8 @@ public class PlanPhaseModelTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter4Field.PriceID,
-                    Operator = Models::Filter4Operator.Includes,
+                    Field = Models::MinimumFilterField.PriceID,
+                    Operator = Models::MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -1980,28 +1984,28 @@ public class PlanPhaseModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PlanPhaseModel
+        var model = new PlanPlanPhase
         {
             ID = "id",
             Description = "description",
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 Reason = "reason",
             },
             Duration = 0,
-            DurationUnit = PlanPhaseModelDurationUnit.Daily,
+            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
                 AppliesToPriceIDs = ["string"],
@@ -2009,8 +2013,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2024,8 +2028,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2037,7 +2041,7 @@ public class PlanPhaseModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseModel>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPlanPhase>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -2045,28 +2049,28 @@ public class PlanPhaseModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PlanPhaseModel
+        var model = new PlanPlanPhase
         {
             ID = "id",
             Description = "description",
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 Reason = "reason",
             },
             Duration = 0,
-            DurationUnit = PlanPhaseModelDurationUnit.Daily,
+            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
                 AppliesToPriceIDs = ["string"],
@@ -2074,8 +2078,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2089,8 +2093,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2102,7 +2106,7 @@ public class PlanPhaseModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseModel>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPlanPhase>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -2110,22 +2114,22 @@ public class PlanPhaseModelTest : TestBase
         Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-            PercentageDiscount1 = 0.15,
+            PercentageDiscountValue = 0.15,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = Models::Filter17Field.PriceID,
-                    Operator = Models::Filter17Operator.Includes,
+                    Field = Models::PercentageDiscountFilterField.PriceID,
+                    Operator = Models::PercentageDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             Reason = "reason",
         };
         long expectedDuration = 0;
-        ApiEnum<string, PlanPhaseModelDurationUnit> expectedDurationUnit =
-            PlanPhaseModelDurationUnit.Daily;
+        ApiEnum<string, PlanPlanPhaseDurationUnit> expectedDurationUnit =
+            PlanPlanPhaseDurationUnit.Daily;
         Models::Maximum expectedMaximum = new()
         {
             AppliesToPriceIDs = ["string"],
@@ -2133,8 +2137,8 @@ public class PlanPhaseModelTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter2Field.PriceID,
-                    Operator = Models::Filter2Operator.Includes,
+                    Field = Models::MaximumFilterField.PriceID,
+                    Operator = Models::MaximumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2148,8 +2152,8 @@ public class PlanPhaseModelTest : TestBase
             [
                 new()
                 {
-                    Field = Models::Filter4Field.PriceID,
-                    Operator = Models::Filter4Operator.Includes,
+                    Field = Models::MinimumFilterField.PriceID,
+                    Operator = Models::MinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -2175,28 +2179,28 @@ public class PlanPhaseModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PlanPhaseModel
+        var model = new PlanPlanPhase
         {
             ID = "id",
             Description = "description",
             Discount = new Models::PercentageDiscount()
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
-                PercentageDiscount1 = 0.15,
+                PercentageDiscountValue = 0.15,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
                     {
-                        Field = Models::Filter17Field.PriceID,
-                        Operator = Models::Filter17Operator.Includes,
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 Reason = "reason",
             },
             Duration = 0,
-            DurationUnit = PlanPhaseModelDurationUnit.Daily,
+            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
                 AppliesToPriceIDs = ["string"],
@@ -2204,8 +2208,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter2Field.PriceID,
-                        Operator = Models::Filter2Operator.Includes,
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -2219,8 +2223,8 @@ public class PlanPhaseModelTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Filter4Field.PriceID,
-                        Operator = Models::Filter4Operator.Includes,
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],

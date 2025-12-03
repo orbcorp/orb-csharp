@@ -46,9 +46,15 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// <summary>
     /// The type of alert to create. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, Type1> Type
+    public required ApiEnum<string, AlertCreateForSubscriptionParamsType> Type
     {
-        get { return ModelBase.GetNotNullClass<ApiEnum<string, Type1>>(this.RawBodyData, "type"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<ApiEnum<string, AlertCreateForSubscriptionParamsType>>(
+                this.RawBodyData,
+                "type"
+            );
+        }
         init { ModelBase.Set(this._rawBodyData, "type", value); }
     }
 
@@ -130,16 +136,17 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(Type1Converter))]
-public enum Type1
+[JsonConverter(typeof(AlertCreateForSubscriptionParamsTypeConverter))]
+public enum AlertCreateForSubscriptionParamsType
 {
     UsageExceeded,
     CostExceeded,
 }
 
-sealed class Type1Converter : JsonConverter<Type1>
+sealed class AlertCreateForSubscriptionParamsTypeConverter
+    : JsonConverter<AlertCreateForSubscriptionParamsType>
 {
-    public override Type1 Read(
+    public override AlertCreateForSubscriptionParamsType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -147,20 +154,24 @@ sealed class Type1Converter : JsonConverter<Type1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "usage_exceeded" => Type1.UsageExceeded,
-            "cost_exceeded" => Type1.CostExceeded,
-            _ => (Type1)(-1),
+            "usage_exceeded" => AlertCreateForSubscriptionParamsType.UsageExceeded,
+            "cost_exceeded" => AlertCreateForSubscriptionParamsType.CostExceeded,
+            _ => (AlertCreateForSubscriptionParamsType)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type1 value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        AlertCreateForSubscriptionParamsType value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Type1.UsageExceeded => "usage_exceeded",
-                Type1.CostExceeded => "cost_exceeded",
+                AlertCreateForSubscriptionParamsType.UsageExceeded => "usage_exceeded",
+                AlertCreateForSubscriptionParamsType.CostExceeded => "cost_exceeded",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

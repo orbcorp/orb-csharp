@@ -570,7 +570,7 @@ public class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTest : 
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier11> expectedTiers =
+        List<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -631,7 +631,7 @@ public class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTest : 
 
         string expectedGroupingKey = "x";
         string expectedPackageSize = "package_size";
-        List<Tier11> expectedTiers =
+        List<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
@@ -664,12 +664,16 @@ public class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTest : 
     }
 }
 
-public class Tier11Test : TestBase
+public class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier11 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -681,10 +685,17 @@ public class Tier11Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier11 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier11>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -692,10 +703,17 @@ public class Tier11Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier11 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier11>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -708,7 +726,11 @@ public class Tier11Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier11 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

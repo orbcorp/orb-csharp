@@ -10,8 +10,8 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SharedMatrixValue, SharedMatrixValueFromRaw>))]
-public sealed record class SharedMatrixValue : ModelBase
+[JsonConverter(typeof(ModelConverter<MatrixValue, MatrixValueFromRaw>))]
+public sealed record class MatrixValue : ModelBase
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by
@@ -37,31 +37,29 @@ public sealed record class SharedMatrixValue : ModelBase
         _ = this.UnitAmount;
     }
 
-    public SharedMatrixValue() { }
+    public MatrixValue() { }
 
-    public SharedMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SharedMatrixValue(FrozenDictionary<string, JsonElement> rawData)
+    MatrixValue(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static SharedMatrixValue FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public static MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class SharedMatrixValueFromRaw : IFromRaw<SharedMatrixValue>
+class MatrixValueFromRaw : IFromRaw<MatrixValue>
 {
-    public SharedMatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        SharedMatrixValue.FromRawUnchecked(rawData);
+    public MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MatrixValue.FromRawUnchecked(rawData);
 }

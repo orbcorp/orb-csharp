@@ -388,9 +388,15 @@ public sealed record class TieredWithMinimumConfig : ModelBase
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
     /// are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<Tier6> Tiers
+    public required IReadOnlyList<TieredWithMinimumConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier6>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<TieredWithMinimumConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -461,7 +467,7 @@ public sealed record class TieredWithMinimumConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithMinimumConfig(List<Tier6> tiers)
+    public TieredWithMinimumConfig(List<TieredWithMinimumConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;
@@ -478,8 +484,10 @@ class TieredWithMinimumConfigFromRaw : IFromRaw<TieredWithMinimumConfig>
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier6, Tier6FromRaw>))]
-public sealed record class Tier6 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<TieredWithMinimumConfigTier, TieredWithMinimumConfigTierFromRaw>)
+)]
+public sealed record class TieredWithMinimumConfigTier : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -515,31 +523,34 @@ public sealed record class Tier6 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier6() { }
+    public TieredWithMinimumConfigTier() { }
 
-    public Tier6(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier6(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithMinimumConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier6 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier6FromRaw : IFromRaw<Tier6>
+class TieredWithMinimumConfigTierFromRaw : IFromRaw<TieredWithMinimumConfigTier>
 {
-    public Tier6 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier6.FromRawUnchecked(rawData);
+    public TieredWithMinimumConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingTieredWithMinimumPriceConversionRateConfigConverter))]

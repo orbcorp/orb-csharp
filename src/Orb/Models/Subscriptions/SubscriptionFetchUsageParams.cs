@@ -245,14 +245,13 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// period, or incremental day-by-day usage. If your customer has minimums or
     /// discounts, it's strongly recommended that you use the default cumulative behavior.
     /// </summary>
-    public ApiEnum<string, ViewModeModel>? ViewMode
+    public ApiEnum<string, SubscriptionFetchUsageParamsViewMode>? ViewMode
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ViewModeModel>>(
-                this.RawQueryData,
-                "view_mode"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, SubscriptionFetchUsageParamsViewMode>
+            >(this.RawQueryData, "view_mode");
         }
         init { ModelBase.Set(this._rawQueryData, "view_mode", value); }
     }
@@ -361,16 +360,17 @@ sealed class GranularityConverter : JsonConverter<Granularity>
 /// period, or incremental day-by-day usage. If your customer has minimums or discounts,
 /// it's strongly recommended that you use the default cumulative behavior.
 /// </summary>
-[JsonConverter(typeof(ViewModeModelConverter))]
-public enum ViewModeModel
+[JsonConverter(typeof(SubscriptionFetchUsageParamsViewModeConverter))]
+public enum SubscriptionFetchUsageParamsViewMode
 {
     Periodic,
     Cumulative,
 }
 
-sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
+sealed class SubscriptionFetchUsageParamsViewModeConverter
+    : JsonConverter<SubscriptionFetchUsageParamsViewMode>
 {
-    public override ViewModeModel Read(
+    public override SubscriptionFetchUsageParamsViewMode Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -378,15 +378,15 @@ sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "periodic" => ViewModeModel.Periodic,
-            "cumulative" => ViewModeModel.Cumulative,
-            _ => (ViewModeModel)(-1),
+            "periodic" => SubscriptionFetchUsageParamsViewMode.Periodic,
+            "cumulative" => SubscriptionFetchUsageParamsViewMode.Cumulative,
+            _ => (SubscriptionFetchUsageParamsViewMode)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ViewModeModel value,
+        SubscriptionFetchUsageParamsViewMode value,
         JsonSerializerOptions options
     )
     {
@@ -394,8 +394,8 @@ sealed class ViewModeModelConverter : JsonConverter<ViewModeModel>
             writer,
             value switch
             {
-                ViewModeModel.Periodic => "periodic",
-                ViewModeModel.Cumulative => "cumulative",
+                SubscriptionFetchUsageParamsViewMode.Periodic => "periodic",
+                SubscriptionFetchUsageParamsViewMode.Cumulative => "cumulative",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

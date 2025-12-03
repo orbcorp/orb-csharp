@@ -54,9 +54,15 @@ public sealed record class MonetaryMinimumAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required IReadOnlyList<Filter8> Filters
+    public required IReadOnlyList<MonetaryMinimumAdjustmentFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter8>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<MonetaryMinimumAdjustmentFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -202,17 +208,22 @@ sealed class MonetaryMinimumAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter8, Filter8FromRaw>))]
-public sealed record class Filter8 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<MonetaryMinimumAdjustmentFilter, MonetaryMinimumAdjustmentFilterFromRaw>)
+)]
+public sealed record class MonetaryMinimumAdjustmentFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter8Field> Field
+    public required ApiEnum<string, MonetaryMinimumAdjustmentFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter8Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, MonetaryMinimumAdjustmentFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -220,14 +231,13 @@ public sealed record class Filter8 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter8Operator> Operator
+    public required ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter8Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -248,38 +258,41 @@ public sealed record class Filter8 : ModelBase
         _ = this.Values;
     }
 
-    public Filter8() { }
+    public MonetaryMinimumAdjustmentFilter() { }
 
-    public Filter8(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MonetaryMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter8(FrozenDictionary<string, JsonElement> rawData)
+    MonetaryMinimumAdjustmentFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter8 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MonetaryMinimumAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter8FromRaw : IFromRaw<Filter8>
+class MonetaryMinimumAdjustmentFilterFromRaw : IFromRaw<MonetaryMinimumAdjustmentFilter>
 {
-    public Filter8 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter8.FromRawUnchecked(rawData);
+    public MonetaryMinimumAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MonetaryMinimumAdjustmentFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter8FieldConverter))]
-public enum Filter8Field
+[JsonConverter(typeof(MonetaryMinimumAdjustmentFilterFieldConverter))]
+public enum MonetaryMinimumAdjustmentFilterField
 {
     PriceID,
     ItemID,
@@ -288,9 +301,10 @@ public enum Filter8Field
     PricingUnitID,
 }
 
-sealed class Filter8FieldConverter : JsonConverter<Filter8Field>
+sealed class MonetaryMinimumAdjustmentFilterFieldConverter
+    : JsonConverter<MonetaryMinimumAdjustmentFilterField>
 {
-    public override Filter8Field Read(
+    public override MonetaryMinimumAdjustmentFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -298,18 +312,18 @@ sealed class Filter8FieldConverter : JsonConverter<Filter8Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter8Field.PriceID,
-            "item_id" => Filter8Field.ItemID,
-            "price_type" => Filter8Field.PriceType,
-            "currency" => Filter8Field.Currency,
-            "pricing_unit_id" => Filter8Field.PricingUnitID,
-            _ => (Filter8Field)(-1),
+            "price_id" => MonetaryMinimumAdjustmentFilterField.PriceID,
+            "item_id" => MonetaryMinimumAdjustmentFilterField.ItemID,
+            "price_type" => MonetaryMinimumAdjustmentFilterField.PriceType,
+            "currency" => MonetaryMinimumAdjustmentFilterField.Currency,
+            "pricing_unit_id" => MonetaryMinimumAdjustmentFilterField.PricingUnitID,
+            _ => (MonetaryMinimumAdjustmentFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter8Field value,
+        MonetaryMinimumAdjustmentFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -317,11 +331,11 @@ sealed class Filter8FieldConverter : JsonConverter<Filter8Field>
             writer,
             value switch
             {
-                Filter8Field.PriceID => "price_id",
-                Filter8Field.ItemID => "item_id",
-                Filter8Field.PriceType => "price_type",
-                Filter8Field.Currency => "currency",
-                Filter8Field.PricingUnitID => "pricing_unit_id",
+                MonetaryMinimumAdjustmentFilterField.PriceID => "price_id",
+                MonetaryMinimumAdjustmentFilterField.ItemID => "item_id",
+                MonetaryMinimumAdjustmentFilterField.PriceType => "price_type",
+                MonetaryMinimumAdjustmentFilterField.Currency => "currency",
+                MonetaryMinimumAdjustmentFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -334,16 +348,17 @@ sealed class Filter8FieldConverter : JsonConverter<Filter8Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter8OperatorConverter))]
-public enum Filter8Operator
+[JsonConverter(typeof(MonetaryMinimumAdjustmentFilterOperatorConverter))]
+public enum MonetaryMinimumAdjustmentFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter8OperatorConverter : JsonConverter<Filter8Operator>
+sealed class MonetaryMinimumAdjustmentFilterOperatorConverter
+    : JsonConverter<MonetaryMinimumAdjustmentFilterOperator>
 {
-    public override Filter8Operator Read(
+    public override MonetaryMinimumAdjustmentFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -351,15 +366,15 @@ sealed class Filter8OperatorConverter : JsonConverter<Filter8Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter8Operator.Includes,
-            "excludes" => Filter8Operator.Excludes,
-            _ => (Filter8Operator)(-1),
+            "includes" => MonetaryMinimumAdjustmentFilterOperator.Includes,
+            "excludes" => MonetaryMinimumAdjustmentFilterOperator.Excludes,
+            _ => (MonetaryMinimumAdjustmentFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter8Operator value,
+        MonetaryMinimumAdjustmentFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -367,8 +382,8 @@ sealed class Filter8OperatorConverter : JsonConverter<Filter8Operator>
             writer,
             value switch
             {
-                Filter8Operator.Includes => "includes",
-                Filter8Operator.Excludes => "excludes",
+                MonetaryMinimumAdjustmentFilterOperator.Includes => "includes",
+                MonetaryMinimumAdjustmentFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

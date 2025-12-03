@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.Customers.Credits;
-using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Customers.Credits;
 
@@ -26,20 +26,21 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = FilterModelField.ItemID,
-                            Operator = FilterModelOperator.Includes,
+                            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                            Operator =
+                                CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
                     MaximumInitialBalance = 0,
                     PerUnitCostBasis = "per_unit_cost_basis",
-                    Status = DataModelStatus.Active,
+                    Status = CreditListByExternalIDPageResponseDataStatus.Active,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        List<DataModel> expectedData =
+        List<CreditListByExternalIDPageResponseData> expectedData =
         [
             new()
             {
@@ -51,17 +52,17 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = FilterModelField.ItemID,
-                        Operator = FilterModelOperator.Includes,
+                        Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                        Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 MaximumInitialBalance = 0,
                 PerUnitCostBasis = "per_unit_cost_basis",
-                Status = DataModelStatus.Active,
+                Status = CreditListByExternalIDPageResponseDataStatus.Active,
             },
         ];
-        Models::PaginationMetadata expectedPaginationMetadata = new()
+        PaginationMetadata expectedPaginationMetadata = new()
         {
             HasMore = true,
             NextCursor = "next_cursor",
@@ -92,14 +93,15 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = FilterModelField.ItemID,
-                            Operator = FilterModelOperator.Includes,
+                            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                            Operator =
+                                CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
                     MaximumInitialBalance = 0,
                     PerUnitCostBasis = "per_unit_cost_basis",
-                    Status = DataModelStatus.Active,
+                    Status = CreditListByExternalIDPageResponseDataStatus.Active,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -128,14 +130,15 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = FilterModelField.ItemID,
-                            Operator = FilterModelOperator.Includes,
+                            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                            Operator =
+                                CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
                     MaximumInitialBalance = 0,
                     PerUnitCostBasis = "per_unit_cost_basis",
-                    Status = DataModelStatus.Active,
+                    Status = CreditListByExternalIDPageResponseDataStatus.Active,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -145,7 +148,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
         var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponse>(json);
         Assert.NotNull(deserialized);
 
-        List<DataModel> expectedData =
+        List<CreditListByExternalIDPageResponseData> expectedData =
         [
             new()
             {
@@ -157,17 +160,17 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                 [
                     new()
                     {
-                        Field = FilterModelField.ItemID,
-                        Operator = FilterModelOperator.Includes,
+                        Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                        Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
                 MaximumInitialBalance = 0,
                 PerUnitCostBasis = "per_unit_cost_basis",
-                Status = DataModelStatus.Active,
+                Status = CreditListByExternalIDPageResponseDataStatus.Active,
             },
         ];
-        Models::PaginationMetadata expectedPaginationMetadata = new()
+        PaginationMetadata expectedPaginationMetadata = new()
         {
             HasMore = true,
             NextCursor = "next_cursor",
@@ -198,14 +201,15 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                     [
                         new()
                         {
-                            Field = FilterModelField.ItemID,
-                            Operator = FilterModelOperator.Includes,
+                            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                            Operator =
+                                CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
                     MaximumInitialBalance = 0,
                     PerUnitCostBasis = "per_unit_cost_basis",
-                    Status = DataModelStatus.Active,
+                    Status = CreditListByExternalIDPageResponseDataStatus.Active,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -215,12 +219,12 @@ public class CreditListByExternalIDPageResponseTest : TestBase
     }
 }
 
-public class DataModelTest : TestBase
+public class CreditListByExternalIDPageResponseDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new CreditListByExternalIDPageResponseData
         {
             ID = "id",
             Balance = 0,
@@ -230,32 +234,33 @@ public class DataModelTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                    Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             MaximumInitialBalance = 0,
             PerUnitCostBasis = "per_unit_cost_basis",
-            Status = DataModelStatus.Active,
+            Status = CreditListByExternalIDPageResponseDataStatus.Active,
         };
 
         string expectedID = "id";
         double expectedBalance = 0;
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<FilterModel> expectedFilters =
+        List<CreditListByExternalIDPageResponseDataFilter> expectedFilters =
         [
             new()
             {
-                Field = FilterModelField.ItemID,
-                Operator = FilterModelOperator.Includes,
+                Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
         double expectedMaximumInitialBalance = 0;
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
-        ApiEnum<string, DataModelStatus> expectedStatus = DataModelStatus.Active;
+        ApiEnum<string, CreditListByExternalIDPageResponseDataStatus> expectedStatus =
+            CreditListByExternalIDPageResponseDataStatus.Active;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBalance, model.Balance);
@@ -274,7 +279,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new CreditListByExternalIDPageResponseData
         {
             ID = "id",
             Balance = 0,
@@ -284,18 +289,18 @@ public class DataModelTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                    Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             MaximumInitialBalance = 0,
             PerUnitCostBasis = "per_unit_cost_basis",
-            Status = DataModelStatus.Active,
+            Status = CreditListByExternalIDPageResponseDataStatus.Active,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseData>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -303,7 +308,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DataModel
+        var model = new CreditListByExternalIDPageResponseData
         {
             ID = "id",
             Balance = 0,
@@ -313,36 +318,37 @@ public class DataModelTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                    Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             MaximumInitialBalance = 0,
             PerUnitCostBasis = "per_unit_cost_basis",
-            Status = DataModelStatus.Active,
+            Status = CreditListByExternalIDPageResponseDataStatus.Active,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseData>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
         double expectedBalance = 0;
         DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<FilterModel> expectedFilters =
+        List<CreditListByExternalIDPageResponseDataFilter> expectedFilters =
         [
             new()
             {
-                Field = FilterModelField.ItemID,
-                Operator = FilterModelOperator.Includes,
+                Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
         double expectedMaximumInitialBalance = 0;
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
-        ApiEnum<string, DataModelStatus> expectedStatus = DataModelStatus.Active;
+        ApiEnum<string, CreditListByExternalIDPageResponseDataStatus> expectedStatus =
+            CreditListByExternalIDPageResponseDataStatus.Active;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBalance, deserialized.Balance);
@@ -361,7 +367,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DataModel
+        var model = new CreditListByExternalIDPageResponseData
         {
             ID = "id",
             Balance = 0,
@@ -371,34 +377,36 @@ public class DataModelTest : TestBase
             [
                 new()
                 {
-                    Field = FilterModelField.ItemID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+                    Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             MaximumInitialBalance = 0,
             PerUnitCostBasis = "per_unit_cost_basis",
-            Status = DataModelStatus.Active,
+            Status = CreditListByExternalIDPageResponseDataStatus.Active,
         };
 
         model.Validate();
     }
 }
 
-public class FilterModelTest : TestBase
+public class CreditListByExternalIDPageResponseDataFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FilterModel
+        var model = new CreditListByExternalIDPageResponseDataFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+            Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, FilterModelField> expectedField = FilterModelField.ItemID;
-        ApiEnum<string, FilterModelOperator> expectedOperator = FilterModelOperator.Includes;
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField> expectedField =
+            CreditListByExternalIDPageResponseDataFilterField.ItemID;
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator> expectedOperator =
+            CreditListByExternalIDPageResponseDataFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -413,15 +421,17 @@ public class FilterModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FilterModel
+        var model = new CreditListByExternalIDPageResponseDataFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+            Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseDataFilter>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -429,19 +439,23 @@ public class FilterModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FilterModel
+        var model = new CreditListByExternalIDPageResponseDataFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+            Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseDataFilter>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, FilterModelField> expectedField = FilterModelField.ItemID;
-        ApiEnum<string, FilterModelOperator> expectedOperator = FilterModelOperator.Includes;
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField> expectedField =
+            CreditListByExternalIDPageResponseDataFilterField.ItemID;
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator> expectedOperator =
+            CreditListByExternalIDPageResponseDataFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -456,10 +470,10 @@ public class FilterModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FilterModel
+        var model = new CreditListByExternalIDPageResponseDataFilter
         {
-            Field = FilterModelField.ItemID,
-            Operator = FilterModelOperator.Includes,
+            Field = CreditListByExternalIDPageResponseDataFilterField.ItemID,
+            Operator = CreditListByExternalIDPageResponseDataFilterOperator.Includes,
             Values = ["string"],
         };
 

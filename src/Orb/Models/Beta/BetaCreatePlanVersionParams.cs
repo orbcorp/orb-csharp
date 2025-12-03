@@ -195,11 +195,14 @@ public sealed record class AddAdjustment : ModelBase
     /// <summary>
     /// The definition of a new adjustment to create and add to the plan.
     /// </summary>
-    public required AddAdjustmentAdjustment Adjustment
+    public required global::Orb.Models.Beta.Adjustment Adjustment
     {
         get
         {
-            return ModelBase.GetNotNullClass<AddAdjustmentAdjustment>(this.RawData, "adjustment");
+            return ModelBase.GetNotNullClass<global::Orb.Models.Beta.Adjustment>(
+                this.RawData,
+                "adjustment"
+            );
         }
         init { ModelBase.Set(this._rawData, "adjustment", value); }
     }
@@ -240,7 +243,7 @@ public sealed record class AddAdjustment : ModelBase
     }
 
     [SetsRequiredMembers]
-    public AddAdjustment(AddAdjustmentAdjustment adjustment)
+    public AddAdjustment(global::Orb.Models.Beta.Adjustment adjustment)
         : this()
     {
         this.Adjustment = adjustment;
@@ -256,8 +259,8 @@ class AddAdjustmentFromRaw : IFromRaw<AddAdjustment>
 /// <summary>
 /// The definition of a new adjustment to create and add to the plan.
 /// </summary>
-[JsonConverter(typeof(AddAdjustmentAdjustmentConverter))]
-public record class AddAdjustmentAdjustment
+[JsonConverter(typeof(global::Orb.Models.Beta.AdjustmentConverter))]
+public record class Adjustment
 {
     public object? Value { get; } = null;
 
@@ -296,37 +299,37 @@ public record class AddAdjustmentAdjustment
         }
     }
 
-    public AddAdjustmentAdjustment(NewPercentageDiscount value, JsonElement? json = null)
+    public Adjustment(NewPercentageDiscount value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentAdjustment(NewUsageDiscount value, JsonElement? json = null)
+    public Adjustment(NewUsageDiscount value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentAdjustment(NewAmountDiscount value, JsonElement? json = null)
+    public Adjustment(NewAmountDiscount value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentAdjustment(NewMinimum value, JsonElement? json = null)
+    public Adjustment(NewMinimum value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentAdjustment(NewMaximum value, JsonElement? json = null)
+    public Adjustment(NewMaximum value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentAdjustment(JsonElement json)
+    public Adjustment(JsonElement json)
     {
         this._json = json;
     }
@@ -387,9 +390,7 @@ public record class AddAdjustmentAdjustment
                 newMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException(
-                    "Data did not match any variant of AddAdjustmentAdjustment"
-                );
+                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
@@ -408,34 +409,35 @@ public record class AddAdjustmentAdjustment
             NewAmountDiscount value => newAmountDiscount(value),
             NewMinimum value => newMinimum(value),
             NewMaximum value => newMaximum(value),
-            _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentAdjustment"
-            ),
+            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
         };
     }
 
-    public static implicit operator AddAdjustmentAdjustment(NewPercentageDiscount value) =>
+    public static implicit operator global::Orb.Models.Beta.Adjustment(
+        NewPercentageDiscount value
+    ) => new(value);
+
+    public static implicit operator global::Orb.Models.Beta.Adjustment(NewUsageDiscount value) =>
         new(value);
 
-    public static implicit operator AddAdjustmentAdjustment(NewUsageDiscount value) => new(value);
+    public static implicit operator global::Orb.Models.Beta.Adjustment(NewAmountDiscount value) =>
+        new(value);
 
-    public static implicit operator AddAdjustmentAdjustment(NewAmountDiscount value) => new(value);
+    public static implicit operator global::Orb.Models.Beta.Adjustment(NewMinimum value) =>
+        new(value);
 
-    public static implicit operator AddAdjustmentAdjustment(NewMinimum value) => new(value);
-
-    public static implicit operator AddAdjustmentAdjustment(NewMaximum value) => new(value);
+    public static implicit operator global::Orb.Models.Beta.Adjustment(NewMaximum value) =>
+        new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentAdjustment"
-            );
+            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
     }
 
-    public virtual bool Equals(AddAdjustmentAdjustment? other)
+    public virtual bool Equals(global::Orb.Models.Beta.Adjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -446,9 +448,9 @@ public record class AddAdjustmentAdjustment
     }
 }
 
-sealed class AddAdjustmentAdjustmentConverter : JsonConverter<AddAdjustmentAdjustment>
+sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustment>
 {
-    public override AddAdjustmentAdjustment? Read(
+    public override global::Orb.Models.Beta.Adjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -567,14 +569,14 @@ sealed class AddAdjustmentAdjustmentConverter : JsonConverter<AddAdjustmentAdjus
             }
             default:
             {
-                return new AddAdjustmentAdjustment(json);
+                return new global::Orb.Models.Beta.Adjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AddAdjustmentAdjustment value,
+        global::Orb.Models.Beta.Adjustment value,
         JsonSerializerOptions options
     )
     {
@@ -3813,14 +3815,13 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Beta.TieredWithProrationConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Beta.TierModel>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Beta.TieredWithProrationConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -3856,7 +3857,9 @@ public sealed record class TieredWithProrationConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationConfig(List<global::Orb.Models.Beta.TierModel> tiers)
+    public TieredWithProrationConfig(
+        List<global::Orb.Models.Beta.TieredWithProrationConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -3875,11 +3878,11 @@ class TieredWithProrationConfigFromRaw : IFromRaw<global::Orb.Models.Beta.Tiered
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Beta.TierModel,
-        global::Orb.Models.Beta.TierModelFromRaw
+        global::Orb.Models.Beta.TieredWithProrationConfigTier,
+        global::Orb.Models.Beta.TieredWithProrationConfigTierFromRaw
     >)
 )]
-public sealed record class TierModel : ModelBase
+public sealed record class TieredWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -3905,22 +3908,22 @@ public sealed record class TierModel : ModelBase
         _ = this.UnitAmount;
     }
 
-    public TierModel() { }
+    public TieredWithProrationConfigTier() { }
 
-    public TierModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TierModel(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Beta.TierModel FromRawUnchecked(
+    public static global::Orb.Models.Beta.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3928,11 +3931,12 @@ public sealed record class TierModel : ModelBase
     }
 }
 
-class TierModelFromRaw : IFromRaw<global::Orb.Models.Beta.TierModel>
+class TieredWithProrationConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Beta.TieredWithProrationConfigTier>
 {
-    public global::Orb.Models.Beta.TierModel FromRawUnchecked(
+    public global::Orb.Models.Beta.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.TierModel.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Beta.TieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Beta.TieredWithProrationConversionRateConfigConverter))]
@@ -9567,14 +9571,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.FilterModel> Filters
+    public required IReadOnlyList<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Beta.FilterModel>>(
-                this.RawData,
-                "filters"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
+            >(this.RawData, "filters");
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
@@ -9582,14 +9585,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.Tier1> Tiers
+    public required IReadOnlyList<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Beta.Tier1>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -9646,11 +9648,11 @@ class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Beta.FilterModel,
-        global::Orb.Models.Beta.FilterModelFromRaw
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter,
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
-public sealed record class FilterModel : ModelBase
+public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -9676,22 +9678,26 @@ public sealed record class FilterModel : ModelBase
         _ = this.PropertyValue;
     }
 
-    public FilterModel() { }
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
-    public FilterModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FilterModel(FrozenDictionary<string, JsonElement> rawData)
+    ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Beta.FilterModel FromRawUnchecked(
+    public static ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9699,20 +9705,24 @@ public sealed record class FilterModel : ModelBase
     }
 }
 
-class FilterModelFromRaw : IFromRaw<global::Orb.Models.Beta.FilterModel>
+class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
+    : IFromRaw<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
-    public global::Orb.Models.Beta.FilterModel FromRawUnchecked(
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.FilterModel.FromRawUnchecked(rawData);
+    ) => ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.Tier1, global::Orb.Models.Beta.Tier1FromRaw>)
+    typeof(ModelConverter<
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier,
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    >)
 )]
-public sealed record class Tier1 : ModelBase
+public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -9738,22 +9748,26 @@ public sealed record class Tier1 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier1() { }
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier() { }
 
-    public Tier1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier1(FrozenDictionary<string, JsonElement> rawData)
+    ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Beta.Tier1 FromRawUnchecked(
+    public static ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -9761,18 +9775,19 @@ public sealed record class Tier1 : ModelBase
     }
 
     [SetsRequiredMembers]
-    public Tier1(string unitAmount)
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier1FromRaw : IFromRaw<global::Orb.Models.Beta.Tier1>
+class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    : IFromRaw<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
-    public global::Orb.Models.Beta.Tier1 FromRawUnchecked(
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.Tier1.FromRawUnchecked(rawData);
+    ) => ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -10387,14 +10402,13 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.Tier2> Tiers
+    public required IReadOnlyList<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Beta.Tier2>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -10435,7 +10449,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 
     [SetsRequiredMembers]
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
-        List<global::Orb.Models.Beta.Tier2> tiers
+        List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
     )
         : this()
     {
@@ -10455,9 +10469,13 @@ class ReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
 /// Configuration for a single tiered with proration tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Beta.Tier2, global::Orb.Models.Beta.Tier2FromRaw>)
+    typeof(ModelConverter<
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier,
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
+    >)
 )]
-public sealed record class Tier2 : ModelBase
+public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -10483,22 +10501,26 @@ public sealed record class Tier2 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier2() { }
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier() { }
 
-    public Tier2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier2(FrozenDictionary<string, JsonElement> rawData)
+    ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Beta.Tier2 FromRawUnchecked(
+    public static ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -10506,11 +10528,13 @@ public sealed record class Tier2 : ModelBase
     }
 }
 
-class Tier2FromRaw : IFromRaw<global::Orb.Models.Beta.Tier2>
+class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
+    : IFromRaw<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
-    public global::Orb.Models.Beta.Tier2 FromRawUnchecked(
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Beta.Tier2.FromRawUnchecked(rawData);
+    ) =>
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ReplacePricePriceTieredWithProrationConversionRateConfigConverter))]

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,7 +11,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -19,21 +19,22 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -49,40 +50,45 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        BulkWithProrationConfig expectedBulkWithProrationConfig = new(
+        Subscriptions::BulkWithProrationConfig expectedBulkWithProrationConfig = new(
             [
                 new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             ]
         );
-        ApiEnum<string, NewSubscriptionBulkWithProrationPriceCadence> expectedCadence =
-            NewSubscriptionBulkWithProrationPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionBulkWithProrationPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionBulkWithProrationPriceModelType> expectedModelType =
-            NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionBulkWithProrationPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionBulkWithProrationPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -91,10 +97,10 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -128,7 +134,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -136,21 +142,22 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -166,14 +173,15 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkWithProrationPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPrice>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -181,7 +189,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -189,21 +197,22 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -219,44 +228,50 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkWithProrationPrice>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPrice>(json);
         Assert.NotNull(deserialized);
 
-        BulkWithProrationConfig expectedBulkWithProrationConfig = new(
+        Subscriptions::BulkWithProrationConfig expectedBulkWithProrationConfig = new(
             [
                 new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             ]
         );
-        ApiEnum<string, NewSubscriptionBulkWithProrationPriceCadence> expectedCadence =
-            NewSubscriptionBulkWithProrationPriceCadence.Annual;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionBulkWithProrationPriceCadence
+        > expectedCadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual;
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionBulkWithProrationPriceModelType> expectedModelType =
-            NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionBulkWithProrationPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionBulkWithProrationPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -265,10 +280,10 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -305,7 +320,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -313,21 +328,22 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -343,7 +359,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -355,7 +371,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -363,9 +379,10 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
         };
 
@@ -400,7 +417,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -408,9 +425,10 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
         };
 
@@ -420,7 +438,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -428,9 +446,10 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -479,7 +498,7 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionBulkWithProrationPrice
+        var model = new Subscriptions::NewSubscriptionBulkWithProrationPrice
         {
             BulkWithProrationConfig = new(
                 [
@@ -487,9 +506,10 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ]
             ),
-            Cadence = NewSubscriptionBulkWithProrationPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionBulkWithProrationPriceCadence.Annual,
             ItemID = "item_id",
-            ModelType = NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
+            ModelType =
+                Subscriptions::NewSubscriptionBulkWithProrationPriceModelType.BulkWithProration,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -516,7 +536,7 @@ public class BulkWithProrationConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BulkWithProrationConfig
+        var model = new Subscriptions::BulkWithProrationConfig
         {
             Tiers =
             [
@@ -525,7 +545,7 @@ public class BulkWithProrationConfigTest : TestBase
             ],
         };
 
-        List<Tier8> expectedTiers =
+        List<Subscriptions::BulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -541,7 +561,7 @@ public class BulkWithProrationConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BulkWithProrationConfig
+        var model = new Subscriptions::BulkWithProrationConfig
         {
             Tiers =
             [
@@ -551,7 +571,7 @@ public class BulkWithProrationConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -559,7 +579,7 @@ public class BulkWithProrationConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BulkWithProrationConfig
+        var model = new Subscriptions::BulkWithProrationConfig
         {
             Tiers =
             [
@@ -569,10 +589,10 @@ public class BulkWithProrationConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfig>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Tier8> expectedTiers =
+        List<Subscriptions::BulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -588,7 +608,7 @@ public class BulkWithProrationConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BulkWithProrationConfig
+        var model = new Subscriptions::BulkWithProrationConfig
         {
             Tiers =
             [
@@ -601,12 +621,16 @@ public class BulkWithProrationConfigTest : TestBase
     }
 }
 
-public class Tier8Test : TestBase
+public class BulkWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -618,10 +642,16 @@ public class Tier8Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier8>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfigTier>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -629,10 +659,16 @@ public class Tier8Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier8>(json);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfigTier>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -645,7 +681,11 @@ public class Tier8Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new Subscriptions::BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -653,7 +693,7 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount" };
+        var model = new Subscriptions::BulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -662,7 +702,7 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount" };
+        var model = new Subscriptions::BulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         model.Validate();
     }
@@ -670,7 +710,7 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier8
+        var model = new Subscriptions::BulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -684,7 +724,7 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier8
+        var model = new Subscriptions::BulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 

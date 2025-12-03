@@ -12,36 +12,36 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = FilterModelField.PriceID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = AmountDiscountFilterField.PriceID,
+                    Operator = AmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
             Reason = "reason",
         };
 
-        string expectedAmountDiscount1 = "amount_discount";
+        string expectedAmountDiscountValue = "amount_discount";
         ApiEnum<string, DiscountType> expectedDiscountType = DiscountType.Amount;
         List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
-        List<FilterModel> expectedFilters =
+        List<AmountDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = FilterModelField.PriceID,
-                Operator = FilterModelOperator.Includes,
+                Field = AmountDiscountFilterField.PriceID,
+                Operator = AmountDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
         string expectedReason = "reason";
 
-        Assert.Equal(expectedAmountDiscount1, model.AmountDiscount1);
+        Assert.Equal(expectedAmountDiscountValue, model.AmountDiscountValue);
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
@@ -61,15 +61,15 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = FilterModelField.PriceID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = AmountDiscountFilterField.PriceID,
+                    Operator = AmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -87,15 +87,15 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = FilterModelField.PriceID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = AmountDiscountFilterField.PriceID,
+                    Operator = AmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -106,21 +106,21 @@ public class AmountDiscountTest : TestBase
         var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json);
         Assert.NotNull(deserialized);
 
-        string expectedAmountDiscount1 = "amount_discount";
+        string expectedAmountDiscountValue = "amount_discount";
         ApiEnum<string, DiscountType> expectedDiscountType = DiscountType.Amount;
         List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
-        List<FilterModel> expectedFilters =
+        List<AmountDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = FilterModelField.PriceID,
-                Operator = FilterModelOperator.Includes,
+                Field = AmountDiscountFilterField.PriceID,
+                Operator = AmountDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
         string expectedReason = "reason";
 
-        Assert.Equal(expectedAmountDiscount1, deserialized.AmountDiscount1);
+        Assert.Equal(expectedAmountDiscountValue, deserialized.AmountDiscountValue);
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
         Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
@@ -140,15 +140,15 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
                 {
-                    Field = FilterModelField.PriceID,
-                    Operator = FilterModelOperator.Includes,
+                    Field = AmountDiscountFilterField.PriceID,
+                    Operator = AmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -163,7 +163,7 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
         };
 
@@ -180,7 +180,7 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
         };
 
@@ -192,7 +192,7 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
 
             AppliesToPriceIDs = null,
@@ -213,7 +213,7 @@ public class AmountDiscountTest : TestBase
     {
         var model = new AmountDiscount
         {
-            AmountDiscount1 = "amount_discount",
+            AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
 
             AppliesToPriceIDs = null,
@@ -225,20 +225,22 @@ public class AmountDiscountTest : TestBase
     }
 }
 
-public class FilterModelTest : TestBase
+public class AmountDiscountFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FilterModel
+        var model = new AmountDiscountFilter
         {
-            Field = FilterModelField.PriceID,
-            Operator = FilterModelOperator.Includes,
+            Field = AmountDiscountFilterField.PriceID,
+            Operator = AmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, FilterModelField> expectedField = FilterModelField.PriceID;
-        ApiEnum<string, FilterModelOperator> expectedOperator = FilterModelOperator.Includes;
+        ApiEnum<string, AmountDiscountFilterField> expectedField =
+            AmountDiscountFilterField.PriceID;
+        ApiEnum<string, AmountDiscountFilterOperator> expectedOperator =
+            AmountDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -253,15 +255,15 @@ public class FilterModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FilterModel
+        var model = new AmountDiscountFilter
         {
-            Field = FilterModelField.PriceID,
-            Operator = FilterModelOperator.Includes,
+            Field = AmountDiscountFilterField.PriceID,
+            Operator = AmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized = JsonSerializer.Deserialize<AmountDiscountFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -269,19 +271,21 @@ public class FilterModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FilterModel
+        var model = new AmountDiscountFilter
         {
-            Field = FilterModelField.PriceID,
-            Operator = FilterModelOperator.Includes,
+            Field = AmountDiscountFilterField.PriceID,
+            Operator = AmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized = JsonSerializer.Deserialize<AmountDiscountFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, FilterModelField> expectedField = FilterModelField.PriceID;
-        ApiEnum<string, FilterModelOperator> expectedOperator = FilterModelOperator.Includes;
+        ApiEnum<string, AmountDiscountFilterField> expectedField =
+            AmountDiscountFilterField.PriceID;
+        ApiEnum<string, AmountDiscountFilterOperator> expectedOperator =
+            AmountDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -296,10 +300,10 @@ public class FilterModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FilterModel
+        var model = new AmountDiscountFilter
         {
-            Field = FilterModelField.PriceID,
-            Operator = FilterModelOperator.Includes,
+            Field = AmountDiscountFilterField.PriceID,
+            Operator = AmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 

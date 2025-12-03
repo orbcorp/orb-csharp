@@ -3,12 +3,12 @@ using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Tests.Models.Customers.Credits.TopUps;
 
-public class InvoiceSettingsModelTest : TestBase
+public class TopUpCreateByExternalIDParamsInvoiceSettingsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -30,7 +30,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -39,7 +39,9 @@ public class InvoiceSettingsModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceSettingsModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TopUpCreateByExternalIDParamsInvoiceSettings>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -47,7 +49,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -56,7 +58,9 @@ public class InvoiceSettingsModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceSettingsModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TopUpCreateByExternalIDParamsInvoiceSettings>(
+            json
+        );
         Assert.NotNull(deserialized);
 
         bool expectedAutoCollection = true;
@@ -73,7 +77,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -87,7 +91,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -101,7 +105,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -114,7 +118,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -131,7 +135,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -147,7 +151,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -161,7 +165,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -174,7 +178,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,
@@ -190,7 +194,7 @@ public class InvoiceSettingsModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new InvoiceSettingsModel
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
         {
             AutoCollection = true,
             NetTerms = 0,

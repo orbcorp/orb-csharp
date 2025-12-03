@@ -348,9 +348,12 @@ public sealed record class GroupedTieredConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to each segment generated after grouping with the provided key
     /// </summary>
-    public required IReadOnlyList<Tier1> Tiers
+    public required IReadOnlyList<GroupedTieredConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier1>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<GroupedTieredConfigTier>>(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -395,8 +398,8 @@ class GroupedTieredConfigFromRaw : IFromRaw<GroupedTieredConfig>
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier1, Tier1FromRaw>))]
-public sealed record class Tier1 : ModelBase
+[JsonConverter(typeof(ModelConverter<GroupedTieredConfigTier, GroupedTieredConfigTierFromRaw>))]
+public sealed record class GroupedTieredConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -422,31 +425,34 @@ public sealed record class Tier1 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier1() { }
+    public GroupedTieredConfigTier() { }
 
-    public Tier1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GroupedTieredConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier1(FrozenDictionary<string, JsonElement> rawData)
+    GroupedTieredConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static GroupedTieredConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier1FromRaw : IFromRaw<Tier1>
+class GroupedTieredConfigTierFromRaw : IFromRaw<GroupedTieredConfigTier>
 {
-    public Tier1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier1.FromRawUnchecked(rawData);
+    public GroupedTieredConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GroupedTieredConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

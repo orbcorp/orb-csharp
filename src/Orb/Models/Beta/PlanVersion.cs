@@ -21,11 +21,11 @@ public sealed record class PlanVersion : ModelBase
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Beta.Adjustment> Adjustments
+    public required IReadOnlyList<PlanVersionAdjustment> Adjustments
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Beta.Adjustment>>(
+            return ModelBase.GetNotNullClass<List<PlanVersionAdjustment>>(
                 this.RawData,
                 "adjustments"
             );
@@ -112,8 +112,8 @@ class PlanVersionFromRaw : IFromRaw<PlanVersion>
         PlanVersion.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Beta.AdjustmentConverter))]
-public record class Adjustment
+[JsonConverter(typeof(PlanVersionAdjustmentConverter))]
+public record class PlanVersionAdjustment
 {
     public object? Value { get; } = null;
 
@@ -194,155 +194,176 @@ public record class Adjustment
         }
     }
 
-    public Adjustment(PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(
+        Models::PlanPhaseUsageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(
+        Models::PlanPhaseAmountDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(PlanPhasePercentageDiscountAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(
+        Models::PlanPhasePercentageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(Models::PlanPhaseMinimumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(Models::PlanPhaseMaximumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(JsonElement json)
+    public PlanVersionAdjustment(JsonElement json)
     {
         this._json = json;
     }
 
     public bool TryPickPlanPhaseUsageDiscount(
-        [NotNullWhen(true)] out PlanPhaseUsageDiscountAdjustment? value
+        [NotNullWhen(true)] out Models::PlanPhaseUsageDiscountAdjustment? value
     )
     {
-        value = this.Value as PlanPhaseUsageDiscountAdjustment;
+        value = this.Value as Models::PlanPhaseUsageDiscountAdjustment;
         return value != null;
     }
 
     public bool TryPickPlanPhaseAmountDiscount(
-        [NotNullWhen(true)] out PlanPhaseAmountDiscountAdjustment? value
+        [NotNullWhen(true)] out Models::PlanPhaseAmountDiscountAdjustment? value
     )
     {
-        value = this.Value as PlanPhaseAmountDiscountAdjustment;
+        value = this.Value as Models::PlanPhaseAmountDiscountAdjustment;
         return value != null;
     }
 
     public bool TryPickPlanPhasePercentageDiscount(
-        [NotNullWhen(true)] out PlanPhasePercentageDiscountAdjustment? value
+        [NotNullWhen(true)] out Models::PlanPhasePercentageDiscountAdjustment? value
     )
     {
-        value = this.Value as PlanPhasePercentageDiscountAdjustment;
+        value = this.Value as Models::PlanPhasePercentageDiscountAdjustment;
         return value != null;
     }
 
-    public bool TryPickPlanPhaseMinimum([NotNullWhen(true)] out PlanPhaseMinimumAdjustment? value)
+    public bool TryPickPlanPhaseMinimum(
+        [NotNullWhen(true)] out Models::PlanPhaseMinimumAdjustment? value
+    )
     {
-        value = this.Value as PlanPhaseMinimumAdjustment;
+        value = this.Value as Models::PlanPhaseMinimumAdjustment;
         return value != null;
     }
 
-    public bool TryPickPlanPhaseMaximum([NotNullWhen(true)] out PlanPhaseMaximumAdjustment? value)
+    public bool TryPickPlanPhaseMaximum(
+        [NotNullWhen(true)] out Models::PlanPhaseMaximumAdjustment? value
+    )
     {
-        value = this.Value as PlanPhaseMaximumAdjustment;
+        value = this.Value as Models::PlanPhaseMaximumAdjustment;
         return value != null;
     }
 
     public void Switch(
-        System::Action<PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
-        System::Action<PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
-        System::Action<PlanPhasePercentageDiscountAdjustment> planPhasePercentageDiscount,
-        System::Action<PlanPhaseMinimumAdjustment> planPhaseMinimum,
-        System::Action<PlanPhaseMaximumAdjustment> planPhaseMaximum
+        System::Action<Models::PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
+        System::Action<Models::PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
+        System::Action<Models::PlanPhasePercentageDiscountAdjustment> planPhasePercentageDiscount,
+        System::Action<Models::PlanPhaseMinimumAdjustment> planPhaseMinimum,
+        System::Action<Models::PlanPhaseMaximumAdjustment> planPhaseMaximum
     )
     {
         switch (this.Value)
         {
-            case PlanPhaseUsageDiscountAdjustment value:
+            case Models::PlanPhaseUsageDiscountAdjustment value:
                 planPhaseUsageDiscount(value);
                 break;
-            case PlanPhaseAmountDiscountAdjustment value:
+            case Models::PlanPhaseAmountDiscountAdjustment value:
                 planPhaseAmountDiscount(value);
                 break;
-            case PlanPhasePercentageDiscountAdjustment value:
+            case Models::PlanPhasePercentageDiscountAdjustment value:
                 planPhasePercentageDiscount(value);
                 break;
-            case PlanPhaseMinimumAdjustment value:
+            case Models::PlanPhaseMinimumAdjustment value:
                 planPhaseMinimum(value);
                 break;
-            case PlanPhaseMaximumAdjustment value:
+            case Models::PlanPhaseMaximumAdjustment value:
                 planPhaseMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of PlanVersionAdjustment"
+                );
         }
     }
 
     public T Match<T>(
-        System::Func<PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
-        System::Func<PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
-        System::Func<PlanPhasePercentageDiscountAdjustment, T> planPhasePercentageDiscount,
-        System::Func<PlanPhaseMinimumAdjustment, T> planPhaseMinimum,
-        System::Func<PlanPhaseMaximumAdjustment, T> planPhaseMaximum
+        System::Func<Models::PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
+        System::Func<Models::PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
+        System::Func<Models::PlanPhasePercentageDiscountAdjustment, T> planPhasePercentageDiscount,
+        System::Func<Models::PlanPhaseMinimumAdjustment, T> planPhaseMinimum,
+        System::Func<Models::PlanPhaseMaximumAdjustment, T> planPhaseMaximum
     )
     {
         return this.Value switch
         {
-            PlanPhaseUsageDiscountAdjustment value => planPhaseUsageDiscount(value),
-            PlanPhaseAmountDiscountAdjustment value => planPhaseAmountDiscount(value),
-            PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(value),
-            PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
-            PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
+            Models::PlanPhaseUsageDiscountAdjustment value => planPhaseUsageDiscount(value),
+            Models::PlanPhaseAmountDiscountAdjustment value => planPhaseAmountDiscount(value),
+            Models::PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(
+                value
+            ),
+            Models::PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
+            Models::PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of PlanVersionAdjustment"
+            ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(
-        PlanPhaseUsageDiscountAdjustment value
+    public static implicit operator PlanVersionAdjustment(
+        Models::PlanPhaseUsageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(
-        PlanPhaseAmountDiscountAdjustment value
+    public static implicit operator PlanVersionAdjustment(
+        Models::PlanPhaseAmountDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(
-        PlanPhasePercentageDiscountAdjustment value
+    public static implicit operator PlanVersionAdjustment(
+        Models::PlanPhasePercentageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(
-        PlanPhaseMinimumAdjustment value
+    public static implicit operator PlanVersionAdjustment(
+        Models::PlanPhaseMinimumAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Beta.Adjustment(
-        PlanPhaseMaximumAdjustment value
+    public static implicit operator PlanVersionAdjustment(
+        Models::PlanPhaseMaximumAdjustment value
     ) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of PlanVersionAdjustment"
+            );
         }
     }
 
-    public virtual bool Equals(global::Orb.Models.Beta.Adjustment? other)
+    public virtual bool Equals(PlanVersionAdjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -353,9 +374,9 @@ public record class Adjustment
     }
 }
 
-sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustment>
+sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustment>
 {
-    public override global::Orb.Models.Beta.Adjustment? Read(
+    public override PlanVersionAdjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -378,10 +399,11 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::PlanPhaseUsageDiscountAdjustment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -401,7 +423,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustment>(
+                        JsonSerializer.Deserialize<Models::PlanPhaseAmountDiscountAdjustment>(
                             json,
                             options
                         );
@@ -424,7 +446,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PlanPhasePercentageDiscountAdjustment>(
+                        JsonSerializer.Deserialize<Models::PlanPhasePercentageDiscountAdjustment>(
                             json,
                             options
                         );
@@ -446,10 +468,11 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::PlanPhaseMinimumAdjustment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -468,10 +491,11 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::PlanPhaseMaximumAdjustment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -488,14 +512,14 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.Adjustm
             }
             default:
             {
-                return new global::Orb.Models.Beta.Adjustment(json);
+                return new PlanVersionAdjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Beta.Adjustment value,
+        PlanVersionAdjustment value,
         JsonSerializerOptions options
     )
     {

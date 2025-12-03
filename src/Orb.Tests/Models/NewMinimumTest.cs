@@ -23,8 +23,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -40,12 +40,12 @@ public class NewMinimumTest : TestBase
         List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
         List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
         string expectedCurrency = "currency";
-        List<Filter14> expectedFilters =
+        List<NewMinimumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter14Field.PriceID,
-                Operator = Filter14Operator.Includes,
+                Field = NewMinimumFilterField.PriceID,
+                Operator = NewMinimumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -92,8 +92,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -123,8 +123,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -144,12 +144,12 @@ public class NewMinimumTest : TestBase
         List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
         List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
         string expectedCurrency = "currency";
-        List<Filter14> expectedFilters =
+        List<NewMinimumFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter14Field.PriceID,
-                Operator = Filter14Operator.Includes,
+                Field = NewMinimumFilterField.PriceID,
+                Operator = NewMinimumFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -196,8 +196,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -224,8 +224,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -252,8 +252,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -279,8 +279,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -310,8 +310,8 @@ public class NewMinimumTest : TestBase
             [
                 new()
                 {
-                    Field = Filter14Field.PriceID,
-                    Operator = Filter14Operator.Includes,
+                    Field = NewMinimumFilterField.PriceID,
+                    Operator = NewMinimumFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -417,20 +417,21 @@ public class NewMinimumTest : TestBase
     }
 }
 
-public class Filter14Test : TestBase
+public class NewMinimumFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter14
+        var model = new NewMinimumFilter
         {
-            Field = Filter14Field.PriceID,
-            Operator = Filter14Operator.Includes,
+            Field = NewMinimumFilterField.PriceID,
+            Operator = NewMinimumFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter14Field> expectedField = Filter14Field.PriceID;
-        ApiEnum<string, Filter14Operator> expectedOperator = Filter14Operator.Includes;
+        ApiEnum<string, NewMinimumFilterField> expectedField = NewMinimumFilterField.PriceID;
+        ApiEnum<string, NewMinimumFilterOperator> expectedOperator =
+            NewMinimumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -445,15 +446,15 @@ public class Filter14Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter14
+        var model = new NewMinimumFilter
         {
-            Field = Filter14Field.PriceID,
-            Operator = Filter14Operator.Includes,
+            Field = NewMinimumFilterField.PriceID,
+            Operator = NewMinimumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter14>(json);
+        var deserialized = JsonSerializer.Deserialize<NewMinimumFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -461,19 +462,20 @@ public class Filter14Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter14
+        var model = new NewMinimumFilter
         {
-            Field = Filter14Field.PriceID,
-            Operator = Filter14Operator.Includes,
+            Field = NewMinimumFilterField.PriceID,
+            Operator = NewMinimumFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter14>(json);
+        var deserialized = JsonSerializer.Deserialize<NewMinimumFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter14Field> expectedField = Filter14Field.PriceID;
-        ApiEnum<string, Filter14Operator> expectedOperator = Filter14Operator.Includes;
+        ApiEnum<string, NewMinimumFilterField> expectedField = NewMinimumFilterField.PriceID;
+        ApiEnum<string, NewMinimumFilterOperator> expectedOperator =
+            NewMinimumFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -488,10 +490,10 @@ public class Filter14Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter14
+        var model = new NewMinimumFilter
         {
-            Field = Filter14Field.PriceID,
-            Operator = Filter14Operator.Includes,
+            Field = NewMinimumFilterField.PriceID,
+            Operator = NewMinimumFilterOperator.Includes,
             Values = ["string"],
         };
 

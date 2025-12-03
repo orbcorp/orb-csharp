@@ -24,7 +24,7 @@ public class ItemListPageResponseTest : TestBase
                         new()
                         {
                             ExternalConnectionName =
-                                ExternalConnectionModelExternalConnectionName.Stripe,
+                                ItemExternalConnectionExternalConnectionName.Stripe,
                             ExternalEntityID = "external_entity_id",
                         },
                     ],
@@ -47,7 +47,7 @@ public class ItemListPageResponseTest : TestBase
                     new()
                     {
                         ExternalConnectionName =
-                            ExternalConnectionModelExternalConnectionName.Stripe,
+                            ItemExternalConnectionExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],
@@ -86,7 +86,7 @@ public class ItemListPageResponseTest : TestBase
                         new()
                         {
                             ExternalConnectionName =
-                                ExternalConnectionModelExternalConnectionName.Stripe,
+                                ItemExternalConnectionExternalConnectionName.Stripe,
                             ExternalEntityID = "external_entity_id",
                         },
                     ],
@@ -120,7 +120,7 @@ public class ItemListPageResponseTest : TestBase
                         new()
                         {
                             ExternalConnectionName =
-                                ExternalConnectionModelExternalConnectionName.Stripe,
+                                ItemExternalConnectionExternalConnectionName.Stripe,
                             ExternalEntityID = "external_entity_id",
                         },
                     ],
@@ -147,7 +147,7 @@ public class ItemListPageResponseTest : TestBase
                     new()
                     {
                         ExternalConnectionName =
-                            ExternalConnectionModelExternalConnectionName.Stripe,
+                            ItemExternalConnectionExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],
@@ -186,7 +186,7 @@ public class ItemListPageResponseTest : TestBase
                         new()
                         {
                             ExternalConnectionName =
-                                ExternalConnectionModelExternalConnectionName.Stripe,
+                                ItemExternalConnectionExternalConnectionName.Stripe,
                             ExternalEntityID = "external_entity_id",
                         },
                     ],

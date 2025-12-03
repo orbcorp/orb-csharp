@@ -41,11 +41,13 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     /// <summary>
     /// The type of alert to create. This must be a valid alert type.
     /// </summary>
-    public required ApiEnum<string, TypeModel> Type
+    public required ApiEnum<string, AlertCreateForExternalCustomerParamsType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TypeModel>>(this.RawBodyData, "type");
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, AlertCreateForExternalCustomerParamsType>
+            >(this.RawBodyData, "type");
         }
         init { ModelBase.Set(this._rawBodyData, "type", value); }
     }
@@ -128,17 +130,18 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
 /// <summary>
 /// The type of alert to create. This must be a valid alert type.
 /// </summary>
-[JsonConverter(typeof(TypeModelConverter))]
-public enum TypeModel
+[JsonConverter(typeof(AlertCreateForExternalCustomerParamsTypeConverter))]
+public enum AlertCreateForExternalCustomerParamsType
 {
     CreditBalanceDepleted,
     CreditBalanceDropped,
     CreditBalanceRecovered,
 }
 
-sealed class TypeModelConverter : JsonConverter<TypeModel>
+sealed class AlertCreateForExternalCustomerParamsTypeConverter
+    : JsonConverter<AlertCreateForExternalCustomerParamsType>
 {
-    public override TypeModel Read(
+    public override AlertCreateForExternalCustomerParamsType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -146,16 +149,19 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "credit_balance_depleted" => TypeModel.CreditBalanceDepleted,
-            "credit_balance_dropped" => TypeModel.CreditBalanceDropped,
-            "credit_balance_recovered" => TypeModel.CreditBalanceRecovered,
-            _ => (TypeModel)(-1),
+            "credit_balance_depleted" =>
+                AlertCreateForExternalCustomerParamsType.CreditBalanceDepleted,
+            "credit_balance_dropped" =>
+                AlertCreateForExternalCustomerParamsType.CreditBalanceDropped,
+            "credit_balance_recovered" =>
+                AlertCreateForExternalCustomerParamsType.CreditBalanceRecovered,
+            _ => (AlertCreateForExternalCustomerParamsType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TypeModel value,
+        AlertCreateForExternalCustomerParamsType value,
         JsonSerializerOptions options
     )
     {
@@ -163,9 +169,12 @@ sealed class TypeModelConverter : JsonConverter<TypeModel>
             writer,
             value switch
             {
-                TypeModel.CreditBalanceDepleted => "credit_balance_depleted",
-                TypeModel.CreditBalanceDropped => "credit_balance_dropped",
-                TypeModel.CreditBalanceRecovered => "credit_balance_recovered",
+                AlertCreateForExternalCustomerParamsType.CreditBalanceDepleted =>
+                    "credit_balance_depleted",
+                AlertCreateForExternalCustomerParamsType.CreditBalanceDropped =>
+                    "credit_balance_dropped",
+                AlertCreateForExternalCustomerParamsType.CreditBalanceRecovered =>
+                    "credit_balance_recovered",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

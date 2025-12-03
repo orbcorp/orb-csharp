@@ -336,11 +336,11 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     /// <summary>
     /// The breakdown of prices in this invoice.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Invoices.LineItemModel> LineItems
+    public required IReadOnlyList<InvoiceFetchUpcomingResponseLineItem> LineItems
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Invoices.LineItemModel>>(
+            return ModelBase.GetNotNullClass<List<InvoiceFetchUpcomingResponseLineItem>>(
                 this.RawData,
                 "line_items"
             );
@@ -1170,11 +1170,11 @@ sealed class InvoiceSourceConverter : JsonConverter<global::Orb.Models.Invoices.
 
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Invoices.LineItemModel,
-        global::Orb.Models.Invoices.LineItemModelFromRaw
+        InvoiceFetchUpcomingResponseLineItem,
+        InvoiceFetchUpcomingResponseLineItemFromRaw
     >)
 )]
-public sealed record class LineItemModel : ModelBase
+public sealed record class InvoiceFetchUpcomingResponseLineItem : ModelBase
 {
     /// <summary>
     /// A unique ID for this line item.
@@ -1390,22 +1390,22 @@ public sealed record class LineItemModel : ModelBase
         _ = this.UsageCustomerIDs;
     }
 
-    public LineItemModel() { }
+    public InvoiceFetchUpcomingResponseLineItem() { }
 
-    public LineItemModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public InvoiceFetchUpcomingResponseLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LineItemModel(FrozenDictionary<string, JsonElement> rawData)
+    InvoiceFetchUpcomingResponseLineItem(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Invoices.LineItemModel FromRawUnchecked(
+    public static InvoiceFetchUpcomingResponseLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1413,11 +1413,11 @@ public sealed record class LineItemModel : ModelBase
     }
 }
 
-class LineItemModelFromRaw : IFromRaw<global::Orb.Models.Invoices.LineItemModel>
+class InvoiceFetchUpcomingResponseLineItemFromRaw : IFromRaw<InvoiceFetchUpcomingResponseLineItem>
 {
-    public global::Orb.Models.Invoices.LineItemModel FromRawUnchecked(
+    public InvoiceFetchUpcomingResponseLineItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.LineItemModel.FromRawUnchecked(rawData);
+    ) => InvoiceFetchUpcomingResponseLineItem.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(global::Orb.Models.Invoices.AdjustmentConverter))]

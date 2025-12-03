@@ -406,14 +406,13 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
     /// When the quantity consumed passes a provided threshold, the configured total
     /// will be charged
     /// </summary>
-    public required IReadOnlyList<ConsumptionTableModel> ConsumptionTable
+    public required IReadOnlyList<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable> ConsumptionTable
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ConsumptionTableModel>>(
-                this.RawData,
-                "consumption_table"
-            );
+            return ModelBase.GetNotNullClass<
+                List<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable>
+            >(this.RawData, "consumption_table");
         }
         init { ModelBase.Set(this._rawData, "consumption_table", value); }
     }
@@ -464,7 +463,7 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
 
     [SetsRequiredMembers]
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
-        List<ConsumptionTableModel> consumptionTable
+        List<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable> consumptionTable
     )
         : this()
     {
@@ -483,8 +482,14 @@ class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigFromRaw
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ConsumptionTableModel, ConsumptionTableModelFromRaw>))]
-public sealed record class ConsumptionTableModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable,
+        NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTableFromRaw
+    >)
+)]
+public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
+    : ModelBase
 {
     /// <summary>
     /// Quantity threshold
@@ -510,22 +515,26 @@ public sealed record class ConsumptionTableModel : ModelBase
         _ = this.TotalAmount;
     }
 
-    public ConsumptionTableModel() { }
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable() { }
 
-    public ConsumptionTableModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ConsumptionTableModel(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ConsumptionTableModel FromRawUnchecked(
+    public static NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -533,11 +542,15 @@ public sealed record class ConsumptionTableModel : ModelBase
     }
 }
 
-class ConsumptionTableModelFromRaw : IFromRaw<ConsumptionTableModel>
+class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTableFromRaw
+    : IFromRaw<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable>
 {
-    public ConsumptionTableModel FromRawUnchecked(
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => ConsumptionTableModel.FromRawUnchecked(rawData);
+    ) =>
+        NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(typeof(NewPlanThresholdTotalAmountPriceConversionRateConfigConverter))]

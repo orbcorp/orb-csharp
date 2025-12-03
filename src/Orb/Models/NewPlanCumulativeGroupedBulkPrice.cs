@@ -358,14 +358,13 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
     /// <summary>
     /// Each tier lower bound must have the same group of values.
     /// </summary>
-    public required IReadOnlyList<DimensionValueModel> DimensionValues
+    public required IReadOnlyList<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue> DimensionValues
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<DimensionValueModel>>(
-                this.RawData,
-                "dimension_values"
-            );
+            return ModelBase.GetNotNullClass<
+                List<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>
+            >(this.RawData, "dimension_values");
         }
         init { ModelBase.Set(this._rawData, "dimension_values", value); }
     }
@@ -426,8 +425,14 @@ class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigFromRaw
 /// <summary>
 /// Configuration for a dimension value entry
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionValueModel, DimensionValueModelFromRaw>))]
-public sealed record class DimensionValueModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue,
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueFromRaw
+    >)
+)]
+public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
+    : ModelBase
 {
     /// <summary>
     /// Grouping key value
@@ -463,22 +468,26 @@ public sealed record class DimensionValueModel : ModelBase
         _ = this.UnitAmount;
     }
 
-    public DimensionValueModel() { }
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue() { }
 
-    public DimensionValueModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DimensionValueModel(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DimensionValueModel FromRawUnchecked(
+    public static NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -486,10 +495,15 @@ public sealed record class DimensionValueModel : ModelBase
     }
 }
 
-class DimensionValueModelFromRaw : IFromRaw<DimensionValueModel>
+class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueFromRaw
+    : IFromRaw<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>
 {
-    public DimensionValueModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DimensionValueModel.FromRawUnchecked(rawData);
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

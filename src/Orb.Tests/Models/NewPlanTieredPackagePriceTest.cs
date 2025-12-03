@@ -556,7 +556,7 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTest : TestBase
         };
 
         string expectedPackageSize = "package_size";
-        List<Tier13> expectedTiers =
+        List<NewPlanTieredPackagePriceTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -611,7 +611,7 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedPackageSize = "package_size";
-        List<Tier13> expectedTiers =
+        List<NewPlanTieredPackagePriceTieredPackageConfigTier> expectedTiers =
         [
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
             new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
@@ -642,12 +642,16 @@ public class NewPlanTieredPackagePriceTieredPackageConfigTest : TestBase
     }
 }
 
-public class Tier13Test : TestBase
+public class NewPlanTieredPackagePriceTieredPackageConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier13 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanTieredPackagePriceTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedPerUnit = "per_unit";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -659,10 +663,15 @@ public class Tier13Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier13 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanTieredPackagePriceTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier13>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -670,10 +679,15 @@ public class Tier13Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier13 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanTieredPackagePriceTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier13>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanTieredPackagePriceTieredPackageConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -686,7 +700,11 @@ public class Tier13Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier13 { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanTieredPackagePriceTieredPackageConfigTier
+        {
+            PerUnit = "per_unit",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }

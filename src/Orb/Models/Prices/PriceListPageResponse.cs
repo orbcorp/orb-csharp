@@ -17,11 +17,11 @@ public sealed record class PriceListPageResponse : ModelBase
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
-    public required PaginationMetadata PaginationMetadata
+    public required Models::PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return ModelBase.GetNotNullClass<Models::PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );

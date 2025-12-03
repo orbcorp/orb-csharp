@@ -16,9 +16,15 @@ namespace Orb.Models.Subscriptions;
 )]
 public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
 {
-    public required IReadOnlyList<Data1> Data
+    public required IReadOnlyList<SubscriptionFetchSchedulePageResponseData> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Data1>>(this.RawData, "data"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<SubscriptionFetchSchedulePageResponseData>>(
+                this.RawData,
+                "data"
+            );
+        }
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
@@ -73,8 +79,13 @@ class SubscriptionFetchSchedulePageResponseFromRaw : IFromRaw<SubscriptionFetchS
     ) => SubscriptionFetchSchedulePageResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Data1, Data1FromRaw>))]
-public sealed record class Data1 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        SubscriptionFetchSchedulePageResponseData,
+        SubscriptionFetchSchedulePageResponseDataFromRaw
+    >)
+)]
+public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
 {
     public required DateTimeOffset CreatedAt
     {
@@ -108,31 +119,37 @@ public sealed record class Data1 : ModelBase
         _ = this.StartDate;
     }
 
-    public Data1() { }
+    public SubscriptionFetchSchedulePageResponseData() { }
 
-    public Data1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SubscriptionFetchSchedulePageResponseData(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Data1(FrozenDictionary<string, JsonElement> rawData)
+    SubscriptionFetchSchedulePageResponseData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Data1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static SubscriptionFetchSchedulePageResponseData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Data1FromRaw : IFromRaw<Data1>
+class SubscriptionFetchSchedulePageResponseDataFromRaw
+    : IFromRaw<SubscriptionFetchSchedulePageResponseData>
 {
-    public Data1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Data1.FromRawUnchecked(rawData);
+    public SubscriptionFetchSchedulePageResponseData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionFetchSchedulePageResponseData.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]

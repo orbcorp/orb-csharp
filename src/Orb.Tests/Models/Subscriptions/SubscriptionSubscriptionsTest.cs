@@ -36,8 +36,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -139,7 +140,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                                    ProviderType =
+                                        CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -159,8 +161,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter1Field.PriceID,
-                                    Operator = Filter1Operator.Includes,
+                                    Field = AmountDiscountIntervalFilterField.PriceID,
+                                    Operator = AmountDiscountIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -189,8 +191,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter3Field.PriceID,
-                                    Operator = Filter3Operator.Includes,
+                                    Field = MaximumIntervalFilterField.PriceID,
+                                    Operator = MaximumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -209,8 +211,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter5Field.PriceID,
-                                    Operator = Filter5Operator.Includes,
+                                    Field = MinimumIntervalFilterField.PriceID,
+                                    Operator = MinimumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -236,8 +238,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -262,14 +265,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -284,8 +287,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -300,8 +303,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -319,21 +322,21 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
                                     Reason = "reason",
                                 },
                                 Duration = 0,
-                                DurationUnit = Plans::PlanPhaseModelDurationUnit.Daily,
+                                DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                                 Maximum = new()
                                 {
                                     AppliesToPriceIDs = ["string"],
@@ -341,8 +344,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -356,8 +359,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -421,14 +424,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -449,8 +452,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -465,8 +468,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -576,14 +579,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -604,8 +607,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -620,8 +623,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -678,8 +681,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter23Field.PriceID,
-                                    Operator = Filter23Operator.Includes,
+                                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -775,7 +779,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -795,8 +800,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter1Field.PriceID,
-                                Operator = Filter1Operator.Includes,
+                                Field = AmountDiscountIntervalFilterField.PriceID,
+                                Operator = AmountDiscountIntervalFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -825,8 +830,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter3Field.PriceID,
-                                Operator = Filter3Operator.Includes,
+                                Field = MaximumIntervalFilterField.PriceID,
+                                Operator = MaximumIntervalFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -845,8 +850,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter5Field.PriceID,
-                                Operator = Filter5Operator.Includes,
+                                Field = MinimumIntervalFilterField.PriceID,
+                                Operator = MinimumIntervalFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -872,8 +877,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter23Field.PriceID,
-                                    Operator = Filter23Operator.Includes,
+                                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -898,14 +904,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                     Discount = new PercentageDiscount()
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Filter17Field.PriceID,
-                                Operator = Filter17Operator.Includes,
+                                Field = PercentageDiscountFilterField.PriceID,
+                                Operator = PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -920,8 +926,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter2Field.PriceID,
-                                Operator = Filter2Operator.Includes,
+                                Field = MaximumFilterField.PriceID,
+                                Operator = MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -936,8 +942,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter4Field.PriceID,
-                                Operator = Filter4Operator.Includes,
+                                Field = MinimumFilterField.PriceID,
+                                Operator = MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -955,21 +961,21 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Discount = new PercentageDiscount()
                             {
                                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Filter17Field.PriceID,
-                                        Operator = Filter17Operator.Includes,
+                                        Field = PercentageDiscountFilterField.PriceID,
+                                        Operator = PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPhaseModelDurationUnit.Daily,
+                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIDs = ["string"],
@@ -977,8 +983,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter2Field.PriceID,
-                                        Operator = Filter2Operator.Includes,
+                                        Field = MaximumFilterField.PriceID,
+                                        Operator = MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -992,8 +998,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter4Field.PriceID,
-                                        Operator = Filter4Operator.Includes,
+                                        Field = MinimumFilterField.PriceID,
+                                        Operator = MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1057,14 +1063,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Discount = new PercentageDiscount()
                             {
                                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Filter17Field.PriceID,
-                                        Operator = Filter17Operator.Includes,
+                                        Field = PercentageDiscountFilterField.PriceID,
+                                        Operator = PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1085,8 +1091,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter2Field.PriceID,
-                                        Operator = Filter2Operator.Includes,
+                                        Field = MaximumFilterField.PriceID,
+                                        Operator = MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1101,8 +1107,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter4Field.PriceID,
-                                        Operator = Filter4Operator.Includes,
+                                        Field = MinimumFilterField.PriceID,
+                                        Operator = MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1210,14 +1216,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Discount = new PercentageDiscount()
                             {
                                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Filter17Field.PriceID,
-                                        Operator = Filter17Operator.Includes,
+                                        Field = PercentageDiscountFilterField.PriceID,
+                                        Operator = PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1238,8 +1244,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter2Field.PriceID,
-                                        Operator = Filter2Operator.Includes,
+                                        Field = MaximumFilterField.PriceID,
+                                        Operator = MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1254,8 +1260,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter4Field.PriceID,
-                                        Operator = Filter4Operator.Includes,
+                                        Field = MinimumFilterField.PriceID,
+                                        Operator = MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1328,8 +1334,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1431,7 +1438,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                                    ProviderType =
+                                        CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -1451,8 +1459,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter1Field.PriceID,
-                                    Operator = Filter1Operator.Includes,
+                                    Field = AmountDiscountIntervalFilterField.PriceID,
+                                    Operator = AmountDiscountIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1481,8 +1489,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter3Field.PriceID,
-                                    Operator = Filter3Operator.Includes,
+                                    Field = MaximumIntervalFilterField.PriceID,
+                                    Operator = MaximumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1501,8 +1509,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter5Field.PriceID,
-                                    Operator = Filter5Operator.Includes,
+                                    Field = MinimumIntervalFilterField.PriceID,
+                                    Operator = MinimumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1528,8 +1536,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -1554,14 +1563,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1576,8 +1585,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1592,8 +1601,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -1611,21 +1620,21 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
                                     Reason = "reason",
                                 },
                                 Duration = 0,
-                                DurationUnit = Plans::PlanPhaseModelDurationUnit.Daily,
+                                DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                                 Maximum = new()
                                 {
                                     AppliesToPriceIDs = ["string"],
@@ -1633,8 +1642,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1648,8 +1657,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1713,14 +1722,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1741,8 +1750,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1757,8 +1766,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1868,14 +1877,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1896,8 +1905,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1912,8 +1921,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -1981,8 +1990,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -2084,7 +2094,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                                    ProviderType =
+                                        CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -2104,8 +2115,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter1Field.PriceID,
-                                    Operator = Filter1Operator.Includes,
+                                    Field = AmountDiscountIntervalFilterField.PriceID,
+                                    Operator = AmountDiscountIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2134,8 +2145,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter3Field.PriceID,
-                                    Operator = Filter3Operator.Includes,
+                                    Field = MaximumIntervalFilterField.PriceID,
+                                    Operator = MaximumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2154,8 +2165,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter5Field.PriceID,
-                                    Operator = Filter5Operator.Includes,
+                                    Field = MinimumIntervalFilterField.PriceID,
+                                    Operator = MinimumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2181,8 +2192,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -2207,14 +2219,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2229,8 +2241,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2245,8 +2257,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2264,21 +2276,21 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
                                     Reason = "reason",
                                 },
                                 Duration = 0,
-                                DurationUnit = Plans::PlanPhaseModelDurationUnit.Daily,
+                                DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                                 Maximum = new()
                                 {
                                     AppliesToPriceIDs = ["string"],
@@ -2286,8 +2298,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2301,8 +2313,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2366,14 +2378,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2394,8 +2406,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2410,8 +2422,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2521,14 +2533,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2549,8 +2561,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2565,8 +2577,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -2627,8 +2639,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter23Field.PriceID,
-                                    Operator = Filter23Operator.Includes,
+                                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2724,7 +2737,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                ProviderType = PaymentProvider5ProviderType.Stripe,
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -2744,8 +2758,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter1Field.PriceID,
-                                Operator = Filter1Operator.Includes,
+                                Field = AmountDiscountIntervalFilterField.PriceID,
+                                Operator = AmountDiscountIntervalFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2774,8 +2788,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter3Field.PriceID,
-                                Operator = Filter3Operator.Includes,
+                                Field = MaximumIntervalFilterField.PriceID,
+                                Operator = MaximumIntervalFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2794,8 +2808,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter5Field.PriceID,
-                                Operator = Filter5Operator.Includes,
+                                Field = MinimumIntervalFilterField.PriceID,
+                                Operator = MinimumIntervalFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2821,8 +2835,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter23Field.PriceID,
-                                    Operator = Filter23Operator.Includes,
+                                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -2847,14 +2862,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                     Discount = new PercentageDiscount()
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
-                        PercentageDiscount1 = 0.15,
+                        PercentageDiscountValue = 0.15,
                         AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
                             {
-                                Field = Filter17Field.PriceID,
-                                Operator = Filter17Operator.Includes,
+                                Field = PercentageDiscountFilterField.PriceID,
+                                Operator = PercentageDiscountFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2869,8 +2884,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter2Field.PriceID,
-                                Operator = Filter2Operator.Includes,
+                                Field = MaximumFilterField.PriceID,
+                                Operator = MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2885,8 +2900,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                         [
                             new()
                             {
-                                Field = Filter4Field.PriceID,
-                                Operator = Filter4Operator.Includes,
+                                Field = MinimumFilterField.PriceID,
+                                Operator = MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -2904,21 +2919,21 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Discount = new PercentageDiscount()
                             {
                                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Filter17Field.PriceID,
-                                        Operator = Filter17Operator.Includes,
+                                        Field = PercentageDiscountFilterField.PriceID,
+                                        Operator = PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPhaseModelDurationUnit.Daily,
+                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIDs = ["string"],
@@ -2926,8 +2941,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter2Field.PriceID,
-                                        Operator = Filter2Operator.Includes,
+                                        Field = MaximumFilterField.PriceID,
+                                        Operator = MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -2941,8 +2956,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter4Field.PriceID,
-                                        Operator = Filter4Operator.Includes,
+                                        Field = MinimumFilterField.PriceID,
+                                        Operator = MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3006,14 +3021,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Discount = new PercentageDiscount()
                             {
                                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Filter17Field.PriceID,
-                                        Operator = Filter17Operator.Includes,
+                                        Field = PercentageDiscountFilterField.PriceID,
+                                        Operator = PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3034,8 +3049,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter2Field.PriceID,
-                                        Operator = Filter2Operator.Includes,
+                                        Field = MaximumFilterField.PriceID,
+                                        Operator = MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3050,8 +3065,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter4Field.PriceID,
-                                        Operator = Filter4Operator.Includes,
+                                        Field = MinimumFilterField.PriceID,
+                                        Operator = MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3159,14 +3174,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Discount = new PercentageDiscount()
                             {
                                 DiscountType = PercentageDiscountDiscountType.Percentage,
-                                PercentageDiscount1 = 0.15,
+                                PercentageDiscountValue = 0.15,
                                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
                                     {
-                                        Field = Filter17Field.PriceID,
-                                        Operator = Filter17Operator.Includes,
+                                        Field = PercentageDiscountFilterField.PriceID,
+                                        Operator = PercentageDiscountFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3187,8 +3202,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter2Field.PriceID,
-                                        Operator = Filter2Operator.Includes,
+                                        Field = MaximumFilterField.PriceID,
+                                        Operator = MaximumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3203,8 +3218,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter4Field.PriceID,
-                                        Operator = Filter4Operator.Includes,
+                                        Field = MinimumFilterField.PriceID,
+                                        Operator = MinimumFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3277,8 +3292,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3380,7 +3396,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                                    ProviderType =
+                                        CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -3400,8 +3417,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter1Field.PriceID,
-                                    Operator = Filter1Operator.Includes,
+                                    Field = AmountDiscountIntervalFilterField.PriceID,
+                                    Operator = AmountDiscountIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3430,8 +3447,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter3Field.PriceID,
-                                    Operator = Filter3Operator.Includes,
+                                    Field = MaximumIntervalFilterField.PriceID,
+                                    Operator = MaximumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3450,8 +3467,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter5Field.PriceID,
-                                    Operator = Filter5Operator.Includes,
+                                    Field = MinimumIntervalFilterField.PriceID,
+                                    Operator = MinimumIntervalFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3477,8 +3494,9 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Filter23Field.PriceID,
-                                        Operator = Filter23Operator.Includes,
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
@@ -3503,14 +3521,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                         Discount = new PercentageDiscount()
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
-                            PercentageDiscount1 = 0.15,
+                            PercentageDiscountValue = 0.15,
                             AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Filter17Field.PriceID,
-                                    Operator = Filter17Operator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3525,8 +3543,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter2Field.PriceID,
-                                    Operator = Filter2Operator.Includes,
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3541,8 +3559,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Filter4Field.PriceID,
-                                    Operator = Filter4Operator.Includes,
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -3560,21 +3578,21 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
                                     Reason = "reason",
                                 },
                                 Duration = 0,
-                                DurationUnit = Plans::PlanPhaseModelDurationUnit.Daily,
+                                DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                                 Maximum = new()
                                 {
                                     AppliesToPriceIDs = ["string"],
@@ -3582,8 +3600,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3597,8 +3615,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3662,14 +3680,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3690,8 +3708,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3706,8 +3724,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3817,14 +3835,14 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 Discount = new PercentageDiscount()
                                 {
                                     DiscountType = PercentageDiscountDiscountType.Percentage,
-                                    PercentageDiscount1 = 0.15,
+                                    PercentageDiscountValue = 0.15,
                                     AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Filter17Field.PriceID,
-                                            Operator = Filter17Operator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3845,8 +3863,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter2Field.PriceID,
-                                            Operator = Filter2Operator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -3861,8 +3879,8 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Filter4Field.PriceID,
-                                            Operator = Filter4Operator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],

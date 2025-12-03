@@ -79,7 +79,7 @@ public class CreditNoteListPageResponseTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -156,7 +156,7 @@ public class CreditNoteListPageResponseTest : TestBase
                     new()
                     {
                         AmountApplied = "amount_applied",
-                        DiscountType = Models::DiscountModelDiscountType.Percentage,
+                        DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AppliesToPrices = [new() { ID = "id", Name = "name" }],
                         Reason = "reason",
@@ -249,7 +249,7 @@ public class CreditNoteListPageResponseTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -337,7 +337,7 @@ public class CreditNoteListPageResponseTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",
@@ -418,7 +418,7 @@ public class CreditNoteListPageResponseTest : TestBase
                     new()
                     {
                         AmountApplied = "amount_applied",
-                        DiscountType = Models::DiscountModelDiscountType.Percentage,
+                        DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AppliesToPrices = [new() { ID = "id", Name = "name" }],
                         Reason = "reason",
@@ -511,7 +511,7 @@ public class CreditNoteListPageResponseTest : TestBase
                         new()
                         {
                             AmountApplied = "amount_applied",
-                            DiscountType = Models::DiscountModelDiscountType.Percentage,
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AppliesToPrices = [new() { ID = "id", Name = "name" }],
                             Reason = "reason",

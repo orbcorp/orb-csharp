@@ -367,9 +367,14 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required IReadOnlyList<UnitAmount2> UnitAmounts
+    public required IReadOnlyList<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount> UnitAmounts
     {
-        get { return ModelBase.GetNotNullClass<List<UnitAmount2>>(this.RawData, "unit_amounts"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount>
+            >(this.RawData, "unit_amounts");
+        }
         init { ModelBase.Set(this._rawData, "unit_amounts", value); }
     }
 
@@ -420,8 +425,14 @@ class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigFromRaw
 /// <summary>
 /// Configuration for a unit amount item
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitAmount2, UnitAmount2FromRaw>))]
-public sealed record class UnitAmount2 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount,
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmountFromRaw
+    >)
+)]
+public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount
+    : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -457,31 +468,42 @@ public sealed record class UnitAmount2 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public UnitAmount2() { }
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount() { }
 
-    public UnitAmount2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitAmount2(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static UnitAmount2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UnitAmount2FromRaw : IFromRaw<UnitAmount2>
+class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmountFromRaw
+    : IFromRaw<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount>
 {
-    public UnitAmount2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        UnitAmount2.FromRawUnchecked(rawData);
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

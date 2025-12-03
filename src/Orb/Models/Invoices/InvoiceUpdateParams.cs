@@ -34,9 +34,15 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// An optional custom due date for the invoice. If not set, the due date will
     /// be calculated based on the `net_terms` value.
     /// </summary>
-    public DueDateModel? DueDate
+    public InvoiceUpdateParamsDueDate? DueDate
     {
-        get { return ModelBase.GetNullableClass<DueDateModel>(this.RawBodyData, "due_date"); }
+        get
+        {
+            return ModelBase.GetNullableClass<InvoiceUpdateParamsDueDate>(
+                this.RawBodyData,
+                "due_date"
+            );
+        }
         init { ModelBase.Set(this._rawBodyData, "due_date", value); }
     }
 
@@ -149,8 +155,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
 /// An optional custom due date for the invoice. If not set, the due date will be
 /// calculated based on the `net_terms` value.
 /// </summary>
-[JsonConverter(typeof(DueDateModelConverter))]
-public record class DueDateModel
+[JsonConverter(typeof(InvoiceUpdateParamsDueDateConverter))]
+public record class InvoiceUpdateParamsDueDate
 {
     public object? Value { get; } = null;
 
@@ -161,7 +167,7 @@ public record class DueDateModel
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public DueDateModel(
+    public InvoiceUpdateParamsDueDate(
 #if NET
         System::DateOnly
 #else
@@ -173,13 +179,13 @@ public record class DueDateModel
         this._json = json;
     }
 
-    public DueDateModel(System::DateTimeOffset value, JsonElement? json = null)
+    public InvoiceUpdateParamsDueDate(System::DateTimeOffset value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public DueDateModel(JsonElement json)
+    public InvoiceUpdateParamsDueDate(JsonElement json)
     {
         this._json = json;
     }
@@ -234,7 +240,9 @@ public record class DueDateModel
                 @dateTime(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of DueDateModel");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of InvoiceUpdateParamsDueDate"
+                );
         }
     }
 
@@ -259,12 +267,12 @@ public record class DueDateModel
             value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of DueDateModel"
+                "Data did not match any variant of InvoiceUpdateParamsDueDate"
             ),
         };
     }
 
-    public static implicit operator DueDateModel(
+    public static implicit operator InvoiceUpdateParamsDueDate(
 #if NET
         System::DateOnly
 #else
@@ -272,17 +280,20 @@ public record class DueDateModel
 #endif
         value) => new(value);
 
-    public static implicit operator DueDateModel(System::DateTimeOffset value) => new(value);
+    public static implicit operator InvoiceUpdateParamsDueDate(System::DateTimeOffset value) =>
+        new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of DueDateModel");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceUpdateParamsDueDate"
+            );
         }
     }
 
-    public virtual bool Equals(DueDateModel? other)
+    public virtual bool Equals(InvoiceUpdateParamsDueDate? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -293,9 +304,9 @@ public record class DueDateModel
     }
 }
 
-sealed class DueDateModelConverter : JsonConverter<DueDateModel?>
+sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdateParamsDueDate?>
 {
-    public override DueDateModel? Read(
+    public override InvoiceUpdateParamsDueDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -331,7 +342,7 @@ sealed class DueDateModelConverter : JsonConverter<DueDateModel?>
 
     public override void Write(
         Utf8JsonWriter writer,
-        DueDateModel? value,
+        InvoiceUpdateParamsDueDate? value,
         JsonSerializerOptions options
     )
     {

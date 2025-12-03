@@ -5,28 +5,30 @@ using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
 
-public class PaymentConfiguration1Test : TestBase
+public class CustomerUpdateByExternalIDParamsPaymentConfigurationTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PaymentConfiguration1
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
         {
             PaymentProviders =
             [
                 new()
                 {
-                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ProviderType =
+                        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
         };
 
-        List<PaymentProvider3> expectedPaymentProviders =
+        List<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider> expectedPaymentProviders =
         [
             new()
             {
-                ProviderType = PaymentProvider3ProviderType.Stripe,
+                ProviderType =
+                    CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
                 ExcludedPaymentMethodTypes = ["string"],
             },
         ];
@@ -41,20 +43,22 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PaymentConfiguration1
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
         {
             PaymentProviders =
             [
                 new()
                 {
-                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ProviderType =
+                        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaymentConfiguration1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfiguration>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -62,27 +66,30 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PaymentConfiguration1
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
         {
             PaymentProviders =
             [
                 new()
                 {
-                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ProviderType =
+                        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaymentConfiguration1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfiguration>(json);
         Assert.NotNull(deserialized);
 
-        List<PaymentProvider3> expectedPaymentProviders =
+        List<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider> expectedPaymentProviders =
         [
             new()
             {
-                ProviderType = PaymentProvider3ProviderType.Stripe,
+                ProviderType =
+                    CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
                 ExcludedPaymentMethodTypes = ["string"],
             },
         ];
@@ -97,13 +104,14 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PaymentConfiguration1
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
         {
             PaymentProviders =
             [
                 new()
                 {
-                    ProviderType = PaymentProvider3ProviderType.Stripe,
+                    ProviderType =
+                        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -115,7 +123,7 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PaymentConfiguration1 { };
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration { };
 
         Assert.Null(model.PaymentProviders);
         Assert.False(model.RawData.ContainsKey("payment_providers"));
@@ -124,7 +132,7 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PaymentConfiguration1 { };
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration { };
 
         model.Validate();
     }
@@ -132,7 +140,7 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PaymentConfiguration1
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
         {
             // Null should be interpreted as omitted for these properties
             PaymentProviders = null,
@@ -145,7 +153,7 @@ public class PaymentConfiguration1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PaymentConfiguration1
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfiguration
         {
             // Null should be interpreted as omitted for these properties
             PaymentProviders = null,
@@ -155,19 +163,23 @@ public class PaymentConfiguration1Test : TestBase
     }
 }
 
-public class PaymentProvider3Test : TestBase
+public class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PaymentProvider3
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
-        ApiEnum<string, PaymentProvider3ProviderType> expectedProviderType =
-            PaymentProvider3ProviderType.Stripe;
+        ApiEnum<
+            string,
+            CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType
+        > expectedProviderType =
+            CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe;
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, model.ProviderType);
@@ -187,14 +199,18 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PaymentProvider3
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaymentProvider3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -202,18 +218,25 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PaymentProvider3
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaymentProvider3>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PaymentProvider3ProviderType> expectedProviderType =
-            PaymentProvider3ProviderType.Stripe;
+        ApiEnum<
+            string,
+            CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType
+        > expectedProviderType =
+            CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe;
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
@@ -233,9 +256,10 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PaymentProvider3
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -245,7 +269,11 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PaymentProvider3 { ProviderType = PaymentProvider3ProviderType.Stripe };
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
+        {
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+        };
 
         Assert.Null(model.ExcludedPaymentMethodTypes);
         Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
@@ -254,7 +282,11 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PaymentProvider3 { ProviderType = PaymentProvider3ProviderType.Stripe };
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
+        {
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
+        };
 
         model.Validate();
     }
@@ -262,9 +294,10 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PaymentProvider3
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
@@ -277,9 +310,10 @@ public class PaymentProvider3Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PaymentProvider3
+        var model = new CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider3ProviderType.Stripe,
+            ProviderType =
+                CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType.Stripe,
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
@@ -289,12 +323,16 @@ public class PaymentProvider3Test : TestBase
     }
 }
 
-public class TaxConfiguration1NumeralTest : TestBase
+public class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TaxConfiguration1Numeral { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         bool expectedTaxExempt = true;
         JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
@@ -308,10 +346,17 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TaxConfiguration1Numeral { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Numeral>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationNumeral>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -319,10 +364,17 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TaxConfiguration1Numeral { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Numeral>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationNumeral>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
@@ -337,7 +389,11 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TaxConfiguration1Numeral { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         model.Validate();
     }
@@ -345,7 +401,10 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TaxConfiguration1Numeral { TaxExempt = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+        };
 
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.False(model.RawData.ContainsKey("automatic_tax_enabled"));
@@ -354,7 +413,10 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TaxConfiguration1Numeral { TaxExempt = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
+        {
+            TaxExempt = true,
+        };
 
         model.Validate();
     }
@@ -362,7 +424,7 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new TaxConfiguration1Numeral
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
         {
             TaxExempt = true,
 
@@ -376,7 +438,7 @@ public class TaxConfiguration1NumeralTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TaxConfiguration1Numeral
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral
         {
             TaxExempt = true,
 
@@ -387,12 +449,16 @@ public class TaxConfiguration1NumeralTest : TestBase
     }
 }
 
-public class TaxConfiguration1AnrokTest : TestBase
+public class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TaxConfiguration1Anrok { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         bool expectedTaxExempt = true;
         JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
@@ -406,10 +472,15 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TaxConfiguration1Anrok { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Anrok>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -417,10 +488,15 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TaxConfiguration1Anrok { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Anrok>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>(json);
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
@@ -435,7 +511,11 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TaxConfiguration1Anrok { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         model.Validate();
     }
@@ -443,7 +523,7 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TaxConfiguration1Anrok { TaxExempt = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok { TaxExempt = true };
 
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.False(model.RawData.ContainsKey("automatic_tax_enabled"));
@@ -452,7 +532,7 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TaxConfiguration1Anrok { TaxExempt = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok { TaxExempt = true };
 
         model.Validate();
     }
@@ -460,7 +540,7 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new TaxConfiguration1Anrok
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
         {
             TaxExempt = true,
 
@@ -474,7 +554,7 @@ public class TaxConfiguration1AnrokTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TaxConfiguration1Anrok
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
         {
             TaxExempt = true,
 
@@ -485,12 +565,16 @@ public class TaxConfiguration1AnrokTest : TestBase
     }
 }
 
-public class TaxConfiguration1StripeTest : TestBase
+public class CustomerUpdateByExternalIDParamsTaxConfigurationStripeTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TaxConfiguration1Stripe { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         bool expectedTaxExempt = true;
         JsonElement expectedTaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
@@ -504,10 +588,17 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TaxConfiguration1Stripe { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Stripe>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationStripe>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -515,10 +606,17 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TaxConfiguration1Stripe { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxConfiguration1Stripe>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationStripe>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
@@ -533,7 +631,11 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TaxConfiguration1Stripe { TaxExempt = true, AutomaticTaxEnabled = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
+        {
+            TaxExempt = true,
+            AutomaticTaxEnabled = true,
+        };
 
         model.Validate();
     }
@@ -541,7 +643,7 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TaxConfiguration1Stripe { TaxExempt = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe { TaxExempt = true };
 
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.False(model.RawData.ContainsKey("automatic_tax_enabled"));
@@ -550,7 +652,7 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TaxConfiguration1Stripe { TaxExempt = true };
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe { TaxExempt = true };
 
         model.Validate();
     }
@@ -558,7 +660,7 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new TaxConfiguration1Stripe
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
         {
             TaxExempt = true,
 
@@ -572,7 +674,7 @@ public class TaxConfiguration1StripeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TaxConfiguration1Stripe
+        var model = new CustomerUpdateByExternalIDParamsTaxConfigurationStripe
         {
             TaxExempt = true,
 

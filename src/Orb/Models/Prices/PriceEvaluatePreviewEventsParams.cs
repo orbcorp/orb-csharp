@@ -104,14 +104,13 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// <summary>
     /// List of prices to evaluate (max 100)
     /// </summary>
-    public IReadOnlyList<PriceEvaluationModel>? PriceEvaluations
+    public IReadOnlyList<PriceEvaluatePreviewEventsParamsPriceEvaluation>? PriceEvaluations
     {
         get
         {
-            return ModelBase.GetNullableClass<List<PriceEvaluationModel>>(
-                this.RawBodyData,
-                "price_evaluations"
-            );
+            return ModelBase.GetNullableClass<
+                List<PriceEvaluatePreviewEventsParamsPriceEvaluation>
+            >(this.RawBodyData, "price_evaluations");
         }
         init
         {
@@ -285,8 +284,13 @@ class EventFromRaw : IFromRaw<Event>
         Event.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<PriceEvaluationModel, PriceEvaluationModelFromRaw>))]
-public sealed record class PriceEvaluationModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PriceEvaluatePreviewEventsParamsPriceEvaluation,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationFromRaw
+    >)
+)]
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : ModelBase
 {
     /// <summary>
     /// The external ID of a price to evaluate that exists in your Orb account.
@@ -328,9 +332,15 @@ public sealed record class PriceEvaluationModel : ModelBase
     /// <summary>
     /// New floating price request body params.
     /// </summary>
-    public PriceEvaluationModelPrice? Price
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice? Price
     {
-        get { return ModelBase.GetNullableClass<PriceEvaluationModelPrice>(this.RawData, "price"); }
+        get
+        {
+            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                this.RawData,
+                "price"
+            );
+        }
         init { ModelBase.Set(this._rawData, "price", value); }
     }
 
@@ -352,22 +362,24 @@ public sealed record class PriceEvaluationModel : ModelBase
         _ = this.PriceID;
     }
 
-    public PriceEvaluationModel() { }
+    public PriceEvaluatePreviewEventsParamsPriceEvaluation() { }
 
-    public PriceEvaluationModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluation(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModel(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluation(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModel FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -375,18 +387,19 @@ public sealed record class PriceEvaluationModel : ModelBase
     }
 }
 
-class PriceEvaluationModelFromRaw : IFromRaw<PriceEvaluationModel>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluation>
 {
-    public PriceEvaluationModel FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModel.FromRawUnchecked(rawData);
+    ) => PriceEvaluatePreviewEventsParamsPriceEvaluation.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// New floating price request body params.
 /// </summary>
-[JsonConverter(typeof(PriceEvaluationModelPriceConverter))]
-public record class PriceEvaluationModelPrice
+[JsonConverter(typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter))]
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
 {
     public object? Value { get; } = null;
 
@@ -877,26 +890,8 @@ public record class PriceEvaluationModelPrice
         }
     }
 
-    public PriceEvaluationModelPrice(NewFloatingUnitPrice value, JsonElement? json = null)
-    {
-        this.Value = value;
-        this._json = json;
-    }
-
-    public PriceEvaluationModelPrice(NewFloatingTieredPrice value, JsonElement? json = null)
-    {
-        this.Value = value;
-        this._json = json;
-    }
-
-    public PriceEvaluationModelPrice(NewFloatingBulkPrice value, JsonElement? json = null)
-    {
-        this.Value = value;
-        this._json = json;
-    }
-
-    public PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceBulkWithFilters value,
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingUnitPrice value,
         JsonElement? json = null
     )
     {
@@ -904,19 +899,52 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(NewFloatingPackagePrice value, JsonElement? json = null)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingTieredPrice value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(NewFloatingMatrixPrice value, JsonElement? json = null)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingBulkPrice value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingPackagePrice value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingMatrixPrice value,
+        JsonElement? json = null
+    )
+    {
+        this.Value = value;
+        this._json = json;
+    }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingThresholdTotalAmountPrice value,
         JsonElement? json = null
     )
@@ -925,13 +953,16 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(NewFloatingTieredPackagePrice value, JsonElement? json = null)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingTieredPackagePrice value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredWithMinimumPrice value,
         JsonElement? json = null
     )
@@ -940,13 +971,16 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(NewFloatingGroupedTieredPrice value, JsonElement? json = null)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingGroupedTieredPrice value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredPackageWithMinimumPrice value,
         JsonElement? json = null
     )
@@ -955,7 +989,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingPackageWithAllocationPrice value,
         JsonElement? json = null
     )
@@ -964,7 +998,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitWithPercentPrice value,
         JsonElement? json = null
     )
@@ -973,7 +1007,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixWithAllocationPrice value,
         JsonElement? json = null
     )
@@ -982,7 +1016,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredWithProrationPrice value,
         JsonElement? json = null
     )
@@ -991,7 +1025,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitWithProrationPrice value,
         JsonElement? json = null
     )
@@ -1000,7 +1034,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedAllocationPrice value,
         JsonElement? json = null
     )
@@ -1009,7 +1043,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingBulkWithProrationPrice value,
         JsonElement? json = null
     )
@@ -1018,7 +1052,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedWithProratedMinimumPrice value,
         JsonElement? json = null
     )
@@ -1027,7 +1061,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedWithMeteredMinimumPrice value,
         JsonElement? json = null
     )
@@ -1036,8 +1070,8 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholds value,
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value,
         JsonElement? json = null
     )
     {
@@ -1045,7 +1079,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixWithDisplayNamePrice value,
         JsonElement? json = null
     )
@@ -1054,7 +1088,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedTieredPackagePrice value,
         JsonElement? json = null
     )
@@ -1063,7 +1097,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMaxGroupTieredPackagePrice value,
         JsonElement? json = null
     )
@@ -1072,7 +1106,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingScalableMatrixWithUnitPricingPrice value,
         JsonElement? json = null
     )
@@ -1081,7 +1115,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingScalableMatrixWithTieredPricingPrice value,
         JsonElement? json = null
     )
@@ -1090,7 +1124,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingCumulativeGroupedBulkPrice value,
         JsonElement? json = null
     )
@@ -1099,8 +1133,8 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceCumulativeGroupedAllocation value,
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value,
         JsonElement? json = null
     )
     {
@@ -1108,7 +1142,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMinimumCompositePrice value,
         JsonElement? json = null
     )
@@ -1117,8 +1151,8 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
-        PriceEvaluationModelPricePercent value,
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value,
         JsonElement? json = null
     )
     {
@@ -1126,8 +1160,8 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceEventOutput value,
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value,
         JsonElement? json = null
     )
     {
@@ -1135,7 +1169,7 @@ public record class PriceEvaluationModelPrice
         this._json = json;
     }
 
-    public PriceEvaluationModelPrice(JsonElement json)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(JsonElement json)
     {
         this._json = json;
     }
@@ -1159,10 +1193,11 @@ public record class PriceEvaluationModelPrice
     }
 
     public bool TryPickBulkWithFilters(
-        [NotNullWhen(true)] out PriceEvaluationModelPriceBulkWithFilters? value
+        [NotNullWhen(true)]
+            out PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters? value
     )
     {
-        value = this.Value as PriceEvaluationModelPriceBulkWithFilters;
+        value = this.Value as PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters;
         return value != null;
     }
 
@@ -1291,10 +1326,13 @@ public record class PriceEvaluationModelPrice
     }
 
     public bool TryPickGroupedWithMinMaxThresholds(
-        [NotNullWhen(true)] out PriceEvaluationModelPriceGroupedWithMinMaxThresholds? value
+        [NotNullWhen(true)]
+            out PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds? value
     )
     {
-        value = this.Value as PriceEvaluationModelPriceGroupedWithMinMaxThresholds;
+        value =
+            this.Value
+            as PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds;
         return value != null;
     }
 
@@ -1347,10 +1385,13 @@ public record class PriceEvaluationModelPrice
     }
 
     public bool TryPickCumulativeGroupedAllocation(
-        [NotNullWhen(true)] out PriceEvaluationModelPriceCumulativeGroupedAllocation? value
+        [NotNullWhen(true)]
+            out PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation? value
     )
     {
-        value = this.Value as PriceEvaluationModelPriceCumulativeGroupedAllocation;
+        value =
+            this.Value
+            as PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation;
         return value != null;
     }
 
@@ -1362,17 +1403,20 @@ public record class PriceEvaluationModelPrice
         return value != null;
     }
 
-    public bool TryPickPercent([NotNullWhen(true)] out PriceEvaluationModelPricePercent? value)
+    public bool TryPickPercent(
+        [NotNullWhen(true)] out PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent? value
+    )
     {
-        value = this.Value as PriceEvaluationModelPricePercent;
+        value = this.Value as PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent;
         return value != null;
     }
 
     public bool TryPickEventOutput(
-        [NotNullWhen(true)] out PriceEvaluationModelPriceEventOutput? value
+        [NotNullWhen(true)]
+            out PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput? value
     )
     {
-        value = this.Value as PriceEvaluationModelPriceEventOutput;
+        value = this.Value as PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput;
         return value != null;
     }
 
@@ -1380,7 +1424,7 @@ public record class PriceEvaluationModelPrice
         System::Action<NewFloatingUnitPrice> newFloatingUnit,
         System::Action<NewFloatingTieredPrice> newFloatingTiered,
         System::Action<NewFloatingBulkPrice> newFloatingBulk,
-        System::Action<PriceEvaluationModelPriceBulkWithFilters> bulkWithFilters,
+        System::Action<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters> bulkWithFilters,
         System::Action<NewFloatingPackagePrice> newFloatingPackage,
         System::Action<NewFloatingMatrixPrice> newFloatingMatrix,
         System::Action<NewFloatingThresholdTotalAmountPrice> newFloatingThresholdTotalAmount,
@@ -1397,17 +1441,17 @@ public record class PriceEvaluationModelPrice
         System::Action<NewFloatingBulkWithProrationPrice> newFloatingBulkWithProration,
         System::Action<NewFloatingGroupedWithProratedMinimumPrice> newFloatingGroupedWithProratedMinimum,
         System::Action<NewFloatingGroupedWithMeteredMinimumPrice> newFloatingGroupedWithMeteredMinimum,
-        System::Action<PriceEvaluationModelPriceGroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
+        System::Action<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds> groupedWithMinMaxThresholds,
         System::Action<NewFloatingMatrixWithDisplayNamePrice> newFloatingMatrixWithDisplayName,
         System::Action<NewFloatingGroupedTieredPackagePrice> newFloatingGroupedTieredPackage,
         System::Action<NewFloatingMaxGroupTieredPackagePrice> newFloatingMaxGroupTieredPackage,
         System::Action<NewFloatingScalableMatrixWithUnitPricingPrice> newFloatingScalableMatrixWithUnitPricing,
         System::Action<NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         System::Action<NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
-        System::Action<PriceEvaluationModelPriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
+        System::Action<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
         System::Action<NewFloatingMinimumCompositePrice> newFloatingMinimumComposite,
-        System::Action<PriceEvaluationModelPricePercent> percent,
-        System::Action<PriceEvaluationModelPriceEventOutput> eventOutput
+        System::Action<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent> percent,
+        System::Action<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput> eventOutput
     )
     {
         switch (this.Value)
@@ -1421,7 +1465,7 @@ public record class PriceEvaluationModelPrice
             case NewFloatingBulkPrice value:
                 newFloatingBulk(value);
                 break;
-            case PriceEvaluationModelPriceBulkWithFilters value:
+            case PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value:
                 bulkWithFilters(value);
                 break;
             case NewFloatingPackagePrice value:
@@ -1472,7 +1516,7 @@ public record class PriceEvaluationModelPrice
             case NewFloatingGroupedWithMeteredMinimumPrice value:
                 newFloatingGroupedWithMeteredMinimum(value);
                 break;
-            case PriceEvaluationModelPriceGroupedWithMinMaxThresholds value:
+            case PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value:
                 groupedWithMinMaxThresholds(value);
                 break;
             case NewFloatingMatrixWithDisplayNamePrice value:
@@ -1493,21 +1537,21 @@ public record class PriceEvaluationModelPrice
             case NewFloatingCumulativeGroupedBulkPrice value:
                 newFloatingCumulativeGroupedBulk(value);
                 break;
-            case PriceEvaluationModelPriceCumulativeGroupedAllocation value:
+            case PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
             case NewFloatingMinimumCompositePrice value:
                 newFloatingMinimumComposite(value);
                 break;
-            case PriceEvaluationModelPricePercent value:
+            case PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value:
                 percent(value);
                 break;
-            case PriceEvaluationModelPriceEventOutput value:
+            case PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value:
                 eventOutput(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceEvaluationModelPrice"
+                    "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPrice"
                 );
         }
     }
@@ -1516,7 +1560,10 @@ public record class PriceEvaluationModelPrice
         System::Func<NewFloatingUnitPrice, T> newFloatingUnit,
         System::Func<NewFloatingTieredPrice, T> newFloatingTiered,
         System::Func<NewFloatingBulkPrice, T> newFloatingBulk,
-        System::Func<PriceEvaluationModelPriceBulkWithFilters, T> bulkWithFilters,
+        System::Func<
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters,
+            T
+        > bulkWithFilters,
         System::Func<NewFloatingPackagePrice, T> newFloatingPackage,
         System::Func<NewFloatingMatrixPrice, T> newFloatingMatrix,
         System::Func<NewFloatingThresholdTotalAmountPrice, T> newFloatingThresholdTotalAmount,
@@ -1543,7 +1590,7 @@ public record class PriceEvaluationModelPrice
             T
         > newFloatingGroupedWithMeteredMinimum,
         System::Func<
-            PriceEvaluationModelPriceGroupedWithMinMaxThresholds,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds,
             T
         > groupedWithMinMaxThresholds,
         System::Func<NewFloatingMatrixWithDisplayNamePrice, T> newFloatingMatrixWithDisplayName,
@@ -1559,12 +1606,12 @@ public record class PriceEvaluationModelPrice
         > newFloatingScalableMatrixWithTieredPricing,
         System::Func<NewFloatingCumulativeGroupedBulkPrice, T> newFloatingCumulativeGroupedBulk,
         System::Func<
-            PriceEvaluationModelPriceCumulativeGroupedAllocation,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation,
             T
         > cumulativeGroupedAllocation,
         System::Func<NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite,
-        System::Func<PriceEvaluationModelPricePercent, T> percent,
-        System::Func<PriceEvaluationModelPriceEventOutput, T> eventOutput
+        System::Func<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent, T> percent,
+        System::Func<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput, T> eventOutput
     )
     {
         return this.Value switch
@@ -1572,7 +1619,8 @@ public record class PriceEvaluationModelPrice
             NewFloatingUnitPrice value => newFloatingUnit(value),
             NewFloatingTieredPrice value => newFloatingTiered(value),
             NewFloatingBulkPrice value => newFloatingBulk(value),
-            PriceEvaluationModelPriceBulkWithFilters value => bulkWithFilters(value),
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value =>
+                bulkWithFilters(value),
             NewFloatingPackagePrice value => newFloatingPackage(value),
             NewFloatingMatrixPrice value => newFloatingMatrix(value),
             NewFloatingThresholdTotalAmountPrice value => newFloatingThresholdTotalAmount(value),
@@ -1594,7 +1642,7 @@ public record class PriceEvaluationModelPrice
             NewFloatingGroupedWithMeteredMinimumPrice value => newFloatingGroupedWithMeteredMinimum(
                 value
             ),
-            PriceEvaluationModelPriceGroupedWithMinMaxThresholds value =>
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value =>
                 groupedWithMinMaxThresholds(value),
             NewFloatingMatrixWithDisplayNamePrice value => newFloatingMatrixWithDisplayName(value),
             NewFloatingGroupedTieredPackagePrice value => newFloatingGroupedTieredPackage(value),
@@ -1604,134 +1652,141 @@ public record class PriceEvaluationModelPrice
             NewFloatingScalableMatrixWithTieredPricingPrice value =>
                 newFloatingScalableMatrixWithTieredPricing(value),
             NewFloatingCumulativeGroupedBulkPrice value => newFloatingCumulativeGroupedBulk(value),
-            PriceEvaluationModelPriceCumulativeGroupedAllocation value =>
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value =>
                 cumulativeGroupedAllocation(value),
             NewFloatingMinimumCompositePrice value => newFloatingMinimumComposite(value),
-            PriceEvaluationModelPricePercent value => percent(value),
-            PriceEvaluationModelPriceEventOutput value => eventOutput(value),
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value => percent(value),
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value => eventOutput(
+                value
+            ),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPrice"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPrice"
             ),
         };
     }
 
-    public static implicit operator PriceEvaluationModelPrice(NewFloatingUnitPrice value) =>
-        new(value);
-
-    public static implicit operator PriceEvaluationModelPrice(NewFloatingTieredPrice value) =>
-        new(value);
-
-    public static implicit operator PriceEvaluationModelPrice(NewFloatingBulkPrice value) =>
-        new(value);
-
-    public static implicit operator PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceBulkWithFilters value
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingUnitPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(NewFloatingPackagePrice value) =>
-        new(value);
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingTieredPrice value
+    ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(NewFloatingMatrixPrice value) =>
-        new(value);
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingBulkPrice value
+    ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value
+    ) => new(value);
+
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingPackagePrice value
+    ) => new(value);
+
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        NewFloatingMatrixPrice value
+    ) => new(value);
+
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingThresholdTotalAmountPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredPackagePrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredWithMinimumPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedTieredPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredPackageWithMinimumPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingPackageWithAllocationPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitWithPercentPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixWithAllocationPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredWithProrationPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitWithProrationPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedAllocationPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingBulkWithProrationPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedWithProratedMinimumPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedWithMeteredMinimumPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholds value
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixWithDisplayNamePrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedTieredPackagePrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMaxGroupTieredPackagePrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingScalableMatrixWithUnitPricingPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingScalableMatrixWithTieredPricingPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingCumulativeGroupedBulkPrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceCumulativeGroupedAllocation value
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMinimumCompositePrice value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
-        PriceEvaluationModelPricePercent value
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPrice(
-        PriceEvaluationModelPriceEventOutput value
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value
     ) => new(value);
 
     public void Validate()
@@ -1739,12 +1794,12 @@ public record class PriceEvaluationModelPrice
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPrice"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPrice"
             );
         }
     }
 
-    public virtual bool Equals(PriceEvaluationModelPrice? other)
+    public virtual bool Equals(PriceEvaluatePreviewEventsParamsPriceEvaluationPrice? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1755,9 +1810,10 @@ public record class PriceEvaluationModelPrice
     }
 }
 
-sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationModelPrice?>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice?>
 {
-    public override PriceEvaluationModelPrice? Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPrice? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1847,7 +1903,7 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PriceEvaluationModelPriceBulkWithFilters>(
+                        JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>(
                             json,
                             options
                         );
@@ -2233,7 +2289,7 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PriceEvaluationModelPriceGroupedWithMinMaxThresholds>(
+                        JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>(
                             json,
                             options
                         );
@@ -2394,7 +2450,7 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PriceEvaluationModelPriceCumulativeGroupedAllocation>(
+                        JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>(
                             json,
                             options
                         );
@@ -2438,10 +2494,11 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPricePercent>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -2461,7 +2518,7 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PriceEvaluationModelPriceEventOutput>(
+                        JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>(
                             json,
                             options
                         );
@@ -2481,14 +2538,14 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
             }
             default:
             {
-                return new PriceEvaluationModelPrice(json);
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPrice? value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice? value,
         JsonSerializerOptions options
     )
     {
@@ -2498,20 +2555,21 @@ sealed class PriceEvaluationModelPriceConverter : JsonConverter<PriceEvaluationM
 
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceBulkWithFilters,
-        PriceEvaluationModelPriceBulkWithFiltersFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
+    : ModelBase
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
     /// </summary>
-    public required PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig BulkWithFiltersConfig
+    public required PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig BulkWithFiltersConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig>(
+            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
                 this.RawData,
                 "bulk_with_filters_config"
             );
@@ -2522,12 +2580,18 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, PriceEvaluationModelPriceBulkWithFiltersCadence> Cadence
+    public required ApiEnum<
+        string,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
+    > Cadence
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, PriceEvaluationModelPriceBulkWithFiltersCadence>
+                ApiEnum<
+                    string,
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
+                >
             >(this.RawData, "cadence");
         }
         init { ModelBase.Set(this._rawData, "cadence", value); }
@@ -2616,11 +2680,11 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig? ConversionRateConfig
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig>(
+            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
@@ -2732,12 +2796,12 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
         _ = this.Metadata;
     }
 
-    public PriceEvaluationModelPriceBulkWithFilters()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
     {
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"bulk_with_filters\"");
     }
 
-    public PriceEvaluationModelPriceBulkWithFilters(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2748,13 +2812,15 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceBulkWithFilters(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceBulkWithFilters FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2762,12 +2828,15 @@ public sealed record class PriceEvaluationModelPriceBulkWithFilters : ModelBase
     }
 }
 
-class PriceEvaluationModelPriceBulkWithFiltersFromRaw
-    : IFromRaw<PriceEvaluationModelPriceBulkWithFilters>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>
 {
-    public PriceEvaluationModelPriceBulkWithFilters FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPriceBulkWithFilters.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -2775,23 +2844,23 @@ class PriceEvaluationModelPriceBulkWithFiltersFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig,
-        PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+    : ModelBase
 {
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Prices.Filter1> Filters
+    public required IReadOnlyList<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Prices.Filter1>>(
-                this.RawData,
-                "filters"
-            );
+            return ModelBase.GetNotNullClass<
+                List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>
+            >(this.RawData, "filters");
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
@@ -2799,14 +2868,13 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Prices.Tier1> Tiers
+    public required IReadOnlyList<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Prices.Tier1>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -2823,9 +2891,10 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
         }
     }
 
-    public PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig() { }
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig()
+    { }
 
-    public PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2834,7 +2903,7 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig(
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -2842,7 +2911,7 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2850,12 +2919,15 @@ public sealed record class PriceEvaluationModelPriceBulkWithFiltersBulkWithFilte
     }
 }
 
-class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
-    : IFromRaw<PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>
 {
-    public PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -2863,11 +2935,12 @@ class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Prices.Filter1,
-        global::Orb.Models.Prices.Filter1FromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
-public sealed record class Filter1 : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+    : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -2893,22 +2966,27 @@ public sealed record class Filter1 : ModelBase
         _ = this.PropertyValue;
     }
 
-    public Filter1() { }
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter()
+    { }
 
-    public Filter1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter1(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Prices.Filter1 FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2916,20 +2994,28 @@ public sealed record class Filter1 : ModelBase
     }
 }
 
-class Filter1FromRaw : IFromRaw<global::Orb.Models.Prices.Filter1>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
-    public global::Orb.Models.Prices.Filter1 FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Prices.Filter1.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Prices.Tier1, global::Orb.Models.Prices.Tier1FromRaw>)
+    typeof(ModelConverter<
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    >)
 )]
-public sealed record class Tier1 : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -2955,22 +3041,27 @@ public sealed record class Tier1 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier1() { }
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier()
+    { }
 
-    public Tier1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier1(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Prices.Tier1 FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2978,25 +3069,33 @@ public sealed record class Tier1 : ModelBase
     }
 
     [SetsRequiredMembers]
-    public Tier1(string unitAmount)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
+        string unitAmount
+    )
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier1FromRaw : IFromRaw<global::Orb.Models.Prices.Tier1>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
-    public global::Orb.Models.Prices.Tier1 FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Prices.Tier1.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(PriceEvaluationModelPriceBulkWithFiltersCadenceConverter))]
-public enum PriceEvaluationModelPriceBulkWithFiltersCadence
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadenceConverter)
+)]
+public enum PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
 {
     Annual,
     SemiAnnual,
@@ -3006,10 +3105,10 @@ public enum PriceEvaluationModelPriceBulkWithFiltersCadence
     Custom,
 }
 
-sealed class PriceEvaluationModelPriceBulkWithFiltersCadenceConverter
-    : JsonConverter<PriceEvaluationModelPriceBulkWithFiltersCadence>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadenceConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence>
 {
-    public override PriceEvaluationModelPriceBulkWithFiltersCadence Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3017,19 +3116,25 @@ sealed class PriceEvaluationModelPriceBulkWithFiltersCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
-            "semi_annual" => PriceEvaluationModelPriceBulkWithFiltersCadence.SemiAnnual,
-            "monthly" => PriceEvaluationModelPriceBulkWithFiltersCadence.Monthly,
-            "quarterly" => PriceEvaluationModelPriceBulkWithFiltersCadence.Quarterly,
-            "one_time" => PriceEvaluationModelPriceBulkWithFiltersCadence.OneTime,
-            "custom" => PriceEvaluationModelPriceBulkWithFiltersCadence.Custom,
-            _ => (PriceEvaluationModelPriceBulkWithFiltersCadence)(-1),
+            "annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
+            "semi_annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.SemiAnnual,
+            "monthly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Monthly,
+            "quarterly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Quarterly,
+            "one_time" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.OneTime,
+            "custom" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Custom,
+            _ => (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceBulkWithFiltersCadence value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence value,
         JsonSerializerOptions options
     )
     {
@@ -3037,12 +3142,18 @@ sealed class PriceEvaluationModelPriceBulkWithFiltersCadenceConverter
             writer,
             value switch
             {
-                PriceEvaluationModelPriceBulkWithFiltersCadence.Annual => "annual",
-                PriceEvaluationModelPriceBulkWithFiltersCadence.SemiAnnual => "semi_annual",
-                PriceEvaluationModelPriceBulkWithFiltersCadence.Monthly => "monthly",
-                PriceEvaluationModelPriceBulkWithFiltersCadence.Quarterly => "quarterly",
-                PriceEvaluationModelPriceBulkWithFiltersCadence.OneTime => "one_time",
-                PriceEvaluationModelPriceBulkWithFiltersCadence.Custom => "custom",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual =>
+                    "annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.SemiAnnual =>
+                    "semi_annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Monthly =>
+                    "monthly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Quarterly =>
+                    "quarterly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.OneTime =>
+                    "one_time",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Custom =>
+                    "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -3052,8 +3163,10 @@ sealed class PriceEvaluationModelPriceBulkWithFiltersCadenceConverter
     }
 }
 
-[JsonConverter(typeof(PriceEvaluationModelPriceBulkWithFiltersConversionRateConfigConverter))]
-public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfigConverter)
+)]
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig
 {
     public object? Value { get; } = null;
 
@@ -3064,7 +3177,7 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
         SharedUnitConversionRateConfig value,
         JsonElement? json = null
     )
@@ -3073,7 +3186,7 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
         SharedTieredConversionRateConfig value,
         JsonElement? json = null
     )
@@ -3082,7 +3195,9 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig(JsonElement json)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
+        JsonElement json
+    )
     {
         this._json = json;
     }
@@ -3114,7 +3229,7 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig"
+                    "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig"
                 );
         }
     }
@@ -3129,16 +3244,16 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
             SharedUnitConversionRateConfig value => unit(value),
             SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -3147,12 +3262,14 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig"
             );
         }
     }
 
-    public virtual bool Equals(PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig? other)
+    public virtual bool Equals(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig? other
+    )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -3163,10 +3280,10 @@ public record class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig
     }
 }
 
-sealed class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfigConverter
-    : JsonConverter<PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfigConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>
 {
-    public override PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig? Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3231,14 +3348,16 @@ sealed class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfigConvert
             }
             default:
             {
-                return new PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig(json);
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
+                    json
+                );
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -3248,24 +3367,28 @@ sealed class PriceEvaluationModelPriceBulkWithFiltersConversionRateConfigConvert
 
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholds,
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
+    : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
     public required ApiEnum<
         string,
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
     > Cadence
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence>
+                ApiEnum<
+                    string,
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
+                >
             >(this.RawData, "cadence");
         }
         init { ModelBase.Set(this._rawData, "cadence", value); }
@@ -3283,11 +3406,11 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
     /// <summary>
     /// Configuration for grouped_with_min_max_thresholds pricing
     /// </summary>
-    public required PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig GroupedWithMinMaxThresholdsConfig
+    public required PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig GroupedWithMinMaxThresholdsConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 this.RawData,
                 "grouped_with_min_max_thresholds_config"
             );
@@ -3369,11 +3492,11 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig? ConversionRateConfig
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
+            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
@@ -3485,14 +3608,14 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
         _ = this.Metadata;
     }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholds()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
     {
         this.ModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"grouped_with_min_max_thresholds\""
         );
     }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholds(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3505,7 +3628,7 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceGroupedWithMinMaxThresholds(
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -3513,7 +3636,7 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceGroupedWithMinMaxThresholds FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3521,19 +3644,24 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholds 
     }
 }
 
-class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsFromRaw
-    : IFromRaw<PriceEvaluationModelPriceGroupedWithMinMaxThresholds>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>
 {
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholds FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPriceGroupedWithMinMaxThresholds.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadenceConverter))]
-public enum PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadenceConverter)
+)]
+public enum PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
 {
     Annual,
     SemiAnnual,
@@ -3543,10 +3671,10 @@ public enum PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence
     Custom,
 }
 
-sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadenceConverter
-    : JsonConverter<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadenceConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence>
 {
-    public override PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3554,19 +3682,28 @@ sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadenceConverte
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            "semi_annual" => PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.SemiAnnual,
-            "monthly" => PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Monthly,
-            "quarterly" => PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Quarterly,
-            "one_time" => PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.OneTime,
-            "custom" => PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Custom,
-            _ => (PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence)(-1),
+            "annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+            "semi_annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.SemiAnnual,
+            "monthly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Monthly,
+            "quarterly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Quarterly,
+            "one_time" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.OneTime,
+            "custom" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Custom,
+            _ =>
+                (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence)(
+                    -1
+                ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence value,
         JsonSerializerOptions options
     )
     {
@@ -3574,14 +3711,18 @@ sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadenceConverte
             writer,
             value switch
             {
-                PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual => "annual",
-                PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.SemiAnnual =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual =>
+                    "annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.SemiAnnual =>
                     "semi_annual",
-                PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Monthly => "monthly",
-                PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Quarterly =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Monthly =>
+                    "monthly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Quarterly =>
                     "quarterly",
-                PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.OneTime => "one_time",
-                PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Custom => "custom",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.OneTime =>
+                    "one_time",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Custom =>
+                    "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -3596,11 +3737,11 @@ sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadenceConverte
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     : ModelBase
 {
     /// <summary>
@@ -3647,10 +3788,10 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsG
         _ = this.PerUnitRate;
     }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3659,7 +3800,7 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsG
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -3667,7 +3808,7 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsG
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3675,21 +3816,21 @@ public sealed record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsG
     }
 }
 
-class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
-    : IFromRaw<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig.FromRawUnchecked(
             rawData
         );
 }
 
 [JsonConverter(
-    typeof(PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter)
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter)
 )]
-public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig
 {
     public object? Value { get; } = null;
 
@@ -3700,7 +3841,7 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedUnitConversionRateConfig value,
         JsonElement? json = null
     )
@@ -3709,7 +3850,7 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedTieredConversionRateConfig value,
         JsonElement? json = null
     )
@@ -3718,7 +3859,7 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         JsonElement json
     )
     {
@@ -3752,7 +3893,7 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig"
+                    "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig"
                 );
         }
     }
@@ -3767,16 +3908,16 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
             SharedUnitConversionRateConfig value => unit(value),
             SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -3785,13 +3926,13 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
     }
 
     public virtual bool Equals(
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig? other
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig? other
     )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
@@ -3803,10 +3944,10 @@ public record class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversi
     }
 }
 
-sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
-    : JsonConverter<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>
 {
-    public override PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig? Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -3871,7 +4012,7 @@ sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateC
             }
             default:
             {
-                return new PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig(
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
                     json
                 );
             }
@@ -3880,7 +4021,7 @@ sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateC
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -3890,24 +4031,28 @@ sealed class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateC
 
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceCumulativeGroupedAllocation,
-        PriceEvaluationModelPriceCumulativeGroupedAllocationFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
+    : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
     public required ApiEnum<
         string,
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCadence
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
     > Cadence
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, PriceEvaluationModelPriceCumulativeGroupedAllocationCadence>
+                ApiEnum<
+                    string,
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
+                >
             >(this.RawData, "cadence");
         }
         init { ModelBase.Set(this._rawData, "cadence", value); }
@@ -3916,11 +4061,11 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
     /// <summary>
     /// Configuration for cumulative_grouped_allocation pricing
     /// </summary>
-    public required PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig CumulativeGroupedAllocationConfig
+    public required PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig CumulativeGroupedAllocationConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 this.RawData,
                 "cumulative_grouped_allocation_config"
             );
@@ -4011,11 +4156,11 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig? ConversionRateConfig
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig>(
+            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
@@ -4127,14 +4272,14 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
         _ = this.Metadata;
     }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocation()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
     {
         this.ModelType = JsonSerializer.Deserialize<JsonElement>(
             "\"cumulative_grouped_allocation\""
         );
     }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocation(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4147,7 +4292,7 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceCumulativeGroupedAllocation(
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -4155,7 +4300,7 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceCumulativeGroupedAllocation FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4163,19 +4308,24 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocation 
     }
 }
 
-class PriceEvaluationModelPriceCumulativeGroupedAllocationFromRaw
-    : IFromRaw<PriceEvaluationModelPriceCumulativeGroupedAllocation>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>
 {
-    public PriceEvaluationModelPriceCumulativeGroupedAllocation FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPriceCumulativeGroupedAllocation.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(PriceEvaluationModelPriceCumulativeGroupedAllocationCadenceConverter))]
-public enum PriceEvaluationModelPriceCumulativeGroupedAllocationCadence
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadenceConverter)
+)]
+public enum PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
 {
     Annual,
     SemiAnnual,
@@ -4185,10 +4335,10 @@ public enum PriceEvaluationModelPriceCumulativeGroupedAllocationCadence
     Custom,
 }
 
-sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationCadenceConverter
-    : JsonConverter<PriceEvaluationModelPriceCumulativeGroupedAllocationCadence>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadenceConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence>
 {
-    public override PriceEvaluationModelPriceCumulativeGroupedAllocationCadence Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4196,19 +4346,28 @@ sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationCadenceConverte
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            "semi_annual" => PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.SemiAnnual,
-            "monthly" => PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Monthly,
-            "quarterly" => PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Quarterly,
-            "one_time" => PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.OneTime,
-            "custom" => PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Custom,
-            _ => (PriceEvaluationModelPriceCumulativeGroupedAllocationCadence)(-1),
+            "annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+            "semi_annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.SemiAnnual,
+            "monthly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Monthly,
+            "quarterly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Quarterly,
+            "one_time" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.OneTime,
+            "custom" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Custom,
+            _ =>
+                (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence)(
+                    -1
+                ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCadence value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence value,
         JsonSerializerOptions options
     )
     {
@@ -4216,14 +4375,18 @@ sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationCadenceConverte
             writer,
             value switch
             {
-                PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual => "annual",
-                PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.SemiAnnual =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual =>
+                    "annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.SemiAnnual =>
                     "semi_annual",
-                PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Monthly => "monthly",
-                PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Quarterly =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Monthly =>
+                    "monthly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Quarterly =>
                     "quarterly",
-                PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.OneTime => "one_time",
-                PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Custom => "custom",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.OneTime =>
+                    "one_time",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Custom =>
+                    "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4238,11 +4401,11 @@ sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationCadenceConverte
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     : ModelBase
 {
     /// <summary>
@@ -4289,10 +4452,10 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocationC
         _ = this.UnitAmount;
     }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4301,7 +4464,7 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocationC
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -4309,7 +4472,7 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocationC
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4317,21 +4480,21 @@ public sealed record class PriceEvaluationModelPriceCumulativeGroupedAllocationC
     }
 }
 
-class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
-    : IFromRaw<PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig.FromRawUnchecked(
             rawData
         );
 }
 
 [JsonConverter(
-    typeof(PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfigConverter)
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfigConverter)
 )]
-public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig
 {
     public object? Value { get; } = null;
 
@@ -4342,7 +4505,7 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         SharedUnitConversionRateConfig value,
         JsonElement? json = null
     )
@@ -4351,7 +4514,7 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         SharedTieredConversionRateConfig value,
         JsonElement? json = null
     )
@@ -4360,7 +4523,7 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         JsonElement json
     )
     {
@@ -4394,7 +4557,7 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig"
+                    "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig"
                 );
         }
     }
@@ -4409,16 +4572,16 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
             SharedUnitConversionRateConfig value => unit(value),
             SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -4427,13 +4590,13 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig"
             );
         }
     }
 
     public virtual bool Equals(
-        PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig? other
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig? other
     )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
@@ -4445,10 +4608,10 @@ public record class PriceEvaluationModelPriceCumulativeGroupedAllocationConversi
     }
 }
 
-sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfigConverter
-    : JsonConverter<PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfigConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>
 {
-    public override PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig? Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4513,7 +4676,7 @@ sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateC
             }
             default:
             {
-                return new PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig(
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
                     json
                 );
             }
@@ -4522,7 +4685,7 @@ sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateC
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -4532,21 +4695,24 @@ sealed class PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateC
 
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPricePercent,
-        PriceEvaluationModelPricePercentFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPricePercent : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, PriceEvaluationModelPricePercentCadence> Cadence
+    public required ApiEnum<
+        string,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence
+    > Cadence
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, PriceEvaluationModelPricePercentCadence>
+                ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
             >(this.RawData, "cadence");
         }
         init { ModelBase.Set(this._rawData, "cadence", value); }
@@ -4591,11 +4757,11 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
     /// <summary>
     /// Configuration for percent pricing
     /// </summary>
-    public required PriceEvaluationModelPricePercentPercentConfig PercentConfig
+    public required PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig PercentConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluationModelPricePercentPercentConfig>(
+            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
                 this.RawData,
                 "percent_config"
             );
@@ -4650,11 +4816,11 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public PriceEvaluationModelPricePercentConversionRateConfig? ConversionRateConfig
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluationModelPricePercentConversionRateConfig>(
+            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
@@ -4766,12 +4932,14 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
         _ = this.Metadata;
     }
 
-    public PriceEvaluationModelPricePercent()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
     {
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
     }
 
-    public PriceEvaluationModelPricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -4780,13 +4948,15 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPricePercent(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPricePercent FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4794,18 +4964,19 @@ public sealed record class PriceEvaluationModelPricePercent : ModelBase
     }
 }
 
-class PriceEvaluationModelPricePercentFromRaw : IFromRaw<PriceEvaluationModelPricePercent>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>
 {
-    public PriceEvaluationModelPricePercent FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPricePercent.FromRawUnchecked(rawData);
+    ) => PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(PriceEvaluationModelPricePercentCadenceConverter))]
-public enum PriceEvaluationModelPricePercentCadence
+[JsonConverter(typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadenceConverter))]
+public enum PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence
 {
     Annual,
     SemiAnnual,
@@ -4815,10 +4986,10 @@ public enum PriceEvaluationModelPricePercentCadence
     Custom,
 }
 
-sealed class PriceEvaluationModelPricePercentCadenceConverter
-    : JsonConverter<PriceEvaluationModelPricePercentCadence>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadenceConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
 {
-    public override PriceEvaluationModelPricePercentCadence Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -4826,19 +4997,22 @@ sealed class PriceEvaluationModelPricePercentCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => PriceEvaluationModelPricePercentCadence.Annual,
-            "semi_annual" => PriceEvaluationModelPricePercentCadence.SemiAnnual,
-            "monthly" => PriceEvaluationModelPricePercentCadence.Monthly,
-            "quarterly" => PriceEvaluationModelPricePercentCadence.Quarterly,
-            "one_time" => PriceEvaluationModelPricePercentCadence.OneTime,
-            "custom" => PriceEvaluationModelPricePercentCadence.Custom,
-            _ => (PriceEvaluationModelPricePercentCadence)(-1),
+            "annual" => PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
+            "semi_annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.SemiAnnual,
+            "monthly" => PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Monthly,
+            "quarterly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Quarterly,
+            "one_time" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.OneTime,
+            "custom" => PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Custom,
+            _ => (PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPricePercentCadence value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence value,
         JsonSerializerOptions options
     )
     {
@@ -4846,12 +5020,18 @@ sealed class PriceEvaluationModelPricePercentCadenceConverter
             writer,
             value switch
             {
-                PriceEvaluationModelPricePercentCadence.Annual => "annual",
-                PriceEvaluationModelPricePercentCadence.SemiAnnual => "semi_annual",
-                PriceEvaluationModelPricePercentCadence.Monthly => "monthly",
-                PriceEvaluationModelPricePercentCadence.Quarterly => "quarterly",
-                PriceEvaluationModelPricePercentCadence.OneTime => "one_time",
-                PriceEvaluationModelPricePercentCadence.Custom => "custom",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual =>
+                    "annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.SemiAnnual =>
+                    "semi_annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Monthly =>
+                    "monthly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Quarterly =>
+                    "quarterly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.OneTime =>
+                    "one_time",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Custom =>
+                    "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -4866,11 +5046,12 @@ sealed class PriceEvaluationModelPricePercentCadenceConverter
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPricePercentPercentConfig,
-        PriceEvaluationModelPricePercentPercentConfigFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfigFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPricePercentPercentConfig : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+    : ModelBase
 {
     /// <summary>
     /// What percent of the component subtotals to charge
@@ -4886,9 +5067,9 @@ public sealed record class PriceEvaluationModelPricePercentPercentConfig : Model
         _ = this.Percent;
     }
 
-    public PriceEvaluationModelPricePercentPercentConfig() { }
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig() { }
 
-    public PriceEvaluationModelPricePercentPercentConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4897,13 +5078,15 @@ public sealed record class PriceEvaluationModelPricePercentPercentConfig : Model
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPricePercentPercentConfig(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPricePercentPercentConfig FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4911,23 +5094,28 @@ public sealed record class PriceEvaluationModelPricePercentPercentConfig : Model
     }
 
     [SetsRequiredMembers]
-    public PriceEvaluationModelPricePercentPercentConfig(double percent)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(double percent)
         : this()
     {
         this.Percent = percent;
     }
 }
 
-class PriceEvaluationModelPricePercentPercentConfigFromRaw
-    : IFromRaw<PriceEvaluationModelPricePercentPercentConfig>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfigFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>
 {
-    public PriceEvaluationModelPricePercentPercentConfig FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPricePercentPercentConfig.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
-[JsonConverter(typeof(PriceEvaluationModelPricePercentConversionRateConfigConverter))]
-public record class PriceEvaluationModelPricePercentConversionRateConfig
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfigConverter)
+)]
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig
 {
     public object? Value { get; } = null;
 
@@ -4938,7 +5126,7 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public PriceEvaluationModelPricePercentConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
         SharedUnitConversionRateConfig value,
         JsonElement? json = null
     )
@@ -4947,7 +5135,7 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
         this._json = json;
     }
 
-    public PriceEvaluationModelPricePercentConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
         SharedTieredConversionRateConfig value,
         JsonElement? json = null
     )
@@ -4956,7 +5144,9 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
         this._json = json;
     }
 
-    public PriceEvaluationModelPricePercentConversionRateConfig(JsonElement json)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
+        JsonElement json
+    )
     {
         this._json = json;
     }
@@ -4988,7 +5178,7 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceEvaluationModelPricePercentConversionRateConfig"
+                    "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig"
                 );
         }
     }
@@ -5003,16 +5193,16 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
             SharedUnitConversionRateConfig value => unit(value),
             SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPricePercentConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator PriceEvaluationModelPricePercentConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPricePercentConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -5021,12 +5211,14 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPricePercentConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig"
             );
         }
     }
 
-    public virtual bool Equals(PriceEvaluationModelPricePercentConversionRateConfig? other)
+    public virtual bool Equals(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig? other
+    )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -5037,10 +5229,10 @@ public record class PriceEvaluationModelPricePercentConversionRateConfig
     }
 }
 
-sealed class PriceEvaluationModelPricePercentConversionRateConfigConverter
-    : JsonConverter<PriceEvaluationModelPricePercentConversionRateConfig>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfigConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>
 {
-    public override PriceEvaluationModelPricePercentConversionRateConfig? Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5105,14 +5297,16 @@ sealed class PriceEvaluationModelPricePercentConversionRateConfigConverter
             }
             default:
             {
-                return new PriceEvaluationModelPricePercentConversionRateConfig(json);
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
+                    json
+                );
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPricePercentConversionRateConfig value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -5122,21 +5316,28 @@ sealed class PriceEvaluationModelPricePercentConversionRateConfigConverter
 
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceEventOutput,
-        PriceEvaluationModelPriceEventOutputFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
+    : ModelBase
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, PriceEvaluationModelPriceEventOutputCadence> Cadence
+    public required ApiEnum<
+        string,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence
+    > Cadence
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, PriceEvaluationModelPriceEventOutputCadence>
+                ApiEnum<
+                    string,
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence
+                >
             >(this.RawData, "cadence");
         }
         init { ModelBase.Set(this._rawData, "cadence", value); }
@@ -5154,11 +5355,11 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
     /// <summary>
     /// Configuration for event_output pricing
     /// </summary>
-    public required PriceEvaluationModelPriceEventOutputEventOutputConfig EventOutputConfig
+    public required PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig EventOutputConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluationModelPriceEventOutputEventOutputConfig>(
+            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
                 this.RawData,
                 "event_output_config"
             );
@@ -5240,11 +5441,11 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public PriceEvaluationModelPriceEventOutputConversionRateConfig? ConversionRateConfig
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig? ConversionRateConfig
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluationModelPriceEventOutputConversionRateConfig>(
+            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
@@ -5356,12 +5557,14 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
         _ = this.Metadata;
     }
 
-    public PriceEvaluationModelPriceEventOutput()
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
     {
         this.ModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
     }
 
-    public PriceEvaluationModelPriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
 
@@ -5370,13 +5573,15 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceEventOutput(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceEventOutput FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5384,18 +5589,21 @@ public sealed record class PriceEvaluationModelPriceEventOutput : ModelBase
     }
 }
 
-class PriceEvaluationModelPriceEventOutputFromRaw : IFromRaw<PriceEvaluationModelPriceEventOutput>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>
 {
-    public PriceEvaluationModelPriceEventOutput FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPriceEventOutput.FromRawUnchecked(rawData);
+    ) => PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(PriceEvaluationModelPriceEventOutputCadenceConverter))]
-public enum PriceEvaluationModelPriceEventOutputCadence
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadenceConverter)
+)]
+public enum PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence
 {
     Annual,
     SemiAnnual,
@@ -5405,10 +5613,10 @@ public enum PriceEvaluationModelPriceEventOutputCadence
     Custom,
 }
 
-sealed class PriceEvaluationModelPriceEventOutputCadenceConverter
-    : JsonConverter<PriceEvaluationModelPriceEventOutputCadence>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadenceConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence>
 {
-    public override PriceEvaluationModelPriceEventOutputCadence Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5416,19 +5624,25 @@ sealed class PriceEvaluationModelPriceEventOutputCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => PriceEvaluationModelPriceEventOutputCadence.Annual,
-            "semi_annual" => PriceEvaluationModelPriceEventOutputCadence.SemiAnnual,
-            "monthly" => PriceEvaluationModelPriceEventOutputCadence.Monthly,
-            "quarterly" => PriceEvaluationModelPriceEventOutputCadence.Quarterly,
-            "one_time" => PriceEvaluationModelPriceEventOutputCadence.OneTime,
-            "custom" => PriceEvaluationModelPriceEventOutputCadence.Custom,
-            _ => (PriceEvaluationModelPriceEventOutputCadence)(-1),
+            "annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
+            "semi_annual" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.SemiAnnual,
+            "monthly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Monthly,
+            "quarterly" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Quarterly,
+            "one_time" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.OneTime,
+            "custom" =>
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Custom,
+            _ => (PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceEventOutputCadence value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence value,
         JsonSerializerOptions options
     )
     {
@@ -5436,12 +5650,18 @@ sealed class PriceEvaluationModelPriceEventOutputCadenceConverter
             writer,
             value switch
             {
-                PriceEvaluationModelPriceEventOutputCadence.Annual => "annual",
-                PriceEvaluationModelPriceEventOutputCadence.SemiAnnual => "semi_annual",
-                PriceEvaluationModelPriceEventOutputCadence.Monthly => "monthly",
-                PriceEvaluationModelPriceEventOutputCadence.Quarterly => "quarterly",
-                PriceEvaluationModelPriceEventOutputCadence.OneTime => "one_time",
-                PriceEvaluationModelPriceEventOutputCadence.Custom => "custom",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual =>
+                    "annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.SemiAnnual =>
+                    "semi_annual",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Monthly =>
+                    "monthly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Quarterly =>
+                    "quarterly",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.OneTime =>
+                    "one_time",
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Custom =>
+                    "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -5456,11 +5676,12 @@ sealed class PriceEvaluationModelPriceEventOutputCadenceConverter
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        PriceEvaluationModelPriceEventOutputEventOutputConfig,
-        PriceEvaluationModelPriceEventOutputEventOutputConfigFromRaw
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfigFromRaw
     >)
 )]
-public sealed record class PriceEvaluationModelPriceEventOutputEventOutputConfig : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+    : ModelBase
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
@@ -5499,9 +5720,9 @@ public sealed record class PriceEvaluationModelPriceEventOutputEventOutputConfig
         _ = this.GroupingKey;
     }
 
-    public PriceEvaluationModelPriceEventOutputEventOutputConfig() { }
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig() { }
 
-    public PriceEvaluationModelPriceEventOutputEventOutputConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5510,7 +5731,7 @@ public sealed record class PriceEvaluationModelPriceEventOutputEventOutputConfig
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceEvaluationModelPriceEventOutputEventOutputConfig(
+    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -5518,7 +5739,7 @@ public sealed record class PriceEvaluationModelPriceEventOutputEventOutputConfig
     }
 #pragma warning restore CS8618
 
-    public static PriceEvaluationModelPriceEventOutputEventOutputConfig FromRawUnchecked(
+    public static PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5526,23 +5747,30 @@ public sealed record class PriceEvaluationModelPriceEventOutputEventOutputConfig
     }
 
     [SetsRequiredMembers]
-    public PriceEvaluationModelPriceEventOutputEventOutputConfig(string unitRatingKey)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
+        string unitRatingKey
+    )
         : this()
     {
         this.UnitRatingKey = unitRatingKey;
     }
 }
 
-class PriceEvaluationModelPriceEventOutputEventOutputConfigFromRaw
-    : IFromRaw<PriceEvaluationModelPriceEventOutputEventOutputConfig>
+class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfigFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>
 {
-    public PriceEvaluationModelPriceEventOutputEventOutputConfig FromRawUnchecked(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceEvaluationModelPriceEventOutputEventOutputConfig.FromRawUnchecked(rawData);
+    ) =>
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig.FromRawUnchecked(
+            rawData
+        );
 }
 
-[JsonConverter(typeof(PriceEvaluationModelPriceEventOutputConversionRateConfigConverter))]
-public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
+[JsonConverter(
+    typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfigConverter)
+)]
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig
 {
     public object? Value { get; } = null;
 
@@ -5553,7 +5781,7 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public PriceEvaluationModelPriceEventOutputConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
         SharedUnitConversionRateConfig value,
         JsonElement? json = null
     )
@@ -5562,7 +5790,7 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceEventOutputConversionRateConfig(
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
         SharedTieredConversionRateConfig value,
         JsonElement? json = null
     )
@@ -5571,7 +5799,9 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
         this._json = json;
     }
 
-    public PriceEvaluationModelPriceEventOutputConversionRateConfig(JsonElement json)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
+        JsonElement json
+    )
     {
         this._json = json;
     }
@@ -5603,7 +5833,7 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceEvaluationModelPriceEventOutputConversionRateConfig"
+                    "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig"
                 );
         }
     }
@@ -5618,16 +5848,16 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
             SharedUnitConversionRateConfig value => unit(value),
             SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceEventOutputConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator PriceEvaluationModelPriceEventOutputConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator PriceEvaluationModelPriceEventOutputConversionRateConfig(
+    public static implicit operator PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -5636,12 +5866,14 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceEvaluationModelPriceEventOutputConversionRateConfig"
+                "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig"
             );
         }
     }
 
-    public virtual bool Equals(PriceEvaluationModelPriceEventOutputConversionRateConfig? other)
+    public virtual bool Equals(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig? other
+    )
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -5652,10 +5884,10 @@ public record class PriceEvaluationModelPriceEventOutputConversionRateConfig
     }
 }
 
-sealed class PriceEvaluationModelPriceEventOutputConversionRateConfigConverter
-    : JsonConverter<PriceEvaluationModelPriceEventOutputConversionRateConfig>
+sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfigConverter
+    : JsonConverter<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>
 {
-    public override PriceEvaluationModelPriceEventOutputConversionRateConfig? Read(
+    public override PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5720,14 +5952,16 @@ sealed class PriceEvaluationModelPriceEventOutputConversionRateConfigConverter
             }
             default:
             {
-                return new PriceEvaluationModelPriceEventOutputConversionRateConfig(json);
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
+                    json
+                );
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PriceEvaluationModelPriceEventOutputConversionRateConfig value,
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value,
         JsonSerializerOptions options
     )
     {

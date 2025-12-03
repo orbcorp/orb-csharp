@@ -524,7 +524,7 @@ public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTest : TestBase
             ],
         };
 
-        List<Tier8> expectedTiers =
+        List<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -573,7 +573,7 @@ public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTest : TestBase
             JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceBulkWithProrationConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Tier8> expectedTiers =
+        List<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -602,12 +602,16 @@ public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTest : TestBase
     }
 }
 
-public class Tier8Test : TestBase
+public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -619,10 +623,17 @@ public class Tier8Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier8>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -630,10 +641,17 @@ public class Tier8Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier8>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -646,7 +664,11 @@ public class Tier8Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -654,7 +676,10 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount" };
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -663,7 +688,10 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier8 { UnitAmount = "unit_amount" };
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -671,7 +699,7 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier8
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -685,7 +713,7 @@ public class Tier8Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier8
+        var model = new NewPlanBulkWithProrationPriceBulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 

@@ -72,14 +72,13 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// specified, this defaults to `effective_date`. Otherwise, this defaults to
     /// `immediate` unless it's explicitly set to `upcoming_invoice`.
     /// </summary>
-    public ApiEnum<string, ChangeOption1>? ChangeOption
+    public ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>? ChangeOption
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ChangeOption1>>(
-                this.RawBodyData,
-                "change_option"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
+            >(this.RawBodyData, "change_option");
         }
         init
         {
@@ -189,17 +188,18 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 /// this defaults to `effective_date`. Otherwise, this defaults to `immediate` unless
 /// it's explicitly set to `upcoming_invoice`.
 /// </summary>
-[JsonConverter(typeof(ChangeOption1Converter))]
-public enum ChangeOption1
+[JsonConverter(typeof(SubscriptionUpdateFixedFeeQuantityParamsChangeOptionConverter))]
+public enum SubscriptionUpdateFixedFeeQuantityParamsChangeOption
 {
     Immediate,
     UpcomingInvoice,
     EffectiveDate,
 }
 
-sealed class ChangeOption1Converter : JsonConverter<ChangeOption1>
+sealed class SubscriptionUpdateFixedFeeQuantityParamsChangeOptionConverter
+    : JsonConverter<SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
 {
-    public override ChangeOption1 Read(
+    public override SubscriptionUpdateFixedFeeQuantityParamsChangeOption Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -207,16 +207,17 @@ sealed class ChangeOption1Converter : JsonConverter<ChangeOption1>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "immediate" => ChangeOption1.Immediate,
-            "upcoming_invoice" => ChangeOption1.UpcomingInvoice,
-            "effective_date" => ChangeOption1.EffectiveDate,
-            _ => (ChangeOption1)(-1),
+            "immediate" => SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+            "upcoming_invoice" =>
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.UpcomingInvoice,
+            "effective_date" => SubscriptionUpdateFixedFeeQuantityParamsChangeOption.EffectiveDate,
+            _ => (SubscriptionUpdateFixedFeeQuantityParamsChangeOption)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ChangeOption1 value,
+        SubscriptionUpdateFixedFeeQuantityParamsChangeOption value,
         JsonSerializerOptions options
     )
     {
@@ -224,9 +225,11 @@ sealed class ChangeOption1Converter : JsonConverter<ChangeOption1>
             writer,
             value switch
             {
-                ChangeOption1.Immediate => "immediate",
-                ChangeOption1.UpcomingInvoice => "upcoming_invoice",
-                ChangeOption1.EffectiveDate => "effective_date",
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate => "immediate",
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.UpcomingInvoice =>
+                    "upcoming_invoice",
+                SubscriptionUpdateFixedFeeQuantityParamsChangeOption.EffectiveDate =>
+                    "effective_date",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

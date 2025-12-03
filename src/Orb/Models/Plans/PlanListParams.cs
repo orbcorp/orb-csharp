@@ -96,11 +96,11 @@ public sealed record class PlanListParams : ParamsBase
     /// <summary>
     /// The plan status to filter to ('active', 'archived', or 'draft').
     /// </summary>
-    public ApiEnum<string, StatusModel>? Status
+    public ApiEnum<string, PlanListParamsStatus>? Status
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, StatusModel>>(
+            return ModelBase.GetNullableClass<ApiEnum<string, PlanListParamsStatus>>(
                 this.RawQueryData,
                 "status"
             );
@@ -171,17 +171,17 @@ public sealed record class PlanListParams : ParamsBase
 /// <summary>
 /// The plan status to filter to ('active', 'archived', or 'draft').
 /// </summary>
-[JsonConverter(typeof(StatusModelConverter))]
-public enum StatusModel
+[JsonConverter(typeof(PlanListParamsStatusConverter))]
+public enum PlanListParamsStatus
 {
     Active,
     Archived,
     Draft,
 }
 
-sealed class StatusModelConverter : JsonConverter<StatusModel>
+sealed class PlanListParamsStatusConverter : JsonConverter<PlanListParamsStatus>
 {
-    public override StatusModel Read(
+    public override PlanListParamsStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -189,16 +189,16 @@ sealed class StatusModelConverter : JsonConverter<StatusModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "active" => StatusModel.Active,
-            "archived" => StatusModel.Archived,
-            "draft" => StatusModel.Draft,
-            _ => (StatusModel)(-1),
+            "active" => PlanListParamsStatus.Active,
+            "archived" => PlanListParamsStatus.Archived,
+            "draft" => PlanListParamsStatus.Draft,
+            _ => (PlanListParamsStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        StatusModel value,
+        PlanListParamsStatus value,
         JsonSerializerOptions options
     )
     {
@@ -206,9 +206,9 @@ sealed class StatusModelConverter : JsonConverter<StatusModel>
             writer,
             value switch
             {
-                StatusModel.Active => "active",
-                StatusModel.Archived => "archived",
-                StatusModel.Draft => "draft",
+                PlanListParamsStatus.Active => "active",
+                PlanListParamsStatus.Archived => "archived",
+                PlanListParamsStatus.Draft => "draft",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

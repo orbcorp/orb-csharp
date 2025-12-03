@@ -370,12 +370,12 @@ public sealed record class MatrixWithDisplayNameConfig : ModelBase
     /// <summary>
     /// Apply per unit pricing to each dimension value
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.UnitAmountModel> UnitAmounts
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount> UnitAmounts
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                List<global::Orb.Models.Subscriptions.UnitAmountModel>
+                List<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
             >(this.RawData, "unit_amounts");
         }
         init { ModelBase.Set(this._rawData, "unit_amounts", value); }
@@ -426,11 +426,11 @@ class MatrixWithDisplayNameConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.UnitAmountModel,
-        global::Orb.Models.Subscriptions.UnitAmountModelFromRaw
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount,
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmountFromRaw
     >)
 )]
-public sealed record class UnitAmountModel : ModelBase
+public sealed record class MatrixWithDisplayNameConfigUnitAmount : ModelBase
 {
     /// <summary>
     /// The dimension value
@@ -466,22 +466,22 @@ public sealed record class UnitAmountModel : ModelBase
         _ = this.UnitAmount;
     }
 
-    public UnitAmountModel() { }
+    public MatrixWithDisplayNameConfigUnitAmount() { }
 
-    public UnitAmountModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnitAmountModel(FrozenDictionary<string, JsonElement> rawData)
+    MatrixWithDisplayNameConfigUnitAmount(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.UnitAmountModel FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -489,11 +489,15 @@ public sealed record class UnitAmountModel : ModelBase
     }
 }
 
-class UnitAmountModelFromRaw : IFromRaw<global::Orb.Models.Subscriptions.UnitAmountModel>
+class MatrixWithDisplayNameConfigUnitAmountFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount>
 {
-    public global::Orb.Models.Subscriptions.UnitAmountModel FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.UnitAmountModel.FromRawUnchecked(rawData);
+    ) =>
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

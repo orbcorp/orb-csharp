@@ -73,9 +73,15 @@ public sealed record class SharedCreditNote : ModelBase
     /// <summary>
     /// All of the line items associated with this credit note.
     /// </summary>
-    public required IReadOnlyList<LineItemModel> LineItems
+    public required IReadOnlyList<SharedCreditNoteLineItem> LineItems
     {
-        get { return ModelBase.GetNotNullClass<List<LineItemModel>>(this.RawData, "line_items"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<SharedCreditNoteLineItem>>(
+                this.RawData,
+                "line_items"
+            );
+        }
         init { ModelBase.Set(this._rawData, "line_items", value); }
     }
 
@@ -163,9 +169,15 @@ public sealed record class SharedCreditNote : ModelBase
     /// <summary>
     /// Any discounts applied on the original invoice.
     /// </summary>
-    public IReadOnlyList<DiscountModel>? Discounts
+    public IReadOnlyList<SharedCreditNoteDiscount>? Discounts
     {
-        get { return ModelBase.GetNullableClass<List<DiscountModel>>(this.RawData, "discounts"); }
+        get
+        {
+            return ModelBase.GetNullableClass<List<SharedCreditNoteDiscount>>(
+                this.RawData,
+                "discounts"
+            );
+        }
         init
         {
             if (value == null)
@@ -232,8 +244,8 @@ class SharedCreditNoteFromRaw : IFromRaw<SharedCreditNote>
         SharedCreditNote.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<LineItemModel, LineItemModelFromRaw>))]
-public sealed record class LineItemModel : ModelBase
+[JsonConverter(typeof(ModelConverter<SharedCreditNoteLineItem, SharedCreditNoteLineItemFromRaw>))]
+public sealed record class SharedCreditNoteLineItem : ModelBase
 {
     /// <summary>
     /// The Orb id of this resource.
@@ -365,31 +377,34 @@ public sealed record class LineItemModel : ModelBase
         _ = this.StartTimeInclusive;
     }
 
-    public LineItemModel() { }
+    public SharedCreditNoteLineItem() { }
 
-    public LineItemModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SharedCreditNoteLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LineItemModel(FrozenDictionary<string, JsonElement> rawData)
+    SharedCreditNoteLineItem(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static LineItemModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static SharedCreditNoteLineItem FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LineItemModelFromRaw : IFromRaw<LineItemModel>
+class SharedCreditNoteLineItemFromRaw : IFromRaw<SharedCreditNoteLineItem>
 {
-    public LineItemModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        LineItemModel.FromRawUnchecked(rawData);
+    public SharedCreditNoteLineItem FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SharedCreditNoteLineItem.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ModelConverter<Discount, DiscountFromRaw>))]
@@ -798,8 +813,8 @@ sealed class SharedCreditNoteTypeConverter : JsonConverter<SharedCreditNoteType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<DiscountModel, DiscountModelFromRaw>))]
-public sealed record class DiscountModel : ModelBase
+[JsonConverter(typeof(ModelConverter<SharedCreditNoteDiscount, SharedCreditNoteDiscountFromRaw>))]
+public sealed record class SharedCreditNoteDiscount : ModelBase
 {
     public required string AmountApplied
     {
@@ -807,11 +822,11 @@ public sealed record class DiscountModel : ModelBase
         init { ModelBase.Set(this._rawData, "amount_applied", value); }
     }
 
-    public required ApiEnum<string, DiscountModelDiscountType> DiscountType
+    public required ApiEnum<string, SharedCreditNoteDiscountDiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DiscountModelDiscountType>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, SharedCreditNoteDiscountDiscountType>>(
                 this.RawData,
                 "discount_type"
             );
@@ -825,11 +840,11 @@ public sealed record class DiscountModel : ModelBase
         init { ModelBase.Set(this._rawData, "percentage_discount", value); }
     }
 
-    public IReadOnlyList<AppliesToPriceModel>? AppliesToPrices
+    public IReadOnlyList<SharedCreditNoteDiscountAppliesToPrice>? AppliesToPrices
     {
         get
         {
-            return ModelBase.GetNullableClass<List<AppliesToPriceModel>>(
+            return ModelBase.GetNullableClass<List<SharedCreditNoteDiscountAppliesToPrice>>(
                 this.RawData,
                 "applies_to_prices"
             );
@@ -855,42 +870,46 @@ public sealed record class DiscountModel : ModelBase
         _ = this.Reason;
     }
 
-    public DiscountModel() { }
+    public SharedCreditNoteDiscount() { }
 
-    public DiscountModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SharedCreditNoteDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DiscountModel(FrozenDictionary<string, JsonElement> rawData)
+    SharedCreditNoteDiscount(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DiscountModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static SharedCreditNoteDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DiscountModelFromRaw : IFromRaw<DiscountModel>
+class SharedCreditNoteDiscountFromRaw : IFromRaw<SharedCreditNoteDiscount>
 {
-    public DiscountModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DiscountModel.FromRawUnchecked(rawData);
+    public SharedCreditNoteDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SharedCreditNoteDiscount.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(DiscountModelDiscountTypeConverter))]
-public enum DiscountModelDiscountType
+[JsonConverter(typeof(SharedCreditNoteDiscountDiscountTypeConverter))]
+public enum SharedCreditNoteDiscountDiscountType
 {
     Percentage,
 }
 
-sealed class DiscountModelDiscountTypeConverter : JsonConverter<DiscountModelDiscountType>
+sealed class SharedCreditNoteDiscountDiscountTypeConverter
+    : JsonConverter<SharedCreditNoteDiscountDiscountType>
 {
-    public override DiscountModelDiscountType Read(
+    public override SharedCreditNoteDiscountDiscountType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -898,14 +917,14 @@ sealed class DiscountModelDiscountTypeConverter : JsonConverter<DiscountModelDis
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "percentage" => DiscountModelDiscountType.Percentage,
-            _ => (DiscountModelDiscountType)(-1),
+            "percentage" => SharedCreditNoteDiscountDiscountType.Percentage,
+            _ => (SharedCreditNoteDiscountDiscountType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DiscountModelDiscountType value,
+        SharedCreditNoteDiscountDiscountType value,
         JsonSerializerOptions options
     )
     {
@@ -913,7 +932,7 @@ sealed class DiscountModelDiscountTypeConverter : JsonConverter<DiscountModelDis
             writer,
             value switch
             {
-                DiscountModelDiscountType.Percentage => "percentage",
+                SharedCreditNoteDiscountDiscountType.Percentage => "percentage",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -923,8 +942,13 @@ sealed class DiscountModelDiscountTypeConverter : JsonConverter<DiscountModelDis
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AppliesToPriceModel, AppliesToPriceModelFromRaw>))]
-public sealed record class AppliesToPriceModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        SharedCreditNoteDiscountAppliesToPrice,
+        SharedCreditNoteDiscountAppliesToPriceFromRaw
+    >)
+)]
+public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
 {
     public required string ID
     {
@@ -944,22 +968,22 @@ public sealed record class AppliesToPriceModel : ModelBase
         _ = this.Name;
     }
 
-    public AppliesToPriceModel() { }
+    public SharedCreditNoteDiscountAppliesToPrice() { }
 
-    public AppliesToPriceModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SharedCreditNoteDiscountAppliesToPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AppliesToPriceModel(FrozenDictionary<string, JsonElement> rawData)
+    SharedCreditNoteDiscountAppliesToPrice(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static AppliesToPriceModel FromRawUnchecked(
+    public static SharedCreditNoteDiscountAppliesToPrice FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -967,8 +991,10 @@ public sealed record class AppliesToPriceModel : ModelBase
     }
 }
 
-class AppliesToPriceModelFromRaw : IFromRaw<AppliesToPriceModel>
+class SharedCreditNoteDiscountAppliesToPriceFromRaw
+    : IFromRaw<SharedCreditNoteDiscountAppliesToPrice>
 {
-    public AppliesToPriceModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        AppliesToPriceModel.FromRawUnchecked(rawData);
+    public SharedCreditNoteDiscountAppliesToPrice FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SharedCreditNoteDiscountAppliesToPrice.FromRawUnchecked(rawData);
 }

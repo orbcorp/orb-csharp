@@ -19,8 +19,8 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter23Field.PriceID,
-                    Operator = Filter23Operator.Includes,
+                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35,12 +35,12 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
         ApiEnum<string, PlanPhaseUsageDiscountAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount;
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter23> expectedFilters =
+        List<PlanPhaseUsageDiscountAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter23Field.PriceID,
-                Operator = Filter23Operator.Includes,
+                Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -81,8 +81,8 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter23Field.PriceID,
-                    Operator = Filter23Operator.Includes,
+                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -111,8 +111,8 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter23Field.PriceID,
-                    Operator = Filter23Operator.Includes,
+                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -131,12 +131,12 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
         ApiEnum<string, PlanPhaseUsageDiscountAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount;
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter23> expectedFilters =
+        List<PlanPhaseUsageDiscountAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter23Field.PriceID,
-                Operator = Filter23Operator.Includes,
+                Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -177,8 +177,8 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter23Field.PriceID,
-                    Operator = Filter23Operator.Includes,
+                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -193,20 +193,22 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
     }
 }
 
-public class Filter23Test : TestBase
+public class PlanPhaseUsageDiscountAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter23
+        var model = new PlanPhaseUsageDiscountAdjustmentFilter
         {
-            Field = Filter23Field.PriceID,
-            Operator = Filter23Operator.Includes,
+            Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter23Field> expectedField = Filter23Field.PriceID;
-        ApiEnum<string, Filter23Operator> expectedOperator = Filter23Operator.Includes;
+        ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField> expectedField =
+            PlanPhaseUsageDiscountAdjustmentFilterField.PriceID;
+        ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator> expectedOperator =
+            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -221,15 +223,15 @@ public class Filter23Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter23
+        var model = new PlanPhaseUsageDiscountAdjustmentFilter
         {
-            Field = Filter23Field.PriceID,
-            Operator = Filter23Operator.Includes,
+            Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter23>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustmentFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -237,19 +239,21 @@ public class Filter23Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter23
+        var model = new PlanPhaseUsageDiscountAdjustmentFilter
         {
-            Field = Filter23Field.PriceID,
-            Operator = Filter23Operator.Includes,
+            Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter23>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustmentFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter23Field> expectedField = Filter23Field.PriceID;
-        ApiEnum<string, Filter23Operator> expectedOperator = Filter23Operator.Includes;
+        ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField> expectedField =
+            PlanPhaseUsageDiscountAdjustmentFilterField.PriceID;
+        ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterOperator> expectedOperator =
+            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -264,10 +268,10 @@ public class Filter23Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter23
+        var model = new PlanPhaseUsageDiscountAdjustmentFilter
         {
-            Field = Filter23Field.PriceID,
-            Operator = Filter23Operator.Includes,
+            Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

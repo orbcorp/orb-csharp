@@ -415,14 +415,13 @@ public sealed record class TieredPackageConfig : ModelBase
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier13> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.TieredPackageConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier13>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -471,11 +470,11 @@ class TieredPackageConfigFromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tie
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier13,
-        global::Orb.Models.Subscriptions.Tier13FromRaw
+        global::Orb.Models.Subscriptions.TieredPackageConfigTier,
+        global::Orb.Models.Subscriptions.TieredPackageConfigTierFromRaw
     >)
 )]
-public sealed record class Tier13 : ModelBase
+public sealed record class TieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -501,22 +500,22 @@ public sealed record class Tier13 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier13() { }
+    public TieredPackageConfigTier() { }
 
-    public Tier13(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier13(FrozenDictionary<string, JsonElement> rawData)
+    TieredPackageConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier13 FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.TieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -524,11 +523,12 @@ public sealed record class Tier13 : ModelBase
     }
 }
 
-class Tier13FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier13>
+class TieredPackageConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier13 FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.TieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier13.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Subscriptions.TieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackagePriceConversionRateConfigConverter))]

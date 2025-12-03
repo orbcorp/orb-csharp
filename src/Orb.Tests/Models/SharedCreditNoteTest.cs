@@ -75,7 +75,7 @@ public class SharedCreditNoteTest : TestBase
                 new()
                 {
                     AmountApplied = "amount_applied",
-                    DiscountType = DiscountModelDiscountType.Percentage,
+                    DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AppliesToPrices = [new() { ID = "id", Name = "name" }],
                     Reason = "reason",
@@ -93,7 +93,7 @@ public class SharedCreditNoteTest : TestBase
             ExternalCustomerID = "external_customer_id",
         };
         string expectedInvoiceID = "invoice_id";
-        List<LineItemModel> expectedLineItems =
+        List<SharedCreditNoteLineItem> expectedLineItems =
         [
             new()
             {
@@ -144,12 +144,12 @@ public class SharedCreditNoteTest : TestBase
         string expectedTotal = "total";
         ApiEnum<string, SharedCreditNoteType> expectedType = SharedCreditNoteType.Refund;
         DateTimeOffset expectedVoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<DiscountModel> expectedDiscounts =
+        List<SharedCreditNoteDiscount> expectedDiscounts =
         [
             new()
             {
                 AmountApplied = "amount_applied",
-                DiscountType = DiscountModelDiscountType.Percentage,
+                DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
                 PercentageDiscount = 0,
                 AppliesToPrices = [new() { ID = "id", Name = "name" }],
                 Reason = "reason",
@@ -249,7 +249,7 @@ public class SharedCreditNoteTest : TestBase
                 new()
                 {
                     AmountApplied = "amount_applied",
-                    DiscountType = DiscountModelDiscountType.Percentage,
+                    DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AppliesToPrices = [new() { ID = "id", Name = "name" }],
                     Reason = "reason",
@@ -330,7 +330,7 @@ public class SharedCreditNoteTest : TestBase
                 new()
                 {
                     AmountApplied = "amount_applied",
-                    DiscountType = DiscountModelDiscountType.Percentage,
+                    DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AppliesToPrices = [new() { ID = "id", Name = "name" }],
                     Reason = "reason",
@@ -352,7 +352,7 @@ public class SharedCreditNoteTest : TestBase
             ExternalCustomerID = "external_customer_id",
         };
         string expectedInvoiceID = "invoice_id";
-        List<LineItemModel> expectedLineItems =
+        List<SharedCreditNoteLineItem> expectedLineItems =
         [
             new()
             {
@@ -403,12 +403,12 @@ public class SharedCreditNoteTest : TestBase
         string expectedTotal = "total";
         ApiEnum<string, SharedCreditNoteType> expectedType = SharedCreditNoteType.Refund;
         DateTimeOffset expectedVoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<DiscountModel> expectedDiscounts =
+        List<SharedCreditNoteDiscount> expectedDiscounts =
         [
             new()
             {
                 AmountApplied = "amount_applied",
-                DiscountType = DiscountModelDiscountType.Percentage,
+                DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
                 PercentageDiscount = 0,
                 AppliesToPrices = [new() { ID = "id", Name = "name" }],
                 Reason = "reason",
@@ -508,7 +508,7 @@ public class SharedCreditNoteTest : TestBase
                 new()
                 {
                     AmountApplied = "amount_applied",
-                    DiscountType = DiscountModelDiscountType.Percentage,
+                    DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AppliesToPrices = [new() { ID = "id", Name = "name" }],
                     Reason = "reason",
@@ -796,12 +796,12 @@ public class SharedCreditNoteTest : TestBase
     }
 }
 
-public class LineItemModelTest : TestBase
+public class SharedCreditNoteLineItemTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -891,7 +891,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -926,7 +926,7 @@ public class LineItemModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LineItemModel>(json);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteLineItem>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -934,7 +934,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -969,7 +969,7 @@ public class LineItemModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LineItemModel>(json);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteLineItem>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1028,7 +1028,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1068,7 +1068,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1096,7 +1096,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1123,7 +1123,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1154,7 +1154,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1184,7 +1184,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1225,7 +1225,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1263,7 +1263,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1307,7 +1307,7 @@ public class LineItemModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new LineItemModel
+        var model = new SharedCreditNoteLineItem
         {
             ID = "id",
             Amount = "amount",
@@ -1748,25 +1748,28 @@ public class AppliesToPriceTest : TestBase
     }
 }
 
-public class DiscountModelTest : TestBase
+public class SharedCreditNoteDiscountTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AppliesToPrices = [new() { ID = "id", Name = "name" }],
             Reason = "reason",
         };
 
         string expectedAmountApplied = "amount_applied";
-        ApiEnum<string, DiscountModelDiscountType> expectedDiscountType =
-            DiscountModelDiscountType.Percentage;
+        ApiEnum<string, SharedCreditNoteDiscountDiscountType> expectedDiscountType =
+            SharedCreditNoteDiscountDiscountType.Percentage;
         double expectedPercentageDiscount = 0;
-        List<AppliesToPriceModel> expectedAppliesToPrices = [new() { ID = "id", Name = "name" }];
+        List<SharedCreditNoteDiscountAppliesToPrice> expectedAppliesToPrices =
+        [
+            new() { ID = "id", Name = "name" },
+        ];
         string expectedReason = "reason";
 
         Assert.Equal(expectedAmountApplied, model.AmountApplied);
@@ -1783,17 +1786,17 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AppliesToPrices = [new() { ID = "id", Name = "name" }],
             Reason = "reason",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DiscountModel>(json);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscount>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1801,24 +1804,27 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AppliesToPrices = [new() { ID = "id", Name = "name" }],
             Reason = "reason",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DiscountModel>(json);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscount>(json);
         Assert.NotNull(deserialized);
 
         string expectedAmountApplied = "amount_applied";
-        ApiEnum<string, DiscountModelDiscountType> expectedDiscountType =
-            DiscountModelDiscountType.Percentage;
+        ApiEnum<string, SharedCreditNoteDiscountDiscountType> expectedDiscountType =
+            SharedCreditNoteDiscountDiscountType.Percentage;
         double expectedPercentageDiscount = 0;
-        List<AppliesToPriceModel> expectedAppliesToPrices = [new() { ID = "id", Name = "name" }];
+        List<SharedCreditNoteDiscountAppliesToPrice> expectedAppliesToPrices =
+        [
+            new() { ID = "id", Name = "name" },
+        ];
         string expectedReason = "reason";
 
         Assert.Equal(expectedAmountApplied, deserialized.AmountApplied);
@@ -1835,10 +1841,10 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AppliesToPrices = [new() { ID = "id", Name = "name" }],
             Reason = "reason",
@@ -1850,10 +1856,10 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
         };
 
@@ -1866,10 +1872,10 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
         };
 
@@ -1879,10 +1885,10 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
 
             AppliesToPrices = null,
@@ -1898,10 +1904,10 @@ public class DiscountModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new DiscountModel
+        var model = new SharedCreditNoteDiscount
         {
             AmountApplied = "amount_applied",
-            DiscountType = DiscountModelDiscountType.Percentage,
+            DiscountType = SharedCreditNoteDiscountDiscountType.Percentage,
             PercentageDiscount = 0,
 
             AppliesToPrices = null,
@@ -1912,12 +1918,12 @@ public class DiscountModelTest : TestBase
     }
 }
 
-public class AppliesToPriceModelTest : TestBase
+public class SharedCreditNoteDiscountAppliesToPriceTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new AppliesToPriceModel { ID = "id", Name = "name" };
+        var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
 
         string expectedID = "id";
         string expectedName = "name";
@@ -1929,10 +1935,10 @@ public class AppliesToPriceModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new AppliesToPriceModel { ID = "id", Name = "name" };
+        var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AppliesToPriceModel>(json);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscountAppliesToPrice>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1940,10 +1946,10 @@ public class AppliesToPriceModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new AppliesToPriceModel { ID = "id", Name = "name" };
+        var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AppliesToPriceModel>(json);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscountAppliesToPrice>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1956,7 +1962,7 @@ public class AppliesToPriceModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new AppliesToPriceModel { ID = "id", Name = "name" };
+        var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
 
         model.Validate();
     }

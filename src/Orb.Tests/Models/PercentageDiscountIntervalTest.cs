@@ -20,8 +20,8 @@ public class PercentageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter18Field.PriceID,
-                    Operator = Filter18Operator.Includes,
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -33,12 +33,12 @@ public class PercentageDiscountIntervalTest : TestBase
         ApiEnum<string, PercentageDiscountIntervalDiscountType> expectedDiscountType =
             PercentageDiscountIntervalDiscountType.Percentage;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter18> expectedFilters =
+        List<PercentageDiscountIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter18Field.PriceID,
-                Operator = Filter18Operator.Includes,
+                Field = PercentageDiscountIntervalFilterField.PriceID,
+                Operator = PercentageDiscountIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -76,8 +76,8 @@ public class PercentageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter18Field.PriceID,
-                    Operator = Filter18Operator.Includes,
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -103,8 +103,8 @@ public class PercentageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter18Field.PriceID,
-                    Operator = Filter18Operator.Includes,
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -120,12 +120,12 @@ public class PercentageDiscountIntervalTest : TestBase
         ApiEnum<string, PercentageDiscountIntervalDiscountType> expectedDiscountType =
             PercentageDiscountIntervalDiscountType.Percentage;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter18> expectedFilters =
+        List<PercentageDiscountIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter18Field.PriceID,
-                Operator = Filter18Operator.Includes,
+                Field = PercentageDiscountIntervalFilterField.PriceID,
+                Operator = PercentageDiscountIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -166,8 +166,8 @@ public class PercentageDiscountIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter18Field.PriceID,
-                    Operator = Filter18Operator.Includes,
+                    Field = PercentageDiscountIntervalFilterField.PriceID,
+                    Operator = PercentageDiscountIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -179,20 +179,22 @@ public class PercentageDiscountIntervalTest : TestBase
     }
 }
 
-public class Filter18Test : TestBase
+public class PercentageDiscountIntervalFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter18
+        var model = new PercentageDiscountIntervalFilter
         {
-            Field = Filter18Field.PriceID,
-            Operator = Filter18Operator.Includes,
+            Field = PercentageDiscountIntervalFilterField.PriceID,
+            Operator = PercentageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter18Field> expectedField = Filter18Field.PriceID;
-        ApiEnum<string, Filter18Operator> expectedOperator = Filter18Operator.Includes;
+        ApiEnum<string, PercentageDiscountIntervalFilterField> expectedField =
+            PercentageDiscountIntervalFilterField.PriceID;
+        ApiEnum<string, PercentageDiscountIntervalFilterOperator> expectedOperator =
+            PercentageDiscountIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -207,15 +209,15 @@ public class Filter18Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter18
+        var model = new PercentageDiscountIntervalFilter
         {
-            Field = Filter18Field.PriceID,
-            Operator = Filter18Operator.Includes,
+            Field = PercentageDiscountIntervalFilterField.PriceID,
+            Operator = PercentageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter18>(json);
+        var deserialized = JsonSerializer.Deserialize<PercentageDiscountIntervalFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -223,19 +225,21 @@ public class Filter18Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter18
+        var model = new PercentageDiscountIntervalFilter
         {
-            Field = Filter18Field.PriceID,
-            Operator = Filter18Operator.Includes,
+            Field = PercentageDiscountIntervalFilterField.PriceID,
+            Operator = PercentageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter18>(json);
+        var deserialized = JsonSerializer.Deserialize<PercentageDiscountIntervalFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter18Field> expectedField = Filter18Field.PriceID;
-        ApiEnum<string, Filter18Operator> expectedOperator = Filter18Operator.Includes;
+        ApiEnum<string, PercentageDiscountIntervalFilterField> expectedField =
+            PercentageDiscountIntervalFilterField.PriceID;
+        ApiEnum<string, PercentageDiscountIntervalFilterOperator> expectedOperator =
+            PercentageDiscountIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -250,10 +254,10 @@ public class Filter18Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter18
+        var model = new PercentageDiscountIntervalFilter
         {
-            Field = Filter18Field.PriceID,
-            Operator = Filter18Operator.Includes,
+            Field = PercentageDiscountIntervalFilterField.PriceID,
+            Operator = PercentageDiscountIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 

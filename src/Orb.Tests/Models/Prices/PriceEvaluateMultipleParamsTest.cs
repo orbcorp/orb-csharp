@@ -1138,8 +1138,11 @@ public class PriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        List<FilterModel> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<TierModel> expectedTiers =
+        List<PriceBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<PriceBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -1197,8 +1200,11 @@ public class PriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<FilterModel> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<TierModel> expectedTiers =
+        List<PriceBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<PriceBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -1233,12 +1239,16 @@ public class PriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
     }
 }
 
-public class FilterModelTest : TestBase
+public class PriceBulkWithFiltersBulkWithFiltersConfigFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string expectedPropertyKey = "x";
         string expectedPropertyValue = "x";
@@ -1250,10 +1260,15 @@ public class FilterModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceBulkWithFiltersBulkWithFiltersConfigFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1261,10 +1276,15 @@ public class FilterModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<FilterModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceBulkWithFiltersBulkWithFiltersConfigFilter>(json);
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -1277,18 +1297,22 @@ public class FilterModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FilterModel { PropertyKey = "x", PropertyValue = "x" };
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigFilter
+        {
+            PropertyKey = "x",
+            PropertyValue = "x",
+        };
 
         model.Validate();
     }
 }
 
-public class TierModelTest : TestBase
+public class PriceBulkWithFiltersBulkWithFiltersConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TierModel
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
             TierLowerBound = "tier_lower_bound",
@@ -1304,14 +1328,15 @@ public class TierModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TierModel
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
             TierLowerBound = "tier_lower_bound",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceBulkWithFiltersBulkWithFiltersConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -1319,14 +1344,15 @@ public class TierModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TierModel
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
             TierLowerBound = "tier_lower_bound",
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceBulkWithFiltersBulkWithFiltersConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -1339,7 +1365,7 @@ public class TierModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TierModel
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
             TierLowerBound = "tier_lower_bound",
@@ -1351,7 +1377,10 @@ public class TierModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TierModel { UnitAmount = "unit_amount" };
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -1360,7 +1389,10 @@ public class TierModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TierModel { UnitAmount = "unit_amount" };
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
+        {
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }
@@ -1368,7 +1400,7 @@ public class TierModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new TierModel
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -1382,7 +1414,7 @@ public class TierModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TierModel
+        var model = new PriceBulkWithFiltersBulkWithFiltersConfigTier
         {
             UnitAmount = "unit_amount",
 

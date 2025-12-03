@@ -20,8 +20,8 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter8Field.PriceID,
-                    Operator = Filter8Operator.Includes,
+                    Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -37,12 +37,12 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             MonetaryMinimumAdjustmentAdjustmentType.Minimum;
         string expectedAmount = "amount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter8> expectedFilters =
+        List<MonetaryMinimumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter8Field.PriceID,
-                Operator = Filter8Operator.Includes,
+                Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -85,8 +85,8 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter8Field.PriceID,
-                    Operator = Filter8Operator.Includes,
+                    Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -116,8 +116,8 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter8Field.PriceID,
-                    Operator = Filter8Operator.Includes,
+                    Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -137,12 +137,12 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             MonetaryMinimumAdjustmentAdjustmentType.Minimum;
         string expectedAmount = "amount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter8> expectedFilters =
+        List<MonetaryMinimumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter8Field.PriceID,
-                Operator = Filter8Operator.Includes,
+                Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -185,8 +185,8 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter8Field.PriceID,
-                    Operator = Filter8Operator.Includes,
+                    Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                    Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -201,20 +201,22 @@ public class MonetaryMinimumAdjustmentTest : TestBase
     }
 }
 
-public class Filter8Test : TestBase
+public class MonetaryMinimumAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter8
+        var model = new MonetaryMinimumAdjustmentFilter
         {
-            Field = Filter8Field.PriceID,
-            Operator = Filter8Operator.Includes,
+            Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter8Field> expectedField = Filter8Field.PriceID;
-        ApiEnum<string, Filter8Operator> expectedOperator = Filter8Operator.Includes;
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterField> expectedField =
+            MonetaryMinimumAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator> expectedOperator =
+            MonetaryMinimumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -229,15 +231,15 @@ public class Filter8Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter8
+        var model = new MonetaryMinimumAdjustmentFilter
         {
-            Field = Filter8Field.PriceID,
-            Operator = Filter8Operator.Includes,
+            Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter8>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustmentFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -245,19 +247,21 @@ public class Filter8Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter8
+        var model = new MonetaryMinimumAdjustmentFilter
         {
-            Field = Filter8Field.PriceID,
-            Operator = Filter8Operator.Includes,
+            Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter8>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustmentFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter8Field> expectedField = Filter8Field.PriceID;
-        ApiEnum<string, Filter8Operator> expectedOperator = Filter8Operator.Includes;
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterField> expectedField =
+            MonetaryMinimumAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator> expectedOperator =
+            MonetaryMinimumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -272,10 +276,10 @@ public class Filter8Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter8
+        var model = new MonetaryMinimumAdjustmentFilter
         {
-            Field = Filter8Field.PriceID,
-            Operator = Filter8Operator.Includes,
+            Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+            Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

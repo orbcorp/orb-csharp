@@ -22,8 +22,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -38,12 +38,12 @@ public class NewAmountDiscountTest : TestBase
         List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
         List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
         string expectedCurrency = "currency";
-        List<Filter12> expectedFilters =
+        List<NewAmountDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter12Field.PriceID,
-                Operator = Filter12Operator.Includes,
+                Field = NewAmountDiscountFilterField.PriceID,
+                Operator = NewAmountDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -88,8 +88,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -118,8 +118,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -138,12 +138,12 @@ public class NewAmountDiscountTest : TestBase
         List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
         List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
         string expectedCurrency = "currency";
-        List<Filter12> expectedFilters =
+        List<NewAmountDiscountFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter12Field.PriceID,
-                Operator = Filter12Operator.Includes,
+                Field = NewAmountDiscountFilterField.PriceID,
+                Operator = NewAmountDiscountFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -188,8 +188,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -215,8 +215,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -242,8 +242,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -268,8 +268,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -298,8 +298,8 @@ public class NewAmountDiscountTest : TestBase
             [
                 new()
                 {
-                    Field = Filter12Field.PriceID,
-                    Operator = Filter12Operator.Includes,
+                    Field = NewAmountDiscountFilterField.PriceID,
+                    Operator = NewAmountDiscountFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -401,20 +401,22 @@ public class NewAmountDiscountTest : TestBase
     }
 }
 
-public class Filter12Test : TestBase
+public class NewAmountDiscountFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter12
+        var model = new NewAmountDiscountFilter
         {
-            Field = Filter12Field.PriceID,
-            Operator = Filter12Operator.Includes,
+            Field = NewAmountDiscountFilterField.PriceID,
+            Operator = NewAmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter12Field> expectedField = Filter12Field.PriceID;
-        ApiEnum<string, Filter12Operator> expectedOperator = Filter12Operator.Includes;
+        ApiEnum<string, NewAmountDiscountFilterField> expectedField =
+            NewAmountDiscountFilterField.PriceID;
+        ApiEnum<string, NewAmountDiscountFilterOperator> expectedOperator =
+            NewAmountDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -429,15 +431,15 @@ public class Filter12Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter12
+        var model = new NewAmountDiscountFilter
         {
-            Field = Filter12Field.PriceID,
-            Operator = Filter12Operator.Includes,
+            Field = NewAmountDiscountFilterField.PriceID,
+            Operator = NewAmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter12>(json);
+        var deserialized = JsonSerializer.Deserialize<NewAmountDiscountFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -445,19 +447,21 @@ public class Filter12Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter12
+        var model = new NewAmountDiscountFilter
         {
-            Field = Filter12Field.PriceID,
-            Operator = Filter12Operator.Includes,
+            Field = NewAmountDiscountFilterField.PriceID,
+            Operator = NewAmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter12>(json);
+        var deserialized = JsonSerializer.Deserialize<NewAmountDiscountFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter12Field> expectedField = Filter12Field.PriceID;
-        ApiEnum<string, Filter12Operator> expectedOperator = Filter12Operator.Includes;
+        ApiEnum<string, NewAmountDiscountFilterField> expectedField =
+            NewAmountDiscountFilterField.PriceID;
+        ApiEnum<string, NewAmountDiscountFilterOperator> expectedOperator =
+            NewAmountDiscountFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -472,10 +476,10 @@ public class Filter12Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter12
+        var model = new NewAmountDiscountFilter
         {
-            Field = Filter12Field.PriceID,
-            Operator = Filter12Operator.Includes,
+            Field = NewAmountDiscountFilterField.PriceID,
+            Operator = NewAmountDiscountFilterOperator.Includes,
             Values = ["string"],
         };
 

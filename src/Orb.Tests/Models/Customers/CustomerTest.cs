@@ -79,7 +79,8 @@ public class CustomerTest : TestBase
                 [
                     new()
                     {
-                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ProviderType =
+                            CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -153,7 +154,7 @@ public class CustomerTest : TestBase
             [
                 new()
                 {
-                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -267,7 +268,8 @@ public class CustomerTest : TestBase
                 [
                     new()
                     {
-                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ProviderType =
+                            CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -351,7 +353,8 @@ public class CustomerTest : TestBase
                 [
                     new()
                     {
-                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ProviderType =
+                            CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -429,7 +432,7 @@ public class CustomerTest : TestBase
             [
                 new()
                 {
-                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -543,7 +546,8 @@ public class CustomerTest : TestBase
                 [
                     new()
                     {
-                        ProviderType = PaymentProvider5ProviderType.Stripe,
+                        ProviderType =
+                            CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -1086,17 +1090,17 @@ public class CustomerPaymentConfigurationTest : TestBase
             [
                 new()
                 {
-                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
         };
 
-        List<PaymentProvider5> expectedPaymentProviders =
+        List<CustomerPaymentConfigurationPaymentProvider> expectedPaymentProviders =
         [
             new()
             {
-                ProviderType = PaymentProvider5ProviderType.Stripe,
+                ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                 ExcludedPaymentMethodTypes = ["string"],
             },
         ];
@@ -1117,7 +1121,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             [
                 new()
                 {
-                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1138,7 +1142,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             [
                 new()
                 {
-                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1148,11 +1152,11 @@ public class CustomerPaymentConfigurationTest : TestBase
         var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfiguration>(json);
         Assert.NotNull(deserialized);
 
-        List<PaymentProvider5> expectedPaymentProviders =
+        List<CustomerPaymentConfigurationPaymentProvider> expectedPaymentProviders =
         [
             new()
             {
-                ProviderType = PaymentProvider5ProviderType.Stripe,
+                ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                 ExcludedPaymentMethodTypes = ["string"],
             },
         ];
@@ -1173,7 +1177,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             [
                 new()
                 {
-                    ProviderType = PaymentProvider5ProviderType.Stripe,
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1225,19 +1229,21 @@ public class CustomerPaymentConfigurationTest : TestBase
     }
 }
 
-public class PaymentProvider5Test : TestBase
+public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PaymentProvider5
+        var model = new CustomerPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
-        ApiEnum<string, PaymentProvider5ProviderType> expectedProviderType =
-            PaymentProvider5ProviderType.Stripe;
+        ApiEnum<
+            string,
+            CustomerPaymentConfigurationPaymentProviderProviderType
+        > expectedProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe;
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, model.ProviderType);
@@ -1257,14 +1263,16 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PaymentProvider5
+        var model = new CustomerPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaymentProvider5>(json);
+        var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfigurationPaymentProvider>(
+            json
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1272,18 +1280,22 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PaymentProvider5
+        var model = new CustomerPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaymentProvider5>(json);
+        var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfigurationPaymentProvider>(
+            json
+        );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PaymentProvider5ProviderType> expectedProviderType =
-            PaymentProvider5ProviderType.Stripe;
+        ApiEnum<
+            string,
+            CustomerPaymentConfigurationPaymentProviderProviderType
+        > expectedProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe;
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
@@ -1303,9 +1315,9 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PaymentProvider5
+        var model = new CustomerPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -1315,7 +1327,10 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PaymentProvider5 { ProviderType = PaymentProvider5ProviderType.Stripe };
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+        };
 
         Assert.Null(model.ExcludedPaymentMethodTypes);
         Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
@@ -1324,7 +1339,10 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PaymentProvider5 { ProviderType = PaymentProvider5ProviderType.Stripe };
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+        };
 
         model.Validate();
     }
@@ -1332,9 +1350,9 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PaymentProvider5
+        var model = new CustomerPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
@@ -1347,9 +1365,9 @@ public class PaymentProvider5Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PaymentProvider5
+        var model = new CustomerPaymentConfigurationPaymentProvider
         {
-            ProviderType = PaymentProvider5ProviderType.Stripe,
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,

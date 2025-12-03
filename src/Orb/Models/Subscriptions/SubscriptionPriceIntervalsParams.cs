@@ -110,11 +110,11 @@ public sealed record class SubscriptionPriceIntervalsParams : ParamsBase
     /// <summary>
     /// A list of adjustments to add to the subscription.
     /// </summary>
-    public IReadOnlyList<AddAdjustmentModel>? AddAdjustments
+    public IReadOnlyList<SubscriptionPriceIntervalsParamsAddAdjustment>? AddAdjustments
     {
         get
         {
-            return ModelBase.GetNullableClass<List<AddAdjustmentModel>>(
+            return ModelBase.GetNullableClass<List<SubscriptionPriceIntervalsParamsAddAdjustment>>(
                 this.RawBodyData,
                 "add_adjustments"
             );
@@ -654,7 +654,7 @@ public record class Discount
         this._json = json;
     }
 
-    public Discount(DiscountUsage value, JsonElement? json = null)
+    public Discount(Usage value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
@@ -677,16 +677,16 @@ public record class Discount
         return value != null;
     }
 
-    public bool TryPickUsage([NotNullWhen(true)] out DiscountUsage? value)
+    public bool TryPickUsage([NotNullWhen(true)] out Usage? value)
     {
-        value = this.Value as DiscountUsage;
+        value = this.Value as Usage;
         return value != null;
     }
 
     public void Switch(
         System::Action<Amount> amount,
         System::Action<Percentage> percentage,
-        System::Action<DiscountUsage> usage
+        System::Action<Usage> usage
     )
     {
         switch (this.Value)
@@ -697,7 +697,7 @@ public record class Discount
             case Percentage value:
                 percentage(value);
                 break;
-            case DiscountUsage value:
+            case Usage value:
                 usage(value);
                 break;
             default:
@@ -708,14 +708,14 @@ public record class Discount
     public T Match<T>(
         System::Func<Amount, T> amount,
         System::Func<Percentage, T> percentage,
-        System::Func<DiscountUsage, T> usage
+        System::Func<Usage, T> usage
     )
     {
         return this.Value switch
         {
             Amount value => amount(value),
             Percentage value => percentage(value),
-            DiscountUsage value => usage(value),
+            Usage value => usage(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Discount"),
         };
     }
@@ -726,9 +726,8 @@ public record class Discount
     public static implicit operator global::Orb.Models.Subscriptions.Discount(Percentage value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Subscriptions.Discount(
-        DiscountUsage value
-    ) => new(value);
+    public static implicit operator global::Orb.Models.Subscriptions.Discount(Usage value) =>
+        new(value);
 
     public void Validate()
     {
@@ -812,7 +811,7 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Subscriptions.
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<DiscountUsage>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Usage>(json, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -987,8 +986,8 @@ class PercentageFromRaw : IFromRaw<Percentage>
         Percentage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<DiscountUsage, DiscountUsageFromRaw>))]
-public sealed record class DiscountUsage : ModelBase
+[JsonConverter(typeof(ModelConverter<Usage, UsageFromRaw>))]
+public sealed record class Usage : ModelBase
 {
     public JsonElement DiscountType
     {
@@ -1020,12 +1019,12 @@ public sealed record class DiscountUsage : ModelBase
         _ = this.UsageDiscount;
     }
 
-    public DiscountUsage()
+    public Usage()
     {
         this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"usage\"");
     }
 
-    public DiscountUsage(IReadOnlyDictionary<string, JsonElement> rawData)
+    public Usage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
 
@@ -1034,29 +1033,29 @@ public sealed record class DiscountUsage : ModelBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DiscountUsage(FrozenDictionary<string, JsonElement> rawData)
+    Usage(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DiscountUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public DiscountUsage(double usageDiscount)
+    public Usage(double usageDiscount)
         : this()
     {
         this.UsageDiscount = usageDiscount;
     }
 }
 
-class DiscountUsageFromRaw : IFromRaw<DiscountUsage>
+class UsageFromRaw : IFromRaw<Usage>
 {
-    public DiscountUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DiscountUsage.FromRawUnchecked(rawData);
+    public Usage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Usage.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3543,14 +3542,13 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfig : Mode
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Filter1> Filters
+    public required IReadOnlyList<PriceModelBulkWithFiltersBulkWithFiltersConfigFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Filter1>>(
-                this.RawData,
-                "filters"
-            );
+            return ModelBase.GetNotNullClass<
+                List<PriceModelBulkWithFiltersBulkWithFiltersConfigFilter>
+            >(this.RawData, "filters");
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
@@ -3558,14 +3556,13 @@ public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfig : Mode
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier3> Tiers
+    public required IReadOnlyList<PriceModelBulkWithFiltersBulkWithFiltersConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier3>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<PriceModelBulkWithFiltersBulkWithFiltersConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -3620,11 +3617,11 @@ class PriceModelBulkWithFiltersBulkWithFiltersConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Filter1,
-        global::Orb.Models.Subscriptions.Filter1FromRaw
+        PriceModelBulkWithFiltersBulkWithFiltersConfigFilter,
+        PriceModelBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
-public sealed record class Filter1 : ModelBase
+public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfigFilter : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -3650,22 +3647,26 @@ public sealed record class Filter1 : ModelBase
         _ = this.PropertyValue;
     }
 
-    public Filter1() { }
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
-    public Filter1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter1(FrozenDictionary<string, JsonElement> rawData)
+    PriceModelBulkWithFiltersBulkWithFiltersConfigFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Filter1 FromRawUnchecked(
+    public static PriceModelBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3673,11 +3674,12 @@ public sealed record class Filter1 : ModelBase
     }
 }
 
-class Filter1FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Filter1>
+class PriceModelBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
+    : IFromRaw<PriceModelBulkWithFiltersBulkWithFiltersConfigFilter>
 {
-    public global::Orb.Models.Subscriptions.Filter1 FromRawUnchecked(
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Filter1.FromRawUnchecked(rawData);
+    ) => PriceModelBulkWithFiltersBulkWithFiltersConfigFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3685,11 +3687,11 @@ class Filter1FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Filter1>
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier3,
-        global::Orb.Models.Subscriptions.Tier3FromRaw
+        PriceModelBulkWithFiltersBulkWithFiltersConfigTier,
+        PriceModelBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     >)
 )]
-public sealed record class Tier3 : ModelBase
+public sealed record class PriceModelBulkWithFiltersBulkWithFiltersConfigTier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -3715,22 +3717,26 @@ public sealed record class Tier3 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier3() { }
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigTier() { }
 
-    public Tier3(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier3(FrozenDictionary<string, JsonElement> rawData)
+    PriceModelBulkWithFiltersBulkWithFiltersConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier3 FromRawUnchecked(
+    public static PriceModelBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3738,18 +3744,19 @@ public sealed record class Tier3 : ModelBase
     }
 
     [SetsRequiredMembers]
-    public Tier3(string unitAmount)
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier3FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier3>
+class PriceModelBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    : IFromRaw<PriceModelBulkWithFiltersBulkWithFiltersConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier3 FromRawUnchecked(
+    public PriceModelBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier3.FromRawUnchecked(rawData);
+    ) => PriceModelBulkWithFiltersBulkWithFiltersConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -6436,8 +6443,13 @@ sealed class PriceModelEventOutputConversionRateConfigConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AddAdjustmentModel, AddAdjustmentModelFromRaw>))]
-public sealed record class AddAdjustmentModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        SubscriptionPriceIntervalsParamsAddAdjustment,
+        SubscriptionPriceIntervalsParamsAddAdjustmentFromRaw
+    >)
+)]
+public sealed record class SubscriptionPriceIntervalsParamsAddAdjustment : ModelBase
 {
     /// <summary>
     /// The start date of the adjustment interval. This is the date that the adjustment
@@ -6445,11 +6457,11 @@ public sealed record class AddAdjustmentModel : ModelBase
     /// to invoice dates that overlap with this `start_date`. This `start_date` is
     /// treated as inclusive for in-advance prices, and exclusive for in-arrears prices.
     /// </summary>
-    public required AddAdjustmentModelStartDate StartDate
+    public required SubscriptionPriceIntervalsParamsAddAdjustmentStartDate StartDate
     {
         get
         {
-            return ModelBase.GetNotNullClass<AddAdjustmentModelStartDate>(
+            return ModelBase.GetNotNullClass<SubscriptionPriceIntervalsParamsAddAdjustmentStartDate>(
                 this.RawData,
                 "start_date"
             );
@@ -6460,11 +6472,11 @@ public sealed record class AddAdjustmentModel : ModelBase
     /// <summary>
     /// The definition of a new adjustment to create and add to the subscription.
     /// </summary>
-    public AddAdjustmentModelAdjustment? Adjustment
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? Adjustment
     {
         get
         {
-            return ModelBase.GetNullableClass<AddAdjustmentModelAdjustment>(
+            return ModelBase.GetNullableClass<SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment>(
                 this.RawData,
                 "adjustment"
             );
@@ -6489,11 +6501,14 @@ public sealed record class AddAdjustmentModel : ModelBase
     /// to invoice dates that overlap with this `end_date`.This `end_date` is treated
     /// as exclusive for in-advance prices, and inclusive for in-arrears prices.
     /// </summary>
-    public AddAdjustmentModelEndDate? EndDate
+    public SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? EndDate
     {
         get
         {
-            return ModelBase.GetNullableClass<AddAdjustmentModelEndDate>(this.RawData, "end_date");
+            return ModelBase.GetNullableClass<SubscriptionPriceIntervalsParamsAddAdjustmentEndDate>(
+                this.RawData,
+                "end_date"
+            );
         }
         init { ModelBase.Set(this._rawData, "end_date", value); }
     }
@@ -6506,22 +6521,24 @@ public sealed record class AddAdjustmentModel : ModelBase
         this.EndDate?.Validate();
     }
 
-    public AddAdjustmentModel() { }
+    public SubscriptionPriceIntervalsParamsAddAdjustment() { }
 
-    public AddAdjustmentModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SubscriptionPriceIntervalsParamsAddAdjustment(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AddAdjustmentModel(FrozenDictionary<string, JsonElement> rawData)
+    SubscriptionPriceIntervalsParamsAddAdjustment(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static AddAdjustmentModel FromRawUnchecked(
+    public static SubscriptionPriceIntervalsParamsAddAdjustment FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -6529,17 +6546,21 @@ public sealed record class AddAdjustmentModel : ModelBase
     }
 
     [SetsRequiredMembers]
-    public AddAdjustmentModel(AddAdjustmentModelStartDate startDate)
+    public SubscriptionPriceIntervalsParamsAddAdjustment(
+        SubscriptionPriceIntervalsParamsAddAdjustmentStartDate startDate
+    )
         : this()
     {
         this.StartDate = startDate;
     }
 }
 
-class AddAdjustmentModelFromRaw : IFromRaw<AddAdjustmentModel>
+class SubscriptionPriceIntervalsParamsAddAdjustmentFromRaw
+    : IFromRaw<SubscriptionPriceIntervalsParamsAddAdjustment>
 {
-    public AddAdjustmentModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        AddAdjustmentModel.FromRawUnchecked(rawData);
+    public SubscriptionPriceIntervalsParamsAddAdjustment FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => SubscriptionPriceIntervalsParamsAddAdjustment.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -6548,8 +6569,8 @@ class AddAdjustmentModelFromRaw : IFromRaw<AddAdjustmentModel>
 /// invoice dates that overlap with this `start_date`. This `start_date` is treated
 /// as inclusive for in-advance prices, and exclusive for in-arrears prices.
 /// </summary>
-[JsonConverter(typeof(AddAdjustmentModelStartDateConverter))]
-public record class AddAdjustmentModelStartDate
+[JsonConverter(typeof(SubscriptionPriceIntervalsParamsAddAdjustmentStartDateConverter))]
+public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate
 {
     public object? Value { get; } = null;
 
@@ -6560,13 +6581,16 @@ public record class AddAdjustmentModelStartDate
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public AddAdjustmentModelStartDate(System::DateTimeOffset value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(
+        System::DateTimeOffset value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelStartDate(
+    public SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(
         ApiEnum<string, BillingCycleRelativeDate> value,
         JsonElement? json = null
     )
@@ -6575,7 +6599,7 @@ public record class AddAdjustmentModelStartDate
         this._json = json;
     }
 
-    public AddAdjustmentModelStartDate(JsonElement json)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(JsonElement json)
     {
         this._json = json;
     }
@@ -6609,7 +6633,7 @@ public record class AddAdjustmentModelStartDate
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of AddAdjustmentModelStartDate"
+                    "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentStartDate"
                 );
         }
     }
@@ -6624,32 +6648,34 @@ public record class AddAdjustmentModelStartDate
             System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentModelStartDate"
+                "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentStartDate"
             ),
         };
     }
 
-    public static implicit operator AddAdjustmentModelStartDate(System::DateTimeOffset value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(
+        System::DateTimeOffset value
+    ) => new(value);
 
-    public static implicit operator AddAdjustmentModelStartDate(
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
 
-    public static implicit operator AddAdjustmentModelStartDate(BillingCycleRelativeDate value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentStartDate(
+        BillingCycleRelativeDate value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentModelStartDate"
+                "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentStartDate"
             );
         }
     }
 
-    public virtual bool Equals(AddAdjustmentModelStartDate? other)
+    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentStartDate? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -6660,9 +6686,10 @@ public record class AddAdjustmentModelStartDate
     }
 }
 
-sealed class AddAdjustmentModelStartDateConverter : JsonConverter<AddAdjustmentModelStartDate>
+sealed class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateConverter
+    : JsonConverter<SubscriptionPriceIntervalsParamsAddAdjustmentStartDate>
 {
-    public override AddAdjustmentModelStartDate? Read(
+    public override SubscriptionPriceIntervalsParamsAddAdjustmentStartDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6699,7 +6726,7 @@ sealed class AddAdjustmentModelStartDateConverter : JsonConverter<AddAdjustmentM
 
     public override void Write(
         Utf8JsonWriter writer,
-        AddAdjustmentModelStartDate value,
+        SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value,
         JsonSerializerOptions options
     )
     {
@@ -6710,8 +6737,8 @@ sealed class AddAdjustmentModelStartDateConverter : JsonConverter<AddAdjustmentM
 /// <summary>
 /// The definition of a new adjustment to create and add to the subscription.
 /// </summary>
-[JsonConverter(typeof(AddAdjustmentModelAdjustmentConverter))]
-public record class AddAdjustmentModelAdjustment
+[JsonConverter(typeof(SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentConverter))]
+public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment
 {
     public object? Value { get; } = null;
 
@@ -6750,37 +6777,52 @@ public record class AddAdjustmentModelAdjustment
         }
     }
 
-    public AddAdjustmentModelAdjustment(NewPercentageDiscount value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewPercentageDiscount value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelAdjustment(NewUsageDiscount value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewUsageDiscount value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelAdjustment(NewAmountDiscount value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewAmountDiscount value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelAdjustment(NewMinimum value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewMinimum value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelAdjustment(NewMaximum value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewMaximum value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelAdjustment(JsonElement json)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(JsonElement json)
     {
         this._json = json;
     }
@@ -6842,7 +6884,7 @@ public record class AddAdjustmentModelAdjustment
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of AddAdjustmentModelAdjustment"
+                    "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment"
                 );
         }
     }
@@ -6863,35 +6905,42 @@ public record class AddAdjustmentModelAdjustment
             NewMinimum value => newMinimum(value),
             NewMaximum value => newMaximum(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentModelAdjustment"
+                "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment"
             ),
         };
     }
 
-    public static implicit operator AddAdjustmentModelAdjustment(NewPercentageDiscount value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewPercentageDiscount value
+    ) => new(value);
 
-    public static implicit operator AddAdjustmentModelAdjustment(NewUsageDiscount value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewUsageDiscount value
+    ) => new(value);
 
-    public static implicit operator AddAdjustmentModelAdjustment(NewAmountDiscount value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewAmountDiscount value
+    ) => new(value);
 
-    public static implicit operator AddAdjustmentModelAdjustment(NewMinimum value) => new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewMinimum value
+    ) => new(value);
 
-    public static implicit operator AddAdjustmentModelAdjustment(NewMaximum value) => new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(
+        NewMaximum value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentModelAdjustment"
+                "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment"
             );
         }
     }
 
-    public virtual bool Equals(AddAdjustmentModelAdjustment? other)
+    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -6902,9 +6951,10 @@ public record class AddAdjustmentModelAdjustment
     }
 }
 
-sealed class AddAdjustmentModelAdjustmentConverter : JsonConverter<AddAdjustmentModelAdjustment?>
+sealed class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentConverter
+    : JsonConverter<SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment?>
 {
-    public override AddAdjustmentModelAdjustment? Read(
+    public override SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -7023,14 +7073,14 @@ sealed class AddAdjustmentModelAdjustmentConverter : JsonConverter<AddAdjustment
             }
             default:
             {
-                return new AddAdjustmentModelAdjustment(json);
+                return new SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AddAdjustmentModelAdjustment? value,
+        SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? value,
         JsonSerializerOptions options
     )
     {
@@ -7044,8 +7094,8 @@ sealed class AddAdjustmentModelAdjustmentConverter : JsonConverter<AddAdjustment
 /// invoice dates that overlap with this `end_date`.This `end_date` is treated as
 /// exclusive for in-advance prices, and inclusive for in-arrears prices.
 /// </summary>
-[JsonConverter(typeof(AddAdjustmentModelEndDateConverter))]
-public record class AddAdjustmentModelEndDate
+[JsonConverter(typeof(SubscriptionPriceIntervalsParamsAddAdjustmentEndDateConverter))]
+public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate
 {
     public object? Value { get; } = null;
 
@@ -7056,13 +7106,16 @@ public record class AddAdjustmentModelEndDate
         get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public AddAdjustmentModelEndDate(System::DateTimeOffset value, JsonElement? json = null)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(
+        System::DateTimeOffset value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AddAdjustmentModelEndDate(
+    public SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(
         ApiEnum<string, BillingCycleRelativeDate> value,
         JsonElement? json = null
     )
@@ -7071,7 +7124,7 @@ public record class AddAdjustmentModelEndDate
         this._json = json;
     }
 
-    public AddAdjustmentModelEndDate(JsonElement json)
+    public SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(JsonElement json)
     {
         this._json = json;
     }
@@ -7105,7 +7158,7 @@ public record class AddAdjustmentModelEndDate
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of AddAdjustmentModelEndDate"
+                    "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentEndDate"
                 );
         }
     }
@@ -7120,32 +7173,34 @@ public record class AddAdjustmentModelEndDate
             System::DateTimeOffset value => @dateTime(value),
             ApiEnum<string, BillingCycleRelativeDate> value => billingCycleRelative(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentModelEndDate"
+                "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentEndDate"
             ),
         };
     }
 
-    public static implicit operator AddAdjustmentModelEndDate(System::DateTimeOffset value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(
+        System::DateTimeOffset value
+    ) => new(value);
 
-    public static implicit operator AddAdjustmentModelEndDate(
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(
         ApiEnum<string, BillingCycleRelativeDate> value
     ) => new(value);
 
-    public static implicit operator AddAdjustmentModelEndDate(BillingCycleRelativeDate value) =>
-        new(value);
+    public static implicit operator SubscriptionPriceIntervalsParamsAddAdjustmentEndDate(
+        BillingCycleRelativeDate value
+    ) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of AddAdjustmentModelEndDate"
+                "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentEndDate"
             );
         }
     }
 
-    public virtual bool Equals(AddAdjustmentModelEndDate? other)
+    public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -7156,9 +7211,10 @@ public record class AddAdjustmentModelEndDate
     }
 }
 
-sealed class AddAdjustmentModelEndDateConverter : JsonConverter<AddAdjustmentModelEndDate?>
+sealed class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateConverter
+    : JsonConverter<SubscriptionPriceIntervalsParamsAddAdjustmentEndDate?>
 {
-    public override AddAdjustmentModelEndDate? Read(
+    public override SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -7195,7 +7251,7 @@ sealed class AddAdjustmentModelEndDateConverter : JsonConverter<AddAdjustmentMod
 
     public override void Write(
         Utf8JsonWriter writer,
-        AddAdjustmentModelEndDate? value,
+        SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? value,
         JsonSerializerOptions options
     )
     {
@@ -7263,11 +7319,11 @@ public sealed record class Edit : ModelBase
     /// that this list will overwrite all existing fixed fee quantity transitions
     /// on the price interval.
     /// </summary>
-    public IReadOnlyList<FixedFeeQuantityTransitionModel>? FixedFeeQuantityTransitions
+    public IReadOnlyList<EditFixedFeeQuantityTransition>? FixedFeeQuantityTransitions
     {
         get
         {
-            return ModelBase.GetNullableClass<List<FixedFeeQuantityTransitionModel>>(
+            return ModelBase.GetNullableClass<List<EditFixedFeeQuantityTransition>>(
                 this.RawData,
                 "fixed_fee_quantity_transitions"
             );
@@ -7508,9 +7564,9 @@ sealed class EditEndDateConverter : JsonConverter<EditEndDate?>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<FixedFeeQuantityTransitionModel, FixedFeeQuantityTransitionModelFromRaw>)
+    typeof(ModelConverter<EditFixedFeeQuantityTransition, EditFixedFeeQuantityTransitionFromRaw>)
 )]
-public sealed record class FixedFeeQuantityTransitionModel : ModelBase
+public sealed record class EditFixedFeeQuantityTransition : ModelBase
 {
     /// <summary>
     /// The date that the fixed fee quantity transition should take effect.
@@ -7542,22 +7598,22 @@ public sealed record class FixedFeeQuantityTransitionModel : ModelBase
         _ = this.Quantity;
     }
 
-    public FixedFeeQuantityTransitionModel() { }
+    public EditFixedFeeQuantityTransition() { }
 
-    public FixedFeeQuantityTransitionModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public EditFixedFeeQuantityTransition(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FixedFeeQuantityTransitionModel(FrozenDictionary<string, JsonElement> rawData)
+    EditFixedFeeQuantityTransition(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static FixedFeeQuantityTransitionModel FromRawUnchecked(
+    public static EditFixedFeeQuantityTransition FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -7565,11 +7621,11 @@ public sealed record class FixedFeeQuantityTransitionModel : ModelBase
     }
 }
 
-class FixedFeeQuantityTransitionModelFromRaw : IFromRaw<FixedFeeQuantityTransitionModel>
+class EditFixedFeeQuantityTransitionFromRaw : IFromRaw<EditFixedFeeQuantityTransition>
 {
-    public FixedFeeQuantityTransitionModel FromRawUnchecked(
+    public EditFixedFeeQuantityTransition FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FixedFeeQuantityTransitionModel.FromRawUnchecked(rawData);
+    ) => EditFixedFeeQuantityTransition.FromRawUnchecked(rawData);
 }
 
 /// <summary>

@@ -389,9 +389,15 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<Tier7> Tiers
+    public required IReadOnlyList<TieredWithProrationConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier7>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<TieredWithProrationConfigTier>>(
+                this.RawData,
+                "tiers"
+            );
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -426,7 +432,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationConfig(List<Tier7> tiers)
+    public TieredWithProrationConfig(List<TieredWithProrationConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;
@@ -443,8 +449,10 @@ class TieredWithProrationConfigFromRaw : IFromRaw<TieredWithProrationConfig>
 /// <summary>
 /// Configuration for a single tiered with proration tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier7, Tier7FromRaw>))]
-public sealed record class Tier7 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<TieredWithProrationConfigTier, TieredWithProrationConfigTierFromRaw>)
+)]
+public sealed record class TieredWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -470,31 +478,34 @@ public sealed record class Tier7 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier7() { }
+    public TieredWithProrationConfigTier() { }
 
-    public Tier7(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier7(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier7 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier7FromRaw : IFromRaw<Tier7>
+class TieredWithProrationConfigTierFromRaw : IFromRaw<TieredWithProrationConfigTier>
 {
-    public Tier7 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier7.FromRawUnchecked(rawData);
+    public TieredWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingTieredWithProrationPriceConversionRateConfigConverter))]

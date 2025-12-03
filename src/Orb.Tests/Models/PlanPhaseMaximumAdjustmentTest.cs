@@ -19,8 +19,8 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter20Field.PriceID,
-                    Operator = Filter20Operator.Includes,
+                    Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -35,12 +35,12 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
         ApiEnum<string, PlanPhaseMaximumAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseMaximumAdjustmentAdjustmentType.Maximum;
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter20> expectedFilters =
+        List<PlanPhaseMaximumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter20Field.PriceID,
-                Operator = Filter20Operator.Includes,
+                Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -81,8 +81,8 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter20Field.PriceID,
-                    Operator = Filter20Operator.Includes,
+                    Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -111,8 +111,8 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter20Field.PriceID,
-                    Operator = Filter20Operator.Includes,
+                    Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -131,12 +131,12 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
         ApiEnum<string, PlanPhaseMaximumAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseMaximumAdjustmentAdjustmentType.Maximum;
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter20> expectedFilters =
+        List<PlanPhaseMaximumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter20Field.PriceID,
-                Operator = Filter20Operator.Includes,
+                Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -177,8 +177,8 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter20Field.PriceID,
-                    Operator = Filter20Operator.Includes,
+                    Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -193,20 +193,22 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
     }
 }
 
-public class Filter20Test : TestBase
+public class PlanPhaseMaximumAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter20
+        var model = new PlanPhaseMaximumAdjustmentFilter
         {
-            Field = Filter20Field.PriceID,
-            Operator = Filter20Operator.Includes,
+            Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter20Field> expectedField = Filter20Field.PriceID;
-        ApiEnum<string, Filter20Operator> expectedOperator = Filter20Operator.Includes;
+        ApiEnum<string, PlanPhaseMaximumAdjustmentFilterField> expectedField =
+            PlanPhaseMaximumAdjustmentFilterField.PriceID;
+        ApiEnum<string, PlanPhaseMaximumAdjustmentFilterOperator> expectedOperator =
+            PlanPhaseMaximumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -221,15 +223,15 @@ public class Filter20Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter20
+        var model = new PlanPhaseMaximumAdjustmentFilter
         {
-            Field = Filter20Field.PriceID,
-            Operator = Filter20Operator.Includes,
+            Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter20>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustmentFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -237,19 +239,21 @@ public class Filter20Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter20
+        var model = new PlanPhaseMaximumAdjustmentFilter
         {
-            Field = Filter20Field.PriceID,
-            Operator = Filter20Operator.Includes,
+            Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter20>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustmentFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter20Field> expectedField = Filter20Field.PriceID;
-        ApiEnum<string, Filter20Operator> expectedOperator = Filter20Operator.Includes;
+        ApiEnum<string, PlanPhaseMaximumAdjustmentFilterField> expectedField =
+            PlanPhaseMaximumAdjustmentFilterField.PriceID;
+        ApiEnum<string, PlanPhaseMaximumAdjustmentFilterOperator> expectedOperator =
+            PlanPhaseMaximumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -264,10 +268,10 @@ public class Filter20Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter20
+        var model = new PlanPhaseMaximumAdjustmentFilter
         {
-            Field = Filter20Field.PriceID,
-            Operator = Filter20Operator.Includes,
+            Field = PlanPhaseMaximumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMaximumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

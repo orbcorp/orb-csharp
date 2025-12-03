@@ -25,8 +25,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -43,12 +43,12 @@ public class NewAllocationPriceTest : TestBase
             DurationUnit = CustomExpirationDurationUnit.Day,
         };
         bool expectedExpiresAtEndOfCadence = true;
-        List<Filter11> expectedFilters =
+        List<NewAllocationPriceFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter11Field.ItemID,
-                Operator = Filter11Operator.Includes,
+                Field = NewAllocationPriceFilterField.ItemID,
+                Operator = NewAllocationPriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -87,8 +87,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -120,8 +120,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -142,12 +142,12 @@ public class NewAllocationPriceTest : TestBase
             DurationUnit = CustomExpirationDurationUnit.Day,
         };
         bool expectedExpiresAtEndOfCadence = true;
-        List<Filter11> expectedFilters =
+        List<NewAllocationPriceFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter11Field.ItemID,
-                Operator = Filter11Operator.Includes,
+                Field = NewAllocationPriceFilterField.ItemID,
+                Operator = NewAllocationPriceFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -186,8 +186,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -216,8 +216,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -246,8 +246,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -275,8 +275,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -308,8 +308,8 @@ public class NewAllocationPriceTest : TestBase
             [
                 new()
                 {
-                    Field = Filter11Field.ItemID,
-                    Operator = Filter11Operator.Includes,
+                    Field = NewAllocationPriceFilterField.ItemID,
+                    Operator = NewAllocationPriceFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -403,20 +403,22 @@ public class NewAllocationPriceTest : TestBase
     }
 }
 
-public class Filter11Test : TestBase
+public class NewAllocationPriceFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter11
+        var model = new NewAllocationPriceFilter
         {
-            Field = Filter11Field.ItemID,
-            Operator = Filter11Operator.Includes,
+            Field = NewAllocationPriceFilterField.ItemID,
+            Operator = NewAllocationPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter11Field> expectedField = Filter11Field.ItemID;
-        ApiEnum<string, Filter11Operator> expectedOperator = Filter11Operator.Includes;
+        ApiEnum<string, NewAllocationPriceFilterField> expectedField =
+            NewAllocationPriceFilterField.ItemID;
+        ApiEnum<string, NewAllocationPriceFilterOperator> expectedOperator =
+            NewAllocationPriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -431,15 +433,15 @@ public class Filter11Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter11
+        var model = new NewAllocationPriceFilter
         {
-            Field = Filter11Field.ItemID,
-            Operator = Filter11Operator.Includes,
+            Field = NewAllocationPriceFilterField.ItemID,
+            Operator = NewAllocationPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter11>(json);
+        var deserialized = JsonSerializer.Deserialize<NewAllocationPriceFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -447,19 +449,21 @@ public class Filter11Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter11
+        var model = new NewAllocationPriceFilter
         {
-            Field = Filter11Field.ItemID,
-            Operator = Filter11Operator.Includes,
+            Field = NewAllocationPriceFilterField.ItemID,
+            Operator = NewAllocationPriceFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter11>(json);
+        var deserialized = JsonSerializer.Deserialize<NewAllocationPriceFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter11Field> expectedField = Filter11Field.ItemID;
-        ApiEnum<string, Filter11Operator> expectedOperator = Filter11Operator.Includes;
+        ApiEnum<string, NewAllocationPriceFilterField> expectedField =
+            NewAllocationPriceFilterField.ItemID;
+        ApiEnum<string, NewAllocationPriceFilterOperator> expectedOperator =
+            NewAllocationPriceFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -474,10 +478,10 @@ public class Filter11Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter11
+        var model = new NewAllocationPriceFilter
         {
-            Field = Filter11Field.ItemID,
-            Operator = Filter11Operator.Includes,
+            Field = NewAllocationPriceFilterField.ItemID,
+            Operator = NewAllocationPriceFilterOperator.Includes,
             Values = ["string"],
         };
 

@@ -364,9 +364,14 @@ public sealed record class NewPlanGroupedTieredPriceGroupedTieredConfig : ModelB
     /// <summary>
     /// Apply tiered pricing to each segment generated after grouping with the provided key
     /// </summary>
-    public required IReadOnlyList<Tier10> Tiers
+    public required IReadOnlyList<NewPlanGroupedTieredPriceGroupedTieredConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier10>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanGroupedTieredPriceGroupedTieredConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -415,8 +420,13 @@ class NewPlanGroupedTieredPriceGroupedTieredConfigFromRaw
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier10, Tier10FromRaw>))]
-public sealed record class Tier10 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanGroupedTieredPriceGroupedTieredConfigTier,
+        NewPlanGroupedTieredPriceGroupedTieredConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanGroupedTieredPriceGroupedTieredConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -442,31 +452,37 @@ public sealed record class Tier10 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier10() { }
+    public NewPlanGroupedTieredPriceGroupedTieredConfigTier() { }
 
-    public Tier10(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanGroupedTieredPriceGroupedTieredConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier10(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanGroupedTieredPriceGroupedTieredConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier10 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanGroupedTieredPriceGroupedTieredConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier10FromRaw : IFromRaw<Tier10>
+class NewPlanGroupedTieredPriceGroupedTieredConfigTierFromRaw
+    : IFromRaw<NewPlanGroupedTieredPriceGroupedTieredConfigTier>
 {
-    public Tier10 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier10.FromRawUnchecked(rawData);
+    public NewPlanGroupedTieredPriceGroupedTieredConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanGroupedTieredPriceGroupedTieredConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

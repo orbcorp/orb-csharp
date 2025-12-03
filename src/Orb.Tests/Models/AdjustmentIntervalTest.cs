@@ -22,8 +22,8 @@ public class AdjustmentIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter23Field.PriceID,
-                        Operator = Filter23Operator.Includes,
+                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -39,7 +39,7 @@ public class AdjustmentIntervalTest : TestBase
         };
 
         string expectedID = "id";
-        AdjustmentIntervalAdjustment expectedAdjustment = new PlanPhaseUsageDiscountAdjustment()
+        Adjustment expectedAdjustment = new PlanPhaseUsageDiscountAdjustment()
         {
             ID = "id",
             AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
@@ -48,8 +48,8 @@ public class AdjustmentIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter23Field.PriceID,
-                    Operator = Filter23Operator.Includes,
+                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -92,8 +92,8 @@ public class AdjustmentIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter23Field.PriceID,
-                        Operator = Filter23Operator.Includes,
+                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -129,8 +129,8 @@ public class AdjustmentIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter23Field.PriceID,
-                        Operator = Filter23Operator.Includes,
+                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
@@ -150,7 +150,7 @@ public class AdjustmentIntervalTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
-        AdjustmentIntervalAdjustment expectedAdjustment = new PlanPhaseUsageDiscountAdjustment()
+        Adjustment expectedAdjustment = new PlanPhaseUsageDiscountAdjustment()
         {
             ID = "id",
             AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
@@ -159,8 +159,8 @@ public class AdjustmentIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter23Field.PriceID,
-                    Operator = Filter23Operator.Includes,
+                    Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -206,8 +206,8 @@ public class AdjustmentIntervalTest : TestBase
                 [
                     new()
                     {
-                        Field = Filter23Field.PriceID,
-                        Operator = Filter23Operator.Includes,
+                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],

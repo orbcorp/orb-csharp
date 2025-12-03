@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.Prices;
-using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Prices;
 
@@ -203,22 +203,22 @@ public class EventTest : TestBase
     }
 }
 
-public class PriceEvaluationModelTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -226,13 +226,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -247,7 +246,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -260,43 +259,44 @@ public class PriceEvaluationModelTest : TestBase
         [
             "case when my_event_type = 'foo' then true else false end",
         ];
-        PriceEvaluationModelPrice expectedPrice = new Models::NewFloatingUnitPrice()
-        {
-            Cadence = Models::NewFloatingUnitPriceCadence.Annual,
-            Currency = "currency",
-            ItemID = "item_id",
-            ModelType = Models::NewFloatingUnitPriceModelType.Unit,
-            Name = "Annual fee",
-            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice expectedPrice =
+            new NewFloatingUnitPrice()
             {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence = NewFloatingUnitPriceCadence.Annual,
+                Currency = "currency",
+                ItemID = "item_id",
+                ModelType = NewFloatingUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
         string expectedPriceID = "price_id";
 
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
@@ -313,17 +313,17 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -331,13 +331,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -352,7 +351,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -360,7 +359,8 @@ public class PriceEvaluationModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluation>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -368,17 +368,17 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -386,13 +386,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -407,7 +406,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -415,7 +414,8 @@ public class PriceEvaluationModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluation>(json);
         Assert.NotNull(deserialized);
 
         string expectedExternalPriceID = "external_price_id";
@@ -424,43 +424,44 @@ public class PriceEvaluationModelTest : TestBase
         [
             "case when my_event_type = 'foo' then true else false end",
         ];
-        PriceEvaluationModelPrice expectedPrice = new Models::NewFloatingUnitPrice()
-        {
-            Cadence = Models::NewFloatingUnitPriceCadence.Annual,
-            Currency = "currency",
-            ItemID = "item_id",
-            ModelType = Models::NewFloatingUnitPriceModelType.Unit,
-            Name = "Annual fee",
-            UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPrice expectedPrice =
+            new NewFloatingUnitPrice()
             {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence = NewFloatingUnitPriceCadence.Annual,
+                Currency = "currency",
+                ItemID = "item_id",
+                ModelType = NewFloatingUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
         string expectedPriceID = "price_id";
 
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
@@ -477,17 +478,17 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -495,13 +496,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -516,7 +516,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -529,16 +529,16 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -546,13 +546,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -567,7 +566,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -581,16 +580,16 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -598,13 +597,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -619,7 +617,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -632,16 +630,16 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -649,13 +647,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -670,7 +667,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -687,16 +684,16 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             ExternalPriceID = "external_price_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
-            Price = new Models::NewFloatingUnitPrice()
+            Price = new NewFloatingUnitPrice()
             {
-                Cadence = Models::NewFloatingUnitPriceCadence.Annual,
+                Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
                 ItemID = "item_id",
-                ModelType = Models::NewFloatingUnitPriceModelType.Unit,
+                ModelType = NewFloatingUnitPriceModelType.Unit,
                 Name = "Annual fee",
                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                 BillableMetricID = "billable_metric_id",
@@ -704,13 +701,12 @@ public class PriceEvaluationModelTest : TestBase
                 BillingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 ConversionRate = 0,
-                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
                 {
-                    ConversionRateType =
-                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
                 },
                 DimensionalPriceConfiguration = new()
@@ -725,7 +721,7 @@ public class PriceEvaluationModelTest : TestBase
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
-                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                 },
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
@@ -741,7 +737,7 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
         };
@@ -759,7 +755,7 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
         };
@@ -770,7 +766,7 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
 
@@ -793,7 +789,7 @@ public class PriceEvaluationModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModel
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluation
         {
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
 
@@ -807,12 +803,12 @@ public class PriceEvaluationModelTest : TestBase
     }
 }
 
-public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -823,7 +819,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -832,12 +829,12 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -852,12 +849,12 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig =
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig =
             new()
             {
                 Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
@@ -867,8 +864,11 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             };
-        ApiEnum<string, PriceEvaluationModelPriceBulkWithFiltersCadence> expectedCadence =
-            PriceEvaluationModelPriceBulkWithFiltersCadence.Annual;
+        ApiEnum<
+            string,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
@@ -877,19 +877,19 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -898,10 +898,10 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -933,7 +933,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -944,7 +944,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -953,12 +954,12 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -973,15 +974,16 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPriceBulkWithFilters>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -989,7 +991,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1000,7 +1002,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1009,12 +1012,12 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1029,18 +1032,19 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPriceBulkWithFilters>(
-            json
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig =
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig expectedBulkWithFiltersConfig =
             new()
             {
                 Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
@@ -1050,8 +1054,11 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             };
-        ApiEnum<string, PriceEvaluationModelPriceBulkWithFiltersCadence> expectedCadence =
-            PriceEvaluationModelPriceBulkWithFiltersCadence.Annual;
+        ApiEnum<
+            string,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>(
@@ -1060,19 +1067,19 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1081,10 +1088,10 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1119,7 +1126,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1130,7 +1137,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1139,12 +1147,12 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -1159,7 +1167,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -1170,7 +1178,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1181,7 +1189,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1214,7 +1223,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1225,7 +1234,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1237,7 +1247,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1248,7 +1258,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1293,7 +1304,7 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFilters
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         {
             BulkWithFiltersConfig = new()
             {
@@ -1304,7 +1315,8 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
                     new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
                 ],
             },
-            Cadence = PriceEvaluationModelPriceBulkWithFiltersCadence.Annual,
+            Cadence =
+                PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -1326,23 +1338,28 @@ public class PriceEvaluationModelPriceBulkWithFiltersTest : TestBase
     }
 }
 
-public class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig
-        {
-            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-            Tiers =
-            [
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-            ],
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            };
 
-        List<Filter1> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier1> expectedTiers =
+        List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -1363,19 +1380,20 @@ public class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigTest :
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig
-        {
-            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-            Tiers =
-            [
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-            ],
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig>(
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
                 json
             );
 
@@ -1385,25 +1403,29 @@ public class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigTest :
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig
-        {
-            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-            Tiers =
-            [
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-            ],
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig>(
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
                 json
             );
         Assert.NotNull(deserialized);
 
-        List<Filter1> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
-        List<Tier1> expectedTiers =
+        List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter> expectedFilters =
+        [
+            new() { PropertyKey = "x", PropertyValue = "x" },
+        ];
+        List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -1424,26 +1446,33 @@ public class PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfigTest :
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPriceBulkWithFiltersBulkWithFiltersConfig
-        {
-            Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
-            Tiers =
-            [
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
-            ],
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+            {
+                Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                Tiers =
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ],
+            };
 
         model.Validate();
     }
 }
 
-public class Filter1Test : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilterTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+            {
+                PropertyKey = "x",
+                PropertyValue = "x",
+            };
 
         string expectedPropertyKey = "x";
         string expectedPropertyValue = "x";
@@ -1455,10 +1484,18 @@ public class Filter1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+            {
+                PropertyKey = "x",
+                PropertyValue = "x",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1466,10 +1503,18 @@ public class Filter1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+            {
+                PropertyKey = "x",
+                PropertyValue = "x",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -1482,18 +1527,29 @@ public class Filter1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter1 { PropertyKey = "x", PropertyValue = "x" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+            {
+                PropertyKey = "x",
+                PropertyValue = "x",
+            };
 
         model.Validate();
     }
 }
 
-public class Tier1Test : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTierTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
+                TierLowerBound = "tier_lower_bound",
+            };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -1505,10 +1561,18 @@ public class Tier1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
+                TierLowerBound = "tier_lower_bound",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1516,10 +1580,18 @@ public class Tier1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
+                TierLowerBound = "tier_lower_bound",
+            };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier1>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -1532,7 +1604,12 @@ public class Tier1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
+                TierLowerBound = "tier_lower_bound",
+            };
 
         model.Validate();
     }
@@ -1540,7 +1617,11 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
+            };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -1549,7 +1630,11 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier1 { UnitAmount = "unit_amount" };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
+            };
 
         model.Validate();
     }
@@ -1557,12 +1642,13 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier1
-        {
-            UnitAmount = "unit_amount",
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
 
-            TierLowerBound = null,
-        };
+                TierLowerBound = null,
+            };
 
         Assert.Null(model.TierLowerBound);
         Assert.True(model.RawData.ContainsKey("tier_lower_bound"));
@@ -1571,71 +1657,76 @@ public class Tier1Test : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier1
-        {
-            UnitAmount = "unit_amount",
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+            {
+                UnitAmount = "unit_amount",
 
-            TierLowerBound = null,
-        };
+                TierLowerBound = null,
+            };
 
         model.Validate();
     }
 }
 
-public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         ApiEnum<
             string,
-            PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence
-        > expectedCadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual;
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual;
         string expectedCurrency = "currency";
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
             new()
             {
                 GroupingKey = "x",
@@ -1650,19 +1741,19 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1671,10 +1762,10 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1709,52 +1800,56 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceGroupedWithMinMaxThresholds>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1762,60 +1857,65 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceGroupedWithMinMaxThresholds>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<
             string,
-            PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence
-        > expectedCadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual;
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual;
         string expectedCurrency = "currency";
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig expectedGroupedWithMinMaxThresholdsConfig =
             new()
             {
                 GroupingKey = "x",
@@ -1830,19 +1930,19 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -1851,10 +1951,10 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -1892,48 +1992,50 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         model.Validate();
     }
@@ -1941,20 +2043,22 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+            };
 
         Assert.Null(model.BillableMetricID);
         Assert.False(model.RawData.ContainsKey("billable_metric_id"));
@@ -1983,20 +2087,22 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+            };
 
         model.Validate();
     }
@@ -2004,32 +2110,34 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
 
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-        };
+                BillableMetricID = null,
+                BilledInAdvance = null,
+                BillingCycleConfiguration = null,
+                ConversionRate = null,
+                ConversionRateConfig = null,
+                DimensionalPriceConfiguration = null,
+                ExternalPriceID = null,
+                FixedPriceQuantity = null,
+                InvoiceGroupingKey = null,
+                InvoicingCycleConfiguration = null,
+                Metadata = null,
+            };
 
         Assert.Null(model.BillableMetricID);
         Assert.True(model.RawData.ContainsKey("billable_metric_id"));
@@ -2058,45 +2166,47 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceGroupedWithMinMaxThresholds
-        {
-            Cadence = PriceEvaluationModelPriceGroupedWithMinMaxThresholdsCadence.Annual,
-            Currency = "currency",
-            GroupedWithMinMaxThresholdsConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
             {
-                GroupingKey = "x",
-                MaximumCharge = "maximum_charge",
-                MinimumCharge = "minimum_charge",
-                PerUnitRate = "per_unit_rate",
-            },
-            ItemID = "item_id",
-            Name = "Annual fee",
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
+                Currency = "currency",
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
 
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-        };
+                BillableMetricID = null,
+                BilledInAdvance = null,
+                BillingCycleConfiguration = null,
+                ConversionRate = null,
+                ConversionRateConfig = null,
+                DimensionalPriceConfiguration = null,
+                ExternalPriceID = null,
+                FixedPriceQuantity = null,
+                InvoiceGroupingKey = null,
+                InvoicingCycleConfiguration = null,
+                Metadata = null,
+            };
 
         model.Validate();
     }
 }
 
-public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigTest
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigTest
     : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
         var model =
-            new PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
             {
                 GroupingKey = "x",
                 MaximumCharge = "maximum_charge",
@@ -2119,7 +2229,7 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinM
     public void SerializationRoundtrip_Works()
     {
         var model =
-            new PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
             {
                 GroupingKey = "x",
                 MaximumCharge = "maximum_charge",
@@ -2129,7 +2239,7 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinM
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 json
             );
 
@@ -2140,7 +2250,7 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinM
     public void FieldRoundtripThroughSerialization_Works()
     {
         var model =
-            new PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
             {
                 GroupingKey = "x",
                 MaximumCharge = "maximum_charge",
@@ -2150,7 +2260,7 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinM
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 json
             );
         Assert.NotNull(deserialized);
@@ -2170,7 +2280,7 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinM
     public void Validation_Works()
     {
         var model =
-            new PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
             {
                 GroupingKey = "x",
                 MaximumCharge = "maximum_charge",
@@ -2182,59 +2292,63 @@ public class PriceEvaluationModelPriceGroupedWithMinMaxThresholdsGroupedWithMinM
     }
 }
 
-public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         ApiEnum<
             string,
-            PriceEvaluationModelPriceCumulativeGroupedAllocationCadence
-        > expectedCadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual;
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual;
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
             new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2250,19 +2364,19 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -2271,10 +2385,10 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -2309,52 +2423,56 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceCumulativeGroupedAllocation>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -2362,59 +2480,64 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceCumulativeGroupedAllocation>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<
             string,
-            PriceEvaluationModelPriceCumulativeGroupedAllocationCadence
-        > expectedCadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual;
-        PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual;
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig expectedCumulativeGroupedAllocationConfig =
             new()
             {
                 CumulativeAllocation = "cumulative_allocation",
@@ -2430,19 +2553,19 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -2451,10 +2574,10 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -2492,48 +2615,50 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
-            BillableMetricID = "billable_metric_id",
-            BilledInAdvance = true,
-            BillingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
-            {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
-                UnitConfig = new("unit_amount"),
-            },
-            DimensionalPriceConfiguration = new()
-            {
-                DimensionValues = ["string"],
-                DimensionalPriceGroupID = "dimensional_price_group_id",
-                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
-            },
-            ExternalPriceID = "external_price_id",
-            FixedPriceQuantity = 0,
-            InvoiceGroupingKey = "x",
-            InvoicingCycleConfiguration = new()
-            {
-                Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
-            },
-            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            };
 
         model.Validate();
     }
@@ -2541,20 +2666,22 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
+            };
 
         Assert.Null(model.BillableMetricID);
         Assert.False(model.RawData.ContainsKey("billable_metric_id"));
@@ -2583,20 +2710,22 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
-        };
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
+            };
 
         model.Validate();
     }
@@ -2604,32 +2733,34 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
 
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-        };
+                BillableMetricID = null,
+                BilledInAdvance = null,
+                BillingCycleConfiguration = null,
+                ConversionRate = null,
+                ConversionRateConfig = null,
+                DimensionalPriceConfiguration = null,
+                ExternalPriceID = null,
+                FixedPriceQuantity = null,
+                InvoiceGroupingKey = null,
+                InvoicingCycleConfiguration = null,
+                Metadata = null,
+            };
 
         Assert.Null(model.BillableMetricID);
         Assert.True(model.RawData.ContainsKey("billable_metric_id"));
@@ -2658,45 +2789,47 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceCumulativeGroupedAllocation
-        {
-            Cadence = PriceEvaluationModelPriceCumulativeGroupedAllocationCadence.Annual,
-            CumulativeGroupedAllocationConfig = new()
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
             {
-                CumulativeAllocation = "cumulative_allocation",
-                GroupAllocation = "group_allocation",
-                GroupingKey = "x",
-                UnitAmount = "unit_amount",
-            },
-            Currency = "currency",
-            ItemID = "item_id",
-            Name = "Annual fee",
+                Cadence =
+                    PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                Currency = "currency",
+                ItemID = "item_id",
+                Name = "Annual fee",
 
-            BillableMetricID = null,
-            BilledInAdvance = null,
-            BillingCycleConfiguration = null,
-            ConversionRate = null,
-            ConversionRateConfig = null,
-            DimensionalPriceConfiguration = null,
-            ExternalPriceID = null,
-            FixedPriceQuantity = null,
-            InvoiceGroupingKey = null,
-            InvoicingCycleConfiguration = null,
-            Metadata = null,
-        };
+                BillableMetricID = null,
+                BilledInAdvance = null,
+                BillingCycleConfiguration = null,
+                ConversionRate = null,
+                ConversionRateConfig = null,
+                DimensionalPriceConfiguration = null,
+                ExternalPriceID = null,
+                FixedPriceQuantity = null,
+                InvoiceGroupingKey = null,
+                InvoicingCycleConfiguration = null,
+                Metadata = null,
+            };
 
         model.Validate();
     }
 }
 
-public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigTest
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigTest
     : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
         var model =
-            new PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
             {
                 CumulativeAllocation = "cumulative_allocation",
                 GroupAllocation = "group_allocation",
@@ -2719,7 +2852,7 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroup
     public void SerializationRoundtrip_Works()
     {
         var model =
-            new PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
             {
                 CumulativeAllocation = "cumulative_allocation",
                 GroupAllocation = "group_allocation",
@@ -2729,7 +2862,7 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroup
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 json
             );
 
@@ -2740,7 +2873,7 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroup
     public void FieldRoundtripThroughSerialization_Works()
     {
         var model =
-            new PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
             {
                 CumulativeAllocation = "cumulative_allocation",
                 GroupAllocation = "group_allocation",
@@ -2750,7 +2883,7 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroup
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 json
             );
         Assert.NotNull(deserialized);
@@ -2770,7 +2903,7 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroup
     public void Validation_Works()
     {
         var model =
-            new PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
             {
                 CumulativeAllocation = "cumulative_allocation",
                 GroupAllocation = "group_allocation",
@@ -2782,14 +2915,14 @@ public class PriceEvaluationModelPriceCumulativeGroupedAllocationCumulativeGroup
     }
 }
 
-public class PriceEvaluationModelPricePercentTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -2799,12 +2932,12 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2819,33 +2952,37 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        ApiEnum<string, PriceEvaluationModelPricePercentCadence> expectedCadence =
-            PriceEvaluationModelPricePercentCadence.Annual;
+        ApiEnum<
+            string,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
         string expectedName = "Annual fee";
-        PriceEvaluationModelPricePercentPercentConfig expectedPercentConfig = new(0);
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig expectedPercentConfig =
+            new(0);
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPricePercentConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -2854,10 +2991,10 @@ public class PriceEvaluationModelPricePercentTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -2889,9 +3026,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -2901,12 +3038,12 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2921,13 +3058,16 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPricePercent>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -2935,9 +3075,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -2947,12 +3087,12 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -2967,37 +3107,44 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPricePercent>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PriceEvaluationModelPricePercentCadence> expectedCadence =
-            PriceEvaluationModelPricePercentCadence.Annual;
+        ApiEnum<
+            string,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual;
         string expectedCurrency = "currency";
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"percent\"");
         string expectedName = "Annual fee";
-        PriceEvaluationModelPricePercentPercentConfig expectedPercentConfig = new(0);
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig expectedPercentConfig =
+            new(0);
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPricePercentConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -3006,10 +3153,10 @@ public class PriceEvaluationModelPricePercentTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -3044,9 +3191,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3056,12 +3203,12 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3076,7 +3223,7 @@ public class PriceEvaluationModelPricePercentTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -3087,9 +3234,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3123,9 +3270,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3138,9 +3285,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3186,9 +3333,9 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModelPricePercent
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
         {
-            Cadence = PriceEvaluationModelPricePercentCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
             Currency = "currency",
             ItemID = "item_id",
             Name = "Annual fee",
@@ -3211,12 +3358,15 @@ public class PriceEvaluationModelPricePercentTest : TestBase
     }
 }
 
-public class PriceEvaluationModelPricePercentPercentConfigTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfigTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPricePercentPercentConfig { Percent = 0 };
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 0,
+        };
 
         double expectedPercent = 0;
 
@@ -3226,11 +3376,16 @@ public class PriceEvaluationModelPricePercentPercentConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPricePercentPercentConfig { Percent = 0 };
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 0,
+        };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPricePercentPercentConfig>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -3238,11 +3393,16 @@ public class PriceEvaluationModelPricePercentPercentConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPricePercentPercentConfig { Percent = 0 };
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 0,
+        };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPricePercentPercentConfig>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         double expectedPercent = 0;
@@ -3253,20 +3413,23 @@ public class PriceEvaluationModelPricePercentPercentConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPricePercentPercentConfig { Percent = 0 };
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+        {
+            Percent = 0,
+        };
 
         model.Validate();
     }
 }
 
-public class PriceEvaluationModelPriceEventOutputTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3281,12 +3444,12 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3301,38 +3464,42 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        ApiEnum<string, PriceEvaluationModelPriceEventOutputCadence> expectedCadence =
-            PriceEvaluationModelPriceEventOutputCadence.Annual;
+        ApiEnum<
+            string,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual;
         string expectedCurrency = "currency";
-        PriceEvaluationModelPriceEventOutputEventOutputConfig expectedEventOutputConfig = new()
-        {
-            UnitRatingKey = "x",
-            DefaultUnitRate = "default_unit_rate",
-            GroupingKey = "grouping_key",
-        };
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig expectedEventOutputConfig =
+            new()
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            };
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceEventOutputConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -3341,10 +3508,10 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -3376,9 +3543,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3393,12 +3560,12 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3413,13 +3580,16 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPriceEventOutput>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -3427,9 +3597,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3444,12 +3614,12 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3464,42 +3634,49 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluationModelPriceEventOutput>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, PriceEvaluationModelPriceEventOutputCadence> expectedCadence =
-            PriceEvaluationModelPriceEventOutputCadence.Annual;
+        ApiEnum<
+            string,
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence
+        > expectedCadence =
+            PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual;
         string expectedCurrency = "currency";
-        PriceEvaluationModelPriceEventOutputEventOutputConfig expectedEventOutputConfig = new()
-        {
-            UnitRatingKey = "x",
-            DefaultUnitRate = "default_unit_rate",
-            GroupingKey = "grouping_key",
-        };
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig expectedEventOutputConfig =
+            new()
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            };
         string expectedItemID = "item_id";
         JsonElement expectedModelType = JsonSerializer.Deserialize<JsonElement>("\"event_output\"");
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        PriceEvaluationModelPriceEventOutputConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -3508,10 +3685,10 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
@@ -3546,9 +3723,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3563,12 +3740,12 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             DimensionalPriceConfiguration = new()
@@ -3583,7 +3760,7 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
@@ -3594,9 +3771,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3635,9 +3812,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3655,9 +3832,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3708,9 +3885,9 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutput
+        var model = new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
         {
-            Cadence = PriceEvaluationModelPriceEventOutputCadence.Annual,
+            Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
             Currency = "currency",
             EventOutputConfig = new()
             {
@@ -3738,17 +3915,19 @@ public class PriceEvaluationModelPriceEventOutputTest : TestBase
     }
 }
 
-public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBase
+public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfigTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
-            DefaultUnitRate = "default_unit_rate",
-            GroupingKey = "grouping_key",
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            };
 
         string expectedUnitRatingKey = "x";
         string expectedDefaultUnitRate = "default_unit_rate";
@@ -3762,16 +3941,19 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
-            DefaultUnitRate = "default_unit_rate",
-            GroupingKey = "grouping_key",
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceEventOutputEventOutputConfig>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -3779,16 +3961,19 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
-            DefaultUnitRate = "default_unit_rate",
-            GroupingKey = "grouping_key",
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            };
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluationModelPriceEventOutputEventOutputConfig>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedUnitRatingKey = "x";
@@ -3803,12 +3988,13 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void Validation_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
-            DefaultUnitRate = "default_unit_rate",
-            GroupingKey = "grouping_key",
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
+                DefaultUnitRate = "default_unit_rate",
+                GroupingKey = "grouping_key",
+            };
 
         model.Validate();
     }
@@ -3816,10 +4002,11 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
+            };
 
         Assert.Null(model.DefaultUnitRate);
         Assert.False(model.RawData.ContainsKey("default_unit_rate"));
@@ -3830,10 +4017,11 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
-        };
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
+            };
 
         model.Validate();
     }
@@ -3841,13 +4029,14 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
 
-            DefaultUnitRate = null,
-            GroupingKey = null,
-        };
+                DefaultUnitRate = null,
+                GroupingKey = null,
+            };
 
         Assert.Null(model.DefaultUnitRate);
         Assert.True(model.RawData.ContainsKey("default_unit_rate"));
@@ -3858,13 +4047,14 @@ public class PriceEvaluationModelPriceEventOutputEventOutputConfigTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PriceEvaluationModelPriceEventOutputEventOutputConfig
-        {
-            UnitRatingKey = "x",
+        var model =
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+            {
+                UnitRatingKey = "x",
 
-            DefaultUnitRate = null,
-            GroupingKey = null,
-        };
+                DefaultUnitRate = null,
+                GroupingKey = null,
+            };
 
         model.Validate();
     }

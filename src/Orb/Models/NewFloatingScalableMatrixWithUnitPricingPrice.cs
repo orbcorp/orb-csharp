@@ -408,14 +408,13 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<MatrixScalingFactorModel> MatrixScalingFactors
+    public required IReadOnlyList<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MatrixScalingFactorModel>>(
-                this.RawData,
-                "matrix_scaling_factors"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+            >(this.RawData, "matrix_scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
     }
@@ -492,8 +491,13 @@ class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRaw<ScalableMatrixWithUn
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactorModel, MatrixScalingFactorModelFromRaw>))]
-public sealed record class MatrixScalingFactorModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        ScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
+        ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    >)
+)]
+public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFactor : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -529,22 +533,26 @@ public sealed record class MatrixScalingFactorModel : ModelBase
         _ = this.SecondDimensionValue;
     }
 
-    public MatrixScalingFactorModel() { }
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
-    public MatrixScalingFactorModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactorModel(FrozenDictionary<string, JsonElement> rawData)
+    ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixScalingFactorModel FromRawUnchecked(
+    public static ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -552,11 +560,12 @@ public sealed record class MatrixScalingFactorModel : ModelBase
     }
 }
 
-class MatrixScalingFactorModelFromRaw : IFromRaw<MatrixScalingFactorModel>
+class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    : IFromRaw<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
 {
-    public MatrixScalingFactorModel FromRawUnchecked(
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => MatrixScalingFactorModel.FromRawUnchecked(rawData);
+    ) => ScalableMatrixWithUnitPricingConfigMatrixScalingFactor.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigConverter))]

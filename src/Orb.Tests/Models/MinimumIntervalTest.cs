@@ -19,8 +19,8 @@ public class MinimumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter5Field.PriceID,
-                    Operator = Filter5Operator.Includes,
+                    Field = MinimumIntervalFilterField.PriceID,
+                    Operator = MinimumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -30,12 +30,12 @@ public class MinimumIntervalTest : TestBase
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter5> expectedFilters =
+        List<MinimumIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter5Field.PriceID,
-                Operator = Filter5Operator.Includes,
+                Field = MinimumIntervalFilterField.PriceID,
+                Operator = MinimumIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -71,8 +71,8 @@ public class MinimumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter5Field.PriceID,
-                    Operator = Filter5Operator.Includes,
+                    Field = MinimumIntervalFilterField.PriceID,
+                    Operator = MinimumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -97,8 +97,8 @@ public class MinimumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter5Field.PriceID,
-                    Operator = Filter5Operator.Includes,
+                    Field = MinimumIntervalFilterField.PriceID,
+                    Operator = MinimumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -112,12 +112,12 @@ public class MinimumIntervalTest : TestBase
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<Filter5> expectedFilters =
+        List<MinimumIntervalFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter5Field.PriceID,
-                Operator = Filter5Operator.Includes,
+                Field = MinimumIntervalFilterField.PriceID,
+                Operator = MinimumIntervalFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -156,8 +156,8 @@ public class MinimumIntervalTest : TestBase
             [
                 new()
                 {
-                    Field = Filter5Field.PriceID,
-                    Operator = Filter5Operator.Includes,
+                    Field = MinimumIntervalFilterField.PriceID,
+                    Operator = MinimumIntervalFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -169,20 +169,22 @@ public class MinimumIntervalTest : TestBase
     }
 }
 
-public class Filter5Test : TestBase
+public class MinimumIntervalFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter5
+        var model = new MinimumIntervalFilter
         {
-            Field = Filter5Field.PriceID,
-            Operator = Filter5Operator.Includes,
+            Field = MinimumIntervalFilterField.PriceID,
+            Operator = MinimumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter5Field> expectedField = Filter5Field.PriceID;
-        ApiEnum<string, Filter5Operator> expectedOperator = Filter5Operator.Includes;
+        ApiEnum<string, MinimumIntervalFilterField> expectedField =
+            MinimumIntervalFilterField.PriceID;
+        ApiEnum<string, MinimumIntervalFilterOperator> expectedOperator =
+            MinimumIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -197,15 +199,15 @@ public class Filter5Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter5
+        var model = new MinimumIntervalFilter
         {
-            Field = Filter5Field.PriceID,
-            Operator = Filter5Operator.Includes,
+            Field = MinimumIntervalFilterField.PriceID,
+            Operator = MinimumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter5>(json);
+        var deserialized = JsonSerializer.Deserialize<MinimumIntervalFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -213,19 +215,21 @@ public class Filter5Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter5
+        var model = new MinimumIntervalFilter
         {
-            Field = Filter5Field.PriceID,
-            Operator = Filter5Operator.Includes,
+            Field = MinimumIntervalFilterField.PriceID,
+            Operator = MinimumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter5>(json);
+        var deserialized = JsonSerializer.Deserialize<MinimumIntervalFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter5Field> expectedField = Filter5Field.PriceID;
-        ApiEnum<string, Filter5Operator> expectedOperator = Filter5Operator.Includes;
+        ApiEnum<string, MinimumIntervalFilterField> expectedField =
+            MinimumIntervalFilterField.PriceID;
+        ApiEnum<string, MinimumIntervalFilterOperator> expectedOperator =
+            MinimumIntervalFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -240,10 +244,10 @@ public class Filter5Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter5
+        var model = new MinimumIntervalFilter
         {
-            Field = Filter5Field.PriceID,
-            Operator = Filter5Operator.Includes,
+            Field = MinimumIntervalFilterField.PriceID,
+            Operator = MinimumIntervalFilterOperator.Includes,
             Values = ["string"],
         };
 

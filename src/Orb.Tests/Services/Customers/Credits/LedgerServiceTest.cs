@@ -74,7 +74,7 @@ public class LedgerServiceTest : TestBase
             "external_customer_id",
             new()
             {
-                Body = new BodyModelIncrement()
+                Body = new LedgerCreateEntryByExternalIDParamsBodyIncrement()
                 {
                     Amount = 0,
                     Currency = "currency",
@@ -85,8 +85,10 @@ public class LedgerServiceTest : TestBase
                     [
                         new()
                         {
-                            Field = FilterModelField.ItemID,
-                            Operator = FilterModelOperator.Includes,
+                            Field =
+                                LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                            Operator =
+                                LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],

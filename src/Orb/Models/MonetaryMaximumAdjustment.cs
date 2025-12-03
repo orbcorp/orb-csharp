@@ -54,9 +54,15 @@ public sealed record class MonetaryMaximumAdjustment : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this adjustment to.
     /// </summary>
-    public required IReadOnlyList<Filter7> Filters
+    public required IReadOnlyList<MonetaryMaximumAdjustmentFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter7>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<MonetaryMaximumAdjustmentFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -192,17 +198,22 @@ sealed class MonetaryMaximumAdjustmentAdjustmentTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter7, Filter7FromRaw>))]
-public sealed record class Filter7 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<MonetaryMaximumAdjustmentFilter, MonetaryMaximumAdjustmentFilterFromRaw>)
+)]
+public sealed record class MonetaryMaximumAdjustmentFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter7Field> Field
+    public required ApiEnum<string, MonetaryMaximumAdjustmentFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter7Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, MonetaryMaximumAdjustmentFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -210,14 +221,13 @@ public sealed record class Filter7 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter7Operator> Operator
+    public required ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter7Operator>>(
-                this.RawData,
-                "operator"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator>
+            >(this.RawData, "operator");
         }
         init { ModelBase.Set(this._rawData, "operator", value); }
     }
@@ -238,38 +248,41 @@ public sealed record class Filter7 : ModelBase
         _ = this.Values;
     }
 
-    public Filter7() { }
+    public MonetaryMaximumAdjustmentFilter() { }
 
-    public Filter7(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MonetaryMaximumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter7(FrozenDictionary<string, JsonElement> rawData)
+    MonetaryMaximumAdjustmentFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter7 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MonetaryMaximumAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter7FromRaw : IFromRaw<Filter7>
+class MonetaryMaximumAdjustmentFilterFromRaw : IFromRaw<MonetaryMaximumAdjustmentFilter>
 {
-    public Filter7 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter7.FromRawUnchecked(rawData);
+    public MonetaryMaximumAdjustmentFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => MonetaryMaximumAdjustmentFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter7FieldConverter))]
-public enum Filter7Field
+[JsonConverter(typeof(MonetaryMaximumAdjustmentFilterFieldConverter))]
+public enum MonetaryMaximumAdjustmentFilterField
 {
     PriceID,
     ItemID,
@@ -278,9 +291,10 @@ public enum Filter7Field
     PricingUnitID,
 }
 
-sealed class Filter7FieldConverter : JsonConverter<Filter7Field>
+sealed class MonetaryMaximumAdjustmentFilterFieldConverter
+    : JsonConverter<MonetaryMaximumAdjustmentFilterField>
 {
-    public override Filter7Field Read(
+    public override MonetaryMaximumAdjustmentFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -288,18 +302,18 @@ sealed class Filter7FieldConverter : JsonConverter<Filter7Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter7Field.PriceID,
-            "item_id" => Filter7Field.ItemID,
-            "price_type" => Filter7Field.PriceType,
-            "currency" => Filter7Field.Currency,
-            "pricing_unit_id" => Filter7Field.PricingUnitID,
-            _ => (Filter7Field)(-1),
+            "price_id" => MonetaryMaximumAdjustmentFilterField.PriceID,
+            "item_id" => MonetaryMaximumAdjustmentFilterField.ItemID,
+            "price_type" => MonetaryMaximumAdjustmentFilterField.PriceType,
+            "currency" => MonetaryMaximumAdjustmentFilterField.Currency,
+            "pricing_unit_id" => MonetaryMaximumAdjustmentFilterField.PricingUnitID,
+            _ => (MonetaryMaximumAdjustmentFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter7Field value,
+        MonetaryMaximumAdjustmentFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -307,11 +321,11 @@ sealed class Filter7FieldConverter : JsonConverter<Filter7Field>
             writer,
             value switch
             {
-                Filter7Field.PriceID => "price_id",
-                Filter7Field.ItemID => "item_id",
-                Filter7Field.PriceType => "price_type",
-                Filter7Field.Currency => "currency",
-                Filter7Field.PricingUnitID => "pricing_unit_id",
+                MonetaryMaximumAdjustmentFilterField.PriceID => "price_id",
+                MonetaryMaximumAdjustmentFilterField.ItemID => "item_id",
+                MonetaryMaximumAdjustmentFilterField.PriceType => "price_type",
+                MonetaryMaximumAdjustmentFilterField.Currency => "currency",
+                MonetaryMaximumAdjustmentFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -324,16 +338,17 @@ sealed class Filter7FieldConverter : JsonConverter<Filter7Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter7OperatorConverter))]
-public enum Filter7Operator
+[JsonConverter(typeof(MonetaryMaximumAdjustmentFilterOperatorConverter))]
+public enum MonetaryMaximumAdjustmentFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter7OperatorConverter : JsonConverter<Filter7Operator>
+sealed class MonetaryMaximumAdjustmentFilterOperatorConverter
+    : JsonConverter<MonetaryMaximumAdjustmentFilterOperator>
 {
-    public override Filter7Operator Read(
+    public override MonetaryMaximumAdjustmentFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -341,15 +356,15 @@ sealed class Filter7OperatorConverter : JsonConverter<Filter7Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter7Operator.Includes,
-            "excludes" => Filter7Operator.Excludes,
-            _ => (Filter7Operator)(-1),
+            "includes" => MonetaryMaximumAdjustmentFilterOperator.Includes,
+            "excludes" => MonetaryMaximumAdjustmentFilterOperator.Excludes,
+            _ => (MonetaryMaximumAdjustmentFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter7Operator value,
+        MonetaryMaximumAdjustmentFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -357,8 +372,8 @@ sealed class Filter7OperatorConverter : JsonConverter<Filter7Operator>
             writer,
             value switch
             {
-                Filter7Operator.Includes => "includes",
-                Filter7Operator.Excludes => "excludes",
+                MonetaryMaximumAdjustmentFilterOperator.Includes => "includes",
+                MonetaryMaximumAdjustmentFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

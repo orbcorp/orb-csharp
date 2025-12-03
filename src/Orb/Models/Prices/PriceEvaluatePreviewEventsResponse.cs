@@ -15,9 +15,15 @@ namespace Orb.Models.Prices;
 )]
 public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
 {
-    public required IReadOnlyList<DataModel> Data
+    public required IReadOnlyList<PriceEvaluatePreviewEventsResponseData> Data
     {
-        get { return ModelBase.GetNotNullClass<List<DataModel>>(this.RawData, "data"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<PriceEvaluatePreviewEventsResponseData>>(
+                this.RawData,
+                "data"
+            );
+        }
         init { ModelBase.Set(this._rawData, "data", value); }
     }
 
@@ -52,7 +58,7 @@ public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
     }
 
     [SetsRequiredMembers]
-    public PriceEvaluatePreviewEventsResponse(List<DataModel> data)
+    public PriceEvaluatePreviewEventsResponse(List<PriceEvaluatePreviewEventsResponseData> data)
         : this()
     {
         this.Data = data;
@@ -66,8 +72,13 @@ class PriceEvaluatePreviewEventsResponseFromRaw : IFromRaw<PriceEvaluatePreviewE
     ) => PriceEvaluatePreviewEventsResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<DataModel, DataModelFromRaw>))]
-public sealed record class DataModel : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        PriceEvaluatePreviewEventsResponseData,
+        PriceEvaluatePreviewEventsResponseDataFromRaw
+    >)
+)]
+public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
 {
     /// <summary>
     /// The currency of the price
@@ -132,29 +143,33 @@ public sealed record class DataModel : ModelBase
         _ = this.PriceID;
     }
 
-    public DataModel() { }
+    public PriceEvaluatePreviewEventsResponseData() { }
 
-    public DataModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceEvaluatePreviewEventsResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DataModel(FrozenDictionary<string, JsonElement> rawData)
+    PriceEvaluatePreviewEventsResponseData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static PriceEvaluatePreviewEventsResponseData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DataModelFromRaw : IFromRaw<DataModel>
+class PriceEvaluatePreviewEventsResponseDataFromRaw
+    : IFromRaw<PriceEvaluatePreviewEventsResponseData>
 {
-    public DataModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DataModel.FromRawUnchecked(rawData);
+    public PriceEvaluatePreviewEventsResponseData FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceEvaluatePreviewEventsResponseData.FromRawUnchecked(rawData);
 }

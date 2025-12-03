@@ -28,15 +28,9 @@ public sealed record class Plan : ModelBase
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
     /// across all phases of the plan.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Plans.AdjustmentModel> Adjustments
+    public required IReadOnlyList<PlanAdjustment> Adjustments
     {
-        get
-        {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Plans.AdjustmentModel>>(
-                this.RawData,
-                "adjustments"
-            );
-        }
+        get { return ModelBase.GetNotNullClass<List<PlanAdjustment>>(this.RawData, "adjustments"); }
         init { ModelBase.Set(this._rawData, "adjustments", value); }
     }
 
@@ -187,12 +181,9 @@ public sealed record class Plan : ModelBase
         init { ModelBase.Set(this._rawData, "net_terms", value); }
     }
 
-    public required IReadOnlyList<PlanPhaseModel>? PlanPhases
+    public required IReadOnlyList<PlanPlanPhase>? PlanPhases
     {
-        get
-        {
-            return ModelBase.GetNullableClass<List<PlanPhaseModel>>(this.RawData, "plan_phases");
-        }
+        get { return ModelBase.GetNullableClass<List<PlanPlanPhase>>(this.RawData, "plan_phases"); }
         init { ModelBase.Set(this._rawData, "plan_phases", value); }
     }
 
@@ -308,8 +299,8 @@ class PlanFromRaw : IFromRaw<Plan>
         Plan.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Plans.AdjustmentModelConverter))]
-public record class AdjustmentModel
+[JsonConverter(typeof(PlanAdjustmentConverter))]
+public record class PlanAdjustment
 {
     public object? Value { get; } = null;
 
@@ -390,159 +381,166 @@ public record class AdjustmentModel
         }
     }
 
-    public AdjustmentModel(PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(Models::PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(Models::PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(PlanPhasePercentageDiscountAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(
+        Models::PlanPhasePercentageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(Models::PlanPhaseMinimumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(Models::PlanPhaseMaximumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(JsonElement json)
+    public PlanAdjustment(JsonElement json)
     {
         this._json = json;
     }
 
     public bool TryPickPlanPhaseUsageDiscount(
-        [NotNullWhen(true)] out PlanPhaseUsageDiscountAdjustment? value
+        [NotNullWhen(true)] out Models::PlanPhaseUsageDiscountAdjustment? value
     )
     {
-        value = this.Value as PlanPhaseUsageDiscountAdjustment;
+        value = this.Value as Models::PlanPhaseUsageDiscountAdjustment;
         return value != null;
     }
 
     public bool TryPickPlanPhaseAmountDiscount(
-        [NotNullWhen(true)] out PlanPhaseAmountDiscountAdjustment? value
+        [NotNullWhen(true)] out Models::PlanPhaseAmountDiscountAdjustment? value
     )
     {
-        value = this.Value as PlanPhaseAmountDiscountAdjustment;
+        value = this.Value as Models::PlanPhaseAmountDiscountAdjustment;
         return value != null;
     }
 
     public bool TryPickPlanPhasePercentageDiscount(
-        [NotNullWhen(true)] out PlanPhasePercentageDiscountAdjustment? value
+        [NotNullWhen(true)] out Models::PlanPhasePercentageDiscountAdjustment? value
     )
     {
-        value = this.Value as PlanPhasePercentageDiscountAdjustment;
+        value = this.Value as Models::PlanPhasePercentageDiscountAdjustment;
         return value != null;
     }
 
-    public bool TryPickPlanPhaseMinimum([NotNullWhen(true)] out PlanPhaseMinimumAdjustment? value)
+    public bool TryPickPlanPhaseMinimum(
+        [NotNullWhen(true)] out Models::PlanPhaseMinimumAdjustment? value
+    )
     {
-        value = this.Value as PlanPhaseMinimumAdjustment;
+        value = this.Value as Models::PlanPhaseMinimumAdjustment;
         return value != null;
     }
 
-    public bool TryPickPlanPhaseMaximum([NotNullWhen(true)] out PlanPhaseMaximumAdjustment? value)
+    public bool TryPickPlanPhaseMaximum(
+        [NotNullWhen(true)] out Models::PlanPhaseMaximumAdjustment? value
+    )
     {
-        value = this.Value as PlanPhaseMaximumAdjustment;
+        value = this.Value as Models::PlanPhaseMaximumAdjustment;
         return value != null;
     }
 
     public void Switch(
-        System::Action<PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
-        System::Action<PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
-        System::Action<PlanPhasePercentageDiscountAdjustment> planPhasePercentageDiscount,
-        System::Action<PlanPhaseMinimumAdjustment> planPhaseMinimum,
-        System::Action<PlanPhaseMaximumAdjustment> planPhaseMaximum
+        System::Action<Models::PlanPhaseUsageDiscountAdjustment> planPhaseUsageDiscount,
+        System::Action<Models::PlanPhaseAmountDiscountAdjustment> planPhaseAmountDiscount,
+        System::Action<Models::PlanPhasePercentageDiscountAdjustment> planPhasePercentageDiscount,
+        System::Action<Models::PlanPhaseMinimumAdjustment> planPhaseMinimum,
+        System::Action<Models::PlanPhaseMaximumAdjustment> planPhaseMaximum
     )
     {
         switch (this.Value)
         {
-            case PlanPhaseUsageDiscountAdjustment value:
+            case Models::PlanPhaseUsageDiscountAdjustment value:
                 planPhaseUsageDiscount(value);
                 break;
-            case PlanPhaseAmountDiscountAdjustment value:
+            case Models::PlanPhaseAmountDiscountAdjustment value:
                 planPhaseAmountDiscount(value);
                 break;
-            case PlanPhasePercentageDiscountAdjustment value:
+            case Models::PlanPhasePercentageDiscountAdjustment value:
                 planPhasePercentageDiscount(value);
                 break;
-            case PlanPhaseMinimumAdjustment value:
+            case Models::PlanPhaseMinimumAdjustment value:
                 planPhaseMinimum(value);
                 break;
-            case PlanPhaseMaximumAdjustment value:
+            case Models::PlanPhaseMaximumAdjustment value:
                 planPhaseMaximum(value);
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of AdjustmentModel"
+                    "Data did not match any variant of PlanAdjustment"
                 );
         }
     }
 
     public T Match<T>(
-        System::Func<PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
-        System::Func<PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
-        System::Func<PlanPhasePercentageDiscountAdjustment, T> planPhasePercentageDiscount,
-        System::Func<PlanPhaseMinimumAdjustment, T> planPhaseMinimum,
-        System::Func<PlanPhaseMaximumAdjustment, T> planPhaseMaximum
+        System::Func<Models::PlanPhaseUsageDiscountAdjustment, T> planPhaseUsageDiscount,
+        System::Func<Models::PlanPhaseAmountDiscountAdjustment, T> planPhaseAmountDiscount,
+        System::Func<Models::PlanPhasePercentageDiscountAdjustment, T> planPhasePercentageDiscount,
+        System::Func<Models::PlanPhaseMinimumAdjustment, T> planPhaseMinimum,
+        System::Func<Models::PlanPhaseMaximumAdjustment, T> planPhaseMaximum
     )
     {
         return this.Value switch
         {
-            PlanPhaseUsageDiscountAdjustment value => planPhaseUsageDiscount(value),
-            PlanPhaseAmountDiscountAdjustment value => planPhaseAmountDiscount(value),
-            PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(value),
-            PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
-            PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
+            Models::PlanPhaseUsageDiscountAdjustment value => planPhaseUsageDiscount(value),
+            Models::PlanPhaseAmountDiscountAdjustment value => planPhaseAmountDiscount(value),
+            Models::PlanPhasePercentageDiscountAdjustment value => planPhasePercentageDiscount(
+                value
+            ),
+            Models::PlanPhaseMinimumAdjustment value => planPhaseMinimum(value),
+            Models::PlanPhaseMaximumAdjustment value => planPhaseMaximum(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AdjustmentModel"
+                "Data did not match any variant of PlanAdjustment"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
-        PlanPhaseUsageDiscountAdjustment value
+    public static implicit operator PlanAdjustment(
+        Models::PlanPhaseUsageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
-        PlanPhaseAmountDiscountAdjustment value
+    public static implicit operator PlanAdjustment(
+        Models::PlanPhaseAmountDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
-        PlanPhasePercentageDiscountAdjustment value
+    public static implicit operator PlanAdjustment(
+        Models::PlanPhasePercentageDiscountAdjustment value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
-        PlanPhaseMinimumAdjustment value
-    ) => new(value);
+    public static implicit operator PlanAdjustment(Models::PlanPhaseMinimumAdjustment value) =>
+        new(value);
 
-    public static implicit operator global::Orb.Models.Plans.AdjustmentModel(
-        PlanPhaseMaximumAdjustment value
-    ) => new(value);
+    public static implicit operator PlanAdjustment(Models::PlanPhaseMaximumAdjustment value) =>
+        new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
+            throw new OrbInvalidDataException("Data did not match any variant of PlanAdjustment");
         }
     }
 
-    public virtual bool Equals(global::Orb.Models.Plans.AdjustmentModel? other)
+    public virtual bool Equals(PlanAdjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -553,9 +551,9 @@ public record class AdjustmentModel
     }
 }
 
-sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.AdjustmentModel>
+sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
 {
-    public override global::Orb.Models.Plans.AdjustmentModel? Read(
+    public override PlanAdjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -578,10 +576,11 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::PlanPhaseUsageDiscountAdjustment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -601,7 +600,7 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustment>(
+                        JsonSerializer.Deserialize<Models::PlanPhaseAmountDiscountAdjustment>(
                             json,
                             options
                         );
@@ -624,7 +623,7 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<PlanPhasePercentageDiscountAdjustment>(
+                        JsonSerializer.Deserialize<Models::PlanPhasePercentageDiscountAdjustment>(
                             json,
                             options
                         );
@@ -646,10 +645,11 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::PlanPhaseMinimumAdjustment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -668,10 +668,11 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(
-                        json,
-                        options
-                    );
+                    var deserialized =
+                        JsonSerializer.Deserialize<Models::PlanPhaseMaximumAdjustment>(
+                            json,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
@@ -688,14 +689,14 @@ sealed class AdjustmentModelConverter : JsonConverter<global::Orb.Models.Plans.A
             }
             default:
             {
-                return new global::Orb.Models.Plans.AdjustmentModel(json);
+                return new PlanAdjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Plans.AdjustmentModel value,
+        PlanAdjustment value,
         JsonSerializerOptions options
     )
     {
@@ -767,8 +768,8 @@ class BasePlanFromRaw : IFromRaw<BasePlan>
         BasePlan.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<PlanPhaseModel, PlanPhaseModelFromRaw>))]
-public sealed record class PlanPhaseModel : ModelBase
+[JsonConverter(typeof(ModelConverter<PlanPlanPhase, PlanPlanPhaseFromRaw>))]
+public sealed record class PlanPlanPhase : ModelBase
 {
     public required string ID
     {
@@ -798,11 +799,11 @@ public sealed record class PlanPhaseModel : ModelBase
         init { ModelBase.Set(this._rawData, "duration", value); }
     }
 
-    public required ApiEnum<string, PlanPhaseModelDurationUnit>? DurationUnit
+    public required ApiEnum<string, PlanPlanPhaseDurationUnit>? DurationUnit
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, PlanPhaseModelDurationUnit>>(
+            return ModelBase.GetNullableClass<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
                 this.RawData,
                 "duration_unit"
             );
@@ -864,35 +865,35 @@ public sealed record class PlanPhaseModel : ModelBase
         _ = this.Order;
     }
 
-    public PlanPhaseModel() { }
+    public PlanPlanPhase() { }
 
-    public PlanPhaseModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PlanPlanPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PlanPhaseModel(FrozenDictionary<string, JsonElement> rawData)
+    PlanPlanPhase(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PlanPhaseModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static PlanPlanPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class PlanPhaseModelFromRaw : IFromRaw<PlanPhaseModel>
+class PlanPlanPhaseFromRaw : IFromRaw<PlanPlanPhase>
 {
-    public PlanPhaseModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        PlanPhaseModel.FromRawUnchecked(rawData);
+    public PlanPlanPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PlanPlanPhase.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(PlanPhaseModelDurationUnitConverter))]
-public enum PlanPhaseModelDurationUnit
+[JsonConverter(typeof(PlanPlanPhaseDurationUnitConverter))]
+public enum PlanPlanPhaseDurationUnit
 {
     Daily,
     Monthly,
@@ -901,9 +902,9 @@ public enum PlanPhaseModelDurationUnit
     Annual,
 }
 
-sealed class PlanPhaseModelDurationUnitConverter : JsonConverter<PlanPhaseModelDurationUnit>
+sealed class PlanPlanPhaseDurationUnitConverter : JsonConverter<PlanPlanPhaseDurationUnit>
 {
-    public override PlanPhaseModelDurationUnit Read(
+    public override PlanPlanPhaseDurationUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -911,18 +912,18 @@ sealed class PlanPhaseModelDurationUnitConverter : JsonConverter<PlanPhaseModelD
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "daily" => PlanPhaseModelDurationUnit.Daily,
-            "monthly" => PlanPhaseModelDurationUnit.Monthly,
-            "quarterly" => PlanPhaseModelDurationUnit.Quarterly,
-            "semi_annual" => PlanPhaseModelDurationUnit.SemiAnnual,
-            "annual" => PlanPhaseModelDurationUnit.Annual,
-            _ => (PlanPhaseModelDurationUnit)(-1),
+            "daily" => PlanPlanPhaseDurationUnit.Daily,
+            "monthly" => PlanPlanPhaseDurationUnit.Monthly,
+            "quarterly" => PlanPlanPhaseDurationUnit.Quarterly,
+            "semi_annual" => PlanPlanPhaseDurationUnit.SemiAnnual,
+            "annual" => PlanPlanPhaseDurationUnit.Annual,
+            _ => (PlanPlanPhaseDurationUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PlanPhaseModelDurationUnit value,
+        PlanPlanPhaseDurationUnit value,
         JsonSerializerOptions options
     )
     {
@@ -930,11 +931,11 @@ sealed class PlanPhaseModelDurationUnitConverter : JsonConverter<PlanPhaseModelD
             writer,
             value switch
             {
-                PlanPhaseModelDurationUnit.Daily => "daily",
-                PlanPhaseModelDurationUnit.Monthly => "monthly",
-                PlanPhaseModelDurationUnit.Quarterly => "quarterly",
-                PlanPhaseModelDurationUnit.SemiAnnual => "semi_annual",
-                PlanPhaseModelDurationUnit.Annual => "annual",
+                PlanPlanPhaseDurationUnit.Daily => "daily",
+                PlanPlanPhaseDurationUnit.Monthly => "monthly",
+                PlanPlanPhaseDurationUnit.Quarterly => "quarterly",
+                PlanPlanPhaseDurationUnit.SemiAnnual => "semi_annual",
+                PlanPlanPhaseDurationUnit.Annual => "annual",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

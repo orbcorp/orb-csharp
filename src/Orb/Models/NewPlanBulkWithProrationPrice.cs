@@ -296,9 +296,14 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig 
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<Tier8> Tiers
+    public required IReadOnlyList<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier8>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -337,7 +342,9 @@ public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfig 
     }
 
     [SetsRequiredMembers]
-    public NewPlanBulkWithProrationPriceBulkWithProrationConfig(List<Tier8> tiers)
+    public NewPlanBulkWithProrationPriceBulkWithProrationConfig(
+        List<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -355,8 +362,13 @@ class NewPlanBulkWithProrationPriceBulkWithProrationConfigFromRaw
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier8, Tier8FromRaw>))]
-public sealed record class Tier8 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanBulkWithProrationPriceBulkWithProrationConfigTier,
+        NewPlanBulkWithProrationPriceBulkWithProrationConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanBulkWithProrationPriceBulkWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Cost per unit
@@ -382,38 +394,46 @@ public sealed record class Tier8 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier8() { }
+    public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier() { }
 
-    public Tier8(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier8(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier8 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanBulkWithProrationPriceBulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Tier8(string unitAmount)
+    public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier8FromRaw : IFromRaw<Tier8>
+class NewPlanBulkWithProrationPriceBulkWithProrationConfigTierFromRaw
+    : IFromRaw<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier>
 {
-    public Tier8 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier8.FromRawUnchecked(rawData);
+    public NewPlanBulkWithProrationPriceBulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanBulkWithProrationPriceBulkWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

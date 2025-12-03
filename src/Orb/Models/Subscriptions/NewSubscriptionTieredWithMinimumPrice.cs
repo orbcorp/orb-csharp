@@ -406,14 +406,13 @@ public sealed record class TieredWithMinimumConfig : ModelBase
     /// Tiered pricing with a minimum amount dependent on the volume tier. Tiers
     /// are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier15> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier15>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -485,7 +484,9 @@ public sealed record class TieredWithMinimumConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithMinimumConfig(List<global::Orb.Models.Subscriptions.Tier15> tiers)
+    public TieredWithMinimumConfig(
+        List<global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -505,11 +506,11 @@ class TieredWithMinimumConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier15,
-        global::Orb.Models.Subscriptions.Tier15FromRaw
+        global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier,
+        global::Orb.Models.Subscriptions.TieredWithMinimumConfigTierFromRaw
     >)
 )]
-public sealed record class Tier15 : ModelBase
+public sealed record class TieredWithMinimumConfigTier : ModelBase
 {
     /// <summary>
     /// Minimum amount
@@ -545,22 +546,22 @@ public sealed record class Tier15 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier15() { }
+    public TieredWithMinimumConfigTier() { }
 
-    public Tier15(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier15(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithMinimumConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier15 FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -568,11 +569,12 @@ public sealed record class Tier15 : ModelBase
     }
 }
 
-class Tier15FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier15>
+class TieredWithMinimumConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier15 FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier15.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredWithMinimumPriceConversionRateConfigConverter))]

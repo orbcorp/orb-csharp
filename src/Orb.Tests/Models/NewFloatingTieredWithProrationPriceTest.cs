@@ -474,7 +474,7 @@ public class TieredWithProrationConfigTest : TestBase
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        List<Tier7> expectedTiers =
+        List<TieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -512,7 +512,7 @@ public class TieredWithProrationConfigTest : TestBase
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Tier7> expectedTiers =
+        List<TieredWithProrationConfigTier> expectedTiers =
         [
             new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
         ];
@@ -536,12 +536,16 @@ public class TieredWithProrationConfigTest : TestBase
     }
 }
 
-public class Tier7Test : TestBase
+public class TieredWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier7 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string expectedTierLowerBound = "tier_lower_bound";
         string expectedUnitAmount = "unit_amount";
@@ -553,10 +557,14 @@ public class Tier7Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier7 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier7>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -564,10 +572,14 @@ public class Tier7Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier7 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier7>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -580,7 +592,11 @@ public class Tier7Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier7 { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" };
+        var model = new TieredWithProrationConfigTier
+        {
+            TierLowerBound = "tier_lower_bound",
+            UnitAmount = "unit_amount",
+        };
 
         model.Validate();
     }

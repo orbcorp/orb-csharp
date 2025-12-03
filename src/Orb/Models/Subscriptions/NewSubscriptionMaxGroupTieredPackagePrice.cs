@@ -379,14 +379,13 @@ public sealed record class MaxGroupTieredPackageConfig : ModelBase
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier11> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier11>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -437,11 +436,11 @@ class MaxGroupTieredPackageConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier11,
-        global::Orb.Models.Subscriptions.Tier11FromRaw
+        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier,
+        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTierFromRaw
     >)
 )]
-public sealed record class Tier11 : ModelBase
+public sealed record class MaxGroupTieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Tier lower bound
@@ -467,22 +466,22 @@ public sealed record class Tier11 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier11() { }
+    public MaxGroupTieredPackageConfigTier() { }
 
-    public Tier11(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MaxGroupTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier11(FrozenDictionary<string, JsonElement> rawData)
+    MaxGroupTieredPackageConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier11 FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -490,11 +489,12 @@ public sealed record class Tier11 : ModelBase
     }
 }
 
-class Tier11FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier11>
+class MaxGroupTieredPackageConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier11 FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier11.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>

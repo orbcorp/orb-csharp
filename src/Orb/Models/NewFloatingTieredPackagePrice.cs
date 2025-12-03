@@ -396,9 +396,12 @@ public sealed record class TieredPackageConfig : ModelBase
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required IReadOnlyList<Tier4> Tiers
+    public required IReadOnlyList<TieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier4>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<TieredPackageConfigTier>>(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -443,8 +446,8 @@ class TieredPackageConfigFromRaw : IFromRaw<TieredPackageConfig>
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier4, Tier4FromRaw>))]
-public sealed record class Tier4 : ModelBase
+[JsonConverter(typeof(ModelConverter<TieredPackageConfigTier, TieredPackageConfigTierFromRaw>))]
+public sealed record class TieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -470,31 +473,34 @@ public sealed record class Tier4 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier4() { }
+    public TieredPackageConfigTier() { }
 
-    public Tier4(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier4(FrozenDictionary<string, JsonElement> rawData)
+    TieredPackageConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier4FromRaw : IFromRaw<Tier4>
+class TieredPackageConfigTierFromRaw : IFromRaw<TieredPackageConfigTier>
 {
-    public Tier4 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier4.FromRawUnchecked(rawData);
+    public TieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewFloatingTieredPackagePriceConversionRateConfigConverter))]

@@ -149,26 +149,24 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
         init { ModelBase.Set(this._rawQueryData, "cursor", value); }
     }
 
-    public ApiEnum<string, EntryStatusModel>? EntryStatus
+    public ApiEnum<string, LedgerListByExternalIDParamsEntryStatus>? EntryStatus
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, EntryStatusModel>>(
-                this.RawQueryData,
-                "entry_status"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, LedgerListByExternalIDParamsEntryStatus>
+            >(this.RawQueryData, "entry_status");
         }
         init { ModelBase.Set(this._rawQueryData, "entry_status", value); }
     }
 
-    public ApiEnum<string, EntryTypeModel>? EntryType
+    public ApiEnum<string, LedgerListByExternalIDParamsEntryType>? EntryType
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, EntryTypeModel>>(
-                this.RawQueryData,
-                "entry_type"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, LedgerListByExternalIDParamsEntryType>
+            >(this.RawQueryData, "entry_type");
         }
         init { ModelBase.Set(this._rawQueryData, "entry_type", value); }
     }
@@ -254,16 +252,17 @@ public sealed record class LedgerListByExternalIDParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(EntryStatusModelConverter))]
-public enum EntryStatusModel
+[JsonConverter(typeof(LedgerListByExternalIDParamsEntryStatusConverter))]
+public enum LedgerListByExternalIDParamsEntryStatus
 {
     Committed,
     Pending,
 }
 
-sealed class EntryStatusModelConverter : JsonConverter<EntryStatusModel>
+sealed class LedgerListByExternalIDParamsEntryStatusConverter
+    : JsonConverter<LedgerListByExternalIDParamsEntryStatus>
 {
-    public override EntryStatusModel Read(
+    public override LedgerListByExternalIDParamsEntryStatus Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -271,15 +270,15 @@ sealed class EntryStatusModelConverter : JsonConverter<EntryStatusModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "committed" => EntryStatusModel.Committed,
-            "pending" => EntryStatusModel.Pending,
-            _ => (EntryStatusModel)(-1),
+            "committed" => LedgerListByExternalIDParamsEntryStatus.Committed,
+            "pending" => LedgerListByExternalIDParamsEntryStatus.Pending,
+            _ => (LedgerListByExternalIDParamsEntryStatus)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryStatusModel value,
+        LedgerListByExternalIDParamsEntryStatus value,
         JsonSerializerOptions options
     )
     {
@@ -287,8 +286,8 @@ sealed class EntryStatusModelConverter : JsonConverter<EntryStatusModel>
             writer,
             value switch
             {
-                EntryStatusModel.Committed => "committed",
-                EntryStatusModel.Pending => "pending",
+                LedgerListByExternalIDParamsEntryStatus.Committed => "committed",
+                LedgerListByExternalIDParamsEntryStatus.Pending => "pending",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -298,8 +297,8 @@ sealed class EntryStatusModelConverter : JsonConverter<EntryStatusModel>
     }
 }
 
-[JsonConverter(typeof(EntryTypeModelConverter))]
-public enum EntryTypeModel
+[JsonConverter(typeof(LedgerListByExternalIDParamsEntryTypeConverter))]
+public enum LedgerListByExternalIDParamsEntryType
 {
     Increment,
     Decrement,
@@ -310,9 +309,10 @@ public enum EntryTypeModel
     Amendment,
 }
 
-sealed class EntryTypeModelConverter : JsonConverter<EntryTypeModel>
+sealed class LedgerListByExternalIDParamsEntryTypeConverter
+    : JsonConverter<LedgerListByExternalIDParamsEntryType>
 {
-    public override EntryTypeModel Read(
+    public override LedgerListByExternalIDParamsEntryType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -320,20 +320,20 @@ sealed class EntryTypeModelConverter : JsonConverter<EntryTypeModel>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => EntryTypeModel.Increment,
-            "decrement" => EntryTypeModel.Decrement,
-            "expiration_change" => EntryTypeModel.ExpirationChange,
-            "credit_block_expiry" => EntryTypeModel.CreditBlockExpiry,
-            "void" => EntryTypeModel.Void,
-            "void_initiated" => EntryTypeModel.VoidInitiated,
-            "amendment" => EntryTypeModel.Amendment,
-            _ => (EntryTypeModel)(-1),
+            "increment" => LedgerListByExternalIDParamsEntryType.Increment,
+            "decrement" => LedgerListByExternalIDParamsEntryType.Decrement,
+            "expiration_change" => LedgerListByExternalIDParamsEntryType.ExpirationChange,
+            "credit_block_expiry" => LedgerListByExternalIDParamsEntryType.CreditBlockExpiry,
+            "void" => LedgerListByExternalIDParamsEntryType.Void,
+            "void_initiated" => LedgerListByExternalIDParamsEntryType.VoidInitiated,
+            "amendment" => LedgerListByExternalIDParamsEntryType.Amendment,
+            _ => (LedgerListByExternalIDParamsEntryType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        EntryTypeModel value,
+        LedgerListByExternalIDParamsEntryType value,
         JsonSerializerOptions options
     )
     {
@@ -341,13 +341,13 @@ sealed class EntryTypeModelConverter : JsonConverter<EntryTypeModel>
             writer,
             value switch
             {
-                EntryTypeModel.Increment => "increment",
-                EntryTypeModel.Decrement => "decrement",
-                EntryTypeModel.ExpirationChange => "expiration_change",
-                EntryTypeModel.CreditBlockExpiry => "credit_block_expiry",
-                EntryTypeModel.Void => "void",
-                EntryTypeModel.VoidInitiated => "void_initiated",
-                EntryTypeModel.Amendment => "amendment",
+                LedgerListByExternalIDParamsEntryType.Increment => "increment",
+                LedgerListByExternalIDParamsEntryType.Decrement => "decrement",
+                LedgerListByExternalIDParamsEntryType.ExpirationChange => "expiration_change",
+                LedgerListByExternalIDParamsEntryType.CreditBlockExpiry => "credit_block_expiry",
+                LedgerListByExternalIDParamsEntryType.Void => "void",
+                LedgerListByExternalIDParamsEntryType.VoidInitiated => "void_initiated",
+                LedgerListByExternalIDParamsEntryType.Amendment => "amendment",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

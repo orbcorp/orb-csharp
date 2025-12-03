@@ -601,7 +601,7 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigTest : 
             Group = "group",
         };
 
-        List<DimensionValueModel> expectedDimensionValues =
+        List<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue> expectedDimensionValues =
         [
             new()
             {
@@ -670,7 +670,7 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigTest : 
             );
         Assert.NotNull(deserialized);
 
-        List<DimensionValueModel> expectedDimensionValues =
+        List<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue> expectedDimensionValues =
         [
             new()
             {
@@ -710,12 +710,13 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigTest : 
     }
 }
 
-public class DimensionValueModelTest : TestBase
+public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValueTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DimensionValueModel
+        var model = new NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -734,7 +735,7 @@ public class DimensionValueModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DimensionValueModel
+        var model = new NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -742,7 +743,10 @@ public class DimensionValueModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValueModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -750,7 +754,7 @@ public class DimensionValueModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DimensionValueModel
+        var model = new NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",
@@ -758,7 +762,10 @@ public class DimensionValueModelTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValueModel>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>(
+                json
+            );
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -773,7 +780,7 @@ public class DimensionValueModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DimensionValueModel
+        var model = new NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
         {
             GroupingKey = "x",
             TierLowerBound = "tier_lower_bound",

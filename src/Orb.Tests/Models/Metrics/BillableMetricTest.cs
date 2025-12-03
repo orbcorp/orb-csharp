@@ -25,7 +25,7 @@ public class BillableMetricTest : TestBase
                     new()
                     {
                         ExternalConnectionName =
-                            ExternalConnectionModelExternalConnectionName.Stripe,
+                            ItemExternalConnectionExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],
@@ -48,7 +48,7 @@ public class BillableMetricTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -90,7 +90,7 @@ public class BillableMetricTest : TestBase
                     new()
                     {
                         ExternalConnectionName =
-                            ExternalConnectionModelExternalConnectionName.Stripe,
+                            ItemExternalConnectionExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],
@@ -125,7 +125,7 @@ public class BillableMetricTest : TestBase
                     new()
                     {
                         ExternalConnectionName =
-                            ExternalConnectionModelExternalConnectionName.Stripe,
+                            ItemExternalConnectionExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],
@@ -152,7 +152,7 @@ public class BillableMetricTest : TestBase
             [
                 new()
                 {
-                    ExternalConnectionName = ExternalConnectionModelExternalConnectionName.Stripe,
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
                     ExternalEntityID = "external_entity_id",
                 },
             ],
@@ -194,7 +194,7 @@ public class BillableMetricTest : TestBase
                     new()
                     {
                         ExternalConnectionName =
-                            ExternalConnectionModelExternalConnectionName.Stripe,
+                            ItemExternalConnectionExternalConnectionName.Stripe,
                         ExternalEntityID = "external_entity_id",
                     },
                 ],

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
-using Orb.Models.Subscriptions;
-using Models = Orb.Models;
+using Orb.Models;
+using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
@@ -11,9 +11,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -22,19 +22,19 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -50,40 +50,47 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
 
-        ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceCadence> expectedCadence =
-            NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual;
-        GroupedWithProratedMinimumConfig expectedGroupedWithProratedMinimumConfig = new()
-        {
-            GroupingKey = "x",
-            Minimum = "minimum",
-            UnitRate = "unit_rate",
-        };
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence
+        > expectedCadence =
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual;
+        Subscriptions::GroupedWithProratedMinimumConfig expectedGroupedWithProratedMinimumConfig =
+            new()
+            {
+                GroupingKey = "x",
+                Minimum = "minimum",
+                UnitRate = "unit_rate",
+            };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceModelType> expectedModelType =
-            NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -92,10 +99,10 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -132,9 +139,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -143,19 +150,19 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -171,7 +178,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -179,7 +186,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionGroupedWithProratedMinimumPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice>(
+                json
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -187,9 +196,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -198,19 +207,19 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -226,7 +235,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -234,37 +243,46 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
 
         string json = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewSubscriptionGroupedWithProratedMinimumPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice>(
+                json
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceCadence> expectedCadence =
-            NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual;
-        GroupedWithProratedMinimumConfig expectedGroupedWithProratedMinimumConfig = new()
-        {
-            GroupingKey = "x",
-            Minimum = "minimum",
-            UnitRate = "unit_rate",
-        };
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence
+        > expectedCadence =
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual;
+        Subscriptions::GroupedWithProratedMinimumConfig expectedGroupedWithProratedMinimumConfig =
+            new()
+            {
+                GroupingKey = "x",
+                Minimum = "minimum",
+                UnitRate = "unit_rate",
+            };
         string expectedItemID = "item_id";
-        ApiEnum<string, NewSubscriptionGroupedWithProratedMinimumPriceModelType> expectedModelType =
-            NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum;
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType
+        > expectedModelType =
+            Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum;
         string expectedName = "Annual fee";
         string expectedBillableMetricID = "billable_metric_id";
         bool expectedBilledInAdvance = true;
-        Models::NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedBillingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         double expectedConversionRate = 0;
-        NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig expectedConversionRateConfig =
-            new Models::SharedUnitConversionRateConfig()
+        Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig expectedConversionRateConfig =
+            new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             };
         string expectedCurrency = "currency";
-        Models::NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
+        NewDimensionalPriceConfiguration expectedDimensionalPriceConfiguration = new()
         {
             DimensionValues = ["string"],
             DimensionalPriceGroupID = "dimensional_price_group_id",
@@ -273,10 +291,10 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
         string expectedExternalPriceID = "external_price_id";
         double expectedFixedPriceQuantity = 0;
         string expectedInvoiceGroupingKey = "x";
-        Models::NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
+        NewBillingCycleConfiguration expectedInvoicingCycleConfiguration = new()
         {
             Duration = 0,
-            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
@@ -316,9 +334,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -327,19 +345,19 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
             BillableMetricID = "billable_metric_id",
             BilledInAdvance = true,
             BillingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             ConversionRate = 0,
-            ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
             {
-                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
             },
             Currency = "currency",
@@ -355,7 +373,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
-                DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
@@ -367,9 +385,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -378,7 +396,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
         };
 
@@ -413,9 +431,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -424,7 +442,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
         };
 
@@ -434,9 +452,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -445,7 +463,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -494,9 +512,9 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new NewSubscriptionGroupedWithProratedMinimumPrice
+        var model = new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice
         {
-            Cadence = NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
+            Cadence = Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceCadence.Annual,
             GroupedWithProratedMinimumConfig = new()
             {
                 GroupingKey = "x",
@@ -505,7 +523,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             },
             ItemID = "item_id",
             ModelType =
-                NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
             Name = "Annual fee",
 
             BillableMetricID = null,
@@ -532,7 +550,7 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new GroupedWithProratedMinimumConfig
+        var model = new Subscriptions::GroupedWithProratedMinimumConfig
         {
             GroupingKey = "x",
             Minimum = "minimum",
@@ -551,7 +569,7 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new GroupedWithProratedMinimumConfig
+        var model = new Subscriptions::GroupedWithProratedMinimumConfig
         {
             GroupingKey = "x",
             Minimum = "minimum",
@@ -559,7 +577,8 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::GroupedWithProratedMinimumConfig>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -567,7 +586,7 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new GroupedWithProratedMinimumConfig
+        var model = new Subscriptions::GroupedWithProratedMinimumConfig
         {
             GroupingKey = "x",
             Minimum = "minimum",
@@ -575,7 +594,8 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(json);
+        var deserialized =
+            JsonSerializer.Deserialize<Subscriptions::GroupedWithProratedMinimumConfig>(json);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -590,7 +610,7 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new GroupedWithProratedMinimumConfig
+        var model = new Subscriptions::GroupedWithProratedMinimumConfig
         {
             GroupingKey = "x",
             Minimum = "minimum",

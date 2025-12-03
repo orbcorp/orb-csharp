@@ -4524,14 +4524,13 @@ public sealed record class TieredWithProrationConfig : ModelBase
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.TierModel> Tiers
+    public required IReadOnlyList<global::Orb.Models.Subscriptions.TieredWithProrationConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.TierModel>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<global::Orb.Models.Subscriptions.TieredWithProrationConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -4567,7 +4566,9 @@ public sealed record class TieredWithProrationConfig : ModelBase
     }
 
     [SetsRequiredMembers]
-    public TieredWithProrationConfig(List<global::Orb.Models.Subscriptions.TierModel> tiers)
+    public TieredWithProrationConfig(
+        List<global::Orb.Models.Subscriptions.TieredWithProrationConfigTier> tiers
+    )
         : this()
     {
         this.Tiers = tiers;
@@ -4587,11 +4588,11 @@ class TieredWithProrationConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.TierModel,
-        global::Orb.Models.Subscriptions.TierModelFromRaw
+        global::Orb.Models.Subscriptions.TieredWithProrationConfigTier,
+        global::Orb.Models.Subscriptions.TieredWithProrationConfigTierFromRaw
     >)
 )]
-public sealed record class TierModel : ModelBase
+public sealed record class TieredWithProrationConfigTier : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -4617,22 +4618,22 @@ public sealed record class TierModel : ModelBase
         _ = this.UnitAmount;
     }
 
-    public TierModel() { }
+    public TieredWithProrationConfigTier() { }
 
-    public TierModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TierModel(FrozenDictionary<string, JsonElement> rawData)
+    TieredWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.TierModel FromRawUnchecked(
+    public static global::Orb.Models.Subscriptions.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4640,11 +4641,12 @@ public sealed record class TierModel : ModelBase
     }
 }
 
-class TierModelFromRaw : IFromRaw<global::Orb.Models.Subscriptions.TierModel>
+class TieredWithProrationConfigTierFromRaw
+    : IFromRaw<global::Orb.Models.Subscriptions.TieredWithProrationConfigTier>
 {
-    public global::Orb.Models.Subscriptions.TierModel FromRawUnchecked(
+    public global::Orb.Models.Subscriptions.TieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.TierModel.FromRawUnchecked(rawData);
+    ) => global::Orb.Models.Subscriptions.TieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -10539,14 +10541,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Property filters to apply (all must match)
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.FilterModel> Filters
+    public required IReadOnlyList<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.FilterModel>>(
-                this.RawData,
-                "filters"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
+            >(this.RawData, "filters");
         }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
@@ -10554,14 +10555,13 @@ public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier1> Tiers
+    public required IReadOnlyList<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier1>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -10618,11 +10618,11 @@ class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.FilterModel,
-        global::Orb.Models.Subscriptions.FilterModelFromRaw
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter,
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
-public sealed record class FilterModel : ModelBase
+public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter : ModelBase
 {
     /// <summary>
     /// Event property key to filter on
@@ -10648,22 +10648,26 @@ public sealed record class FilterModel : ModelBase
         _ = this.PropertyValue;
     }
 
-    public FilterModel() { }
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
-    public FilterModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FilterModel(FrozenDictionary<string, JsonElement> rawData)
+    ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.FilterModel FromRawUnchecked(
+    public static ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -10671,11 +10675,12 @@ public sealed record class FilterModel : ModelBase
     }
 }
 
-class FilterModelFromRaw : IFromRaw<global::Orb.Models.Subscriptions.FilterModel>
+class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
+    : IFromRaw<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
-    public global::Orb.Models.Subscriptions.FilterModel FromRawUnchecked(
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.FilterModel.FromRawUnchecked(rawData);
+    ) => ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -10683,11 +10688,11 @@ class FilterModelFromRaw : IFromRaw<global::Orb.Models.Subscriptions.FilterModel
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier1,
-        global::Orb.Models.Subscriptions.Tier1FromRaw
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier,
+        ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     >)
 )]
-public sealed record class Tier1 : ModelBase
+public sealed record class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier : ModelBase
 {
     /// <summary>
     /// Amount per unit
@@ -10713,22 +10718,26 @@ public sealed record class Tier1 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier1() { }
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier() { }
 
-    public Tier1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier1(FrozenDictionary<string, JsonElement> rawData)
+    ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier1 FromRawUnchecked(
+    public static ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -10736,18 +10745,19 @@ public sealed record class Tier1 : ModelBase
     }
 
     [SetsRequiredMembers]
-    public Tier1(string unitAmount)
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class Tier1FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier1>
+class ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
+    : IFromRaw<ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier1 FromRawUnchecked(
+    public ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier1.FromRawUnchecked(rawData);
+    ) => ReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -11362,14 +11372,13 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
     /// Tiers for rating based on total usage quantities into the specified tier
     /// with proration
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.Tier2> Tiers
+    public required IReadOnlyList<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> Tiers
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Subscriptions.Tier2>>(
-                this.RawData,
-                "tiers"
-            );
+            return ModelBase.GetNotNullClass<
+                List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
+            >(this.RawData, "tiers");
         }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
@@ -11410,7 +11419,7 @@ public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrati
 
     [SetsRequiredMembers]
     public ReplacePricePriceTieredWithProrationTieredWithProrationConfig(
-        List<global::Orb.Models.Subscriptions.Tier2> tiers
+        List<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier> tiers
     )
         : this()
     {
@@ -11431,11 +11440,12 @@ class ReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Subscriptions.Tier2,
-        global::Orb.Models.Subscriptions.Tier2FromRaw
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier,
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
     >)
 )]
-public sealed record class Tier2 : ModelBase
+public sealed record class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
+    : ModelBase
 {
     /// <summary>
     /// Inclusive tier starting value
@@ -11461,22 +11471,26 @@ public sealed record class Tier2 : ModelBase
         _ = this.UnitAmount;
     }
 
-    public Tier2() { }
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier() { }
 
-    public Tier2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier2(FrozenDictionary<string, JsonElement> rawData)
+    ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Subscriptions.Tier2 FromRawUnchecked(
+    public static ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -11484,11 +11498,13 @@ public sealed record class Tier2 : ModelBase
     }
 }
 
-class Tier2FromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tier2>
+class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
+    : IFromRaw<ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
-    public global::Orb.Models.Subscriptions.Tier2 FromRawUnchecked(
+    public ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.Tier2.FromRawUnchecked(rawData);
+    ) =>
+        ReplacePricePriceTieredWithProrationTieredWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(ReplacePricePriceTieredWithProrationConversionRateConfigConverter))]

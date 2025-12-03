@@ -29,9 +29,9 @@ public sealed record class Maximum : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this maximum to.
     /// </summary>
-    public required IReadOnlyList<Filter2> Filters
+    public required IReadOnlyList<MaximumFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<Filter2>>(this.RawData, "filters"); }
+        get { return ModelBase.GetNotNullClass<List<MaximumFilter>>(this.RawData, "filters"); }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -86,17 +86,20 @@ class MaximumFromRaw : IFromRaw<Maximum>
         Maximum.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Filter2, Filter2FromRaw>))]
-public sealed record class Filter2 : ModelBase
+[JsonConverter(typeof(ModelConverter<MaximumFilter, MaximumFilterFromRaw>))]
+public sealed record class MaximumFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter2Field> Field
+    public required ApiEnum<string, MaximumFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter2Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -104,11 +107,11 @@ public sealed record class Filter2 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter2Operator> Operator
+    public required ApiEnum<string, MaximumFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter2Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -132,38 +135,38 @@ public sealed record class Filter2 : ModelBase
         _ = this.Values;
     }
 
-    public Filter2() { }
+    public MaximumFilter() { }
 
-    public Filter2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public MaximumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter2(FrozenDictionary<string, JsonElement> rawData)
+    MaximumFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static MaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter2FromRaw : IFromRaw<Filter2>
+class MaximumFilterFromRaw : IFromRaw<MaximumFilter>
 {
-    public Filter2 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter2.FromRawUnchecked(rawData);
+    public MaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MaximumFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter2FieldConverter))]
-public enum Filter2Field
+[JsonConverter(typeof(MaximumFilterFieldConverter))]
+public enum MaximumFilterField
 {
     PriceID,
     ItemID,
@@ -172,9 +175,9 @@ public enum Filter2Field
     PricingUnitID,
 }
 
-sealed class Filter2FieldConverter : JsonConverter<Filter2Field>
+sealed class MaximumFilterFieldConverter : JsonConverter<MaximumFilterField>
 {
-    public override Filter2Field Read(
+    public override MaximumFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -182,18 +185,18 @@ sealed class Filter2FieldConverter : JsonConverter<Filter2Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter2Field.PriceID,
-            "item_id" => Filter2Field.ItemID,
-            "price_type" => Filter2Field.PriceType,
-            "currency" => Filter2Field.Currency,
-            "pricing_unit_id" => Filter2Field.PricingUnitID,
-            _ => (Filter2Field)(-1),
+            "price_id" => MaximumFilterField.PriceID,
+            "item_id" => MaximumFilterField.ItemID,
+            "price_type" => MaximumFilterField.PriceType,
+            "currency" => MaximumFilterField.Currency,
+            "pricing_unit_id" => MaximumFilterField.PricingUnitID,
+            _ => (MaximumFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter2Field value,
+        MaximumFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -201,11 +204,11 @@ sealed class Filter2FieldConverter : JsonConverter<Filter2Field>
             writer,
             value switch
             {
-                Filter2Field.PriceID => "price_id",
-                Filter2Field.ItemID => "item_id",
-                Filter2Field.PriceType => "price_type",
-                Filter2Field.Currency => "currency",
-                Filter2Field.PricingUnitID => "pricing_unit_id",
+                MaximumFilterField.PriceID => "price_id",
+                MaximumFilterField.ItemID => "item_id",
+                MaximumFilterField.PriceType => "price_type",
+                MaximumFilterField.Currency => "currency",
+                MaximumFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -218,16 +221,16 @@ sealed class Filter2FieldConverter : JsonConverter<Filter2Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter2OperatorConverter))]
-public enum Filter2Operator
+[JsonConverter(typeof(MaximumFilterOperatorConverter))]
+public enum MaximumFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter2OperatorConverter : JsonConverter<Filter2Operator>
+sealed class MaximumFilterOperatorConverter : JsonConverter<MaximumFilterOperator>
 {
-    public override Filter2Operator Read(
+    public override MaximumFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -235,15 +238,15 @@ sealed class Filter2OperatorConverter : JsonConverter<Filter2Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter2Operator.Includes,
-            "excludes" => Filter2Operator.Excludes,
-            _ => (Filter2Operator)(-1),
+            "includes" => MaximumFilterOperator.Includes,
+            "excludes" => MaximumFilterOperator.Excludes,
+            _ => (MaximumFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter2Operator value,
+        MaximumFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -251,8 +254,8 @@ sealed class Filter2OperatorConverter : JsonConverter<Filter2Operator>
             writer,
             value switch
             {
-                Filter2Operator.Includes => "includes",
-                Filter2Operator.Excludes => "excludes",
+                MaximumFilterOperator.Includes => "includes",
+                MaximumFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

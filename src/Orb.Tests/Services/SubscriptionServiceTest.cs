@@ -87,7 +87,7 @@ public class SubscriptionServiceTest : TestBase
     {
         var mutatedSubscription = await this.client.Subscriptions.SchedulePlanChange(
             "subscription_id",
-            new() { ChangeOption = ChangeOptionModel.RequestedDate }
+            new() { ChangeOption = SubscriptionSchedulePlanChangeParamsChangeOption.RequestedDate }
         );
         mutatedSubscription.Validate();
     }

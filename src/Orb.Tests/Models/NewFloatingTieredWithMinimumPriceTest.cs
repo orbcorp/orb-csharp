@@ -660,7 +660,7 @@ public class TieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        List<Tier6> expectedTiers =
+        List<TieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -745,7 +745,7 @@ public class TieredWithMinimumConfigTest : TestBase
         var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConfig>(json);
         Assert.NotNull(deserialized);
 
-        List<Tier6> expectedTiers =
+        List<TieredWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -914,12 +914,12 @@ public class TieredWithMinimumConfigTest : TestBase
     }
 }
 
-public class Tier6Test : TestBase
+public class TieredWithMinimumConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier6
+        var model = new TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -938,7 +938,7 @@ public class Tier6Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier6
+        var model = new TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -946,7 +946,7 @@ public class Tier6Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier6>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -954,7 +954,7 @@ public class Tier6Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier6
+        var model = new TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",
@@ -962,7 +962,7 @@ public class Tier6Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier6>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -977,7 +977,7 @@ public class Tier6Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier6
+        var model = new TieredWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             TierLowerBound = "tier_lower_bound",

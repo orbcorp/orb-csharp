@@ -21,8 +21,8 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter6Field.PriceID,
-                    Operator = Filter6Operator.Includes,
+                    Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36,12 +36,12 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
         string expectedAmount = "amount";
         string expectedAmountDiscount = "amount_discount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter6> expectedFilters =
+        List<MonetaryAmountDiscountAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter6Field.PriceID,
-                Operator = Filter6Operator.Includes,
+                Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -82,8 +82,8 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter6Field.PriceID,
-                    Operator = Filter6Operator.Includes,
+                    Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -112,8 +112,8 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter6Field.PriceID,
-                    Operator = Filter6Operator.Includes,
+                    Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -131,12 +131,12 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
         string expectedAmount = "amount";
         string expectedAmountDiscount = "amount_discount";
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter6> expectedFilters =
+        List<MonetaryAmountDiscountAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter6Field.PriceID,
-                Operator = Filter6Operator.Includes,
+                Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -177,8 +177,8 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter6Field.PriceID,
-                    Operator = Filter6Operator.Includes,
+                    Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                    Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -191,20 +191,22 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
     }
 }
 
-public class Filter6Test : TestBase
+public class MonetaryAmountDiscountAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter6
+        var model = new MonetaryAmountDiscountAdjustmentFilter
         {
-            Field = Filter6Field.PriceID,
-            Operator = Filter6Operator.Includes,
+            Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter6Field> expectedField = Filter6Field.PriceID;
-        ApiEnum<string, Filter6Operator> expectedOperator = Filter6Operator.Includes;
+        ApiEnum<string, MonetaryAmountDiscountAdjustmentFilterField> expectedField =
+            MonetaryAmountDiscountAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryAmountDiscountAdjustmentFilterOperator> expectedOperator =
+            MonetaryAmountDiscountAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -219,15 +221,15 @@ public class Filter6Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter6
+        var model = new MonetaryAmountDiscountAdjustmentFilter
         {
-            Field = Filter6Field.PriceID,
-            Operator = Filter6Operator.Includes,
+            Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter6>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustmentFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -235,19 +237,21 @@ public class Filter6Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter6
+        var model = new MonetaryAmountDiscountAdjustmentFilter
         {
-            Field = Filter6Field.PriceID,
-            Operator = Filter6Operator.Includes,
+            Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter6>(json);
+        var deserialized = JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustmentFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter6Field> expectedField = Filter6Field.PriceID;
-        ApiEnum<string, Filter6Operator> expectedOperator = Filter6Operator.Includes;
+        ApiEnum<string, MonetaryAmountDiscountAdjustmentFilterField> expectedField =
+            MonetaryAmountDiscountAdjustmentFilterField.PriceID;
+        ApiEnum<string, MonetaryAmountDiscountAdjustmentFilterOperator> expectedOperator =
+            MonetaryAmountDiscountAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -262,10 +266,10 @@ public class Filter6Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter6
+        var model = new MonetaryAmountDiscountAdjustmentFilter
         {
-            Field = Filter6Field.PriceID,
-            Operator = Filter6Operator.Includes,
+            Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+            Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

@@ -42,11 +42,11 @@ public sealed record class Item : ModelBase
     /// A list of external connections for this item, used to sync with external invoicing
     /// and tax systems.
     /// </summary>
-    public required IReadOnlyList<ExternalConnectionModel> ExternalConnections
+    public required IReadOnlyList<ItemExternalConnection> ExternalConnections
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ExternalConnectionModel>>(
+            return ModelBase.GetNotNullClass<List<ItemExternalConnection>>(
                 this.RawData,
                 "external_connections"
             );
@@ -134,21 +134,21 @@ class ItemFromRaw : IFromRaw<Item>
 /// Represents a connection between an Item and an external system for invoicing
 /// or tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ExternalConnectionModel, ExternalConnectionModelFromRaw>))]
-public sealed record class ExternalConnectionModel : ModelBase
+[JsonConverter(typeof(ModelConverter<ItemExternalConnection, ItemExternalConnectionFromRaw>))]
+public sealed record class ItemExternalConnection : ModelBase
 {
     /// <summary>
     /// The name of the external system this item is connected to.
     /// </summary>
     public required ApiEnum<
         string,
-        ExternalConnectionModelExternalConnectionName
+        ItemExternalConnectionExternalConnectionName
     > ExternalConnectionName
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, ExternalConnectionModelExternalConnectionName>
+                ApiEnum<string, ItemExternalConnectionExternalConnectionName>
             >(this.RawData, "external_connection_name");
         }
         init { ModelBase.Set(this._rawData, "external_connection_name", value); }
@@ -169,22 +169,22 @@ public sealed record class ExternalConnectionModel : ModelBase
         _ = this.ExternalEntityID;
     }
 
-    public ExternalConnectionModel() { }
+    public ItemExternalConnection() { }
 
-    public ExternalConnectionModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ItemExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ExternalConnectionModel(FrozenDictionary<string, JsonElement> rawData)
+    ItemExternalConnection(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static ExternalConnectionModel FromRawUnchecked(
+    public static ItemExternalConnection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -192,18 +192,18 @@ public sealed record class ExternalConnectionModel : ModelBase
     }
 }
 
-class ExternalConnectionModelFromRaw : IFromRaw<ExternalConnectionModel>
+class ItemExternalConnectionFromRaw : IFromRaw<ItemExternalConnection>
 {
-    public ExternalConnectionModel FromRawUnchecked(
+    public ItemExternalConnection FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => ExternalConnectionModel.FromRawUnchecked(rawData);
+    ) => ItemExternalConnection.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The name of the external system this item is connected to.
 /// </summary>
-[JsonConverter(typeof(ExternalConnectionModelExternalConnectionNameConverter))]
-public enum ExternalConnectionModelExternalConnectionName
+[JsonConverter(typeof(ItemExternalConnectionExternalConnectionNameConverter))]
+public enum ItemExternalConnectionExternalConnectionName
 {
     Stripe,
     Quickbooks,
@@ -215,10 +215,10 @@ public enum ExternalConnectionModelExternalConnectionName
     Numeral,
 }
 
-sealed class ExternalConnectionModelExternalConnectionNameConverter
-    : JsonConverter<ExternalConnectionModelExternalConnectionName>
+sealed class ItemExternalConnectionExternalConnectionNameConverter
+    : JsonConverter<ItemExternalConnectionExternalConnectionName>
 {
-    public override ExternalConnectionModelExternalConnectionName Read(
+    public override ItemExternalConnectionExternalConnectionName Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -226,21 +226,21 @@ sealed class ExternalConnectionModelExternalConnectionNameConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => ExternalConnectionModelExternalConnectionName.Stripe,
-            "quickbooks" => ExternalConnectionModelExternalConnectionName.Quickbooks,
-            "bill.com" => ExternalConnectionModelExternalConnectionName.BillCom,
-            "netsuite" => ExternalConnectionModelExternalConnectionName.Netsuite,
-            "taxjar" => ExternalConnectionModelExternalConnectionName.Taxjar,
-            "avalara" => ExternalConnectionModelExternalConnectionName.Avalara,
-            "anrok" => ExternalConnectionModelExternalConnectionName.Anrok,
-            "numeral" => ExternalConnectionModelExternalConnectionName.Numeral,
-            _ => (ExternalConnectionModelExternalConnectionName)(-1),
+            "stripe" => ItemExternalConnectionExternalConnectionName.Stripe,
+            "quickbooks" => ItemExternalConnectionExternalConnectionName.Quickbooks,
+            "bill.com" => ItemExternalConnectionExternalConnectionName.BillCom,
+            "netsuite" => ItemExternalConnectionExternalConnectionName.Netsuite,
+            "taxjar" => ItemExternalConnectionExternalConnectionName.Taxjar,
+            "avalara" => ItemExternalConnectionExternalConnectionName.Avalara,
+            "anrok" => ItemExternalConnectionExternalConnectionName.Anrok,
+            "numeral" => ItemExternalConnectionExternalConnectionName.Numeral,
+            _ => (ItemExternalConnectionExternalConnectionName)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ExternalConnectionModelExternalConnectionName value,
+        ItemExternalConnectionExternalConnectionName value,
         JsonSerializerOptions options
     )
     {
@@ -248,14 +248,14 @@ sealed class ExternalConnectionModelExternalConnectionNameConverter
             writer,
             value switch
             {
-                ExternalConnectionModelExternalConnectionName.Stripe => "stripe",
-                ExternalConnectionModelExternalConnectionName.Quickbooks => "quickbooks",
-                ExternalConnectionModelExternalConnectionName.BillCom => "bill.com",
-                ExternalConnectionModelExternalConnectionName.Netsuite => "netsuite",
-                ExternalConnectionModelExternalConnectionName.Taxjar => "taxjar",
-                ExternalConnectionModelExternalConnectionName.Avalara => "avalara",
-                ExternalConnectionModelExternalConnectionName.Anrok => "anrok",
-                ExternalConnectionModelExternalConnectionName.Numeral => "numeral",
+                ItemExternalConnectionExternalConnectionName.Stripe => "stripe",
+                ItemExternalConnectionExternalConnectionName.Quickbooks => "quickbooks",
+                ItemExternalConnectionExternalConnectionName.BillCom => "bill.com",
+                ItemExternalConnectionExternalConnectionName.Netsuite => "netsuite",
+                ItemExternalConnectionExternalConnectionName.Taxjar => "taxjar",
+                ItemExternalConnectionExternalConnectionName.Avalara => "avalara",
+                ItemExternalConnectionExternalConnectionName.Anrok => "anrok",
+                ItemExternalConnectionExternalConnectionName.Numeral => "numeral",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

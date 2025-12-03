@@ -68,11 +68,11 @@ public sealed record class Invoice : ModelBase
     /// <summary>
     /// A list of credit notes associated with the invoice
     /// </summary>
-    public required IReadOnlyList<CreditNoteModel> CreditNotes
+    public required IReadOnlyList<InvoiceCreditNote> CreditNotes
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<CreditNoteModel>>(this.RawData, "credit_notes");
+            return ModelBase.GetNotNullClass<List<InvoiceCreditNote>>(this.RawData, "credit_notes");
         }
         init { ModelBase.Set(this._rawData, "credit_notes", value); }
     }
@@ -92,11 +92,11 @@ public sealed record class Invoice : ModelBase
         init { ModelBase.Set(this._rawData, "customer", value); }
     }
 
-    public required IReadOnlyList<CustomerBalanceTransactionModel> CustomerBalanceTransactions
+    public required IReadOnlyList<InvoiceCustomerBalanceTransaction> CustomerBalanceTransactions
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<CustomerBalanceTransactionModel>>(
+            return ModelBase.GetNotNullClass<List<InvoiceCustomerBalanceTransaction>>(
                 this.RawData,
                 "customer_balance_transactions"
             );
@@ -352,9 +352,9 @@ public sealed record class Invoice : ModelBase
     /// <summary>
     /// The breakdown of prices in this invoice.
     /// </summary>
-    public required IReadOnlyList<LineItem1> LineItems
+    public required IReadOnlyList<InvoiceLineItem> LineItems
     {
-        get { return ModelBase.GetNotNullClass<List<LineItem1>>(this.RawData, "line_items"); }
+        get { return ModelBase.GetNotNullClass<List<InvoiceLineItem>>(this.RawData, "line_items"); }
         init { ModelBase.Set(this._rawData, "line_items", value); }
     }
 
@@ -419,11 +419,11 @@ public sealed record class Invoice : ModelBase
     /// <summary>
     /// A list of payment attempts associated with the invoice
     /// </summary>
-    public required IReadOnlyList<PaymentAttemptModel> PaymentAttempts
+    public required IReadOnlyList<InvoicePaymentAttempt> PaymentAttempts
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PaymentAttemptModel>>(
+            return ModelBase.GetNotNullClass<List<InvoicePaymentAttempt>>(
                 this.RawData,
                 "payment_attempts"
             );
@@ -750,8 +750,8 @@ class InvoiceAutoCollectionFromRaw : IFromRaw<InvoiceAutoCollection>
     ) => InvoiceAutoCollection.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<CreditNoteModel, CreditNoteModelFromRaw>))]
-public sealed record class CreditNoteModel : ModelBase
+[JsonConverter(typeof(ModelConverter<InvoiceCreditNote, InvoiceCreditNoteFromRaw>))]
+public sealed record class InvoiceCreditNote : ModelBase
 {
     public required string ID
     {
@@ -816,37 +816,42 @@ public sealed record class CreditNoteModel : ModelBase
         _ = this.VoidedAt;
     }
 
-    public CreditNoteModel() { }
+    public InvoiceCreditNote() { }
 
-    public CreditNoteModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public InvoiceCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CreditNoteModel(FrozenDictionary<string, JsonElement> rawData)
+    InvoiceCreditNote(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CreditNoteModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static InvoiceCreditNote FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class CreditNoteModelFromRaw : IFromRaw<CreditNoteModel>
+class InvoiceCreditNoteFromRaw : IFromRaw<InvoiceCreditNote>
 {
-    public CreditNoteModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        CreditNoteModel.FromRawUnchecked(rawData);
+    public InvoiceCreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceCreditNote.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
-    typeof(ModelConverter<CustomerBalanceTransactionModel, CustomerBalanceTransactionModelFromRaw>)
+    typeof(ModelConverter<
+        InvoiceCustomerBalanceTransaction,
+        InvoiceCustomerBalanceTransactionFromRaw
+    >)
 )]
-public sealed record class CustomerBalanceTransactionModel : ModelBase
+public sealed record class InvoiceCustomerBalanceTransaction : ModelBase
 {
     /// <summary>
     /// A unique id for this transaction.
@@ -857,12 +862,12 @@ public sealed record class CustomerBalanceTransactionModel : ModelBase
         init { ModelBase.Set(this._rawData, "id", value); }
     }
 
-    public required ApiEnum<string, CustomerBalanceTransactionModelAction> Action
+    public required ApiEnum<string, InvoiceCustomerBalanceTransactionAction> Action
     {
         get
         {
             return ModelBase.GetNotNullClass<
-                ApiEnum<string, CustomerBalanceTransactionModelAction>
+                ApiEnum<string, InvoiceCustomerBalanceTransactionAction>
             >(this.RawData, "action");
         }
         init { ModelBase.Set(this._rawData, "action", value); }
@@ -929,14 +934,13 @@ public sealed record class CustomerBalanceTransactionModel : ModelBase
         init { ModelBase.Set(this._rawData, "starting_balance", value); }
     }
 
-    public required ApiEnum<string, CustomerBalanceTransactionModelType> Type
+    public required ApiEnum<string, InvoiceCustomerBalanceTransactionType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CustomerBalanceTransactionModelType>>(
-                this.RawData,
-                "type"
-            );
+            return ModelBase.GetNotNullClass<
+                ApiEnum<string, InvoiceCustomerBalanceTransactionType>
+            >(this.RawData, "type");
         }
         init { ModelBase.Set(this._rawData, "type", value); }
     }
@@ -955,22 +959,22 @@ public sealed record class CustomerBalanceTransactionModel : ModelBase
         this.Type.Validate();
     }
 
-    public CustomerBalanceTransactionModel() { }
+    public InvoiceCustomerBalanceTransaction() { }
 
-    public CustomerBalanceTransactionModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public InvoiceCustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CustomerBalanceTransactionModel(FrozenDictionary<string, JsonElement> rawData)
+    InvoiceCustomerBalanceTransaction(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static CustomerBalanceTransactionModel FromRawUnchecked(
+    public static InvoiceCustomerBalanceTransaction FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -978,15 +982,15 @@ public sealed record class CustomerBalanceTransactionModel : ModelBase
     }
 }
 
-class CustomerBalanceTransactionModelFromRaw : IFromRaw<CustomerBalanceTransactionModel>
+class InvoiceCustomerBalanceTransactionFromRaw : IFromRaw<InvoiceCustomerBalanceTransaction>
 {
-    public CustomerBalanceTransactionModel FromRawUnchecked(
+    public InvoiceCustomerBalanceTransaction FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CustomerBalanceTransactionModel.FromRawUnchecked(rawData);
+    ) => InvoiceCustomerBalanceTransaction.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(CustomerBalanceTransactionModelActionConverter))]
-public enum CustomerBalanceTransactionModelAction
+[JsonConverter(typeof(InvoiceCustomerBalanceTransactionActionConverter))]
+public enum InvoiceCustomerBalanceTransactionAction
 {
     AppliedToInvoice,
     ManualAdjustment,
@@ -1000,10 +1004,10 @@ public enum CustomerBalanceTransactionModelAction
     SmallInvoiceCarryover,
 }
 
-sealed class CustomerBalanceTransactionModelActionConverter
-    : JsonConverter<CustomerBalanceTransactionModelAction>
+sealed class InvoiceCustomerBalanceTransactionActionConverter
+    : JsonConverter<InvoiceCustomerBalanceTransactionAction>
 {
-    public override CustomerBalanceTransactionModelAction Read(
+    public override InvoiceCustomerBalanceTransactionAction Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1011,24 +1015,25 @@ sealed class CustomerBalanceTransactionModelActionConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "applied_to_invoice" => CustomerBalanceTransactionModelAction.AppliedToInvoice,
-            "manual_adjustment" => CustomerBalanceTransactionModelAction.ManualAdjustment,
-            "prorated_refund" => CustomerBalanceTransactionModelAction.ProratedRefund,
-            "revert_prorated_refund" => CustomerBalanceTransactionModelAction.RevertProratedRefund,
-            "return_from_voiding" => CustomerBalanceTransactionModelAction.ReturnFromVoiding,
-            "credit_note_applied" => CustomerBalanceTransactionModelAction.CreditNoteApplied,
-            "credit_note_voided" => CustomerBalanceTransactionModelAction.CreditNoteVoided,
-            "overpayment_refund" => CustomerBalanceTransactionModelAction.OverpaymentRefund,
-            "external_payment" => CustomerBalanceTransactionModelAction.ExternalPayment,
+            "applied_to_invoice" => InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
+            "manual_adjustment" => InvoiceCustomerBalanceTransactionAction.ManualAdjustment,
+            "prorated_refund" => InvoiceCustomerBalanceTransactionAction.ProratedRefund,
+            "revert_prorated_refund" =>
+                InvoiceCustomerBalanceTransactionAction.RevertProratedRefund,
+            "return_from_voiding" => InvoiceCustomerBalanceTransactionAction.ReturnFromVoiding,
+            "credit_note_applied" => InvoiceCustomerBalanceTransactionAction.CreditNoteApplied,
+            "credit_note_voided" => InvoiceCustomerBalanceTransactionAction.CreditNoteVoided,
+            "overpayment_refund" => InvoiceCustomerBalanceTransactionAction.OverpaymentRefund,
+            "external_payment" => InvoiceCustomerBalanceTransactionAction.ExternalPayment,
             "small_invoice_carryover" =>
-                CustomerBalanceTransactionModelAction.SmallInvoiceCarryover,
-            _ => (CustomerBalanceTransactionModelAction)(-1),
+                InvoiceCustomerBalanceTransactionAction.SmallInvoiceCarryover,
+            _ => (InvoiceCustomerBalanceTransactionAction)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CustomerBalanceTransactionModelAction value,
+        InvoiceCustomerBalanceTransactionAction value,
         JsonSerializerOptions options
     )
     {
@@ -1036,17 +1041,17 @@ sealed class CustomerBalanceTransactionModelActionConverter
             writer,
             value switch
             {
-                CustomerBalanceTransactionModelAction.AppliedToInvoice => "applied_to_invoice",
-                CustomerBalanceTransactionModelAction.ManualAdjustment => "manual_adjustment",
-                CustomerBalanceTransactionModelAction.ProratedRefund => "prorated_refund",
-                CustomerBalanceTransactionModelAction.RevertProratedRefund =>
+                InvoiceCustomerBalanceTransactionAction.AppliedToInvoice => "applied_to_invoice",
+                InvoiceCustomerBalanceTransactionAction.ManualAdjustment => "manual_adjustment",
+                InvoiceCustomerBalanceTransactionAction.ProratedRefund => "prorated_refund",
+                InvoiceCustomerBalanceTransactionAction.RevertProratedRefund =>
                     "revert_prorated_refund",
-                CustomerBalanceTransactionModelAction.ReturnFromVoiding => "return_from_voiding",
-                CustomerBalanceTransactionModelAction.CreditNoteApplied => "credit_note_applied",
-                CustomerBalanceTransactionModelAction.CreditNoteVoided => "credit_note_voided",
-                CustomerBalanceTransactionModelAction.OverpaymentRefund => "overpayment_refund",
-                CustomerBalanceTransactionModelAction.ExternalPayment => "external_payment",
-                CustomerBalanceTransactionModelAction.SmallInvoiceCarryover =>
+                InvoiceCustomerBalanceTransactionAction.ReturnFromVoiding => "return_from_voiding",
+                InvoiceCustomerBalanceTransactionAction.CreditNoteApplied => "credit_note_applied",
+                InvoiceCustomerBalanceTransactionAction.CreditNoteVoided => "credit_note_voided",
+                InvoiceCustomerBalanceTransactionAction.OverpaymentRefund => "overpayment_refund",
+                InvoiceCustomerBalanceTransactionAction.ExternalPayment => "external_payment",
+                InvoiceCustomerBalanceTransactionAction.SmallInvoiceCarryover =>
                     "small_invoice_carryover",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1057,17 +1062,17 @@ sealed class CustomerBalanceTransactionModelActionConverter
     }
 }
 
-[JsonConverter(typeof(CustomerBalanceTransactionModelTypeConverter))]
-public enum CustomerBalanceTransactionModelType
+[JsonConverter(typeof(InvoiceCustomerBalanceTransactionTypeConverter))]
+public enum InvoiceCustomerBalanceTransactionType
 {
     Increment,
     Decrement,
 }
 
-sealed class CustomerBalanceTransactionModelTypeConverter
-    : JsonConverter<CustomerBalanceTransactionModelType>
+sealed class InvoiceCustomerBalanceTransactionTypeConverter
+    : JsonConverter<InvoiceCustomerBalanceTransactionType>
 {
-    public override CustomerBalanceTransactionModelType Read(
+    public override InvoiceCustomerBalanceTransactionType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1075,15 +1080,15 @@ sealed class CustomerBalanceTransactionModelTypeConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "increment" => CustomerBalanceTransactionModelType.Increment,
-            "decrement" => CustomerBalanceTransactionModelType.Decrement,
-            _ => (CustomerBalanceTransactionModelType)(-1),
+            "increment" => InvoiceCustomerBalanceTransactionType.Increment,
+            "decrement" => InvoiceCustomerBalanceTransactionType.Decrement,
+            _ => (InvoiceCustomerBalanceTransactionType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        CustomerBalanceTransactionModelType value,
+        InvoiceCustomerBalanceTransactionType value,
         JsonSerializerOptions options
     )
     {
@@ -1091,8 +1096,8 @@ sealed class CustomerBalanceTransactionModelTypeConverter
             writer,
             value switch
             {
-                CustomerBalanceTransactionModelType.Increment => "increment",
-                CustomerBalanceTransactionModelType.Decrement => "decrement",
+                InvoiceCustomerBalanceTransactionType.Increment => "increment",
+                InvoiceCustomerBalanceTransactionType.Decrement => "decrement",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1149,8 +1154,8 @@ sealed class InvoiceInvoiceSourceConverter : JsonConverter<InvoiceInvoiceSource>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<LineItem1, LineItem1FromRaw>))]
-public sealed record class LineItem1 : ModelBase
+[JsonConverter(typeof(ModelConverter<InvoiceLineItem, InvoiceLineItemFromRaw>))]
+public sealed record class InvoiceLineItem : ModelBase
 {
     /// <summary>
     /// A unique ID for this line item.
@@ -1176,11 +1181,14 @@ public sealed record class LineItem1 : ModelBase
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required IReadOnlyList<AdjustmentModel> Adjustments
+    public required IReadOnlyList<InvoiceLineItemAdjustment> Adjustments
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<AdjustmentModel>>(this.RawData, "adjustments");
+            return ModelBase.GetNotNullClass<List<InvoiceLineItemAdjustment>>(
+                this.RawData,
+                "adjustments"
+            );
         }
         init { ModelBase.Set(this._rawData, "adjustments", value); }
     }
@@ -1293,11 +1301,11 @@ public sealed record class LineItem1 : ModelBase
     /// For complex pricing structures, the line item can be broken down further
     /// in `sub_line_items`.
     /// </summary>
-    public required IReadOnlyList<SubLineItemModel> SubLineItems
+    public required IReadOnlyList<InvoiceLineItemSubLineItem> SubLineItems
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<SubLineItemModel>>(
+            return ModelBase.GetNotNullClass<List<InvoiceLineItemSubLineItem>>(
                 this.RawData,
                 "sub_line_items"
             );
@@ -1363,35 +1371,35 @@ public sealed record class LineItem1 : ModelBase
         _ = this.UsageCustomerIDs;
     }
 
-    public LineItem1() { }
+    public InvoiceLineItem() { }
 
-    public LineItem1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public InvoiceLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    LineItem1(FrozenDictionary<string, JsonElement> rawData)
+    InvoiceLineItem(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static LineItem1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static InvoiceLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LineItem1FromRaw : IFromRaw<LineItem1>
+class InvoiceLineItemFromRaw : IFromRaw<InvoiceLineItem>
 {
-    public LineItem1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        LineItem1.FromRawUnchecked(rawData);
+    public InvoiceLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        InvoiceLineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(AdjustmentModelConverter))]
-public record class AdjustmentModel
+[JsonConverter(typeof(InvoiceLineItemAdjustmentConverter))]
+public record class InvoiceLineItemAdjustment
 {
     public object? Value { get; } = null;
 
@@ -1472,37 +1480,46 @@ public record class AdjustmentModel
         }
     }
 
-    public AdjustmentModel(MonetaryUsageDiscountAdjustment value, JsonElement? json = null)
+    public InvoiceLineItemAdjustment(
+        MonetaryUsageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(MonetaryAmountDiscountAdjustment value, JsonElement? json = null)
+    public InvoiceLineItemAdjustment(
+        MonetaryAmountDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(MonetaryPercentageDiscountAdjustment value, JsonElement? json = null)
+    public InvoiceLineItemAdjustment(
+        MonetaryPercentageDiscountAdjustment value,
+        JsonElement? json = null
+    )
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(MonetaryMinimumAdjustment value, JsonElement? json = null)
+    public InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(MonetaryMaximumAdjustment value, JsonElement? json = null)
+    public InvoiceLineItemAdjustment(MonetaryMaximumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public AdjustmentModel(JsonElement json)
+    public InvoiceLineItemAdjustment(JsonElement json)
     {
         this._json = json;
     }
@@ -1570,7 +1587,7 @@ public record class AdjustmentModel
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of AdjustmentModel"
+                    "Data did not match any variant of InvoiceLineItemAdjustment"
                 );
         }
     }
@@ -1591,33 +1608,40 @@ public record class AdjustmentModel
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of AdjustmentModel"
+                "Data did not match any variant of InvoiceLineItemAdjustment"
             ),
         };
     }
 
-    public static implicit operator AdjustmentModel(MonetaryUsageDiscountAdjustment value) =>
+    public static implicit operator InvoiceLineItemAdjustment(
+        MonetaryUsageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        MonetaryAmountDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        MonetaryPercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value) =>
         new(value);
 
-    public static implicit operator AdjustmentModel(MonetaryAmountDiscountAdjustment value) =>
+    public static implicit operator InvoiceLineItemAdjustment(MonetaryMaximumAdjustment value) =>
         new(value);
-
-    public static implicit operator AdjustmentModel(MonetaryPercentageDiscountAdjustment value) =>
-        new(value);
-
-    public static implicit operator AdjustmentModel(MonetaryMinimumAdjustment value) => new(value);
-
-    public static implicit operator AdjustmentModel(MonetaryMaximumAdjustment value) => new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of AdjustmentModel");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLineItemAdjustment"
+            );
         }
     }
 
-    public virtual bool Equals(AdjustmentModel? other)
+    public virtual bool Equals(InvoiceLineItemAdjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1628,9 +1652,9 @@ public record class AdjustmentModel
     }
 }
 
-sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
+sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemAdjustment>
 {
-    public override AdjustmentModel? Read(
+    public override InvoiceLineItemAdjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1762,14 +1786,14 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
             }
             default:
             {
-                return new AdjustmentModel(json);
+                return new InvoiceLineItemAdjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AdjustmentModel value,
+        InvoiceLineItemAdjustment value,
         JsonSerializerOptions options
     )
     {
@@ -1777,8 +1801,8 @@ sealed class AdjustmentModelConverter : JsonConverter<AdjustmentModel>
     }
 }
 
-[JsonConverter(typeof(SubLineItemModelConverter))]
-public record class SubLineItemModel
+[JsonConverter(typeof(InvoiceLineItemSubLineItemConverter))]
+public record class InvoiceLineItemSubLineItem
 {
     public object? Value { get; } = null;
 
@@ -1826,25 +1850,25 @@ public record class SubLineItemModel
         }
     }
 
-    public SubLineItemModel(MatrixSubLineItem value, JsonElement? json = null)
+    public InvoiceLineItemSubLineItem(MatrixSubLineItem value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public SubLineItemModel(TierSubLineItem value, JsonElement? json = null)
+    public InvoiceLineItemSubLineItem(TierSubLineItem value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public SubLineItemModel(OtherSubLineItem value, JsonElement? json = null)
+    public InvoiceLineItemSubLineItem(OtherSubLineItem value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public SubLineItemModel(JsonElement json)
+    public InvoiceLineItemSubLineItem(JsonElement json)
     {
         this._json = json;
     }
@@ -1886,7 +1910,7 @@ public record class SubLineItemModel
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of SubLineItemModel"
+                    "Data did not match any variant of InvoiceLineItemSubLineItem"
                 );
         }
     }
@@ -1903,26 +1927,30 @@ public record class SubLineItemModel
             TierSubLineItem value => tier(value),
             OtherSubLineItem value => other(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of SubLineItemModel"
+                "Data did not match any variant of InvoiceLineItemSubLineItem"
             ),
         };
     }
 
-    public static implicit operator SubLineItemModel(MatrixSubLineItem value) => new(value);
+    public static implicit operator InvoiceLineItemSubLineItem(MatrixSubLineItem value) =>
+        new(value);
 
-    public static implicit operator SubLineItemModel(TierSubLineItem value) => new(value);
+    public static implicit operator InvoiceLineItemSubLineItem(TierSubLineItem value) => new(value);
 
-    public static implicit operator SubLineItemModel(OtherSubLineItem value) => new(value);
+    public static implicit operator InvoiceLineItemSubLineItem(OtherSubLineItem value) =>
+        new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of SubLineItemModel");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of InvoiceLineItemSubLineItem"
+            );
         }
     }
 
-    public virtual bool Equals(SubLineItemModel? other)
+    public virtual bool Equals(InvoiceLineItemSubLineItem? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1933,9 +1961,9 @@ public record class SubLineItemModel
     }
 }
 
-sealed class SubLineItemModelConverter : JsonConverter<SubLineItemModel>
+sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItemSubLineItem>
 {
-    public override SubLineItemModel? Read(
+    public override InvoiceLineItemSubLineItem? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2013,14 +2041,14 @@ sealed class SubLineItemModelConverter : JsonConverter<SubLineItemModel>
             }
             default:
             {
-                return new SubLineItemModel(json);
+                return new InvoiceLineItemSubLineItem(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        SubLineItemModel value,
+        InvoiceLineItemSubLineItem value,
         JsonSerializerOptions options
     )
     {
@@ -2028,8 +2056,8 @@ sealed class SubLineItemModelConverter : JsonConverter<SubLineItemModel>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<PaymentAttemptModel, PaymentAttemptModelFromRaw>))]
-public sealed record class PaymentAttemptModel : ModelBase
+[JsonConverter(typeof(ModelConverter<InvoicePaymentAttempt, InvoicePaymentAttemptFromRaw>))]
+public sealed record class InvoicePaymentAttempt : ModelBase
 {
     /// <summary>
     /// The ID of the payment attempt.
@@ -2064,14 +2092,13 @@ public sealed record class PaymentAttemptModel : ModelBase
     /// <summary>
     /// The payment provider that attempted to collect the payment.
     /// </summary>
-    public required ApiEnum<string, PaymentAttemptModelPaymentProvider>? PaymentProvider
+    public required ApiEnum<string, InvoicePaymentAttemptPaymentProvider>? PaymentProvider
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, PaymentAttemptModelPaymentProvider>>(
-                this.RawData,
-                "payment_provider"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, InvoicePaymentAttemptPaymentProvider>
+            >(this.RawData, "payment_provider");
         }
         init { ModelBase.Set(this._rawData, "payment_provider", value); }
     }
@@ -2115,22 +2142,22 @@ public sealed record class PaymentAttemptModel : ModelBase
         _ = this.Succeeded;
     }
 
-    public PaymentAttemptModel() { }
+    public InvoicePaymentAttempt() { }
 
-    public PaymentAttemptModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public InvoicePaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PaymentAttemptModel(FrozenDictionary<string, JsonElement> rawData)
+    InvoicePaymentAttempt(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static PaymentAttemptModel FromRawUnchecked(
+    public static InvoicePaymentAttempt FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2138,25 +2165,26 @@ public sealed record class PaymentAttemptModel : ModelBase
     }
 }
 
-class PaymentAttemptModelFromRaw : IFromRaw<PaymentAttemptModel>
+class InvoicePaymentAttemptFromRaw : IFromRaw<InvoicePaymentAttempt>
 {
-    public PaymentAttemptModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        PaymentAttemptModel.FromRawUnchecked(rawData);
+    public InvoicePaymentAttempt FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoicePaymentAttempt.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The payment provider that attempted to collect the payment.
 /// </summary>
-[JsonConverter(typeof(PaymentAttemptModelPaymentProviderConverter))]
-public enum PaymentAttemptModelPaymentProvider
+[JsonConverter(typeof(InvoicePaymentAttemptPaymentProviderConverter))]
+public enum InvoicePaymentAttemptPaymentProvider
 {
     Stripe,
 }
 
-sealed class PaymentAttemptModelPaymentProviderConverter
-    : JsonConverter<PaymentAttemptModelPaymentProvider>
+sealed class InvoicePaymentAttemptPaymentProviderConverter
+    : JsonConverter<InvoicePaymentAttemptPaymentProvider>
 {
-    public override PaymentAttemptModelPaymentProvider Read(
+    public override InvoicePaymentAttemptPaymentProvider Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2164,14 +2192,14 @@ sealed class PaymentAttemptModelPaymentProviderConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "stripe" => PaymentAttemptModelPaymentProvider.Stripe,
-            _ => (PaymentAttemptModelPaymentProvider)(-1),
+            "stripe" => InvoicePaymentAttemptPaymentProvider.Stripe,
+            _ => (InvoicePaymentAttemptPaymentProvider)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        PaymentAttemptModelPaymentProvider value,
+        InvoicePaymentAttemptPaymentProvider value,
         JsonSerializerOptions options
     )
     {
@@ -2179,7 +2207,7 @@ sealed class PaymentAttemptModelPaymentProviderConverter
             writer,
             value switch
             {
-                PaymentAttemptModelPaymentProvider.Stripe => "stripe",
+                InvoicePaymentAttemptPaymentProvider.Stripe => "stripe",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

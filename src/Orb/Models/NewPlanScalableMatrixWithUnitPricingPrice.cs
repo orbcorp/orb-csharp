@@ -418,14 +418,13 @@ public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatr
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<MatrixScalingFactor2> MatrixScalingFactors
+    public required IReadOnlyList<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MatrixScalingFactor2>>(
-                this.RawData,
-                "matrix_scaling_factors"
-            );
+            return ModelBase.GetNotNullClass<
+                List<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+            >(this.RawData, "matrix_scaling_factors");
         }
         init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
     }
@@ -510,8 +509,14 @@ class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConf
 /// <summary>
 /// Configuration for a single matrix scaling factor
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixScalingFactor2, MatrixScalingFactor2FromRaw>))]
-public sealed record class MatrixScalingFactor2 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
+        NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    >)
+)]
+public sealed record class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor
+    : ModelBase
 {
     /// <summary>
     /// First dimension value
@@ -547,22 +552,27 @@ public sealed record class MatrixScalingFactor2 : ModelBase
         _ = this.SecondDimensionValue;
     }
 
-    public MatrixScalingFactor2() { }
+    public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor()
+    { }
 
-    public MatrixScalingFactor2(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    MatrixScalingFactor2(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static MatrixScalingFactor2 FromRawUnchecked(
+    public static NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -570,11 +580,15 @@ public sealed record class MatrixScalingFactor2 : ModelBase
     }
 }
 
-class MatrixScalingFactor2FromRaw : IFromRaw<MatrixScalingFactor2>
+class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+    : IFromRaw<NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
 {
-    public MatrixScalingFactor2 FromRawUnchecked(
+    public NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => MatrixScalingFactor2.FromRawUnchecked(rawData);
+    ) =>
+        NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConfigMatrixScalingFactor.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(typeof(NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigConverter))]

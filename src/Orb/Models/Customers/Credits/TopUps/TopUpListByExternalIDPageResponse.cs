@@ -17,13 +17,14 @@ namespace Orb.Models.Customers.Credits.TopUps;
 )]
 public sealed record class TopUpListByExternalIDPageResponse : ModelBase
 {
-    public required IReadOnlyList<global::Orb.Models.Customers.Credits.TopUps.DataModel> Data
+    public required IReadOnlyList<TopUpListByExternalIDPageResponseData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<
-                List<global::Orb.Models.Customers.Credits.TopUps.DataModel>
-            >(this.RawData, "data");
+            return ModelBase.GetNotNullClass<List<TopUpListByExternalIDPageResponseData>>(
+                this.RawData,
+                "data"
+            );
         }
         init { ModelBase.Set(this._rawData, "data", value); }
     }
@@ -81,11 +82,11 @@ class TopUpListByExternalIDPageResponseFromRaw : IFromRaw<TopUpListByExternalIDP
 
 [JsonConverter(
     typeof(ModelConverter<
-        global::Orb.Models.Customers.Credits.TopUps.DataModel,
-        global::Orb.Models.Customers.Credits.TopUps.DataModelFromRaw
+        TopUpListByExternalIDPageResponseData,
+        TopUpListByExternalIDPageResponseDataFromRaw
     >)
 )]
-public sealed record class DataModel : ModelBase
+public sealed record class TopUpListByExternalIDPageResponseData : ModelBase
 {
     public required string ID
     {
@@ -159,14 +160,13 @@ public sealed record class DataModel : ModelBase
     /// <summary>
     /// The unit of expires_after.
     /// </summary>
-    public ApiEnum<string, DataModelExpiresAfterUnit>? ExpiresAfterUnit
+    public ApiEnum<string, TopUpListByExternalIDPageResponseDataExpiresAfterUnit>? ExpiresAfterUnit
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, DataModelExpiresAfterUnit>>(
-                this.RawData,
-                "expires_after_unit"
-            );
+            return ModelBase.GetNullableClass<
+                ApiEnum<string, TopUpListByExternalIDPageResponseDataExpiresAfterUnit>
+            >(this.RawData, "expires_after_unit");
         }
         init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
     }
@@ -183,22 +183,22 @@ public sealed record class DataModel : ModelBase
         this.ExpiresAfterUnit?.Validate();
     }
 
-    public DataModel() { }
+    public TopUpListByExternalIDPageResponseData() { }
 
-    public DataModel(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopUpListByExternalIDPageResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DataModel(FrozenDictionary<string, JsonElement> rawData)
+    TopUpListByExternalIDPageResponseData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static global::Orb.Models.Customers.Credits.TopUps.DataModel FromRawUnchecked(
+    public static TopUpListByExternalIDPageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -206,26 +206,27 @@ public sealed record class DataModel : ModelBase
     }
 }
 
-class DataModelFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.TopUps.DataModel>
+class TopUpListByExternalIDPageResponseDataFromRaw : IFromRaw<TopUpListByExternalIDPageResponseData>
 {
-    public global::Orb.Models.Customers.Credits.TopUps.DataModel FromRawUnchecked(
+    public TopUpListByExternalIDPageResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.Credits.TopUps.DataModel.FromRawUnchecked(rawData);
+    ) => TopUpListByExternalIDPageResponseData.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The unit of expires_after.
 /// </summary>
-[JsonConverter(typeof(DataModelExpiresAfterUnitConverter))]
-public enum DataModelExpiresAfterUnit
+[JsonConverter(typeof(TopUpListByExternalIDPageResponseDataExpiresAfterUnitConverter))]
+public enum TopUpListByExternalIDPageResponseDataExpiresAfterUnit
 {
     Day,
     Month,
 }
 
-sealed class DataModelExpiresAfterUnitConverter : JsonConverter<DataModelExpiresAfterUnit>
+sealed class TopUpListByExternalIDPageResponseDataExpiresAfterUnitConverter
+    : JsonConverter<TopUpListByExternalIDPageResponseDataExpiresAfterUnit>
 {
-    public override DataModelExpiresAfterUnit Read(
+    public override TopUpListByExternalIDPageResponseDataExpiresAfterUnit Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -233,15 +234,15 @@ sealed class DataModelExpiresAfterUnitConverter : JsonConverter<DataModelExpires
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "day" => DataModelExpiresAfterUnit.Day,
-            "month" => DataModelExpiresAfterUnit.Month,
-            _ => (DataModelExpiresAfterUnit)(-1),
+            "day" => TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
+            "month" => TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Month,
+            _ => (TopUpListByExternalIDPageResponseDataExpiresAfterUnit)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        DataModelExpiresAfterUnit value,
+        TopUpListByExternalIDPageResponseDataExpiresAfterUnit value,
         JsonSerializerOptions options
     )
     {
@@ -249,8 +250,8 @@ sealed class DataModelExpiresAfterUnitConverter : JsonConverter<DataModelExpires
             writer,
             value switch
             {
-                DataModelExpiresAfterUnit.Day => "day",
-                DataModelExpiresAfterUnit.Month => "month",
+                TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day => "day",
+                TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Month => "month",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

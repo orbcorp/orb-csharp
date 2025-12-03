@@ -19,8 +19,8 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter21Field.PriceID,
-                    Operator = Filter21Operator.Includes,
+                    Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -36,12 +36,12 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseMinimumAdjustmentAdjustmentType.Minimum;
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter21> expectedFilters =
+        List<PlanPhaseMinimumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter21Field.PriceID,
-                Operator = Filter21Operator.Includes,
+                Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -84,8 +84,8 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter21Field.PriceID,
-                    Operator = Filter21Operator.Includes,
+                    Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -115,8 +115,8 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter21Field.PriceID,
-                    Operator = Filter21Operator.Includes,
+                    Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -136,12 +136,12 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseMinimumAdjustmentAdjustmentType.Minimum;
         List<string> expectedAppliesToPriceIDs = ["string"];
-        List<Filter21> expectedFilters =
+        List<PlanPhaseMinimumAdjustmentFilter> expectedFilters =
         [
             new()
             {
-                Field = Filter21Field.PriceID,
-                Operator = Filter21Operator.Includes,
+                Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
                 Values = ["string"],
             },
         ];
@@ -184,8 +184,8 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
             [
                 new()
                 {
-                    Field = Filter21Field.PriceID,
-                    Operator = Filter21Operator.Includes,
+                    Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+                    Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
                     Values = ["string"],
                 },
             ],
@@ -201,20 +201,22 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
     }
 }
 
-public class Filter21Test : TestBase
+public class PlanPhaseMinimumAdjustmentFilterTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Filter21
+        var model = new PlanPhaseMinimumAdjustmentFilter
         {
-            Field = Filter21Field.PriceID,
-            Operator = Filter21Operator.Includes,
+            Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
-        ApiEnum<string, Filter21Field> expectedField = Filter21Field.PriceID;
-        ApiEnum<string, Filter21Operator> expectedOperator = Filter21Operator.Includes;
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField> expectedField =
+            PlanPhaseMinimumAdjustmentFilterField.PriceID;
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator> expectedOperator =
+            PlanPhaseMinimumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, model.Field);
@@ -229,15 +231,15 @@ public class Filter21Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Filter21
+        var model = new PlanPhaseMinimumAdjustmentFilter
         {
-            Field = Filter21Field.PriceID,
-            Operator = Filter21Operator.Includes,
+            Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter21>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustmentFilter>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -245,19 +247,21 @@ public class Filter21Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Filter21
+        var model = new PlanPhaseMinimumAdjustmentFilter
         {
-            Field = Filter21Field.PriceID,
-            Operator = Filter21Operator.Includes,
+            Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter21>(json);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustmentFilter>(json);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Filter21Field> expectedField = Filter21Field.PriceID;
-        ApiEnum<string, Filter21Operator> expectedOperator = Filter21Operator.Includes;
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField> expectedField =
+            PlanPhaseMinimumAdjustmentFilterField.PriceID;
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator> expectedOperator =
+            PlanPhaseMinimumAdjustmentFilterOperator.Includes;
         List<string> expectedValues = ["string"];
 
         Assert.Equal(expectedField, deserialized.Field);
@@ -272,10 +276,10 @@ public class Filter21Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Filter21
+        var model = new PlanPhaseMinimumAdjustmentFilter
         {
-            Field = Filter21Field.PriceID,
-            Operator = Filter21Operator.Includes,
+            Field = PlanPhaseMinimumAdjustmentFilterField.PriceID,
+            Operator = PlanPhaseMinimumAdjustmentFilterOperator.Includes,
             Values = ["string"],
         };
 

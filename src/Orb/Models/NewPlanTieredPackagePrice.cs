@@ -412,9 +412,14 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfig : ModelB
     /// based on the total quantity rather than the number of packages, so they must
     /// be multiples of the package size.
     /// </summary>
-    public required IReadOnlyList<Tier13> Tiers
+    public required IReadOnlyList<NewPlanTieredPackagePriceTieredPackageConfigTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<Tier13>>(this.RawData, "tiers"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<
+                List<NewPlanTieredPackagePriceTieredPackageConfigTier>
+            >(this.RawData, "tiers");
+        }
         init { ModelBase.Set(this._rawData, "tiers", value); }
     }
 
@@ -463,8 +468,13 @@ class NewPlanTieredPackagePriceTieredPackageConfigFromRaw
 /// <summary>
 /// Configuration for a single tier with business logic
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Tier13, Tier13FromRaw>))]
-public sealed record class Tier13 : ModelBase
+[JsonConverter(
+    typeof(ModelConverter<
+        NewPlanTieredPackagePriceTieredPackageConfigTier,
+        NewPlanTieredPackagePriceTieredPackageConfigTierFromRaw
+    >)
+)]
+public sealed record class NewPlanTieredPackagePriceTieredPackageConfigTier : ModelBase
 {
     /// <summary>
     /// Price per package
@@ -490,31 +500,37 @@ public sealed record class Tier13 : ModelBase
         _ = this.TierLowerBound;
     }
 
-    public Tier13() { }
+    public NewPlanTieredPackagePriceTieredPackageConfigTier() { }
 
-    public Tier13(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewPlanTieredPackagePriceTieredPackageConfigTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier13(FrozenDictionary<string, JsonElement> rawData)
+    NewPlanTieredPackagePriceTieredPackageConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Tier13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewPlanTieredPackagePriceTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Tier13FromRaw : IFromRaw<Tier13>
+class NewPlanTieredPackagePriceTieredPackageConfigTierFromRaw
+    : IFromRaw<NewPlanTieredPackagePriceTieredPackageConfigTier>
 {
-    public Tier13 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier13.FromRawUnchecked(rawData);
+    public NewPlanTieredPackagePriceTieredPackageConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewPlanTieredPackagePriceTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewPlanTieredPackagePriceConversionRateConfigConverter))]

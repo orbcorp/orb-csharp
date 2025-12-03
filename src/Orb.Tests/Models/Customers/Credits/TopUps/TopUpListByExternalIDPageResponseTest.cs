@@ -30,13 +30,13 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Threshold = "threshold",
                     ExpiresAfter = 0,
-                    ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+                    ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        List<DataModel> expectedData =
+        List<TopUpListByExternalIDPageResponseData> expectedData =
         [
             new()
             {
@@ -53,7 +53,7 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
                 ExpiresAfter = 0,
-                ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+                ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -92,7 +92,7 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Threshold = "threshold",
                     ExpiresAfter = 0,
-                    ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+                    ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -126,7 +126,7 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Threshold = "threshold",
                     ExpiresAfter = 0,
-                    ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+                    ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -136,7 +136,7 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
         var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponse>(json);
         Assert.NotNull(deserialized);
 
-        List<DataModel> expectedData =
+        List<TopUpListByExternalIDPageResponseData> expectedData =
         [
             new()
             {
@@ -153,7 +153,7 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
                 ExpiresAfter = 0,
-                ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+                ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -192,7 +192,7 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Threshold = "threshold",
                     ExpiresAfter = 0,
-                    ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+                    ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -202,12 +202,12 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
     }
 }
 
-public class DataModelTest : TestBase
+public class TopUpListByExternalIDPageResponseDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -222,7 +222,7 @@ public class DataModelTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
             Threshold = "threshold",
             ExpiresAfter = 0,
-            ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+            ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
         };
 
         string expectedID = "id";
@@ -238,8 +238,10 @@ public class DataModelTest : TestBase
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
         string expectedThreshold = "threshold";
         long expectedExpiresAfter = 0;
-        ApiEnum<string, DataModelExpiresAfterUnit> expectedExpiresAfterUnit =
-            DataModelExpiresAfterUnit.Day;
+        ApiEnum<
+            string,
+            TopUpListByExternalIDPageResponseDataExpiresAfterUnit
+        > expectedExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAmount, model.Amount);
@@ -254,7 +256,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -269,11 +271,11 @@ public class DataModelTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
             Threshold = "threshold",
             ExpiresAfter = 0,
-            ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+            ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponseData>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -281,7 +283,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -296,11 +298,11 @@ public class DataModelTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
             Threshold = "threshold",
             ExpiresAfter = 0,
-            ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+            ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DataModel>(json);
+        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponseData>(json);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -316,8 +318,10 @@ public class DataModelTest : TestBase
         string expectedPerUnitCostBasis = "per_unit_cost_basis";
         string expectedThreshold = "threshold";
         long expectedExpiresAfter = 0;
-        ApiEnum<string, DataModelExpiresAfterUnit> expectedExpiresAfterUnit =
-            DataModelExpiresAfterUnit.Day;
+        ApiEnum<
+            string,
+            TopUpListByExternalIDPageResponseDataExpiresAfterUnit
+        > expectedExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAmount, deserialized.Amount);
@@ -332,7 +336,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -347,7 +351,7 @@ public class DataModelTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
             Threshold = "threshold",
             ExpiresAfter = 0,
-            ExpiresAfterUnit = DataModelExpiresAfterUnit.Day,
+            ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
         };
 
         model.Validate();
@@ -356,7 +360,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -381,7 +385,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -403,7 +407,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",
@@ -431,7 +435,7 @@ public class DataModelTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new DataModel
+        var model = new TopUpListByExternalIDPageResponseData
         {
             ID = "id",
             Amount = "amount",

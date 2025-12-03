@@ -1256,9 +1256,12 @@ public sealed record class LineItem : ModelBase
     /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
     /// discounts -> minimums -> maximums).
     /// </summary>
-    public required IReadOnlyList<Adjustment> Adjustments
+    public required IReadOnlyList<LineItemAdjustment> Adjustments
     {
-        get { return ModelBase.GetNotNullClass<List<Adjustment>>(this.RawData, "adjustments"); }
+        get
+        {
+            return ModelBase.GetNotNullClass<List<LineItemAdjustment>>(this.RawData, "adjustments");
+        }
         init { ModelBase.Set(this._rawData, "adjustments", value); }
     }
 
@@ -1461,8 +1464,8 @@ class LineItemFromRaw : IFromRaw<LineItem>
         LineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(AdjustmentConverter))]
-public record class Adjustment
+[JsonConverter(typeof(LineItemAdjustmentConverter))]
+public record class LineItemAdjustment
 {
     public object? Value { get; } = null;
 
@@ -1543,37 +1546,37 @@ public record class Adjustment
         }
     }
 
-    public Adjustment(MonetaryUsageDiscountAdjustment value, JsonElement? json = null)
+    public LineItemAdjustment(MonetaryUsageDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(MonetaryAmountDiscountAdjustment value, JsonElement? json = null)
+    public LineItemAdjustment(MonetaryAmountDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(MonetaryPercentageDiscountAdjustment value, JsonElement? json = null)
+    public LineItemAdjustment(MonetaryPercentageDiscountAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(MonetaryMinimumAdjustment value, JsonElement? json = null)
+    public LineItemAdjustment(MonetaryMinimumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(MonetaryMaximumAdjustment value, JsonElement? json = null)
+    public LineItemAdjustment(MonetaryMaximumAdjustment value, JsonElement? json = null)
     {
         this.Value = value;
         this._json = json;
     }
 
-    public Adjustment(JsonElement json)
+    public LineItemAdjustment(JsonElement json)
     {
         this._json = json;
     }
@@ -1640,7 +1643,9 @@ public record class Adjustment
                 monetaryMaximum(value);
                 break;
             default:
-                throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of LineItemAdjustment"
+                );
         }
     }
 
@@ -1659,31 +1664,39 @@ public record class Adjustment
             MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
-            _ => throw new OrbInvalidDataException("Data did not match any variant of Adjustment"),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of LineItemAdjustment"
+            ),
         };
     }
 
-    public static implicit operator Adjustment(MonetaryUsageDiscountAdjustment value) => new(value);
-
-    public static implicit operator Adjustment(MonetaryAmountDiscountAdjustment value) =>
+    public static implicit operator LineItemAdjustment(MonetaryUsageDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator Adjustment(MonetaryPercentageDiscountAdjustment value) =>
+    public static implicit operator LineItemAdjustment(MonetaryAmountDiscountAdjustment value) =>
         new(value);
 
-    public static implicit operator Adjustment(MonetaryMinimumAdjustment value) => new(value);
+    public static implicit operator LineItemAdjustment(
+        MonetaryPercentageDiscountAdjustment value
+    ) => new(value);
 
-    public static implicit operator Adjustment(MonetaryMaximumAdjustment value) => new(value);
+    public static implicit operator LineItemAdjustment(MonetaryMinimumAdjustment value) =>
+        new(value);
+
+    public static implicit operator LineItemAdjustment(MonetaryMaximumAdjustment value) =>
+        new(value);
 
     public void Validate()
     {
         if (this.Value == null)
         {
-            throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of LineItemAdjustment"
+            );
         }
     }
 
-    public virtual bool Equals(Adjustment? other)
+    public virtual bool Equals(LineItemAdjustment? other)
     {
         return other != null && JsonElement.DeepEquals(this.Json, other.Json);
     }
@@ -1694,9 +1707,9 @@ public record class Adjustment
     }
 }
 
-sealed class AdjustmentConverter : JsonConverter<Adjustment>
+sealed class LineItemAdjustmentConverter : JsonConverter<LineItemAdjustment>
 {
-    public override Adjustment? Read(
+    public override LineItemAdjustment? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1828,14 +1841,14 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
             }
             default:
             {
-                return new Adjustment(json);
+                return new LineItemAdjustment(json);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Adjustment value,
+        LineItemAdjustment value,
         JsonSerializerOptions options
     )
     {

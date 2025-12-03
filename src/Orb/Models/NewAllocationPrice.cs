@@ -65,9 +65,15 @@ public sealed record class NewAllocationPrice : ModelBase
     /// <summary>
     /// The filters that determine which items the allocation applies to.
     /// </summary>
-    public IReadOnlyList<Filter11>? Filters
+    public IReadOnlyList<NewAllocationPriceFilter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<Filter11>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNullableClass<List<NewAllocationPriceFilter>>(
+                this.RawData,
+                "filters"
+            );
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -200,17 +206,20 @@ sealed class CadenceConverter : JsonConverter<Cadence>
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Filter11, Filter11FromRaw>))]
-public sealed record class Filter11 : ModelBase
+[JsonConverter(typeof(ModelConverter<NewAllocationPriceFilter, NewAllocationPriceFilterFromRaw>))]
+public sealed record class NewAllocationPriceFilter : ModelBase
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, Filter11Field> Field
+    public required ApiEnum<string, NewAllocationPriceFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter11Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -218,11 +227,11 @@ public sealed record class Filter11 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter11Operator> Operator
+    public required ApiEnum<string, NewAllocationPriceFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter11Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -246,45 +255,48 @@ public sealed record class Filter11 : ModelBase
         _ = this.Values;
     }
 
-    public Filter11() { }
+    public NewAllocationPriceFilter() { }
 
-    public Filter11(IReadOnlyDictionary<string, JsonElement> rawData)
+    public NewAllocationPriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter11(FrozenDictionary<string, JsonElement> rawData)
+    NewAllocationPriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter11 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static NewAllocationPriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter11FromRaw : IFromRaw<Filter11>
+class NewAllocationPriceFilterFromRaw : IFromRaw<NewAllocationPriceFilter>
 {
-    public Filter11 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter11.FromRawUnchecked(rawData);
+    public NewAllocationPriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => NewAllocationPriceFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(Filter11FieldConverter))]
-public enum Filter11Field
+[JsonConverter(typeof(NewAllocationPriceFilterFieldConverter))]
+public enum NewAllocationPriceFilterField
 {
     ItemID,
 }
 
-sealed class Filter11FieldConverter : JsonConverter<Filter11Field>
+sealed class NewAllocationPriceFilterFieldConverter : JsonConverter<NewAllocationPriceFilterField>
 {
-    public override Filter11Field Read(
+    public override NewAllocationPriceFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -292,14 +304,14 @@ sealed class Filter11FieldConverter : JsonConverter<Filter11Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => Filter11Field.ItemID,
-            _ => (Filter11Field)(-1),
+            "item_id" => NewAllocationPriceFilterField.ItemID,
+            _ => (NewAllocationPriceFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter11Field value,
+        NewAllocationPriceFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -307,7 +319,7 @@ sealed class Filter11FieldConverter : JsonConverter<Filter11Field>
             writer,
             value switch
             {
-                Filter11Field.ItemID => "item_id",
+                NewAllocationPriceFilterField.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -320,16 +332,17 @@ sealed class Filter11FieldConverter : JsonConverter<Filter11Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter11OperatorConverter))]
-public enum Filter11Operator
+[JsonConverter(typeof(NewAllocationPriceFilterOperatorConverter))]
+public enum NewAllocationPriceFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter11OperatorConverter : JsonConverter<Filter11Operator>
+sealed class NewAllocationPriceFilterOperatorConverter
+    : JsonConverter<NewAllocationPriceFilterOperator>
 {
-    public override Filter11Operator Read(
+    public override NewAllocationPriceFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -337,15 +350,15 @@ sealed class Filter11OperatorConverter : JsonConverter<Filter11Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter11Operator.Includes,
-            "excludes" => Filter11Operator.Excludes,
-            _ => (Filter11Operator)(-1),
+            "includes" => NewAllocationPriceFilterOperator.Includes,
+            "excludes" => NewAllocationPriceFilterOperator.Excludes,
+            _ => (NewAllocationPriceFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter11Operator value,
+        NewAllocationPriceFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -353,8 +366,8 @@ sealed class Filter11OperatorConverter : JsonConverter<Filter11Operator>
             writer,
             value switch
             {
-                Filter11Operator.Includes => "includes",
-                Filter11Operator.Excludes => "excludes",
+                NewAllocationPriceFilterOperator.Includes => "includes",
+                NewAllocationPriceFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

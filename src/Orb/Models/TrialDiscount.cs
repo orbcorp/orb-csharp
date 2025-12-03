@@ -40,9 +40,12 @@ public sealed record class TrialDiscount : ModelBase
     /// <summary>
     /// The filters that determine which prices to apply this discount to.
     /// </summary>
-    public IReadOnlyList<Filter25>? Filters
+    public IReadOnlyList<TrialDiscountFilter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<Filter25>>(this.RawData, "filters"); }
+        get
+        {
+            return ModelBase.GetNullableClass<List<TrialDiscountFilter>>(this.RawData, "filters");
+        }
         init { ModelBase.Set(this._rawData, "filters", value); }
     }
 
@@ -161,17 +164,20 @@ sealed class TrialDiscountDiscountTypeConverter : JsonConverter<TrialDiscountDis
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Filter25, Filter25FromRaw>))]
-public sealed record class Filter25 : ModelBase
+[JsonConverter(typeof(ModelConverter<TrialDiscountFilter, TrialDiscountFilterFromRaw>))]
+public sealed record class TrialDiscountFilter : ModelBase
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
-    public required ApiEnum<string, Filter25Field> Field
+    public required ApiEnum<string, TrialDiscountFilterField> Field
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter25Field>>(this.RawData, "field");
+            return ModelBase.GetNotNullClass<ApiEnum<string, TrialDiscountFilterField>>(
+                this.RawData,
+                "field"
+            );
         }
         init { ModelBase.Set(this._rawData, "field", value); }
     }
@@ -179,11 +185,11 @@ public sealed record class Filter25 : ModelBase
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, Filter25Operator> Operator
+    public required ApiEnum<string, TrialDiscountFilterOperator> Operator
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Filter25Operator>>(
+            return ModelBase.GetNotNullClass<ApiEnum<string, TrialDiscountFilterOperator>>(
                 this.RawData,
                 "operator"
             );
@@ -207,38 +213,40 @@ public sealed record class Filter25 : ModelBase
         _ = this.Values;
     }
 
-    public Filter25() { }
+    public TrialDiscountFilter() { }
 
-    public Filter25(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TrialDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Filter25(FrozenDictionary<string, JsonElement> rawData)
+    TrialDiscountFilter(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
     }
 #pragma warning restore CS8618
 
-    public static Filter25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    public static TrialDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class Filter25FromRaw : IFromRaw<Filter25>
+class TrialDiscountFilterFromRaw : IFromRaw<TrialDiscountFilter>
 {
-    public Filter25 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Filter25.FromRawUnchecked(rawData);
+    public TrialDiscountFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TrialDiscountFilter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price to filter on.
 /// </summary>
-[JsonConverter(typeof(Filter25FieldConverter))]
-public enum Filter25Field
+[JsonConverter(typeof(TrialDiscountFilterFieldConverter))]
+public enum TrialDiscountFilterField
 {
     PriceID,
     ItemID,
@@ -247,9 +255,9 @@ public enum Filter25Field
     PricingUnitID,
 }
 
-sealed class Filter25FieldConverter : JsonConverter<Filter25Field>
+sealed class TrialDiscountFilterFieldConverter : JsonConverter<TrialDiscountFilterField>
 {
-    public override Filter25Field Read(
+    public override TrialDiscountFilterField Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -257,18 +265,18 @@ sealed class Filter25FieldConverter : JsonConverter<Filter25Field>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "price_id" => Filter25Field.PriceID,
-            "item_id" => Filter25Field.ItemID,
-            "price_type" => Filter25Field.PriceType,
-            "currency" => Filter25Field.Currency,
-            "pricing_unit_id" => Filter25Field.PricingUnitID,
-            _ => (Filter25Field)(-1),
+            "price_id" => TrialDiscountFilterField.PriceID,
+            "item_id" => TrialDiscountFilterField.ItemID,
+            "price_type" => TrialDiscountFilterField.PriceType,
+            "currency" => TrialDiscountFilterField.Currency,
+            "pricing_unit_id" => TrialDiscountFilterField.PricingUnitID,
+            _ => (TrialDiscountFilterField)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter25Field value,
+        TrialDiscountFilterField value,
         JsonSerializerOptions options
     )
     {
@@ -276,11 +284,11 @@ sealed class Filter25FieldConverter : JsonConverter<Filter25Field>
             writer,
             value switch
             {
-                Filter25Field.PriceID => "price_id",
-                Filter25Field.ItemID => "item_id",
-                Filter25Field.PriceType => "price_type",
-                Filter25Field.Currency => "currency",
-                Filter25Field.PricingUnitID => "pricing_unit_id",
+                TrialDiscountFilterField.PriceID => "price_id",
+                TrialDiscountFilterField.ItemID => "item_id",
+                TrialDiscountFilterField.PriceType => "price_type",
+                TrialDiscountFilterField.Currency => "currency",
+                TrialDiscountFilterField.PricingUnitID => "pricing_unit_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -293,16 +301,16 @@ sealed class Filter25FieldConverter : JsonConverter<Filter25Field>
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(Filter25OperatorConverter))]
-public enum Filter25Operator
+[JsonConverter(typeof(TrialDiscountFilterOperatorConverter))]
+public enum TrialDiscountFilterOperator
 {
     Includes,
     Excludes,
 }
 
-sealed class Filter25OperatorConverter : JsonConverter<Filter25Operator>
+sealed class TrialDiscountFilterOperatorConverter : JsonConverter<TrialDiscountFilterOperator>
 {
-    public override Filter25Operator Read(
+    public override TrialDiscountFilterOperator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -310,15 +318,15 @@ sealed class Filter25OperatorConverter : JsonConverter<Filter25Operator>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => Filter25Operator.Includes,
-            "excludes" => Filter25Operator.Excludes,
-            _ => (Filter25Operator)(-1),
+            "includes" => TrialDiscountFilterOperator.Includes,
+            "excludes" => TrialDiscountFilterOperator.Excludes,
+            _ => (TrialDiscountFilterOperator)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        Filter25Operator value,
+        TrialDiscountFilterOperator value,
         JsonSerializerOptions options
     )
     {
@@ -326,8 +334,8 @@ sealed class Filter25OperatorConverter : JsonConverter<Filter25Operator>
             writer,
             value switch
             {
-                Filter25Operator.Includes => "includes",
-                Filter25Operator.Excludes => "excludes",
+                TrialDiscountFilterOperator.Includes => "includes",
+                TrialDiscountFilterOperator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

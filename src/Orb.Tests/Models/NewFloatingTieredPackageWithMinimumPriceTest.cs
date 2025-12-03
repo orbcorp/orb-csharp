@@ -657,7 +657,7 @@ public class TieredPackageWithMinimumConfigTest : TestBase
         };
 
         double expectedPackageSize = 0;
-        List<Tier5> expectedTiers =
+        List<TieredPackageWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -738,7 +738,7 @@ public class TieredPackageWithMinimumConfigTest : TestBase
         Assert.NotNull(deserialized);
 
         double expectedPackageSize = 0;
-        List<Tier5> expectedTiers =
+        List<TieredPackageWithMinimumConfigTier> expectedTiers =
         [
             new()
             {
@@ -789,12 +789,12 @@ public class TieredPackageWithMinimumConfigTest : TestBase
     }
 }
 
-public class Tier5Test : TestBase
+public class TieredPackageWithMinimumConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier5
+        var model = new TieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -813,7 +813,7 @@ public class Tier5Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier5
+        var model = new TieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -821,7 +821,7 @@ public class Tier5Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier5>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConfigTier>(json);
 
         Assert.Equal(model, deserialized);
     }
@@ -829,7 +829,7 @@ public class Tier5Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier5
+        var model = new TieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
@@ -837,7 +837,7 @@ public class Tier5Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier5>(json);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConfigTier>(json);
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -852,7 +852,7 @@ public class Tier5Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier5
+        var model = new TieredPackageWithMinimumConfigTier
         {
             MinimumAmount = "minimum_amount",
             PerUnit = "per_unit",
