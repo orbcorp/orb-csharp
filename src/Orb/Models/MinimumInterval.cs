@@ -88,6 +88,9 @@ public sealed record class MinimumInterval : ModelBase
 
     public MinimumInterval() { }
 
+    public MinimumInterval(MinimumInterval minimumInterval)
+        : base(minimumInterval) { }
+
     public MinimumInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -166,6 +169,9 @@ public sealed record class MinimumIntervalFilter : ModelBase
     }
 
     public MinimumIntervalFilter() { }
+
+    public MinimumIntervalFilter(MinimumIntervalFilter minimumIntervalFilter)
+        : base(minimumIntervalFilter) { }
 
     public MinimumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

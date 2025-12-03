@@ -123,6 +123,9 @@ public sealed record class AlertListParams : ParamsBase
 
     public AlertListParams() { }
 
+    public AlertListParams(AlertListParams alertListParams)
+        : base(alertListParams) { }
+
     public AlertListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

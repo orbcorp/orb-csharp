@@ -38,6 +38,11 @@ public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
 
     public PriceEvaluatePreviewEventsResponse() { }
 
+    public PriceEvaluatePreviewEventsResponse(
+        PriceEvaluatePreviewEventsResponse priceEvaluatePreviewEventsResponse
+    )
+        : base(priceEvaluatePreviewEventsResponse) { }
+
     public PriceEvaluatePreviewEventsResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -148,6 +153,11 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
     }
 
     public PriceEvaluatePreviewEventsResponseData() { }
+
+    public PriceEvaluatePreviewEventsResponseData(
+        PriceEvaluatePreviewEventsResponseData priceEvaluatePreviewEventsResponseData
+    )
+        : base(priceEvaluatePreviewEventsResponseData) { }
 
     public PriceEvaluatePreviewEventsResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -31,6 +31,9 @@ public sealed record class CustomerMinified : ModelBase
 
     public CustomerMinified() { }
 
+    public CustomerMinified(CustomerMinified customerMinified)
+        : base(customerMinified) { }
+
     public CustomerMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

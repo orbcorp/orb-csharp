@@ -49,6 +49,12 @@ public sealed record class InvoiceIssueParams : ParamsBase
 
     public InvoiceIssueParams() { }
 
+    public InvoiceIssueParams(InvoiceIssueParams invoiceIssueParams)
+        : base(invoiceIssueParams)
+    {
+        this._rawBodyData = [.. invoiceIssueParams._rawBodyData];
+    }
+
     public InvoiceIssueParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

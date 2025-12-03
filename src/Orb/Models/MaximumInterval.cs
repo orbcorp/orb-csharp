@@ -88,6 +88,9 @@ public sealed record class MaximumInterval : ModelBase
 
     public MaximumInterval() { }
 
+    public MaximumInterval(MaximumInterval maximumInterval)
+        : base(maximumInterval) { }
+
     public MaximumInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -166,6 +169,9 @@ public sealed record class MaximumIntervalFilter : ModelBase
     }
 
     public MaximumIntervalFilter() { }
+
+    public MaximumIntervalFilter(MaximumIntervalFilter maximumIntervalFilter)
+        : base(maximumIntervalFilter) { }
 
     public MaximumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -246,6 +246,11 @@ public sealed record class NewFloatingGroupedWithProratedMinimumPrice : ModelBas
     public NewFloatingGroupedWithProratedMinimumPrice() { }
 
     public NewFloatingGroupedWithProratedMinimumPrice(
+        NewFloatingGroupedWithProratedMinimumPrice newFloatingGroupedWithProratedMinimumPrice
+    )
+        : base(newFloatingGroupedWithProratedMinimumPrice) { }
+
+    public NewFloatingGroupedWithProratedMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -385,6 +390,11 @@ public sealed record class GroupedWithProratedMinimumConfig : ModelBase
     }
 
     public GroupedWithProratedMinimumConfig() { }
+
+    public GroupedWithProratedMinimumConfig(
+        GroupedWithProratedMinimumConfig groupedWithProratedMinimumConfig
+    )
+        : base(groupedWithProratedMinimumConfig) { }
 
     public GroupedWithProratedMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -53,6 +53,9 @@ public sealed record class MatrixConfig : ModelBase
 
     public MatrixConfig() { }
 
+    public MatrixConfig(MatrixConfig matrixConfig)
+        : base(matrixConfig) { }
+
     public MatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

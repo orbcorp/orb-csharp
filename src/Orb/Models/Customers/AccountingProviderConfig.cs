@@ -31,6 +31,9 @@ public sealed record class AccountingProviderConfig : ModelBase
 
     public AccountingProviderConfig() { }
 
+    public AccountingProviderConfig(AccountingProviderConfig accountingProviderConfig)
+        : base(accountingProviderConfig) { }
+
     public AccountingProviderConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

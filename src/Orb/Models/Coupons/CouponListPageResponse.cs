@@ -40,6 +40,9 @@ public sealed record class CouponListPageResponse : ModelBase
 
     public CouponListPageResponse() { }
 
+    public CouponListPageResponse(CouponListPageResponse couponListPageResponse)
+        : base(couponListPageResponse) { }
+
     public CouponListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

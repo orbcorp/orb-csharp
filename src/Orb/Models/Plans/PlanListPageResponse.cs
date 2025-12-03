@@ -40,6 +40,9 @@ public sealed record class PlanListPageResponse : ModelBase
 
     public PlanListPageResponse() { }
 
+    public PlanListPageResponse(PlanListPageResponse planListPageResponse)
+        : base(planListPageResponse) { }
+
     public PlanListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

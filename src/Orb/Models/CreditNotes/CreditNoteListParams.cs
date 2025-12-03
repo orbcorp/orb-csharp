@@ -86,6 +86,9 @@ public sealed record class CreditNoteListParams : ParamsBase
 
     public CreditNoteListParams() { }
 
+    public CreditNoteListParams(CreditNoteListParams creditNoteListParams)
+        : base(creditNoteListParams) { }
+
     public CreditNoteListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

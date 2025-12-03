@@ -146,6 +146,12 @@ public sealed record class BackfillCreateParams : ParamsBase
 
     public BackfillCreateParams() { }
 
+    public BackfillCreateParams(BackfillCreateParams backfillCreateParams)
+        : base(backfillCreateParams)
+    {
+        this._rawBodyData = [.. backfillCreateParams._rawBodyData];
+    }
+
     public BackfillCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

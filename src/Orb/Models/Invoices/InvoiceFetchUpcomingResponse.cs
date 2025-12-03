@@ -632,6 +632,10 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     public InvoiceFetchUpcomingResponse() { }
 
     [System::Obsolete("Required properties are deprecated: discount")]
+    public InvoiceFetchUpcomingResponse(InvoiceFetchUpcomingResponse invoiceFetchUpcomingResponse)
+        : base(invoiceFetchUpcomingResponse) { }
+
+    [System::Obsolete("Required properties are deprecated: discount")]
     public InvoiceFetchUpcomingResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -736,6 +740,9 @@ public sealed record class AutoCollection : ModelBase
 
     public AutoCollection() { }
 
+    public AutoCollection(global::Orb.Models.Invoices.AutoCollection autoCollection)
+        : base(autoCollection) { }
+
     public AutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -839,6 +846,9 @@ public sealed record class CreditNote : ModelBase
     }
 
     public CreditNote() { }
+
+    public CreditNote(global::Orb.Models.Invoices.CreditNote creditNote)
+        : base(creditNote) { }
 
     public CreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -988,6 +998,11 @@ public sealed record class CustomerBalanceTransaction : ModelBase
     }
 
     public CustomerBalanceTransaction() { }
+
+    public CustomerBalanceTransaction(
+        global::Orb.Models.Invoices.CustomerBalanceTransaction customerBalanceTransaction
+    )
+        : base(customerBalanceTransaction) { }
 
     public CustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1404,6 +1419,11 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : ModelBase
     }
 
     public InvoiceFetchUpcomingResponseLineItem() { }
+
+    public InvoiceFetchUpcomingResponseLineItem(
+        InvoiceFetchUpcomingResponseLineItem invoiceFetchUpcomingResponseLineItem
+    )
+        : base(invoiceFetchUpcomingResponseLineItem) { }
 
     public InvoiceFetchUpcomingResponseLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2401,6 +2421,9 @@ public sealed record class PaymentAttempt : ModelBase
     }
 
     public PaymentAttempt() { }
+
+    public PaymentAttempt(global::Orb.Models.Invoices.PaymentAttempt paymentAttempt)
+        : base(paymentAttempt) { }
 
     public PaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {

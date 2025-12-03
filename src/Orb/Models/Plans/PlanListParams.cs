@@ -118,6 +118,9 @@ public sealed record class PlanListParams : ParamsBase
 
     public PlanListParams() { }
 
+    public PlanListParams(PlanListParams planListParams)
+        : base(planListParams) { }
+
     public PlanListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

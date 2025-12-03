@@ -136,6 +136,10 @@ public sealed record class MonetaryMinimumAdjustment : ModelBase
     public MonetaryMinimumAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public MonetaryMinimumAdjustment(MonetaryMinimumAdjustment monetaryMinimumAdjustment)
+        : base(monetaryMinimumAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMinimumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -263,6 +267,11 @@ public sealed record class MonetaryMinimumAdjustmentFilter : ModelBase
     }
 
     public MonetaryMinimumAdjustmentFilter() { }
+
+    public MonetaryMinimumAdjustmentFilter(
+        MonetaryMinimumAdjustmentFilter monetaryMinimumAdjustmentFilter
+    )
+        : base(monetaryMinimumAdjustmentFilter) { }
 
     public MonetaryMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -149,6 +149,9 @@ public sealed record class NewMinimum : ModelBase
 
     public NewMinimum() { }
 
+    public NewMinimum(NewMinimum newMinimum)
+        : base(newMinimum) { }
+
     public NewMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -312,6 +315,9 @@ public sealed record class NewMinimumFilter : ModelBase
     }
 
     public NewMinimumFilter() { }
+
+    public NewMinimumFilter(NewMinimumFilter newMinimumFilter)
+        : base(newMinimumFilter) { }
 
     public NewMinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

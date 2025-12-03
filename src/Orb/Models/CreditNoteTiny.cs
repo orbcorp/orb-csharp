@@ -27,6 +27,9 @@ public sealed record class CreditNoteTiny : ModelBase
 
     public CreditNoteTiny() { }
 
+    public CreditNoteTiny(CreditNoteTiny creditNoteTiny)
+        : base(creditNoteTiny) { }
+
     public CreditNoteTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -127,6 +127,11 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
 
     public BalanceTransactionCreateResponse() { }
 
+    public BalanceTransactionCreateResponse(
+        BalanceTransactionCreateResponse balanceTransactionCreateResponse
+    )
+        : base(balanceTransactionCreateResponse) { }
+
     public BalanceTransactionCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -126,6 +126,14 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     public PriceEvaluatePreviewEventsParams() { }
 
     public PriceEvaluatePreviewEventsParams(
+        PriceEvaluatePreviewEventsParams priceEvaluatePreviewEventsParams
+    )
+        : base(priceEvaluatePreviewEventsParams)
+    {
+        this._rawBodyData = [.. priceEvaluatePreviewEventsParams._rawBodyData];
+    }
+
+    public PriceEvaluatePreviewEventsParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData
@@ -261,6 +269,9 @@ public sealed record class Event : ModelBase
 
     public Event() { }
 
+    public Event(Event event1)
+        : base(event1) { }
+
     public Event(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -368,6 +379,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluation() { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluation(
+        PriceEvaluatePreviewEventsParamsPriceEvaluation priceEvaluatePreviewEventsParamsPriceEvaluation
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluation) { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluation(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3384,6 +3400,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3480,6 +3501,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+    )
+        : base(
+            priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
+        ) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3558,6 +3586,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+    )
+        : base(
+            priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
+        ) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3634,6 +3669,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier()
     { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+    )
+        : base(
+            priceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
+        ) { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4291,6 +4333,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4468,6 +4515,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig()
     { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+    )
+        : base(
+            priceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
+        ) { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5042,6 +5096,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5219,6 +5278,13 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig()
     { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+    )
+        : base(
+            priceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
+        ) { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5787,6 +5853,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent priceEvaluatePreviewEventsParamsPriceEvaluationPricePercent
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPricePercent) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5920,6 +5991,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig() { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig priceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig) { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -6499,6 +6575,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput) { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -6660,6 +6741,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig() { }
+
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
+        PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
+    )
+        : base(priceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig) { }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

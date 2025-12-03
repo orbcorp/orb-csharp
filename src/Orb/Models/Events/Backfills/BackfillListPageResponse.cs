@@ -48,6 +48,9 @@ public sealed record class BackfillListPageResponse : ModelBase
 
     public BackfillListPageResponse() { }
 
+    public BackfillListPageResponse(BackfillListPageResponse backfillListPageResponse)
+        : base(backfillListPageResponse) { }
+
     public BackfillListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -223,6 +226,9 @@ public sealed record class Data : ModelBase
     }
 
     public Data() { }
+
+    public Data(global::Orb.Models.Events.Backfills.Data data)
+        : base(data) { }
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {

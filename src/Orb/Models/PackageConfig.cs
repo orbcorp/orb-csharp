@@ -41,6 +41,9 @@ public sealed record class PackageConfig : ModelBase
 
     public PackageConfig() { }
 
+    public PackageConfig(PackageConfig packageConfig)
+        : base(packageConfig) { }
+
     public PackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

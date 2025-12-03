@@ -51,6 +51,9 @@ public sealed record class SharedTier : ModelBase
 
     public SharedTier() { }
 
+    public SharedTier(SharedTier sharedTier)
+        : base(sharedTier) { }
+
     public SharedTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

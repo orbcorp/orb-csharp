@@ -93,6 +93,14 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     public SubscriptionRedeemCouponParams() { }
 
     public SubscriptionRedeemCouponParams(
+        SubscriptionRedeemCouponParams subscriptionRedeemCouponParams
+    )
+        : base(subscriptionRedeemCouponParams)
+    {
+        this._rawBodyData = [.. subscriptionRedeemCouponParams._rawBodyData];
+    }
+
+    public SubscriptionRedeemCouponParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

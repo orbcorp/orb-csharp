@@ -153,6 +153,9 @@ public sealed record class BackfillCloseResponse : ModelBase
 
     public BackfillCloseResponse() { }
 
+    public BackfillCloseResponse(BackfillCloseResponse backfillCloseResponse)
+        : base(backfillCloseResponse) { }
+
     public BackfillCloseResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

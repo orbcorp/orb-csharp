@@ -54,6 +54,11 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
 
     public BillingCycleAnchorConfiguration() { }
 
+    public BillingCycleAnchorConfiguration(
+        BillingCycleAnchorConfiguration billingCycleAnchorConfiguration
+    )
+        : base(billingCycleAnchorConfiguration) { }
+
     public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

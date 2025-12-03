@@ -123,6 +123,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
 
     public SubscriptionCancelParams() { }
 
+    public SubscriptionCancelParams(SubscriptionCancelParams subscriptionCancelParams)
+        : base(subscriptionCancelParams)
+    {
+        this._rawBodyData = [.. subscriptionCancelParams._rawBodyData];
+    }
+
     public SubscriptionCancelParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

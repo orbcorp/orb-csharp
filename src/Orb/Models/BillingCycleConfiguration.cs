@@ -39,6 +39,9 @@ public sealed record class BillingCycleConfiguration : ModelBase
 
     public BillingCycleConfiguration() { }
 
+    public BillingCycleConfiguration(BillingCycleConfiguration billingCycleConfiguration)
+        : base(billingCycleConfiguration) { }
+
     public BillingCycleConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

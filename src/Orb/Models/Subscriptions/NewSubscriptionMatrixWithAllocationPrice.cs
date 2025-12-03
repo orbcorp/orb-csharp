@@ -258,6 +258,11 @@ public sealed record class NewSubscriptionMatrixWithAllocationPrice : ModelBase
     public NewSubscriptionMatrixWithAllocationPrice() { }
 
     public NewSubscriptionMatrixWithAllocationPrice(
+        NewSubscriptionMatrixWithAllocationPrice newSubscriptionMatrixWithAllocationPrice
+    )
+        : base(newSubscriptionMatrixWithAllocationPrice) { }
+
+    public NewSubscriptionMatrixWithAllocationPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {

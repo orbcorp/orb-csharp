@@ -70,6 +70,9 @@ public sealed record class TierSubLineItem : ModelBase
 
     public TierSubLineItem() { }
 
+    public TierSubLineItem(TierSubLineItem tierSubLineItem)
+        : base(tierSubLineItem) { }
+
     public TierSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -127,6 +130,9 @@ public sealed record class TierConfig : ModelBase
     }
 
     public TierConfig() { }
+
+    public TierConfig(TierConfig tierConfig)
+        : base(tierConfig) { }
 
     public TierConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

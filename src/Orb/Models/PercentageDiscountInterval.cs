@@ -105,6 +105,9 @@ public sealed record class PercentageDiscountInterval : ModelBase
 
     public PercentageDiscountInterval() { }
 
+    public PercentageDiscountInterval(PercentageDiscountInterval percentageDiscountInterval)
+        : base(percentageDiscountInterval) { }
+
     public PercentageDiscountInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -231,6 +234,11 @@ public sealed record class PercentageDiscountIntervalFilter : ModelBase
     }
 
     public PercentageDiscountIntervalFilter() { }
+
+    public PercentageDiscountIntervalFilter(
+        PercentageDiscountIntervalFilter percentageDiscountIntervalFilter
+    )
+        : base(percentageDiscountIntervalFilter) { }
 
     public PercentageDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

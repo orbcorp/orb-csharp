@@ -18,6 +18,9 @@ public sealed record class CreditNoteFetchParams : ParamsBase
 
     public CreditNoteFetchParams() { }
 
+    public CreditNoteFetchParams(CreditNoteFetchParams creditNoteFetchParams)
+        : base(creditNoteFetchParams) { }
+
     public CreditNoteFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

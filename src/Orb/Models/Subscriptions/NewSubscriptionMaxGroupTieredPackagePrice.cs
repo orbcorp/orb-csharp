@@ -258,6 +258,11 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : ModelBase
     public NewSubscriptionMaxGroupTieredPackagePrice() { }
 
     public NewSubscriptionMaxGroupTieredPackagePrice(
+        NewSubscriptionMaxGroupTieredPackagePrice newSubscriptionMaxGroupTieredPackagePrice
+    )
+        : base(newSubscriptionMaxGroupTieredPackagePrice) { }
+
+    public NewSubscriptionMaxGroupTieredPackagePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -406,6 +411,11 @@ public sealed record class MaxGroupTieredPackageConfig : ModelBase
 
     public MaxGroupTieredPackageConfig() { }
 
+    public MaxGroupTieredPackageConfig(
+        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig maxGroupTieredPackageConfig
+    )
+        : base(maxGroupTieredPackageConfig) { }
+
     public MaxGroupTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -474,6 +484,11 @@ public sealed record class MaxGroupTieredPackageConfigTier : ModelBase
     }
 
     public MaxGroupTieredPackageConfigTier() { }
+
+    public MaxGroupTieredPackageConfigTier(
+        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
+    )
+        : base(maxGroupTieredPackageConfigTier) { }
 
     public MaxGroupTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

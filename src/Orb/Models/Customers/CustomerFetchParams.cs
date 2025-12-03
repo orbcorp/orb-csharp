@@ -22,6 +22,9 @@ public sealed record class CustomerFetchParams : ParamsBase
 
     public CustomerFetchParams() { }
 
+    public CustomerFetchParams(CustomerFetchParams customerFetchParams)
+        : base(customerFetchParams) { }
+
     public CustomerFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

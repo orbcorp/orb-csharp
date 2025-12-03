@@ -47,6 +47,9 @@ public sealed record class BackfillListParams : ParamsBase
 
     public BackfillListParams() { }
 
+    public BackfillListParams(BackfillListParams backfillListParams)
+        : base(backfillListParams) { }
+
     public BackfillListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

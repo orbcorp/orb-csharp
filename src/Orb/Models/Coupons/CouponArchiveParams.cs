@@ -19,6 +19,9 @@ public sealed record class CouponArchiveParams : ParamsBase
 
     public CouponArchiveParams() { }
 
+    public CouponArchiveParams(CouponArchiveParams couponArchiveParams)
+        : base(couponArchiveParams) { }
+
     public CouponArchiveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

@@ -245,6 +245,11 @@ public sealed record class NewFloatingMatrixWithDisplayNamePrice : ModelBase
 
     public NewFloatingMatrixWithDisplayNamePrice() { }
 
+    public NewFloatingMatrixWithDisplayNamePrice(
+        NewFloatingMatrixWithDisplayNamePrice newFloatingMatrixWithDisplayNamePrice
+    )
+        : base(newFloatingMatrixWithDisplayNamePrice) { }
+
     public NewFloatingMatrixWithDisplayNamePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -379,6 +384,9 @@ public sealed record class MatrixWithDisplayNameConfig : ModelBase
 
     public MatrixWithDisplayNameConfig() { }
 
+    public MatrixWithDisplayNameConfig(MatrixWithDisplayNameConfig matrixWithDisplayNameConfig)
+        : base(matrixWithDisplayNameConfig) { }
+
     public MatrixWithDisplayNameConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -456,6 +464,11 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : ModelBase
     }
 
     public MatrixWithDisplayNameConfigUnitAmount() { }
+
+    public MatrixWithDisplayNameConfigUnitAmount(
+        MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
+    )
+        : base(matrixWithDisplayNameConfigUnitAmount) { }
 
     public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -42,6 +42,9 @@ public sealed record class CreditListPageResponse : ModelBase
 
     public CreditListPageResponse() { }
 
+    public CreditListPageResponse(CreditListPageResponse creditListPageResponse)
+        : base(creditListPageResponse) { }
+
     public CreditListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -161,6 +164,9 @@ public sealed record class Data : ModelBase
 
     public Data() { }
 
+    public Data(Data data)
+        : base(data) { }
+
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -245,6 +251,9 @@ public sealed record class Filter : ModelBase
     }
 
     public Filter() { }
+
+    public Filter(global::Orb.Models.Customers.Credits.Filter filter)
+        : base(filter) { }
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

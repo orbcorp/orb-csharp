@@ -243,6 +243,9 @@ public sealed record class InvoiceListParams : ParamsBase
 
     public InvoiceListParams() { }
 
+    public InvoiceListParams(InvoiceListParams invoiceListParams)
+        : base(invoiceListParams) { }
+
     public InvoiceListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

@@ -59,6 +59,9 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
 
     public NewAvalaraTaxConfiguration() { }
 
+    public NewAvalaraTaxConfiguration(NewAvalaraTaxConfiguration newAvalaraTaxConfiguration)
+        : base(newAvalaraTaxConfiguration) { }
+
     public NewAvalaraTaxConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

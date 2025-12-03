@@ -65,6 +65,9 @@ public sealed record class AggregatedCost : ModelBase
 
     public AggregatedCost() { }
 
+    public AggregatedCost(AggregatedCost aggregatedCost)
+        : base(aggregatedCost) { }
+
     public AggregatedCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

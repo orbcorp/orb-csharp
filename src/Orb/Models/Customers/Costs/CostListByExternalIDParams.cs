@@ -169,6 +169,9 @@ public sealed record class CostListByExternalIDParams : ParamsBase
 
     public CostListByExternalIDParams() { }
 
+    public CostListByExternalIDParams(CostListByExternalIDParams costListByExternalIDParams)
+        : base(costListByExternalIDParams) { }
+
     public CostListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

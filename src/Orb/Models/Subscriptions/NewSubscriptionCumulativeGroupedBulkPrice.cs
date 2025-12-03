@@ -258,6 +258,11 @@ public sealed record class NewSubscriptionCumulativeGroupedBulkPrice : ModelBase
     public NewSubscriptionCumulativeGroupedBulkPrice() { }
 
     public NewSubscriptionCumulativeGroupedBulkPrice(
+        NewSubscriptionCumulativeGroupedBulkPrice newSubscriptionCumulativeGroupedBulkPrice
+    )
+        : base(newSubscriptionCumulativeGroupedBulkPrice) { }
+
+    public NewSubscriptionCumulativeGroupedBulkPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -397,6 +402,11 @@ public sealed record class CumulativeGroupedBulkConfig : ModelBase
 
     public CumulativeGroupedBulkConfig() { }
 
+    public CumulativeGroupedBulkConfig(
+        global::Orb.Models.Subscriptions.CumulativeGroupedBulkConfig cumulativeGroupedBulkConfig
+    )
+        : base(cumulativeGroupedBulkConfig) { }
+
     public CumulativeGroupedBulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -475,6 +485,9 @@ public sealed record class DimensionValue : ModelBase
     }
 
     public DimensionValue() { }
+
+    public DimensionValue(global::Orb.Models.Subscriptions.DimensionValue dimensionValue)
+        : base(dimensionValue) { }
 
     public DimensionValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {

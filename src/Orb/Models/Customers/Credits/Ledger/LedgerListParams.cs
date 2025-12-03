@@ -198,6 +198,9 @@ public sealed record class LedgerListParams : ParamsBase
 
     public LedgerListParams() { }
 
+    public LedgerListParams(LedgerListParams ledgerListParams)
+        : base(ledgerListParams) { }
+
     public LedgerListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

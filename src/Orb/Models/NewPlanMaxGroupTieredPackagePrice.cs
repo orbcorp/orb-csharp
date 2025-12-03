@@ -257,6 +257,11 @@ public sealed record class NewPlanMaxGroupTieredPackagePrice : ModelBase
 
     public NewPlanMaxGroupTieredPackagePrice() { }
 
+    public NewPlanMaxGroupTieredPackagePrice(
+        NewPlanMaxGroupTieredPackagePrice newPlanMaxGroupTieredPackagePrice
+    )
+        : base(newPlanMaxGroupTieredPackagePrice) { }
+
     public NewPlanMaxGroupTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -404,6 +409,11 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig() { }
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig(
+        NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig
+    )
+        : base(newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig) { }
+
+    public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -476,6 +486,11 @@ public sealed record class NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackag
     }
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier() { }
+
+    public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
+        NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier
+    )
+        : base(newPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier) { }
 
     public NewPlanMaxGroupTieredPackagePriceMaxGroupTieredPackageConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

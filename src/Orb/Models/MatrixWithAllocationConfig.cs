@@ -71,6 +71,9 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
 
     public MatrixWithAllocationConfig() { }
 
+    public MatrixWithAllocationConfig(MatrixWithAllocationConfig matrixWithAllocationConfig)
+        : base(matrixWithAllocationConfig) { }
+
     public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -140,6 +143,11 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
     }
 
     public MatrixWithAllocationConfigMatrixValue() { }
+
+    public MatrixWithAllocationConfigMatrixValue(
+        MatrixWithAllocationConfigMatrixValue matrixWithAllocationConfigMatrixValue
+    )
+        : base(matrixWithAllocationConfigMatrixValue) { }
 
     public MatrixWithAllocationConfigMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {

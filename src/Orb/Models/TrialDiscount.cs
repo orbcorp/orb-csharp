@@ -92,6 +92,9 @@ public sealed record class TrialDiscount : ModelBase
 
     public TrialDiscount() { }
 
+    public TrialDiscount(TrialDiscount trialDiscount)
+        : base(trialDiscount) { }
+
     public TrialDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -218,6 +221,9 @@ public sealed record class TrialDiscountFilter : ModelBase
     }
 
     public TrialDiscountFilter() { }
+
+    public TrialDiscountFilter(TrialDiscountFilter trialDiscountFilter)
+        : base(trialDiscountFilter) { }
 
     public TrialDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

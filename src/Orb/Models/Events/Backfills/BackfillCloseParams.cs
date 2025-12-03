@@ -20,6 +20,9 @@ public sealed record class BackfillCloseParams : ParamsBase
 
     public BackfillCloseParams() { }
 
+    public BackfillCloseParams(BackfillCloseParams backfillCloseParams)
+        : base(backfillCloseParams) { }
+
     public BackfillCloseParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

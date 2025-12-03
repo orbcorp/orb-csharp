@@ -128,6 +128,10 @@ public sealed record class PlanPhaseMaximumAdjustment : ModelBase
     public PlanPhaseMaximumAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public PlanPhaseMaximumAdjustment(PlanPhaseMaximumAdjustment planPhaseMaximumAdjustment)
+        : base(planPhaseMaximumAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMaximumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -257,6 +261,11 @@ public sealed record class PlanPhaseMaximumAdjustmentFilter : ModelBase
     }
 
     public PlanPhaseMaximumAdjustmentFilter() { }
+
+    public PlanPhaseMaximumAdjustmentFilter(
+        PlanPhaseMaximumAdjustmentFilter planPhaseMaximumAdjustmentFilter
+    )
+        : base(planPhaseMaximumAdjustmentFilter) { }
 
     public PlanPhaseMaximumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -53,6 +53,11 @@ public sealed record class TopUpListByExternalIDPageResponse : ModelBase
 
     public TopUpListByExternalIDPageResponse() { }
 
+    public TopUpListByExternalIDPageResponse(
+        TopUpListByExternalIDPageResponse topUpListByExternalIDPageResponse
+    )
+        : base(topUpListByExternalIDPageResponse) { }
+
     public TopUpListByExternalIDPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -188,6 +193,11 @@ public sealed record class TopUpListByExternalIDPageResponseData : ModelBase
     }
 
     public TopUpListByExternalIDPageResponseData() { }
+
+    public TopUpListByExternalIDPageResponseData(
+        TopUpListByExternalIDPageResponseData topUpListByExternalIDPageResponseData
+    )
+        : base(topUpListByExternalIDPageResponseData) { }
 
     public TopUpListByExternalIDPageResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {

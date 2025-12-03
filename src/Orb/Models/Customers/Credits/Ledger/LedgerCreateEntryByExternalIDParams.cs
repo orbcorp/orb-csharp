@@ -119,6 +119,14 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     public LedgerCreateEntryByExternalIDParams() { }
 
     public LedgerCreateEntryByExternalIDParams(
+        LedgerCreateEntryByExternalIDParams ledgerCreateEntryByExternalIDParams
+    )
+        : base(ledgerCreateEntryByExternalIDParams)
+    {
+        this._rawBodyData = [.. ledgerCreateEntryByExternalIDParams._rawBodyData];
+    }
+
+    public LedgerCreateEntryByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData
@@ -918,6 +926,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrement(
+        LedgerCreateEntryByExternalIDParamsBodyIncrement ledgerCreateEntryByExternalIDParamsBodyIncrement
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyIncrement) { }
+
+    public LedgerCreateEntryByExternalIDParamsBodyIncrement(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1022,6 +1035,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter() { }
+
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilter ledgerCreateEntryByExternalIDParamsBodyIncrementFilter
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyIncrementFilter) { }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1277,6 +1295,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings() { }
+
+    public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings ledgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings) { }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2043,6 +2066,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyDecrement(
+        LedgerCreateEntryByExternalIDParamsBodyDecrement ledgerCreateEntryByExternalIDParamsBodyDecrement
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyDecrement) { }
+
+    public LedgerCreateEntryByExternalIDParamsBodyDecrement(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2221,6 +2249,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
+        LedgerCreateEntryByExternalIDParamsBodyExpirationChange ledgerCreateEntryByExternalIDParamsBodyExpirationChange
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyExpirationChange) { }
+
+    public LedgerCreateEntryByExternalIDParamsBodyExpirationChange(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2380,6 +2413,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
+
+    public LedgerCreateEntryByExternalIDParamsBodyVoid(
+        LedgerCreateEntryByExternalIDParamsBodyVoid ledgerCreateEntryByExternalIDParamsBodyVoid
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyVoid) { }
 
     public LedgerCreateEntryByExternalIDParamsBodyVoid(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -2555,6 +2593,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     {
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"amendment\"");
     }
+
+    public LedgerCreateEntryByExternalIDParamsBodyAmendment(
+        LedgerCreateEntryByExternalIDParamsBodyAmendment ledgerCreateEntryByExternalIDParamsBodyAmendment
+    )
+        : base(ledgerCreateEntryByExternalIDParamsBodyAmendment) { }
 
     public LedgerCreateEntryByExternalIDParamsBodyAmendment(
         IReadOnlyDictionary<string, JsonElement> rawData

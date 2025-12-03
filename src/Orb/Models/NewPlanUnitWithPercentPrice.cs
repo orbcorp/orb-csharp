@@ -256,6 +256,9 @@ public sealed record class NewPlanUnitWithPercentPrice : ModelBase
 
     public NewPlanUnitWithPercentPrice() { }
 
+    public NewPlanUnitWithPercentPrice(NewPlanUnitWithPercentPrice newPlanUnitWithPercentPrice)
+        : base(newPlanUnitWithPercentPrice) { }
+
     public NewPlanUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -428,6 +431,11 @@ public sealed record class NewPlanUnitWithPercentPriceUnitWithPercentConfig : Mo
     }
 
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig() { }
+
+    public NewPlanUnitWithPercentPriceUnitWithPercentConfig(
+        NewPlanUnitWithPercentPriceUnitWithPercentConfig newPlanUnitWithPercentPriceUnitWithPercentConfig
+    )
+        : base(newPlanUnitWithPercentPriceUnitWithPercentConfig) { }
 
     public NewPlanUnitWithPercentPriceUnitWithPercentConfig(
         IReadOnlyDictionary<string, JsonElement> rawData

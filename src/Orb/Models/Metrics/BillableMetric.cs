@@ -87,6 +87,9 @@ public sealed record class BillableMetric : ModelBase
 
     public BillableMetric() { }
 
+    public BillableMetric(BillableMetric billableMetric)
+        : base(billableMetric) { }
+
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

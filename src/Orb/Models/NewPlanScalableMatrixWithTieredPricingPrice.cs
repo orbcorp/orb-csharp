@@ -258,6 +258,11 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPrice : ModelBa
     public NewPlanScalableMatrixWithTieredPricingPrice() { }
 
     public NewPlanScalableMatrixWithTieredPricingPrice(
+        NewPlanScalableMatrixWithTieredPricingPrice newPlanScalableMatrixWithTieredPricingPrice
+    )
+        : base(newPlanScalableMatrixWithTieredPricingPrice) { }
+
+    public NewPlanScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -473,6 +478,11 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig() { }
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig(
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig
+    )
+        : base(newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig) { }
+
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -561,6 +571,13 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     { }
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+    )
+        : base(
+            newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+        ) { }
+
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -636,6 +653,12 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
     }
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier()
+    { }
+
+    public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier(
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier
+    )
+        : base(newPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier)
     { }
 
     public NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier(

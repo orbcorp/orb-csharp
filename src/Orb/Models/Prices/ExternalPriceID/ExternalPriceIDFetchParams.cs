@@ -18,6 +18,9 @@ public sealed record class ExternalPriceIDFetchParams : ParamsBase
 
     public ExternalPriceIDFetchParams() { }
 
+    public ExternalPriceIDFetchParams(ExternalPriceIDFetchParams externalPriceIDFetchParams)
+        : base(externalPriceIDFetchParams) { }
+
     public ExternalPriceIDFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

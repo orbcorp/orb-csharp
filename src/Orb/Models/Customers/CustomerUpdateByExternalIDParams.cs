@@ -353,6 +353,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     public CustomerUpdateByExternalIDParams() { }
 
     public CustomerUpdateByExternalIDParams(
+        CustomerUpdateByExternalIDParams customerUpdateByExternalIDParams
+    )
+        : base(customerUpdateByExternalIDParams)
+    {
+        this._rawBodyData = [.. customerUpdateByExternalIDParams._rawBodyData];
+    }
+
+    public CustomerUpdateByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData
@@ -463,6 +471,11 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
     public CustomerUpdateByExternalIDParamsPaymentConfiguration() { }
 
     public CustomerUpdateByExternalIDParamsPaymentConfiguration(
+        CustomerUpdateByExternalIDParamsPaymentConfiguration customerUpdateByExternalIDParamsPaymentConfiguration
+    )
+        : base(customerUpdateByExternalIDParamsPaymentConfiguration) { }
+
+    public CustomerUpdateByExternalIDParamsPaymentConfiguration(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -561,6 +574,11 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     }
 
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider() { }
+
+    public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider(
+        CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider customerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
+    )
+        : base(customerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider) { }
 
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1346,6 +1364,11 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral(
+        CustomerUpdateByExternalIDParamsTaxConfigurationNumeral customerUpdateByExternalIDParamsTaxConfigurationNumeral
+    )
+        : base(customerUpdateByExternalIDParamsTaxConfigurationNumeral) { }
+
+    public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1441,6 +1464,11 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok(
+        CustomerUpdateByExternalIDParamsTaxConfigurationAnrok customerUpdateByExternalIDParamsTaxConfigurationAnrok
+    )
+        : base(customerUpdateByExternalIDParamsTaxConfigurationAnrok) { }
+
+    public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1534,6 +1562,11 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
     {
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
     }
+
+    public CustomerUpdateByExternalIDParamsTaxConfigurationStripe(
+        CustomerUpdateByExternalIDParamsTaxConfigurationStripe customerUpdateByExternalIDParamsTaxConfigurationStripe
+    )
+        : base(customerUpdateByExternalIDParamsTaxConfigurationStripe) { }
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationStripe(
         IReadOnlyDictionary<string, JsonElement> rawData

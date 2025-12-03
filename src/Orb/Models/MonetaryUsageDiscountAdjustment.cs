@@ -128,6 +128,12 @@ public sealed record class MonetaryUsageDiscountAdjustment : ModelBase
     public MonetaryUsageDiscountAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public MonetaryUsageDiscountAdjustment(
+        MonetaryUsageDiscountAdjustment monetaryUsageDiscountAdjustment
+    )
+        : base(monetaryUsageDiscountAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryUsageDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -257,6 +263,11 @@ public sealed record class MonetaryUsageDiscountAdjustmentFilter : ModelBase
     }
 
     public MonetaryUsageDiscountAdjustmentFilter() { }
+
+    public MonetaryUsageDiscountAdjustmentFilter(
+        MonetaryUsageDiscountAdjustmentFilter monetaryUsageDiscountAdjustmentFilter
+    )
+        : base(monetaryUsageDiscountAdjustmentFilter) { }
 
     public MonetaryUsageDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

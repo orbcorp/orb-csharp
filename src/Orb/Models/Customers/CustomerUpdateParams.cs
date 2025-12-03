@@ -354,6 +354,12 @@ public sealed record class CustomerUpdateParams : ParamsBase
 
     public CustomerUpdateParams() { }
 
+    public CustomerUpdateParams(CustomerUpdateParams customerUpdateParams)
+        : base(customerUpdateParams)
+    {
+        this._rawBodyData = [.. customerUpdateParams._rawBodyData];
+    }
+
     public CustomerUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -465,6 +471,11 @@ public sealed record class CustomerUpdateParamsPaymentConfiguration : ModelBase
     public CustomerUpdateParamsPaymentConfiguration() { }
 
     public CustomerUpdateParamsPaymentConfiguration(
+        CustomerUpdateParamsPaymentConfiguration customerUpdateParamsPaymentConfiguration
+    )
+        : base(customerUpdateParamsPaymentConfiguration) { }
+
+    public CustomerUpdateParamsPaymentConfiguration(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -557,6 +568,11 @@ public sealed record class CustomerUpdateParamsPaymentConfigurationPaymentProvid
     }
 
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider() { }
+
+    public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
+        CustomerUpdateParamsPaymentConfigurationPaymentProvider customerUpdateParamsPaymentConfigurationPaymentProvider
+    )
+        : base(customerUpdateParamsPaymentConfigurationPaymentProvider) { }
 
     public CustomerUpdateParamsPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1336,6 +1352,11 @@ public sealed record class CustomerUpdateParamsTaxConfigurationNumeral : ModelBa
     }
 
     public CustomerUpdateParamsTaxConfigurationNumeral(
+        CustomerUpdateParamsTaxConfigurationNumeral customerUpdateParamsTaxConfigurationNumeral
+    )
+        : base(customerUpdateParamsTaxConfigurationNumeral) { }
+
+    public CustomerUpdateParamsTaxConfigurationNumeral(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1429,6 +1450,11 @@ public sealed record class CustomerUpdateParamsTaxConfigurationAnrok : ModelBase
     }
 
     public CustomerUpdateParamsTaxConfigurationAnrok(
+        CustomerUpdateParamsTaxConfigurationAnrok customerUpdateParamsTaxConfigurationAnrok
+    )
+        : base(customerUpdateParamsTaxConfigurationAnrok) { }
+
+    public CustomerUpdateParamsTaxConfigurationAnrok(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1520,6 +1546,11 @@ public sealed record class CustomerUpdateParamsTaxConfigurationStripe : ModelBas
     {
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
     }
+
+    public CustomerUpdateParamsTaxConfigurationStripe(
+        CustomerUpdateParamsTaxConfigurationStripe customerUpdateParamsTaxConfigurationStripe
+    )
+        : base(customerUpdateParamsTaxConfigurationStripe) { }
 
     public CustomerUpdateParamsTaxConfigurationStripe(
         IReadOnlyDictionary<string, JsonElement> rawData

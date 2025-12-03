@@ -257,6 +257,11 @@ public sealed record class NewSubscriptionTieredWithMinimumPrice : ModelBase
 
     public NewSubscriptionTieredWithMinimumPrice() { }
 
+    public NewSubscriptionTieredWithMinimumPrice(
+        NewSubscriptionTieredWithMinimumPrice newSubscriptionTieredWithMinimumPrice
+    )
+        : base(newSubscriptionTieredWithMinimumPrice) { }
+
     public NewSubscriptionTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -467,6 +472,11 @@ public sealed record class TieredWithMinimumConfig : ModelBase
 
     public TieredWithMinimumConfig() { }
 
+    public TieredWithMinimumConfig(
+        global::Orb.Models.Subscriptions.TieredWithMinimumConfig tieredWithMinimumConfig
+    )
+        : base(tieredWithMinimumConfig) { }
+
     public TieredWithMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -554,6 +564,11 @@ public sealed record class TieredWithMinimumConfigTier : ModelBase
     }
 
     public TieredWithMinimumConfigTier() { }
+
+    public TieredWithMinimumConfigTier(
+        global::Orb.Models.Subscriptions.TieredWithMinimumConfigTier tieredWithMinimumConfigTier
+    )
+        : base(tieredWithMinimumConfigTier) { }
 
     public TieredWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

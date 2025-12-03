@@ -250,6 +250,9 @@ public sealed record class NewSubscriptionMatrixPrice : ModelBase
 
     public NewSubscriptionMatrixPrice() { }
 
+    public NewSubscriptionMatrixPrice(NewSubscriptionMatrixPrice newSubscriptionMatrixPrice)
+        : base(newSubscriptionMatrixPrice) { }
+
     public NewSubscriptionMatrixPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

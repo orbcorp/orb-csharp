@@ -48,6 +48,11 @@ public sealed record class FixedFeeQuantityScheduleEntry : ModelBase
 
     public FixedFeeQuantityScheduleEntry() { }
 
+    public FixedFeeQuantityScheduleEntry(
+        FixedFeeQuantityScheduleEntry fixedFeeQuantityScheduleEntry
+    )
+        : base(fixedFeeQuantityScheduleEntry) { }
+
     public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

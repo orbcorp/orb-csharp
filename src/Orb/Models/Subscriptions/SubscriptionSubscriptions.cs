@@ -40,6 +40,9 @@ public sealed record class SubscriptionSubscriptions : ModelBase
 
     public SubscriptionSubscriptions() { }
 
+    public SubscriptionSubscriptions(SubscriptionSubscriptions subscriptionSubscriptions)
+        : base(subscriptionSubscriptions) { }
+
     public SubscriptionSubscriptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

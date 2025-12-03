@@ -63,6 +63,9 @@ public sealed record class DiscountOverride : ModelBase
 
     public DiscountOverride() { }
 
+    public DiscountOverride(DiscountOverride discountOverride)
+        : base(discountOverride) { }
+
     public DiscountOverride(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

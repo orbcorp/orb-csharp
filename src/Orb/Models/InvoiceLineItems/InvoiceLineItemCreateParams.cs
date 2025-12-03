@@ -127,6 +127,12 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 
     public InvoiceLineItemCreateParams() { }
 
+    public InvoiceLineItemCreateParams(InvoiceLineItemCreateParams invoiceLineItemCreateParams)
+        : base(invoiceLineItemCreateParams)
+    {
+        this._rawBodyData = [.. invoiceLineItemCreateParams._rawBodyData];
+    }
+
     public InvoiceLineItemCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

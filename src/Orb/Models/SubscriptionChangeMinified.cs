@@ -26,6 +26,9 @@ public sealed record class SubscriptionChangeMinified : ModelBase
 
     public SubscriptionChangeMinified() { }
 
+    public SubscriptionChangeMinified(SubscriptionChangeMinified subscriptionChangeMinified)
+        : base(subscriptionChangeMinified) { }
+
     public SubscriptionChangeMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -50,6 +50,9 @@ public sealed record class NewTaxJarConfiguration : ModelBase
 
     public NewTaxJarConfiguration() { }
 
+    public NewTaxJarConfiguration(NewTaxJarConfiguration newTaxJarConfiguration)
+        : base(newTaxJarConfiguration) { }
+
     public NewTaxJarConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

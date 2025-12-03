@@ -18,6 +18,11 @@ public sealed record class ExternalDimensionalPriceGroupIDRetrieveParams : Param
     public ExternalDimensionalPriceGroupIDRetrieveParams() { }
 
     public ExternalDimensionalPriceGroupIDRetrieveParams(
+        ExternalDimensionalPriceGroupIDRetrieveParams externalDimensionalPriceGroupIDRetrieveParams
+    )
+        : base(externalDimensionalPriceGroupIDRetrieveParams) { }
+
+    public ExternalDimensionalPriceGroupIDRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

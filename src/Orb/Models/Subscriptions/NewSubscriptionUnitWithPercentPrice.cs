@@ -257,6 +257,11 @@ public sealed record class NewSubscriptionUnitWithPercentPrice : ModelBase
 
     public NewSubscriptionUnitWithPercentPrice() { }
 
+    public NewSubscriptionUnitWithPercentPrice(
+        NewSubscriptionUnitWithPercentPrice newSubscriptionUnitWithPercentPrice
+    )
+        : base(newSubscriptionUnitWithPercentPrice) { }
+
     public NewSubscriptionUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -429,6 +434,11 @@ public sealed record class UnitWithPercentConfig : ModelBase
     }
 
     public UnitWithPercentConfig() { }
+
+    public UnitWithPercentConfig(
+        global::Orb.Models.Subscriptions.UnitWithPercentConfig unitWithPercentConfig
+    )
+        : base(unitWithPercentConfig) { }
 
     public UnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

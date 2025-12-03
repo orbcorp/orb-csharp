@@ -111,6 +111,9 @@ public sealed record class TopUpCreateResponse : ModelBase
 
     public TopUpCreateResponse() { }
 
+    public TopUpCreateResponse(TopUpCreateResponse topUpCreateResponse)
+        : base(topUpCreateResponse) { }
+
     public TopUpCreateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

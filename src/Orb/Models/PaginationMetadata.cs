@@ -31,6 +31,9 @@ public sealed record class PaginationMetadata : ModelBase
 
     public PaginationMetadata() { }
 
+    public PaginationMetadata(PaginationMetadata paginationMetadata)
+        : base(paginationMetadata) { }
+
     public PaginationMetadata(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -245,6 +245,11 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
 
     public NewFloatingTieredWithProrationPrice() { }
 
+    public NewFloatingTieredWithProrationPrice(
+        NewFloatingTieredWithProrationPrice newFloatingTieredWithProrationPrice
+    )
+        : base(newFloatingTieredWithProrationPrice) { }
+
     public NewFloatingTieredWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -415,6 +420,9 @@ public sealed record class TieredWithProrationConfig : ModelBase
 
     public TieredWithProrationConfig() { }
 
+    public TieredWithProrationConfig(TieredWithProrationConfig tieredWithProrationConfig)
+        : base(tieredWithProrationConfig) { }
+
     public TieredWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -486,6 +494,11 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
     }
 
     public TieredWithProrationConfigTier() { }
+
+    public TieredWithProrationConfigTier(
+        TieredWithProrationConfigTier tieredWithProrationConfigTier
+    )
+        : base(tieredWithProrationConfigTier) { }
 
     public TieredWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -131,6 +131,12 @@ public sealed record class PlanPhaseUsageDiscountAdjustment : ModelBase
     public PlanPhaseUsageDiscountAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public PlanPhaseUsageDiscountAdjustment(
+        PlanPhaseUsageDiscountAdjustment planPhaseUsageDiscountAdjustment
+    )
+        : base(planPhaseUsageDiscountAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseUsageDiscountAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -260,6 +266,11 @@ public sealed record class PlanPhaseUsageDiscountAdjustmentFilter : ModelBase
     }
 
     public PlanPhaseUsageDiscountAdjustmentFilter() { }
+
+    public PlanPhaseUsageDiscountAdjustmentFilter(
+        PlanPhaseUsageDiscountAdjustmentFilter planPhaseUsageDiscountAdjustmentFilter
+    )
+        : base(planPhaseUsageDiscountAdjustmentFilter) { }
 
     public PlanPhaseUsageDiscountAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

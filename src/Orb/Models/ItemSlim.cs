@@ -40,6 +40,9 @@ public sealed record class ItemSlim : ModelBase
 
     public ItemSlim() { }
 
+    public ItemSlim(ItemSlim itemSlim)
+        : base(itemSlim) { }
+
     public ItemSlim(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -48,6 +48,9 @@ public sealed record class EventIngestResponse : ModelBase
 
     public EventIngestResponse() { }
 
+    public EventIngestResponse(EventIngestResponse eventIngestResponse)
+        : base(eventIngestResponse) { }
+
     public EventIngestResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -114,6 +117,9 @@ public sealed record class ValidationFailed : ModelBase
 
     public ValidationFailed() { }
 
+    public ValidationFailed(ValidationFailed validationFailed)
+        : base(validationFailed) { }
+
     public ValidationFailed(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -170,6 +176,9 @@ public sealed record class Debug : ModelBase
     }
 
     public Debug() { }
+
+    public Debug(Debug debug)
+        : base(debug) { }
 
     public Debug(IReadOnlyDictionary<string, JsonElement> rawData)
     {

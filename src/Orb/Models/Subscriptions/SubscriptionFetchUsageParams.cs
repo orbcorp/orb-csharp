@@ -258,6 +258,9 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
 
     public SubscriptionFetchUsageParams() { }
 
+    public SubscriptionFetchUsageParams(SubscriptionFetchUsageParams subscriptionFetchUsageParams)
+        : base(subscriptionFetchUsageParams) { }
+
     public SubscriptionFetchUsageParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

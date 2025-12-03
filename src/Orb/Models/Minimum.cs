@@ -59,6 +59,10 @@ public sealed record class Minimum : ModelBase
     public Minimum() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public Minimum(Minimum minimum)
+        : base(minimum) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Minimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -140,6 +144,9 @@ public sealed record class MinimumFilter : ModelBase
     }
 
     public MinimumFilter() { }
+
+    public MinimumFilter(MinimumFilter minimumFilter)
+        : base(minimumFilter) { }
 
     public MinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

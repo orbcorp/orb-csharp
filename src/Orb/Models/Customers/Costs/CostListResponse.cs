@@ -27,6 +27,9 @@ public sealed record class CostListResponse : ModelBase
 
     public CostListResponse() { }
 
+    public CostListResponse(CostListResponse costListResponse)
+        : base(costListResponse) { }
+
     public CostListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

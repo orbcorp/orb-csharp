@@ -59,6 +59,10 @@ public sealed record class Maximum : ModelBase
     public Maximum() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public Maximum(Maximum maximum)
+        : base(maximum) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public Maximum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -140,6 +144,9 @@ public sealed record class MaximumFilter : ModelBase
     }
 
     public MaximumFilter() { }
+
+    public MaximumFilter(MaximumFilter maximumFilter)
+        : base(maximumFilter) { }
 
     public MaximumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

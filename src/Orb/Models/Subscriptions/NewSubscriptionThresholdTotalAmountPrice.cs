@@ -258,6 +258,11 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     public NewSubscriptionThresholdTotalAmountPrice() { }
 
     public NewSubscriptionThresholdTotalAmountPrice(
+        NewSubscriptionThresholdTotalAmountPrice newSubscriptionThresholdTotalAmountPrice
+    )
+        : base(newSubscriptionThresholdTotalAmountPrice) { }
+
+    public NewSubscriptionThresholdTotalAmountPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -444,6 +449,11 @@ public sealed record class ThresholdTotalAmountConfig : ModelBase
 
     public ThresholdTotalAmountConfig() { }
 
+    public ThresholdTotalAmountConfig(
+        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig thresholdTotalAmountConfig
+    )
+        : base(thresholdTotalAmountConfig) { }
+
     public ThresholdTotalAmountConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -521,6 +531,9 @@ public sealed record class ConsumptionTable : ModelBase
     }
 
     public ConsumptionTable() { }
+
+    public ConsumptionTable(global::Orb.Models.Subscriptions.ConsumptionTable consumptionTable)
+        : base(consumptionTable) { }
 
     public ConsumptionTable(IReadOnlyDictionary<string, JsonElement> rawData)
     {

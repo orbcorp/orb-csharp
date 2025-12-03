@@ -246,6 +246,11 @@ public sealed record class NewFloatingGroupedWithMeteredMinimumPrice : ModelBase
     public NewFloatingGroupedWithMeteredMinimumPrice() { }
 
     public NewFloatingGroupedWithMeteredMinimumPrice(
+        NewFloatingGroupedWithMeteredMinimumPrice newFloatingGroupedWithMeteredMinimumPrice
+    )
+        : base(newFloatingGroupedWithMeteredMinimumPrice) { }
+
+    public NewFloatingGroupedWithMeteredMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -424,6 +429,11 @@ public sealed record class GroupedWithMeteredMinimumConfig : ModelBase
 
     public GroupedWithMeteredMinimumConfig() { }
 
+    public GroupedWithMeteredMinimumConfig(
+        GroupedWithMeteredMinimumConfig groupedWithMeteredMinimumConfig
+    )
+        : base(groupedWithMeteredMinimumConfig) { }
+
     public GroupedWithMeteredMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -487,6 +497,9 @@ public sealed record class ScalingFactor : ModelBase
 
     public ScalingFactor() { }
 
+    public ScalingFactor(ScalingFactor scalingFactor)
+        : base(scalingFactor) { }
+
     public ScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -546,6 +559,9 @@ public sealed record class UnitAmount : ModelBase
     }
 
     public UnitAmount() { }
+
+    public UnitAmount(UnitAmount unitAmount)
+        : base(unitAmount) { }
 
     public UnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

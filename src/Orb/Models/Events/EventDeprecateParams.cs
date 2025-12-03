@@ -49,6 +49,9 @@ public sealed record class EventDeprecateParams : ParamsBase
 
     public EventDeprecateParams() { }
 
+    public EventDeprecateParams(EventDeprecateParams eventDeprecateParams)
+        : base(eventDeprecateParams) { }
+
     public EventDeprecateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

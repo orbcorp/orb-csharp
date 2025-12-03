@@ -64,6 +64,14 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     public AlertCreateForExternalCustomerParams() { }
 
     public AlertCreateForExternalCustomerParams(
+        AlertCreateForExternalCustomerParams alertCreateForExternalCustomerParams
+    )
+        : base(alertCreateForExternalCustomerParams)
+    {
+        this._rawBodyData = [.. alertCreateForExternalCustomerParams._rawBodyData];
+    }
+
+    public AlertCreateForExternalCustomerParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

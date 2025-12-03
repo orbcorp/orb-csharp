@@ -218,6 +218,12 @@ public sealed record class EventIngestParams : ParamsBase
 
     public EventIngestParams() { }
 
+    public EventIngestParams(EventIngestParams eventIngestParams)
+        : base(eventIngestParams)
+    {
+        this._rawBodyData = [.. eventIngestParams._rawBodyData];
+    }
+
     public EventIngestParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -360,6 +366,9 @@ public sealed record class Event : ModelBase
     }
 
     public Event() { }
+
+    public Event(Event event1)
+        : base(event1) { }
 
     public Event(IReadOnlyDictionary<string, JsonElement> rawData)
     {

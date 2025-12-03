@@ -153,6 +153,9 @@ public sealed record class BackfillFetchResponse : ModelBase
 
     public BackfillFetchResponse() { }
 
+    public BackfillFetchResponse(BackfillFetchResponse backfillFetchResponse)
+        : base(backfillFetchResponse) { }
+
     public BackfillFetchResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -242,6 +242,11 @@ public sealed record class NewFloatingUnitWithPercentPrice : ModelBase
 
     public NewFloatingUnitWithPercentPrice() { }
 
+    public NewFloatingUnitWithPercentPrice(
+        NewFloatingUnitWithPercentPrice newFloatingUnitWithPercentPrice
+    )
+        : base(newFloatingUnitWithPercentPrice) { }
+
     public NewFloatingUnitWithPercentPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -409,6 +414,9 @@ public sealed record class UnitWithPercentConfig : ModelBase
     }
 
     public UnitWithPercentConfig() { }
+
+    public UnitWithPercentConfig(UnitWithPercentConfig unitWithPercentConfig)
+        : base(unitWithPercentConfig) { }
 
     public UnitWithPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

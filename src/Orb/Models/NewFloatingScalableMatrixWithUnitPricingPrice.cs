@@ -249,6 +249,11 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     public NewFloatingScalableMatrixWithUnitPricingPrice() { }
 
     public NewFloatingScalableMatrixWithUnitPricingPrice(
+        NewFloatingScalableMatrixWithUnitPricingPrice newFloatingScalableMatrixWithUnitPricingPrice
+    )
+        : base(newFloatingScalableMatrixWithUnitPricingPrice) { }
+
+    public NewFloatingScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -464,6 +469,11 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
 
     public ScalableMatrixWithUnitPricingConfig() { }
 
+    public ScalableMatrixWithUnitPricingConfig(
+        ScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingConfig
+    )
+        : base(scalableMatrixWithUnitPricingConfig) { }
+
     public ScalableMatrixWithUnitPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -541,6 +551,11 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
     }
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
+
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
+        ScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingConfigMatrixScalingFactor
+    )
+        : base(scalableMatrixWithUnitPricingConfigMatrixScalingFactor) { }
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData

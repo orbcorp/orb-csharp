@@ -37,6 +37,14 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams() { }
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
+        SubscriptionUnscheduleFixedFeeQuantityUpdatesParams subscriptionUnscheduleFixedFeeQuantityUpdatesParams
+    )
+        : base(subscriptionUnscheduleFixedFeeQuantityUpdatesParams)
+    {
+        this._rawBodyData = [.. subscriptionUnscheduleFixedFeeQuantityUpdatesParams._rawBodyData];
+    }
+
+    public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

@@ -126,6 +126,10 @@ public sealed record class MonetaryMaximumAdjustment : ModelBase
     public MonetaryMaximumAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public MonetaryMaximumAdjustment(MonetaryMaximumAdjustment monetaryMaximumAdjustment)
+        : base(monetaryMaximumAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMaximumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -253,6 +257,11 @@ public sealed record class MonetaryMaximumAdjustmentFilter : ModelBase
     }
 
     public MonetaryMaximumAdjustmentFilter() { }
+
+    public MonetaryMaximumAdjustmentFilter(
+        MonetaryMaximumAdjustmentFilter monetaryMaximumAdjustmentFilter
+    )
+        : base(monetaryMaximumAdjustmentFilter) { }
 
     public MonetaryMaximumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

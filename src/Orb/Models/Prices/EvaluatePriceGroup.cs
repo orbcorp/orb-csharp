@@ -55,6 +55,9 @@ public sealed record class EvaluatePriceGroup : ModelBase
 
     public EvaluatePriceGroup() { }
 
+    public EvaluatePriceGroup(EvaluatePriceGroup evaluatePriceGroup)
+        : base(evaluatePriceGroup) { }
+
     public EvaluatePriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

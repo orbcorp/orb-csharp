@@ -36,6 +36,11 @@ public sealed record class DimensionalPriceConfiguration : ModelBase
 
     public DimensionalPriceConfiguration() { }
 
+    public DimensionalPriceConfiguration(
+        DimensionalPriceConfiguration dimensionalPriceConfiguration
+    )
+        : base(dimensionalPriceConfiguration) { }
+
     public DimensionalPriceConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

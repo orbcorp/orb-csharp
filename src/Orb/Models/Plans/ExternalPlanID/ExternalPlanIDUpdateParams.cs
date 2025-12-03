@@ -55,6 +55,12 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
 
     public ExternalPlanIDUpdateParams() { }
 
+    public ExternalPlanIDUpdateParams(ExternalPlanIDUpdateParams externalPlanIDUpdateParams)
+        : base(externalPlanIDUpdateParams)
+    {
+        this._rawBodyData = [.. externalPlanIDUpdateParams._rawBodyData];
+    }
+
     public ExternalPlanIDUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

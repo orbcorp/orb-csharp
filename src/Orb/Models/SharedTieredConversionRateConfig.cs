@@ -50,6 +50,11 @@ public sealed record class SharedTieredConversionRateConfig : ModelBase
 
     public SharedTieredConversionRateConfig() { }
 
+    public SharedTieredConversionRateConfig(
+        SharedTieredConversionRateConfig sharedTieredConversionRateConfig
+    )
+        : base(sharedTieredConversionRateConfig) { }
+
     public SharedTieredConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

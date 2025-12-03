@@ -56,6 +56,9 @@ public sealed record class AffectedBlock : ModelBase
 
     public AffectedBlock() { }
 
+    public AffectedBlock(AffectedBlock affectedBlock)
+        : base(affectedBlock) { }
+
     public AffectedBlock(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -134,6 +137,9 @@ public sealed record class AffectedBlockFilter : ModelBase
     }
 
     public AffectedBlockFilter() { }
+
+    public AffectedBlockFilter(AffectedBlockFilter affectedBlockFilter)
+        : base(affectedBlockFilter) { }
 
     public AffectedBlockFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

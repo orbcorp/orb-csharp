@@ -257,6 +257,11 @@ public sealed record class NewPlanCumulativeGroupedBulkPrice : ModelBase
 
     public NewPlanCumulativeGroupedBulkPrice() { }
 
+    public NewPlanCumulativeGroupedBulkPrice(
+        NewPlanCumulativeGroupedBulkPrice newPlanCumulativeGroupedBulkPrice
+    )
+        : base(newPlanCumulativeGroupedBulkPrice) { }
+
     public NewPlanCumulativeGroupedBulkPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -394,6 +399,11 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig() { }
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig
+    )
+        : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig) { }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -476,6 +486,11 @@ public sealed record class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBul
     }
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue() { }
+
+    public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
+        NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue
+    )
+        : base(newPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue) { }
 
     public NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue(
         IReadOnlyDictionary<string, JsonElement> rawData

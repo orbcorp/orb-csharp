@@ -248,6 +248,9 @@ public sealed record class NewPlanTieredPrice : ModelBase
 
     public NewPlanTieredPrice() { }
 
+    public NewPlanTieredPrice(NewPlanTieredPrice newPlanTieredPrice)
+        : base(newPlanTieredPrice) { }
+
     public NewPlanTieredPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

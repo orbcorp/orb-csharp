@@ -42,6 +42,9 @@ public sealed record class PriceListParams : ParamsBase
 
     public PriceListParams() { }
 
+    public PriceListParams(PriceListParams priceListParams)
+        : base(priceListParams) { }
+
     public PriceListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

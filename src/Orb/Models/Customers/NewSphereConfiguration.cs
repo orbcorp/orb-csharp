@@ -50,6 +50,9 @@ public sealed record class NewSphereConfiguration : ModelBase
 
     public NewSphereConfiguration() { }
 
+    public NewSphereConfiguration(NewSphereConfiguration newSphereConfiguration)
+        : base(newSphereConfiguration) { }
+
     public NewSphereConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

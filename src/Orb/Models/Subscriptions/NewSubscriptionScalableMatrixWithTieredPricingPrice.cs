@@ -264,6 +264,11 @@ public sealed record class NewSubscriptionScalableMatrixWithTieredPricingPrice :
     public NewSubscriptionScalableMatrixWithTieredPricingPrice() { }
 
     public NewSubscriptionScalableMatrixWithTieredPricingPrice(
+        NewSubscriptionScalableMatrixWithTieredPricingPrice newSubscriptionScalableMatrixWithTieredPricingPrice
+    )
+        : base(newSubscriptionScalableMatrixWithTieredPricingPrice) { }
+
+    public NewSubscriptionScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -480,6 +485,11 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : ModelBase
 
     public ScalableMatrixWithTieredPricingConfig() { }
 
+    public ScalableMatrixWithTieredPricingConfig(
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
+    )
+        : base(scalableMatrixWithTieredPricingConfig) { }
+
     public ScalableMatrixWithTieredPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -562,6 +572,11 @@ public sealed record class MatrixScalingFactor : ModelBase
 
     public MatrixScalingFactor() { }
 
+    public MatrixScalingFactor(
+        global::Orb.Models.Subscriptions.MatrixScalingFactor matrixScalingFactor
+    )
+        : base(matrixScalingFactor) { }
+
     public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -629,6 +644,11 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : ModelBase
     }
 
     public ScalableMatrixWithTieredPricingConfigTier() { }
+
+    public ScalableMatrixWithTieredPricingConfigTier(
+        global::Orb.Models.Subscriptions.ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
+    )
+        : base(scalableMatrixWithTieredPricingConfigTier) { }
 
     public ScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData

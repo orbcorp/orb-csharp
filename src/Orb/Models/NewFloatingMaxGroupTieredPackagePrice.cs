@@ -245,6 +245,11 @@ public sealed record class NewFloatingMaxGroupTieredPackagePrice : ModelBase
 
     public NewFloatingMaxGroupTieredPackagePrice() { }
 
+    public NewFloatingMaxGroupTieredPackagePrice(
+        NewFloatingMaxGroupTieredPackagePrice newFloatingMaxGroupTieredPackagePrice
+    )
+        : base(newFloatingMaxGroupTieredPackagePrice) { }
+
     public NewFloatingMaxGroupTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -389,6 +394,9 @@ public sealed record class MaxGroupTieredPackageConfig : ModelBase
 
     public MaxGroupTieredPackageConfig() { }
 
+    public MaxGroupTieredPackageConfig(MaxGroupTieredPackageConfig maxGroupTieredPackageConfig)
+        : base(maxGroupTieredPackageConfig) { }
+
     public MaxGroupTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -453,6 +461,11 @@ public sealed record class MaxGroupTieredPackageConfigTier : ModelBase
     }
 
     public MaxGroupTieredPackageConfigTier() { }
+
+    public MaxGroupTieredPackageConfigTier(
+        MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
+    )
+        : base(maxGroupTieredPackageConfigTier) { }
 
     public MaxGroupTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -24,6 +24,11 @@ public sealed record class CustomerSyncPaymentMethodsFromGatewayByExternalCustom
     public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams() { }
 
     public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams(
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams customerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams
+    )
+        : base(customerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams) { }
+
+    public CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )

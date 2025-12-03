@@ -139,6 +139,9 @@ public sealed record class NewMaximum : ModelBase
 
     public NewMaximum() { }
 
+    public NewMaximum(NewMaximum newMaximum)
+        : base(newMaximum) { }
+
     public NewMaximum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -302,6 +305,9 @@ public sealed record class NewMaximumFilter : ModelBase
     }
 
     public NewMaximumFilter() { }
+
+    public NewMaximumFilter(NewMaximumFilter newMaximumFilter)
+        : base(newMaximumFilter) { }
 
     public NewMaximumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

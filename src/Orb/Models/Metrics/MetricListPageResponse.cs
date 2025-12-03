@@ -40,6 +40,9 @@ public sealed record class MetricListPageResponse : ModelBase
 
     public MetricListPageResponse() { }
 
+    public MetricListPageResponse(MetricListPageResponse metricListPageResponse)
+        : base(metricListPageResponse) { }
+
     public MetricListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

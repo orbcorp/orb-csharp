@@ -257,6 +257,11 @@ public sealed record class NewPlanMatrixWithDisplayNamePrice : ModelBase
 
     public NewPlanMatrixWithDisplayNamePrice() { }
 
+    public NewPlanMatrixWithDisplayNamePrice(
+        NewPlanMatrixWithDisplayNamePrice newPlanMatrixWithDisplayNamePrice
+    )
+        : base(newPlanMatrixWithDisplayNamePrice) { }
+
     public NewPlanMatrixWithDisplayNamePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -394,6 +399,11 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig() { }
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig
+    )
+        : base(newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig) { }
+
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -476,6 +486,11 @@ public sealed record class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNam
     }
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount() { }
+
+    public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
+        NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount
+    )
+        : base(newPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount) { }
 
     public NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount(
         IReadOnlyDictionary<string, JsonElement> rawData

@@ -93,6 +93,9 @@ public sealed record class DimensionalPriceGroup : ModelBase
 
     public DimensionalPriceGroup() { }
 
+    public DimensionalPriceGroup(DimensionalPriceGroup dimensionalPriceGroup)
+        : base(dimensionalPriceGroup) { }
+
     public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -66,6 +66,12 @@ public sealed record class CouponCreateParams : ParamsBase
 
     public CouponCreateParams() { }
 
+    public CouponCreateParams(CouponCreateParams couponCreateParams)
+        : base(couponCreateParams)
+    {
+        this._rawBodyData = [.. couponCreateParams._rawBodyData];
+    }
+
     public CouponCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -415,6 +421,9 @@ public sealed record class Percentage : ModelBase
         this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
     }
 
+    public Percentage(Percentage percentage)
+        : base(percentage) { }
+
     public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -485,6 +494,9 @@ public sealed record class Amount : ModelBase
     {
         this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
+
+    public Amount(Amount amount)
+        : base(amount) { }
 
     public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -125,6 +125,14 @@ public sealed record class TopUpCreateByExternalIDParams : ParamsBase
     public TopUpCreateByExternalIDParams() { }
 
     public TopUpCreateByExternalIDParams(
+        TopUpCreateByExternalIDParams topUpCreateByExternalIDParams
+    )
+        : base(topUpCreateByExternalIDParams)
+    {
+        this._rawBodyData = [.. topUpCreateByExternalIDParams._rawBodyData];
+    }
+
+    public TopUpCreateByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData
@@ -266,6 +274,11 @@ public sealed record class TopUpCreateByExternalIDParamsInvoiceSettings : ModelB
     }
 
     public TopUpCreateByExternalIDParamsInvoiceSettings() { }
+
+    public TopUpCreateByExternalIDParamsInvoiceSettings(
+        TopUpCreateByExternalIDParamsInvoiceSettings topUpCreateByExternalIDParamsInvoiceSettings
+    )
+        : base(topUpCreateByExternalIDParamsInvoiceSettings) { }
 
     public TopUpCreateByExternalIDParamsInvoiceSettings(
         IReadOnlyDictionary<string, JsonElement> rawData

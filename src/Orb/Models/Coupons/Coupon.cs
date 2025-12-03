@@ -98,6 +98,9 @@ public sealed record class Coupon : ModelBase
 
     public Coupon() { }
 
+    public Coupon(Coupon coupon)
+        : base(coupon) { }
+
     public Coupon(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

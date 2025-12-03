@@ -245,6 +245,11 @@ public sealed record class NewFloatingTieredWithMinimumPrice : ModelBase
 
     public NewFloatingTieredWithMinimumPrice() { }
 
+    public NewFloatingTieredWithMinimumPrice(
+        NewFloatingTieredWithMinimumPrice newFloatingTieredWithMinimumPrice
+    )
+        : base(newFloatingTieredWithMinimumPrice) { }
+
     public NewFloatingTieredWithMinimumPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -450,6 +455,9 @@ public sealed record class TieredWithMinimumConfig : ModelBase
 
     public TieredWithMinimumConfig() { }
 
+    public TieredWithMinimumConfig(TieredWithMinimumConfig tieredWithMinimumConfig)
+        : base(tieredWithMinimumConfig) { }
+
     public TieredWithMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -531,6 +539,9 @@ public sealed record class TieredWithMinimumConfigTier : ModelBase
     }
 
     public TieredWithMinimumConfigTier() { }
+
+    public TieredWithMinimumConfigTier(TieredWithMinimumConfigTier tieredWithMinimumConfigTier)
+        : base(tieredWithMinimumConfigTier) { }
 
     public TieredWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -17,6 +17,9 @@ public sealed record class ItemArchiveParams : ParamsBase
 
     public ItemArchiveParams() { }
 
+    public ItemArchiveParams(ItemArchiveParams itemArchiveParams)
+        : base(itemArchiveParams) { }
+
     public ItemArchiveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

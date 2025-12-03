@@ -34,6 +34,14 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     public ExternalPlanIDSetDefaultPlanVersionParams() { }
 
     public ExternalPlanIDSetDefaultPlanVersionParams(
+        ExternalPlanIDSetDefaultPlanVersionParams externalPlanIDSetDefaultPlanVersionParams
+    )
+        : base(externalPlanIDSetDefaultPlanVersionParams)
+    {
+        this._rawBodyData = [.. externalPlanIDSetDefaultPlanVersionParams._rawBodyData];
+    }
+
+    public ExternalPlanIDSetDefaultPlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

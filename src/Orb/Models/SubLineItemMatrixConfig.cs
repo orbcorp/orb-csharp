@@ -27,6 +27,9 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
 
     public SubLineItemMatrixConfig() { }
 
+    public SubLineItemMatrixConfig(SubLineItemMatrixConfig subLineItemMatrixConfig)
+        : base(subLineItemMatrixConfig) { }
+
     public SubLineItemMatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

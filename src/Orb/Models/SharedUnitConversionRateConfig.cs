@@ -46,6 +46,11 @@ public sealed record class SharedUnitConversionRateConfig : ModelBase
 
     public SharedUnitConversionRateConfig() { }
 
+    public SharedUnitConversionRateConfig(
+        SharedUnitConversionRateConfig sharedUnitConversionRateConfig
+    )
+        : base(sharedUnitConversionRateConfig) { }
+
     public SharedUnitConversionRateConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

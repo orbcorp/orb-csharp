@@ -70,6 +70,14 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     public AlertCreateForSubscriptionParams() { }
 
     public AlertCreateForSubscriptionParams(
+        AlertCreateForSubscriptionParams alertCreateForSubscriptionParams
+    )
+        : base(alertCreateForSubscriptionParams)
+    {
+        this._rawBodyData = [.. alertCreateForSubscriptionParams._rawBodyData];
+    }
+
+    public AlertCreateForSubscriptionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

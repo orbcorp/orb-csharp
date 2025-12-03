@@ -134,6 +134,9 @@ public sealed record class AmendmentLedgerEntry : ModelBase
 
     public AmendmentLedgerEntry() { }
 
+    public AmendmentLedgerEntry(AmendmentLedgerEntry amendmentLedgerEntry)
+        : base(amendmentLedgerEntry) { }
+
     public AmendmentLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

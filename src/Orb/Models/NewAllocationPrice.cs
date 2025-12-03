@@ -125,6 +125,9 @@ public sealed record class NewAllocationPrice : ModelBase
 
     public NewAllocationPrice() { }
 
+    public NewAllocationPrice(NewAllocationPrice newAllocationPrice)
+        : base(newAllocationPrice) { }
+
     public NewAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -260,6 +263,9 @@ public sealed record class NewAllocationPriceFilter : ModelBase
     }
 
     public NewAllocationPriceFilter() { }
+
+    public NewAllocationPriceFilter(NewAllocationPriceFilter newAllocationPriceFilter)
+        : base(newAllocationPriceFilter) { }
 
     public NewAllocationPriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

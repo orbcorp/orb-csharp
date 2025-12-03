@@ -257,6 +257,11 @@ public sealed record class NewPlanThresholdTotalAmountPrice : ModelBase
 
     public NewPlanThresholdTotalAmountPrice() { }
 
+    public NewPlanThresholdTotalAmountPrice(
+        NewPlanThresholdTotalAmountPrice newPlanThresholdTotalAmountPrice
+    )
+        : base(newPlanThresholdTotalAmountPrice) { }
+
     public NewPlanThresholdTotalAmountPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -442,6 +447,11 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig() { }
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
+        NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig newPlanThresholdTotalAmountPriceThresholdTotalAmountConfig
+    )
+        : base(newPlanThresholdTotalAmountPriceThresholdTotalAmountConfig) { }
+
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -523,6 +533,11 @@ public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountC
     }
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable() { }
+
+    public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
+        NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable newPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
+    )
+        : base(newPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable) { }
 
     public NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable(
         IReadOnlyDictionary<string, JsonElement> rawData

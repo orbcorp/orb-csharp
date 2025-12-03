@@ -236,6 +236,9 @@ public sealed record class NewFloatingMatrixPrice : ModelBase
 
     public NewFloatingMatrixPrice() { }
 
+    public NewFloatingMatrixPrice(NewFloatingMatrixPrice newFloatingMatrixPrice)
+        : base(newFloatingMatrixPrice) { }
+
     public NewFloatingMatrixPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -59,6 +59,9 @@ public sealed record class AddressInput : ModelBase
 
     public AddressInput() { }
 
+    public AddressInput(AddressInput addressInput)
+        : base(addressInput) { }
+
     public AddressInput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

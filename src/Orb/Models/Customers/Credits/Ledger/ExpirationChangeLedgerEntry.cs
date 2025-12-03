@@ -148,6 +148,9 @@ public sealed record class ExpirationChangeLedgerEntry : ModelBase
 
     public ExpirationChangeLedgerEntry() { }
 
+    public ExpirationChangeLedgerEntry(ExpirationChangeLedgerEntry expirationChangeLedgerEntry)
+        : base(expirationChangeLedgerEntry) { }
+
     public ExpirationChangeLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

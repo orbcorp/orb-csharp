@@ -29,6 +29,11 @@ public sealed record class PriceEvaluateMultipleResponse : ModelBase
 
     public PriceEvaluateMultipleResponse() { }
 
+    public PriceEvaluateMultipleResponse(
+        PriceEvaluateMultipleResponse priceEvaluateMultipleResponse
+    )
+        : base(priceEvaluateMultipleResponse) { }
+
     public PriceEvaluateMultipleResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -134,6 +139,9 @@ public sealed record class Data : ModelBase
     }
 
     public Data() { }
+
+    public Data(Data data)
+        : base(data) { }
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {

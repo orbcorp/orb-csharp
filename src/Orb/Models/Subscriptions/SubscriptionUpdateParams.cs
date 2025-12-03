@@ -86,6 +86,12 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
 
     public SubscriptionUpdateParams() { }
 
+    public SubscriptionUpdateParams(SubscriptionUpdateParams subscriptionUpdateParams)
+        : base(subscriptionUpdateParams)
+    {
+        this._rawBodyData = [.. subscriptionUpdateParams._rawBodyData];
+    }
+
     public SubscriptionUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

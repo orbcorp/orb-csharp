@@ -245,6 +245,11 @@ public sealed record class NewFloatingGroupedTieredPackagePrice : ModelBase
 
     public NewFloatingGroupedTieredPackagePrice() { }
 
+    public NewFloatingGroupedTieredPackagePrice(
+        NewFloatingGroupedTieredPackagePrice newFloatingGroupedTieredPackagePrice
+    )
+        : base(newFloatingGroupedTieredPackagePrice) { }
+
     public NewFloatingGroupedTieredPackagePrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -390,6 +395,9 @@ public sealed record class GroupedTieredPackageConfig : ModelBase
 
     public GroupedTieredPackageConfig() { }
 
+    public GroupedTieredPackageConfig(GroupedTieredPackageConfig groupedTieredPackageConfig)
+        : base(groupedTieredPackageConfig) { }
+
     public GroupedTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -454,6 +462,11 @@ public sealed record class GroupedTieredPackageConfigTier : ModelBase
     }
 
     public GroupedTieredPackageConfigTier() { }
+
+    public GroupedTieredPackageConfigTier(
+        GroupedTieredPackageConfigTier groupedTieredPackageConfigTier
+    )
+        : base(groupedTieredPackageConfigTier) { }
 
     public GroupedTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

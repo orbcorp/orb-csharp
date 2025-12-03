@@ -48,6 +48,9 @@ public sealed record class UnitConfig : ModelBase
 
     public UnitConfig() { }
 
+    public UnitConfig(UnitConfig unitConfig)
+        : base(unitConfig) { }
+
     public UnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -42,6 +42,12 @@ public sealed record class MetricUpdateParams : ParamsBase
 
     public MetricUpdateParams() { }
 
+    public MetricUpdateParams(MetricUpdateParams metricUpdateParams)
+        : base(metricUpdateParams)
+    {
+        this._rawBodyData = [.. metricUpdateParams._rawBodyData];
+    }
+
     public MetricUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,

@@ -365,6 +365,12 @@ public sealed record class CustomerCreateParams : ParamsBase
 
     public CustomerCreateParams() { }
 
+    public CustomerCreateParams(CustomerCreateParams customerCreateParams)
+        : base(customerCreateParams)
+    {
+        this._rawBodyData = [.. customerCreateParams._rawBodyData];
+    }
+
     public CustomerCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -468,6 +474,9 @@ public sealed record class PaymentConfiguration : ModelBase
 
     public PaymentConfiguration() { }
 
+    public PaymentConfiguration(PaymentConfiguration paymentConfiguration)
+        : base(paymentConfiguration) { }
+
     public PaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -553,6 +562,9 @@ public sealed record class PaymentProvider : ModelBase
     }
 
     public PaymentProvider() { }
+
+    public PaymentProvider(global::Orb.Models.Customers.PaymentProvider paymentProvider)
+        : base(paymentProvider) { }
 
     public PaymentProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1259,6 +1271,9 @@ public sealed record class Numeral : ModelBase
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"numeral\"");
     }
 
+    public Numeral(Numeral numeral)
+        : base(numeral) { }
+
     public Numeral(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1341,6 +1356,9 @@ public sealed record class Anrok : ModelBase
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"anrok\"");
     }
 
+    public Anrok(Anrok anrok)
+        : base(anrok) { }
+
     public Anrok(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -1422,6 +1440,9 @@ public sealed record class Stripe : ModelBase
     {
         this.TaxProvider = JsonSerializer.Deserialize<JsonElement>("\"stripe\"");
     }
+
+    public Stripe(Stripe stripe)
+        : base(stripe) { }
 
     public Stripe(IReadOnlyDictionary<string, JsonElement> rawData)
     {

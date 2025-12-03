@@ -80,6 +80,9 @@ public sealed record class UsageDiscount : ModelBase
 
     public UsageDiscount() { }
 
+    public UsageDiscount(UsageDiscount usageDiscount)
+        : base(usageDiscount) { }
+
     public UsageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -199,6 +202,9 @@ public sealed record class UsageDiscountFilter : ModelBase
     }
 
     public UsageDiscountFilter() { }
+
+    public UsageDiscountFilter(UsageDiscountFilter usageDiscountFilter)
+        : base(usageDiscountFilter) { }
 
     public UsageDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

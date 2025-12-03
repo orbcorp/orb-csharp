@@ -27,6 +27,9 @@ public sealed record class EventDeprecateResponse : ModelBase
 
     public EventDeprecateResponse() { }
 
+    public EventDeprecateResponse(EventDeprecateResponse eventDeprecateResponse)
+        : base(eventDeprecateResponse) { }
+
     public EventDeprecateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

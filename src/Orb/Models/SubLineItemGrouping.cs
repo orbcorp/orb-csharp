@@ -34,6 +34,9 @@ public sealed record class SubLineItemGrouping : ModelBase
 
     public SubLineItemGrouping() { }
 
+    public SubLineItemGrouping(SubLineItemGrouping subLineItemGrouping)
+        : base(subLineItemGrouping) { }
+
     public SubLineItemGrouping(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -138,6 +138,10 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     public PlanPhaseMinimumAdjustment() { }
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public PlanPhaseMinimumAdjustment(PlanPhaseMinimumAdjustment planPhaseMinimumAdjustment)
+        : base(planPhaseMinimumAdjustment) { }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -267,6 +271,11 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
     }
 
     public PlanPhaseMinimumAdjustmentFilter() { }
+
+    public PlanPhaseMinimumAdjustmentFilter(
+        PlanPhaseMinimumAdjustmentFilter planPhaseMinimumAdjustmentFilter
+    )
+        : base(planPhaseMinimumAdjustmentFilter) { }
 
     public PlanPhaseMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

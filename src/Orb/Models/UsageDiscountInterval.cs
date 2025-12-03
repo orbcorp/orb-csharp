@@ -104,6 +104,9 @@ public sealed record class UsageDiscountInterval : ModelBase
 
     public UsageDiscountInterval() { }
 
+    public UsageDiscountInterval(UsageDiscountInterval usageDiscountInterval)
+        : base(usageDiscountInterval) { }
+
     public UsageDiscountInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -229,6 +232,9 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
     }
 
     public UsageDiscountIntervalFilter() { }
+
+    public UsageDiscountIntervalFilter(UsageDiscountIntervalFilter usageDiscountIntervalFilter)
+        : base(usageDiscountIntervalFilter) { }
 
     public UsageDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

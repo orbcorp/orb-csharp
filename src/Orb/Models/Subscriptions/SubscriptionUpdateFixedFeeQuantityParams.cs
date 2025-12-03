@@ -120,6 +120,14 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     public SubscriptionUpdateFixedFeeQuantityParams() { }
 
     public SubscriptionUpdateFixedFeeQuantityParams(
+        SubscriptionUpdateFixedFeeQuantityParams subscriptionUpdateFixedFeeQuantityParams
+    )
+        : base(subscriptionUpdateFixedFeeQuantityParams)
+    {
+        this._rawBodyData = [.. subscriptionUpdateFixedFeeQuantityParams._rawBodyData];
+    }
+
+    public SubscriptionUpdateFixedFeeQuantityParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

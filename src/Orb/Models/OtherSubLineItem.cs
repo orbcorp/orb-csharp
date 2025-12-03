@@ -63,6 +63,9 @@ public sealed record class OtherSubLineItem : ModelBase
 
     public OtherSubLineItem() { }
 
+    public OtherSubLineItem(OtherSubLineItem otherSubLineItem)
+        : base(otherSubLineItem) { }
+
     public OtherSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

@@ -258,6 +258,11 @@ public sealed record class NewSubscriptionMatrixWithDisplayNamePrice : ModelBase
     public NewSubscriptionMatrixWithDisplayNamePrice() { }
 
     public NewSubscriptionMatrixWithDisplayNamePrice(
+        NewSubscriptionMatrixWithDisplayNamePrice newSubscriptionMatrixWithDisplayNamePrice
+    )
+        : base(newSubscriptionMatrixWithDisplayNamePrice) { }
+
+    public NewSubscriptionMatrixWithDisplayNamePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -396,6 +401,11 @@ public sealed record class MatrixWithDisplayNameConfig : ModelBase
 
     public MatrixWithDisplayNameConfig() { }
 
+    public MatrixWithDisplayNameConfig(
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfig matrixWithDisplayNameConfig
+    )
+        : base(matrixWithDisplayNameConfig) { }
+
     public MatrixWithDisplayNameConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -474,6 +484,11 @@ public sealed record class MatrixWithDisplayNameConfigUnitAmount : ModelBase
     }
 
     public MatrixWithDisplayNameConfigUnitAmount() { }
+
+    public MatrixWithDisplayNameConfigUnitAmount(
+        global::Orb.Models.Subscriptions.MatrixWithDisplayNameConfigUnitAmount matrixWithDisplayNameConfigUnitAmount
+    )
+        : base(matrixWithDisplayNameConfigUnitAmount) { }
 
     public MatrixWithDisplayNameConfigUnitAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {

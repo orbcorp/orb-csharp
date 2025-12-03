@@ -62,6 +62,14 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     public DimensionalPriceGroupUpdateParams() { }
 
     public DimensionalPriceGroupUpdateParams(
+        DimensionalPriceGroupUpdateParams dimensionalPriceGroupUpdateParams
+    )
+        : base(dimensionalPriceGroupUpdateParams)
+    {
+        this._rawBodyData = [.. dimensionalPriceGroupUpdateParams._rawBodyData];
+    }
+
+    public DimensionalPriceGroupUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData

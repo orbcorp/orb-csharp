@@ -106,6 +106,9 @@ public sealed record class Item : ModelBase
 
     public Item() { }
 
+    public Item(Item item)
+        : base(item) { }
+
     public Item(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -174,6 +177,9 @@ public sealed record class ItemExternalConnection : ModelBase
     }
 
     public ItemExternalConnection() { }
+
+    public ItemExternalConnection(ItemExternalConnection itemExternalConnection)
+        : base(itemExternalConnection) { }
 
     public ItemExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
