@@ -17,6 +17,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -1566,10 +1567,15 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                 },
             },
             AppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            BillingCycleAlignment = "billing_cycle_alignment",
             CancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ChangeOption = "change_option",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PlanID = "plan_id",
         };
 
         string expectedID = "id";
+        string expectedChangeType = "change_type";
         DateTimeOffset expectedExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, SubscriptionChangeRetrieveResponseStatus> expectedStatus =
             SubscriptionChangeRetrieveResponseStatus.Pending;
@@ -3076,14 +3082,23 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
             },
         };
         DateTimeOffset expectedAppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedBillingCycleAlignment = "billing_cycle_alignment";
         DateTimeOffset expectedCancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedChangeOption = "change_option";
+        DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedPlanID = "plan_id";
 
         Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedChangeType, model.ChangeType);
         Assert.Equal(expectedExpirationTime, model.ExpirationTime);
         Assert.Equal(expectedStatus, model.Status);
         Assert.Equal(expectedSubscription, model.Subscription);
         Assert.Equal(expectedAppliedAt, model.AppliedAt);
+        Assert.Equal(expectedBillingCycleAlignment, model.BillingCycleAlignment);
         Assert.Equal(expectedCancelledAt, model.CancelledAt);
+        Assert.Equal(expectedChangeOption, model.ChangeOption);
+        Assert.Equal(expectedEffectiveDate, model.EffectiveDate);
+        Assert.Equal(expectedPlanID, model.PlanID);
     }
 
     [Fact]
@@ -3092,6 +3107,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -4641,7 +4657,11 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                 },
             },
             AppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            BillingCycleAlignment = "billing_cycle_alignment",
             CancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ChangeOption = "change_option",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PlanID = "plan_id",
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -4656,6 +4676,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -6205,7 +6226,11 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                 },
             },
             AppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            BillingCycleAlignment = "billing_cycle_alignment",
             CancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ChangeOption = "change_option",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PlanID = "plan_id",
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -6213,6 +6238,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
+        string expectedChangeType = "change_type";
         DateTimeOffset expectedExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, SubscriptionChangeRetrieveResponseStatus> expectedStatus =
             SubscriptionChangeRetrieveResponseStatus.Pending;
@@ -7719,14 +7745,23 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
             },
         };
         DateTimeOffset expectedAppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedBillingCycleAlignment = "billing_cycle_alignment";
         DateTimeOffset expectedCancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedChangeOption = "change_option";
+        DateTimeOffset expectedEffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedPlanID = "plan_id";
 
         Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedChangeType, deserialized.ChangeType);
         Assert.Equal(expectedExpirationTime, deserialized.ExpirationTime);
         Assert.Equal(expectedStatus, deserialized.Status);
         Assert.Equal(expectedSubscription, deserialized.Subscription);
         Assert.Equal(expectedAppliedAt, deserialized.AppliedAt);
+        Assert.Equal(expectedBillingCycleAlignment, deserialized.BillingCycleAlignment);
         Assert.Equal(expectedCancelledAt, deserialized.CancelledAt);
+        Assert.Equal(expectedChangeOption, deserialized.ChangeOption);
+        Assert.Equal(expectedEffectiveDate, deserialized.EffectiveDate);
+        Assert.Equal(expectedPlanID, deserialized.PlanID);
     }
 
     [Fact]
@@ -7735,6 +7770,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -9284,7 +9320,11 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                 },
             },
             AppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            BillingCycleAlignment = "billing_cycle_alignment",
             CancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ChangeOption = "change_option",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PlanID = "plan_id",
         };
 
         model.Validate();
@@ -9296,6 +9336,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -10848,8 +10889,16 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
 
         Assert.Null(model.AppliedAt);
         Assert.False(model.RawData.ContainsKey("applied_at"));
+        Assert.Null(model.BillingCycleAlignment);
+        Assert.False(model.RawData.ContainsKey("billing_cycle_alignment"));
         Assert.Null(model.CancelledAt);
         Assert.False(model.RawData.ContainsKey("cancelled_at"));
+        Assert.Null(model.ChangeOption);
+        Assert.False(model.RawData.ContainsKey("change_option"));
+        Assert.Null(model.EffectiveDate);
+        Assert.False(model.RawData.ContainsKey("effective_date"));
+        Assert.Null(model.PlanID);
+        Assert.False(model.RawData.ContainsKey("plan_id"));
     }
 
     [Fact]
@@ -10858,6 +10907,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -12417,6 +12467,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -13967,13 +14018,25 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
             },
 
             AppliedAt = null,
+            BillingCycleAlignment = null,
             CancelledAt = null,
+            ChangeOption = null,
+            EffectiveDate = null,
+            PlanID = null,
         };
 
         Assert.Null(model.AppliedAt);
         Assert.True(model.RawData.ContainsKey("applied_at"));
+        Assert.Null(model.BillingCycleAlignment);
+        Assert.True(model.RawData.ContainsKey("billing_cycle_alignment"));
         Assert.Null(model.CancelledAt);
         Assert.True(model.RawData.ContainsKey("cancelled_at"));
+        Assert.Null(model.ChangeOption);
+        Assert.True(model.RawData.ContainsKey("change_option"));
+        Assert.Null(model.EffectiveDate);
+        Assert.True(model.RawData.ContainsKey("effective_date"));
+        Assert.Null(model.PlanID);
+        Assert.True(model.RawData.ContainsKey("plan_id"));
     }
 
     [Fact]
@@ -13982,6 +14045,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
         var model = new SubscriptionChangeRetrieveResponse
         {
             ID = "id",
+            ChangeType = "change_type",
             ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = SubscriptionChangeRetrieveResponseStatus.Pending,
             Subscription = new()
@@ -15532,7 +15596,11 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
             },
 
             AppliedAt = null,
+            BillingCycleAlignment = null,
             CancelledAt = null,
+            ChangeOption = null,
+            EffectiveDate = null,
+            PlanID = null,
         };
 
         model.Validate();

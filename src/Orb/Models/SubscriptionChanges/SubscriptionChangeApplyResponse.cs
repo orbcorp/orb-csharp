@@ -26,6 +26,15 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
     }
 
     /// <summary>
+    /// The type of change (e.g., 'schedule_plan_change', 'create_subscription').
+    /// </summary>
+    public required string ChangeType
+    {
+        get { return ModelBase.GetNotNullClass<string>(this.RawData, "change_type"); }
+        init { ModelBase.Set(this._rawData, "change_type", value); }
+    }
+
+    /// <summary>
     /// Subscription change will be cancelled at this time and can no longer be applied.
     /// </summary>
     public required System::DateTimeOffset ExpirationTime
@@ -73,6 +82,15 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
     }
 
     /// <summary>
+    /// Billing cycle alignment for plan changes.
+    /// </summary>
+    public string? BillingCycleAlignment
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "billing_cycle_alignment"); }
+        init { ModelBase.Set(this._rawData, "billing_cycle_alignment", value); }
+    }
+
+    /// <summary>
     /// When this change was cancelled.
     /// </summary>
     public System::DateTimeOffset? CancelledAt
@@ -87,15 +105,53 @@ public sealed record class SubscriptionChangeApplyResponse : ModelBase
         init { ModelBase.Set(this._rawData, "cancelled_at", value); }
     }
 
+    /// <summary>
+    /// How the change is scheduled (e.g., 'immediate', 'end_of_subscription_term', 'requested_date').
+    /// </summary>
+    public string? ChangeOption
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "change_option"); }
+        init { ModelBase.Set(this._rawData, "change_option", value); }
+    }
+
+    /// <summary>
+    /// When this change will take effect.
+    /// </summary>
+    public System::DateTimeOffset? EffectiveDate
+    {
+        get
+        {
+            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+                this.RawData,
+                "effective_date"
+            );
+        }
+        init { ModelBase.Set(this._rawData, "effective_date", value); }
+    }
+
+    /// <summary>
+    /// The target plan ID for plan changes.
+    /// </summary>
+    public string? PlanID
+    {
+        get { return ModelBase.GetNullableClass<string>(this.RawData, "plan_id"); }
+        init { ModelBase.Set(this._rawData, "plan_id", value); }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
+        _ = this.ChangeType;
         _ = this.ExpirationTime;
         this.Status.Validate();
         this.Subscription?.Validate();
         _ = this.AppliedAt;
+        _ = this.BillingCycleAlignment;
         _ = this.CancelledAt;
+        _ = this.ChangeOption;
+        _ = this.EffectiveDate;
+        _ = this.PlanID;
     }
 
     public SubscriptionChangeApplyResponse() { }
