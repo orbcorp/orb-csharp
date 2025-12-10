@@ -691,6 +691,15 @@ public record class LedgerListByExternalIDPageResponseData
                 "Data did not match any variant of LedgerListByExternalIDPageResponseData"
             );
         }
+        this.Switch(
+            (incrementLedgerEntry) => incrementLedgerEntry.Validate(),
+            (decrementLedgerEntry) => decrementLedgerEntry.Validate(),
+            (expirationChangeLedgerEntry) => expirationChangeLedgerEntry.Validate(),
+            (creditBlockExpiryLedgerEntry) => creditBlockExpiryLedgerEntry.Validate(),
+            (voidLedgerEntry) => voidLedgerEntry.Validate(),
+            (voidInitiatedLedgerEntry) => voidInitiatedLedgerEntry.Validate(),
+            (amendmentLedgerEntry) => amendmentLedgerEntry.Validate()
+        );
     }
 
     public virtual bool Equals(LedgerListByExternalIDPageResponseData? other)

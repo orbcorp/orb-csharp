@@ -566,6 +566,7 @@ public record class NewFloatingMatrixWithAllocationPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingMatrixWithAllocationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingMatrixWithAllocationPriceConversionRateConfig? other)

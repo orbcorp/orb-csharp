@@ -315,6 +315,7 @@ public record class TrialEndDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of TrialEndDate");
         }
+        this.Switch((_) => { }, (unionMember1) => unionMember1.Validate());
     }
 
     public virtual bool Equals(TrialEndDate? other)

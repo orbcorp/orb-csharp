@@ -780,6 +780,7 @@ public record class NewSubscriptionTieredWithMinimumPriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionTieredWithMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionTieredWithMinimumPriceConversionRateConfig? other)

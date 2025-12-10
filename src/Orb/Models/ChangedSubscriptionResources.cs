@@ -1864,6 +1864,13 @@ public record class LineItemAdjustment
                 "Data did not match any variant of LineItemAdjustment"
             );
         }
+        this.Switch(
+            (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
+            (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
+            (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (monetaryMinimum) => monetaryMinimum.Validate(),
+            (monetaryMaximum) => monetaryMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(LineItemAdjustment? other)
@@ -2263,6 +2270,11 @@ public record class SubLineItem
         {
             throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
         }
+        this.Switch(
+            (matrix) => matrix.Validate(),
+            (tier) => tier.Validate(),
+            (other) => other.Validate()
+        );
     }
 
     public virtual bool Equals(SubLineItem? other)

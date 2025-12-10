@@ -752,6 +752,7 @@ public record class NewFloatingTieredWithMinimumPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingTieredWithMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingTieredWithMinimumPriceConversionRateConfig? other)

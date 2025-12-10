@@ -867,6 +867,7 @@ public record class NewSubscriptionScalableMatrixWithTieredPricingPriceConversio
                 "Data did not match any variant of NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(

@@ -796,6 +796,7 @@ public record class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfi
                 "Data did not match any variant of NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig? other)

@@ -671,6 +671,7 @@ public record class NewPlanGroupedWithProratedMinimumPriceConversionRateConfig
                 "Data did not match any variant of NewPlanGroupedWithProratedMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanGroupedWithProratedMinimumPriceConversionRateConfig? other)

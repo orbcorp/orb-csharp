@@ -733,6 +733,7 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionBulkWithProrationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionBulkWithProrationPriceConversionRateConfig? other)

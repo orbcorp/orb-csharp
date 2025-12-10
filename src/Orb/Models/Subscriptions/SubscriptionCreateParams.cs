@@ -1098,6 +1098,13 @@ public record class Adjustment
         {
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
+        this.Switch(
+            (newPercentageDiscount) => newPercentageDiscount.Validate(),
+            (newUsageDiscount) => newUsageDiscount.Validate(),
+            (newAmountDiscount) => newAmountDiscount.Validate(),
+            (newMinimum) => newMinimum.Validate(),
+            (newMaximum) => newMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(global::Orb.Models.Subscriptions.Adjustment? other)
@@ -3376,6 +3383,48 @@ public record class Price
         {
             throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
+        this.Switch(
+            (newSubscriptionUnit) => newSubscriptionUnit.Validate(),
+            (newSubscriptionTiered) => newSubscriptionTiered.Validate(),
+            (newSubscriptionBulk) => newSubscriptionBulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (newSubscriptionPackage) => newSubscriptionPackage.Validate(),
+            (newSubscriptionMatrix) => newSubscriptionMatrix.Validate(),
+            (newSubscriptionThresholdTotalAmount) => newSubscriptionThresholdTotalAmount.Validate(),
+            (newSubscriptionTieredPackage) => newSubscriptionTieredPackage.Validate(),
+            (newSubscriptionTieredWithMinimum) => newSubscriptionTieredWithMinimum.Validate(),
+            (newSubscriptionGroupedTiered) => newSubscriptionGroupedTiered.Validate(),
+            (newSubscriptionTieredPackageWithMinimum) =>
+                newSubscriptionTieredPackageWithMinimum.Validate(),
+            (newSubscriptionPackageWithAllocation) =>
+                newSubscriptionPackageWithAllocation.Validate(),
+            (newSubscriptionUnitWithPercent) => newSubscriptionUnitWithPercent.Validate(),
+            (newSubscriptionMatrixWithAllocation) => newSubscriptionMatrixWithAllocation.Validate(),
+            (tieredWithProration) => tieredWithProration.Validate(),
+            (newSubscriptionUnitWithProration) => newSubscriptionUnitWithProration.Validate(),
+            (newSubscriptionGroupedAllocation) => newSubscriptionGroupedAllocation.Validate(),
+            (newSubscriptionBulkWithProration) => newSubscriptionBulkWithProration.Validate(),
+            (newSubscriptionGroupedWithProratedMinimum) =>
+                newSubscriptionGroupedWithProratedMinimum.Validate(),
+            (newSubscriptionGroupedWithMeteredMinimum) =>
+                newSubscriptionGroupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (newSubscriptionMatrixWithDisplayName) =>
+                newSubscriptionMatrixWithDisplayName.Validate(),
+            (newSubscriptionGroupedTieredPackage) => newSubscriptionGroupedTieredPackage.Validate(),
+            (newSubscriptionMaxGroupTieredPackage) =>
+                newSubscriptionMaxGroupTieredPackage.Validate(),
+            (newSubscriptionScalableMatrixWithUnitPricing) =>
+                newSubscriptionScalableMatrixWithUnitPricing.Validate(),
+            (newSubscriptionScalableMatrixWithTieredPricing) =>
+                newSubscriptionScalableMatrixWithTieredPricing.Validate(),
+            (newSubscriptionCumulativeGroupedBulk) =>
+                newSubscriptionCumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(global::Orb.Models.Subscriptions.Price? other)
@@ -4897,6 +4946,7 @@ public record class ConversionRateConfig
                 "Data did not match any variant of ConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(global::Orb.Models.Subscriptions.ConversionRateConfig? other)
@@ -5686,6 +5736,7 @@ public record class TieredWithProrationConversionRateConfig
                 "Data did not match any variant of TieredWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -6447,6 +6498,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
                 "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -7208,6 +7260,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig
                 "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -7904,6 +7957,7 @@ public record class PercentConversionRateConfig
                 "Data did not match any variant of PercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(global::Orb.Models.Subscriptions.PercentConversionRateConfig? other)
@@ -8619,6 +8673,7 @@ public record class EventOutputConversionRateConfig
                 "Data did not match any variant of EventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -9266,6 +9321,13 @@ public record class ReplaceAdjustmentAdjustment
                 "Data did not match any variant of ReplaceAdjustmentAdjustment"
             );
         }
+        this.Switch(
+            (newPercentageDiscount) => newPercentageDiscount.Validate(),
+            (newUsageDiscount) => newUsageDiscount.Validate(),
+            (newAmountDiscount) => newAmountDiscount.Validate(),
+            (newMinimum) => newMinimum.Validate(),
+            (newMaximum) => newMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(ReplaceAdjustmentAdjustment? other)
@@ -11536,6 +11598,48 @@ public record class ReplacePricePrice
                 "Data did not match any variant of ReplacePricePrice"
             );
         }
+        this.Switch(
+            (newSubscriptionUnit) => newSubscriptionUnit.Validate(),
+            (newSubscriptionTiered) => newSubscriptionTiered.Validate(),
+            (newSubscriptionBulk) => newSubscriptionBulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (newSubscriptionPackage) => newSubscriptionPackage.Validate(),
+            (newSubscriptionMatrix) => newSubscriptionMatrix.Validate(),
+            (newSubscriptionThresholdTotalAmount) => newSubscriptionThresholdTotalAmount.Validate(),
+            (newSubscriptionTieredPackage) => newSubscriptionTieredPackage.Validate(),
+            (newSubscriptionTieredWithMinimum) => newSubscriptionTieredWithMinimum.Validate(),
+            (newSubscriptionGroupedTiered) => newSubscriptionGroupedTiered.Validate(),
+            (newSubscriptionTieredPackageWithMinimum) =>
+                newSubscriptionTieredPackageWithMinimum.Validate(),
+            (newSubscriptionPackageWithAllocation) =>
+                newSubscriptionPackageWithAllocation.Validate(),
+            (newSubscriptionUnitWithPercent) => newSubscriptionUnitWithPercent.Validate(),
+            (newSubscriptionMatrixWithAllocation) => newSubscriptionMatrixWithAllocation.Validate(),
+            (tieredWithProration) => tieredWithProration.Validate(),
+            (newSubscriptionUnitWithProration) => newSubscriptionUnitWithProration.Validate(),
+            (newSubscriptionGroupedAllocation) => newSubscriptionGroupedAllocation.Validate(),
+            (newSubscriptionBulkWithProration) => newSubscriptionBulkWithProration.Validate(),
+            (newSubscriptionGroupedWithProratedMinimum) =>
+                newSubscriptionGroupedWithProratedMinimum.Validate(),
+            (newSubscriptionGroupedWithMeteredMinimum) =>
+                newSubscriptionGroupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (newSubscriptionMatrixWithDisplayName) =>
+                newSubscriptionMatrixWithDisplayName.Validate(),
+            (newSubscriptionGroupedTieredPackage) => newSubscriptionGroupedTieredPackage.Validate(),
+            (newSubscriptionMaxGroupTieredPackage) =>
+                newSubscriptionMaxGroupTieredPackage.Validate(),
+            (newSubscriptionScalableMatrixWithUnitPricing) =>
+                newSubscriptionScalableMatrixWithUnitPricing.Validate(),
+            (newSubscriptionScalableMatrixWithTieredPricing) =>
+                newSubscriptionScalableMatrixWithTieredPricing.Validate(),
+            (newSubscriptionCumulativeGroupedBulk) =>
+                newSubscriptionCumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(ReplacePricePrice? other)
@@ -13079,6 +13183,7 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
                 "Data did not match any variant of ReplacePricePriceBulkWithFiltersConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ReplacePricePriceBulkWithFiltersConversionRateConfig? other)
@@ -13871,6 +13976,7 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
                 "Data did not match any variant of ReplacePricePriceTieredWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ReplacePricePriceTieredWithProrationConversionRateConfig? other)
@@ -14606,6 +14712,7 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
                 "Data did not match any variant of ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -15343,6 +15450,7 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
                 "Data did not match any variant of ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -16035,6 +16143,7 @@ public record class ReplacePricePricePercentConversionRateConfig
                 "Data did not match any variant of ReplacePricePricePercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ReplacePricePricePercentConversionRateConfig? other)
@@ -16753,6 +16862,7 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
                 "Data did not match any variant of ReplacePricePriceEventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ReplacePricePriceEventOutputConversionRateConfig? other)

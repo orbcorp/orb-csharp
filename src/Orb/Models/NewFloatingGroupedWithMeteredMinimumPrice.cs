@@ -816,6 +816,7 @@ public record class NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfi
                 "Data did not match any variant of NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfig? other)

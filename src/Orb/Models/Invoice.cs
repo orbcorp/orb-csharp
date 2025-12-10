@@ -1805,6 +1805,13 @@ public record class InvoiceLineItemAdjustment
                 "Data did not match any variant of InvoiceLineItemAdjustment"
             );
         }
+        this.Switch(
+            (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
+            (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
+            (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (monetaryMinimum) => monetaryMinimum.Validate(),
+            (monetaryMaximum) => monetaryMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(InvoiceLineItemAdjustment? other)
@@ -2212,6 +2219,11 @@ public record class InvoiceLineItemSubLineItem
                 "Data did not match any variant of InvoiceLineItemSubLineItem"
             );
         }
+        this.Switch(
+            (matrix) => matrix.Validate(),
+            (tier) => tier.Validate(),
+            (other) => other.Validate()
+        );
     }
 
     public virtual bool Equals(InvoiceLineItemSubLineItem? other)

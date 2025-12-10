@@ -641,6 +641,7 @@ public record class NewFloatingGroupedAllocationPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingGroupedAllocationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingGroupedAllocationPriceConversionRateConfig? other)

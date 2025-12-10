@@ -652,6 +652,7 @@ public record class NewFloatingGroupedWithProratedMinimumPriceConversionRateConf
                 "Data did not match any variant of NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(

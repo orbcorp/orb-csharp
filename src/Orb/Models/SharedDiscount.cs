@@ -260,6 +260,12 @@ public record class SharedDiscount
         {
             throw new OrbInvalidDataException("Data did not match any variant of SharedDiscount");
         }
+        this.Switch(
+            (percentage) => percentage.Validate(),
+            (trial) => trial.Validate(),
+            (usage) => usage.Validate(),
+            (amount) => amount.Validate()
+        );
     }
 
     public virtual bool Equals(SharedDiscount? other)

@@ -771,6 +771,7 @@ public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateC
                 "Data did not match any variant of NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(

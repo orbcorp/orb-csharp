@@ -1113,6 +1113,14 @@ public record class CustomerUpdateParamsTaxConfiguration
                 "Data did not match any variant of CustomerUpdateParamsTaxConfiguration"
             );
         }
+        this.Switch(
+            (newAvalara) => newAvalara.Validate(),
+            (newTaxJar) => newTaxJar.Validate(),
+            (newSphere) => newSphere.Validate(),
+            (numeral) => numeral.Validate(),
+            (anrok) => anrok.Validate(),
+            (stripe) => stripe.Validate()
+        );
     }
 
     public virtual bool Equals(CustomerUpdateParamsTaxConfiguration? other)

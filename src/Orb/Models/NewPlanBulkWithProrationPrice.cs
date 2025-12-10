@@ -744,6 +744,7 @@ public record class NewPlanBulkWithProrationPriceConversionRateConfig
                 "Data did not match any variant of NewPlanBulkWithProrationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanBulkWithProrationPriceConversionRateConfig? other)

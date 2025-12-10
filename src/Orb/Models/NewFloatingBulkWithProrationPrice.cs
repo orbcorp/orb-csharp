@@ -701,6 +701,7 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingBulkWithProrationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingBulkWithProrationPriceConversionRateConfig? other)

@@ -541,6 +541,13 @@ public record class Body
         {
             throw new OrbInvalidDataException("Data did not match any variant of Body");
         }
+        this.Switch(
+            (increment) => increment.Validate(),
+            (decrement) => decrement.Validate(),
+            (expirationChange) => expirationChange.Validate(),
+            (void1) => void1.Validate(),
+            (amendment) => amendment.Validate()
+        );
     }
 
     public virtual bool Equals(Body? other)

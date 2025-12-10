@@ -552,6 +552,7 @@ public record class NewFloatingTieredPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingTieredPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingTieredPriceConversionRateConfig? other)

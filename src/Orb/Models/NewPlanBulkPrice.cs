@@ -562,6 +562,7 @@ public record class NewPlanBulkPriceConversionRateConfig
                 "Data did not match any variant of NewPlanBulkPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanBulkPriceConversionRateConfig? other)

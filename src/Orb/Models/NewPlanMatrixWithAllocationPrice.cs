@@ -578,6 +578,7 @@ public record class NewPlanMatrixWithAllocationPriceConversionRateConfig
                 "Data did not match any variant of NewPlanMatrixWithAllocationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanMatrixWithAllocationPriceConversionRateConfig? other)

@@ -662,6 +662,7 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionGroupedAllocationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionGroupedAllocationPriceConversionRateConfig? other)

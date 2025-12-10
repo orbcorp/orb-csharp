@@ -750,6 +750,7 @@ public record class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfi
                 "Data did not match any variant of NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig? other)
