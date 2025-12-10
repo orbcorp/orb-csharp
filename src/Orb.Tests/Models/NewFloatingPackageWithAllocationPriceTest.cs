@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -491,6 +492,130 @@ public class NewFloatingPackageWithAllocationPriceTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewFloatingPackageWithAllocationPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Annual)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Monthly)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Quarterly)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.OneTime)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Custom)]
+    public void Validation_Works(NewFloatingPackageWithAllocationPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Annual)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Monthly)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Quarterly)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.OneTime)]
+    [InlineData(NewFloatingPackageWithAllocationPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewFloatingPackageWithAllocationPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewFloatingPackageWithAllocationPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingPackageWithAllocationPriceModelType.PackageWithAllocation)]
+    public void Validation_Works(NewFloatingPackageWithAllocationPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingPackageWithAllocationPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingPackageWithAllocationPriceModelType.PackageWithAllocation)]
+    public void SerializationRoundtrip_Works(
+        NewFloatingPackageWithAllocationPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingPackageWithAllocationPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingPackageWithAllocationPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

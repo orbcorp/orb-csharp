@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Tests.Models.Customers.Credits.TopUps;
@@ -253,5 +254,65 @@ public class TopUpCreateByExternalIDResponseTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class TopUpCreateByExternalIDResponseExpiresAfterUnitTest : TestBase
+{
+    [Theory]
+    [InlineData(TopUpCreateByExternalIDResponseExpiresAfterUnit.Day)]
+    [InlineData(TopUpCreateByExternalIDResponseExpiresAfterUnit.Month)]
+    public void Validation_Works(TopUpCreateByExternalIDResponseExpiresAfterUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(TopUpCreateByExternalIDResponseExpiresAfterUnit.Day)]
+    [InlineData(TopUpCreateByExternalIDResponseExpiresAfterUnit.Month)]
+    public void SerializationRoundtrip_Works(
+        TopUpCreateByExternalIDResponseExpiresAfterUnit rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

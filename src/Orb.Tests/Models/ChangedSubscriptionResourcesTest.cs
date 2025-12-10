@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Models = Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -7604,6 +7605,192 @@ public class CustomerBalanceTransactionTest : TestBase
     }
 }
 
+public class ActionTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::Action.AppliedToInvoice)]
+    [InlineData(Models::Action.ManualAdjustment)]
+    [InlineData(Models::Action.ProratedRefund)]
+    [InlineData(Models::Action.RevertProratedRefund)]
+    [InlineData(Models::Action.ReturnFromVoiding)]
+    [InlineData(Models::Action.CreditNoteApplied)]
+    [InlineData(Models::Action.CreditNoteVoided)]
+    [InlineData(Models::Action.OverpaymentRefund)]
+    [InlineData(Models::Action.ExternalPayment)]
+    [InlineData(Models::Action.SmallInvoiceCarryover)]
+    public void Validation_Works(Models::Action rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::Action> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::Action>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::Action.AppliedToInvoice)]
+    [InlineData(Models::Action.ManualAdjustment)]
+    [InlineData(Models::Action.ProratedRefund)]
+    [InlineData(Models::Action.RevertProratedRefund)]
+    [InlineData(Models::Action.ReturnFromVoiding)]
+    [InlineData(Models::Action.CreditNoteApplied)]
+    [InlineData(Models::Action.CreditNoteVoided)]
+    [InlineData(Models::Action.OverpaymentRefund)]
+    [InlineData(Models::Action.ExternalPayment)]
+    [InlineData(Models::Action.SmallInvoiceCarryover)]
+    public void SerializationRoundtrip_Works(Models::Action rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::Action> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::Action>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::Action>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::Action>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TypeTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::Type.Increment)]
+    [InlineData(Models::Type.Decrement)]
+    public void Validation_Works(Models::Type rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::Type> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::Type>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::Type.Increment)]
+    [InlineData(Models::Type.Decrement)]
+    public void SerializationRoundtrip_Works(Models::Type rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::Type> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::Type>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::Type>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::Type>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class InvoiceSourceTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::InvoiceSource.Subscription)]
+    [InlineData(Models::InvoiceSource.Partial)]
+    [InlineData(Models::InvoiceSource.OneOff)]
+    public void Validation_Works(Models::InvoiceSource rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::InvoiceSource> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::InvoiceSource>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::InvoiceSource.Subscription)]
+    [InlineData(Models::InvoiceSource.Partial)]
+    [InlineData(Models::InvoiceSource.OneOff)]
+    public void SerializationRoundtrip_Works(Models::InvoiceSource rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::InvoiceSource> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::InvoiceSource>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::InvoiceSource>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::InvoiceSource>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class LineItemTest : TestBase
 {
     [Fact]
@@ -8867,5 +9054,121 @@ public class PaymentAttemptTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class PaymentProviderTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::PaymentProvider.Stripe)]
+    public void Validation_Works(Models::PaymentProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::PaymentProvider> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::PaymentProvider>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::PaymentProvider.Stripe)]
+    public void SerializationRoundtrip_Works(Models::PaymentProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::PaymentProvider> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::PaymentProvider>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::PaymentProvider>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::PaymentProvider>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class StatusTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::Status.Issued)]
+    [InlineData(Models::Status.Paid)]
+    [InlineData(Models::Status.Synced)]
+    [InlineData(Models::Status.Void)]
+    [InlineData(Models::Status.Draft)]
+    public void Validation_Works(Models::Status rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::Status> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::Status>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::Status.Issued)]
+    [InlineData(Models::Status.Paid)]
+    [InlineData(Models::Status.Synced)]
+    [InlineData(Models::Status.Void)]
+    [InlineData(Models::Status.Draft)]
+    public void SerializationRoundtrip_Works(Models::Status rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::Status> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::Status>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Models::Status>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Models::Status>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Subscriptions = Orb.Models.Subscriptions;
 
@@ -532,6 +533,144 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewSubscriptionPackageWithAllocationPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Monthly)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Quarterly)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.OneTime)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Custom)]
+    public void Validation_Works(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Annual)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Monthly)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Quarterly)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.OneTime)]
+    [InlineData(Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewSubscriptionPackageWithAllocationPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation
+    )]
+    public void Validation_Works(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType.PackageWithAllocation
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionPackageWithAllocationPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

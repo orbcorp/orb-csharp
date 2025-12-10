@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Ledger = Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
@@ -491,6 +492,116 @@ public class FilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class FieldTest : TestBase
+{
+    [Theory]
+    [InlineData(Ledger::Field.ItemID)]
+    public void Validation_Works(Ledger::Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Ledger::Field> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Field>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Ledger::Field.ItemID)]
+    public void SerializationRoundtrip_Works(Ledger::Field rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Ledger::Field> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Field>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Field>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class OperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(Ledger::Operator.Includes)]
+    [InlineData(Ledger::Operator.Excludes)]
+    public void Validation_Works(Ledger::Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Ledger::Operator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Operator>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Ledger::Operator.Includes)]
+    [InlineData(Ledger::Operator.Excludes)]
+    public void SerializationRoundtrip_Works(Ledger::Operator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Ledger::Operator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Operator>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Ledger::Operator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -1477,6 +1588,60 @@ public class VoidTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class VoidReasonTest : TestBase
+{
+    [Theory]
+    [InlineData(Ledger::VoidReason.Refund)]
+    public void Validation_Works(Ledger::VoidReason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Ledger::VoidReason> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::VoidReason>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Ledger::VoidReason.Refund)]
+    public void SerializationRoundtrip_Works(Ledger::VoidReason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Ledger::VoidReason> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Ledger::VoidReason>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Ledger::VoidReason>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Ledger::VoidReason>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 

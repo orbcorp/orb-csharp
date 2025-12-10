@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers;
 using Orb.Models.SubscriptionChanges;
 using Models = Orb.Models;
@@ -15604,5 +15605,65 @@ public class SubscriptionChangeApplyResponseTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class SubscriptionChangeApplyResponseStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(SubscriptionChangeApplyResponseStatus.Pending)]
+    [InlineData(SubscriptionChangeApplyResponseStatus.Applied)]
+    [InlineData(SubscriptionChangeApplyResponseStatus.Cancelled)]
+    public void Validation_Works(SubscriptionChangeApplyResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SubscriptionChangeApplyResponseStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(SubscriptionChangeApplyResponseStatus.Pending)]
+    [InlineData(SubscriptionChangeApplyResponseStatus.Applied)]
+    [InlineData(SubscriptionChangeApplyResponseStatus.Cancelled)]
+    public void SerializationRoundtrip_Works(SubscriptionChangeApplyResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SubscriptionChangeApplyResponseStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, SubscriptionChangeApplyResponseStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

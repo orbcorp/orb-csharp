@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Customers.Credits.Ledger;
 
@@ -266,5 +267,119 @@ public class CreditBlockExpiryLedgerEntryTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class CreditBlockExpiryLedgerEntryEntryStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(CreditBlockExpiryLedgerEntryEntryStatus.Committed)]
+    [InlineData(CreditBlockExpiryLedgerEntryEntryStatus.Pending)]
+    public void Validation_Works(CreditBlockExpiryLedgerEntryEntryStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CreditBlockExpiryLedgerEntryEntryStatus.Committed)]
+    [InlineData(CreditBlockExpiryLedgerEntryEntryStatus.Pending)]
+    public void SerializationRoundtrip_Works(CreditBlockExpiryLedgerEntryEntryStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class CreditBlockExpiryLedgerEntryEntryTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(CreditBlockExpiryLedgerEntryEntryType.CreditBlockExpiry)]
+    public void Validation_Works(CreditBlockExpiryLedgerEntryEntryType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CreditBlockExpiryLedgerEntryEntryType.CreditBlockExpiry)]
+    public void SerializationRoundtrip_Works(CreditBlockExpiryLedgerEntryEntryType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

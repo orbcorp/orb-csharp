@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
@@ -143,5 +144,59 @@ public class NewAvalaraTaxConfigurationTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class TaxProviderTest : TestBase
+{
+    [Theory]
+    [InlineData(TaxProvider.Avalara)]
+    public void Validation_Works(TaxProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TaxProvider> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TaxProvider>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(TaxProvider.Avalara)]
+    public void SerializationRoundtrip_Works(TaxProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TaxProvider> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, TaxProvider>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TaxProvider>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, TaxProvider>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

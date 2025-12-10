@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 
@@ -139,5 +140,137 @@ public class BalanceTransactionCreateResponseTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class ActionTest : TestBase
+{
+    [Theory]
+    [InlineData(BalanceTransactions::Action.AppliedToInvoice)]
+    [InlineData(BalanceTransactions::Action.ManualAdjustment)]
+    [InlineData(BalanceTransactions::Action.ProratedRefund)]
+    [InlineData(BalanceTransactions::Action.RevertProratedRefund)]
+    [InlineData(BalanceTransactions::Action.ReturnFromVoiding)]
+    [InlineData(BalanceTransactions::Action.CreditNoteApplied)]
+    [InlineData(BalanceTransactions::Action.CreditNoteVoided)]
+    [InlineData(BalanceTransactions::Action.OverpaymentRefund)]
+    [InlineData(BalanceTransactions::Action.ExternalPayment)]
+    [InlineData(BalanceTransactions::Action.SmallInvoiceCarryover)]
+    public void Validation_Works(BalanceTransactions::Action rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, BalanceTransactions::Action> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Action>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(BalanceTransactions::Action.AppliedToInvoice)]
+    [InlineData(BalanceTransactions::Action.ManualAdjustment)]
+    [InlineData(BalanceTransactions::Action.ProratedRefund)]
+    [InlineData(BalanceTransactions::Action.RevertProratedRefund)]
+    [InlineData(BalanceTransactions::Action.ReturnFromVoiding)]
+    [InlineData(BalanceTransactions::Action.CreditNoteApplied)]
+    [InlineData(BalanceTransactions::Action.CreditNoteVoided)]
+    [InlineData(BalanceTransactions::Action.OverpaymentRefund)]
+    [InlineData(BalanceTransactions::Action.ExternalPayment)]
+    [InlineData(BalanceTransactions::Action.SmallInvoiceCarryover)]
+    public void SerializationRoundtrip_Works(BalanceTransactions::Action rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, BalanceTransactions::Action> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Action>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Action>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Action>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class BalanceTransactionCreateResponseTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(BalanceTransactions::BalanceTransactionCreateResponseType.Increment)]
+    [InlineData(BalanceTransactions::BalanceTransactionCreateResponseType.Decrement)]
+    public void Validation_Works(BalanceTransactions::BalanceTransactionCreateResponseType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, BalanceTransactions::BalanceTransactionCreateResponseType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, BalanceTransactions::BalanceTransactionCreateResponseType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(BalanceTransactions::BalanceTransactionCreateResponseType.Increment)]
+    [InlineData(BalanceTransactions::BalanceTransactionCreateResponseType.Decrement)]
+    public void SerializationRoundtrip_Works(
+        BalanceTransactions::BalanceTransactionCreateResponseType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, BalanceTransactions::BalanceTransactionCreateResponseType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, BalanceTransactions::BalanceTransactionCreateResponseType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, BalanceTransactions::BalanceTransactionCreateResponseType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, BalanceTransactions::BalanceTransactionCreateResponseType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

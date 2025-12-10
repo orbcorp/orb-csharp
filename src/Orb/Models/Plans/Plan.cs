@@ -282,12 +282,10 @@ public sealed record class Plan : ModelBase
     }
 
 #pragma warning disable CS8618
-    [
-        System::Obsolete(
-            "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
-        ),
-        SetsRequiredMembers
-    ]
+    [System::Obsolete(
+        "Required properties are deprecated: base_plan, base_plan_id, currency, discount, maximum, maximum_amount, minimum, minimum_amount"
+    )]
+    [SetsRequiredMembers]
     Plan(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];
@@ -849,7 +847,8 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
 /// Legacy field representing the parent plan if the current plan is a 'child plan',
 /// overriding prices from the parent.
 /// </summary>
-[System::Obsolete("deprecated"), JsonConverter(typeof(ModelConverter<BasePlan, BasePlanFromRaw>))]
+[System::Obsolete("deprecated")]
+[JsonConverter(typeof(ModelConverter<BasePlan, BasePlanFromRaw>))]
 public sealed record class BasePlan : ModelBase
 {
     public required string? ID

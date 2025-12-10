@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -1534,6 +1535,62 @@ public class DiscountTest : TestBase
     }
 }
 
+public class DiscountDiscountTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(DiscountDiscountType.Percentage)]
+    [InlineData(DiscountDiscountType.Amount)]
+    public void Validation_Works(DiscountDiscountType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DiscountDiscountType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DiscountDiscountType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(DiscountDiscountType.Percentage)]
+    [InlineData(DiscountDiscountType.Amount)]
+    public void SerializationRoundtrip_Works(DiscountDiscountType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DiscountDiscountType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, DiscountDiscountType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DiscountDiscountType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, DiscountDiscountType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class MaximumAmountAdjustmentTest : TestBase
 {
     [Fact]
@@ -1698,6 +1755,62 @@ public class MaximumAmountAdjustmentTest : TestBase
     }
 }
 
+public class MaximumAmountAdjustmentDiscountTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MaximumAmountAdjustmentDiscountType.Percentage)]
+    public void Validation_Works(MaximumAmountAdjustmentDiscountType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MaximumAmountAdjustmentDiscountType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MaximumAmountAdjustmentDiscountType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MaximumAmountAdjustmentDiscountType.Percentage)]
+    public void SerializationRoundtrip_Works(MaximumAmountAdjustmentDiscountType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MaximumAmountAdjustmentDiscountType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MaximumAmountAdjustmentDiscountType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MaximumAmountAdjustmentDiscountType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MaximumAmountAdjustmentDiscountType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class AppliesToPriceTest : TestBase
 {
     [Fact]
@@ -1745,6 +1858,122 @@ public class AppliesToPriceTest : TestBase
         var model = new AppliesToPrice { ID = "id", Name = "name" };
 
         model.Validate();
+    }
+}
+
+public class ReasonTest : TestBase
+{
+    [Theory]
+    [InlineData(Reason.Duplicate)]
+    [InlineData(Reason.Fraudulent)]
+    [InlineData(Reason.OrderChange)]
+    [InlineData(Reason.ProductUnsatisfactory)]
+    public void Validation_Works(Reason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Reason> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Reason.Duplicate)]
+    [InlineData(Reason.Fraudulent)]
+    [InlineData(Reason.OrderChange)]
+    [InlineData(Reason.ProductUnsatisfactory)]
+    public void SerializationRoundtrip_Works(Reason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Reason> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SharedCreditNoteTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(SharedCreditNoteType.Refund)]
+    [InlineData(SharedCreditNoteType.Adjustment)]
+    public void Validation_Works(SharedCreditNoteType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SharedCreditNoteType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, SharedCreditNoteType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(SharedCreditNoteType.Refund)]
+    [InlineData(SharedCreditNoteType.Adjustment)]
+    public void SerializationRoundtrip_Works(SharedCreditNoteType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SharedCreditNoteType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, SharedCreditNoteType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, SharedCreditNoteType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, SharedCreditNoteType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -1915,6 +2144,62 @@ public class SharedCreditNoteDiscountTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class SharedCreditNoteDiscountDiscountTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(SharedCreditNoteDiscountDiscountType.Percentage)]
+    public void Validation_Works(SharedCreditNoteDiscountDiscountType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SharedCreditNoteDiscountDiscountType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, SharedCreditNoteDiscountDiscountType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(SharedCreditNoteDiscountDiscountType.Percentage)]
+    public void SerializationRoundtrip_Works(SharedCreditNoteDiscountDiscountType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SharedCreditNoteDiscountDiscountType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, SharedCreditNoteDiscountDiscountType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, SharedCreditNoteDiscountDiscountType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, SharedCreditNoteDiscountDiscountType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

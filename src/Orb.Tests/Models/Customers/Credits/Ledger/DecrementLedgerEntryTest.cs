@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Customers.Credits.Ledger;
 
@@ -456,5 +457,111 @@ public class DecrementLedgerEntryTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class DecrementLedgerEntryEntryStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(DecrementLedgerEntryEntryStatus.Committed)]
+    [InlineData(DecrementLedgerEntryEntryStatus.Pending)]
+    public void Validation_Works(DecrementLedgerEntryEntryStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DecrementLedgerEntryEntryStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DecrementLedgerEntryEntryStatus>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(DecrementLedgerEntryEntryStatus.Committed)]
+    [InlineData(DecrementLedgerEntryEntryStatus.Pending)]
+    public void SerializationRoundtrip_Works(DecrementLedgerEntryEntryStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DecrementLedgerEntryEntryStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, DecrementLedgerEntryEntryStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DecrementLedgerEntryEntryStatus>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, DecrementLedgerEntryEntryStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class DecrementLedgerEntryEntryTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(DecrementLedgerEntryEntryType.Decrement)]
+    public void Validation_Works(DecrementLedgerEntryEntryType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DecrementLedgerEntryEntryType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DecrementLedgerEntryEntryType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(DecrementLedgerEntryEntryType.Decrement)]
+    public void SerializationRoundtrip_Works(DecrementLedgerEntryEntryType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DecrementLedgerEntryEntryType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, DecrementLedgerEntryEntryType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DecrementLedgerEntryEntryType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, DecrementLedgerEntryEntryType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

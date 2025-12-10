@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -201,6 +202,62 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
     }
 }
 
+public class PlanPhaseMinimumAdjustmentAdjustmentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPhaseMinimumAdjustmentAdjustmentType.Minimum)]
+    public void Validation_Works(PlanPhaseMinimumAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPhaseMinimumAdjustmentAdjustmentType.Minimum)]
+    public void SerializationRoundtrip_Works(PlanPhaseMinimumAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class PlanPhaseMinimumAdjustmentFilterTest : TestBase
 {
     [Fact]
@@ -284,5 +341,127 @@ public class PlanPhaseMinimumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class PlanPhaseMinimumAdjustmentFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.PriceID)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.ItemID)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.PriceType)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.Currency)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.PricingUnitID)]
+    public void Validation_Works(PlanPhaseMinimumAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.PriceID)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.ItemID)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.PriceType)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.Currency)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(PlanPhaseMinimumAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class PlanPhaseMinimumAdjustmentFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterOperator.Includes)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterOperator.Excludes)]
+    public void Validation_Works(PlanPhaseMinimumAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterOperator.Includes)]
+    [InlineData(PlanPhaseMinimumAdjustmentFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(PlanPhaseMinimumAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

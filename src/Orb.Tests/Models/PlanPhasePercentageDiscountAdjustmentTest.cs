@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -199,6 +200,64 @@ public class PlanPhasePercentageDiscountAdjustmentTest : TestBase
     }
 }
 
+public class PlanPhasePercentageDiscountAdjustmentAdjustmentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount)]
+    public void Validation_Works(PlanPhasePercentageDiscountAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhasePercentageDiscountAdjustmentAdjustmentType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount)]
+    public void SerializationRoundtrip_Works(
+        PlanPhasePercentageDiscountAdjustmentAdjustmentType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhasePercentageDiscountAdjustmentAdjustmentType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class PlanPhasePercentageDiscountAdjustmentFilterTest : TestBase
 {
     [Fact]
@@ -286,5 +345,131 @@ public class PlanPhasePercentageDiscountAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class PlanPhasePercentageDiscountAdjustmentFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.PriceID)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.ItemID)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.PriceType)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.Currency)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.PricingUnitID)]
+    public void Validation_Works(PlanPhasePercentageDiscountAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.PriceID)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.ItemID)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.PriceType)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.Currency)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        PlanPhasePercentageDiscountAdjustmentFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class PlanPhasePercentageDiscountAdjustmentFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterOperator.Includes)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterOperator.Excludes)]
+    public void Validation_Works(PlanPhasePercentageDiscountAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterOperator.Includes)]
+    [InlineData(PlanPhasePercentageDiscountAdjustmentFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        PlanPhasePercentageDiscountAdjustmentFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, PlanPhasePercentageDiscountAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

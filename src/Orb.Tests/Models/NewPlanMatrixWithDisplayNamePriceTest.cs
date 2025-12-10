@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -582,6 +583,72 @@ public class NewPlanMatrixWithDisplayNamePriceTest : TestBase
     }
 }
 
+public class NewPlanMatrixWithDisplayNamePriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Annual)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.SemiAnnual)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Monthly)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Quarterly)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.OneTime)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Custom)]
+    public void Validation_Works(NewPlanMatrixWithDisplayNamePriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Annual)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.SemiAnnual)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Monthly)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Quarterly)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.OneTime)]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewPlanMatrixWithDisplayNamePriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigTest : TestBase
 {
     [Fact]
@@ -787,5 +854,61 @@ public class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmo
         };
 
         model.Validate();
+    }
+}
+
+public class NewPlanMatrixWithDisplayNamePriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName)]
+    public void Validation_Works(NewPlanMatrixWithDisplayNamePriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName)]
+    public void SerializationRoundtrip_Works(NewPlanMatrixWithDisplayNamePriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMatrixWithDisplayNamePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

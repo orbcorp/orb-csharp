@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -193,6 +194,62 @@ public class MonetaryMaximumAdjustmentTest : TestBase
     }
 }
 
+public class MonetaryMaximumAdjustmentAdjustmentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryMaximumAdjustmentAdjustmentType.Maximum)]
+    public void Validation_Works(MonetaryMaximumAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryMaximumAdjustmentAdjustmentType.Maximum)]
+    public void SerializationRoundtrip_Works(MonetaryMaximumAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class MonetaryMaximumAdjustmentFilterTest : TestBase
 {
     [Fact]
@@ -276,5 +333,127 @@ public class MonetaryMaximumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class MonetaryMaximumAdjustmentFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.PriceID)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.ItemID)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.PriceType)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.Currency)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.PricingUnitID)]
+    public void Validation_Works(MonetaryMaximumAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.PriceID)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.ItemID)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.PriceType)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.Currency)]
+    [InlineData(MonetaryMaximumAdjustmentFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(MonetaryMaximumAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MonetaryMaximumAdjustmentFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryMaximumAdjustmentFilterOperator.Includes)]
+    [InlineData(MonetaryMaximumAdjustmentFilterOperator.Excludes)]
+    public void Validation_Works(MonetaryMaximumAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryMaximumAdjustmentFilterOperator.Includes)]
+    [InlineData(MonetaryMaximumAdjustmentFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(MonetaryMaximumAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMaximumAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

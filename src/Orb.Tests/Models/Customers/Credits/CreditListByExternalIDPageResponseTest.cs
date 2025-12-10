@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Customers.Credits;
 
@@ -478,5 +479,181 @@ public class CreditListByExternalIDPageResponseDataFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class CreditListByExternalIDPageResponseDataFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(CreditListByExternalIDPageResponseDataFilterField.ItemID)]
+    public void Validation_Works(CreditListByExternalIDPageResponseDataFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CreditListByExternalIDPageResponseDataFilterField.ItemID)]
+    public void SerializationRoundtrip_Works(
+        CreditListByExternalIDPageResponseDataFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class CreditListByExternalIDPageResponseDataFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(CreditListByExternalIDPageResponseDataFilterOperator.Includes)]
+    [InlineData(CreditListByExternalIDPageResponseDataFilterOperator.Excludes)]
+    public void Validation_Works(CreditListByExternalIDPageResponseDataFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CreditListByExternalIDPageResponseDataFilterOperator.Includes)]
+    [InlineData(CreditListByExternalIDPageResponseDataFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        CreditListByExternalIDPageResponseDataFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class CreditListByExternalIDPageResponseDataStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(CreditListByExternalIDPageResponseDataStatus.Active)]
+    [InlineData(CreditListByExternalIDPageResponseDataStatus.PendingPayment)]
+    public void Validation_Works(CreditListByExternalIDPageResponseDataStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditListByExternalIDPageResponseDataStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CreditListByExternalIDPageResponseDataStatus.Active)]
+    [InlineData(CreditListByExternalIDPageResponseDataStatus.PendingPayment)]
+    public void SerializationRoundtrip_Works(CreditListByExternalIDPageResponseDataStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CreditListByExternalIDPageResponseDataStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CreditListByExternalIDPageResponseDataStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

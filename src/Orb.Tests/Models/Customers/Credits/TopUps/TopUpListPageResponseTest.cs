@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Customers.Credits.TopUps;
 
@@ -449,5 +450,61 @@ public class DataTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class DataExpiresAfterUnitTest : TestBase
+{
+    [Theory]
+    [InlineData(DataExpiresAfterUnit.Day)]
+    [InlineData(DataExpiresAfterUnit.Month)]
+    public void Validation_Works(DataExpiresAfterUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DataExpiresAfterUnit> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DataExpiresAfterUnit>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(DataExpiresAfterUnit.Day)]
+    [InlineData(DataExpiresAfterUnit.Month)]
+    public void SerializationRoundtrip_Works(DataExpiresAfterUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DataExpiresAfterUnit> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, DataExpiresAfterUnit>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DataExpiresAfterUnit>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, DataExpiresAfterUnit>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

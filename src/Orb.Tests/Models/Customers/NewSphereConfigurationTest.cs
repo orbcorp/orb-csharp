@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
@@ -131,5 +132,57 @@ public class NewSphereConfigurationTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewSphereConfigurationTaxProviderTest : TestBase
+{
+    [Theory]
+    [InlineData(NewSphereConfigurationTaxProvider.Sphere)]
+    public void Validation_Works(NewSphereConfigurationTaxProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewSphereConfigurationTaxProvider> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewSphereConfigurationTaxProvider.Sphere)]
+    public void SerializationRoundtrip_Works(NewSphereConfigurationTaxProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewSphereConfigurationTaxProvider> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewSphereConfigurationTaxProvider>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewSphereConfigurationTaxProvider>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

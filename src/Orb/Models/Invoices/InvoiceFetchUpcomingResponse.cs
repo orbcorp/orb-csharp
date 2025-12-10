@@ -642,7 +642,8 @@ public sealed record class InvoiceFetchUpcomingResponse : ModelBase
     }
 
 #pragma warning disable CS8618
-    [System::Obsolete("Required properties are deprecated: discount"), SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: discount")]
+    [SetsRequiredMembers]
     InvoiceFetchUpcomingResponse(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

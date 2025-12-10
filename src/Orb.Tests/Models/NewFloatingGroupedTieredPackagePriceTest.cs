@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -534,6 +535,72 @@ public class NewFloatingGroupedTieredPackagePriceTest : TestBase
     }
 }
 
+public class NewFloatingGroupedTieredPackagePriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Annual)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Monthly)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Quarterly)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.OneTime)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Custom)]
+    public void Validation_Works(NewFloatingGroupedTieredPackagePriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedTieredPackagePriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Annual)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Monthly)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Quarterly)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.OneTime)]
+    [InlineData(NewFloatingGroupedTieredPackagePriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewFloatingGroupedTieredPackagePriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedTieredPackagePriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class GroupedTieredPackageConfigTest : TestBase
 {
     [Fact]
@@ -703,5 +770,61 @@ public class GroupedTieredPackageConfigTierTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewFloatingGroupedTieredPackagePriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingGroupedTieredPackagePriceModelType.GroupedTieredPackage)]
+    public void Validation_Works(NewFloatingGroupedTieredPackagePriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedTieredPackagePriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingGroupedTieredPackagePriceModelType.GroupedTieredPackage)]
+    public void SerializationRoundtrip_Works(NewFloatingGroupedTieredPackagePriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedTieredPackagePriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedTieredPackagePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

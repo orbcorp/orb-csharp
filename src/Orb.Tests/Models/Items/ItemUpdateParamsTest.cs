@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Items;
 
 namespace Orb.Tests.Models.Items;
@@ -69,5 +70,73 @@ public class ExternalConnectionTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class ExternalConnectionNameTest : TestBase
+{
+    [Theory]
+    [InlineData(ExternalConnectionName.Stripe)]
+    [InlineData(ExternalConnectionName.Quickbooks)]
+    [InlineData(ExternalConnectionName.BillCom)]
+    [InlineData(ExternalConnectionName.Netsuite)]
+    [InlineData(ExternalConnectionName.Taxjar)]
+    [InlineData(ExternalConnectionName.Avalara)]
+    [InlineData(ExternalConnectionName.Anrok)]
+    [InlineData(ExternalConnectionName.Numeral)]
+    public void Validation_Works(ExternalConnectionName rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ExternalConnectionName> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ExternalConnectionName.Stripe)]
+    [InlineData(ExternalConnectionName.Quickbooks)]
+    [InlineData(ExternalConnectionName.BillCom)]
+    [InlineData(ExternalConnectionName.Netsuite)]
+    [InlineData(ExternalConnectionName.Taxjar)]
+    [InlineData(ExternalConnectionName.Avalara)]
+    [InlineData(ExternalConnectionName.Anrok)]
+    [InlineData(ExternalConnectionName.Numeral)]
+    public void SerializationRoundtrip_Works(ExternalConnectionName rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ExternalConnectionName> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ExternalConnectionName>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

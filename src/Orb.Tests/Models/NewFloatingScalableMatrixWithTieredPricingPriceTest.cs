@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -643,6 +644,136 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewFloatingScalableMatrixWithTieredPricingPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Monthly)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Quarterly)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.OneTime)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Custom)]
+    public void Validation_Works(NewFloatingScalableMatrixWithTieredPricingPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Monthly)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Quarterly)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.OneTime)]
+    [InlineData(NewFloatingScalableMatrixWithTieredPricingPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(
+        NewFloatingScalableMatrixWithTieredPricingPriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewFloatingScalableMatrixWithTieredPricingPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        NewFloatingScalableMatrixWithTieredPricingPriceModelType.ScalableMatrixWithTieredPricing
+    )]
+    public void Validation_Works(NewFloatingScalableMatrixWithTieredPricingPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        NewFloatingScalableMatrixWithTieredPricingPriceModelType.ScalableMatrixWithTieredPricing
+    )]
+    public void SerializationRoundtrip_Works(
+        NewFloatingScalableMatrixWithTieredPricingPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
