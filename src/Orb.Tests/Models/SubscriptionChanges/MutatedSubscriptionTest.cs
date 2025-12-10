@@ -11641,6 +11641,168 @@ public class MutatedSubscriptionTest : TestBase
     }
 }
 
+public class DiscountIntervalTest : TestBase
+{
+    [Fact]
+    public void amountValidation_Works()
+    {
+        DiscountInterval value = new(
+            new()
+            {
+                AmountDiscount = "amount_discount",
+                AppliesToPriceIntervalIDs = ["string"],
+                DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
+                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::AmountDiscountIntervalFilterField.PriceID,
+                        Operator = Models::AmountDiscountIntervalFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void percentageValidation_Works()
+    {
+        DiscountInterval value = new(
+            new()
+            {
+                AppliesToPriceIntervalIDs = ["string"],
+                DiscountType = Models::PercentageDiscountIntervalDiscountType.Percentage,
+                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::PercentageDiscountIntervalFilterField.PriceID,
+                        Operator = Models::PercentageDiscountIntervalFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PercentageDiscount = 0.15,
+                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void usageValidation_Works()
+    {
+        DiscountInterval value = new(
+            new()
+            {
+                AppliesToPriceIntervalIDs = ["string"],
+                DiscountType = Models::UsageDiscountIntervalDiscountType.Usage,
+                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::UsageDiscountIntervalFilterField.PriceID,
+                        Operator = Models::UsageDiscountIntervalFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                UsageDiscount = 0,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void amountSerializationRoundtrip_Works()
+    {
+        DiscountInterval value = new(
+            new()
+            {
+                AmountDiscount = "amount_discount",
+                AppliesToPriceIntervalIDs = ["string"],
+                DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
+                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::AmountDiscountIntervalFilterField.PriceID,
+                        Operator = Models::AmountDiscountIntervalFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void percentageSerializationRoundtrip_Works()
+    {
+        DiscountInterval value = new(
+            new()
+            {
+                AppliesToPriceIntervalIDs = ["string"],
+                DiscountType = Models::PercentageDiscountIntervalDiscountType.Percentage,
+                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::PercentageDiscountIntervalFilterField.PriceID,
+                        Operator = Models::PercentageDiscountIntervalFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                PercentageDiscount = 0.15,
+                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void usageSerializationRoundtrip_Works()
+    {
+        DiscountInterval value = new(
+            new()
+            {
+                AppliesToPriceIntervalIDs = ["string"],
+                DiscountType = Models::UsageDiscountIntervalDiscountType.Usage,
+                EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::UsageDiscountIntervalFilterField.PriceID,
+                        Operator = Models::UsageDiscountIntervalFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                UsageDiscount = 0,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class StatusTest : TestBase
 {
     [Theory]

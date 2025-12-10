@@ -7,6 +7,266 @@ using Ledger = Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
 
+public class BodyTest : TestBase
+{
+    [Fact]
+    public void incrementValidation_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Ledger::Field.ItemID,
+                        Operator = Ledger::Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    InvoiceDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void decrementValidation_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void expiration_changeValidation_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                TargetExpiryDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2019-12-27"),
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void voidValidation_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                VoidReason = Ledger::VoidReason.Refund,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void amendmentValidation_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void incrementSerializationRoundtrip_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Ledger::Field.ItemID,
+                        Operator = Ledger::Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    InvoiceDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void decrementSerializationRoundtrip_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void expiration_changeSerializationRoundtrip_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                TargetExpiryDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2019-12-27"),
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void voidSerializationRoundtrip_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                VoidReason = Ledger::VoidReason.Refund,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void amendmentSerializationRoundtrip_Works()
+    {
+        Ledger::Body value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class IncrementTest : TestBase
 {
     [Fact]
@@ -978,6 +1238,104 @@ public class InvoiceSettingsTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class CustomDueDateTest : TestBase
+{
+    [Fact]
+    public void dateValidation_Works()
+    {
+        Ledger::CustomDueDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void date_timeValidation_Works()
+    {
+        Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void dateSerializationRoundtrip_Works()
+    {
+        Ledger::CustomDueDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void date_timeSerializationRoundtrip_Works()
+    {
+        Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class InvoiceDateTest : TestBase
+{
+    [Fact]
+    public void dateValidation_Works()
+    {
+        Ledger::InvoiceDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void date_timeValidation_Works()
+    {
+        Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void dateSerializationRoundtrip_Works()
+    {
+        Ledger::InvoiceDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void date_timeSerializationRoundtrip_Works()
+    {
+        Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(json);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

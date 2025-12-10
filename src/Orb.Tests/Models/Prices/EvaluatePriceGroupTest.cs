@@ -85,3 +85,57 @@ public class EvaluatePriceGroupTest : TestBase
         model.Validate();
     }
 }
+
+public class GroupingValueTest : TestBase
+{
+    [Fact]
+    public void stringValidation_Works()
+    {
+        GroupingValue value = new("string");
+        value.Validate();
+    }
+
+    [Fact]
+    public void doubleValidation_Works()
+    {
+        GroupingValue value = new(0);
+        value.Validate();
+    }
+
+    [Fact]
+    public void boolValidation_Works()
+    {
+        GroupingValue value = new(true);
+        value.Validate();
+    }
+
+    [Fact]
+    public void stringSerializationRoundtrip_Works()
+    {
+        GroupingValue value = new("string");
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupingValue>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void doubleSerializationRoundtrip_Works()
+    {
+        GroupingValue value = new(0);
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupingValue>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void boolSerializationRoundtrip_Works()
+    {
+        GroupingValue value = new(true);
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupingValue>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}

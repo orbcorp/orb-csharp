@@ -7,6 +7,278 @@ using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
 
+public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
+{
+    [Fact]
+    public void incrementValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    InvoiceDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void decrementValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void expiration_changeValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                TargetExpiryDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2019-12-27"),
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void voidValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void amendmentValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void incrementSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID,
+                        Operator =
+                            LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    InvoiceDate =
+#if NET
+                    DateOnly
+#else
+                    DateTimeOffset
+#endif
+                    .Parse("2019-12-27"),
+                    ItemID = "item_id",
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void decrementSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void expiration_changeSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                TargetExpiryDate =
+#if NET
+                DateOnly
+#else
+                DateTimeOffset
+#endif
+                .Parse("2019-12-27"),
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void voidSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void amendmentSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBody value = new(
+            new()
+            {
+                Amount = 0,
+                BlockID = "block_id",
+                Currency = "currency",
+                Description = "description",
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
 {
     [Fact]
@@ -1024,6 +1296,130 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         };
 
         model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateTest
+    : TestBase
+{
+    [Fact]
+    public void dateValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27")
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void date_timeValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void dateSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27")
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
+                json
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void date_timeSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
+                json
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateTest
+    : TestBase
+{
+    [Fact]
+    public void dateValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27")
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void date_timeValidation_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void dateSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27")
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
+                json
+            );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void date_timeSerializationRoundtrip_Works()
+    {
+        LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
+            DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
+                json
+            );
+
+        Assert.Equal(value, deserialized);
     }
 }
 

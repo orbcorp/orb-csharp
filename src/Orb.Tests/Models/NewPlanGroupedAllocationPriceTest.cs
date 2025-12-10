@@ -708,3 +708,84 @@ public class NewPlanGroupedAllocationPriceModelTypeTest : TestBase
         Assert.Equal(value, deserialized);
     }
 }
+
+public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        NewPlanGroupedAllocationPriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        NewPlanGroupedAllocationPriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        NewPlanGroupedAllocationPriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        NewPlanGroupedAllocationPriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}

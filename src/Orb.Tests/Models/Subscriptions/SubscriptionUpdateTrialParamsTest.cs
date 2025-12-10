@@ -1,9 +1,47 @@
+using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
+
+public class TrialEndDateTest : TestBase
+{
+    [Fact]
+    public void DateTimeOffsetValidation_Works()
+    {
+        TrialEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void UnionMember1Validation_Works()
+    {
+        TrialEndDate value = new(UnionMember1.Immediate);
+        value.Validate();
+    }
+
+    [Fact]
+    public void DateTimeOffsetSerializationRoundtrip_Works()
+    {
+        TrialEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TrialEndDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void UnionMember1SerializationRoundtrip_Works()
+    {
+        TrialEndDate value = new(UnionMember1.Immediate);
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TrialEndDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
 
 public class UnionMember1Test : TestBase
 {

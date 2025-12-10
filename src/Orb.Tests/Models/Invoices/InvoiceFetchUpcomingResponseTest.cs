@@ -3818,6 +3818,432 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
     }
 }
 
+public class AdjustmentTest : TestBase
+{
+    [Fact]
+    public void monetary_usage_discountValidation_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+                UsageDiscount = 0,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void monetary_amount_discountValidation_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = AdjustmentType.AmountDiscount,
+                Amount = "amount",
+                AmountDiscount = "amount_discount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void monetary_percentage_discountValidation_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType =
+                    MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PercentageDiscount = 0,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void monetary_minimumValidation_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                        Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                ItemID = "item_id",
+                MinimumAmount = "minimum_amount",
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void monetary_maximumValidation_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                        Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                MaximumAmount = "maximum_amount",
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void monetary_usage_discountSerializationRoundtrip_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+                UsageDiscount = 0,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Adjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void monetary_amount_discountSerializationRoundtrip_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = AdjustmentType.AmountDiscount,
+                Amount = "amount",
+                AmountDiscount = "amount_discount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryAmountDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryAmountDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Adjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void monetary_percentage_discountSerializationRoundtrip_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType =
+                    MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryPercentageDiscountAdjustmentFilterField.PriceID,
+                        Operator = MonetaryPercentageDiscountAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PercentageDiscount = 0,
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Adjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void monetary_minimumSerializationRoundtrip_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryMinimumAdjustmentFilterField.PriceID,
+                        Operator = MonetaryMinimumAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                ItemID = "item_id",
+                MinimumAmount = "minimum_amount",
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Adjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void monetary_maximumSerializationRoundtrip_Works()
+    {
+        Invoices::Adjustment value = new(
+            new()
+            {
+                ID = "id",
+                AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
+                Amount = "amount",
+                AppliesToPriceIDs = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = MonetaryMaximumAdjustmentFilterField.PriceID,
+                        Operator = MonetaryMaximumAdjustmentFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                MaximumAmount = "maximum_amount",
+                Reason = "reason",
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::Adjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SubLineItemTest : TestBase
+{
+    [Fact]
+    public void matrixValidation_Works()
+    {
+        Invoices::SubLineItem value = new(
+            new()
+            {
+                Amount = "9.00",
+                Grouping = new() { Key = "region", Value = "west" },
+                MatrixConfig = new(["string"]),
+                Name = "Tier One",
+                Quantity = 5,
+                Type = MatrixSubLineItemType.Matrix,
+                ScaledQuantity = 0,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tierValidation_Works()
+    {
+        Invoices::SubLineItem value = new(
+            new()
+            {
+                Amount = "9.00",
+                Grouping = new() { Key = "region", Value = "west" },
+                Name = "Tier One",
+                Quantity = 5,
+                TierConfig = new()
+                {
+                    FirstUnit = 1,
+                    LastUnit = 1000,
+                    UnitAmount = "3.00",
+                },
+                Type = TierSubLineItemType.Tier,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void otherValidation_Works()
+    {
+        Invoices::SubLineItem value = new(
+            new()
+            {
+                Amount = "9.00",
+                Grouping = new() { Key = "region", Value = "west" },
+                Name = "Tier One",
+                Quantity = 5,
+                Type = OtherSubLineItemType.Null,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void matrixSerializationRoundtrip_Works()
+    {
+        Invoices::SubLineItem value = new(
+            new()
+            {
+                Amount = "9.00",
+                Grouping = new() { Key = "region", Value = "west" },
+                MatrixConfig = new(["string"]),
+                Name = "Tier One",
+                Quantity = 5,
+                Type = MatrixSubLineItemType.Matrix,
+                ScaledQuantity = 0,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::SubLineItem>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tierSerializationRoundtrip_Works()
+    {
+        Invoices::SubLineItem value = new(
+            new()
+            {
+                Amount = "9.00",
+                Grouping = new() { Key = "region", Value = "west" },
+                Name = "Tier One",
+                Quantity = 5,
+                TierConfig = new()
+                {
+                    FirstUnit = 1,
+                    LastUnit = 1000,
+                    UnitAmount = "3.00",
+                },
+                Type = TierSubLineItemType.Tier,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::SubLineItem>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void otherSerializationRoundtrip_Works()
+    {
+        Invoices::SubLineItem value = new(
+            new()
+            {
+                Amount = "9.00",
+                Grouping = new() { Key = "region", Value = "west" },
+                Name = "Tier One",
+                Quantity = 5,
+                Type = OtherSubLineItemType.Null,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Invoices::SubLineItem>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class PaymentAttemptTest : TestBase
 {
     [Fact]
