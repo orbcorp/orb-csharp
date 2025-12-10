@@ -224,6 +224,11 @@ public record class InvoiceLevelDiscount
                 "Data did not match any variant of InvoiceLevelDiscount"
             );
         }
+        this.Switch(
+            (percentage) => percentage.Validate(),
+            (amount) => amount.Validate(),
+            (trial) => trial.Validate()
+        );
     }
 
     public virtual bool Equals(InvoiceLevelDiscount? other)

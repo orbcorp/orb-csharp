@@ -784,6 +784,7 @@ public record class NewPlanTieredWithMinimumPriceConversionRateConfig
                 "Data did not match any variant of NewPlanTieredWithMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanTieredWithMinimumPriceConversionRateConfig? other)

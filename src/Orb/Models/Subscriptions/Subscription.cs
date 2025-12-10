@@ -694,6 +694,11 @@ public record class DiscountInterval
         {
             throw new OrbInvalidDataException("Data did not match any variant of DiscountInterval");
         }
+        this.Switch(
+            (amount) => amount.Validate(),
+            (percentage) => percentage.Validate(),
+            (usage) => usage.Validate()
+        );
     }
 
     public virtual bool Equals(DiscountInterval? other)

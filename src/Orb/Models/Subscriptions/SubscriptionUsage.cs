@@ -179,6 +179,7 @@ public record class SubscriptionUsage
                 "Data did not match any variant of SubscriptionUsage"
             );
         }
+        this.Switch((ungrouped) => ungrouped.Validate(), (grouped) => grouped.Validate());
     }
 
     public virtual bool Equals(SubscriptionUsage? other)

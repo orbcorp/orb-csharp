@@ -650,6 +650,7 @@ public record class NewSubscriptionUnitWithPercentPriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionUnitWithPercentPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionUnitWithPercentPriceConversionRateConfig? other)

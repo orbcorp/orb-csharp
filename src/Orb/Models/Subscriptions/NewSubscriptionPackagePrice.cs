@@ -567,6 +567,7 @@ public record class NewSubscriptionPackagePriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionPackagePriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionPackagePriceConversionRateConfig? other)

@@ -756,6 +756,7 @@ public record class NewPlanThresholdTotalAmountPriceConversionRateConfig
                 "Data did not match any variant of NewPlanThresholdTotalAmountPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanThresholdTotalAmountPriceConversionRateConfig? other)

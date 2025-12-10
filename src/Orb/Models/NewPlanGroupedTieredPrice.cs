@@ -731,6 +731,7 @@ public record class NewPlanGroupedTieredPriceConversionRateConfig
                 "Data did not match any variant of NewPlanGroupedTieredPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanGroupedTieredPriceConversionRateConfig? other)

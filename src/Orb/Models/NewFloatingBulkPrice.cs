@@ -543,6 +543,7 @@ public record class ConversionRateConfig
                 "Data did not match any variant of ConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ConversionRateConfig? other)

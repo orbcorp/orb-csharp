@@ -595,6 +595,13 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBody"
             );
         }
+        this.Switch(
+            (increment) => increment.Validate(),
+            (decrement) => decrement.Validate(),
+            (expirationChange) => expirationChange.Validate(),
+            (void1) => void1.Validate(),
+            (amendment) => amendment.Validate()
+        );
     }
 
     public virtual bool Equals(LedgerCreateEntryByExternalIDParamsBody? other)

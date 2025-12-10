@@ -460,6 +460,13 @@ public record class Adjustment
         {
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
+        this.Switch(
+            (planPhaseUsageDiscount) => planPhaseUsageDiscount.Validate(),
+            (planPhaseAmountDiscount) => planPhaseAmountDiscount.Validate(),
+            (planPhasePercentageDiscount) => planPhasePercentageDiscount.Validate(),
+            (planPhaseMinimum) => planPhaseMinimum.Validate(),
+            (planPhaseMaximum) => planPhaseMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(Adjustment? other)

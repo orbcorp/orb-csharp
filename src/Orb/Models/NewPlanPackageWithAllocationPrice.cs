@@ -666,6 +666,7 @@ public record class NewPlanPackageWithAllocationPriceConversionRateConfig
                 "Data did not match any variant of NewPlanPackageWithAllocationPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanPackageWithAllocationPriceConversionRateConfig? other)

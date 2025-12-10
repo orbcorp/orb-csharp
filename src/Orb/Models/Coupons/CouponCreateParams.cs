@@ -297,6 +297,7 @@ public record class Discount
         {
             throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
+        this.Switch((percentage) => percentage.Validate(), (amount) => amount.Validate());
     }
 
     public virtual bool Equals(global::Orb.Models.Coupons.Discount? other)

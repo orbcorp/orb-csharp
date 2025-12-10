@@ -662,6 +662,7 @@ public record class NewSubscriptionMinimumCompositePriceConversionRateConfig
                 "Data did not match any variant of NewSubscriptionMinimumCompositePriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewSubscriptionMinimumCompositePriceConversionRateConfig? other)

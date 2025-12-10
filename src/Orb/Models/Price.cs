@@ -2110,6 +2110,39 @@ public record class Price
         {
             throw new OrbInvalidDataException("Data did not match any variant of Price");
         }
+        this.Switch(
+            (unit) => unit.Validate(),
+            (tiered) => tiered.Validate(),
+            (bulk) => bulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (package) => package.Validate(),
+            (matrix) => matrix.Validate(),
+            (thresholdTotalAmount) => thresholdTotalAmount.Validate(),
+            (tieredPackage) => tieredPackage.Validate(),
+            (tieredWithMinimum) => tieredWithMinimum.Validate(),
+            (groupedTiered) => groupedTiered.Validate(),
+            (tieredPackageWithMinimum) => tieredPackageWithMinimum.Validate(),
+            (packageWithAllocation) => packageWithAllocation.Validate(),
+            (unitWithPercent) => unitWithPercent.Validate(),
+            (matrixWithAllocation) => matrixWithAllocation.Validate(),
+            (tieredWithProration) => tieredWithProration.Validate(),
+            (unitWithProration) => unitWithProration.Validate(),
+            (groupedAllocation) => groupedAllocation.Validate(),
+            (bulkWithProration) => bulkWithProration.Validate(),
+            (groupedWithProratedMinimum) => groupedWithProratedMinimum.Validate(),
+            (groupedWithMeteredMinimum) => groupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (matrixWithDisplayName) => matrixWithDisplayName.Validate(),
+            (groupedTieredPackage) => groupedTieredPackage.Validate(),
+            (maxGroupTieredPackage) => maxGroupTieredPackage.Validate(),
+            (scalableMatrixWithUnitPricing) => scalableMatrixWithUnitPricing.Validate(),
+            (scalableMatrixWithTieredPricing) => scalableMatrixWithTieredPricing.Validate(),
+            (cumulativeGroupedBulk) => cumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (minimum) => minimum.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(Price? other)
@@ -3597,6 +3630,7 @@ public record class UnitConversionRateConfig
                 "Data did not match any variant of UnitConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(UnitConversionRateConfig? other)
@@ -4555,6 +4589,7 @@ public record class TieredConversionRateConfig
                 "Data did not match any variant of TieredConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(TieredConversionRateConfig? other)
@@ -5504,6 +5539,7 @@ public record class BulkConversionRateConfig
                 "Data did not match any variant of BulkConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(BulkConversionRateConfig? other)
@@ -6696,6 +6732,7 @@ public record class BulkWithFiltersConversionRateConfig
                 "Data did not match any variant of BulkWithFiltersConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(BulkWithFiltersConversionRateConfig? other)
@@ -7655,6 +7692,7 @@ public record class PackageConversionRateConfig
                 "Data did not match any variant of PackageConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PackageConversionRateConfig? other)
@@ -8613,6 +8651,7 @@ public record class MatrixConversionRateConfig
                 "Data did not match any variant of MatrixConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(MatrixConversionRateConfig? other)
@@ -9587,6 +9626,7 @@ public record class ThresholdTotalAmountConversionRateConfig
                 "Data did not match any variant of ThresholdTotalAmountConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ThresholdTotalAmountConversionRateConfig? other)
@@ -10728,6 +10768,7 @@ public record class TieredPackageConversionRateConfig
                 "Data did not match any variant of TieredPackageConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(TieredPackageConversionRateConfig? other)
@@ -11856,6 +11897,7 @@ public record class TieredWithMinimumConversionRateConfig
                 "Data did not match any variant of TieredWithMinimumConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(TieredWithMinimumConversionRateConfig? other)
@@ -13031,6 +13073,7 @@ public record class GroupedTieredConversionRateConfig
                 "Data did not match any variant of GroupedTieredConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(GroupedTieredConversionRateConfig? other)
@@ -14163,6 +14206,7 @@ public record class TieredPackageWithMinimumConversionRateConfig
                 "Data did not match any variant of TieredPackageWithMinimumConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(TieredPackageWithMinimumConversionRateConfig? other)
@@ -15314,6 +15358,7 @@ public record class PackageWithAllocationConversionRateConfig
                 "Data did not match any variant of PackageWithAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PackageWithAllocationConversionRateConfig? other)
@@ -16368,6 +16413,7 @@ public record class UnitWithPercentConversionRateConfig
                 "Data did not match any variant of UnitWithPercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(UnitWithPercentConversionRateConfig? other)
@@ -17416,6 +17462,7 @@ public record class MatrixWithAllocationConversionRateConfig
                 "Data did not match any variant of MatrixWithAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(MatrixWithAllocationConversionRateConfig? other)
@@ -18387,6 +18434,7 @@ public record class TieredWithProrationConversionRateConfig
                 "Data did not match any variant of TieredWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(TieredWithProrationConversionRateConfig? other)
@@ -19517,6 +19565,7 @@ public record class UnitWithProrationConversionRateConfig
                 "Data did not match any variant of UnitWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(UnitWithProrationConversionRateConfig? other)
@@ -20560,6 +20609,7 @@ public record class GroupedAllocationConversionRateConfig
                 "Data did not match any variant of GroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(GroupedAllocationConversionRateConfig? other)
@@ -21783,6 +21833,7 @@ public record class BulkWithProrationConversionRateConfig
                 "Data did not match any variant of BulkWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(BulkWithProrationConversionRateConfig? other)
@@ -22765,6 +22816,7 @@ public record class GroupedWithProratedMinimumConversionRateConfig
                 "Data did not match any variant of GroupedWithProratedMinimumConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(GroupedWithProratedMinimumConversionRateConfig? other)
@@ -23835,6 +23887,7 @@ public record class GroupedWithMeteredMinimumConversionRateConfig
                 "Data did not match any variant of GroupedWithMeteredMinimumConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(GroupedWithMeteredMinimumConversionRateConfig? other)
@@ -25120,6 +25173,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
                 "Data did not match any variant of GroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(GroupedWithMinMaxThresholdsConversionRateConfig? other)
@@ -26189,6 +26243,7 @@ public record class MatrixWithDisplayNameConversionRateConfig
                 "Data did not match any variant of MatrixWithDisplayNameConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(MatrixWithDisplayNameConversionRateConfig? other)
@@ -27336,6 +27391,7 @@ public record class GroupedTieredPackageConversionRateConfig
                 "Data did not match any variant of GroupedTieredPackageConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(GroupedTieredPackageConversionRateConfig? other)
@@ -28484,6 +28540,7 @@ public record class MaxGroupTieredPackageConversionRateConfig
                 "Data did not match any variant of MaxGroupTieredPackageConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(MaxGroupTieredPackageConversionRateConfig? other)
@@ -29642,6 +29699,7 @@ public record class ScalableMatrixWithUnitPricingConversionRateConfig
                 "Data did not match any variant of ScalableMatrixWithUnitPricingConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ScalableMatrixWithUnitPricingConversionRateConfig? other)
@@ -30840,6 +30898,7 @@ public record class ScalableMatrixWithTieredPricingConversionRateConfig
                 "Data did not match any variant of ScalableMatrixWithTieredPricingConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(ScalableMatrixWithTieredPricingConversionRateConfig? other)
@@ -32111,6 +32170,7 @@ public record class CumulativeGroupedBulkConversionRateConfig
                 "Data did not match any variant of CumulativeGroupedBulkConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(CumulativeGroupedBulkConversionRateConfig? other)
@@ -33268,6 +33328,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig
                 "Data did not match any variant of CumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(CumulativeGroupedAllocationConversionRateConfig? other)
@@ -34330,6 +34391,7 @@ public record class PriceMinimumConversionRateConfig
                 "Data did not match any variant of PriceMinimumConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PriceMinimumConversionRateConfig? other)
@@ -35370,6 +35432,7 @@ public record class PercentConversionRateConfig
                 "Data did not match any variant of PercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PercentConversionRateConfig? other)
@@ -36395,6 +36458,7 @@ public record class EventOutputConversionRateConfig
                 "Data did not match any variant of EventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(EventOutputConversionRateConfig? other)

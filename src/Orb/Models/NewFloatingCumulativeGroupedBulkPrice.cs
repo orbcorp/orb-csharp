@@ -716,6 +716,7 @@ public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingCumulativeGroupedBulkPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingCumulativeGroupedBulkPriceConversionRateConfig? other)

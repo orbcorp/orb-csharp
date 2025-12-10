@@ -584,6 +584,15 @@ public record class LedgerCreateEntryResponse
                 "Data did not match any variant of LedgerCreateEntryResponse"
             );
         }
+        this.Switch(
+            (incrementLedgerEntry) => incrementLedgerEntry.Validate(),
+            (decrementLedgerEntry) => decrementLedgerEntry.Validate(),
+            (expirationChangeLedgerEntry) => expirationChangeLedgerEntry.Validate(),
+            (creditBlockExpiryLedgerEntry) => creditBlockExpiryLedgerEntry.Validate(),
+            (voidLedgerEntry) => voidLedgerEntry.Validate(),
+            (voidInitiatedLedgerEntry) => voidInitiatedLedgerEntry.Validate(),
+            (amendmentLedgerEntry) => amendmentLedgerEntry.Validate()
+        );
     }
 
     public virtual bool Equals(LedgerCreateEntryResponse? other)

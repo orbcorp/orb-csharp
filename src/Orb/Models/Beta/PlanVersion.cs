@@ -499,6 +499,13 @@ public record class PlanVersionAdjustment
                 "Data did not match any variant of PlanVersionAdjustment"
             );
         }
+        this.Switch(
+            (planPhaseUsageDiscount) => planPhaseUsageDiscount.Validate(),
+            (planPhaseAmountDiscount) => planPhaseAmountDiscount.Validate(),
+            (planPhasePercentageDiscount) => planPhasePercentageDiscount.Validate(),
+            (planPhaseMinimum) => planPhaseMinimum.Validate(),
+            (planPhaseMaximum) => planPhaseMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(PlanVersionAdjustment? other)

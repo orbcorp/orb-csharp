@@ -1095,6 +1095,13 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment"
             );
         }
+        this.Switch(
+            (newPercentageDiscount) => newPercentageDiscount.Validate(),
+            (newUsageDiscount) => newUsageDiscount.Validate(),
+            (newAmountDiscount) => newAmountDiscount.Validate(),
+            (newMinimum) => newMinimum.Validate(),
+            (newMaximum) => newMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment? other)
@@ -3490,6 +3497,48 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePrice"
             );
         }
+        this.Switch(
+            (newSubscriptionUnit) => newSubscriptionUnit.Validate(),
+            (newSubscriptionTiered) => newSubscriptionTiered.Validate(),
+            (newSubscriptionBulk) => newSubscriptionBulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (newSubscriptionPackage) => newSubscriptionPackage.Validate(),
+            (newSubscriptionMatrix) => newSubscriptionMatrix.Validate(),
+            (newSubscriptionThresholdTotalAmount) => newSubscriptionThresholdTotalAmount.Validate(),
+            (newSubscriptionTieredPackage) => newSubscriptionTieredPackage.Validate(),
+            (newSubscriptionTieredWithMinimum) => newSubscriptionTieredWithMinimum.Validate(),
+            (newSubscriptionGroupedTiered) => newSubscriptionGroupedTiered.Validate(),
+            (newSubscriptionTieredPackageWithMinimum) =>
+                newSubscriptionTieredPackageWithMinimum.Validate(),
+            (newSubscriptionPackageWithAllocation) =>
+                newSubscriptionPackageWithAllocation.Validate(),
+            (newSubscriptionUnitWithPercent) => newSubscriptionUnitWithPercent.Validate(),
+            (newSubscriptionMatrixWithAllocation) => newSubscriptionMatrixWithAllocation.Validate(),
+            (tieredWithProration) => tieredWithProration.Validate(),
+            (newSubscriptionUnitWithProration) => newSubscriptionUnitWithProration.Validate(),
+            (newSubscriptionGroupedAllocation) => newSubscriptionGroupedAllocation.Validate(),
+            (newSubscriptionBulkWithProration) => newSubscriptionBulkWithProration.Validate(),
+            (newSubscriptionGroupedWithProratedMinimum) =>
+                newSubscriptionGroupedWithProratedMinimum.Validate(),
+            (newSubscriptionGroupedWithMeteredMinimum) =>
+                newSubscriptionGroupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (newSubscriptionMatrixWithDisplayName) =>
+                newSubscriptionMatrixWithDisplayName.Validate(),
+            (newSubscriptionGroupedTieredPackage) => newSubscriptionGroupedTieredPackage.Validate(),
+            (newSubscriptionMaxGroupTieredPackage) =>
+                newSubscriptionMaxGroupTieredPackage.Validate(),
+            (newSubscriptionScalableMatrixWithUnitPricing) =>
+                newSubscriptionScalableMatrixWithUnitPricing.Validate(),
+            (newSubscriptionScalableMatrixWithTieredPricing) =>
+                newSubscriptionScalableMatrixWithTieredPricing.Validate(),
+            (newSubscriptionCumulativeGroupedBulk) =>
+                newSubscriptionCumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(SubscriptionSchedulePlanChangeParamsAddPricePrice? other)
@@ -5090,6 +5139,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -5931,6 +5981,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -6706,6 +6757,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -7481,6 +7533,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -8208,6 +8261,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -8966,6 +9020,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -9680,6 +9735,13 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment"
             );
         }
+        this.Switch(
+            (newPercentageDiscount) => newPercentageDiscount.Validate(),
+            (newUsageDiscount) => newUsageDiscount.Validate(),
+            (newAmountDiscount) => newAmountDiscount.Validate(),
+            (newMinimum) => newMinimum.Validate(),
+            (newMaximum) => newMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(
@@ -12070,6 +12132,48 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePrice"
             );
         }
+        this.Switch(
+            (newSubscriptionUnit) => newSubscriptionUnit.Validate(),
+            (newSubscriptionTiered) => newSubscriptionTiered.Validate(),
+            (newSubscriptionBulk) => newSubscriptionBulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (newSubscriptionPackage) => newSubscriptionPackage.Validate(),
+            (newSubscriptionMatrix) => newSubscriptionMatrix.Validate(),
+            (newSubscriptionThresholdTotalAmount) => newSubscriptionThresholdTotalAmount.Validate(),
+            (newSubscriptionTieredPackage) => newSubscriptionTieredPackage.Validate(),
+            (newSubscriptionTieredWithMinimum) => newSubscriptionTieredWithMinimum.Validate(),
+            (newSubscriptionGroupedTiered) => newSubscriptionGroupedTiered.Validate(),
+            (newSubscriptionTieredPackageWithMinimum) =>
+                newSubscriptionTieredPackageWithMinimum.Validate(),
+            (newSubscriptionPackageWithAllocation) =>
+                newSubscriptionPackageWithAllocation.Validate(),
+            (newSubscriptionUnitWithPercent) => newSubscriptionUnitWithPercent.Validate(),
+            (newSubscriptionMatrixWithAllocation) => newSubscriptionMatrixWithAllocation.Validate(),
+            (tieredWithProration) => tieredWithProration.Validate(),
+            (newSubscriptionUnitWithProration) => newSubscriptionUnitWithProration.Validate(),
+            (newSubscriptionGroupedAllocation) => newSubscriptionGroupedAllocation.Validate(),
+            (newSubscriptionBulkWithProration) => newSubscriptionBulkWithProration.Validate(),
+            (newSubscriptionGroupedWithProratedMinimum) =>
+                newSubscriptionGroupedWithProratedMinimum.Validate(),
+            (newSubscriptionGroupedWithMeteredMinimum) =>
+                newSubscriptionGroupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (newSubscriptionMatrixWithDisplayName) =>
+                newSubscriptionMatrixWithDisplayName.Validate(),
+            (newSubscriptionGroupedTieredPackage) => newSubscriptionGroupedTieredPackage.Validate(),
+            (newSubscriptionMaxGroupTieredPackage) =>
+                newSubscriptionMaxGroupTieredPackage.Validate(),
+            (newSubscriptionScalableMatrixWithUnitPricing) =>
+                newSubscriptionScalableMatrixWithUnitPricing.Validate(),
+            (newSubscriptionScalableMatrixWithTieredPricing) =>
+                newSubscriptionScalableMatrixWithTieredPricing.Validate(),
+            (newSubscriptionCumulativeGroupedBulk) =>
+                newSubscriptionCumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (newSubscriptionMinimumComposite) => newSubscriptionMinimumComposite.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(SubscriptionSchedulePlanChangeParamsReplacePricePrice? other)
@@ -13673,6 +13777,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -14516,6 +14621,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -15291,6 +15397,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -16066,6 +16173,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -16799,6 +16907,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -17564,6 +17673,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
                 "Data did not match any variant of SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(

@@ -609,6 +609,15 @@ public record class LedgerCreateEntryByExternalIDResponse
                 "Data did not match any variant of LedgerCreateEntryByExternalIDResponse"
             );
         }
+        this.Switch(
+            (incrementLedgerEntry) => incrementLedgerEntry.Validate(),
+            (decrementLedgerEntry) => decrementLedgerEntry.Validate(),
+            (expirationChangeLedgerEntry) => expirationChangeLedgerEntry.Validate(),
+            (creditBlockExpiryLedgerEntry) => creditBlockExpiryLedgerEntry.Validate(),
+            (voidLedgerEntry) => voidLedgerEntry.Validate(),
+            (voidInitiatedLedgerEntry) => voidInitiatedLedgerEntry.Validate(),
+            (amendmentLedgerEntry) => amendmentLedgerEntry.Validate()
+        );
     }
 
     public virtual bool Equals(LedgerCreateEntryByExternalIDResponse? other)

@@ -756,6 +756,7 @@ public record class NewPlanMatrixWithDisplayNamePriceConversionRateConfig
                 "Data did not match any variant of NewPlanMatrixWithDisplayNamePriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewPlanMatrixWithDisplayNamePriceConversionRateConfig? other)

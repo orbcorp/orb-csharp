@@ -669,6 +669,7 @@ public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRate
                 "Data did not match any variant of NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(

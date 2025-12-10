@@ -626,6 +626,13 @@ public record class Adjustment
         {
             throw new OrbInvalidDataException("Data did not match any variant of Adjustment");
         }
+        this.Switch(
+            (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
+            (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
+            (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (monetaryMinimum) => monetaryMinimum.Validate(),
+            (monetaryMaximum) => monetaryMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(global::Orb.Models.InvoiceLineItems.Adjustment? other)
@@ -1031,6 +1038,11 @@ public record class SubLineItem
         {
             throw new OrbInvalidDataException("Data did not match any variant of SubLineItem");
         }
+        this.Switch(
+            (matrix) => matrix.Validate(),
+            (tier) => tier.Validate(),
+            (other) => other.Validate()
+        );
     }
 
     public virtual bool Equals(global::Orb.Models.InvoiceLineItems.SubLineItem? other)

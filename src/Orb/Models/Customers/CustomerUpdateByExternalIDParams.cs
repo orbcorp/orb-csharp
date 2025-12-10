@@ -1125,6 +1125,14 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration
                 "Data did not match any variant of CustomerUpdateByExternalIDParamsTaxConfiguration"
             );
         }
+        this.Switch(
+            (newAvalara) => newAvalara.Validate(),
+            (newTaxJar) => newTaxJar.Validate(),
+            (newSphere) => newSphere.Validate(),
+            (numeral) => numeral.Validate(),
+            (anrok) => anrok.Validate(),
+            (stripe) => stripe.Validate()
+        );
     }
 
     public virtual bool Equals(CustomerUpdateByExternalIDParamsTaxConfiguration? other)

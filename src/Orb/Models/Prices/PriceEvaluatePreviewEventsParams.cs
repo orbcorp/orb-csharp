@@ -2394,6 +2394,43 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
                 "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPrice"
             );
         }
+        this.Switch(
+            (newFloatingUnit) => newFloatingUnit.Validate(),
+            (newFloatingTiered) => newFloatingTiered.Validate(),
+            (newFloatingBulk) => newFloatingBulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (newFloatingPackage) => newFloatingPackage.Validate(),
+            (newFloatingMatrix) => newFloatingMatrix.Validate(),
+            (newFloatingThresholdTotalAmount) => newFloatingThresholdTotalAmount.Validate(),
+            (newFloatingTieredPackage) => newFloatingTieredPackage.Validate(),
+            (newFloatingTieredWithMinimum) => newFloatingTieredWithMinimum.Validate(),
+            (newFloatingGroupedTiered) => newFloatingGroupedTiered.Validate(),
+            (newFloatingTieredPackageWithMinimum) => newFloatingTieredPackageWithMinimum.Validate(),
+            (newFloatingPackageWithAllocation) => newFloatingPackageWithAllocation.Validate(),
+            (newFloatingUnitWithPercent) => newFloatingUnitWithPercent.Validate(),
+            (newFloatingMatrixWithAllocation) => newFloatingMatrixWithAllocation.Validate(),
+            (newFloatingTieredWithProration) => newFloatingTieredWithProration.Validate(),
+            (newFloatingUnitWithProration) => newFloatingUnitWithProration.Validate(),
+            (newFloatingGroupedAllocation) => newFloatingGroupedAllocation.Validate(),
+            (newFloatingBulkWithProration) => newFloatingBulkWithProration.Validate(),
+            (newFloatingGroupedWithProratedMinimum) =>
+                newFloatingGroupedWithProratedMinimum.Validate(),
+            (newFloatingGroupedWithMeteredMinimum) =>
+                newFloatingGroupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (newFloatingMatrixWithDisplayName) => newFloatingMatrixWithDisplayName.Validate(),
+            (newFloatingGroupedTieredPackage) => newFloatingGroupedTieredPackage.Validate(),
+            (newFloatingMaxGroupTieredPackage) => newFloatingMaxGroupTieredPackage.Validate(),
+            (newFloatingScalableMatrixWithUnitPricing) =>
+                newFloatingScalableMatrixWithUnitPricing.Validate(),
+            (newFloatingScalableMatrixWithTieredPricing) =>
+                newFloatingScalableMatrixWithTieredPricing.Validate(),
+            (newFloatingCumulativeGroupedBulk) => newFloatingCumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (newFloatingMinimumComposite) => newFloatingMinimumComposite.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(PriceEvaluatePreviewEventsParamsPriceEvaluationPrice? other)
@@ -3981,6 +4018,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
                 "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -4744,6 +4782,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
                 "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -5507,6 +5546,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
                 "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -6225,6 +6265,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
                 "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(
@@ -6977,6 +7018,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
                 "Data did not match any variant of PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(

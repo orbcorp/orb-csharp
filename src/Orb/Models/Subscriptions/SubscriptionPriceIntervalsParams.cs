@@ -654,6 +654,7 @@ public record class StartDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of StartDate");
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(StartDate? other)
@@ -929,6 +930,11 @@ public record class Discount
         {
             throw new OrbInvalidDataException("Data did not match any variant of Discount");
         }
+        this.Switch(
+            (amount) => amount.Validate(),
+            (percentage) => percentage.Validate(),
+            (usage) => usage.Validate()
+        );
     }
 
     public virtual bool Equals(global::Orb.Models.Subscriptions.Discount? other)
@@ -1442,6 +1448,7 @@ public record class EndDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of EndDate");
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(EndDate? other)
@@ -3387,6 +3394,43 @@ public record class PriceModel
         {
             throw new OrbInvalidDataException("Data did not match any variant of PriceModel");
         }
+        this.Switch(
+            (newFloatingUnit) => newFloatingUnit.Validate(),
+            (newFloatingTiered) => newFloatingTiered.Validate(),
+            (newFloatingBulk) => newFloatingBulk.Validate(),
+            (bulkWithFilters) => bulkWithFilters.Validate(),
+            (newFloatingPackage) => newFloatingPackage.Validate(),
+            (newFloatingMatrix) => newFloatingMatrix.Validate(),
+            (newFloatingThresholdTotalAmount) => newFloatingThresholdTotalAmount.Validate(),
+            (newFloatingTieredPackage) => newFloatingTieredPackage.Validate(),
+            (newFloatingTieredWithMinimum) => newFloatingTieredWithMinimum.Validate(),
+            (newFloatingGroupedTiered) => newFloatingGroupedTiered.Validate(),
+            (newFloatingTieredPackageWithMinimum) => newFloatingTieredPackageWithMinimum.Validate(),
+            (newFloatingPackageWithAllocation) => newFloatingPackageWithAllocation.Validate(),
+            (newFloatingUnitWithPercent) => newFloatingUnitWithPercent.Validate(),
+            (newFloatingMatrixWithAllocation) => newFloatingMatrixWithAllocation.Validate(),
+            (newFloatingTieredWithProration) => newFloatingTieredWithProration.Validate(),
+            (newFloatingUnitWithProration) => newFloatingUnitWithProration.Validate(),
+            (newFloatingGroupedAllocation) => newFloatingGroupedAllocation.Validate(),
+            (newFloatingBulkWithProration) => newFloatingBulkWithProration.Validate(),
+            (newFloatingGroupedWithProratedMinimum) =>
+                newFloatingGroupedWithProratedMinimum.Validate(),
+            (newFloatingGroupedWithMeteredMinimum) =>
+                newFloatingGroupedWithMeteredMinimum.Validate(),
+            (groupedWithMinMaxThresholds) => groupedWithMinMaxThresholds.Validate(),
+            (newFloatingMatrixWithDisplayName) => newFloatingMatrixWithDisplayName.Validate(),
+            (newFloatingGroupedTieredPackage) => newFloatingGroupedTieredPackage.Validate(),
+            (newFloatingMaxGroupTieredPackage) => newFloatingMaxGroupTieredPackage.Validate(),
+            (newFloatingScalableMatrixWithUnitPricing) =>
+                newFloatingScalableMatrixWithUnitPricing.Validate(),
+            (newFloatingScalableMatrixWithTieredPricing) =>
+                newFloatingScalableMatrixWithTieredPricing.Validate(),
+            (newFloatingCumulativeGroupedBulk) => newFloatingCumulativeGroupedBulk.Validate(),
+            (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
+            (newFloatingMinimumComposite) => newFloatingMinimumComposite.Validate(),
+            (percent) => percent.Validate(),
+            (eventOutput) => eventOutput.Validate()
+        );
     }
 
     public virtual bool Equals(PriceModel? other)
@@ -4903,6 +4947,7 @@ public record class PriceModelBulkWithFiltersConversionRateConfig
                 "Data did not match any variant of PriceModelBulkWithFiltersConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PriceModelBulkWithFiltersConversionRateConfig? other)
@@ -5623,6 +5668,7 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig
                 "Data did not match any variant of PriceModelGroupedWithMinMaxThresholdsConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PriceModelGroupedWithMinMaxThresholdsConversionRateConfig? other)
@@ -6343,6 +6389,7 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig
                 "Data did not match any variant of PriceModelCumulativeGroupedAllocationConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PriceModelCumulativeGroupedAllocationConversionRateConfig? other)
@@ -7016,6 +7063,7 @@ public record class PriceModelPercentConversionRateConfig
                 "Data did not match any variant of PriceModelPercentConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PriceModelPercentConversionRateConfig? other)
@@ -7717,6 +7765,7 @@ public record class PriceModelEventOutputConversionRateConfig
                 "Data did not match any variant of PriceModelEventOutputConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(PriceModelEventOutputConversionRateConfig? other)
@@ -8132,6 +8181,7 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate
                 "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentStartDate"
             );
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentStartDate? other)
@@ -8529,6 +8579,13 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment
                 "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment"
             );
         }
+        this.Switch(
+            (newPercentageDiscount) => newPercentageDiscount.Validate(),
+            (newUsageDiscount) => newUsageDiscount.Validate(),
+            (newAmountDiscount) => newAmountDiscount.Validate(),
+            (newMinimum) => newMinimum.Validate(),
+            (newMaximum) => newMaximum.Validate()
+        );
     }
 
     public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment? other)
@@ -8870,6 +8927,7 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate
                 "Data did not match any variant of SubscriptionPriceIntervalsParamsAddAdjustmentEndDate"
             );
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(SubscriptionPriceIntervalsParamsAddAdjustmentEndDate? other)
@@ -9262,6 +9320,7 @@ public record class EditEndDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of EditEndDate");
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(EditEndDate? other)
@@ -9572,6 +9631,7 @@ public record class EditStartDate
         {
             throw new OrbInvalidDataException("Data did not match any variant of EditStartDate");
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(EditStartDate? other)
@@ -9906,6 +9966,7 @@ public record class EditAdjustmentEndDate
                 "Data did not match any variant of EditAdjustmentEndDate"
             );
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(EditAdjustmentEndDate? other)
@@ -10150,6 +10211,7 @@ public record class EditAdjustmentStartDate
                 "Data did not match any variant of EditAdjustmentStartDate"
             );
         }
+        this.Switch((_) => { }, (billingCycleRelative) => billingCycleRelative.Validate());
     }
 
     public virtual bool Equals(EditAdjustmentStartDate? other)

@@ -552,6 +552,7 @@ public record class NewFloatingMatrixPriceConversionRateConfig
                 "Data did not match any variant of NewFloatingMatrixPriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingMatrixPriceConversionRateConfig? other)

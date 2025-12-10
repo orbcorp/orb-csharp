@@ -660,6 +660,15 @@ public record class Data
         {
             throw new OrbInvalidDataException("Data did not match any variant of Data");
         }
+        this.Switch(
+            (incrementLedgerEntry) => incrementLedgerEntry.Validate(),
+            (decrementLedgerEntry) => decrementLedgerEntry.Validate(),
+            (expirationChangeLedgerEntry) => expirationChangeLedgerEntry.Validate(),
+            (creditBlockExpiryLedgerEntry) => creditBlockExpiryLedgerEntry.Validate(),
+            (voidLedgerEntry) => voidLedgerEntry.Validate(),
+            (voidInitiatedLedgerEntry) => voidInitiatedLedgerEntry.Validate(),
+            (amendmentLedgerEntry) => amendmentLedgerEntry.Validate()
+        );
     }
 
     public virtual bool Equals(global::Orb.Models.Customers.Credits.Ledger.Data? other)

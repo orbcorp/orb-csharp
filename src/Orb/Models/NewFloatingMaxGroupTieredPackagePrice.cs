@@ -723,6 +723,7 @@ public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig
                 "Data did not match any variant of NewFloatingMaxGroupTieredPackagePriceConversionRateConfig"
             );
         }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
     public virtual bool Equals(NewFloatingMaxGroupTieredPackagePriceConversionRateConfig? other)
