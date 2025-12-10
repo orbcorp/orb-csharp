@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Events.Backfills;
 
 namespace Orb.Tests.Models.Events.Backfills;
@@ -230,5 +231,63 @@ public class BackfillRevertResponseTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class BackfillRevertResponseStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(BackfillRevertResponseStatus.Pending)]
+    [InlineData(BackfillRevertResponseStatus.Reflected)]
+    [InlineData(BackfillRevertResponseStatus.PendingRevert)]
+    [InlineData(BackfillRevertResponseStatus.Reverted)]
+    public void Validation_Works(BackfillRevertResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, BackfillRevertResponseStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, BackfillRevertResponseStatus>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(BackfillRevertResponseStatus.Pending)]
+    [InlineData(BackfillRevertResponseStatus.Reflected)]
+    [InlineData(BackfillRevertResponseStatus.PendingRevert)]
+    [InlineData(BackfillRevertResponseStatus.Reverted)]
+    public void SerializationRoundtrip_Works(BackfillRevertResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, BackfillRevertResponseStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, BackfillRevertResponseStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, BackfillRevertResponseStatus>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, BackfillRevertResponseStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

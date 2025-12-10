@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Tests.Models.Customers.Credits.TopUps;
@@ -253,5 +254,63 @@ public class TopUpCreateResponseTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class TopUpCreateResponseExpiresAfterUnitTest : TestBase
+{
+    [Theory]
+    [InlineData(TopUpCreateResponseExpiresAfterUnit.Day)]
+    [InlineData(TopUpCreateResponseExpiresAfterUnit.Month)]
+    public void Validation_Works(TopUpCreateResponseExpiresAfterUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TopUpCreateResponseExpiresAfterUnit> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(TopUpCreateResponseExpiresAfterUnit.Day)]
+    [InlineData(TopUpCreateResponseExpiresAfterUnit.Month)]
+    public void SerializationRoundtrip_Works(TopUpCreateResponseExpiresAfterUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TopUpCreateResponseExpiresAfterUnit> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

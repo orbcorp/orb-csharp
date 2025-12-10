@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
@@ -322,6 +323,132 @@ public class CustomerUpdateParamsPaymentConfigurationPaymentProviderTest : TestB
         };
 
         model.Validate();
+    }
+}
+
+public class CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType.Stripe)]
+    public void Validation_Works(
+        CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType.Stripe)]
+    public void SerializationRoundtrip_Works(
+        CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentConfigurationPaymentProviderProviderType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class CustomerUpdateParamsPaymentProviderTest : TestBase
+{
+    [Theory]
+    [InlineData(CustomerUpdateParamsPaymentProvider.Quickbooks)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.BillCom)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.StripeCharge)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.StripeInvoice)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.Netsuite)]
+    public void Validation_Works(CustomerUpdateParamsPaymentProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CustomerUpdateParamsPaymentProvider> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentProvider>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CustomerUpdateParamsPaymentProvider.Quickbooks)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.BillCom)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.StripeCharge)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.StripeInvoice)]
+    [InlineData(CustomerUpdateParamsPaymentProvider.Netsuite)]
+    public void SerializationRoundtrip_Works(CustomerUpdateParamsPaymentProvider rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CustomerUpdateParamsPaymentProvider> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentProvider>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentProvider>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CustomerUpdateParamsPaymentProvider>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

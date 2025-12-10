@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Customers.Credits.Ledger;
 
@@ -294,5 +295,115 @@ public class VoidInitiatedLedgerEntryTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class VoidInitiatedLedgerEntryEntryStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(VoidInitiatedLedgerEntryEntryStatus.Committed)]
+    [InlineData(VoidInitiatedLedgerEntryEntryStatus.Pending)]
+    public void Validation_Works(VoidInitiatedLedgerEntryEntryStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(VoidInitiatedLedgerEntryEntryStatus.Committed)]
+    [InlineData(VoidInitiatedLedgerEntryEntryStatus.Pending)]
+    public void SerializationRoundtrip_Works(VoidInitiatedLedgerEntryEntryStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, VoidInitiatedLedgerEntryEntryStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class VoidInitiatedLedgerEntryEntryTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(VoidInitiatedLedgerEntryEntryType.VoidInitiated)]
+    public void Validation_Works(VoidInitiatedLedgerEntryEntryType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, VoidInitiatedLedgerEntryEntryType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, VoidInitiatedLedgerEntryEntryType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(VoidInitiatedLedgerEntryEntryType.VoidInitiated)]
+    public void SerializationRoundtrip_Works(VoidInitiatedLedgerEntryEntryType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, VoidInitiatedLedgerEntryEntryType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, VoidInitiatedLedgerEntryEntryType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, VoidInitiatedLedgerEntryEntryType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, VoidInitiatedLedgerEntryEntryType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

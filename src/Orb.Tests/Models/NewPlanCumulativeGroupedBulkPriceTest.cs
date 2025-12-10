@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -582,6 +583,72 @@ public class NewPlanCumulativeGroupedBulkPriceTest : TestBase
     }
 }
 
+public class NewPlanCumulativeGroupedBulkPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Annual)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Monthly)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Quarterly)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.OneTime)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Custom)]
+    public void Validation_Works(NewPlanCumulativeGroupedBulkPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Annual)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Monthly)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Quarterly)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.OneTime)]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewPlanCumulativeGroupedBulkPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigTest : TestBase
 {
     [Fact]
@@ -788,5 +855,61 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensi
         };
 
         model.Validate();
+    }
+}
+
+public class NewPlanCumulativeGroupedBulkPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk)]
+    public void Validation_Works(NewPlanCumulativeGroupedBulkPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk)]
+    public void SerializationRoundtrip_Works(NewPlanCumulativeGroupedBulkPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanCumulativeGroupedBulkPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Prices;
 using Models = Orb.Models;
 
@@ -767,6 +768,70 @@ public class TierTest : TestBase
     }
 }
 
+public class CadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(Cadence.Annual)]
+    [InlineData(Cadence.SemiAnnual)]
+    [InlineData(Cadence.Monthly)]
+    [InlineData(Cadence.Quarterly)]
+    [InlineData(Cadence.OneTime)]
+    [InlineData(Cadence.Custom)]
+    public void Validation_Works(Cadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Cadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Cadence.Annual)]
+    [InlineData(Cadence.SemiAnnual)]
+    [InlineData(Cadence.Monthly)]
+    [InlineData(Cadence.Quarterly)]
+    [InlineData(Cadence.OneTime)]
+    [InlineData(Cadence.Custom)]
+    public void SerializationRoundtrip_Works(Cadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Cadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Cadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class GroupedWithMinMaxThresholdsTest : TestBase
 {
     [Fact]
@@ -1263,6 +1328,68 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class GroupedWithMinMaxThresholdsCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Annual)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.SemiAnnual)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Monthly)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Quarterly)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.OneTime)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Custom)]
+    public void Validation_Works(GroupedWithMinMaxThresholdsCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GroupedWithMinMaxThresholdsCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMinMaxThresholdsCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Annual)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.SemiAnnual)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Monthly)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Quarterly)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.OneTime)]
+    [InlineData(GroupedWithMinMaxThresholdsCadence.Custom)]
+    public void SerializationRoundtrip_Works(GroupedWithMinMaxThresholdsCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GroupedWithMinMaxThresholdsCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GroupedWithMinMaxThresholdsCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, GroupedWithMinMaxThresholdsCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GroupedWithMinMaxThresholdsCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -1847,6 +1974,68 @@ public class CumulativeGroupedAllocationTest : TestBase
     }
 }
 
+public class CumulativeGroupedAllocationCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(CumulativeGroupedAllocationCadence.Annual)]
+    [InlineData(CumulativeGroupedAllocationCadence.SemiAnnual)]
+    [InlineData(CumulativeGroupedAllocationCadence.Monthly)]
+    [InlineData(CumulativeGroupedAllocationCadence.Quarterly)]
+    [InlineData(CumulativeGroupedAllocationCadence.OneTime)]
+    [InlineData(CumulativeGroupedAllocationCadence.Custom)]
+    public void Validation_Works(CumulativeGroupedAllocationCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CumulativeGroupedAllocationCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedAllocationCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(CumulativeGroupedAllocationCadence.Annual)]
+    [InlineData(CumulativeGroupedAllocationCadence.SemiAnnual)]
+    [InlineData(CumulativeGroupedAllocationCadence.Monthly)]
+    [InlineData(CumulativeGroupedAllocationCadence.Quarterly)]
+    [InlineData(CumulativeGroupedAllocationCadence.OneTime)]
+    [InlineData(CumulativeGroupedAllocationCadence.Custom)]
+    public void SerializationRoundtrip_Works(CumulativeGroupedAllocationCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, CumulativeGroupedAllocationCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CumulativeGroupedAllocationCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, CumulativeGroupedAllocationCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, CumulativeGroupedAllocationCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class CumulativeGroupedAllocationConfigTest : TestBase
 {
     [Fact]
@@ -2353,6 +2542,70 @@ public class PercentTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class PercentCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(PercentCadence.Annual)]
+    [InlineData(PercentCadence.SemiAnnual)]
+    [InlineData(PercentCadence.Monthly)]
+    [InlineData(PercentCadence.Quarterly)]
+    [InlineData(PercentCadence.OneTime)]
+    [InlineData(PercentCadence.Custom)]
+    public void Validation_Works(PercentCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PercentCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PercentCadence.Annual)]
+    [InlineData(PercentCadence.SemiAnnual)]
+    [InlineData(PercentCadence.Monthly)]
+    [InlineData(PercentCadence.Quarterly)]
+    [InlineData(PercentCadence.OneTime)]
+    [InlineData(PercentCadence.Custom)]
+    public void SerializationRoundtrip_Works(PercentCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PercentCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PercentCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -2876,6 +3129,70 @@ public class EventOutputTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class EventOutputCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(EventOutputCadence.Annual)]
+    [InlineData(EventOutputCadence.SemiAnnual)]
+    [InlineData(EventOutputCadence.Monthly)]
+    [InlineData(EventOutputCadence.Quarterly)]
+    [InlineData(EventOutputCadence.OneTime)]
+    [InlineData(EventOutputCadence.Custom)]
+    public void Validation_Works(EventOutputCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, EventOutputCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(EventOutputCadence.Annual)]
+    [InlineData(EventOutputCadence.SemiAnnual)]
+    [InlineData(EventOutputCadence.Monthly)]
+    [InlineData(EventOutputCadence.Quarterly)]
+    [InlineData(EventOutputCadence.OneTime)]
+    [InlineData(EventOutputCadence.Custom)]
+    public void SerializationRoundtrip_Works(EventOutputCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, EventOutputCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, EventOutputCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 

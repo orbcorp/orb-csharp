@@ -743,7 +743,8 @@ public sealed record class CreatedInvoice : ModelBase
     }
 
 #pragma warning disable CS8618
-    [System::Obsolete("Required properties are deprecated: discount"), SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: discount")]
+    [SetsRequiredMembers]
     CreatedInvoice(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

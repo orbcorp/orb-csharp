@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
@@ -225,5 +226,123 @@ public class AffectedBlockFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class AffectedBlockFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(AffectedBlockFilterField.PriceID)]
+    [InlineData(AffectedBlockFilterField.ItemID)]
+    [InlineData(AffectedBlockFilterField.PriceType)]
+    [InlineData(AffectedBlockFilterField.Currency)]
+    [InlineData(AffectedBlockFilterField.PricingUnitID)]
+    public void Validation_Works(AffectedBlockFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AffectedBlockFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterField>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(AffectedBlockFilterField.PriceID)]
+    [InlineData(AffectedBlockFilterField.ItemID)]
+    [InlineData(AffectedBlockFilterField.PriceType)]
+    [InlineData(AffectedBlockFilterField.Currency)]
+    [InlineData(AffectedBlockFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(AffectedBlockFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AffectedBlockFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterField>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterField>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterField>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AffectedBlockFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(AffectedBlockFilterOperator.Includes)]
+    [InlineData(AffectedBlockFilterOperator.Excludes)]
+    public void Validation_Works(AffectedBlockFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AffectedBlockFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterOperator>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(AffectedBlockFilterOperator.Includes)]
+    [InlineData(AffectedBlockFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(AffectedBlockFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AffectedBlockFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterOperator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterOperator>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AffectedBlockFilterOperator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

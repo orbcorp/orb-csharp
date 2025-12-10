@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Customers.Credits.Ledger;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
@@ -515,6 +516,132 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterTest : TestBa
         };
 
         model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID)]
+    public void Validation_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField.ItemID)]
+    public void SerializationRoundtrip_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes)]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Excludes)]
+    public void Validation_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Includes)]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -1529,6 +1656,64 @@ public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class LedgerCreateEntryByExternalIDParamsBodyVoidVoidReasonTest : TestBase
+{
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund)]
+    public void Validation_Works(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund)]
+    public void SerializationRoundtrip_Works(
+        LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -539,6 +540,128 @@ public class NewPlanThresholdTotalAmountPriceTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewPlanThresholdTotalAmountPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Annual)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Monthly)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Quarterly)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.OneTime)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Custom)]
+    public void Validation_Works(NewPlanThresholdTotalAmountPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Annual)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Monthly)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Quarterly)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.OneTime)]
+    [InlineData(NewPlanThresholdTotalAmountPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewPlanThresholdTotalAmountPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewPlanThresholdTotalAmountPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanThresholdTotalAmountPriceModelType.ThresholdTotalAmount)]
+    public void Validation_Works(NewPlanThresholdTotalAmountPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanThresholdTotalAmountPriceModelType.ThresholdTotalAmount)]
+    public void SerializationRoundtrip_Works(NewPlanThresholdTotalAmountPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanThresholdTotalAmountPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

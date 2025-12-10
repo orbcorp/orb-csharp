@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -468,6 +469,72 @@ public class NewPlanMinimumCompositePriceTest : TestBase
     }
 }
 
+public class NewPlanMinimumCompositePriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Annual)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.SemiAnnual)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Monthly)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Quarterly)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.OneTime)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Custom)]
+    public void Validation_Works(NewPlanMinimumCompositePriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMinimumCompositePriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Annual)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.SemiAnnual)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Monthly)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Quarterly)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.OneTime)]
+    [InlineData(NewPlanMinimumCompositePriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewPlanMinimumCompositePriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMinimumCompositePriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
 {
     [Fact]
@@ -587,5 +654,61 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewPlanMinimumCompositePriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanMinimumCompositePriceModelType.Minimum)]
+    public void Validation_Works(NewPlanMinimumCompositePriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMinimumCompositePriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanMinimumCompositePriceModelType.Minimum)]
+    public void SerializationRoundtrip_Works(NewPlanMinimumCompositePriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanMinimumCompositePriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanMinimumCompositePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

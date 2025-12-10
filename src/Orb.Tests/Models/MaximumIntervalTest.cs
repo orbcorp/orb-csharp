@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -252,5 +253,121 @@ public class MaximumIntervalFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class MaximumIntervalFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MaximumIntervalFilterField.PriceID)]
+    [InlineData(MaximumIntervalFilterField.ItemID)]
+    [InlineData(MaximumIntervalFilterField.PriceType)]
+    [InlineData(MaximumIntervalFilterField.Currency)]
+    [InlineData(MaximumIntervalFilterField.PricingUnitID)]
+    public void Validation_Works(MaximumIntervalFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MaximumIntervalFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MaximumIntervalFilterField>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MaximumIntervalFilterField.PriceID)]
+    [InlineData(MaximumIntervalFilterField.ItemID)]
+    [InlineData(MaximumIntervalFilterField.PriceType)]
+    [InlineData(MaximumIntervalFilterField.Currency)]
+    [InlineData(MaximumIntervalFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(MaximumIntervalFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MaximumIntervalFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MaximumIntervalFilterField>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MaximumIntervalFilterField>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MaximumIntervalFilterField>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MaximumIntervalFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MaximumIntervalFilterOperator.Includes)]
+    [InlineData(MaximumIntervalFilterOperator.Excludes)]
+    public void Validation_Works(MaximumIntervalFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MaximumIntervalFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MaximumIntervalFilterOperator>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MaximumIntervalFilterOperator.Includes)]
+    [InlineData(MaximumIntervalFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(MaximumIntervalFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MaximumIntervalFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MaximumIntervalFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MaximumIntervalFilterOperator>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MaximumIntervalFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

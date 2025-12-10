@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -201,6 +202,62 @@ public class MonetaryMinimumAdjustmentTest : TestBase
     }
 }
 
+public class MonetaryMinimumAdjustmentAdjustmentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryMinimumAdjustmentAdjustmentType.Minimum)]
+    public void Validation_Works(MonetaryMinimumAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryMinimumAdjustmentAdjustmentType.Minimum)]
+    public void SerializationRoundtrip_Works(MonetaryMinimumAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class MonetaryMinimumAdjustmentFilterTest : TestBase
 {
     [Fact]
@@ -284,5 +341,127 @@ public class MonetaryMinimumAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class MonetaryMinimumAdjustmentFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.PriceID)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.ItemID)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.PriceType)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.Currency)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.PricingUnitID)]
+    public void Validation_Works(MonetaryMinimumAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.PriceID)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.ItemID)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.PriceType)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.Currency)]
+    [InlineData(MonetaryMinimumAdjustmentFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(MonetaryMinimumAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MonetaryMinimumAdjustmentFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryMinimumAdjustmentFilterOperator.Includes)]
+    [InlineData(MonetaryMinimumAdjustmentFilterOperator.Excludes)]
+    public void Validation_Works(MonetaryMinimumAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryMinimumAdjustmentFilterOperator.Includes)]
+    [InlineData(MonetaryMinimumAdjustmentFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(MonetaryMinimumAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryMinimumAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

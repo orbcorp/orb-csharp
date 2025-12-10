@@ -441,12 +441,10 @@ public sealed record class Subscription : ModelBase
     }
 
 #pragma warning disable CS8618
-    [
-        System::Obsolete(
-            "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
-        ),
-        SetsRequiredMembers
-    ]
+    [System::Obsolete(
+        "Required properties are deprecated: discount_intervals, maximum_intervals, minimum_intervals"
+    )]
+    [SetsRequiredMembers]
     Subscription(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

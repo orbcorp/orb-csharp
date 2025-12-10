@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models.Plans;
 using Models = Orb.Models;
 
@@ -2239,6 +2240,68 @@ public class PlanPlanPhaseTest : TestBase
     }
 }
 
+public class PlanPlanPhaseDurationUnitTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanPlanPhaseDurationUnit.Daily)]
+    [InlineData(PlanPlanPhaseDurationUnit.Monthly)]
+    [InlineData(PlanPlanPhaseDurationUnit.Quarterly)]
+    [InlineData(PlanPlanPhaseDurationUnit.SemiAnnual)]
+    [InlineData(PlanPlanPhaseDurationUnit.Annual)]
+    public void Validation_Works(PlanPlanPhaseDurationUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPlanPhaseDurationUnit> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanPlanPhaseDurationUnit.Daily)]
+    [InlineData(PlanPlanPhaseDurationUnit.Monthly)]
+    [InlineData(PlanPlanPhaseDurationUnit.Quarterly)]
+    [InlineData(PlanPlanPhaseDurationUnit.SemiAnnual)]
+    [InlineData(PlanPlanPhaseDurationUnit.Annual)]
+    public void SerializationRoundtrip_Works(PlanPlanPhaseDurationUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanPlanPhaseDurationUnit> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class ProductTest : TestBase
 {
     [Fact]
@@ -2313,6 +2376,64 @@ public class ProductTest : TestBase
     }
 }
 
+public class PlanStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(PlanStatus.Active)]
+    [InlineData(PlanStatus.Archived)]
+    [InlineData(PlanStatus.Draft)]
+    public void Validation_Works(PlanStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PlanStatus>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PlanStatus.Active)]
+    [InlineData(PlanStatus.Archived)]
+    [InlineData(PlanStatus.Draft)]
+    public void SerializationRoundtrip_Works(PlanStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PlanStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PlanStatus>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PlanStatus>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PlanStatus>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class TrialConfigTest : TestBase
 {
     [Fact]
@@ -2360,5 +2481,59 @@ public class TrialConfigTest : TestBase
         var model = new TrialConfig { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days };
 
         model.Validate();
+    }
+}
+
+public class TrialPeriodUnitTest : TestBase
+{
+    [Theory]
+    [InlineData(TrialPeriodUnit.Days)]
+    public void Validation_Works(TrialPeriodUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TrialPeriodUnit> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(TrialPeriodUnit.Days)]
+    public void SerializationRoundtrip_Works(TrialPeriodUnit rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TrialPeriodUnit> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, TrialPeriodUnit>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

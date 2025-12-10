@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -459,5 +460,123 @@ public class NewPlanBulkPriceTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewPlanBulkPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanBulkPriceCadence.Annual)]
+    [InlineData(NewPlanBulkPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanBulkPriceCadence.Monthly)]
+    [InlineData(NewPlanBulkPriceCadence.Quarterly)]
+    [InlineData(NewPlanBulkPriceCadence.OneTime)]
+    [InlineData(NewPlanBulkPriceCadence.Custom)]
+    public void Validation_Works(NewPlanBulkPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanBulkPriceCadence.Annual)]
+    [InlineData(NewPlanBulkPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanBulkPriceCadence.Monthly)]
+    [InlineData(NewPlanBulkPriceCadence.Quarterly)]
+    [InlineData(NewPlanBulkPriceCadence.OneTime)]
+    [InlineData(NewPlanBulkPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewPlanBulkPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceCadence>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceCadence>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewPlanBulkPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanBulkPriceModelType.Bulk)]
+    public void Validation_Works(NewPlanBulkPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceModelType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanBulkPriceModelType.Bulk)]
+    public void SerializationRoundtrip_Works(NewPlanBulkPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceModelType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceModelType>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, NewPlanBulkPriceModelType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

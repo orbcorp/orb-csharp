@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -721,5 +722,127 @@ public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTierTest : Test
         };
 
         model.Validate();
+    }
+}
+
+public class NewPlanBulkWithProrationPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Annual)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Monthly)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Quarterly)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.OneTime)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Custom)]
+    public void Validation_Works(NewPlanBulkWithProrationPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkWithProrationPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Annual)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.SemiAnnual)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Monthly)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Quarterly)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.OneTime)]
+    [InlineData(NewPlanBulkWithProrationPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(NewPlanBulkWithProrationPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkWithProrationPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewPlanBulkWithProrationPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewPlanBulkWithProrationPriceModelType.BulkWithProration)]
+    public void Validation_Works(NewPlanBulkWithProrationPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkWithProrationPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewPlanBulkWithProrationPriceModelType.BulkWithProration)]
+    public void SerializationRoundtrip_Works(NewPlanBulkWithProrationPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewPlanBulkWithProrationPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewPlanBulkWithProrationPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

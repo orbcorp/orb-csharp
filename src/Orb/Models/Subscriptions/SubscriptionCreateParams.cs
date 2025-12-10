@@ -8717,7 +8717,8 @@ sealed class EventOutputConversionRateConfigConverter
     }
 }
 
-[System::Obsolete("deprecated"), JsonConverter(typeof(ExternalMarketplaceConverter))]
+[System::Obsolete("deprecated")]
+[JsonConverter(typeof(ExternalMarketplaceConverter))]
 public enum ExternalMarketplace
 {
     Google,

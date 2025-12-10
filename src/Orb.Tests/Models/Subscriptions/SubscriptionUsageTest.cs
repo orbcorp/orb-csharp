@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Orb.Models.Subscriptions;
 
@@ -420,6 +421,62 @@ public class DataUsageTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class DataViewModeTest : TestBase
+{
+    [Theory]
+    [InlineData(DataViewMode.Periodic)]
+    [InlineData(DataViewMode.Cumulative)]
+    public void Validation_Works(DataViewMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DataViewMode> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DataViewMode>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(DataViewMode.Periodic)]
+    [InlineData(DataViewMode.Cumulative)]
+    public void SerializationRoundtrip_Works(DataViewMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, DataViewMode> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, DataViewMode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, DataViewMode>>(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, DataViewMode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -1112,5 +1169,63 @@ public class GroupedSubscriptionUsageDataUsageTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class GroupedSubscriptionUsageDataViewModeTest : TestBase
+{
+    [Theory]
+    [InlineData(GroupedSubscriptionUsageDataViewMode.Periodic)]
+    [InlineData(GroupedSubscriptionUsageDataViewMode.Cumulative)]
+    public void Validation_Works(GroupedSubscriptionUsageDataViewMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GroupedSubscriptionUsageDataViewMode> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, GroupedSubscriptionUsageDataViewMode>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(GroupedSubscriptionUsageDataViewMode.Periodic)]
+    [InlineData(GroupedSubscriptionUsageDataViewMode.Cumulative)]
+    public void SerializationRoundtrip_Works(GroupedSubscriptionUsageDataViewMode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GroupedSubscriptionUsageDataViewMode> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GroupedSubscriptionUsageDataViewMode>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, GroupedSubscriptionUsageDataViewMode>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GroupedSubscriptionUsageDataViewMode>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

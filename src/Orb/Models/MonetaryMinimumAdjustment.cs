@@ -146,10 +146,8 @@ public sealed record class MonetaryMinimumAdjustment : ModelBase
     }
 
 #pragma warning disable CS8618
-    [
-        System::Obsolete("Required properties are deprecated: applies_to_price_ids"),
-        SetsRequiredMembers
-    ]
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    [SetsRequiredMembers]
     MonetaryMinimumAdjustment(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = [.. rawData];

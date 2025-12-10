@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -193,6 +194,62 @@ public class MonetaryUsageDiscountAdjustmentTest : TestBase
     }
 }
 
+public class MonetaryUsageDiscountAdjustmentAdjustmentTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount)]
+    public void Validation_Works(MonetaryUsageDiscountAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount)]
+    public void SerializationRoundtrip_Works(MonetaryUsageDiscountAdjustmentAdjustmentType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentAdjustmentType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class MonetaryUsageDiscountAdjustmentFilterTest : TestBase
 {
     [Fact]
@@ -276,5 +333,127 @@ public class MonetaryUsageDiscountAdjustmentFilterTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class MonetaryUsageDiscountAdjustmentFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.PriceID)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.ItemID)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.PriceType)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.Currency)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.PricingUnitID)]
+    public void Validation_Works(MonetaryUsageDiscountAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.PriceID)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.ItemID)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.PriceType)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.Currency)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(MonetaryUsageDiscountAdjustmentFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MonetaryUsageDiscountAdjustmentFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterOperator.Includes)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterOperator.Excludes)]
+    public void Validation_Works(MonetaryUsageDiscountAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterOperator.Includes)]
+    [InlineData(MonetaryUsageDiscountAdjustmentFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(MonetaryUsageDiscountAdjustmentFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

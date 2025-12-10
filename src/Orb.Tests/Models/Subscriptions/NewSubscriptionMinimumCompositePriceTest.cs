@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Subscriptions = Orb.Models.Subscriptions;
 
@@ -479,6 +480,78 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
     }
 }
 
+public class NewSubscriptionMinimumCompositePriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Monthly)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Quarterly)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.OneTime)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Custom)]
+    public void Validation_Works(
+        Subscriptions::NewSubscriptionMinimumCompositePriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceCadence> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Annual)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Monthly)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Quarterly)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.OneTime)]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::NewSubscriptionMinimumCompositePriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceCadence> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class MinimumConfigTest : TestBase
 {
     [Fact]
@@ -588,5 +661,67 @@ public class MinimumConfigTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewSubscriptionMinimumCompositePriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum)]
+    public void Validation_Works(
+        Subscriptions::NewSubscriptionMinimumCompositePriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceModelType> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionMinimumCompositePriceModelType.Minimum)]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::NewSubscriptionMinimumCompositePriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceModelType> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionMinimumCompositePriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

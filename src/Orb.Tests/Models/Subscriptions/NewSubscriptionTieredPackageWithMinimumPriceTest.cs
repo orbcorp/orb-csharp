@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 using Subscriptions = Orb.Models.Subscriptions;
 
@@ -667,6 +668,148 @@ public class NewSubscriptionTieredPackageWithMinimumPriceTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewSubscriptionTieredPackageWithMinimumPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Monthly)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Quarterly)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.OneTime)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Custom)]
+    public void Validation_Works(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Annual)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.SemiAnnual)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Monthly)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Quarterly)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.OneTime)]
+    [InlineData(Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class NewSubscriptionTieredPackageWithMinimumPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum
+    )]
+    public void Validation_Works(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum
+    )]
+    public void SerializationRoundtrip_Works(
+        Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Exceptions;
 using Orb.Models;
 
 namespace Orb.Tests.Models;
@@ -602,6 +603,74 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
     }
 }
 
+public class NewFloatingGroupedWithMeteredMinimumPriceCadenceTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Monthly)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Quarterly)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.OneTime)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Custom)]
+    public void Validation_Works(NewFloatingGroupedWithMeteredMinimumPriceCadence rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceCadence> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.SemiAnnual)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Monthly)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Quarterly)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.OneTime)]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceCadence.Custom)]
+    public void SerializationRoundtrip_Works(
+        NewFloatingGroupedWithMeteredMinimumPriceCadence rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceCadence> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceCadence>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceCadence>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class GroupedWithMeteredMinimumConfigTest : TestBase
 {
     [Fact]
@@ -881,5 +950,63 @@ public class UnitAmountTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class NewFloatingGroupedWithMeteredMinimumPriceModelTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum)]
+    public void Validation_Works(NewFloatingGroupedWithMeteredMinimumPriceModelType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(NewFloatingGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum)]
+    public void SerializationRoundtrip_Works(
+        NewFloatingGroupedWithMeteredMinimumPriceModelType rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType>
+        >(
+            JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, NewFloatingGroupedWithMeteredMinimumPriceModelType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
