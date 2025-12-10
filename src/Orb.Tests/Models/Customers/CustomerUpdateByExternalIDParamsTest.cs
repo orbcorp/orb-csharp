@@ -473,6 +473,173 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
     }
 }
 
+public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
+{
+    [Fact]
+    public void new_avalaraValidation_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new()
+            {
+                TaxExempt = true,
+                TaxProvider = TaxProvider.Avalara,
+                AutomaticTaxEnabled = true,
+                TaxExemptionCode = "tax_exemption_code",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_tax_jarValidation_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new()
+            {
+                TaxExempt = true,
+                TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+                AutomaticTaxEnabled = true,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_sphereValidation_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new()
+            {
+                TaxExempt = true,
+                TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
+                AutomaticTaxEnabled = true,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void numeralValidation_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void anrokValidation_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void stripeValidation_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_avalaraSerializationRoundtrip_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new()
+            {
+                TaxExempt = true,
+                TaxProvider = TaxProvider.Avalara,
+                AutomaticTaxEnabled = true,
+                TaxExemptionCode = "tax_exemption_code",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_tax_jarSerializationRoundtrip_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new()
+            {
+                TaxExempt = true,
+                TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
+                AutomaticTaxEnabled = true,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_sphereSerializationRoundtrip_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new()
+            {
+                TaxExempt = true,
+                TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
+                AutomaticTaxEnabled = true,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void numeralSerializationRoundtrip_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void anrokSerializationRoundtrip_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void stripeSerializationRoundtrip_Works()
+    {
+        CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
+            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralTest : TestBase
 {
     [Fact]

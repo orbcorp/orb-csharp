@@ -670,3 +670,84 @@ public class NewFloatingMinimumCompositePriceModelTypeTest : TestBase
         Assert.Equal(value, deserialized);
     }
 }
+
+public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        NewFloatingMinimumCompositePriceConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}

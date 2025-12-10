@@ -200,3 +200,108 @@ public class CouponTest : TestBase
         model.Validate();
     }
 }
+
+public class CouponDiscountTest : TestBase
+{
+    [Fact]
+    public void percentageValidation_Works()
+    {
+        CouponDiscount value = new(
+            new()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void amountValidation_Works()
+    {
+        CouponDiscount value = new(
+            new()
+            {
+                AmountDiscountValue = "amount_discount",
+                DiscountType = DiscountType.Amount,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = AmountDiscountFilterField.PriceID,
+                        Operator = AmountDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void percentageSerializationRoundtrip_Works()
+    {
+        CouponDiscount value = new(
+            new()
+            {
+                DiscountType = PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = PercentageDiscountFilterField.PriceID,
+                        Operator = PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void amountSerializationRoundtrip_Works()
+    {
+        CouponDiscount value = new(
+            new()
+            {
+                AmountDiscountValue = "amount_discount",
+                DiscountType = DiscountType.Amount,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = AmountDiscountFilterField.PriceID,
+                        Operator = AmountDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}

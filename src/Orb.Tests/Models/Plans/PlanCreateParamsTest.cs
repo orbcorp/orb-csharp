@@ -491,6 +491,3474 @@ public class PriceTest : TestBase
     }
 }
 
+public class PricePriceTest : TestBase
+{
+    [Fact]
+    public void new_plan_unitValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_tieredValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanTieredPriceModelType.Tiered,
+                Name = "Annual fee",
+                TieredConfig = new()
+                {
+                    Tiers =
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ],
+                    Prorated = true,
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_bulkValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+                Cadence = Models::NewPlanBulkPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanBulkPriceModelType.Bulk,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void bulk_with_filtersValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                BulkWithFiltersConfig = new()
+                {
+                    Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                    Tiers =
+                    [
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    ],
+                },
+                Cadence = Cadence.Annual,
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_packageValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanPackagePriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanPackagePriceModelType.Package,
+                Name = "Annual fee",
+                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_matrixValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMatrixPriceCadence.Annual,
+                ItemID = "item_id",
+                MatrixConfig = new()
+                {
+                    DefaultUnitAmount = "default_unit_amount",
+                    Dimensions = ["string"],
+                    MatrixValues =
+                    [
+                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
+                    ],
+                },
+                ModelType = Models::NewPlanMatrixPriceModelType.Matrix,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_threshold_total_amountValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanThresholdTotalAmountPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+                Name = "Annual fee",
+                ThresholdTotalAmountConfig = new()
+                {
+                    ConsumptionTable =
+                    [
+                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    ],
+                    Prorate = true,
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_tiered_packageValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredPackagePriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanTieredPackagePriceModelType.TieredPackage,
+                Name = "Annual fee",
+                TieredPackageConfig = new()
+                {
+                    PackageSize = "package_size",
+                    Tiers =
+                    [
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    ],
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_tiered_with_minimumValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredWithMinimumPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanTieredWithMinimumPriceModelType.TieredWithMinimum,
+                Name = "Annual fee",
+                TieredWithMinimumConfig = new()
+                {
+                    Tiers =
+                    [
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            TierLowerBound = "tier_lower_bound",
+                            UnitAmount = "unit_amount",
+                        },
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            TierLowerBound = "tier_lower_bound",
+                            UnitAmount = "unit_amount",
+                        },
+                    ],
+                    HideZeroAmountTiers = true,
+                    Prorate = true,
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_grouped_tieredValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedTieredPriceCadence.Annual,
+                GroupedTieredConfig = new()
+                {
+                    GroupingKey = "x",
+                    Tiers =
+                    [
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    ],
+                },
+                ItemID = "item_id",
+                ModelType = Models::NewPlanGroupedTieredPriceModelType.GroupedTiered,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_tiered_package_with_minimumValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredPackageWithMinimumPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum,
+                Name = "Annual fee",
+                TieredPackageWithMinimumConfig = new()
+                {
+                    PackageSize = 0,
+                    Tiers =
+                    [
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            PerUnit = "per_unit",
+                            TierLowerBound = "tier_lower_bound",
+                        },
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            PerUnit = "per_unit",
+                            TierLowerBound = "tier_lower_bound",
+                        },
+                    ],
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_package_with_allocationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanPackageWithAllocationPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanPackageWithAllocationPriceModelType.PackageWithAllocation,
+                Name = "Annual fee",
+                PackageWithAllocationConfig = new()
+                {
+                    Allocation = "allocation",
+                    PackageAmount = "package_amount",
+                    PackageSize = "package_size",
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_unit_with_percentValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanUnitWithPercentPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanUnitWithPercentPriceModelType.UnitWithPercent,
+                Name = "Annual fee",
+                UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_matrix_with_allocationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMatrixWithAllocationPriceCadence.Annual,
+                ItemID = "item_id",
+                MatrixWithAllocationConfig = new()
+                {
+                    Allocation = "allocation",
+                    DefaultUnitAmount = "default_unit_amount",
+                    Dimensions = ["string"],
+                    MatrixValues =
+                    [
+                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
+                    ],
+                },
+                ModelType = Models::NewPlanMatrixWithAllocationPriceModelType.MatrixWithAllocation,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tiered_with_prorationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = TieredWithProrationCadence.Annual,
+                ItemID = "item_id",
+                Name = "Annual fee",
+                TieredWithProrationConfig = new(
+                    [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+                ),
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_unit_with_prorationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanUnitWithProrationPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanUnitWithProrationPriceModelType.UnitWithProration,
+                Name = "Annual fee",
+                UnitWithProrationConfig = new("unit_amount"),
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_grouped_allocationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedAllocationPriceCadence.Annual,
+                GroupedAllocationConfig = new()
+                {
+                    Allocation = "allocation",
+                    GroupingKey = "x",
+                    OverageUnitRate = "overage_unit_rate",
+                },
+                ItemID = "item_id",
+                ModelType = Models::NewPlanGroupedAllocationPriceModelType.GroupedAllocation,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_bulk_with_prorationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                BulkWithProrationConfig = new(
+                    [
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    ]
+                ),
+                Cadence = Models::NewPlanBulkWithProrationPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanBulkWithProrationPriceModelType.BulkWithProration,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_grouped_with_prorated_minimumValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedWithProratedMinimumPriceCadence.Annual,
+                GroupedWithProratedMinimumConfig = new()
+                {
+                    GroupingKey = "x",
+                    Minimum = "minimum",
+                    UnitRate = "unit_rate",
+                },
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_grouped_with_metered_minimumValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedWithMeteredMinimumPriceCadence.Annual,
+                GroupedWithMeteredMinimumConfig = new()
+                {
+                    GroupingKey = "x",
+                    MinimumUnitAmount = "minimum_unit_amount",
+                    PricingKey = "pricing_key",
+                    ScalingFactors =
+                    [
+                        new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
+                    ],
+                    ScalingKey = "scaling_key",
+                    UnitAmounts =
+                    [
+                        new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
+                    ],
+                },
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void grouped_with_min_max_thresholdsValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = GroupedWithMinMaxThresholdsCadence.Annual,
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_matrix_with_display_nameValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMatrixWithDisplayNamePriceCadence.Annual,
+                ItemID = "item_id",
+                MatrixWithDisplayNameConfig = new()
+                {
+                    Dimension = "dimension",
+                    UnitAmounts =
+                    [
+                        new()
+                        {
+                            DimensionValue = "dimension_value",
+                            DisplayName = "display_name",
+                            UnitAmount = "unit_amount",
+                        },
+                    ],
+                },
+                ModelType =
+                    Models::NewPlanMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_grouped_tiered_packageValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedTieredPackagePriceCadence.Annual,
+                GroupedTieredPackageConfig = new()
+                {
+                    GroupingKey = "x",
+                    PackageSize = "package_size",
+                    Tiers =
+                    [
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    ],
+                },
+                ItemID = "item_id",
+                ModelType = Models::NewPlanGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_max_group_tiered_packageValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMaxGroupTieredPackagePriceCadence.Annual,
+                ItemID = "item_id",
+                MaxGroupTieredPackageConfig = new()
+                {
+                    GroupingKey = "x",
+                    PackageSize = "package_size",
+                    Tiers =
+                    [
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    ],
+                },
+                ModelType =
+                    Models::NewPlanMaxGroupTieredPackagePriceModelType.MaxGroupTieredPackage,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_scalable_matrix_with_unit_pricingValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanScalableMatrixWithUnitPricingPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Name = "Annual fee",
+                ScalableMatrixWithUnitPricingConfig = new()
+                {
+                    FirstDimension = "first_dimension",
+                    MatrixScalingFactors =
+                    [
+                        new()
+                        {
+                            FirstDimensionValue = "first_dimension_value",
+                            ScalingFactor = "scaling_factor",
+                            SecondDimensionValue = "second_dimension_value",
+                        },
+                    ],
+                    UnitPrice = "unit_price",
+                    Prorate = true,
+                    SecondDimension = "second_dimension",
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_scalable_matrix_with_tiered_pricingValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanScalableMatrixWithTieredPricingPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanScalableMatrixWithTieredPricingPriceModelType.ScalableMatrixWithTieredPricing,
+                Name = "Annual fee",
+                ScalableMatrixWithTieredPricingConfig = new()
+                {
+                    FirstDimension = "first_dimension",
+                    MatrixScalingFactors =
+                    [
+                        new()
+                        {
+                            FirstDimensionValue = "first_dimension_value",
+                            ScalingFactor = "scaling_factor",
+                            SecondDimensionValue = "second_dimension_value",
+                        },
+                    ],
+                    Tiers =
+                    [
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    ],
+                    SecondDimension = "second_dimension",
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_cumulative_grouped_bulkValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanCumulativeGroupedBulkPriceCadence.Annual,
+                CumulativeGroupedBulkConfig = new()
+                {
+                    DimensionValues =
+                    [
+                        new()
+                        {
+                            GroupingKey = "x",
+                            TierLowerBound = "tier_lower_bound",
+                            UnitAmount = "unit_amount",
+                        },
+                    ],
+                    Group = "group",
+                },
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void cumulative_grouped_allocationValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = CumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_minimum_compositeValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMinimumCompositePriceCadence.Annual,
+                ItemID = "item_id",
+                MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+                ModelType = Models::NewPlanMinimumCompositePriceModelType.Minimum,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void percentValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = PercentCadence.Annual,
+                ItemID = "item_id",
+                Name = "Annual fee",
+                PercentConfig = new(0),
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void event_outputValidation_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = EventOutputCadence.Annual,
+                EventOutputConfig = new()
+                {
+                    UnitRatingKey = "x",
+                    DefaultUnitRate = "default_unit_rate",
+                    GroupingKey = "grouping_key",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_plan_unitSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                Name = "Annual fee",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_tieredSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanTieredPriceModelType.Tiered,
+                Name = "Annual fee",
+                TieredConfig = new()
+                {
+                    Tiers =
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ],
+                    Prorated = true,
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_bulkSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
+                Cadence = Models::NewPlanBulkPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanBulkPriceModelType.Bulk,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void bulk_with_filtersSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                BulkWithFiltersConfig = new()
+                {
+                    Filters = [new() { PropertyKey = "x", PropertyValue = "x" }],
+                    Tiers =
+                    [
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    ],
+                },
+                Cadence = Cadence.Annual,
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_packageSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanPackagePriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanPackagePriceModelType.Package,
+                Name = "Annual fee",
+                PackageConfig = new() { PackageAmount = "package_amount", PackageSize = 1 },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_matrixSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMatrixPriceCadence.Annual,
+                ItemID = "item_id",
+                MatrixConfig = new()
+                {
+                    DefaultUnitAmount = "default_unit_amount",
+                    Dimensions = ["string"],
+                    MatrixValues =
+                    [
+                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
+                    ],
+                },
+                ModelType = Models::NewPlanMatrixPriceModelType.Matrix,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_threshold_total_amountSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanThresholdTotalAmountPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanThresholdTotalAmountPriceModelType.ThresholdTotalAmount,
+                Name = "Annual fee",
+                ThresholdTotalAmountConfig = new()
+                {
+                    ConsumptionTable =
+                    [
+                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                        new() { Threshold = "threshold", TotalAmount = "total_amount" },
+                    ],
+                    Prorate = true,
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_tiered_packageSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredPackagePriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanTieredPackagePriceModelType.TieredPackage,
+                Name = "Annual fee",
+                TieredPackageConfig = new()
+                {
+                    PackageSize = "package_size",
+                    Tiers =
+                    [
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    ],
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_tiered_with_minimumSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredWithMinimumPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanTieredWithMinimumPriceModelType.TieredWithMinimum,
+                Name = "Annual fee",
+                TieredWithMinimumConfig = new()
+                {
+                    Tiers =
+                    [
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            TierLowerBound = "tier_lower_bound",
+                            UnitAmount = "unit_amount",
+                        },
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            TierLowerBound = "tier_lower_bound",
+                            UnitAmount = "unit_amount",
+                        },
+                    ],
+                    HideZeroAmountTiers = true,
+                    Prorate = true,
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_grouped_tieredSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedTieredPriceCadence.Annual,
+                GroupedTieredConfig = new()
+                {
+                    GroupingKey = "x",
+                    Tiers =
+                    [
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    ],
+                },
+                ItemID = "item_id",
+                ModelType = Models::NewPlanGroupedTieredPriceModelType.GroupedTiered,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_tiered_package_with_minimumSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanTieredPackageWithMinimumPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanTieredPackageWithMinimumPriceModelType.TieredPackageWithMinimum,
+                Name = "Annual fee",
+                TieredPackageWithMinimumConfig = new()
+                {
+                    PackageSize = 0,
+                    Tiers =
+                    [
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            PerUnit = "per_unit",
+                            TierLowerBound = "tier_lower_bound",
+                        },
+                        new()
+                        {
+                            MinimumAmount = "minimum_amount",
+                            PerUnit = "per_unit",
+                            TierLowerBound = "tier_lower_bound",
+                        },
+                    ],
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_package_with_allocationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanPackageWithAllocationPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanPackageWithAllocationPriceModelType.PackageWithAllocation,
+                Name = "Annual fee",
+                PackageWithAllocationConfig = new()
+                {
+                    Allocation = "allocation",
+                    PackageAmount = "package_amount",
+                    PackageSize = "package_size",
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_unit_with_percentSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanUnitWithPercentPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanUnitWithPercentPriceModelType.UnitWithPercent,
+                Name = "Annual fee",
+                UnitWithPercentConfig = new() { Percent = "percent", UnitAmount = "unit_amount" },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_matrix_with_allocationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMatrixWithAllocationPriceCadence.Annual,
+                ItemID = "item_id",
+                MatrixWithAllocationConfig = new()
+                {
+                    Allocation = "allocation",
+                    DefaultUnitAmount = "default_unit_amount",
+                    Dimensions = ["string"],
+                    MatrixValues =
+                    [
+                        new() { DimensionValues = ["string"], UnitAmount = "unit_amount" },
+                    ],
+                },
+                ModelType = Models::NewPlanMatrixWithAllocationPriceModelType.MatrixWithAllocation,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tiered_with_prorationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = TieredWithProrationCadence.Annual,
+                ItemID = "item_id",
+                Name = "Annual fee",
+                TieredWithProrationConfig = new(
+                    [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }]
+                ),
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_unit_with_prorationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanUnitWithProrationPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanUnitWithProrationPriceModelType.UnitWithProration,
+                Name = "Annual fee",
+                UnitWithProrationConfig = new("unit_amount"),
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_grouped_allocationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedAllocationPriceCadence.Annual,
+                GroupedAllocationConfig = new()
+                {
+                    Allocation = "allocation",
+                    GroupingKey = "x",
+                    OverageUnitRate = "overage_unit_rate",
+                },
+                ItemID = "item_id",
+                ModelType = Models::NewPlanGroupedAllocationPriceModelType.GroupedAllocation,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_bulk_with_prorationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                BulkWithProrationConfig = new(
+                    [
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                        new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    ]
+                ),
+                Cadence = Models::NewPlanBulkWithProrationPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType = Models::NewPlanBulkWithProrationPriceModelType.BulkWithProration,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedWithProratedMinimumPriceCadence.Annual,
+                GroupedWithProratedMinimumConfig = new()
+                {
+                    GroupingKey = "x",
+                    Minimum = "minimum",
+                    UnitRate = "unit_rate",
+                },
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanGroupedWithProratedMinimumPriceModelType.GroupedWithProratedMinimum,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedWithMeteredMinimumPriceCadence.Annual,
+                GroupedWithMeteredMinimumConfig = new()
+                {
+                    GroupingKey = "x",
+                    MinimumUnitAmount = "minimum_unit_amount",
+                    PricingKey = "pricing_key",
+                    ScalingFactors =
+                    [
+                        new() { ScalingFactor = "scaling_factor", ScalingValue = "scaling_value" },
+                    ],
+                    ScalingKey = "scaling_key",
+                    UnitAmounts =
+                    [
+                        new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" },
+                    ],
+                },
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = GroupedWithMinMaxThresholdsCadence.Annual,
+                GroupedWithMinMaxThresholdsConfig = new()
+                {
+                    GroupingKey = "x",
+                    MaximumCharge = "maximum_charge",
+                    MinimumCharge = "minimum_charge",
+                    PerUnitRate = "per_unit_rate",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_matrix_with_display_nameSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMatrixWithDisplayNamePriceCadence.Annual,
+                ItemID = "item_id",
+                MatrixWithDisplayNameConfig = new()
+                {
+                    Dimension = "dimension",
+                    UnitAmounts =
+                    [
+                        new()
+                        {
+                            DimensionValue = "dimension_value",
+                            DisplayName = "display_name",
+                            UnitAmount = "unit_amount",
+                        },
+                    ],
+                },
+                ModelType =
+                    Models::NewPlanMatrixWithDisplayNamePriceModelType.MatrixWithDisplayName,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_grouped_tiered_packageSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanGroupedTieredPackagePriceCadence.Annual,
+                GroupedTieredPackageConfig = new()
+                {
+                    GroupingKey = "x",
+                    PackageSize = "package_size",
+                    Tiers =
+                    [
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                        new() { PerUnit = "per_unit", TierLowerBound = "tier_lower_bound" },
+                    ],
+                },
+                ItemID = "item_id",
+                ModelType = Models::NewPlanGroupedTieredPackagePriceModelType.GroupedTieredPackage,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_max_group_tiered_packageSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMaxGroupTieredPackagePriceCadence.Annual,
+                ItemID = "item_id",
+                MaxGroupTieredPackageConfig = new()
+                {
+                    GroupingKey = "x",
+                    PackageSize = "package_size",
+                    Tiers =
+                    [
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    ],
+                },
+                ModelType =
+                    Models::NewPlanMaxGroupTieredPackagePriceModelType.MaxGroupTieredPackage,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanScalableMatrixWithUnitPricingPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanScalableMatrixWithUnitPricingPriceModelType.ScalableMatrixWithUnitPricing,
+                Name = "Annual fee",
+                ScalableMatrixWithUnitPricingConfig = new()
+                {
+                    FirstDimension = "first_dimension",
+                    MatrixScalingFactors =
+                    [
+                        new()
+                        {
+                            FirstDimensionValue = "first_dimension_value",
+                            ScalingFactor = "scaling_factor",
+                            SecondDimensionValue = "second_dimension_value",
+                        },
+                    ],
+                    UnitPrice = "unit_price",
+                    Prorate = true,
+                    SecondDimension = "second_dimension",
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanScalableMatrixWithTieredPricingPriceCadence.Annual,
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanScalableMatrixWithTieredPricingPriceModelType.ScalableMatrixWithTieredPricing,
+                Name = "Annual fee",
+                ScalableMatrixWithTieredPricingConfig = new()
+                {
+                    FirstDimension = "first_dimension",
+                    MatrixScalingFactors =
+                    [
+                        new()
+                        {
+                            FirstDimensionValue = "first_dimension_value",
+                            ScalingFactor = "scaling_factor",
+                            SecondDimensionValue = "second_dimension_value",
+                        },
+                    ],
+                    Tiers =
+                    [
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                        new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    ],
+                    SecondDimension = "second_dimension",
+                },
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanCumulativeGroupedBulkPriceCadence.Annual,
+                CumulativeGroupedBulkConfig = new()
+                {
+                    DimensionValues =
+                    [
+                        new()
+                        {
+                            GroupingKey = "x",
+                            TierLowerBound = "tier_lower_bound",
+                            UnitAmount = "unit_amount",
+                        },
+                    ],
+                    Group = "group",
+                },
+                ItemID = "item_id",
+                ModelType =
+                    Models::NewPlanCumulativeGroupedBulkPriceModelType.CumulativeGroupedBulk,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = CumulativeGroupedAllocationCadence.Annual,
+                CumulativeGroupedAllocationConfig = new()
+                {
+                    CumulativeAllocation = "cumulative_allocation",
+                    GroupAllocation = "group_allocation",
+                    GroupingKey = "x",
+                    UnitAmount = "unit_amount",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_plan_minimum_compositeSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = Models::NewPlanMinimumCompositePriceCadence.Annual,
+                ItemID = "item_id",
+                MinimumConfig = new() { MinimumAmount = "minimum_amount", Prorated = true },
+                ModelType = Models::NewPlanMinimumCompositePriceModelType.Minimum,
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void percentSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = PercentCadence.Annual,
+                ItemID = "item_id",
+                Name = "Annual fee",
+                PercentConfig = new(0),
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void event_outputSerializationRoundtrip_Works()
+    {
+        PricePrice value = new(
+            new()
+            {
+                Cadence = EventOutputCadence.Annual,
+                EventOutputConfig = new()
+                {
+                    UnitRatingKey = "x",
+                    DefaultUnitRate = "default_unit_rate",
+                    GroupingKey = "grouping_key",
+                },
+                ItemID = "item_id",
+                Name = "Annual fee",
+                BillableMetricID = "billable_metric_id",
+                BilledInAdvance = true,
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                Currency = "currency",
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                    ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "x",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                ReferenceID = "reference_id",
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PricePrice>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class BulkWithFiltersTest : TestBase
 {
     [Fact]
@@ -1332,6 +4800,85 @@ public class CadenceTest : TestBase
     }
 }
 
+public class ConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        ConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        ConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        ConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        ConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class TieredWithProrationTest : TestBase
 {
     [Fact]
@@ -2003,6 +5550,89 @@ public class TieredWithProrationConfigTierTest : TestBase
     }
 }
 
+public class TieredWithProrationConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        TieredWithProrationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        TieredWithProrationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        TieredWithProrationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConversionRateConfig>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        TieredWithProrationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConversionRateConfig>(
+            json
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class GroupedWithMinMaxThresholdsTest : TestBase
 {
     [Fact]
@@ -2659,6 +6289,87 @@ public class GroupedWithMinMaxThresholdsConfigTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        GroupedWithMinMaxThresholdsConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -3321,6 +7032,87 @@ public class CumulativeGroupedAllocationConfigTest : TestBase
     }
 }
 
+public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        CumulativeGroupedAllocationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        CumulativeGroupedAllocationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        CumulativeGroupedAllocationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        CumulativeGroupedAllocationConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized =
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class PercentTest : TestBase
 {
     [Fact]
@@ -3871,6 +7663,85 @@ public class PercentConfigTest : TestBase
         var model = new PercentConfig { Percent = 0 };
 
         model.Validate();
+    }
+}
+
+public class PercentConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        PercentConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        PercentConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        PercentConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        PercentConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
@@ -4555,6 +8426,85 @@ public class EventOutputConfigTest : TestBase
     }
 }
 
+public class EventOutputConversionRateConfigTest : TestBase
+{
+    [Fact]
+    public void unitValidation_Works()
+    {
+        EventOutputConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void tieredValidation_Works()
+    {
+        EventOutputConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void unitSerializationRoundtrip_Works()
+    {
+        EventOutputConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void tieredSerializationRoundtrip_Works()
+    {
+        EventOutputConversionRateConfig value = new(
+            new()
+            {
+                ConversionRateType = Models::ConversionRateType.Tiered,
+                TieredConfig = new(
+                    [
+                        new()
+                        {
+                            FirstUnit = 0,
+                            UnitAmount = "unit_amount",
+                            LastUnit = 0,
+                        },
+                    ]
+                ),
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class AdjustmentTest : TestBase
 {
     [Fact]
@@ -4858,6 +8808,306 @@ public class AdjustmentTest : TestBase
         };
 
         model.Validate();
+    }
+}
+
+public class AdjustmentAdjustmentTest : TestBase
+{
+    [Fact]
+    public void new_percentage_discountValidation_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                PercentageDiscount = 0,
+                AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewPercentageDiscountPriceType.Usage,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_usage_discountValidation_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewUsageDiscountAdjustmentType.UsageDiscount,
+                UsageDiscount = 0,
+                AppliesToAll = Models::NewUsageDiscountAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewUsageDiscountFilterField.PriceID,
+                        Operator = Models::NewUsageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewUsageDiscountPriceType.Usage,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_amount_discountValidation_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewAmountDiscountAdjustmentType.AmountDiscount,
+                AmountDiscount = "amount_discount",
+                AppliesToAll = Models::AppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewAmountDiscountFilterField.PriceID,
+                        Operator = Models::NewAmountDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::PriceType.Usage,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_minimumValidation_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewMinimumAdjustmentType.Minimum,
+                ItemID = "item_id",
+                MinimumAmount = "minimum_amount",
+                AppliesToAll = Models::NewMinimumAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewMinimumFilterField.PriceID,
+                        Operator = Models::NewMinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewMinimumPriceType.Usage,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_maximumValidation_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewMaximumAdjustmentType.Maximum,
+                MaximumAmount = "maximum_amount",
+                AppliesToAll = Models::NewMaximumAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewMaximumFilterField.PriceID,
+                        Operator = Models::NewMaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewMaximumPriceType.Usage,
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void new_percentage_discountSerializationRoundtrip_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                PercentageDiscount = 0,
+                AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewPercentageDiscountFilterField.PriceID,
+                        Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewPercentageDiscountPriceType.Usage,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<AdjustmentAdjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_usage_discountSerializationRoundtrip_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewUsageDiscountAdjustmentType.UsageDiscount,
+                UsageDiscount = 0,
+                AppliesToAll = Models::NewUsageDiscountAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewUsageDiscountFilterField.PriceID,
+                        Operator = Models::NewUsageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewUsageDiscountPriceType.Usage,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<AdjustmentAdjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_amount_discountSerializationRoundtrip_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewAmountDiscountAdjustmentType.AmountDiscount,
+                AmountDiscount = "amount_discount",
+                AppliesToAll = Models::AppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewAmountDiscountFilterField.PriceID,
+                        Operator = Models::NewAmountDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::PriceType.Usage,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<AdjustmentAdjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_minimumSerializationRoundtrip_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewMinimumAdjustmentType.Minimum,
+                ItemID = "item_id",
+                MinimumAmount = "minimum_amount",
+                AppliesToAll = Models::NewMinimumAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewMinimumFilterField.PriceID,
+                        Operator = Models::NewMinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewMinimumPriceType.Usage,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<AdjustmentAdjustment>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void new_maximumSerializationRoundtrip_Works()
+    {
+        AdjustmentAdjustment value = new(
+            new()
+            {
+                AdjustmentType = Models::NewMaximumAdjustmentType.Maximum,
+                MaximumAmount = "maximum_amount",
+                AppliesToAll = Models::NewMaximumAppliesToAll.True,
+                AppliesToItemIDs = ["item_1", "item_2"],
+                AppliesToPriceIDs = ["price_1", "price_2"],
+                Currency = "currency",
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::NewMaximumFilterField.PriceID,
+                        Operator = Models::NewMaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                IsInvoiceLevel = true,
+                PriceType = Models::NewMaximumPriceType.Usage,
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<AdjustmentAdjustment>(json);
+
+        Assert.Equal(value, deserialized);
     }
 }
 

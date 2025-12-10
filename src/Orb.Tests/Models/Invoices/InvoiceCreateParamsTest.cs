@@ -268,3 +268,52 @@ public class ModelTypeTest : TestBase
         Assert.Equal(value, deserialized);
     }
 }
+
+public class DueDateTest : TestBase
+{
+    [Fact]
+    public void dateValidation_Works()
+    {
+        DueDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void date_timeValidation_Works()
+    {
+        DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void dateSerializationRoundtrip_Works()
+    {
+        DueDate value = new(
+#if NET
+            DateOnly
+#else
+            DateTimeOffset
+#endif
+            .Parse("2019-12-27"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DueDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void date_timeSerializationRoundtrip_Works()
+    {
+        DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DueDate>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}

@@ -8,6 +8,135 @@ using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
+public class SubscriptionUsageTest : TestBase
+{
+    [Fact]
+    public void ungroupedValidation_Works()
+    {
+        SubscriptionUsage value = new(
+            new(
+                [
+                    new()
+                    {
+                        BillableMetric = new() { ID = "id", Name = "name" },
+                        Usage =
+                        [
+                            new()
+                            {
+                                Quantity = 0,
+                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            },
+                        ],
+                        ViewMode = DataViewMode.Periodic,
+                    },
+                ]
+            )
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void groupedValidation_Works()
+    {
+        SubscriptionUsage value = new(
+            new()
+            {
+                Data =
+                [
+                    new()
+                    {
+                        BillableMetric = new() { ID = "id", Name = "name" },
+                        MetricGroup = new()
+                        {
+                            PropertyKey = "property_key",
+                            PropertyValue = "property_value",
+                        },
+                        Usage =
+                        [
+                            new()
+                            {
+                                Quantity = 0,
+                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            },
+                        ],
+                        ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                    },
+                ],
+                PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+            }
+        );
+        value.Validate();
+    }
+
+    [Fact]
+    public void ungroupedSerializationRoundtrip_Works()
+    {
+        SubscriptionUsage value = new(
+            new(
+                [
+                    new()
+                    {
+                        BillableMetric = new() { ID = "id", Name = "name" },
+                        Usage =
+                        [
+                            new()
+                            {
+                                Quantity = 0,
+                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            },
+                        ],
+                        ViewMode = DataViewMode.Periodic,
+                    },
+                ]
+            )
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void groupedSerializationRoundtrip_Works()
+    {
+        SubscriptionUsage value = new(
+            new()
+            {
+                Data =
+                [
+                    new()
+                    {
+                        BillableMetric = new() { ID = "id", Name = "name" },
+                        MetricGroup = new()
+                        {
+                            PropertyKey = "property_key",
+                            PropertyValue = "property_value",
+                        },
+                        Usage =
+                        [
+                            new()
+                            {
+                                Quantity = 0,
+                                TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            },
+                        ],
+                        ViewMode = GroupedSubscriptionUsageDataViewMode.Periodic,
+                    },
+                ],
+                PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+            }
+        );
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionUsage>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class UngroupedSubscriptionUsageTest : TestBase
 {
     [Fact]

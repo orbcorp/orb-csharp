@@ -3,6 +3,43 @@ using Orb.Models.Coupons;
 
 namespace Orb.Tests.Models.Coupons;
 
+public class DiscountTest : TestBase
+{
+    [Fact]
+    public void percentageValidation_Works()
+    {
+        Discount value = new(new(0));
+        value.Validate();
+    }
+
+    [Fact]
+    public void amountValidation_Works()
+    {
+        Discount value = new(new("amount_discount"));
+        value.Validate();
+    }
+
+    [Fact]
+    public void percentageSerializationRoundtrip_Works()
+    {
+        Discount value = new(new(0));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Discount>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void amountSerializationRoundtrip_Works()
+    {
+        Discount value = new(new("amount_discount"));
+        string json = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Discount>(json);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class PercentageTest : TestBase
 {
     [Fact]
