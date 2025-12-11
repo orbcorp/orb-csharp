@@ -22,7 +22,8 @@ public class TopUpServiceTest : TestBase
                 },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         topUp.Validate();
     }
@@ -30,7 +31,11 @@ public class TopUpServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Customers.Credits.TopUps.List("customer_id");
+        var page = await this.client.Customers.Credits.TopUps.List(
+            "customer_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         page.Validate();
     }
 
@@ -39,7 +44,8 @@ public class TopUpServiceTest : TestBase
     {
         await this.client.Customers.Credits.TopUps.Delete(
             "top_up_id",
-            new() { CustomerID = "customer_id" }
+            new() { CustomerID = "customer_id" },
+            TestContext.Current.CancellationToken
         );
     }
 
@@ -61,7 +67,8 @@ public class TopUpServiceTest : TestBase
                 },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Threshold = "threshold",
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -71,7 +78,8 @@ public class TopUpServiceTest : TestBase
     {
         await this.client.Customers.Credits.TopUps.DeleteByExternalID(
             "top_up_id",
-            new() { ExternalCustomerID = "external_customer_id" }
+            new() { ExternalCustomerID = "external_customer_id" },
+            TestContext.Current.CancellationToken
         );
     }
 
@@ -79,7 +87,9 @@ public class TopUpServiceTest : TestBase
     public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.TopUps.ListByExternalID(
-            "external_customer_id"
+            "external_customer_id",
+            new(),
+            TestContext.Current.CancellationToken
         );
         page.Validate();
     }

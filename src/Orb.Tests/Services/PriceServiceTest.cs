@@ -50,7 +50,8 @@ public class PriceServiceTest : TestBase
                     },
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         price.Validate();
     }
@@ -58,14 +59,18 @@ public class PriceServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var price = await this.client.Prices.Update("price_id");
+        var price = await this.client.Prices.Update(
+            "price_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         price.Validate();
     }
 
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Prices.List();
+        var page = await this.client.Prices.List(new(), TestContext.Current.CancellationToken);
         page.Validate();
     }
 
@@ -78,7 +83,8 @@ public class PriceServiceTest : TestBase
             {
                 TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -91,7 +97,8 @@ public class PriceServiceTest : TestBase
             {
                 TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -104,7 +111,8 @@ public class PriceServiceTest : TestBase
             {
                 TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -112,7 +120,11 @@ public class PriceServiceTest : TestBase
     [Fact]
     public async Task Fetch_Works()
     {
-        var price = await this.client.Prices.Fetch("price_id");
+        var price = await this.client.Prices.Fetch(
+            "price_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         price.Validate();
     }
 }

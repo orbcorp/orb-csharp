@@ -9,7 +9,8 @@ public class BetaServiceTest : TestBase
     {
         var planVersion = await this.client.Beta.CreatePlanVersion(
             "plan_id",
-            new() { Version = 0 }
+            new() { Version = 0 },
+            TestContext.Current.CancellationToken
         );
         planVersion.Validate();
     }
@@ -19,7 +20,8 @@ public class BetaServiceTest : TestBase
     {
         var planVersion = await this.client.Beta.FetchPlanVersion(
             "version",
-            new() { PlanID = "plan_id" }
+            new() { PlanID = "plan_id" },
+            TestContext.Current.CancellationToken
         );
         planVersion.Validate();
     }
@@ -27,7 +29,11 @@ public class BetaServiceTest : TestBase
     [Fact]
     public async Task SetDefaultPlanVersion_Works()
     {
-        var plan = await this.client.Beta.SetDefaultPlanVersion("plan_id", new() { Version = 0 });
+        var plan = await this.client.Beta.SetDefaultPlanVersion(
+            "plan_id",
+            new() { Version = 0 },
+            TestContext.Current.CancellationToken
+        );
         plan.Validate();
     }
 }

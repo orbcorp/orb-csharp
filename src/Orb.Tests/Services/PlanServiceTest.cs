@@ -84,7 +84,8 @@ public class PlanServiceTest : TestBase
                         },
                     },
                 ],
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         plan.Validate();
     }
@@ -92,21 +93,29 @@ public class PlanServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var plan = await this.client.Plans.Update("plan_id");
+        var plan = await this.client.Plans.Update(
+            "plan_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         plan.Validate();
     }
 
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Plans.List();
+        var page = await this.client.Plans.List(new(), TestContext.Current.CancellationToken);
         page.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var plan = await this.client.Plans.Fetch("plan_id");
+        var plan = await this.client.Plans.Fetch(
+            "plan_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         plan.Validate();
     }
 }

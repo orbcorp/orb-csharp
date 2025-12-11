@@ -20,7 +20,8 @@ public class EventServiceTest : TestBase
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
                 Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         event1.Validate();
     }
@@ -28,7 +29,11 @@ public class EventServiceTest : TestBase
     [Fact]
     public async Task Deprecate_Works()
     {
-        var response = await this.client.Events.Deprecate("event_id");
+        var response = await this.client.Events.Deprecate(
+            "event_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         response.Validate();
     }
 
@@ -53,7 +58,8 @@ public class EventServiceTest : TestBase
                         ExternalCustomerID = "external_customer_id",
                     },
                 ],
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -61,7 +67,10 @@ public class EventServiceTest : TestBase
     [Fact]
     public async Task Search_Works()
     {
-        var response = await this.client.Events.Search(new() { EventIDs = ["string"] });
+        var response = await this.client.Events.Search(
+            new() { EventIDs = ["string"] },
+            TestContext.Current.CancellationToken
+        );
         response.Validate();
     }
 }

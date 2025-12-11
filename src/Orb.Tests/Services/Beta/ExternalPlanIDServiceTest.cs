@@ -9,7 +9,8 @@ public class ExternalPlanIDServiceTest : TestBase
     {
         var planVersion = await this.client.Beta.ExternalPlanID.CreatePlanVersion(
             "external_plan_id",
-            new() { Version = 0 }
+            new() { Version = 0 },
+            TestContext.Current.CancellationToken
         );
         planVersion.Validate();
     }
@@ -19,7 +20,8 @@ public class ExternalPlanIDServiceTest : TestBase
     {
         var planVersion = await this.client.Beta.ExternalPlanID.FetchPlanVersion(
             "version",
-            new() { ExternalPlanID = "external_plan_id" }
+            new() { ExternalPlanID = "external_plan_id" },
+            TestContext.Current.CancellationToken
         );
         planVersion.Validate();
     }
@@ -29,7 +31,8 @@ public class ExternalPlanIDServiceTest : TestBase
     {
         var plan = await this.client.Beta.ExternalPlanID.SetDefaultPlanVersion(
             "external_plan_id",
-            new() { Version = 0 }
+            new() { Version = 0 },
+            TestContext.Current.CancellationToken
         );
         plan.Validate();
     }

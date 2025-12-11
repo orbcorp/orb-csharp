@@ -8,7 +8,11 @@ public class AlertServiceTest : TestBase
     [Fact]
     public async Task Retrieve_Works()
     {
-        var alert = await this.client.Alerts.Retrieve("alert_id");
+        var alert = await this.client.Alerts.Retrieve(
+            "alert_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         alert.Validate();
     }
 
@@ -17,7 +21,8 @@ public class AlertServiceTest : TestBase
     {
         var alert = await this.client.Alerts.Update(
             "alert_configuration_id",
-            new() { Thresholds = [new(0)] }
+            new() { Thresholds = [new(0)] },
+            TestContext.Current.CancellationToken
         );
         alert.Validate();
     }
@@ -25,7 +30,7 @@ public class AlertServiceTest : TestBase
     [Fact(Skip = "plan_version=0 breaks Prism")]
     public async Task List_Works()
     {
-        var page = await this.client.Alerts.List();
+        var page = await this.client.Alerts.List(new(), TestContext.Current.CancellationToken);
         page.Validate();
     }
 
@@ -34,7 +39,8 @@ public class AlertServiceTest : TestBase
     {
         var alert = await this.client.Alerts.CreateForCustomer(
             "customer_id",
-            new() { Currency = "currency", Type = Type.CreditBalanceDepleted }
+            new() { Currency = "currency", Type = Type.CreditBalanceDepleted },
+            TestContext.Current.CancellationToken
         );
         alert.Validate();
     }
@@ -48,7 +54,8 @@ public class AlertServiceTest : TestBase
             {
                 Currency = "currency",
                 Type = AlertCreateForExternalCustomerParamsType.CreditBalanceDepleted,
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         alert.Validate();
     }
@@ -62,7 +69,8 @@ public class AlertServiceTest : TestBase
             {
                 Thresholds = [new(0)],
                 Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         alert.Validate();
     }
@@ -70,14 +78,22 @@ public class AlertServiceTest : TestBase
     [Fact]
     public async Task Disable_Works()
     {
-        var alert = await this.client.Alerts.Disable("alert_configuration_id");
+        var alert = await this.client.Alerts.Disable(
+            "alert_configuration_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         alert.Validate();
     }
 
     [Fact]
     public async Task Enable_Works()
     {
-        var alert = await this.client.Alerts.Enable("alert_configuration_id");
+        var alert = await this.client.Alerts.Enable(
+            "alert_configuration_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         alert.Validate();
     }
 }

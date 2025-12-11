@@ -39,7 +39,8 @@ public class InvoiceServiceTest : TestBase
                         UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                     },
                 ],
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         invoice.Validate();
     }
@@ -47,21 +48,29 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var invoice = await this.client.Invoices.Update("invoice_id");
+        var invoice = await this.client.Invoices.Update(
+            "invoice_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         invoice.Validate();
     }
 
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Invoices.List();
+        var page = await this.client.Invoices.List(new(), TestContext.Current.CancellationToken);
         page.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var invoice = await this.client.Invoices.Fetch("invoice_id");
+        var invoice = await this.client.Invoices.Fetch(
+            "invoice_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         invoice.Validate();
     }
 
@@ -69,7 +78,8 @@ public class InvoiceServiceTest : TestBase
     public async Task FetchUpcoming_Works()
     {
         var response = await this.client.Invoices.FetchUpcoming(
-            new() { SubscriptionID = "subscription_id" }
+            new() { SubscriptionID = "subscription_id" },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -77,7 +87,11 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Issue_Works()
     {
-        var invoice = await this.client.Invoices.Issue("invoice_id");
+        var invoice = await this.client.Invoices.Issue(
+            "invoice_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         invoice.Validate();
     }
 
@@ -92,7 +106,8 @@ public class InvoiceServiceTest : TestBase
 #else
                 DateTimeOffset
 #endif
-                .Parse("2023-09-22") }
+                .Parse("2023-09-22") },
+            TestContext.Current.CancellationToken
         );
         invoice.Validate();
     }
@@ -100,14 +115,22 @@ public class InvoiceServiceTest : TestBase
     [Fact]
     public async Task Pay_Works()
     {
-        var invoice = await this.client.Invoices.Pay("invoice_id");
+        var invoice = await this.client.Invoices.Pay(
+            "invoice_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         invoice.Validate();
     }
 
     [Fact]
     public async Task Void_Works()
     {
-        var invoice = await this.client.Invoices.Void("invoice_id");
+        var invoice = await this.client.Invoices.Void(
+            "invoice_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         invoice.Validate();
     }
 }

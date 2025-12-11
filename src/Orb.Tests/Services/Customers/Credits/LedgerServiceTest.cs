@@ -10,7 +10,11 @@ public class LedgerServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Customers.Credits.Ledger.List("customer_id");
+        var page = await this.client.Customers.Credits.Ledger.List(
+            "customer_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         page.Validate();
     }
 
@@ -62,7 +66,8 @@ public class LedgerServiceTest : TestBase
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -117,7 +122,8 @@ public class LedgerServiceTest : TestBase
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                 },
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         response.Validate();
     }
@@ -126,7 +132,9 @@ public class LedgerServiceTest : TestBase
     public async Task ListByExternalID_Works()
     {
         var page = await this.client.Customers.Credits.Ledger.ListByExternalID(
-            "external_customer_id"
+            "external_customer_id",
+            new(),
+            TestContext.Current.CancellationToken
         );
         page.Validate();
     }

@@ -35,7 +35,8 @@ public class CreditNoteServiceTest : TestBase
                     },
                 ],
                 Reason = Reason.Duplicate,
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         creditNote.Validate();
     }
@@ -43,14 +44,18 @@ public class CreditNoteServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.CreditNotes.List();
+        var page = await this.client.CreditNotes.List(new(), TestContext.Current.CancellationToken);
         page.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var creditNote = await this.client.CreditNotes.Fetch("credit_note_id");
+        var creditNote = await this.client.CreditNotes.Fetch(
+            "credit_note_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         creditNote.Validate();
     }
 }
