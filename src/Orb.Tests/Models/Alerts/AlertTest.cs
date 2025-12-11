@@ -67,12 +67,14 @@ public class AlertTest : TestBase
         Assert.Equal(expectedMetric, model.Metric);
         Assert.Equal(expectedPlan, model.Plan);
         Assert.Equal(expectedSubscription, model.Subscription);
+        Assert.NotNull(model.Thresholds);
         Assert.Equal(expectedThresholds.Count, model.Thresholds.Count);
         for (int i = 0; i < expectedThresholds.Count; i++)
         {
             Assert.Equal(expectedThresholds[i], model.Thresholds[i]);
         }
         Assert.Equal(expectedType, model.Type);
+        Assert.NotNull(model.BalanceAlertStatus);
         Assert.Equal(expectedBalanceAlertStatus.Count, model.BalanceAlertStatus.Count);
         for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
         {
@@ -171,12 +173,14 @@ public class AlertTest : TestBase
         Assert.Equal(expectedMetric, deserialized.Metric);
         Assert.Equal(expectedPlan, deserialized.Plan);
         Assert.Equal(expectedSubscription, deserialized.Subscription);
+        Assert.NotNull(deserialized.Thresholds);
         Assert.Equal(expectedThresholds.Count, deserialized.Thresholds.Count);
         for (int i = 0; i < expectedThresholds.Count; i++)
         {
             Assert.Equal(expectedThresholds[i], deserialized.Thresholds[i]);
         }
         Assert.Equal(expectedType, deserialized.Type);
+        Assert.NotNull(deserialized.BalanceAlertStatus);
         Assert.Equal(expectedBalanceAlertStatus.Count, deserialized.BalanceAlertStatus.Count);
         for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
         {

@@ -28,6 +28,7 @@ public class NewAccountingSyncConfigurationTest : TestBase
         ];
         bool expectedExcluded = true;
 
+        Assert.NotNull(model.AccountingProviders);
         Assert.Equal(expectedAccountingProviders.Count, model.AccountingProviders.Count);
         for (int i = 0; i < expectedAccountingProviders.Count; i++)
         {
@@ -84,6 +85,7 @@ public class NewAccountingSyncConfigurationTest : TestBase
         ];
         bool expectedExcluded = true;
 
+        Assert.NotNull(deserialized.AccountingProviders);
         Assert.Equal(expectedAccountingProviders.Count, deserialized.AccountingProviders.Count);
         for (int i = 0; i < expectedAccountingProviders.Count; i++)
         {

@@ -54,17 +54,20 @@ public class NewMaximumTest : TestBase
         Assert.Equal(expectedAdjustmentType, model.AdjustmentType);
         Assert.Equal(expectedMaximumAmount, model.MaximumAmount);
         Assert.Equal(expectedAppliesToAll, model.AppliesToAll);
+        Assert.NotNull(model.AppliesToItemIDs);
         Assert.Equal(expectedAppliesToItemIDs.Count, model.AppliesToItemIDs.Count);
         for (int i = 0; i < expectedAppliesToItemIDs.Count; i++)
         {
             Assert.Equal(expectedAppliesToItemIDs[i], model.AppliesToItemIDs[i]);
         }
+        Assert.NotNull(model.AppliesToPriceIDs);
         Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
         {
             Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
         }
         Assert.Equal(expectedCurrency, model.Currency);
+        Assert.NotNull(model.Filters);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {
@@ -154,17 +157,20 @@ public class NewMaximumTest : TestBase
         Assert.Equal(expectedAdjustmentType, deserialized.AdjustmentType);
         Assert.Equal(expectedMaximumAmount, deserialized.MaximumAmount);
         Assert.Equal(expectedAppliesToAll, deserialized.AppliesToAll);
+        Assert.NotNull(deserialized.AppliesToItemIDs);
         Assert.Equal(expectedAppliesToItemIDs.Count, deserialized.AppliesToItemIDs.Count);
         for (int i = 0; i < expectedAppliesToItemIDs.Count; i++)
         {
             Assert.Equal(expectedAppliesToItemIDs[i], deserialized.AppliesToItemIDs[i]);
         }
+        Assert.NotNull(deserialized.AppliesToPriceIDs);
         Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
         {
             Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
         }
         Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.NotNull(deserialized.Filters);
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {

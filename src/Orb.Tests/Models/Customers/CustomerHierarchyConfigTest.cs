@@ -18,6 +18,7 @@ public class CustomerHierarchyConfigTest : TestBase
         List<string> expectedChildCustomerIDs = ["string"];
         string expectedParentCustomerID = "parent_customer_id";
 
+        Assert.NotNull(model.ChildCustomerIDs);
         Assert.Equal(expectedChildCustomerIDs.Count, model.ChildCustomerIDs.Count);
         for (int i = 0; i < expectedChildCustomerIDs.Count; i++)
         {
@@ -57,6 +58,7 @@ public class CustomerHierarchyConfigTest : TestBase
         List<string> expectedChildCustomerIDs = ["string"];
         string expectedParentCustomerID = "parent_customer_id";
 
+        Assert.NotNull(deserialized.ChildCustomerIDs);
         Assert.Equal(expectedChildCustomerIDs.Count, deserialized.ChildCustomerIDs.Count);
         for (int i = 0; i < expectedChildCustomerIDs.Count; i++)
         {

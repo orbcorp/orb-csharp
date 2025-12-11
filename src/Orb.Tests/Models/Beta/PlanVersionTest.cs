@@ -333,6 +333,7 @@ public class PlanVersionTest : TestBase
             Assert.Equal(expectedAdjustments[i], model.Adjustments[i]);
         }
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.NotNull(model.PlanPhases);
         Assert.Equal(expectedPlanPhases.Count, model.PlanPhases.Count);
         for (int i = 0; i < expectedPlanPhases.Count; i++)
         {
@@ -844,6 +845,7 @@ public class PlanVersionTest : TestBase
             Assert.Equal(expectedAdjustments[i], deserialized.Adjustments[i]);
         }
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.NotNull(deserialized.PlanPhases);
         Assert.Equal(expectedPlanPhases.Count, deserialized.PlanPhases.Count);
         for (int i = 0; i < expectedPlanPhases.Count; i++)
         {

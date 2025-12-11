@@ -778,6 +778,7 @@ public class IncrementLedgerEntryTest : TestBase
             Assert.Equal(value, model.Metadata[item.Key]);
         }
         Assert.Equal(expectedStartingBalance, model.StartingBalance);
+        Assert.NotNull(model.CreatedInvoices);
         Assert.Equal(expectedCreatedInvoices.Count, model.CreatedInvoices.Count);
         for (int i = 0; i < expectedCreatedInvoices.Count; i++)
         {
@@ -1939,6 +1940,7 @@ public class IncrementLedgerEntryTest : TestBase
             Assert.Equal(value, deserialized.Metadata[item.Key]);
         }
         Assert.Equal(expectedStartingBalance, deserialized.StartingBalance);
+        Assert.NotNull(deserialized.CreatedInvoices);
         Assert.Equal(expectedCreatedInvoices.Count, deserialized.CreatedInvoices.Count);
         for (int i = 0; i < expectedCreatedInvoices.Count; i++)
         {

@@ -176,6 +176,7 @@ public class SharedCreditNoteTest : TestBase
         Assert.Equal(expectedTotal, model.Total);
         Assert.Equal(expectedType, model.Type);
         Assert.Equal(expectedVoidedAt, model.VoidedAt);
+        Assert.NotNull(model.Discounts);
         Assert.Equal(expectedDiscounts.Count, model.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -435,6 +436,7 @@ public class SharedCreditNoteTest : TestBase
         Assert.Equal(expectedTotal, deserialized.Total);
         Assert.Equal(expectedType, deserialized.Type);
         Assert.Equal(expectedVoidedAt, deserialized.VoidedAt);
+        Assert.NotNull(deserialized.Discounts);
         Assert.Equal(expectedDiscounts.Count, deserialized.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -880,6 +882,7 @@ public class SharedCreditNoteLineItemTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], model.TaxAmounts[i]);
         }
+        Assert.NotNull(model.Discounts);
         Assert.Equal(expectedDiscounts.Count, model.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -1017,6 +1020,7 @@ public class SharedCreditNoteLineItemTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], deserialized.TaxAmounts[i]);
         }
+        Assert.NotNull(deserialized.Discounts);
         Assert.Equal(expectedDiscounts.Count, deserialized.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -1615,6 +1619,7 @@ public class MaximumAmountAdjustmentTest : TestBase
         Assert.Equal(expectedAmountApplied, model.AmountApplied);
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedPercentageDiscount, model.PercentageDiscount);
+        Assert.NotNull(model.AppliesToPrices);
         Assert.Equal(expectedAppliesToPrices.Count, model.AppliesToPrices.Count);
         for (int i = 0; i < expectedAppliesToPrices.Count; i++)
         {
@@ -1667,6 +1672,7 @@ public class MaximumAmountAdjustmentTest : TestBase
         Assert.Equal(expectedAmountApplied, deserialized.AmountApplied);
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
         Assert.Equal(expectedPercentageDiscount, deserialized.PercentageDiscount);
+        Assert.NotNull(deserialized.AppliesToPrices);
         Assert.Equal(expectedAppliesToPrices.Count, deserialized.AppliesToPrices.Count);
         for (int i = 0; i < expectedAppliesToPrices.Count; i++)
         {
@@ -2004,6 +2010,7 @@ public class SharedCreditNoteDiscountTest : TestBase
         Assert.Equal(expectedAmountApplied, model.AmountApplied);
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedPercentageDiscount, model.PercentageDiscount);
+        Assert.NotNull(model.AppliesToPrices);
         Assert.Equal(expectedAppliesToPrices.Count, model.AppliesToPrices.Count);
         for (int i = 0; i < expectedAppliesToPrices.Count; i++)
         {
@@ -2059,6 +2066,7 @@ public class SharedCreditNoteDiscountTest : TestBase
         Assert.Equal(expectedAmountApplied, deserialized.AmountApplied);
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
         Assert.Equal(expectedPercentageDiscount, deserialized.PercentageDiscount);
+        Assert.NotNull(deserialized.AppliesToPrices);
         Assert.Equal(expectedAppliesToPrices.Count, deserialized.AppliesToPrices.Count);
         for (int i = 0; i < expectedAppliesToPrices.Count; i++)
         {

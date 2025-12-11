@@ -179,6 +179,7 @@ public class AddTest : TestBase
         Assert.Equal(expectedStartDate, model.StartDate);
         Assert.Equal(expectedAllocationPrice, model.AllocationPrice);
         Assert.Equal(expectedCanDeferBilling, model.CanDeferBilling);
+        Assert.NotNull(model.Discounts);
         Assert.Equal(expectedDiscounts.Count, model.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -187,6 +188,7 @@ public class AddTest : TestBase
         Assert.Equal(expectedEndDate, model.EndDate);
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFilter, model.Filter);
+        Assert.NotNull(model.FixedFeeQuantityTransitions);
         Assert.Equal(
             expectedFixedFeeQuantityTransitions.Count,
             model.FixedFeeQuantityTransitions.Count
@@ -202,6 +204,7 @@ public class AddTest : TestBase
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedPrice, model.Price);
         Assert.Equal(expectedPriceID, model.PriceID);
+        Assert.NotNull(model.UsageCustomerIDs);
         Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
         for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
         {
@@ -473,6 +476,7 @@ public class AddTest : TestBase
         Assert.Equal(expectedStartDate, deserialized.StartDate);
         Assert.Equal(expectedAllocationPrice, deserialized.AllocationPrice);
         Assert.Equal(expectedCanDeferBilling, deserialized.CanDeferBilling);
+        Assert.NotNull(deserialized.Discounts);
         Assert.Equal(expectedDiscounts.Count, deserialized.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -481,6 +485,7 @@ public class AddTest : TestBase
         Assert.Equal(expectedEndDate, deserialized.EndDate);
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFilter, deserialized.Filter);
+        Assert.NotNull(deserialized.FixedFeeQuantityTransitions);
         Assert.Equal(
             expectedFixedFeeQuantityTransitions.Count,
             deserialized.FixedFeeQuantityTransitions.Count
@@ -496,6 +501,7 @@ public class AddTest : TestBase
         Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
         Assert.Equal(expectedPrice, deserialized.Price);
         Assert.Equal(expectedPriceID, deserialized.PriceID);
+        Assert.NotNull(deserialized.UsageCustomerIDs);
         Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
         for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
         {
@@ -9024,6 +9030,7 @@ public class EditTest : TestBase
         Assert.Equal(expectedCanDeferBilling, model.CanDeferBilling);
         Assert.Equal(expectedEndDate, model.EndDate);
         Assert.Equal(expectedFilter, model.Filter);
+        Assert.NotNull(model.FixedFeeQuantityTransitions);
         Assert.Equal(
             expectedFixedFeeQuantityTransitions.Count,
             model.FixedFeeQuantityTransitions.Count
@@ -9036,6 +9043,7 @@ public class EditTest : TestBase
             );
         }
         Assert.Equal(expectedStartDate, model.StartDate);
+        Assert.NotNull(model.UsageCustomerIDs);
         Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
         for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
         {
@@ -9122,6 +9130,7 @@ public class EditTest : TestBase
         Assert.Equal(expectedCanDeferBilling, deserialized.CanDeferBilling);
         Assert.Equal(expectedEndDate, deserialized.EndDate);
         Assert.Equal(expectedFilter, deserialized.Filter);
+        Assert.NotNull(deserialized.FixedFeeQuantityTransitions);
         Assert.Equal(
             expectedFixedFeeQuantityTransitions.Count,
             deserialized.FixedFeeQuantityTransitions.Count
@@ -9134,6 +9143,7 @@ public class EditTest : TestBase
             );
         }
         Assert.Equal(expectedStartDate, deserialized.StartDate);
+        Assert.NotNull(deserialized.UsageCustomerIDs);
         Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
         for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
         {

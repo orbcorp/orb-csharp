@@ -809,6 +809,7 @@ public class AddPriceTest : TestBase
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedAllocationPrice, model.AllocationPrice);
+        Assert.NotNull(model.Discounts);
         Assert.Equal(expectedDiscounts.Count, model.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -1084,6 +1085,7 @@ public class AddPriceTest : TestBase
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedAllocationPrice, deserialized.AllocationPrice);
+        Assert.NotNull(deserialized.Discounts);
         Assert.Equal(expectedDiscounts.Count, deserialized.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -10205,6 +10207,7 @@ public class ReplacePriceTest : TestBase
 
         Assert.Equal(expectedReplacesPriceID, model.ReplacesPriceID);
         Assert.Equal(expectedAllocationPrice, model.AllocationPrice);
+        Assert.NotNull(model.Discounts);
         Assert.Equal(expectedDiscounts.Count, model.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {
@@ -10477,6 +10480,7 @@ public class ReplacePriceTest : TestBase
 
         Assert.Equal(expectedReplacesPriceID, deserialized.ReplacesPriceID);
         Assert.Equal(expectedAllocationPrice, deserialized.AllocationPrice);
+        Assert.NotNull(deserialized.Discounts);
         Assert.Equal(expectedDiscounts.Count, deserialized.Discounts.Count);
         for (int i = 0; i < expectedDiscounts.Count; i++)
         {

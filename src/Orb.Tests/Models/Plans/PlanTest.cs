@@ -593,6 +593,7 @@ public class PlanTest : TestBase
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedNetTerms, model.NetTerms);
+        Assert.NotNull(model.PlanPhases);
         Assert.Equal(expectedPlanPhases.Count, model.PlanPhases.Count);
         for (int i = 0; i < expectedPlanPhases.Count; i++)
         {
@@ -1481,6 +1482,7 @@ public class PlanTest : TestBase
         Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedNetTerms, deserialized.NetTerms);
+        Assert.NotNull(deserialized.PlanPhases);
         Assert.Equal(expectedPlanPhases.Count, deserialized.PlanPhases.Count);
         for (int i = 0; i < expectedPlanPhases.Count; i++)
         {

@@ -374,6 +374,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedEffectiveDate, model.EffectiveDate);
         Assert.Equal(expectedExpiryDate, model.ExpiryDate);
+        Assert.NotNull(model.Filters);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {
@@ -541,6 +542,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
         Assert.Equal(expectedDescription, deserialized.Description);
         Assert.Equal(expectedEffectiveDate, deserialized.EffectiveDate);
         Assert.Equal(expectedExpiryDate, deserialized.ExpiryDate);
+        Assert.NotNull(deserialized.Filters);
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {

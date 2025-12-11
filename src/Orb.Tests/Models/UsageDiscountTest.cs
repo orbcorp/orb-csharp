@@ -45,11 +45,13 @@ public class UsageDiscountTest : TestBase
 
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedUsageDiscountValue, model.UsageDiscountValue);
+        Assert.NotNull(model.AppliesToPriceIDs);
         Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
         {
             Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
         }
+        Assert.NotNull(model.Filters);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {
@@ -125,11 +127,13 @@ public class UsageDiscountTest : TestBase
 
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
         Assert.Equal(expectedUsageDiscountValue, deserialized.UsageDiscountValue);
+        Assert.NotNull(deserialized.AppliesToPriceIDs);
         Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
         for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
         {
             Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
         }
+        Assert.NotNull(deserialized.Filters);
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {
