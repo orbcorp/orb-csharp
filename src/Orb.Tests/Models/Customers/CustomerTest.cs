@@ -1222,6 +1222,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             },
         ];
 
+        Assert.NotNull(model.PaymentProviders);
         Assert.Equal(expectedPaymentProviders.Count, model.PaymentProviders.Count);
         for (int i = 0; i < expectedPaymentProviders.Count; i++)
         {
@@ -1278,6 +1279,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             },
         ];
 
+        Assert.NotNull(deserialized.PaymentProviders);
         Assert.Equal(expectedPaymentProviders.Count, deserialized.PaymentProviders.Count);
         for (int i = 0; i < expectedPaymentProviders.Count; i++)
         {
@@ -1364,6 +1366,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, model.ProviderType);
+        Assert.NotNull(model.ExcludedPaymentMethodTypes);
         Assert.Equal(
             expectedExcludedPaymentMethodTypes.Count,
             model.ExcludedPaymentMethodTypes.Count
@@ -1416,6 +1419,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
+        Assert.NotNull(deserialized.ExcludedPaymentMethodTypes);
         Assert.Equal(
             expectedExcludedPaymentMethodTypes.Count,
             deserialized.ExcludedPaymentMethodTypes.Count

@@ -8041,6 +8041,7 @@ public class UnitTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -8421,6 +8422,7 @@ public class UnitTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -9718,6 +9720,7 @@ public class TieredTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -10135,6 +10138,7 @@ public class TieredTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -11468,6 +11472,7 @@ public class BulkTest : TestBase
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedBulkConfig, model.BulkConfig);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -11850,6 +11855,7 @@ public class BulkTest : TestBase
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedBulkConfig, deserialized.BulkConfig);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -13141,6 +13147,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedBulkWithFiltersConfig, model.BulkWithFiltersConfig);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -13550,6 +13557,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedBulkWithFiltersConfig, deserialized.BulkWithFiltersConfig);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -15144,6 +15152,7 @@ public class PackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -15529,6 +15538,7 @@ public class PackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -16814,6 +16824,7 @@ public class MatrixTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -17210,6 +17221,7 @@ public class MatrixTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -18527,6 +18539,7 @@ public class ThresholdTotalAmountTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -18937,6 +18950,7 @@ public class ThresholdTotalAmountTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -20520,6 +20534,7 @@ public class TieredPackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -20929,6 +20944,7 @@ public class TieredPackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -22455,6 +22471,7 @@ public class TieredWithMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -22898,6 +22915,7 @@ public class TieredWithMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -24652,6 +24670,7 @@ public class GroupedTieredTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -25061,6 +25080,7 @@ public class GroupedTieredTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -26586,6 +26606,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -27027,6 +27048,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -28668,6 +28690,7 @@ public class PackageWithAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -29069,6 +29092,7 @@ public class PackageWithAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -30463,6 +30487,7 @@ public class UnitWithPercentTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -30852,6 +30877,7 @@ public class UnitWithPercentTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -32214,6 +32240,7 @@ public class MatrixWithAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -32618,6 +32645,7 @@ public class MatrixWithAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -33942,6 +33970,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -34334,6 +34363,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -35780,6 +35810,7 @@ public class UnitWithProrationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -36168,6 +36199,7 @@ public class UnitWithProrationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -37510,6 +37542,7 @@ public class GroupedAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -37911,6 +37944,7 @@ public class GroupedAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -39307,6 +39341,7 @@ public class BulkWithProrationTest : TestBase
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedBulkWithProrationConfig, model.BulkWithProrationConfig);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -39708,6 +39743,7 @@ public class BulkWithProrationTest : TestBase
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedBulkWithProrationConfig, deserialized.BulkWithProrationConfig);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -41233,6 +41269,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -41638,6 +41675,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -43069,6 +43107,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -43501,6 +43540,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -45164,6 +45204,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -45571,6 +45612,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -47004,6 +47046,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -47426,6 +47469,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -48998,6 +49042,7 @@ public class GroupedTieredPackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -49411,6 +49456,7 @@ public class GroupedTieredPackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -50940,6 +50986,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -51353,6 +51400,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -52895,6 +52943,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -53330,6 +53379,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -55138,6 +55188,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -55582,6 +55633,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -57502,6 +57554,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -57924,6 +57977,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -59490,6 +59544,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -59897,6 +59952,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -61306,6 +61362,7 @@ public class PriceMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -61692,6 +61749,7 @@ public class PriceMinimumTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -63083,6 +63141,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -63464,6 +63523,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -64796,6 +64856,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, model.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, model.BillingMode);
         Assert.Equal(expectedCadence, model.Cadence);
+        Assert.NotNull(model.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, model.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {
@@ -65193,6 +65254,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedBillingCycleConfiguration, deserialized.BillingCycleConfiguration);
         Assert.Equal(expectedBillingMode, deserialized.BillingMode);
         Assert.Equal(expectedCadence, deserialized.Cadence);
+        Assert.NotNull(deserialized.CompositePriceFilters);
         Assert.Equal(expectedCompositePriceFilters.Count, deserialized.CompositePriceFilters.Count);
         for (int i = 0; i < expectedCompositePriceFilters.Count; i++)
         {

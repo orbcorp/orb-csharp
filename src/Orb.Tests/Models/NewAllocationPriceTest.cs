@@ -61,6 +61,7 @@ public class NewAllocationPriceTest : TestBase
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedCustomExpiration, model.CustomExpiration);
         Assert.Equal(expectedExpiresAtEndOfCadence, model.ExpiresAtEndOfCadence);
+        Assert.NotNull(model.Filters);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {
@@ -160,6 +161,7 @@ public class NewAllocationPriceTest : TestBase
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedCustomExpiration, deserialized.CustomExpiration);
         Assert.Equal(expectedExpiresAtEndOfCadence, deserialized.ExpiresAtEndOfCadence);
+        Assert.NotNull(deserialized.Filters);
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
         {

@@ -3074,6 +3074,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], model.TaxAmounts[i]);
         }
+        Assert.NotNull(model.UsageCustomerIDs);
         Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
         for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
         {
@@ -3633,6 +3634,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], deserialized.TaxAmounts[i]);
         }
+        Assert.NotNull(deserialized.UsageCustomerIDs);
         Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
         for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
         {

@@ -105,6 +105,7 @@ public class PriceEvaluationTest : TestBase
 
         Assert.Equal(expectedExternalPriceID, model.ExternalPriceID);
         Assert.Equal(expectedFilter, model.Filter);
+        Assert.NotNull(model.GroupingKeys);
         Assert.Equal(expectedGroupingKeys.Count, model.GroupingKeys.Count);
         for (int i = 0; i < expectedGroupingKeys.Count; i++)
         {
@@ -269,6 +270,7 @@ public class PriceEvaluationTest : TestBase
 
         Assert.Equal(expectedExternalPriceID, deserialized.ExternalPriceID);
         Assert.Equal(expectedFilter, deserialized.Filter);
+        Assert.NotNull(deserialized.GroupingKeys);
         Assert.Equal(expectedGroupingKeys.Count, deserialized.GroupingKeys.Count);
         for (int i = 0; i < expectedGroupingKeys.Count; i++)
         {
