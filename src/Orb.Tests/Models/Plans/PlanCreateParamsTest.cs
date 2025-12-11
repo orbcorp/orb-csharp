@@ -497,7 +497,7 @@ public class PricePriceTest : TestBase
     public void new_plan_unitValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanUnitPrice()
             {
                 Cadence = Models::NewPlanUnitPriceCadence.Annual,
                 ItemID = "item_id",
@@ -544,7 +544,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tieredValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredPrice()
             {
                 Cadence = Models::NewPlanTieredPriceCadence.Annual,
                 ItemID = "item_id",
@@ -603,7 +603,7 @@ public class PricePriceTest : TestBase
     public void new_plan_bulkValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
                 Cadence = Models::NewPlanBulkPriceCadence.Annual,
@@ -650,7 +650,7 @@ public class PricePriceTest : TestBase
     public void bulk_with_filtersValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new BulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
                 {
@@ -704,7 +704,7 @@ public class PricePriceTest : TestBase
     public void new_plan_packageValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanPackagePrice()
             {
                 Cadence = Models::NewPlanPackagePriceCadence.Annual,
                 ItemID = "item_id",
@@ -751,7 +751,7 @@ public class PricePriceTest : TestBase
     public void new_plan_matrixValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMatrixPrice()
             {
                 Cadence = Models::NewPlanMatrixPriceCadence.Annual,
                 ItemID = "item_id",
@@ -806,7 +806,7 @@ public class PricePriceTest : TestBase
     public void new_plan_threshold_total_amountValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanThresholdTotalAmountPrice()
             {
                 Cadence = Models::NewPlanThresholdTotalAmountPriceCadence.Annual,
                 ItemID = "item_id",
@@ -861,7 +861,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tiered_packageValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredPackagePrice()
             {
                 Cadence = Models::NewPlanTieredPackagePriceCadence.Annual,
                 ItemID = "item_id",
@@ -916,7 +916,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tiered_with_minimumValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredWithMinimumPrice()
             {
                 Cadence = Models::NewPlanTieredWithMinimumPriceCadence.Annual,
                 ItemID = "item_id",
@@ -982,7 +982,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_tieredValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedTieredPrice()
             {
                 Cadence = Models::NewPlanGroupedTieredPriceCadence.Annual,
                 GroupedTieredConfig = new()
@@ -1037,7 +1037,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tiered_package_with_minimumValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredPackageWithMinimumPrice()
             {
                 Cadence = Models::NewPlanTieredPackageWithMinimumPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1103,7 +1103,7 @@ public class PricePriceTest : TestBase
     public void new_plan_package_with_allocationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanPackageWithAllocationPrice()
             {
                 Cadence = Models::NewPlanPackageWithAllocationPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1156,7 +1156,7 @@ public class PricePriceTest : TestBase
     public void new_plan_unit_with_percentValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanUnitWithPercentPrice()
             {
                 Cadence = Models::NewPlanUnitWithPercentPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1203,7 +1203,7 @@ public class PricePriceTest : TestBase
     public void new_plan_matrix_with_allocationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMatrixWithAllocationPrice()
             {
                 Cadence = Models::NewPlanMatrixWithAllocationPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1259,7 +1259,7 @@ public class PricePriceTest : TestBase
     public void tiered_with_prorationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new TieredWithProration()
             {
                 Cadence = TieredWithProrationCadence.Annual,
                 ItemID = "item_id",
@@ -1307,7 +1307,7 @@ public class PricePriceTest : TestBase
     public void new_plan_unit_with_prorationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanUnitWithProrationPrice()
             {
                 Cadence = Models::NewPlanUnitWithProrationPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1354,7 +1354,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_allocationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedAllocationPrice()
             {
                 Cadence = Models::NewPlanGroupedAllocationPriceCadence.Annual,
                 GroupedAllocationConfig = new()
@@ -1406,7 +1406,7 @@ public class PricePriceTest : TestBase
     public void new_plan_bulk_with_prorationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
                     [
@@ -1458,7 +1458,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_with_prorated_minimumValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedWithProratedMinimumPrice()
             {
                 Cadence = Models::NewPlanGroupedWithProratedMinimumPriceCadence.Annual,
                 GroupedWithProratedMinimumConfig = new()
@@ -1511,7 +1511,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_with_metered_minimumValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedWithMeteredMinimumPrice()
             {
                 Cadence = Models::NewPlanGroupedWithMeteredMinimumPriceCadence.Annual,
                 GroupedWithMeteredMinimumConfig = new()
@@ -1573,7 +1573,7 @@ public class PricePriceTest : TestBase
     public void grouped_with_min_max_thresholdsValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new GroupedWithMinMaxThresholds()
             {
                 Cadence = GroupedWithMinMaxThresholdsCadence.Annual,
                 GroupedWithMinMaxThresholdsConfig = new()
@@ -1625,7 +1625,7 @@ public class PricePriceTest : TestBase
     public void new_plan_matrix_with_display_nameValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMatrixWithDisplayNamePrice()
             {
                 Cadence = Models::NewPlanMatrixWithDisplayNamePriceCadence.Annual,
                 ItemID = "item_id",
@@ -1685,7 +1685,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_tiered_packageValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedTieredPackagePrice()
             {
                 Cadence = Models::NewPlanGroupedTieredPackagePriceCadence.Annual,
                 GroupedTieredPackageConfig = new()
@@ -1741,7 +1741,7 @@ public class PricePriceTest : TestBase
     public void new_plan_max_group_tiered_packageValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMaxGroupTieredPackagePrice()
             {
                 Cadence = Models::NewPlanMaxGroupTieredPackagePriceCadence.Annual,
                 ItemID = "item_id",
@@ -1798,7 +1798,7 @@ public class PricePriceTest : TestBase
     public void new_plan_scalable_matrix_with_unit_pricingValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = Models::NewPlanScalableMatrixWithUnitPricingPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1861,7 +1861,7 @@ public class PricePriceTest : TestBase
     public void new_plan_scalable_matrix_with_tiered_pricingValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = Models::NewPlanScalableMatrixWithTieredPricingPriceCadence.Annual,
                 ItemID = "item_id",
@@ -1927,7 +1927,7 @@ public class PricePriceTest : TestBase
     public void new_plan_cumulative_grouped_bulkValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanCumulativeGroupedBulkPrice()
             {
                 Cadence = Models::NewPlanCumulativeGroupedBulkPriceCadence.Annual,
                 CumulativeGroupedBulkConfig = new()
@@ -1987,7 +1987,7 @@ public class PricePriceTest : TestBase
     public void cumulative_grouped_allocationValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new CumulativeGroupedAllocation()
             {
                 Cadence = CumulativeGroupedAllocationCadence.Annual,
                 CumulativeGroupedAllocationConfig = new()
@@ -2039,7 +2039,7 @@ public class PricePriceTest : TestBase
     public void new_plan_minimum_compositeValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMinimumCompositePrice()
             {
                 Cadence = Models::NewPlanMinimumCompositePriceCadence.Annual,
                 ItemID = "item_id",
@@ -2086,7 +2086,7 @@ public class PricePriceTest : TestBase
     public void percentValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new Percent()
             {
                 Cadence = PercentCadence.Annual,
                 ItemID = "item_id",
@@ -2132,7 +2132,7 @@ public class PricePriceTest : TestBase
     public void event_outputValidation_Works()
     {
         PricePrice value = new(
-            new()
+            new EventOutput()
             {
                 Cadence = EventOutputCadence.Annual,
                 EventOutputConfig = new()
@@ -2183,7 +2183,7 @@ public class PricePriceTest : TestBase
     public void new_plan_unitSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanUnitPrice()
             {
                 Cadence = Models::NewPlanUnitPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2233,7 +2233,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tieredSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredPrice()
             {
                 Cadence = Models::NewPlanTieredPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2295,7 +2295,7 @@ public class PricePriceTest : TestBase
     public void new_plan_bulkSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
                 Cadence = Models::NewPlanBulkPriceCadence.Annual,
@@ -2345,7 +2345,7 @@ public class PricePriceTest : TestBase
     public void bulk_with_filtersSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new BulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
                 {
@@ -2402,7 +2402,7 @@ public class PricePriceTest : TestBase
     public void new_plan_packageSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanPackagePrice()
             {
                 Cadence = Models::NewPlanPackagePriceCadence.Annual,
                 ItemID = "item_id",
@@ -2452,7 +2452,7 @@ public class PricePriceTest : TestBase
     public void new_plan_matrixSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMatrixPrice()
             {
                 Cadence = Models::NewPlanMatrixPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2510,7 +2510,7 @@ public class PricePriceTest : TestBase
     public void new_plan_threshold_total_amountSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanThresholdTotalAmountPrice()
             {
                 Cadence = Models::NewPlanThresholdTotalAmountPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2568,7 +2568,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tiered_packageSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredPackagePrice()
             {
                 Cadence = Models::NewPlanTieredPackagePriceCadence.Annual,
                 ItemID = "item_id",
@@ -2626,7 +2626,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tiered_with_minimumSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredWithMinimumPrice()
             {
                 Cadence = Models::NewPlanTieredWithMinimumPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2695,7 +2695,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_tieredSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedTieredPrice()
             {
                 Cadence = Models::NewPlanGroupedTieredPriceCadence.Annual,
                 GroupedTieredConfig = new()
@@ -2753,7 +2753,7 @@ public class PricePriceTest : TestBase
     public void new_plan_tiered_package_with_minimumSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanTieredPackageWithMinimumPrice()
             {
                 Cadence = Models::NewPlanTieredPackageWithMinimumPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2822,7 +2822,7 @@ public class PricePriceTest : TestBase
     public void new_plan_package_with_allocationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanPackageWithAllocationPrice()
             {
                 Cadence = Models::NewPlanPackageWithAllocationPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2878,7 +2878,7 @@ public class PricePriceTest : TestBase
     public void new_plan_unit_with_percentSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanUnitWithPercentPrice()
             {
                 Cadence = Models::NewPlanUnitWithPercentPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2928,7 +2928,7 @@ public class PricePriceTest : TestBase
     public void new_plan_matrix_with_allocationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMatrixWithAllocationPrice()
             {
                 Cadence = Models::NewPlanMatrixWithAllocationPriceCadence.Annual,
                 ItemID = "item_id",
@@ -2987,7 +2987,7 @@ public class PricePriceTest : TestBase
     public void tiered_with_prorationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new TieredWithProration()
             {
                 Cadence = TieredWithProrationCadence.Annual,
                 ItemID = "item_id",
@@ -3038,7 +3038,7 @@ public class PricePriceTest : TestBase
     public void new_plan_unit_with_prorationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanUnitWithProrationPrice()
             {
                 Cadence = Models::NewPlanUnitWithProrationPriceCadence.Annual,
                 ItemID = "item_id",
@@ -3088,7 +3088,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_allocationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedAllocationPrice()
             {
                 Cadence = Models::NewPlanGroupedAllocationPriceCadence.Annual,
                 GroupedAllocationConfig = new()
@@ -3143,7 +3143,7 @@ public class PricePriceTest : TestBase
     public void new_plan_bulk_with_prorationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
                     [
@@ -3198,7 +3198,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_with_prorated_minimumSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedWithProratedMinimumPrice()
             {
                 Cadence = Models::NewPlanGroupedWithProratedMinimumPriceCadence.Annual,
                 GroupedWithProratedMinimumConfig = new()
@@ -3254,7 +3254,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_with_metered_minimumSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedWithMeteredMinimumPrice()
             {
                 Cadence = Models::NewPlanGroupedWithMeteredMinimumPriceCadence.Annual,
                 GroupedWithMeteredMinimumConfig = new()
@@ -3319,7 +3319,7 @@ public class PricePriceTest : TestBase
     public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new GroupedWithMinMaxThresholds()
             {
                 Cadence = GroupedWithMinMaxThresholdsCadence.Annual,
                 GroupedWithMinMaxThresholdsConfig = new()
@@ -3374,7 +3374,7 @@ public class PricePriceTest : TestBase
     public void new_plan_matrix_with_display_nameSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMatrixWithDisplayNamePrice()
             {
                 Cadence = Models::NewPlanMatrixWithDisplayNamePriceCadence.Annual,
                 ItemID = "item_id",
@@ -3437,7 +3437,7 @@ public class PricePriceTest : TestBase
     public void new_plan_grouped_tiered_packageSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanGroupedTieredPackagePrice()
             {
                 Cadence = Models::NewPlanGroupedTieredPackagePriceCadence.Annual,
                 GroupedTieredPackageConfig = new()
@@ -3496,7 +3496,7 @@ public class PricePriceTest : TestBase
     public void new_plan_max_group_tiered_packageSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMaxGroupTieredPackagePrice()
             {
                 Cadence = Models::NewPlanMaxGroupTieredPackagePriceCadence.Annual,
                 ItemID = "item_id",
@@ -3556,7 +3556,7 @@ public class PricePriceTest : TestBase
     public void new_plan_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = Models::NewPlanScalableMatrixWithUnitPricingPriceCadence.Annual,
                 ItemID = "item_id",
@@ -3622,7 +3622,7 @@ public class PricePriceTest : TestBase
     public void new_plan_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = Models::NewPlanScalableMatrixWithTieredPricingPriceCadence.Annual,
                 ItemID = "item_id",
@@ -3691,7 +3691,7 @@ public class PricePriceTest : TestBase
     public void new_plan_cumulative_grouped_bulkSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanCumulativeGroupedBulkPrice()
             {
                 Cadence = Models::NewPlanCumulativeGroupedBulkPriceCadence.Annual,
                 CumulativeGroupedBulkConfig = new()
@@ -3754,7 +3754,7 @@ public class PricePriceTest : TestBase
     public void cumulative_grouped_allocationSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new CumulativeGroupedAllocation()
             {
                 Cadence = CumulativeGroupedAllocationCadence.Annual,
                 CumulativeGroupedAllocationConfig = new()
@@ -3809,7 +3809,7 @@ public class PricePriceTest : TestBase
     public void new_plan_minimum_compositeSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Models::NewPlanMinimumCompositePrice()
             {
                 Cadence = Models::NewPlanMinimumCompositePriceCadence.Annual,
                 ItemID = "item_id",
@@ -3859,7 +3859,7 @@ public class PricePriceTest : TestBase
     public void percentSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new Percent()
             {
                 Cadence = PercentCadence.Annual,
                 ItemID = "item_id",
@@ -3908,7 +3908,7 @@ public class PricePriceTest : TestBase
     public void event_outputSerializationRoundtrip_Works()
     {
         PricePrice value = new(
-            new()
+            new EventOutput()
             {
                 Cadence = EventOutputCadence.Annual,
                 EventOutputConfig = new()
@@ -4806,7 +4806,7 @@ public class ConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -4819,7 +4819,7 @@ public class ConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -4841,7 +4841,7 @@ public class ConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -4857,7 +4857,7 @@ public class ConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -5556,7 +5556,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -5569,7 +5569,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -5591,7 +5591,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -5609,7 +5609,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -6298,7 +6298,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -6311,7 +6311,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -6333,7 +6333,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -6350,7 +6350,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7038,7 +7038,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7051,7 +7051,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7073,7 +7073,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7090,7 +7090,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7672,7 +7672,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7685,7 +7685,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7707,7 +7707,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7723,7 +7723,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -8432,7 +8432,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -8445,7 +8445,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -8467,7 +8467,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -8483,7 +8483,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -8817,7 +8817,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_percentage_discountValidation_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -8845,7 +8845,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_usage_discountValidation_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewUsageDiscount()
             {
                 AdjustmentType = Models::NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
@@ -8873,7 +8873,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_amount_discountValidation_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewAmountDiscount()
             {
                 AdjustmentType = Models::NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
@@ -8901,7 +8901,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_minimumValidation_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewMinimum()
             {
                 AdjustmentType = Models::NewMinimumAdjustmentType.Minimum,
                 ItemID = "item_id",
@@ -8930,7 +8930,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_maximumValidation_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewMaximum()
             {
                 AdjustmentType = Models::NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
@@ -8958,7 +8958,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_percentage_discountSerializationRoundtrip_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewPercentageDiscount()
             {
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
@@ -8989,7 +8989,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_usage_discountSerializationRoundtrip_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewUsageDiscount()
             {
                 AdjustmentType = Models::NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
@@ -9020,7 +9020,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_amount_discountSerializationRoundtrip_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewAmountDiscount()
             {
                 AdjustmentType = Models::NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
@@ -9051,7 +9051,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_minimumSerializationRoundtrip_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewMinimum()
             {
                 AdjustmentType = Models::NewMinimumAdjustmentType.Minimum,
                 ItemID = "item_id",
@@ -9083,7 +9083,7 @@ public class AdjustmentAdjustmentTest : TestBase
     public void new_maximumSerializationRoundtrip_Works()
     {
         AdjustmentAdjustment value = new(
-            new()
+            new Models::NewMaximum()
             {
                 AdjustmentType = Models::NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",

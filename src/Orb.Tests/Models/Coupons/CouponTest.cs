@@ -207,7 +207,7 @@ public class CouponDiscountTest : TestBase
     public void percentageValidation_Works()
     {
         CouponDiscount value = new(
-            new()
+            new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
@@ -231,7 +231,7 @@ public class CouponDiscountTest : TestBase
     public void amountValidation_Works()
     {
         CouponDiscount value = new(
-            new()
+            new AmountDiscount()
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
@@ -255,7 +255,7 @@ public class CouponDiscountTest : TestBase
     public void percentageSerializationRoundtrip_Works()
     {
         CouponDiscount value = new(
-            new()
+            new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
@@ -282,7 +282,7 @@ public class CouponDiscountTest : TestBase
     public void amountSerializationRoundtrip_Works()
     {
         CouponDiscount value = new(
-            new()
+            new AmountDiscount()
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,

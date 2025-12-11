@@ -746,7 +746,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     public void unitValidation_Works()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -759,7 +759,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     public void tieredValidation_Works()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -781,7 +781,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     public void unitSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -800,7 +800,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     public void tieredSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

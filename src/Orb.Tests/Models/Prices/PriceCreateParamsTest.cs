@@ -13,7 +13,7 @@ public class BodyTest : TestBase
     public void new_floating_unit_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
@@ -59,7 +59,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredPrice()
             {
                 Cadence = Models::NewFloatingTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -117,7 +117,7 @@ public class BodyTest : TestBase
     public void new_floating_bulk_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
                 Cadence = Models::NewFloatingBulkPriceCadence.Annual,
@@ -163,7 +163,7 @@ public class BodyTest : TestBase
     public void bulk_with_filtersValidation_Works()
     {
         Body value = new(
-            new()
+            new BulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
                 {
@@ -216,7 +216,7 @@ public class BodyTest : TestBase
     public void new_floating_package_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingPackagePrice()
             {
                 Cadence = Models::NewFloatingPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -262,7 +262,7 @@ public class BodyTest : TestBase
     public void new_floating_matrix_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMatrixPrice()
             {
                 Cadence = Models::NewFloatingMatrixPriceCadence.Annual,
                 Currency = "currency",
@@ -316,7 +316,7 @@ public class BodyTest : TestBase
     public void new_floating_threshold_total_amount_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingThresholdTotalAmountPrice()
             {
                 Cadence = Models::NewFloatingThresholdTotalAmountPriceCadence.Annual,
                 Currency = "currency",
@@ -371,7 +371,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_package_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredPackagePrice()
             {
                 Cadence = Models::NewFloatingTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -425,7 +425,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_with_minimum_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredWithMinimumPrice()
             {
                 Cadence = Models::NewFloatingTieredWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -490,7 +490,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_tiered_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedTieredPrice()
             {
                 Cadence = Models::NewFloatingGroupedTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -544,7 +544,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_package_with_minimum_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredPackageWithMinimumPrice()
             {
                 Cadence = Models::NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -609,7 +609,7 @@ public class BodyTest : TestBase
     public void new_floating_package_with_allocation_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingPackageWithAllocationPrice()
             {
                 Cadence = Models::NewFloatingPackageWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -661,7 +661,7 @@ public class BodyTest : TestBase
     public void new_floating_unit_with_percent_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingUnitWithPercentPrice()
             {
                 Cadence = Models::NewFloatingUnitWithPercentPriceCadence.Annual,
                 Currency = "currency",
@@ -707,7 +707,7 @@ public class BodyTest : TestBase
     public void new_floating_matrix_with_allocation_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMatrixWithAllocationPrice()
             {
                 Cadence = Models::NewFloatingMatrixWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -763,7 +763,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_with_proration_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredWithProrationPrice()
             {
                 Cadence = Models::NewFloatingTieredWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -812,7 +812,7 @@ public class BodyTest : TestBase
     public void new_floating_unit_with_proration_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingUnitWithProrationPrice()
             {
                 Cadence = Models::NewFloatingUnitWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -858,7 +858,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_allocation_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedAllocationPrice()
             {
                 Cadence = Models::NewFloatingGroupedAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -909,7 +909,7 @@ public class BodyTest : TestBase
     public void new_floating_bulk_with_proration_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
                     [
@@ -960,7 +960,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_with_prorated_minimum_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedWithProratedMinimumPrice()
             {
                 Cadence = Models::NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -1012,7 +1012,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_with_metered_minimum_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedWithMeteredMinimumPrice()
             {
                 Cadence = Models::NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -1077,7 +1077,7 @@ public class BodyTest : TestBase
     public void grouped_with_min_max_thresholdsValidation_Works()
     {
         Body value = new(
-            new()
+            new GroupedWithMinMaxThresholds()
             {
                 Cadence = GroupedWithMinMaxThresholdsCadence.Annual,
                 Currency = "currency",
@@ -1128,7 +1128,7 @@ public class BodyTest : TestBase
     public void new_floating_matrix_with_display_name_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMatrixWithDisplayNamePrice()
             {
                 Cadence = Models::NewFloatingMatrixWithDisplayNamePriceCadence.Annual,
                 Currency = "currency",
@@ -1187,7 +1187,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_tiered_package_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedTieredPackagePrice()
             {
                 Cadence = Models::NewFloatingGroupedTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -1243,7 +1243,7 @@ public class BodyTest : TestBase
     public void new_floating_max_group_tiered_package_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMaxGroupTieredPackagePrice()
             {
                 Cadence = Models::NewFloatingMaxGroupTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -1299,7 +1299,7 @@ public class BodyTest : TestBase
     public void new_floating_scalable_matrix_with_unit_pricing_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = Models::NewFloatingScalableMatrixWithUnitPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -1361,7 +1361,7 @@ public class BodyTest : TestBase
     public void new_floating_scalable_matrix_with_tiered_pricing_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = Models::NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -1426,7 +1426,7 @@ public class BodyTest : TestBase
     public void new_floating_cumulative_grouped_bulk_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingCumulativeGroupedBulkPrice()
             {
                 Cadence = Models::NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
                 CumulativeGroupedBulkConfig = new()
@@ -1485,7 +1485,7 @@ public class BodyTest : TestBase
     public void cumulative_grouped_allocationValidation_Works()
     {
         Body value = new(
-            new()
+            new CumulativeGroupedAllocation()
             {
                 Cadence = CumulativeGroupedAllocationCadence.Annual,
                 CumulativeGroupedAllocationConfig = new()
@@ -1536,7 +1536,7 @@ public class BodyTest : TestBase
     public void new_floating_minimum_composite_priceValidation_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMinimumCompositePrice()
             {
                 Cadence = Models::NewFloatingMinimumCompositePriceCadence.Annual,
                 Currency = "currency",
@@ -1582,7 +1582,7 @@ public class BodyTest : TestBase
     public void percentValidation_Works()
     {
         Body value = new(
-            new()
+            new Percent()
             {
                 Cadence = PercentCadence.Annual,
                 Currency = "currency",
@@ -1627,7 +1627,7 @@ public class BodyTest : TestBase
     public void event_outputValidation_Works()
     {
         Body value = new(
-            new()
+            new EventOutput()
             {
                 Cadence = EventOutputCadence.Annual,
                 Currency = "currency",
@@ -1677,7 +1677,7 @@ public class BodyTest : TestBase
     public void new_floating_unit_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingUnitPrice()
             {
                 Cadence = Models::NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
@@ -1726,7 +1726,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredPrice()
             {
                 Cadence = Models::NewFloatingTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -1787,7 +1787,7 @@ public class BodyTest : TestBase
     public void new_floating_bulk_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
                 Cadence = Models::NewFloatingBulkPriceCadence.Annual,
@@ -1836,7 +1836,7 @@ public class BodyTest : TestBase
     public void bulk_with_filtersSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new BulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
                 {
@@ -1892,7 +1892,7 @@ public class BodyTest : TestBase
     public void new_floating_package_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingPackagePrice()
             {
                 Cadence = Models::NewFloatingPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -1941,7 +1941,7 @@ public class BodyTest : TestBase
     public void new_floating_matrix_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMatrixPrice()
             {
                 Cadence = Models::NewFloatingMatrixPriceCadence.Annual,
                 Currency = "currency",
@@ -1998,7 +1998,7 @@ public class BodyTest : TestBase
     public void new_floating_threshold_total_amount_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingThresholdTotalAmountPrice()
             {
                 Cadence = Models::NewFloatingThresholdTotalAmountPriceCadence.Annual,
                 Currency = "currency",
@@ -2056,7 +2056,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_package_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredPackagePrice()
             {
                 Cadence = Models::NewFloatingTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -2113,7 +2113,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_with_minimum_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredWithMinimumPrice()
             {
                 Cadence = Models::NewFloatingTieredWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -2181,7 +2181,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_tiered_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedTieredPrice()
             {
                 Cadence = Models::NewFloatingGroupedTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -2238,7 +2238,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_package_with_minimum_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredPackageWithMinimumPrice()
             {
                 Cadence = Models::NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -2306,7 +2306,7 @@ public class BodyTest : TestBase
     public void new_floating_package_with_allocation_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingPackageWithAllocationPrice()
             {
                 Cadence = Models::NewFloatingPackageWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -2361,7 +2361,7 @@ public class BodyTest : TestBase
     public void new_floating_unit_with_percent_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingUnitWithPercentPrice()
             {
                 Cadence = Models::NewFloatingUnitWithPercentPriceCadence.Annual,
                 Currency = "currency",
@@ -2410,7 +2410,7 @@ public class BodyTest : TestBase
     public void new_floating_matrix_with_allocation_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMatrixWithAllocationPrice()
             {
                 Cadence = Models::NewFloatingMatrixWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -2469,7 +2469,7 @@ public class BodyTest : TestBase
     public void new_floating_tiered_with_proration_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingTieredWithProrationPrice()
             {
                 Cadence = Models::NewFloatingTieredWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -2521,7 +2521,7 @@ public class BodyTest : TestBase
     public void new_floating_unit_with_proration_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingUnitWithProrationPrice()
             {
                 Cadence = Models::NewFloatingUnitWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -2570,7 +2570,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_allocation_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedAllocationPrice()
             {
                 Cadence = Models::NewFloatingGroupedAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -2624,7 +2624,7 @@ public class BodyTest : TestBase
     public void new_floating_bulk_with_proration_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
                     [
@@ -2678,7 +2678,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_with_prorated_minimum_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedWithProratedMinimumPrice()
             {
                 Cadence = Models::NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -2733,7 +2733,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_with_metered_minimum_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedWithMeteredMinimumPrice()
             {
                 Cadence = Models::NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -2801,7 +2801,7 @@ public class BodyTest : TestBase
     public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new GroupedWithMinMaxThresholds()
             {
                 Cadence = GroupedWithMinMaxThresholdsCadence.Annual,
                 Currency = "currency",
@@ -2855,7 +2855,7 @@ public class BodyTest : TestBase
     public void new_floating_matrix_with_display_name_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMatrixWithDisplayNamePrice()
             {
                 Cadence = Models::NewFloatingMatrixWithDisplayNamePriceCadence.Annual,
                 Currency = "currency",
@@ -2917,7 +2917,7 @@ public class BodyTest : TestBase
     public void new_floating_grouped_tiered_package_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingGroupedTieredPackagePrice()
             {
                 Cadence = Models::NewFloatingGroupedTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -2976,7 +2976,7 @@ public class BodyTest : TestBase
     public void new_floating_max_group_tiered_package_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMaxGroupTieredPackagePrice()
             {
                 Cadence = Models::NewFloatingMaxGroupTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -3035,7 +3035,7 @@ public class BodyTest : TestBase
     public void new_floating_scalable_matrix_with_unit_pricing_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = Models::NewFloatingScalableMatrixWithUnitPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -3100,7 +3100,7 @@ public class BodyTest : TestBase
     public void new_floating_scalable_matrix_with_tiered_pricing_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = Models::NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -3168,7 +3168,7 @@ public class BodyTest : TestBase
     public void new_floating_cumulative_grouped_bulk_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingCumulativeGroupedBulkPrice()
             {
                 Cadence = Models::NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
                 CumulativeGroupedBulkConfig = new()
@@ -3230,7 +3230,7 @@ public class BodyTest : TestBase
     public void cumulative_grouped_allocationSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new CumulativeGroupedAllocation()
             {
                 Cadence = CumulativeGroupedAllocationCadence.Annual,
                 CumulativeGroupedAllocationConfig = new()
@@ -3284,7 +3284,7 @@ public class BodyTest : TestBase
     public void new_floating_minimum_composite_priceSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Models::NewFloatingMinimumCompositePrice()
             {
                 Cadence = Models::NewFloatingMinimumCompositePriceCadence.Annual,
                 Currency = "currency",
@@ -3333,7 +3333,7 @@ public class BodyTest : TestBase
     public void percentSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new Percent()
             {
                 Cadence = PercentCadence.Annual,
                 Currency = "currency",
@@ -3381,7 +3381,7 @@ public class BodyTest : TestBase
     public void event_outputSerializationRoundtrip_Works()
     {
         Body value = new(
-            new()
+            new EventOutput()
             {
                 Cadence = EventOutputCadence.Annual,
                 Currency = "currency",
@@ -4262,7 +4262,7 @@ public class ConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -4275,7 +4275,7 @@ public class ConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -4297,7 +4297,7 @@ public class ConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -4313,7 +4313,7 @@ public class ConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         ConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -4984,7 +4984,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -4997,7 +4997,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -5019,7 +5019,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -5036,7 +5036,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -5708,7 +5708,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -5721,7 +5721,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -5743,7 +5743,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -5760,7 +5760,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -6326,7 +6326,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -6339,7 +6339,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -6361,7 +6361,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -6377,7 +6377,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7070,7 +7070,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7083,7 +7083,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7105,7 +7105,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedUnitConversionRateConfig()
             {
                 ConversionRateType = Models::SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7121,7 +7121,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new Models::SharedTieredConversionRateConfig()
             {
                 ConversionRateType = Models::ConversionRateType.Tiered,
                 TieredConfig = new(

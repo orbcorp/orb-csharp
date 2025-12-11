@@ -775,7 +775,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigT
     {
         Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -789,7 +789,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigT
     {
         Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -812,7 +812,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigT
     {
         Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -832,7 +832,7 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigT
     {
         Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(

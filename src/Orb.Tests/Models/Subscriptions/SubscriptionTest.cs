@@ -3913,7 +3913,7 @@ public class DiscountIntervalTest : TestBase
     public void amountValidation_Works()
     {
         DiscountInterval value = new(
-            new()
+            new AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
                 AppliesToPriceIntervalIDs = ["string"],
@@ -3938,7 +3938,7 @@ public class DiscountIntervalTest : TestBase
     public void percentageValidation_Works()
     {
         DiscountInterval value = new(
-            new()
+            new PercentageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
@@ -3963,7 +3963,7 @@ public class DiscountIntervalTest : TestBase
     public void usageValidation_Works()
     {
         DiscountInterval value = new(
-            new()
+            new UsageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = UsageDiscountIntervalDiscountType.Usage,
@@ -3988,7 +3988,7 @@ public class DiscountIntervalTest : TestBase
     public void amountSerializationRoundtrip_Works()
     {
         DiscountInterval value = new(
-            new()
+            new AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
                 AppliesToPriceIntervalIDs = ["string"],
@@ -4016,7 +4016,7 @@ public class DiscountIntervalTest : TestBase
     public void percentageSerializationRoundtrip_Works()
     {
         DiscountInterval value = new(
-            new()
+            new PercentageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
@@ -4044,7 +4044,7 @@ public class DiscountIntervalTest : TestBase
     public void usageSerializationRoundtrip_Works()
     {
         DiscountInterval value = new(
-            new()
+            new UsageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = UsageDiscountIntervalDiscountType.Usage,

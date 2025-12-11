@@ -11647,7 +11647,7 @@ public class DiscountIntervalTest : TestBase
     public void amountValidation_Works()
     {
         DiscountInterval value = new(
-            new()
+            new Models::AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
                 AppliesToPriceIntervalIDs = ["string"],
@@ -11672,7 +11672,7 @@ public class DiscountIntervalTest : TestBase
     public void percentageValidation_Works()
     {
         DiscountInterval value = new(
-            new()
+            new Models::PercentageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = Models::PercentageDiscountIntervalDiscountType.Percentage,
@@ -11697,7 +11697,7 @@ public class DiscountIntervalTest : TestBase
     public void usageValidation_Works()
     {
         DiscountInterval value = new(
-            new()
+            new Models::UsageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = Models::UsageDiscountIntervalDiscountType.Usage,
@@ -11722,7 +11722,7 @@ public class DiscountIntervalTest : TestBase
     public void amountSerializationRoundtrip_Works()
     {
         DiscountInterval value = new(
-            new()
+            new Models::AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
                 AppliesToPriceIntervalIDs = ["string"],
@@ -11750,7 +11750,7 @@ public class DiscountIntervalTest : TestBase
     public void percentageSerializationRoundtrip_Works()
     {
         DiscountInterval value = new(
-            new()
+            new Models::PercentageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = Models::PercentageDiscountIntervalDiscountType.Percentage,
@@ -11778,7 +11778,7 @@ public class DiscountIntervalTest : TestBase
     public void usageSerializationRoundtrip_Works()
     {
         DiscountInterval value = new(
-            new()
+            new Models::UsageDiscountInterval()
             {
                 AppliesToPriceIntervalIDs = ["string"],
                 DiscountType = Models::UsageDiscountIntervalDiscountType.Usage,

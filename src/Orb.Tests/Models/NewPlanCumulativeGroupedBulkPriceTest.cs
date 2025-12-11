@@ -920,7 +920,7 @@ public class NewPlanCumulativeGroupedBulkPriceConversionRateConfigTest : TestBas
     public void unitValidation_Works()
     {
         NewPlanCumulativeGroupedBulkPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -933,7 +933,7 @@ public class NewPlanCumulativeGroupedBulkPriceConversionRateConfigTest : TestBas
     public void tieredValidation_Works()
     {
         NewPlanCumulativeGroupedBulkPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -955,7 +955,7 @@ public class NewPlanCumulativeGroupedBulkPriceConversionRateConfigTest : TestBas
     public void unitSerializationRoundtrip_Works()
     {
         NewPlanCumulativeGroupedBulkPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -972,7 +972,7 @@ public class NewPlanCumulativeGroupedBulkPriceConversionRateConfigTest : TestBas
     public void tieredSerializationRoundtrip_Works()
     {
         NewPlanCumulativeGroupedBulkPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

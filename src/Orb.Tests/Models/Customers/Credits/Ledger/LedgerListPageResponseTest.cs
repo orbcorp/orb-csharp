@@ -2486,7 +2486,7 @@ public class DataTest : TestBase
     public void increment_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new IncrementLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -2884,7 +2884,7 @@ public class DataTest : TestBase
     public void decrement_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new DecrementLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -2925,7 +2925,7 @@ public class DataTest : TestBase
     public void expiration_change_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new ExpirationChangeLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -2964,7 +2964,7 @@ public class DataTest : TestBase
     public void credit_block_expiry_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new CreditBlockExpiryLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3002,7 +3002,7 @@ public class DataTest : TestBase
     public void void_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new VoidLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3042,7 +3042,7 @@ public class DataTest : TestBase
     public void void_initiated_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new VoidInitiatedLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3083,7 +3083,7 @@ public class DataTest : TestBase
     public void amendment_ledger_entryValidation_Works()
     {
         Data value = new(
-            new()
+            new AmendmentLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3121,7 +3121,7 @@ public class DataTest : TestBase
     public void increment_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new IncrementLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3522,7 +3522,7 @@ public class DataTest : TestBase
     public void decrement_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new DecrementLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3566,7 +3566,7 @@ public class DataTest : TestBase
     public void expiration_change_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new ExpirationChangeLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3608,7 +3608,7 @@ public class DataTest : TestBase
     public void credit_block_expiry_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new CreditBlockExpiryLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3649,7 +3649,7 @@ public class DataTest : TestBase
     public void void_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new VoidLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3692,7 +3692,7 @@ public class DataTest : TestBase
     public void void_initiated_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new VoidInitiatedLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,
@@ -3736,7 +3736,7 @@ public class DataTest : TestBase
     public void amendment_ledger_entrySerializationRoundtrip_Works()
     {
         Data value = new(
-            new()
+            new AmendmentLedgerEntry()
             {
                 ID = "id",
                 Amount = 0,

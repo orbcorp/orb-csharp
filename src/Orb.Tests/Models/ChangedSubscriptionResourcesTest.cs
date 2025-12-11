@@ -8953,7 +8953,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_usage_discountValidation_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -8982,7 +8982,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_amount_discountValidation_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::AdjustmentType.AmountDiscount,
@@ -9010,7 +9010,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_percentage_discountValidation_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryPercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -9040,7 +9040,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_minimumValidation_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
@@ -9069,7 +9069,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_maximumValidation_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
@@ -9097,7 +9097,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_usage_discountSerializationRoundtrip_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -9129,7 +9129,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_amount_discountSerializationRoundtrip_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::AdjustmentType.AmountDiscount,
@@ -9160,7 +9160,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_percentage_discountSerializationRoundtrip_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryPercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -9193,7 +9193,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_minimumSerializationRoundtrip_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
@@ -9225,7 +9225,7 @@ public class LineItemAdjustmentTest : TestBase
     public void monetary_maximumSerializationRoundtrip_Works()
     {
         Models::LineItemAdjustment value = new(
-            new()
+            new Models::MonetaryMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
@@ -9259,7 +9259,7 @@ public class SubLineItemTest : TestBase
     public void matrixValidation_Works()
     {
         Models::SubLineItem value = new(
-            new()
+            new Models::MatrixSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -9277,7 +9277,7 @@ public class SubLineItemTest : TestBase
     public void tierValidation_Works()
     {
         Models::SubLineItem value = new(
-            new()
+            new Models::TierSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -9299,7 +9299,7 @@ public class SubLineItemTest : TestBase
     public void otherValidation_Works()
     {
         Models::SubLineItem value = new(
-            new()
+            new Models::OtherSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -9315,7 +9315,7 @@ public class SubLineItemTest : TestBase
     public void matrixSerializationRoundtrip_Works()
     {
         Models::SubLineItem value = new(
-            new()
+            new Models::MatrixSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -9336,7 +9336,7 @@ public class SubLineItemTest : TestBase
     public void tierSerializationRoundtrip_Works()
     {
         Models::SubLineItem value = new(
-            new()
+            new Models::TierSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -9361,7 +9361,7 @@ public class SubLineItemTest : TestBase
     public void otherSerializationRoundtrip_Works()
     {
         Models::SubLineItem value = new(
-            new()
+            new Models::OtherSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },

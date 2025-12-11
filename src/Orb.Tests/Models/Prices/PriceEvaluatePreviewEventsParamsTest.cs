@@ -810,7 +810,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_unitValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingUnitPrice()
             {
                 Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
@@ -855,7 +855,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tieredValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredPrice()
             {
                 Cadence = NewFloatingTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -912,7 +912,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_bulkValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
                 Cadence = NewFloatingBulkPriceCadence.Annual,
@@ -957,7 +957,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void bulk_with_filtersValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
                 {
@@ -1010,7 +1010,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_packageValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingPackagePrice()
             {
                 Cadence = NewFloatingPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -1055,7 +1055,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_matrixValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMatrixPrice()
             {
                 Cadence = NewFloatingMatrixPriceCadence.Annual,
                 Currency = "currency",
@@ -1108,7 +1108,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_threshold_total_amountValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingThresholdTotalAmountPrice()
             {
                 Cadence = NewFloatingThresholdTotalAmountPriceCadence.Annual,
                 Currency = "currency",
@@ -1161,7 +1161,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_packageValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredPackagePrice()
             {
                 Cadence = NewFloatingTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -1214,7 +1214,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_with_minimumValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -1278,7 +1278,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_tieredValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedTieredPrice()
             {
                 Cadence = NewFloatingGroupedTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -1331,7 +1331,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_package_with_minimumValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredPackageWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -1395,7 +1395,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_package_with_allocationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingPackageWithAllocationPrice()
             {
                 Cadence = NewFloatingPackageWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -1445,7 +1445,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_unit_with_percentValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingUnitWithPercentPrice()
             {
                 Cadence = NewFloatingUnitWithPercentPriceCadence.Annual,
                 Currency = "currency",
@@ -1490,7 +1490,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_matrix_with_allocationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMatrixWithAllocationPrice()
             {
                 Cadence = NewFloatingMatrixWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -1544,7 +1544,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_with_prorationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredWithProrationPrice()
             {
                 Cadence = NewFloatingTieredWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -1591,7 +1591,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_unit_with_prorationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingUnitWithProrationPrice()
             {
                 Cadence = NewFloatingUnitWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -1636,7 +1636,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_allocationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedAllocationPrice()
             {
                 Cadence = NewFloatingGroupedAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -1686,7 +1686,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_bulk_with_prorationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
                     [
@@ -1736,7 +1736,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_with_prorated_minimumValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedWithProratedMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -1787,7 +1787,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_with_metered_minimumValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedWithMeteredMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -1851,7 +1851,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void grouped_with_min_max_thresholdsValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
@@ -1902,7 +1902,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_matrix_with_display_nameValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMatrixWithDisplayNamePrice()
             {
                 Cadence = NewFloatingMatrixWithDisplayNamePriceCadence.Annual,
                 Currency = "currency",
@@ -1959,7 +1959,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_tiered_packageValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedTieredPackagePrice()
             {
                 Cadence = NewFloatingGroupedTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -2013,7 +2013,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_max_group_tiered_packageValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMaxGroupTieredPackagePrice()
             {
                 Cadence = NewFloatingMaxGroupTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -2067,7 +2067,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_scalable_matrix_with_unit_pricingValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithUnitPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -2128,7 +2128,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_scalable_matrix_with_tiered_pricingValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -2192,7 +2192,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_cumulative_grouped_bulkValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingCumulativeGroupedBulkPrice()
             {
                 Cadence = NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
                 CumulativeGroupedBulkConfig = new()
@@ -2249,7 +2249,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void cumulative_grouped_allocationValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
             {
                 Cadence =
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
@@ -2300,7 +2300,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_minimum_compositeValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMinimumCompositePrice()
             {
                 Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
                 Currency = "currency",
@@ -2345,7 +2345,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void percentValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
             {
                 Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
                 Currency = "currency",
@@ -2389,7 +2389,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void event_outputValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
             {
                 Cadence =
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
@@ -2439,7 +2439,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_unitSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingUnitPrice()
             {
                 Cadence = NewFloatingUnitPriceCadence.Annual,
                 Currency = "currency",
@@ -2488,7 +2488,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tieredSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredPrice()
             {
                 Cadence = NewFloatingTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -2549,7 +2549,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_bulkSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingBulkPrice()
             {
                 BulkConfig = new([new() { UnitAmount = "unit_amount", MaximumUnits = 0 }]),
                 Cadence = NewFloatingBulkPriceCadence.Annual,
@@ -2598,7 +2598,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void bulk_with_filtersSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
             {
                 BulkWithFiltersConfig = new()
                 {
@@ -2655,7 +2655,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_packageSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingPackagePrice()
             {
                 Cadence = NewFloatingPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -2704,7 +2704,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_matrixSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMatrixPrice()
             {
                 Cadence = NewFloatingMatrixPriceCadence.Annual,
                 Currency = "currency",
@@ -2761,7 +2761,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_threshold_total_amountSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingThresholdTotalAmountPrice()
             {
                 Cadence = NewFloatingThresholdTotalAmountPriceCadence.Annual,
                 Currency = "currency",
@@ -2818,7 +2818,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_packageSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredPackagePrice()
             {
                 Cadence = NewFloatingTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -2875,7 +2875,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_with_minimumSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -2943,7 +2943,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_tieredSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedTieredPrice()
             {
                 Cadence = NewFloatingGroupedTieredPriceCadence.Annual,
                 Currency = "currency",
@@ -3000,7 +3000,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_package_with_minimumSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredPackageWithMinimumPrice()
             {
                 Cadence = NewFloatingTieredPackageWithMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -3068,7 +3068,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_package_with_allocationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingPackageWithAllocationPrice()
             {
                 Cadence = NewFloatingPackageWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -3122,7 +3122,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_unit_with_percentSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingUnitWithPercentPrice()
             {
                 Cadence = NewFloatingUnitWithPercentPriceCadence.Annual,
                 Currency = "currency",
@@ -3171,7 +3171,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_matrix_with_allocationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMatrixWithAllocationPrice()
             {
                 Cadence = NewFloatingMatrixWithAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -3229,7 +3229,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_tiered_with_prorationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingTieredWithProrationPrice()
             {
                 Cadence = NewFloatingTieredWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -3280,7 +3280,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_unit_with_prorationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingUnitWithProrationPrice()
             {
                 Cadence = NewFloatingUnitWithProrationPriceCadence.Annual,
                 Currency = "currency",
@@ -3329,7 +3329,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_allocationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedAllocationPrice()
             {
                 Cadence = NewFloatingGroupedAllocationPriceCadence.Annual,
                 Currency = "currency",
@@ -3383,7 +3383,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_bulk_with_prorationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingBulkWithProrationPrice()
             {
                 BulkWithProrationConfig = new(
                     [
@@ -3437,7 +3437,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_with_prorated_minimumSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedWithProratedMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithProratedMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -3492,7 +3492,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_with_metered_minimumSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedWithMeteredMinimumPrice()
             {
                 Cadence = NewFloatingGroupedWithMeteredMinimumPriceCadence.Annual,
                 Currency = "currency",
@@ -3560,7 +3560,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
             {
                 Cadence =
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence.Annual,
@@ -3615,7 +3615,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_matrix_with_display_nameSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMatrixWithDisplayNamePrice()
             {
                 Cadence = NewFloatingMatrixWithDisplayNamePriceCadence.Annual,
                 Currency = "currency",
@@ -3676,7 +3676,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_grouped_tiered_packageSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingGroupedTieredPackagePrice()
             {
                 Cadence = NewFloatingGroupedTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -3734,7 +3734,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_max_group_tiered_packageSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMaxGroupTieredPackagePrice()
             {
                 Cadence = NewFloatingMaxGroupTieredPackagePriceCadence.Annual,
                 Currency = "currency",
@@ -3792,7 +3792,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingScalableMatrixWithUnitPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithUnitPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -3857,7 +3857,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingScalableMatrixWithTieredPricingPrice()
             {
                 Cadence = NewFloatingScalableMatrixWithTieredPricingPriceCadence.Annual,
                 Currency = "currency",
@@ -3925,7 +3925,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_cumulative_grouped_bulkSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingCumulativeGroupedBulkPrice()
             {
                 Cadence = NewFloatingCumulativeGroupedBulkPriceCadence.Annual,
                 CumulativeGroupedBulkConfig = new()
@@ -3986,7 +3986,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void cumulative_grouped_allocationSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
             {
                 Cadence =
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence.Annual,
@@ -4041,7 +4041,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void new_floating_minimum_compositeSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new NewFloatingMinimumCompositePrice()
             {
                 Cadence = NewFloatingMinimumCompositePriceCadence.Annual,
                 Currency = "currency",
@@ -4090,7 +4090,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void percentSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
             {
                 Cadence = PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence.Annual,
                 Currency = "currency",
@@ -4138,7 +4138,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     public void event_outputSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
-            new()
+            new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
             {
                 Cadence =
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence.Annual,
@@ -5160,7 +5160,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -5174,7 +5174,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -5197,7 +5197,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -5217,7 +5217,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -5986,7 +5986,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -6000,7 +6000,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -6023,7 +6023,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -6043,7 +6043,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -6812,7 +6812,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -6826,7 +6826,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -6849,7 +6849,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -6869,7 +6869,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -7480,7 +7480,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     public void unitValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7493,7 +7493,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     public void tieredValidation_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -7515,7 +7515,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     public void unitSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -7534,7 +7534,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     public void tieredSerializationRoundtrip_Works()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -8281,7 +8281,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -8295,7 +8295,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -8318,7 +8318,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -8338,7 +8338,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(

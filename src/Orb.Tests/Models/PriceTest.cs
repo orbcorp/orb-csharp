@@ -13,7 +13,7 @@ public class PriceTest : TestBase
     public void unitValidation_Works()
     {
         Price value = new(
-            new()
+            new Unit()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -130,7 +130,7 @@ public class PriceTest : TestBase
     public void tieredValidation_Works()
     {
         Price value = new(
-            new()
+            new Tiered()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -259,7 +259,7 @@ public class PriceTest : TestBase
     public void bulkValidation_Works()
     {
         Price value = new(
-            new()
+            new Bulk()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -376,7 +376,7 @@ public class PriceTest : TestBase
     public void bulk_with_filtersValidation_Works()
     {
         Price value = new(
-            new()
+            new BulkWithFilters()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -501,7 +501,7 @@ public class PriceTest : TestBase
     public void packageValidation_Works()
     {
         Price value = new(
-            new()
+            new Package()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -618,7 +618,7 @@ public class PriceTest : TestBase
     public void matrixValidation_Works()
     {
         Price value = new(
-            new()
+            new Matrix()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -743,7 +743,7 @@ public class PriceTest : TestBase
     public void threshold_total_amountValidation_Works()
     {
         Price value = new(
-            new()
+            new ThresholdTotalAmount()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -868,7 +868,7 @@ public class PriceTest : TestBase
     public void tiered_packageValidation_Works()
     {
         Price value = new(
-            new()
+            new TieredPackage()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -993,7 +993,7 @@ public class PriceTest : TestBase
     public void tiered_with_minimumValidation_Works()
     {
         Price value = new(
-            new()
+            new TieredWithMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1129,7 +1129,7 @@ public class PriceTest : TestBase
     public void grouped_tieredValidation_Works()
     {
         Price value = new(
-            new()
+            new GroupedTiered()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1254,7 +1254,7 @@ public class PriceTest : TestBase
     public void tiered_package_with_minimumValidation_Works()
     {
         Price value = new(
-            new()
+            new TieredPackageWithMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1389,7 +1389,7 @@ public class PriceTest : TestBase
     public void package_with_allocationValidation_Works()
     {
         Price value = new(
-            new()
+            new PackageWithAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1511,7 +1511,7 @@ public class PriceTest : TestBase
     public void unit_with_percentValidation_Works()
     {
         Price value = new(
-            new()
+            new UnitWithPercent()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1628,7 +1628,7 @@ public class PriceTest : TestBase
     public void matrix_with_allocationValidation_Works()
     {
         Price value = new(
-            new()
+            new MatrixWithAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1754,7 +1754,7 @@ public class PriceTest : TestBase
     public void tiered_with_prorationValidation_Works()
     {
         Price value = new(
-            new()
+            new TieredWithProration()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1873,7 +1873,7 @@ public class PriceTest : TestBase
     public void unit_with_prorationValidation_Works()
     {
         Price value = new(
-            new()
+            new UnitWithProration()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -1990,7 +1990,7 @@ public class PriceTest : TestBase
     public void grouped_allocationValidation_Works()
     {
         Price value = new(
-            new()
+            new GroupedAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2112,7 +2112,7 @@ public class PriceTest : TestBase
     public void bulk_with_prorationValidation_Works()
     {
         Price value = new(
-            new()
+            new BulkWithProration()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2234,7 +2234,7 @@ public class PriceTest : TestBase
     public void grouped_with_prorated_minimumValidation_Works()
     {
         Price value = new(
-            new()
+            new GroupedWithProratedMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2356,7 +2356,7 @@ public class PriceTest : TestBase
     public void grouped_with_metered_minimumValidation_Works()
     {
         Price value = new(
-            new()
+            new GroupedWithMeteredMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2487,7 +2487,7 @@ public class PriceTest : TestBase
     public void grouped_with_min_max_thresholdsValidation_Works()
     {
         Price value = new(
-            new()
+            new GroupedWithMinMaxThresholds()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2610,7 +2610,7 @@ public class PriceTest : TestBase
     public void matrix_with_display_nameValidation_Works()
     {
         Price value = new(
-            new()
+            new MatrixWithDisplayName()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2739,7 +2739,7 @@ public class PriceTest : TestBase
     public void grouped_tiered_packageValidation_Works()
     {
         Price value = new(
-            new()
+            new GroupedTieredPackage()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2865,7 +2865,7 @@ public class PriceTest : TestBase
     public void max_group_tiered_packageValidation_Works()
     {
         Price value = new(
-            new()
+            new MaxGroupTieredPackage()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -2991,7 +2991,7 @@ public class PriceTest : TestBase
     public void scalable_matrix_with_unit_pricingValidation_Works()
     {
         Price value = new(
-            new()
+            new ScalableMatrixWithUnitPricing()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3124,7 +3124,7 @@ public class PriceTest : TestBase
     public void scalable_matrix_with_tiered_pricingValidation_Works()
     {
         Price value = new(
-            new()
+            new ScalableMatrixWithTieredPricing()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3260,7 +3260,7 @@ public class PriceTest : TestBase
     public void cumulative_grouped_bulkValidation_Works()
     {
         Price value = new(
-            new()
+            new CumulativeGroupedBulk()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3389,7 +3389,7 @@ public class PriceTest : TestBase
     public void cumulative_grouped_allocationValidation_Works()
     {
         Price value = new(
-            new()
+            new CumulativeGroupedAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3512,7 +3512,7 @@ public class PriceTest : TestBase
     public void minimumValidation_Works()
     {
         Price value = new(
-            new()
+            new PriceMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3629,7 +3629,7 @@ public class PriceTest : TestBase
     public void percentValidation_Works()
     {
         Price value = new(
-            new()
+            new Percent()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3746,7 +3746,7 @@ public class PriceTest : TestBase
     public void event_outputValidation_Works()
     {
         Price value = new(
-            new()
+            new EventOutput()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3868,7 +3868,7 @@ public class PriceTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new Unit()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -3988,7 +3988,7 @@ public class PriceTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new Tiered()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4120,7 +4120,7 @@ public class PriceTest : TestBase
     public void bulkSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new Bulk()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4240,7 +4240,7 @@ public class PriceTest : TestBase
     public void bulk_with_filtersSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new BulkWithFilters()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4368,7 +4368,7 @@ public class PriceTest : TestBase
     public void packageSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new Package()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4488,7 +4488,7 @@ public class PriceTest : TestBase
     public void matrixSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new Matrix()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4616,7 +4616,7 @@ public class PriceTest : TestBase
     public void threshold_total_amountSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new ThresholdTotalAmount()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4744,7 +4744,7 @@ public class PriceTest : TestBase
     public void tiered_packageSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new TieredPackage()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -4872,7 +4872,7 @@ public class PriceTest : TestBase
     public void tiered_with_minimumSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new TieredWithMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5011,7 +5011,7 @@ public class PriceTest : TestBase
     public void grouped_tieredSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new GroupedTiered()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5139,7 +5139,7 @@ public class PriceTest : TestBase
     public void tiered_package_with_minimumSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new TieredPackageWithMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5277,7 +5277,7 @@ public class PriceTest : TestBase
     public void package_with_allocationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new PackageWithAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5402,7 +5402,7 @@ public class PriceTest : TestBase
     public void unit_with_percentSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new UnitWithPercent()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5522,7 +5522,7 @@ public class PriceTest : TestBase
     public void matrix_with_allocationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new MatrixWithAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5651,7 +5651,7 @@ public class PriceTest : TestBase
     public void tiered_with_prorationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new TieredWithProration()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5773,7 +5773,7 @@ public class PriceTest : TestBase
     public void unit_with_prorationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new UnitWithProration()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -5893,7 +5893,7 @@ public class PriceTest : TestBase
     public void grouped_allocationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new GroupedAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6018,7 +6018,7 @@ public class PriceTest : TestBase
     public void bulk_with_prorationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new BulkWithProration()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6143,7 +6143,7 @@ public class PriceTest : TestBase
     public void grouped_with_prorated_minimumSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new GroupedWithProratedMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6268,7 +6268,7 @@ public class PriceTest : TestBase
     public void grouped_with_metered_minimumSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new GroupedWithMeteredMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6402,7 +6402,7 @@ public class PriceTest : TestBase
     public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new GroupedWithMinMaxThresholds()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6528,7 +6528,7 @@ public class PriceTest : TestBase
     public void matrix_with_display_nameSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new MatrixWithDisplayName()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6660,7 +6660,7 @@ public class PriceTest : TestBase
     public void grouped_tiered_packageSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new GroupedTieredPackage()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6789,7 +6789,7 @@ public class PriceTest : TestBase
     public void max_group_tiered_packageSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new MaxGroupTieredPackage()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -6918,7 +6918,7 @@ public class PriceTest : TestBase
     public void scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new ScalableMatrixWithUnitPricing()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -7054,7 +7054,7 @@ public class PriceTest : TestBase
     public void scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new ScalableMatrixWithTieredPricing()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -7193,7 +7193,7 @@ public class PriceTest : TestBase
     public void cumulative_grouped_bulkSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new CumulativeGroupedBulk()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -7325,7 +7325,7 @@ public class PriceTest : TestBase
     public void cumulative_grouped_allocationSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new CumulativeGroupedAllocation()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -7451,7 +7451,7 @@ public class PriceTest : TestBase
     public void minimumSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new PriceMinimum()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -7571,7 +7571,7 @@ public class PriceTest : TestBase
     public void percentSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new Percent()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -7691,7 +7691,7 @@ public class PriceTest : TestBase
     public void event_outputSerializationRoundtrip_Works()
     {
         Price value = new(
-            new()
+            new EventOutput()
             {
                 ID = "id",
                 BillableMetric = new("id"),
@@ -9334,7 +9334,7 @@ public class UnitConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         UnitConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -9347,7 +9347,7 @@ public class UnitConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         UnitConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -9369,7 +9369,7 @@ public class UnitConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         UnitConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -9385,7 +9385,7 @@ public class UnitConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         UnitConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -11106,7 +11106,7 @@ public class TieredConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         TieredConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -11119,7 +11119,7 @@ public class TieredConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         TieredConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -11141,7 +11141,7 @@ public class TieredConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         TieredConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -11157,7 +11157,7 @@ public class TieredConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         TieredConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -12760,7 +12760,7 @@ public class BulkConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         BulkConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -12773,7 +12773,7 @@ public class BulkConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         BulkConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -12795,7 +12795,7 @@ public class BulkConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         BulkConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -12811,7 +12811,7 @@ public class BulkConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         BulkConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -14780,7 +14780,7 @@ public class BulkWithFiltersConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         BulkWithFiltersConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -14793,7 +14793,7 @@ public class BulkWithFiltersConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         BulkWithFiltersConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -14815,7 +14815,7 @@ public class BulkWithFiltersConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         BulkWithFiltersConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -14831,7 +14831,7 @@ public class BulkWithFiltersConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         BulkWithFiltersConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -16444,7 +16444,7 @@ public class PackageConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         PackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -16457,7 +16457,7 @@ public class PackageConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         PackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -16479,7 +16479,7 @@ public class PackageConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         PackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -16495,7 +16495,7 @@ public class PackageConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         PackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -18146,7 +18146,7 @@ public class MatrixConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         MatrixConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -18159,7 +18159,7 @@ public class MatrixConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         MatrixConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -18181,7 +18181,7 @@ public class MatrixConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         MatrixConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -18197,7 +18197,7 @@ public class MatrixConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         MatrixConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -19900,7 +19900,7 @@ public class ThresholdTotalAmountConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         ThresholdTotalAmountConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -19913,7 +19913,7 @@ public class ThresholdTotalAmountConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         ThresholdTotalAmountConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -19935,7 +19935,7 @@ public class ThresholdTotalAmountConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         ThresholdTotalAmountConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -19953,7 +19953,7 @@ public class ThresholdTotalAmountConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         ThresholdTotalAmountConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -21888,7 +21888,7 @@ public class TieredPackageConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         TieredPackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -21901,7 +21901,7 @@ public class TieredPackageConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         TieredPackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -21923,7 +21923,7 @@ public class TieredPackageConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         TieredPackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -21939,7 +21939,7 @@ public class TieredPackageConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         TieredPackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -23910,7 +23910,7 @@ public class TieredWithMinimumConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         TieredWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -23923,7 +23923,7 @@ public class TieredWithMinimumConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         TieredWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -23945,7 +23945,7 @@ public class TieredWithMinimumConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         TieredWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -23961,7 +23961,7 @@ public class TieredWithMinimumConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         TieredWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -26020,7 +26020,7 @@ public class GroupedTieredConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedTieredConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -26033,7 +26033,7 @@ public class GroupedTieredConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedTieredConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -26055,7 +26055,7 @@ public class GroupedTieredConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedTieredConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -26071,7 +26071,7 @@ public class GroupedTieredConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedTieredConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -28047,7 +28047,7 @@ public class TieredPackageWithMinimumConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         TieredPackageWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -28060,7 +28060,7 @@ public class TieredPackageWithMinimumConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         TieredPackageWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -28082,7 +28082,7 @@ public class TieredPackageWithMinimumConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         TieredPackageWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -28100,7 +28100,7 @@ public class TieredPackageWithMinimumConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         TieredPackageWithMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -30017,7 +30017,7 @@ public class PackageWithAllocationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         PackageWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -30030,7 +30030,7 @@ public class PackageWithAllocationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         PackageWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -30052,7 +30052,7 @@ public class PackageWithAllocationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         PackageWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -30070,7 +30070,7 @@ public class PackageWithAllocationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         PackageWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -31771,7 +31771,7 @@ public class UnitWithPercentConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         UnitWithPercentConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -31784,7 +31784,7 @@ public class UnitWithPercentConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         UnitWithPercentConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -31806,7 +31806,7 @@ public class UnitWithPercentConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         UnitWithPercentConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -31822,7 +31822,7 @@ public class UnitWithPercentConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         UnitWithPercentConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -33571,7 +33571,7 @@ public class MatrixWithAllocationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         MatrixWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -33584,7 +33584,7 @@ public class MatrixWithAllocationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         MatrixWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -33606,7 +33606,7 @@ public class MatrixWithAllocationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         MatrixWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -33624,7 +33624,7 @@ public class MatrixWithAllocationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         MatrixWithAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -35267,7 +35267,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -35280,7 +35280,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -35302,7 +35302,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -35320,7 +35320,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         TieredWithProrationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -37085,7 +37085,7 @@ public class UnitWithProrationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         UnitWithProrationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -37098,7 +37098,7 @@ public class UnitWithProrationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         UnitWithProrationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -37120,7 +37120,7 @@ public class UnitWithProrationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         UnitWithProrationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -37136,7 +37136,7 @@ public class UnitWithProrationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         UnitWithProrationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -38853,7 +38853,7 @@ public class GroupedAllocationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -38866,7 +38866,7 @@ public class GroupedAllocationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -38888,7 +38888,7 @@ public class GroupedAllocationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -38904,7 +38904,7 @@ public class GroupedAllocationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -40857,7 +40857,7 @@ public class BulkWithProrationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         BulkWithProrationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -40870,7 +40870,7 @@ public class BulkWithProrationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         BulkWithProrationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -40892,7 +40892,7 @@ public class BulkWithProrationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         BulkWithProrationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -40908,7 +40908,7 @@ public class BulkWithProrationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         BulkWithProrationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -42591,7 +42591,7 @@ public class GroupedWithProratedMinimumConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedWithProratedMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -42604,7 +42604,7 @@ public class GroupedWithProratedMinimumConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedWithProratedMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -42626,7 +42626,7 @@ public class GroupedWithProratedMinimumConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedWithProratedMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -42643,7 +42643,7 @@ public class GroupedWithProratedMinimumConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedWithProratedMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -44499,7 +44499,7 @@ public class GroupedWithMeteredMinimumConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedWithMeteredMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -44512,7 +44512,7 @@ public class GroupedWithMeteredMinimumConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedWithMeteredMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -44534,7 +44534,7 @@ public class GroupedWithMeteredMinimumConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedWithMeteredMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -44551,7 +44551,7 @@ public class GroupedWithMeteredMinimumConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedWithMeteredMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -46529,7 +46529,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -46542,7 +46542,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -46564,7 +46564,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -46581,7 +46581,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -48409,7 +48409,7 @@ public class MatrixWithDisplayNameConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         MatrixWithDisplayNameConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -48422,7 +48422,7 @@ public class MatrixWithDisplayNameConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         MatrixWithDisplayNameConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -48444,7 +48444,7 @@ public class MatrixWithDisplayNameConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         MatrixWithDisplayNameConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -48462,7 +48462,7 @@ public class MatrixWithDisplayNameConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         MatrixWithDisplayNameConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -50379,7 +50379,7 @@ public class GroupedTieredPackageConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         GroupedTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -50392,7 +50392,7 @@ public class GroupedTieredPackageConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         GroupedTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -50414,7 +50414,7 @@ public class GroupedTieredPackageConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         GroupedTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -50432,7 +50432,7 @@ public class GroupedTieredPackageConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         GroupedTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -52321,7 +52321,7 @@ public class MaxGroupTieredPackageConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         MaxGroupTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -52334,7 +52334,7 @@ public class MaxGroupTieredPackageConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         MaxGroupTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -52356,7 +52356,7 @@ public class MaxGroupTieredPackageConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         MaxGroupTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -52374,7 +52374,7 @@ public class MaxGroupTieredPackageConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         MaxGroupTieredPackageConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -54341,7 +54341,7 @@ public class ScalableMatrixWithUnitPricingConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         ScalableMatrixWithUnitPricingConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -54354,7 +54354,7 @@ public class ScalableMatrixWithUnitPricingConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         ScalableMatrixWithUnitPricingConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -54376,7 +54376,7 @@ public class ScalableMatrixWithUnitPricingConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         ScalableMatrixWithUnitPricingConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -54393,7 +54393,7 @@ public class ScalableMatrixWithUnitPricingConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         ScalableMatrixWithUnitPricingConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -56612,7 +56612,7 @@ public class ScalableMatrixWithTieredPricingConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         ScalableMatrixWithTieredPricingConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -56625,7 +56625,7 @@ public class ScalableMatrixWithTieredPricingConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         ScalableMatrixWithTieredPricingConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -56647,7 +56647,7 @@ public class ScalableMatrixWithTieredPricingConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         ScalableMatrixWithTieredPricingConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -56664,7 +56664,7 @@ public class ScalableMatrixWithTieredPricingConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         ScalableMatrixWithTieredPricingConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -58907,7 +58907,7 @@ public class CumulativeGroupedBulkConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         CumulativeGroupedBulkConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -58920,7 +58920,7 @@ public class CumulativeGroupedBulkConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         CumulativeGroupedBulkConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -58942,7 +58942,7 @@ public class CumulativeGroupedBulkConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         CumulativeGroupedBulkConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -58960,7 +58960,7 @@ public class CumulativeGroupedBulkConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         CumulativeGroupedBulkConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -60855,7 +60855,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -60868,7 +60868,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -60890,7 +60890,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -60907,7 +60907,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -62611,7 +62611,7 @@ public class PriceMinimumConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         PriceMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -62624,7 +62624,7 @@ public class PriceMinimumConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         PriceMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -62646,7 +62646,7 @@ public class PriceMinimumConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         PriceMinimumConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -62662,7 +62662,7 @@ public class PriceMinimumConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         PriceMinimumConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -64379,7 +64379,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -64392,7 +64392,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -64414,7 +64414,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -64430,7 +64430,7 @@ public class PercentConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         PercentConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -66137,7 +66137,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -66150,7 +66150,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -66172,7 +66172,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -66188,7 +66188,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         EventOutputConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

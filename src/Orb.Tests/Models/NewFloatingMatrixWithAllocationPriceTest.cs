@@ -633,7 +633,7 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
     public void unitValidation_Works()
     {
         NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -646,7 +646,7 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
     public void tieredValidation_Works()
     {
         NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -668,7 +668,7 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
     public void unitSerializationRoundtrip_Works()
     {
         NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -687,7 +687,7 @@ public class NewFloatingMatrixWithAllocationPriceConversionRateConfigTest : Test
     public void tieredSerializationRoundtrip_Works()
     {
         NewFloatingMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

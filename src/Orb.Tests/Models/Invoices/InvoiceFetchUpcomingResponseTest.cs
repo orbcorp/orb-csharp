@@ -3824,7 +3824,7 @@ public class AdjustmentTest : TestBase
     public void monetary_usage_discountValidation_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
@@ -3852,7 +3852,7 @@ public class AdjustmentTest : TestBase
     public void monetary_amount_discountValidation_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = AdjustmentType.AmountDiscount,
@@ -3880,7 +3880,7 @@ public class AdjustmentTest : TestBase
     public void monetary_percentage_discountValidation_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryPercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -3909,7 +3909,7 @@ public class AdjustmentTest : TestBase
     public void monetary_minimumValidation_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
@@ -3938,7 +3938,7 @@ public class AdjustmentTest : TestBase
     public void monetary_maximumValidation_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
@@ -3966,7 +3966,7 @@ public class AdjustmentTest : TestBase
     public void monetary_usage_discountSerializationRoundtrip_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
@@ -3997,7 +3997,7 @@ public class AdjustmentTest : TestBase
     public void monetary_amount_discountSerializationRoundtrip_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = AdjustmentType.AmountDiscount,
@@ -4028,7 +4028,7 @@ public class AdjustmentTest : TestBase
     public void monetary_percentage_discountSerializationRoundtrip_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryPercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -4060,7 +4060,7 @@ public class AdjustmentTest : TestBase
     public void monetary_minimumSerializationRoundtrip_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
@@ -4092,7 +4092,7 @@ public class AdjustmentTest : TestBase
     public void monetary_maximumSerializationRoundtrip_Works()
     {
         Invoices::Adjustment value = new(
-            new()
+            new MonetaryMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
@@ -4126,7 +4126,7 @@ public class SubLineItemTest : TestBase
     public void matrixValidation_Works()
     {
         Invoices::SubLineItem value = new(
-            new()
+            new MatrixSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -4144,7 +4144,7 @@ public class SubLineItemTest : TestBase
     public void tierValidation_Works()
     {
         Invoices::SubLineItem value = new(
-            new()
+            new TierSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -4166,7 +4166,7 @@ public class SubLineItemTest : TestBase
     public void otherValidation_Works()
     {
         Invoices::SubLineItem value = new(
-            new()
+            new OtherSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -4182,7 +4182,7 @@ public class SubLineItemTest : TestBase
     public void matrixSerializationRoundtrip_Works()
     {
         Invoices::SubLineItem value = new(
-            new()
+            new MatrixSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -4203,7 +4203,7 @@ public class SubLineItemTest : TestBase
     public void tierSerializationRoundtrip_Works()
     {
         Invoices::SubLineItem value = new(
-            new()
+            new TierSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },
@@ -4228,7 +4228,7 @@ public class SubLineItemTest : TestBase
     public void otherSerializationRoundtrip_Works()
     {
         Invoices::SubLineItem value = new(
-            new()
+            new OtherSubLineItem()
             {
                 Amount = "9.00",
                 Grouping = new() { Key = "region", Value = "west" },

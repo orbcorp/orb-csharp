@@ -649,7 +649,7 @@ public class NewPlanMatrixWithAllocationPriceConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         NewPlanMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -662,7 +662,7 @@ public class NewPlanMatrixWithAllocationPriceConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         NewPlanMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -684,7 +684,7 @@ public class NewPlanMatrixWithAllocationPriceConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         NewPlanMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -701,7 +701,7 @@ public class NewPlanMatrixWithAllocationPriceConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         NewPlanMatrixWithAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

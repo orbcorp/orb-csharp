@@ -697,7 +697,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     public void unitValidation_Works()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -710,7 +710,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     public void tieredValidation_Works()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -732,7 +732,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     public void unitSerializationRoundtrip_Works()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -749,7 +749,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     public void tieredSerializationRoundtrip_Works()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

@@ -9,7 +9,7 @@ public class InvoiceLevelDiscountTest : TestBase
     public void percentageValidation_Works()
     {
         InvoiceLevelDiscount value = new(
-            new()
+            new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
@@ -33,7 +33,7 @@ public class InvoiceLevelDiscountTest : TestBase
     public void amountValidation_Works()
     {
         InvoiceLevelDiscount value = new(
-            new()
+            new AmountDiscount()
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
@@ -57,7 +57,7 @@ public class InvoiceLevelDiscountTest : TestBase
     public void trialValidation_Works()
     {
         InvoiceLevelDiscount value = new(
-            new()
+            new TrialDiscount()
             {
                 DiscountType = TrialDiscountDiscountType.Trial,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
@@ -82,7 +82,7 @@ public class InvoiceLevelDiscountTest : TestBase
     public void percentageSerializationRoundtrip_Works()
     {
         InvoiceLevelDiscount value = new(
-            new()
+            new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
@@ -109,7 +109,7 @@ public class InvoiceLevelDiscountTest : TestBase
     public void amountSerializationRoundtrip_Works()
     {
         InvoiceLevelDiscount value = new(
-            new()
+            new AmountDiscount()
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
@@ -136,7 +136,7 @@ public class InvoiceLevelDiscountTest : TestBase
     public void trialSerializationRoundtrip_Works()
     {
         InvoiceLevelDiscount value = new(
-            new()
+            new TrialDiscount()
             {
                 DiscountType = TrialDiscountDiscountType.Trial,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
