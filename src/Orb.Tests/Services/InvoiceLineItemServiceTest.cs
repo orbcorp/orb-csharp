@@ -28,7 +28,8 @@ public class InvoiceLineItemServiceTest : TestBase
                 DateTimeOffset
 #endif
                 .Parse("2023-09-22"),
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         invoiceLineItem.Validate();
     }

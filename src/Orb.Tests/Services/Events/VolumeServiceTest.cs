@@ -9,7 +9,8 @@ public class VolumeServiceTest : TestBase
     public async Task List_Works()
     {
         var eventVolumes = await this.client.Events.Volume.List(
-            new() { TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z") }
+            new() { TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z") },
+            TestContext.Current.CancellationToken
         );
         eventVolumes.Validate();
     }

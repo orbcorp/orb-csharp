@@ -10,7 +10,8 @@ public class BalanceTransactionServiceTest : TestBase
     {
         var balanceTransaction = await this.client.Customers.BalanceTransactions.Create(
             "customer_id",
-            new() { Amount = "amount", Type = Type.Increment }
+            new() { Amount = "amount", Type = Type.Increment },
+            TestContext.Current.CancellationToken
         );
         balanceTransaction.Validate();
     }
@@ -18,7 +19,11 @@ public class BalanceTransactionServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Customers.BalanceTransactions.List("customer_id");
+        var page = await this.client.Customers.BalanceTransactions.List(
+            "customer_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         page.Validate();
     }
 }

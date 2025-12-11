@@ -13,7 +13,8 @@ public class BackfillServiceTest : TestBase
             {
                 TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         backfill.Validate();
     }
@@ -21,28 +22,43 @@ public class BackfillServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.Events.Backfills.List();
+        var page = await this.client.Events.Backfills.List(
+            new(),
+            TestContext.Current.CancellationToken
+        );
         page.Validate();
     }
 
     [Fact]
     public async Task Close_Works()
     {
-        var response = await this.client.Events.Backfills.Close("backfill_id");
+        var response = await this.client.Events.Backfills.Close(
+            "backfill_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         response.Validate();
     }
 
     [Fact]
     public async Task Fetch_Works()
     {
-        var response = await this.client.Events.Backfills.Fetch("backfill_id");
+        var response = await this.client.Events.Backfills.Fetch(
+            "backfill_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         response.Validate();
     }
 
     [Fact]
     public async Task Revert_Works()
     {
-        var response = await this.client.Events.Backfills.Revert("backfill_id");
+        var response = await this.client.Events.Backfills.Revert(
+            "backfill_id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
         response.Validate();
     }
 }

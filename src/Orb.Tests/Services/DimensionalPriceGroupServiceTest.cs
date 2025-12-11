@@ -13,7 +13,8 @@ public class DimensionalPriceGroupServiceTest : TestBase
                 BillableMetricID = "billable_metric_id",
                 Dimensions = ["region", "instance_type"],
                 Name = "name",
-            }
+            },
+            TestContext.Current.CancellationToken
         );
         dimensionalPriceGroup.Validate();
     }
@@ -22,7 +23,9 @@ public class DimensionalPriceGroupServiceTest : TestBase
     public async Task Retrieve_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Retrieve(
-            "dimensional_price_group_id"
+            "dimensional_price_group_id",
+            new(),
+            TestContext.Current.CancellationToken
         );
         dimensionalPriceGroup.Validate();
     }
@@ -31,7 +34,9 @@ public class DimensionalPriceGroupServiceTest : TestBase
     public async Task Update_Works()
     {
         var dimensionalPriceGroup = await this.client.DimensionalPriceGroups.Update(
-            "dimensional_price_group_id"
+            "dimensional_price_group_id",
+            new(),
+            TestContext.Current.CancellationToken
         );
         dimensionalPriceGroup.Validate();
     }
@@ -39,7 +44,10 @@ public class DimensionalPriceGroupServiceTest : TestBase
     [Fact]
     public async Task List_Works()
     {
-        var page = await this.client.DimensionalPriceGroups.List();
+        var page = await this.client.DimensionalPriceGroups.List(
+            new(),
+            TestContext.Current.CancellationToken
+        );
         page.Validate();
     }
 }
