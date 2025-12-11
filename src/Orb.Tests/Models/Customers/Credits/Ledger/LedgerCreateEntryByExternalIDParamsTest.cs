@@ -13,7 +13,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void incrementValidation_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyIncrement()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -63,7 +63,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void decrementValidation_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyDecrement()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -78,7 +78,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void expiration_changeValidation_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
             {
                 TargetExpiryDate =
 #if NET
@@ -102,7 +102,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void voidValidation_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyVoid()
             {
                 Amount = 0,
                 BlockID = "block_id",
@@ -119,7 +119,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void amendmentValidation_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyAmendment()
             {
                 Amount = 0,
                 BlockID = "block_id",
@@ -135,7 +135,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void incrementSerializationRoundtrip_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyIncrement()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -190,7 +190,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void decrementSerializationRoundtrip_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyDecrement()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -210,7 +210,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void expiration_changeSerializationRoundtrip_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
             {
                 TargetExpiryDate =
 #if NET
@@ -239,7 +239,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void voidSerializationRoundtrip_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyVoid()
             {
                 Amount = 0,
                 BlockID = "block_id",
@@ -261,7 +261,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     public void amendmentSerializationRoundtrip_Works()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
-            new()
+            new LedgerCreateEntryByExternalIDParamsBodyAmendment()
             {
                 Amount = 0,
                 BlockID = "block_id",

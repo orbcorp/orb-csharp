@@ -1069,7 +1069,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -1083,7 +1083,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -1106,7 +1106,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -1126,7 +1126,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(

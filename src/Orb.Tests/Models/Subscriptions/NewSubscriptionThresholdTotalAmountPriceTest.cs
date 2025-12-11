@@ -944,7 +944,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     public void unitValidation_Works()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -957,7 +957,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     public void tieredValidation_Works()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -979,7 +979,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     public void unitSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -998,7 +998,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     public void tieredSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

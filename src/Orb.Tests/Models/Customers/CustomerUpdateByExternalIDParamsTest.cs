@@ -479,7 +479,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void new_avalaraValidation_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new()
+            new NewAvalaraTaxConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = TaxProvider.Avalara,
@@ -494,7 +494,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void new_tax_jarValidation_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new()
+            new NewTaxJarConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
@@ -508,7 +508,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void new_sphereValidation_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new()
+            new NewSphereConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
@@ -522,7 +522,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void numeralValidation_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+            new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral()
+            {
+                TaxExempt = true,
+                AutomaticTaxEnabled = true,
+            }
         );
         value.Validate();
     }
@@ -531,7 +535,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void anrokValidation_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+            new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok()
+            {
+                TaxExempt = true,
+                AutomaticTaxEnabled = true,
+            }
         );
         value.Validate();
     }
@@ -540,7 +548,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void stripeValidation_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+            new CustomerUpdateByExternalIDParamsTaxConfigurationStripe()
+            {
+                TaxExempt = true,
+                AutomaticTaxEnabled = true,
+            }
         );
         value.Validate();
     }
@@ -549,7 +561,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void new_avalaraSerializationRoundtrip_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new()
+            new NewAvalaraTaxConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = TaxProvider.Avalara,
@@ -568,7 +580,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void new_tax_jarSerializationRoundtrip_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new()
+            new NewTaxJarConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
@@ -586,7 +598,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void new_sphereSerializationRoundtrip_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new()
+            new NewSphereConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
@@ -604,7 +616,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void numeralSerializationRoundtrip_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+            new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral()
+            {
+                TaxExempt = true,
+                AutomaticTaxEnabled = true,
+            }
         );
         string json = JsonSerializer.Serialize(value);
         var deserialized =
@@ -617,7 +633,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void anrokSerializationRoundtrip_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+            new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok()
+            {
+                TaxExempt = true,
+                AutomaticTaxEnabled = true,
+            }
         );
         string json = JsonSerializer.Serialize(value);
         var deserialized =
@@ -630,7 +650,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     public void stripeSerializationRoundtrip_Works()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
-            new() { TaxExempt = true, AutomaticTaxEnabled = true }
+            new CustomerUpdateByExternalIDParamsTaxConfigurationStripe()
+            {
+                TaxExempt = true,
+                AutomaticTaxEnabled = true,
+            }
         );
         string json = JsonSerializer.Serialize(value);
         var deserialized =

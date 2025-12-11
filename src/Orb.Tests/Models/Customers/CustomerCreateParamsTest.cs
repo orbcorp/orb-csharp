@@ -404,7 +404,7 @@ public class TaxConfigurationTest : TestBase
     public void new_avalaraValidation_Works()
     {
         TaxConfiguration value = new(
-            new()
+            new NewAvalaraTaxConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = TaxProvider.Avalara,
@@ -419,7 +419,7 @@ public class TaxConfigurationTest : TestBase
     public void new_tax_jarValidation_Works()
     {
         TaxConfiguration value = new(
-            new()
+            new NewTaxJarConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
@@ -433,7 +433,7 @@ public class TaxConfigurationTest : TestBase
     public void new_sphereValidation_Works()
     {
         TaxConfiguration value = new(
-            new()
+            new NewSphereConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
@@ -446,21 +446,23 @@ public class TaxConfigurationTest : TestBase
     [Fact]
     public void numeralValidation_Works()
     {
-        TaxConfiguration value = new(new() { TaxExempt = true, AutomaticTaxEnabled = true });
+        TaxConfiguration value = new(
+            new Numeral() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
         value.Validate();
     }
 
     [Fact]
     public void anrokValidation_Works()
     {
-        TaxConfiguration value = new(new() { TaxExempt = true, AutomaticTaxEnabled = true });
+        TaxConfiguration value = new(new Anrok() { TaxExempt = true, AutomaticTaxEnabled = true });
         value.Validate();
     }
 
     [Fact]
     public void stripeValidation_Works()
     {
-        TaxConfiguration value = new(new() { TaxExempt = true, AutomaticTaxEnabled = true });
+        TaxConfiguration value = new(new Stripe() { TaxExempt = true, AutomaticTaxEnabled = true });
         value.Validate();
     }
 
@@ -468,7 +470,7 @@ public class TaxConfigurationTest : TestBase
     public void new_avalaraSerializationRoundtrip_Works()
     {
         TaxConfiguration value = new(
-            new()
+            new NewAvalaraTaxConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = TaxProvider.Avalara,
@@ -486,7 +488,7 @@ public class TaxConfigurationTest : TestBase
     public void new_tax_jarSerializationRoundtrip_Works()
     {
         TaxConfiguration value = new(
-            new()
+            new NewTaxJarConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewTaxJarConfigurationTaxProvider.Taxjar,
@@ -503,7 +505,7 @@ public class TaxConfigurationTest : TestBase
     public void new_sphereSerializationRoundtrip_Works()
     {
         TaxConfiguration value = new(
-            new()
+            new NewSphereConfiguration()
             {
                 TaxExempt = true,
                 TaxProvider = NewSphereConfigurationTaxProvider.Sphere,
@@ -519,7 +521,9 @@ public class TaxConfigurationTest : TestBase
     [Fact]
     public void numeralSerializationRoundtrip_Works()
     {
-        TaxConfiguration value = new(new() { TaxExempt = true, AutomaticTaxEnabled = true });
+        TaxConfiguration value = new(
+            new Numeral() { TaxExempt = true, AutomaticTaxEnabled = true }
+        );
         string json = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TaxConfiguration>(json);
 
@@ -529,7 +533,7 @@ public class TaxConfigurationTest : TestBase
     [Fact]
     public void anrokSerializationRoundtrip_Works()
     {
-        TaxConfiguration value = new(new() { TaxExempt = true, AutomaticTaxEnabled = true });
+        TaxConfiguration value = new(new Anrok() { TaxExempt = true, AutomaticTaxEnabled = true });
         string json = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TaxConfiguration>(json);
 
@@ -539,7 +543,7 @@ public class TaxConfigurationTest : TestBase
     [Fact]
     public void stripeSerializationRoundtrip_Works()
     {
-        TaxConfiguration value = new(new() { TaxExempt = true, AutomaticTaxEnabled = true });
+        TaxConfiguration value = new(new Stripe() { TaxExempt = true, AutomaticTaxEnabled = true });
         string json = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TaxConfiguration>(json);
 

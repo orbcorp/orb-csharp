@@ -1257,7 +1257,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
     public void unitValidation_Works()
     {
         NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -1270,7 +1270,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
     public void tieredValidation_Works()
     {
         NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -1292,7 +1292,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
     public void unitSerializationRoundtrip_Works()
     {
         NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -1311,7 +1311,7 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
     public void tieredSerializationRoundtrip_Works()
     {
         NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

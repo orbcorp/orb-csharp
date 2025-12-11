@@ -232,7 +232,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_usage_discountValidation_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
@@ -260,7 +260,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_amount_discountValidation_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
@@ -288,7 +288,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_percentage_discountValidation_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhasePercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -317,7 +317,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_minimumValidation_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
@@ -346,7 +346,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_maximumValidation_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
@@ -374,7 +374,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_usage_discountSerializationRoundtrip_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
@@ -405,7 +405,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_amount_discountSerializationRoundtrip_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
@@ -436,7 +436,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_percentage_discountSerializationRoundtrip_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhasePercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -468,7 +468,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_minimumSerializationRoundtrip_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
@@ -500,7 +500,7 @@ public class AdjustmentTest : TestBase
     public void plan_phase_maximumSerializationRoundtrip_Works()
     {
         Adjustment value = new(
-            new()
+            new PlanPhaseMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,

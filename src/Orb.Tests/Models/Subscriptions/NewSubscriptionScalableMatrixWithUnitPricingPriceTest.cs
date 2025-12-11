@@ -1197,7 +1197,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -1211,7 +1211,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(
@@ -1234,7 +1234,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
-                new()
+                new SharedUnitConversionRateConfig()
                 {
                     ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                     UnitConfig = new("unit_amount"),
@@ -1254,7 +1254,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
-                new()
+                new SharedTieredConversionRateConfig()
                 {
                     ConversionRateType = ConversionRateType.Tiered,
                     TieredConfig = new(

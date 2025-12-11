@@ -14,7 +14,7 @@ public class SubscriptionUsageTest : TestBase
     public void ungroupedValidation_Works()
     {
         SubscriptionUsage value = new(
-            new(
+            new UngroupedSubscriptionUsage(
                 [
                     new()
                     {
@@ -40,7 +40,7 @@ public class SubscriptionUsageTest : TestBase
     public void groupedValidation_Works()
     {
         SubscriptionUsage value = new(
-            new()
+            new GroupedSubscriptionUsage()
             {
                 Data =
                 [
@@ -74,7 +74,7 @@ public class SubscriptionUsageTest : TestBase
     public void ungroupedSerializationRoundtrip_Works()
     {
         SubscriptionUsage value = new(
-            new(
+            new UngroupedSubscriptionUsage(
                 [
                     new()
                     {
@@ -103,7 +103,7 @@ public class SubscriptionUsageTest : TestBase
     public void groupedSerializationRoundtrip_Works()
     {
         SubscriptionUsage value = new(
-            new()
+            new GroupedSubscriptionUsage()
             {
                 Data =
                 [

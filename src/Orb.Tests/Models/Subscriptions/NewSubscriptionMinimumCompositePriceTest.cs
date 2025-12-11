@@ -732,7 +732,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     public void unitValidation_Works()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -745,7 +745,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     public void tieredValidation_Works()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -767,7 +767,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     public void unitSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -786,7 +786,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     public void tieredSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

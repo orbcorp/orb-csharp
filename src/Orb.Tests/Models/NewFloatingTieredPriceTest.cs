@@ -685,7 +685,7 @@ public class NewFloatingTieredPriceConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         NewFloatingTieredPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -698,7 +698,7 @@ public class NewFloatingTieredPriceConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         NewFloatingTieredPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -720,7 +720,7 @@ public class NewFloatingTieredPriceConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         NewFloatingTieredPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -738,7 +738,7 @@ public class NewFloatingTieredPriceConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         NewFloatingTieredPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

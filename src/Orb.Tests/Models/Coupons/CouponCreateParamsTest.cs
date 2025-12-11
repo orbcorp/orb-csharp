@@ -8,21 +8,21 @@ public class DiscountTest : TestBase
     [Fact]
     public void percentageValidation_Works()
     {
-        Discount value = new(new(0));
+        Discount value = new(new Percentage(0));
         value.Validate();
     }
 
     [Fact]
     public void amountValidation_Works()
     {
-        Discount value = new(new("amount_discount"));
+        Discount value = new(new Amount("amount_discount"));
         value.Validate();
     }
 
     [Fact]
     public void percentageSerializationRoundtrip_Works()
     {
-        Discount value = new(new(0));
+        Discount value = new(new Percentage(0));
         string json = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Discount>(json);
 
@@ -32,7 +32,7 @@ public class DiscountTest : TestBase
     [Fact]
     public void amountSerializationRoundtrip_Works()
     {
-        Discount value = new(new("amount_discount"));
+        Discount value = new(new Amount("amount_discount"));
         string json = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Discount>(json);
 

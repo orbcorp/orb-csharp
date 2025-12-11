@@ -13,7 +13,7 @@ public class BodyTest : TestBase
     public void incrementValidation_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Increment()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -62,7 +62,7 @@ public class BodyTest : TestBase
     public void decrementValidation_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Decrement()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -77,7 +77,7 @@ public class BodyTest : TestBase
     public void expiration_changeValidation_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::ExpirationChange()
             {
                 TargetExpiryDate =
 #if NET
@@ -101,7 +101,7 @@ public class BodyTest : TestBase
     public void voidValidation_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Void()
             {
                 Amount = 0,
                 BlockID = "block_id",
@@ -118,7 +118,7 @@ public class BodyTest : TestBase
     public void amendmentValidation_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Amendment()
             {
                 Amount = 0,
                 BlockID = "block_id",
@@ -134,7 +134,7 @@ public class BodyTest : TestBase
     public void incrementSerializationRoundtrip_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Increment()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -186,7 +186,7 @@ public class BodyTest : TestBase
     public void decrementSerializationRoundtrip_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Decrement()
             {
                 Amount = 0,
                 Currency = "currency",
@@ -204,7 +204,7 @@ public class BodyTest : TestBase
     public void expiration_changeSerializationRoundtrip_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::ExpirationChange()
             {
                 TargetExpiryDate =
 #if NET
@@ -231,7 +231,7 @@ public class BodyTest : TestBase
     public void voidSerializationRoundtrip_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Void()
             {
                 Amount = 0,
                 BlockID = "block_id",
@@ -251,7 +251,7 @@ public class BodyTest : TestBase
     public void amendmentSerializationRoundtrip_Works()
     {
         Ledger::Body value = new(
-            new()
+            new Ledger::Amendment()
             {
                 Amount = 0,
                 BlockID = "block_id",

@@ -1030,7 +1030,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_usage_discountValidation_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -1059,7 +1059,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_amount_discountValidation_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -1088,7 +1088,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_percentage_discountValidation_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhasePercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -1118,7 +1118,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_minimumValidation_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
@@ -1147,7 +1147,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_maximumValidation_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
@@ -1175,7 +1175,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_usage_discountSerializationRoundtrip_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseUsageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -1207,7 +1207,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_amount_discountSerializationRoundtrip_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseAmountDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -1239,7 +1239,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_percentage_discountSerializationRoundtrip_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhasePercentageDiscountAdjustment()
             {
                 ID = "id",
                 AdjustmentType =
@@ -1272,7 +1272,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_minimumSerializationRoundtrip_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseMinimumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
@@ -1304,7 +1304,7 @@ public class PlanVersionAdjustmentTest : TestBase
     public void plan_phase_maximumSerializationRoundtrip_Works()
     {
         PlanVersionAdjustment value = new(
-            new()
+            new Models::PlanPhaseMaximumAdjustment()
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,

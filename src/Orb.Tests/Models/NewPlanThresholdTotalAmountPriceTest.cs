@@ -914,7 +914,7 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
     public void unitValidation_Works()
     {
         NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -927,7 +927,7 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
     public void tieredValidation_Works()
     {
         NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -949,7 +949,7 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
     public void unitSerializationRoundtrip_Works()
     {
         NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -966,7 +966,7 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
     public void tieredSerializationRoundtrip_Works()
     {
         NewPlanThresholdTotalAmountPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(

@@ -9,7 +9,7 @@ public class SharedDiscountTest : TestBase
     public void percentageValidation_Works()
     {
         SharedDiscount value = new(
-            new()
+            new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
@@ -33,7 +33,7 @@ public class SharedDiscountTest : TestBase
     public void trialValidation_Works()
     {
         SharedDiscount value = new(
-            new()
+            new TrialDiscount()
             {
                 DiscountType = TrialDiscountDiscountType.Trial,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
@@ -58,7 +58,7 @@ public class SharedDiscountTest : TestBase
     public void usageValidation_Works()
     {
         SharedDiscount value = new(
-            new()
+            new UsageDiscount()
             {
                 DiscountType = UsageDiscountDiscountType.Usage,
                 UsageDiscountValue = 0,
@@ -82,7 +82,7 @@ public class SharedDiscountTest : TestBase
     public void amountValidation_Works()
     {
         SharedDiscount value = new(
-            new()
+            new AmountDiscount()
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
@@ -106,7 +106,7 @@ public class SharedDiscountTest : TestBase
     public void percentageSerializationRoundtrip_Works()
     {
         SharedDiscount value = new(
-            new()
+            new PercentageDiscount()
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
@@ -133,7 +133,7 @@ public class SharedDiscountTest : TestBase
     public void trialSerializationRoundtrip_Works()
     {
         SharedDiscount value = new(
-            new()
+            new TrialDiscount()
             {
                 DiscountType = TrialDiscountDiscountType.Trial,
                 AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
@@ -161,7 +161,7 @@ public class SharedDiscountTest : TestBase
     public void usageSerializationRoundtrip_Works()
     {
         SharedDiscount value = new(
-            new()
+            new UsageDiscount()
             {
                 DiscountType = UsageDiscountDiscountType.Usage,
                 UsageDiscountValue = 0,
@@ -188,7 +188,7 @@ public class SharedDiscountTest : TestBase
     public void amountSerializationRoundtrip_Works()
     {
         SharedDiscount value = new(
-            new()
+            new AmountDiscount()
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,

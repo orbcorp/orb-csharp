@@ -1055,7 +1055,7 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
     public void unitValidation_Works()
     {
         Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -1068,7 +1068,7 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
     public void tieredValidation_Works()
     {
         Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
@@ -1090,7 +1090,7 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
     public void unitSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
-            new()
+            new SharedUnitConversionRateConfig()
             {
                 ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
                 UnitConfig = new("unit_amount"),
@@ -1109,7 +1109,7 @@ public class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigTes
     public void tieredSerializationRoundtrip_Works()
     {
         Subscriptions::NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig value = new(
-            new()
+            new SharedTieredConversionRateConfig()
             {
                 ConversionRateType = ConversionRateType.Tiered,
                 TieredConfig = new(
