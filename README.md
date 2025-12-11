@@ -84,7 +84,7 @@ var customer = await client
     .WithOptions(options =>
         options with
         {
-            BaseUrl = new("https://example.com"),
+            BaseUrl = "https://example.com",
             Timeout = TimeSpan.FromSeconds(42),
         }
     )
