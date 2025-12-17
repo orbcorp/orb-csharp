@@ -628,7 +628,7 @@ public class UnitWithPercentConfigTest : TestBase
 public class NewFloatingUnitWithPercentPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingUnitWithPercentPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -641,7 +641,7 @@ public class NewFloatingUnitWithPercentPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingUnitWithPercentPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -663,7 +663,7 @@ public class NewFloatingUnitWithPercentPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingUnitWithPercentPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -680,7 +680,7 @@ public class NewFloatingUnitWithPercentPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingUnitWithPercentPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

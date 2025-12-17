@@ -229,7 +229,7 @@ public class AdjustmentIntervalTest : TestBase
 public class AdjustmentTest : TestBase
 {
     [Fact]
-    public void plan_phase_usage_discountValidation_Works()
+    public void PlanPhaseUsageDiscountValidationWorks()
     {
         Adjustment value = new(
             new PlanPhaseUsageDiscountAdjustment()
@@ -257,7 +257,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_amount_discountValidation_Works()
+    public void PlanPhaseAmountDiscountValidationWorks()
     {
         Adjustment value = new(
             new PlanPhaseAmountDiscountAdjustment()
@@ -285,7 +285,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_percentage_discountValidation_Works()
+    public void PlanPhasePercentageDiscountValidationWorks()
     {
         Adjustment value = new(
             new PlanPhasePercentageDiscountAdjustment()
@@ -314,7 +314,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_minimumValidation_Works()
+    public void PlanPhaseMinimumValidationWorks()
     {
         Adjustment value = new(
             new PlanPhaseMinimumAdjustment()
@@ -343,7 +343,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_maximumValidation_Works()
+    public void PlanPhaseMaximumValidationWorks()
     {
         Adjustment value = new(
             new PlanPhaseMaximumAdjustment()
@@ -371,7 +371,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_usage_discountSerializationRoundtrip_Works()
+    public void PlanPhaseUsageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new PlanPhaseUsageDiscountAdjustment()
@@ -402,7 +402,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_amount_discountSerializationRoundtrip_Works()
+    public void PlanPhaseAmountDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new PlanPhaseAmountDiscountAdjustment()
@@ -433,7 +433,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_percentage_discountSerializationRoundtrip_Works()
+    public void PlanPhasePercentageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new PlanPhasePercentageDiscountAdjustment()
@@ -465,7 +465,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_minimumSerializationRoundtrip_Works()
+    public void PlanPhaseMinimumSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new PlanPhaseMinimumAdjustment()
@@ -497,7 +497,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_maximumSerializationRoundtrip_Works()
+    public void PlanPhaseMaximumSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new PlanPhaseMaximumAdjustment()

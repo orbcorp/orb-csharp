@@ -9,21 +9,21 @@ namespace Orb.Tests.Models.Subscriptions;
 public class TrialEndDateTest : TestBase
 {
     [Fact]
-    public void DateTimeOffsetValidation_Works()
+    public void DateTimeOffsetValidationWorks()
     {
         TrialEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void UnionMember1Validation_Works()
+    public void UnionMember1ValidationWorks()
     {
         TrialEndDate value = new(UnionMember1.Immediate);
         value.Validate();
     }
 
     [Fact]
-    public void DateTimeOffsetSerializationRoundtrip_Works()
+    public void DateTimeOffsetSerializationRoundtripWorks()
     {
         TrialEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -33,7 +33,7 @@ public class TrialEndDateTest : TestBase
     }
 
     [Fact]
-    public void UnionMember1SerializationRoundtrip_Works()
+    public void UnionMember1SerializationRoundtripWorks()
     {
         TrialEndDate value = new(UnionMember1.Immediate);
         string json = JsonSerializer.Serialize(value);

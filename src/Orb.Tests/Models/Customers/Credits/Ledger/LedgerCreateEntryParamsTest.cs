@@ -10,7 +10,7 @@ namespace Orb.Tests.Models.Customers.Credits.Ledger;
 public class BodyTest : TestBase
 {
     [Fact]
-    public void incrementValidation_Works()
+    public void IncrementValidationWorks()
     {
         Ledger::Body value = new(
             new Ledger::Increment()
@@ -59,7 +59,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void decrementValidation_Works()
+    public void DecrementValidationWorks()
     {
         Ledger::Body value = new(
             new Ledger::Decrement()
@@ -74,7 +74,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void expiration_changeValidation_Works()
+    public void ExpirationChangeValidationWorks()
     {
         Ledger::Body value = new(
             new Ledger::ExpirationChange()
@@ -98,7 +98,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void voidValidation_Works()
+    public void VoidValidationWorks()
     {
         Ledger::Body value = new(
             new Ledger::Void()
@@ -115,7 +115,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void amendmentValidation_Works()
+    public void AmendmentValidationWorks()
     {
         Ledger::Body value = new(
             new Ledger::Amendment()
@@ -131,7 +131,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void incrementSerializationRoundtrip_Works()
+    public void IncrementSerializationRoundtripWorks()
     {
         Ledger::Body value = new(
             new Ledger::Increment()
@@ -183,7 +183,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void decrementSerializationRoundtrip_Works()
+    public void DecrementSerializationRoundtripWorks()
     {
         Ledger::Body value = new(
             new Ledger::Decrement()
@@ -201,7 +201,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void expiration_changeSerializationRoundtrip_Works()
+    public void ExpirationChangeSerializationRoundtripWorks()
     {
         Ledger::Body value = new(
             new Ledger::ExpirationChange()
@@ -228,7 +228,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void voidSerializationRoundtrip_Works()
+    public void VoidSerializationRoundtripWorks()
     {
         Ledger::Body value = new(
             new Ledger::Void()
@@ -248,7 +248,7 @@ public class BodyTest : TestBase
     }
 
     [Fact]
-    public void amendmentSerializationRoundtrip_Works()
+    public void AmendmentSerializationRoundtripWorks()
     {
         Ledger::Body value = new(
             new Ledger::Amendment()
@@ -1246,7 +1246,7 @@ public class InvoiceSettingsTest : TestBase
 public class CustomDueDateTest : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         Ledger::CustomDueDate value = new(
 #if NET
@@ -1259,14 +1259,14 @@ public class CustomDueDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         Ledger::CustomDueDate value = new(
 #if NET
@@ -1282,7 +1282,7 @@ public class CustomDueDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -1295,7 +1295,7 @@ public class CustomDueDateTest : TestBase
 public class InvoiceDateTest : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         Ledger::InvoiceDate value = new(
 #if NET
@@ -1308,14 +1308,14 @@ public class InvoiceDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         Ledger::InvoiceDate value = new(
 #if NET
@@ -1331,7 +1331,7 @@ public class InvoiceDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);

@@ -366,6 +366,8 @@ public sealed class OrbClient : IOrbClient
         return e is IOException || e is OrbIOException;
     }
 
+    public void Dispose() => this.HttpClient.Dispose();
+
     public OrbClient()
     {
         _options = new();

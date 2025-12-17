@@ -712,7 +712,7 @@ public class NewPlanGroupedAllocationPriceModelTypeTest : TestBase
 public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanGroupedAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -725,7 +725,7 @@ public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanGroupedAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -747,7 +747,7 @@ public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanGroupedAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -764,7 +764,7 @@ public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanGroupedAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

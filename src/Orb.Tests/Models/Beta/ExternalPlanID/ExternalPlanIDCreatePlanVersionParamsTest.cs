@@ -316,7 +316,7 @@ public class AddAdjustmentTest : TestBase
 public class AdjustmentTest : TestBase
 {
     [Fact]
-    public void new_percentage_discountValidation_Works()
+    public void NewPercentageDiscountValidationWorks()
     {
         Adjustment value = new(
             new Models::NewPercentageDiscount()
@@ -344,7 +344,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_usage_discountValidation_Works()
+    public void NewUsageDiscountValidationWorks()
     {
         Adjustment value = new(
             new Models::NewUsageDiscount()
@@ -372,7 +372,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_amount_discountValidation_Works()
+    public void NewAmountDiscountValidationWorks()
     {
         Adjustment value = new(
             new Models::NewAmountDiscount()
@@ -400,7 +400,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_minimumValidation_Works()
+    public void NewMinimumValidationWorks()
     {
         Adjustment value = new(
             new Models::NewMinimum()
@@ -429,7 +429,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_maximumValidation_Works()
+    public void NewMaximumValidationWorks()
     {
         Adjustment value = new(
             new Models::NewMaximum()
@@ -457,7 +457,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_percentage_discountSerializationRoundtrip_Works()
+    public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::NewPercentageDiscount()
@@ -488,7 +488,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_usage_discountSerializationRoundtrip_Works()
+    public void NewUsageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::NewUsageDiscount()
@@ -519,7 +519,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_amount_discountSerializationRoundtrip_Works()
+    public void NewAmountDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::NewAmountDiscount()
@@ -550,7 +550,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_minimumSerializationRoundtrip_Works()
+    public void NewMinimumSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::NewMinimum()
@@ -582,7 +582,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_maximumSerializationRoundtrip_Works()
+    public void NewMaximumSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::NewMaximum()
@@ -1100,7 +1100,7 @@ public class AddPriceTest : TestBase
 public class PriceTest : TestBase
 {
     [Fact]
-    public void new_plan_unitValidation_Works()
+    public void NewPlanUnitValidationWorks()
     {
         Price value = new(
             new Models::NewPlanUnitPrice()
@@ -1147,7 +1147,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tieredValidation_Works()
+    public void NewPlanTieredValidationWorks()
     {
         Price value = new(
             new Models::NewPlanTieredPrice()
@@ -1206,7 +1206,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulkValidation_Works()
+    public void NewPlanBulkValidationWorks()
     {
         Price value = new(
             new Models::NewPlanBulkPrice()
@@ -1253,7 +1253,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersValidation_Works()
+    public void BulkWithFiltersValidationWorks()
     {
         Price value = new(
             new BulkWithFilters()
@@ -1307,7 +1307,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_packageValidation_Works()
+    public void NewPlanPackageValidationWorks()
     {
         Price value = new(
             new Models::NewPlanPackagePrice()
@@ -1354,7 +1354,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrixValidation_Works()
+    public void NewPlanMatrixValidationWorks()
     {
         Price value = new(
             new Models::NewPlanMatrixPrice()
@@ -1409,7 +1409,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_threshold_total_amountValidation_Works()
+    public void NewPlanThresholdTotalAmountValidationWorks()
     {
         Price value = new(
             new Models::NewPlanThresholdTotalAmountPrice()
@@ -1464,7 +1464,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_packageValidation_Works()
+    public void NewPlanTieredPackageValidationWorks()
     {
         Price value = new(
             new Models::NewPlanTieredPackagePrice()
@@ -1519,7 +1519,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_with_minimumValidation_Works()
+    public void NewPlanTieredWithMinimumValidationWorks()
     {
         Price value = new(
             new Models::NewPlanTieredWithMinimumPrice()
@@ -1585,7 +1585,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tieredValidation_Works()
+    public void NewPlanGroupedTieredValidationWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedTieredPrice()
@@ -1640,7 +1640,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_package_with_minimumValidation_Works()
+    public void NewPlanTieredPackageWithMinimumValidationWorks()
     {
         Price value = new(
             new Models::NewPlanTieredPackageWithMinimumPrice()
@@ -1706,7 +1706,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_package_with_allocationValidation_Works()
+    public void NewPlanPackageWithAllocationValidationWorks()
     {
         Price value = new(
             new Models::NewPlanPackageWithAllocationPrice()
@@ -1759,7 +1759,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_percentValidation_Works()
+    public void NewPlanUnitWithPercentValidationWorks()
     {
         Price value = new(
             new Models::NewPlanUnitWithPercentPrice()
@@ -1806,7 +1806,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_allocationValidation_Works()
+    public void NewPlanMatrixWithAllocationValidationWorks()
     {
         Price value = new(
             new Models::NewPlanMatrixWithAllocationPrice()
@@ -1862,7 +1862,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void tiered_with_prorationValidation_Works()
+    public void TieredWithProrationValidationWorks()
     {
         Price value = new(
             new TieredWithProration()
@@ -1910,7 +1910,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_prorationValidation_Works()
+    public void NewPlanUnitWithProrationValidationWorks()
     {
         Price value = new(
             new Models::NewPlanUnitWithProrationPrice()
@@ -1957,7 +1957,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_allocationValidation_Works()
+    public void NewPlanGroupedAllocationValidationWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedAllocationPrice()
@@ -2009,7 +2009,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulk_with_prorationValidation_Works()
+    public void NewPlanBulkWithProrationValidationWorks()
     {
         Price value = new(
             new Models::NewPlanBulkWithProrationPrice()
@@ -2061,7 +2061,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_prorated_minimumValidation_Works()
+    public void NewPlanGroupedWithProratedMinimumValidationWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedWithProratedMinimumPrice()
@@ -2114,7 +2114,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_metered_minimumValidation_Works()
+    public void NewPlanGroupedWithMeteredMinimumValidationWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedWithMeteredMinimumPrice()
@@ -2176,7 +2176,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsValidation_Works()
+    public void GroupedWithMinMaxThresholdsValidationWorks()
     {
         Price value = new(
             new GroupedWithMinMaxThresholds()
@@ -2228,7 +2228,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_display_nameValidation_Works()
+    public void NewPlanMatrixWithDisplayNameValidationWorks()
     {
         Price value = new(
             new Models::NewPlanMatrixWithDisplayNamePrice()
@@ -2288,7 +2288,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tiered_packageValidation_Works()
+    public void NewPlanGroupedTieredPackageValidationWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedTieredPackagePrice()
@@ -2344,7 +2344,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_max_group_tiered_packageValidation_Works()
+    public void NewPlanMaxGroupTieredPackageValidationWorks()
     {
         Price value = new(
             new Models::NewPlanMaxGroupTieredPackagePrice()
@@ -2401,7 +2401,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_unit_pricingValidation_Works()
+    public void NewPlanScalableMatrixWithUnitPricingValidationWorks()
     {
         Price value = new(
             new Models::NewPlanScalableMatrixWithUnitPricingPrice()
@@ -2464,7 +2464,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_tiered_pricingValidation_Works()
+    public void NewPlanScalableMatrixWithTieredPricingValidationWorks()
     {
         Price value = new(
             new Models::NewPlanScalableMatrixWithTieredPricingPrice()
@@ -2530,7 +2530,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_cumulative_grouped_bulkValidation_Works()
+    public void NewPlanCumulativeGroupedBulkValidationWorks()
     {
         Price value = new(
             new Models::NewPlanCumulativeGroupedBulkPrice()
@@ -2590,7 +2590,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationValidation_Works()
+    public void CumulativeGroupedAllocationValidationWorks()
     {
         Price value = new(
             new CumulativeGroupedAllocation()
@@ -2642,7 +2642,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_minimum_compositeValidation_Works()
+    public void NewPlanMinimumCompositeValidationWorks()
     {
         Price value = new(
             new Models::NewPlanMinimumCompositePrice()
@@ -2689,7 +2689,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void percentValidation_Works()
+    public void PercentValidationWorks()
     {
         Price value = new(
             new Percent()
@@ -2735,7 +2735,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputValidation_Works()
+    public void EventOutputValidationWorks()
     {
         Price value = new(
             new EventOutput()
@@ -2786,7 +2786,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unitSerializationRoundtrip_Works()
+    public void NewPlanUnitSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanUnitPrice()
@@ -2836,7 +2836,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tieredSerializationRoundtrip_Works()
+    public void NewPlanTieredSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanTieredPrice()
@@ -2898,7 +2898,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulkSerializationRoundtrip_Works()
+    public void NewPlanBulkSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanBulkPrice()
@@ -2948,7 +2948,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersSerializationRoundtrip_Works()
+    public void BulkWithFiltersSerializationRoundtripWorks()
     {
         Price value = new(
             new BulkWithFilters()
@@ -3005,7 +3005,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_packageSerializationRoundtrip_Works()
+    public void NewPlanPackageSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanPackagePrice()
@@ -3055,7 +3055,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrixSerializationRoundtrip_Works()
+    public void NewPlanMatrixSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanMatrixPrice()
@@ -3113,7 +3113,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_threshold_total_amountSerializationRoundtrip_Works()
+    public void NewPlanThresholdTotalAmountSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanThresholdTotalAmountPrice()
@@ -3171,7 +3171,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_packageSerializationRoundtrip_Works()
+    public void NewPlanTieredPackageSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanTieredPackagePrice()
@@ -3229,7 +3229,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_with_minimumSerializationRoundtrip_Works()
+    public void NewPlanTieredWithMinimumSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanTieredWithMinimumPrice()
@@ -3298,7 +3298,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tieredSerializationRoundtrip_Works()
+    public void NewPlanGroupedTieredSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedTieredPrice()
@@ -3356,7 +3356,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_package_with_minimumSerializationRoundtrip_Works()
+    public void NewPlanTieredPackageWithMinimumSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanTieredPackageWithMinimumPrice()
@@ -3425,7 +3425,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_package_with_allocationSerializationRoundtrip_Works()
+    public void NewPlanPackageWithAllocationSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanPackageWithAllocationPrice()
@@ -3481,7 +3481,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_percentSerializationRoundtrip_Works()
+    public void NewPlanUnitWithPercentSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanUnitWithPercentPrice()
@@ -3531,7 +3531,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_allocationSerializationRoundtrip_Works()
+    public void NewPlanMatrixWithAllocationSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanMatrixWithAllocationPrice()
@@ -3590,7 +3590,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void tiered_with_prorationSerializationRoundtrip_Works()
+    public void TieredWithProrationSerializationRoundtripWorks()
     {
         Price value = new(
             new TieredWithProration()
@@ -3641,7 +3641,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_prorationSerializationRoundtrip_Works()
+    public void NewPlanUnitWithProrationSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanUnitWithProrationPrice()
@@ -3691,7 +3691,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_allocationSerializationRoundtrip_Works()
+    public void NewPlanGroupedAllocationSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedAllocationPrice()
@@ -3746,7 +3746,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulk_with_prorationSerializationRoundtrip_Works()
+    public void NewPlanBulkWithProrationSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanBulkWithProrationPrice()
@@ -3801,7 +3801,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    public void NewPlanGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedWithProratedMinimumPrice()
@@ -3857,7 +3857,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    public void NewPlanGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedWithMeteredMinimumPrice()
@@ -3922,7 +3922,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
         Price value = new(
             new GroupedWithMinMaxThresholds()
@@ -3977,7 +3977,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_display_nameSerializationRoundtrip_Works()
+    public void NewPlanMatrixWithDisplayNameSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanMatrixWithDisplayNamePrice()
@@ -4040,7 +4040,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tiered_packageSerializationRoundtrip_Works()
+    public void NewPlanGroupedTieredPackageSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanGroupedTieredPackagePrice()
@@ -4099,7 +4099,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_max_group_tiered_packageSerializationRoundtrip_Works()
+    public void NewPlanMaxGroupTieredPackageSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanMaxGroupTieredPackagePrice()
@@ -4159,7 +4159,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    public void NewPlanScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanScalableMatrixWithUnitPricingPrice()
@@ -4225,7 +4225,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    public void NewPlanScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanScalableMatrixWithTieredPricingPrice()
@@ -4294,7 +4294,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    public void NewPlanCumulativeGroupedBulkSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanCumulativeGroupedBulkPrice()
@@ -4357,7 +4357,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
         Price value = new(
             new CumulativeGroupedAllocation()
@@ -4412,7 +4412,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_minimum_compositeSerializationRoundtrip_Works()
+    public void NewPlanMinimumCompositeSerializationRoundtripWorks()
     {
         Price value = new(
             new Models::NewPlanMinimumCompositePrice()
@@ -4462,7 +4462,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void percentSerializationRoundtrip_Works()
+    public void PercentSerializationRoundtripWorks()
     {
         Price value = new(
             new Percent()
@@ -4511,7 +4511,7 @@ public class PriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputSerializationRoundtrip_Works()
+    public void EventOutputSerializationRoundtripWorks()
     {
         Price value = new(
             new EventOutput()
@@ -5409,7 +5409,7 @@ public class CadenceTest : TestBase
 public class ConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -5422,7 +5422,7 @@ public class ConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -5444,7 +5444,7 @@ public class ConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -5460,7 +5460,7 @@ public class ConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -6159,7 +6159,7 @@ public class TieredWithProrationConfigTierTest : TestBase
 public class TieredWithProrationConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         TieredWithProrationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -6172,7 +6172,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         TieredWithProrationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -6194,7 +6194,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         TieredWithProrationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -6212,7 +6212,7 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         TieredWithProrationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -6901,7 +6901,7 @@ public class GroupedWithMinMaxThresholdsConfigTest : TestBase
 public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -6914,7 +6914,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -6936,7 +6936,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -6953,7 +6953,7 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         GroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -7641,7 +7641,7 @@ public class CumulativeGroupedAllocationConfigTest : TestBase
 public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -7654,7 +7654,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -7676,7 +7676,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -7693,7 +7693,7 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         CumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -8275,7 +8275,7 @@ public class PercentConfigTest : TestBase
 public class PercentConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         PercentConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -8288,7 +8288,7 @@ public class PercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         PercentConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -8310,7 +8310,7 @@ public class PercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         PercentConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -8326,7 +8326,7 @@ public class PercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         PercentConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -9035,7 +9035,7 @@ public class EventOutputConfigTest : TestBase
 public class EventOutputConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         EventOutputConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -9048,7 +9048,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         EventOutputConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -9070,7 +9070,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         EventOutputConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -9086,7 +9086,7 @@ public class EventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         EventOutputConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -9620,7 +9620,7 @@ public class ReplaceAdjustmentTest : TestBase
 public class ReplaceAdjustmentAdjustmentTest : TestBase
 {
     [Fact]
-    public void new_percentage_discountValidation_Works()
+    public void NewPercentageDiscountValidationWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewPercentageDiscount()
@@ -9648,7 +9648,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_usage_discountValidation_Works()
+    public void NewUsageDiscountValidationWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewUsageDiscount()
@@ -9676,7 +9676,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_amount_discountValidation_Works()
+    public void NewAmountDiscountValidationWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewAmountDiscount()
@@ -9704,7 +9704,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_minimumValidation_Works()
+    public void NewMinimumValidationWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewMinimum()
@@ -9733,7 +9733,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_maximumValidation_Works()
+    public void NewMaximumValidationWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewMaximum()
@@ -9761,7 +9761,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_percentage_discountSerializationRoundtrip_Works()
+    public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewPercentageDiscount()
@@ -9792,7 +9792,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_usage_discountSerializationRoundtrip_Works()
+    public void NewUsageDiscountSerializationRoundtripWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewUsageDiscount()
@@ -9823,7 +9823,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_amount_discountSerializationRoundtrip_Works()
+    public void NewAmountDiscountSerializationRoundtripWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewAmountDiscount()
@@ -9854,7 +9854,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_minimumSerializationRoundtrip_Works()
+    public void NewMinimumSerializationRoundtripWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewMinimum()
@@ -9886,7 +9886,7 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void new_maximumSerializationRoundtrip_Works()
+    public void NewMaximumSerializationRoundtripWorks()
     {
         ReplaceAdjustmentAdjustment value = new(
             new Models::NewMaximum()
@@ -10416,7 +10416,7 @@ public class ReplacePriceTest : TestBase
 public class ReplacePricePriceTest : TestBase
 {
     [Fact]
-    public void new_plan_unitValidation_Works()
+    public void NewPlanUnitValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanUnitPrice()
@@ -10463,7 +10463,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tieredValidation_Works()
+    public void NewPlanTieredValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredPrice()
@@ -10522,7 +10522,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulkValidation_Works()
+    public void NewPlanBulkValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanBulkPrice()
@@ -10569,7 +10569,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersValidation_Works()
+    public void BulkWithFiltersValidationWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceBulkWithFilters()
@@ -10623,7 +10623,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_packageValidation_Works()
+    public void NewPlanPackageValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanPackagePrice()
@@ -10670,7 +10670,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrixValidation_Works()
+    public void NewPlanMatrixValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMatrixPrice()
@@ -10725,7 +10725,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_threshold_total_amountValidation_Works()
+    public void NewPlanThresholdTotalAmountValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanThresholdTotalAmountPrice()
@@ -10780,7 +10780,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_packageValidation_Works()
+    public void NewPlanTieredPackageValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredPackagePrice()
@@ -10835,7 +10835,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_with_minimumValidation_Works()
+    public void NewPlanTieredWithMinimumValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredWithMinimumPrice()
@@ -10901,7 +10901,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tieredValidation_Works()
+    public void NewPlanGroupedTieredValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedTieredPrice()
@@ -10956,7 +10956,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_package_with_minimumValidation_Works()
+    public void NewPlanTieredPackageWithMinimumValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredPackageWithMinimumPrice()
@@ -11022,7 +11022,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_package_with_allocationValidation_Works()
+    public void NewPlanPackageWithAllocationValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanPackageWithAllocationPrice()
@@ -11075,7 +11075,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_percentValidation_Works()
+    public void NewPlanUnitWithPercentValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanUnitWithPercentPrice()
@@ -11122,7 +11122,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_allocationValidation_Works()
+    public void NewPlanMatrixWithAllocationValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMatrixWithAllocationPrice()
@@ -11178,7 +11178,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void tiered_with_prorationValidation_Works()
+    public void TieredWithProrationValidationWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceTieredWithProration()
@@ -11226,7 +11226,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_prorationValidation_Works()
+    public void NewPlanUnitWithProrationValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanUnitWithProrationPrice()
@@ -11273,7 +11273,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_allocationValidation_Works()
+    public void NewPlanGroupedAllocationValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedAllocationPrice()
@@ -11325,7 +11325,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulk_with_prorationValidation_Works()
+    public void NewPlanBulkWithProrationValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanBulkWithProrationPrice()
@@ -11377,7 +11377,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_prorated_minimumValidation_Works()
+    public void NewPlanGroupedWithProratedMinimumValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedWithProratedMinimumPrice()
@@ -11430,7 +11430,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_metered_minimumValidation_Works()
+    public void NewPlanGroupedWithMeteredMinimumValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedWithMeteredMinimumPrice()
@@ -11492,7 +11492,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsValidation_Works()
+    public void GroupedWithMinMaxThresholdsValidationWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceGroupedWithMinMaxThresholds()
@@ -11544,7 +11544,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_display_nameValidation_Works()
+    public void NewPlanMatrixWithDisplayNameValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMatrixWithDisplayNamePrice()
@@ -11604,7 +11604,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tiered_packageValidation_Works()
+    public void NewPlanGroupedTieredPackageValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedTieredPackagePrice()
@@ -11660,7 +11660,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_max_group_tiered_packageValidation_Works()
+    public void NewPlanMaxGroupTieredPackageValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMaxGroupTieredPackagePrice()
@@ -11717,7 +11717,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_unit_pricingValidation_Works()
+    public void NewPlanScalableMatrixWithUnitPricingValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanScalableMatrixWithUnitPricingPrice()
@@ -11780,7 +11780,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_tiered_pricingValidation_Works()
+    public void NewPlanScalableMatrixWithTieredPricingValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanScalableMatrixWithTieredPricingPrice()
@@ -11846,7 +11846,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_cumulative_grouped_bulkValidation_Works()
+    public void NewPlanCumulativeGroupedBulkValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanCumulativeGroupedBulkPrice()
@@ -11906,7 +11906,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationValidation_Works()
+    public void CumulativeGroupedAllocationValidationWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceCumulativeGroupedAllocation()
@@ -11958,7 +11958,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_minimum_compositeValidation_Works()
+    public void NewPlanMinimumCompositeValidationWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMinimumCompositePrice()
@@ -12005,7 +12005,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void percentValidation_Works()
+    public void PercentValidationWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePricePercent()
@@ -12051,7 +12051,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputValidation_Works()
+    public void EventOutputValidationWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceEventOutput()
@@ -12102,7 +12102,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unitSerializationRoundtrip_Works()
+    public void NewPlanUnitSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanUnitPrice()
@@ -12152,7 +12152,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tieredSerializationRoundtrip_Works()
+    public void NewPlanTieredSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredPrice()
@@ -12214,7 +12214,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulkSerializationRoundtrip_Works()
+    public void NewPlanBulkSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanBulkPrice()
@@ -12264,7 +12264,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersSerializationRoundtrip_Works()
+    public void BulkWithFiltersSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceBulkWithFilters()
@@ -12321,7 +12321,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_packageSerializationRoundtrip_Works()
+    public void NewPlanPackageSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanPackagePrice()
@@ -12371,7 +12371,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrixSerializationRoundtrip_Works()
+    public void NewPlanMatrixSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMatrixPrice()
@@ -12429,7 +12429,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_threshold_total_amountSerializationRoundtrip_Works()
+    public void NewPlanThresholdTotalAmountSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanThresholdTotalAmountPrice()
@@ -12487,7 +12487,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_packageSerializationRoundtrip_Works()
+    public void NewPlanTieredPackageSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredPackagePrice()
@@ -12545,7 +12545,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_with_minimumSerializationRoundtrip_Works()
+    public void NewPlanTieredWithMinimumSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredWithMinimumPrice()
@@ -12614,7 +12614,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tieredSerializationRoundtrip_Works()
+    public void NewPlanGroupedTieredSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedTieredPrice()
@@ -12672,7 +12672,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_tiered_package_with_minimumSerializationRoundtrip_Works()
+    public void NewPlanTieredPackageWithMinimumSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanTieredPackageWithMinimumPrice()
@@ -12741,7 +12741,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_package_with_allocationSerializationRoundtrip_Works()
+    public void NewPlanPackageWithAllocationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanPackageWithAllocationPrice()
@@ -12797,7 +12797,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_percentSerializationRoundtrip_Works()
+    public void NewPlanUnitWithPercentSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanUnitWithPercentPrice()
@@ -12847,7 +12847,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_allocationSerializationRoundtrip_Works()
+    public void NewPlanMatrixWithAllocationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMatrixWithAllocationPrice()
@@ -12906,7 +12906,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void tiered_with_prorationSerializationRoundtrip_Works()
+    public void TieredWithProrationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceTieredWithProration()
@@ -12957,7 +12957,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_unit_with_prorationSerializationRoundtrip_Works()
+    public void NewPlanUnitWithProrationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanUnitWithProrationPrice()
@@ -13007,7 +13007,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_allocationSerializationRoundtrip_Works()
+    public void NewPlanGroupedAllocationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedAllocationPrice()
@@ -13062,7 +13062,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_bulk_with_prorationSerializationRoundtrip_Works()
+    public void NewPlanBulkWithProrationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanBulkWithProrationPrice()
@@ -13117,7 +13117,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    public void NewPlanGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedWithProratedMinimumPrice()
@@ -13173,7 +13173,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    public void NewPlanGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedWithMeteredMinimumPrice()
@@ -13238,7 +13238,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceGroupedWithMinMaxThresholds()
@@ -13293,7 +13293,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_matrix_with_display_nameSerializationRoundtrip_Works()
+    public void NewPlanMatrixWithDisplayNameSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMatrixWithDisplayNamePrice()
@@ -13356,7 +13356,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_grouped_tiered_packageSerializationRoundtrip_Works()
+    public void NewPlanGroupedTieredPackageSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanGroupedTieredPackagePrice()
@@ -13415,7 +13415,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_max_group_tiered_packageSerializationRoundtrip_Works()
+    public void NewPlanMaxGroupTieredPackageSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMaxGroupTieredPackagePrice()
@@ -13475,7 +13475,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    public void NewPlanScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanScalableMatrixWithUnitPricingPrice()
@@ -13541,7 +13541,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    public void NewPlanScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanScalableMatrixWithTieredPricingPrice()
@@ -13610,7 +13610,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    public void NewPlanCumulativeGroupedBulkSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanCumulativeGroupedBulkPrice()
@@ -13673,7 +13673,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceCumulativeGroupedAllocation()
@@ -13728,7 +13728,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_plan_minimum_compositeSerializationRoundtrip_Works()
+    public void NewPlanMinimumCompositeSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new Models::NewPlanMinimumCompositePrice()
@@ -13778,7 +13778,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void percentSerializationRoundtrip_Works()
+    public void PercentSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePricePercent()
@@ -13827,7 +13827,7 @@ public class ReplacePricePriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputSerializationRoundtrip_Works()
+    public void EventOutputSerializationRoundtripWorks()
     {
         ReplacePricePrice value = new(
             new ReplacePricePriceEventOutput()
@@ -14787,7 +14787,7 @@ public class ReplacePricePriceBulkWithFiltersCadenceTest : TestBase
 public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -14800,7 +14800,7 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -14822,7 +14822,7 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -14839,7 +14839,7 @@ public class ReplacePricePriceBulkWithFiltersConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ReplacePricePriceBulkWithFiltersConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -15551,7 +15551,7 @@ public class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierTe
 public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -15564,7 +15564,7 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -15586,7 +15586,7 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -15605,7 +15605,7 @@ public class ReplacePricePriceTieredWithProrationConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ReplacePricePriceTieredWithProrationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -16318,7 +16318,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresh
 public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -16331,7 +16331,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -16353,7 +16353,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -16372,7 +16372,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigTes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -17085,7 +17085,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAlloca
 public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -17098,7 +17098,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -17120,7 +17120,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -17139,7 +17139,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigTes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -17723,7 +17723,7 @@ public class ReplacePricePricePercentPercentConfigTest : TestBase
 public class ReplacePricePricePercentConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ReplacePricePricePercentConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -17736,7 +17736,7 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ReplacePricePricePercentConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -17758,7 +17758,7 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ReplacePricePricePercentConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -17776,7 +17776,7 @@ public class ReplacePricePricePercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ReplacePricePricePercentConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -18493,7 +18493,7 @@ public class ReplacePricePriceEventOutputEventOutputConfigTest : TestBase
 public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ReplacePricePriceEventOutputConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -18506,7 +18506,7 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ReplacePricePriceEventOutputConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()
@@ -18528,7 +18528,7 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ReplacePricePriceEventOutputConversionRateConfig value = new(
             new Models::SharedUnitConversionRateConfig()
@@ -18545,7 +18545,7 @@ public class ReplacePricePriceEventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ReplacePricePriceEventOutputConversionRateConfig value = new(
             new Models::SharedTieredConversionRateConfig()

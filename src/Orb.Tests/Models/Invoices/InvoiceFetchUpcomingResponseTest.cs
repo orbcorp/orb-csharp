@@ -3823,7 +3823,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
 public class AdjustmentTest : TestBase
 {
     [Fact]
-    public void monetary_usage_discountValidation_Works()
+    public void MonetaryUsageDiscountValidationWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryUsageDiscountAdjustment()
@@ -3851,7 +3851,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_amount_discountValidation_Works()
+    public void MonetaryAmountDiscountValidationWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryAmountDiscountAdjustment()
@@ -3879,7 +3879,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_percentage_discountValidation_Works()
+    public void MonetaryPercentageDiscountValidationWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryPercentageDiscountAdjustment()
@@ -3908,7 +3908,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_minimumValidation_Works()
+    public void MonetaryMinimumValidationWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryMinimumAdjustment()
@@ -3937,7 +3937,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_maximumValidation_Works()
+    public void MonetaryMaximumValidationWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryMaximumAdjustment()
@@ -3965,7 +3965,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_usage_discountSerializationRoundtrip_Works()
+    public void MonetaryUsageDiscountSerializationRoundtripWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryUsageDiscountAdjustment()
@@ -3996,7 +3996,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_amount_discountSerializationRoundtrip_Works()
+    public void MonetaryAmountDiscountSerializationRoundtripWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryAmountDiscountAdjustment()
@@ -4027,7 +4027,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_percentage_discountSerializationRoundtrip_Works()
+    public void MonetaryPercentageDiscountSerializationRoundtripWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryPercentageDiscountAdjustment()
@@ -4059,7 +4059,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_minimumSerializationRoundtrip_Works()
+    public void MonetaryMinimumSerializationRoundtripWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryMinimumAdjustment()
@@ -4091,7 +4091,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_maximumSerializationRoundtrip_Works()
+    public void MonetaryMaximumSerializationRoundtripWorks()
     {
         Invoices::Adjustment value = new(
             new MonetaryMaximumAdjustment()
@@ -4125,7 +4125,7 @@ public class AdjustmentTest : TestBase
 public class SubLineItemTest : TestBase
 {
     [Fact]
-    public void matrixValidation_Works()
+    public void MatrixValidationWorks()
     {
         Invoices::SubLineItem value = new(
             new MatrixSubLineItem()
@@ -4143,7 +4143,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void tierValidation_Works()
+    public void TierValidationWorks()
     {
         Invoices::SubLineItem value = new(
             new TierSubLineItem()
@@ -4165,7 +4165,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void otherValidation_Works()
+    public void OtherValidationWorks()
     {
         Invoices::SubLineItem value = new(
             new OtherSubLineItem()
@@ -4181,7 +4181,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void matrixSerializationRoundtrip_Works()
+    public void MatrixSerializationRoundtripWorks()
     {
         Invoices::SubLineItem value = new(
             new MatrixSubLineItem()
@@ -4202,7 +4202,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void tierSerializationRoundtrip_Works()
+    public void TierSerializationRoundtripWorks()
     {
         Invoices::SubLineItem value = new(
             new TierSubLineItem()
@@ -4227,7 +4227,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void otherSerializationRoundtrip_Works()
+    public void OtherSerializationRoundtripWorks()
     {
         Invoices::SubLineItem value = new(
             new OtherSubLineItem()

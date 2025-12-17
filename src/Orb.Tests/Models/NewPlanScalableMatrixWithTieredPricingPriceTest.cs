@@ -1305,7 +1305,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
 public class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -1318,7 +1318,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigTest
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -1340,7 +1340,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigTest
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -1359,7 +1359,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigTest
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

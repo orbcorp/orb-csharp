@@ -702,7 +702,7 @@ public class NewPlanTieredPriceModelTypeTest : TestBase
 public class NewPlanTieredPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanTieredPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -715,7 +715,7 @@ public class NewPlanTieredPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanTieredPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -737,7 +737,7 @@ public class NewPlanTieredPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanTieredPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -753,7 +753,7 @@ public class NewPlanTieredPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanTieredPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

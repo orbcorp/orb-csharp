@@ -941,7 +941,7 @@ public class ConsumptionTableTest : TestBase
 public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -954,7 +954,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -976,7 +976,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -995,7 +995,7 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

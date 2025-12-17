@@ -7,7 +7,7 @@ namespace Orb.Tests.Models.Invoices;
 public class InvoiceUpdateParamsDueDateTest : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         InvoiceUpdateParamsDueDate value = new(
 #if NET
@@ -20,14 +20,14 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         InvoiceUpdateParamsDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         InvoiceUpdateParamsDueDate value = new(
 #if NET
@@ -43,7 +43,7 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         InvoiceUpdateParamsDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -56,7 +56,7 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
 public class InvoiceDateTest : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         InvoiceDate value = new(
 #if NET
@@ -69,14 +69,14 @@ public class InvoiceDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         InvoiceDate value = new(
 #if NET
@@ -92,7 +92,7 @@ public class InvoiceDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);

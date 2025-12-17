@@ -9,7 +9,7 @@ namespace Orb.Tests.Models.Customers.Credits.Ledger;
 public class LedgerCreateEntryResponseTest : TestBase
 {
     [Fact]
-    public void increment_ledger_entryValidation_Works()
+    public void IncrementLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new IncrementLedgerEntry()
@@ -407,7 +407,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void decrement_ledger_entryValidation_Works()
+    public void DecrementLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new DecrementLedgerEntry()
@@ -448,7 +448,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void expiration_change_ledger_entryValidation_Works()
+    public void ExpirationChangeLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new ExpirationChangeLedgerEntry()
@@ -487,7 +487,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void credit_block_expiry_ledger_entryValidation_Works()
+    public void CreditBlockExpiryLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new CreditBlockExpiryLedgerEntry()
@@ -525,7 +525,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void void_ledger_entryValidation_Works()
+    public void VoidLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new VoidLedgerEntry()
@@ -565,7 +565,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void void_initiated_ledger_entryValidation_Works()
+    public void VoidInitiatedLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new VoidInitiatedLedgerEntry()
@@ -606,7 +606,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void amendment_ledger_entryValidation_Works()
+    public void AmendmentLedgerEntryValidationWorks()
     {
         LedgerCreateEntryResponse value = new(
             new AmendmentLedgerEntry()
@@ -644,7 +644,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void increment_ledger_entrySerializationRoundtrip_Works()
+    public void IncrementLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new IncrementLedgerEntry()
@@ -1045,7 +1045,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void decrement_ledger_entrySerializationRoundtrip_Works()
+    public void DecrementLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new DecrementLedgerEntry()
@@ -1089,7 +1089,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void expiration_change_ledger_entrySerializationRoundtrip_Works()
+    public void ExpirationChangeLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new ExpirationChangeLedgerEntry()
@@ -1131,7 +1131,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void credit_block_expiry_ledger_entrySerializationRoundtrip_Works()
+    public void CreditBlockExpiryLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new CreditBlockExpiryLedgerEntry()
@@ -1172,7 +1172,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void void_ledger_entrySerializationRoundtrip_Works()
+    public void VoidLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new VoidLedgerEntry()
@@ -1215,7 +1215,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void void_initiated_ledger_entrySerializationRoundtrip_Works()
+    public void VoidInitiatedLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new VoidInitiatedLedgerEntry()
@@ -1259,7 +1259,7 @@ public class LedgerCreateEntryResponseTest : TestBase
     }
 
     [Fact]
-    public void amendment_ledger_entrySerializationRoundtrip_Works()
+    public void AmendmentLedgerEntrySerializationRoundtripWorks()
     {
         LedgerCreateEntryResponse value = new(
             new AmendmentLedgerEntry()

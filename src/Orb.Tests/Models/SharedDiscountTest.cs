@@ -6,7 +6,7 @@ namespace Orb.Tests.Models;
 public class SharedDiscountTest : TestBase
 {
     [Fact]
-    public void percentageValidation_Works()
+    public void PercentageValidationWorks()
     {
         SharedDiscount value = new(
             new PercentageDiscount()
@@ -30,7 +30,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void trialValidation_Works()
+    public void TrialValidationWorks()
     {
         SharedDiscount value = new(
             new TrialDiscount()
@@ -55,7 +55,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void usageValidation_Works()
+    public void UsageValidationWorks()
     {
         SharedDiscount value = new(
             new UsageDiscount()
@@ -79,7 +79,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void amountValidation_Works()
+    public void AmountValidationWorks()
     {
         SharedDiscount value = new(
             new AmountDiscount()
@@ -103,7 +103,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void percentageSerializationRoundtrip_Works()
+    public void PercentageSerializationRoundtripWorks()
     {
         SharedDiscount value = new(
             new PercentageDiscount()
@@ -130,7 +130,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void trialSerializationRoundtrip_Works()
+    public void TrialSerializationRoundtripWorks()
     {
         SharedDiscount value = new(
             new TrialDiscount()
@@ -158,7 +158,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void usageSerializationRoundtrip_Works()
+    public void UsageSerializationRoundtripWorks()
     {
         SharedDiscount value = new(
             new UsageDiscount()
@@ -185,7 +185,7 @@ public class SharedDiscountTest : TestBase
     }
 
     [Fact]
-    public void amountSerializationRoundtrip_Works()
+    public void AmountSerializationRoundtripWorks()
     {
         SharedDiscount value = new(
             new AmountDiscount()

@@ -993,7 +993,7 @@ public class TieredPackageWithMinimumConfigTierTest : TestBase
 public class NewFloatingTieredPackageWithMinimumPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingTieredPackageWithMinimumPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -1006,7 +1006,7 @@ public class NewFloatingTieredPackageWithMinimumPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingTieredPackageWithMinimumPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -1028,7 +1028,7 @@ public class NewFloatingTieredPackageWithMinimumPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingTieredPackageWithMinimumPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -1047,7 +1047,7 @@ public class NewFloatingTieredPackageWithMinimumPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingTieredPackageWithMinimumPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

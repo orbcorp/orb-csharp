@@ -10,7 +10,7 @@ namespace Orb.Tests.Models.Customers.Credits.Ledger;
 public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
 {
     [Fact]
-    public void incrementValidation_Works()
+    public void IncrementValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyIncrement()
@@ -60,7 +60,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void decrementValidation_Works()
+    public void DecrementValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyDecrement()
@@ -75,7 +75,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void expiration_changeValidation_Works()
+    public void ExpirationChangeValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
@@ -99,7 +99,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void voidValidation_Works()
+    public void VoidValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyVoid()
@@ -116,7 +116,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void amendmentValidation_Works()
+    public void AmendmentValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyAmendment()
@@ -132,7 +132,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void incrementSerializationRoundtrip_Works()
+    public void IncrementSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyIncrement()
@@ -187,7 +187,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void decrementSerializationRoundtrip_Works()
+    public void DecrementSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyDecrement()
@@ -207,7 +207,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void expiration_changeSerializationRoundtrip_Works()
+    public void ExpirationChangeSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
@@ -236,7 +236,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void voidSerializationRoundtrip_Works()
+    public void VoidSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyVoid()
@@ -258,7 +258,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
     }
 
     [Fact]
-    public void amendmentSerializationRoundtrip_Works()
+    public void AmendmentSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyAmendment()
@@ -1305,7 +1305,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
 #if NET
@@ -1319,7 +1319,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -1328,7 +1328,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
 #if NET
@@ -1348,7 +1348,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -1367,7 +1367,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
     : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
 #if NET
@@ -1381,7 +1381,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -1390,7 +1390,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
 #if NET
@@ -1410,7 +1410,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")

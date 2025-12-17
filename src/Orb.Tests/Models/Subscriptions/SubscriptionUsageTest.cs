@@ -11,7 +11,7 @@ namespace Orb.Tests.Models.Subscriptions;
 public class SubscriptionUsageTest : TestBase
 {
     [Fact]
-    public void ungroupedValidation_Works()
+    public void UngroupedValidationWorks()
     {
         SubscriptionUsage value = new(
             new UngroupedSubscriptionUsage(
@@ -37,7 +37,7 @@ public class SubscriptionUsageTest : TestBase
     }
 
     [Fact]
-    public void groupedValidation_Works()
+    public void GroupedValidationWorks()
     {
         SubscriptionUsage value = new(
             new GroupedSubscriptionUsage()
@@ -71,7 +71,7 @@ public class SubscriptionUsageTest : TestBase
     }
 
     [Fact]
-    public void ungroupedSerializationRoundtrip_Works()
+    public void UngroupedSerializationRoundtripWorks()
     {
         SubscriptionUsage value = new(
             new UngroupedSubscriptionUsage(
@@ -100,7 +100,7 @@ public class SubscriptionUsageTest : TestBase
     }
 
     [Fact]
-    public void groupedSerializationRoundtrip_Works()
+    public void GroupedSerializationRoundtripWorks()
     {
         SubscriptionUsage value = new(
             new GroupedSubscriptionUsage()

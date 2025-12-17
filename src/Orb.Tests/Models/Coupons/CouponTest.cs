@@ -204,7 +204,7 @@ public class CouponTest : TestBase
 public class CouponDiscountTest : TestBase
 {
     [Fact]
-    public void percentageValidation_Works()
+    public void PercentageValidationWorks()
     {
         CouponDiscount value = new(
             new PercentageDiscount()
@@ -228,7 +228,7 @@ public class CouponDiscountTest : TestBase
     }
 
     [Fact]
-    public void amountValidation_Works()
+    public void AmountValidationWorks()
     {
         CouponDiscount value = new(
             new AmountDiscount()
@@ -252,7 +252,7 @@ public class CouponDiscountTest : TestBase
     }
 
     [Fact]
-    public void percentageSerializationRoundtrip_Works()
+    public void PercentageSerializationRoundtripWorks()
     {
         CouponDiscount value = new(
             new PercentageDiscount()
@@ -279,7 +279,7 @@ public class CouponDiscountTest : TestBase
     }
 
     [Fact]
-    public void amountSerializationRoundtrip_Works()
+    public void AmountSerializationRoundtripWorks()
     {
         CouponDiscount value = new(
             new AmountDiscount()

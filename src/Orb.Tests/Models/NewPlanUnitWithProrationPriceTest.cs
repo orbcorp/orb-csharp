@@ -650,7 +650,7 @@ public class NewPlanUnitWithProrationPriceUnitWithProrationConfigTest : TestBase
 public class NewPlanUnitWithProrationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanUnitWithProrationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -663,7 +663,7 @@ public class NewPlanUnitWithProrationPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanUnitWithProrationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -685,7 +685,7 @@ public class NewPlanUnitWithProrationPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanUnitWithProrationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -702,7 +702,7 @@ public class NewPlanUnitWithProrationPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanUnitWithProrationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

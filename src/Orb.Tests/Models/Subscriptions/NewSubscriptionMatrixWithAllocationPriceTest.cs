@@ -655,7 +655,7 @@ public class NewSubscriptionMatrixWithAllocationPriceModelTypeTest : TestBase
 public class NewSubscriptionMatrixWithAllocationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewSubscriptionMatrixWithAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -668,7 +668,7 @@ public class NewSubscriptionMatrixWithAllocationPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewSubscriptionMatrixWithAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -690,7 +690,7 @@ public class NewSubscriptionMatrixWithAllocationPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewSubscriptionMatrixWithAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -709,7 +709,7 @@ public class NewSubscriptionMatrixWithAllocationPriceConversionRateConfigTest : 
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewSubscriptionMatrixWithAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

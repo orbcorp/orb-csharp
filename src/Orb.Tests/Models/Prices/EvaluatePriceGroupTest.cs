@@ -89,28 +89,28 @@ public class EvaluatePriceGroupTest : TestBase
 public class GroupingValueTest : TestBase
 {
     [Fact]
-    public void stringValidation_Works()
+    public void StringValidationWorks()
     {
         GroupingValue value = new("string");
         value.Validate();
     }
 
     [Fact]
-    public void doubleValidation_Works()
+    public void DoubleValidationWorks()
     {
         GroupingValue value = new(0);
         value.Validate();
     }
 
     [Fact]
-    public void boolValidation_Works()
+    public void BoolValidationWorks()
     {
         GroupingValue value = new(true);
         value.Validate();
     }
 
     [Fact]
-    public void stringSerializationRoundtrip_Works()
+    public void StringSerializationRoundtripWorks()
     {
         GroupingValue value = new("string");
         string json = JsonSerializer.Serialize(value);
@@ -120,7 +120,7 @@ public class GroupingValueTest : TestBase
     }
 
     [Fact]
-    public void doubleSerializationRoundtrip_Works()
+    public void DoubleSerializationRoundtripWorks()
     {
         GroupingValue value = new(0);
         string json = JsonSerializer.Serialize(value);
@@ -130,7 +130,7 @@ public class GroupingValueTest : TestBase
     }
 
     [Fact]
-    public void boolSerializationRoundtrip_Works()
+    public void BoolSerializationRoundtripWorks()
     {
         GroupingValue value = new(true);
         string json = JsonSerializer.Serialize(value);

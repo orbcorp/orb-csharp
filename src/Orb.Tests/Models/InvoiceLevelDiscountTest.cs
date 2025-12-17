@@ -6,7 +6,7 @@ namespace Orb.Tests.Models;
 public class InvoiceLevelDiscountTest : TestBase
 {
     [Fact]
-    public void percentageValidation_Works()
+    public void PercentageValidationWorks()
     {
         InvoiceLevelDiscount value = new(
             new PercentageDiscount()
@@ -30,7 +30,7 @@ public class InvoiceLevelDiscountTest : TestBase
     }
 
     [Fact]
-    public void amountValidation_Works()
+    public void AmountValidationWorks()
     {
         InvoiceLevelDiscount value = new(
             new AmountDiscount()
@@ -54,7 +54,7 @@ public class InvoiceLevelDiscountTest : TestBase
     }
 
     [Fact]
-    public void trialValidation_Works()
+    public void TrialValidationWorks()
     {
         InvoiceLevelDiscount value = new(
             new TrialDiscount()
@@ -79,7 +79,7 @@ public class InvoiceLevelDiscountTest : TestBase
     }
 
     [Fact]
-    public void percentageSerializationRoundtrip_Works()
+    public void PercentageSerializationRoundtripWorks()
     {
         InvoiceLevelDiscount value = new(
             new PercentageDiscount()
@@ -106,7 +106,7 @@ public class InvoiceLevelDiscountTest : TestBase
     }
 
     [Fact]
-    public void amountSerializationRoundtrip_Works()
+    public void AmountSerializationRoundtripWorks()
     {
         InvoiceLevelDiscount value = new(
             new AmountDiscount()
@@ -133,7 +133,7 @@ public class InvoiceLevelDiscountTest : TestBase
     }
 
     [Fact]
-    public void trialSerializationRoundtrip_Works()
+    public void TrialSerializationRoundtripWorks()
     {
         InvoiceLevelDiscount value = new(
             new TrialDiscount()

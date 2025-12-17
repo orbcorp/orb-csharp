@@ -677,7 +677,7 @@ public class UnitWithPercentConfigTest : TestBase
 public class NewSubscriptionUnitWithPercentPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -690,7 +690,7 @@ public class NewSubscriptionUnitWithPercentPriceConversionRateConfigTest : TestB
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -712,7 +712,7 @@ public class NewSubscriptionUnitWithPercentPriceConversionRateConfigTest : TestB
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -731,7 +731,7 @@ public class NewSubscriptionUnitWithPercentPriceConversionRateConfigTest : TestB
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

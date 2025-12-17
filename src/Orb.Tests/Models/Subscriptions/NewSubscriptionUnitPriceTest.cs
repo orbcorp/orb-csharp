@@ -579,7 +579,7 @@ public class NewSubscriptionUnitPriceModelTypeTest : TestBase
 public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewSubscriptionUnitPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -592,7 +592,7 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewSubscriptionUnitPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -614,7 +614,7 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewSubscriptionUnitPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -632,7 +632,7 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewSubscriptionUnitPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

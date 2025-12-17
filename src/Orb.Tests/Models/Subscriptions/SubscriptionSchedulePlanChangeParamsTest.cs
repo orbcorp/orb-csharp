@@ -423,7 +423,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentTest : TestBase
 public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : TestBase
 {
     [Fact]
-    public void new_percentage_discountValidation_Works()
+    public void NewPercentageDiscountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewPercentageDiscount()
@@ -451,7 +451,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_usage_discountValidation_Works()
+    public void NewUsageDiscountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewUsageDiscount()
@@ -479,7 +479,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_amount_discountValidation_Works()
+    public void NewAmountDiscountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewAmountDiscount()
@@ -507,7 +507,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_minimumValidation_Works()
+    public void NewMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewMinimum()
@@ -536,7 +536,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_maximumValidation_Works()
+    public void NewMaximumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewMaximum()
@@ -564,7 +564,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_percentage_discountSerializationRoundtrip_Works()
+    public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewPercentageDiscount()
@@ -598,7 +598,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_usage_discountSerializationRoundtrip_Works()
+    public void NewUsageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewUsageDiscount()
@@ -632,7 +632,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_amount_discountSerializationRoundtrip_Works()
+    public void NewAmountDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewAmountDiscount()
@@ -666,7 +666,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_minimumSerializationRoundtrip_Works()
+    public void NewMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewMinimum()
@@ -701,7 +701,7 @@ public class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentTest : T
     }
 
     [Fact]
-    public void new_maximumSerializationRoundtrip_Works()
+    public void NewMaximumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment value = new(
             new NewMaximum()
@@ -1388,7 +1388,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPriceTest : TestBase
 public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
 {
     [Fact]
-    public void new_subscription_unitValidation_Works()
+    public void NewSubscriptionUnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionUnitPrice()
@@ -1434,7 +1434,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tieredValidation_Works()
+    public void NewSubscriptionTieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPrice()
@@ -1492,7 +1492,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_bulkValidation_Works()
+    public void NewSubscriptionBulkValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionBulkPrice()
@@ -1538,7 +1538,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersValidation_Works()
+    public void BulkWithFiltersValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters()
@@ -1592,7 +1592,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_packageValidation_Works()
+    public void NewSubscriptionPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionPackagePrice()
@@ -1638,7 +1638,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_matrixValidation_Works()
+    public void NewSubscriptionMatrixValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixPrice()
@@ -1692,7 +1692,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_threshold_total_amountValidation_Works()
+    public void NewSubscriptionThresholdTotalAmountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
@@ -1747,7 +1747,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tiered_packageValidation_Works()
+    public void NewSubscriptionTieredPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackagePrice()
@@ -1801,7 +1801,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tiered_with_minimumValidation_Works()
+    public void NewSubscriptionTieredWithMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
@@ -1867,7 +1867,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_tieredValidation_Works()
+    public void NewSubscriptionGroupedTieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
@@ -1921,7 +1921,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tiered_package_with_minimumValidation_Works()
+    public void NewSubscriptionTieredPackageWithMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
@@ -1986,7 +1986,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_package_with_allocationValidation_Works()
+    public void NewSubscriptionPackageWithAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
@@ -2038,7 +2038,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_unit_with_percentValidation_Works()
+    public void NewSubscriptionUnitWithPercentValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
@@ -2085,7 +2085,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_matrix_with_allocationValidation_Works()
+    public void NewSubscriptionMatrixWithAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
@@ -2141,7 +2141,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void tiered_with_prorationValidation_Works()
+    public void TieredWithProrationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration()
@@ -2189,7 +2189,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_unit_with_prorationValidation_Works()
+    public void NewSubscriptionUnitWithProrationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
@@ -2236,7 +2236,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_allocationValidation_Works()
+    public void NewSubscriptionGroupedAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
@@ -2288,7 +2288,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_bulk_with_prorationValidation_Works()
+    public void NewSubscriptionBulkWithProrationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
@@ -2340,7 +2340,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_with_prorated_minimumValidation_Works()
+    public void NewSubscriptionGroupedWithProratedMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
@@ -2393,7 +2393,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_with_metered_minimumValidation_Works()
+    public void NewSubscriptionGroupedWithMeteredMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
@@ -2459,7 +2459,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsValidation_Works()
+    public void GroupedWithMinMaxThresholdsValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds()
@@ -2511,7 +2511,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_matrix_with_display_nameValidation_Works()
+    public void NewSubscriptionMatrixWithDisplayNameValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
@@ -2570,7 +2570,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_tiered_packageValidation_Works()
+    public void NewSubscriptionGroupedTieredPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
@@ -2626,7 +2626,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_max_group_tiered_packageValidation_Works()
+    public void NewSubscriptionMaxGroupTieredPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
@@ -2682,7 +2682,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_unit_pricingValidation_Works()
+    public void NewSubscriptionScalableMatrixWithUnitPricingValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
@@ -2745,7 +2745,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_tiered_pricingValidation_Works()
+    public void NewSubscriptionScalableMatrixWithTieredPricingValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
@@ -2811,7 +2811,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_cumulative_grouped_bulkValidation_Works()
+    public void NewSubscriptionCumulativeGroupedBulkValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
@@ -2870,7 +2870,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationValidation_Works()
+    public void CumulativeGroupedAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation()
@@ -2922,7 +2922,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_minimum_compositeValidation_Works()
+    public void NewSubscriptionMinimumCompositeValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
@@ -2968,7 +2968,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void percentValidation_Works()
+    public void PercentValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercent()
@@ -3014,7 +3014,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputValidation_Works()
+    public void EventOutputValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput()
@@ -3065,7 +3065,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_unitSerializationRoundtrip_Works()
+    public void NewSubscriptionUnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionUnitPrice()
@@ -3117,7 +3117,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tieredSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPrice()
@@ -3181,7 +3181,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_bulkSerializationRoundtrip_Works()
+    public void NewSubscriptionBulkSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionBulkPrice()
@@ -3233,7 +3233,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersSerializationRoundtrip_Works()
+    public void BulkWithFiltersSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters()
@@ -3293,7 +3293,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionPackagePrice()
@@ -3345,7 +3345,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_matrixSerializationRoundtrip_Works()
+    public void NewSubscriptionMatrixSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixPrice()
@@ -3405,7 +3405,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_threshold_total_amountSerializationRoundtrip_Works()
+    public void NewSubscriptionThresholdTotalAmountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
@@ -3466,7 +3466,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tiered_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackagePrice()
@@ -3526,7 +3526,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tiered_with_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredWithMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
@@ -3598,7 +3598,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_tieredSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedTieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
@@ -3658,7 +3658,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_tiered_package_with_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredPackageWithMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
@@ -3729,7 +3729,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_package_with_allocationSerializationRoundtrip_Works()
+    public void NewSubscriptionPackageWithAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
@@ -3787,7 +3787,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_unit_with_percentSerializationRoundtrip_Works()
+    public void NewSubscriptionUnitWithPercentSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
@@ -3840,7 +3840,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_matrix_with_allocationSerializationRoundtrip_Works()
+    public void NewSubscriptionMatrixWithAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
@@ -3902,7 +3902,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void tiered_with_prorationSerializationRoundtrip_Works()
+    public void TieredWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration()
@@ -3956,7 +3956,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_unit_with_prorationSerializationRoundtrip_Works()
+    public void NewSubscriptionUnitWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
@@ -4009,7 +4009,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_allocationSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
@@ -4067,7 +4067,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_bulk_with_prorationSerializationRoundtrip_Works()
+    public void NewSubscriptionBulkWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
@@ -4125,7 +4125,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
@@ -4184,7 +4184,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
@@ -4256,7 +4256,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds()
@@ -4314,7 +4314,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_matrix_with_display_nameSerializationRoundtrip_Works()
+    public void NewSubscriptionMatrixWithDisplayNameSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
@@ -4379,7 +4379,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_grouped_tiered_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
@@ -4441,7 +4441,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_max_group_tiered_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionMaxGroupTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
@@ -4503,7 +4503,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    public void NewSubscriptionScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
@@ -4572,7 +4572,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    public void NewSubscriptionScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
@@ -4644,7 +4644,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    public void NewSubscriptionCumulativeGroupedBulkSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
@@ -4709,7 +4709,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation()
@@ -4767,7 +4767,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void new_subscription_minimum_compositeSerializationRoundtrip_Works()
+    public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
@@ -4819,7 +4819,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void percentSerializationRoundtrip_Works()
+    public void PercentSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercent()
@@ -4871,7 +4871,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputSerializationRoundtrip_Works()
+    public void EventOutputSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput()
@@ -5934,7 +5934,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5948,7 +5948,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5971,7 +5971,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5991,7 +5991,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -6792,7 +6792,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -6806,7 +6806,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -6829,7 +6829,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -6849,7 +6849,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -7634,7 +7634,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -7648,7 +7648,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -7671,7 +7671,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -7691,7 +7691,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -8476,7 +8476,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -8490,7 +8490,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -8513,7 +8513,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -8533,7 +8533,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -9213,7 +9213,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
             new(
@@ -9227,7 +9227,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
             new(
@@ -9250,7 +9250,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
             new(
@@ -9270,7 +9270,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig value =
             new(
@@ -10077,7 +10077,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
             new(
@@ -10091,7 +10091,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
             new(
@@ -10114,7 +10114,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
             new(
@@ -10134,7 +10134,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig value =
             new(
@@ -10596,7 +10596,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentTest : TestBas
 public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest : TestBase
 {
     [Fact]
-    public void new_percentage_discountValidation_Works()
+    public void NewPercentageDiscountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewPercentageDiscount()
@@ -10624,7 +10624,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_usage_discountValidation_Works()
+    public void NewUsageDiscountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewUsageDiscount()
@@ -10652,7 +10652,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_amount_discountValidation_Works()
+    public void NewAmountDiscountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewAmountDiscount()
@@ -10680,7 +10680,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_minimumValidation_Works()
+    public void NewMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewMinimum()
@@ -10709,7 +10709,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_maximumValidation_Works()
+    public void NewMaximumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewMaximum()
@@ -10737,7 +10737,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_percentage_discountSerializationRoundtrip_Works()
+    public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewPercentageDiscount()
@@ -10771,7 +10771,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_usage_discountSerializationRoundtrip_Works()
+    public void NewUsageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewUsageDiscount()
@@ -10805,7 +10805,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_amount_discountSerializationRoundtrip_Works()
+    public void NewAmountDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewAmountDiscount()
@@ -10839,7 +10839,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_minimumSerializationRoundtrip_Works()
+    public void NewMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewMinimum()
@@ -10874,7 +10874,7 @@ public class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentTest
     }
 
     [Fact]
-    public void new_maximumSerializationRoundtrip_Works()
+    public void NewMaximumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment value = new(
             new NewMaximum()
@@ -11551,7 +11551,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePriceTest : TestBase
 public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBase
 {
     [Fact]
-    public void new_subscription_unitValidation_Works()
+    public void NewSubscriptionUnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionUnitPrice()
@@ -11597,7 +11597,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tieredValidation_Works()
+    public void NewSubscriptionTieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPrice()
@@ -11655,7 +11655,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_bulkValidation_Works()
+    public void NewSubscriptionBulkValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionBulkPrice()
@@ -11701,7 +11701,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void bulk_with_filtersValidation_Works()
+    public void BulkWithFiltersValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters()
@@ -11755,7 +11755,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_packageValidation_Works()
+    public void NewSubscriptionPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionPackagePrice()
@@ -11801,7 +11801,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_matrixValidation_Works()
+    public void NewSubscriptionMatrixValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixPrice()
@@ -11855,7 +11855,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_threshold_total_amountValidation_Works()
+    public void NewSubscriptionThresholdTotalAmountValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
@@ -11910,7 +11910,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tiered_packageValidation_Works()
+    public void NewSubscriptionTieredPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackagePrice()
@@ -11964,7 +11964,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tiered_with_minimumValidation_Works()
+    public void NewSubscriptionTieredWithMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
@@ -12030,7 +12030,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_tieredValidation_Works()
+    public void NewSubscriptionGroupedTieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
@@ -12084,7 +12084,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tiered_package_with_minimumValidation_Works()
+    public void NewSubscriptionTieredPackageWithMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
@@ -12149,7 +12149,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_package_with_allocationValidation_Works()
+    public void NewSubscriptionPackageWithAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
@@ -12201,7 +12201,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_unit_with_percentValidation_Works()
+    public void NewSubscriptionUnitWithPercentValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
@@ -12248,7 +12248,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_matrix_with_allocationValidation_Works()
+    public void NewSubscriptionMatrixWithAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
@@ -12304,7 +12304,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void tiered_with_prorationValidation_Works()
+    public void TieredWithProrationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration()
@@ -12352,7 +12352,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_unit_with_prorationValidation_Works()
+    public void NewSubscriptionUnitWithProrationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
@@ -12399,7 +12399,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_allocationValidation_Works()
+    public void NewSubscriptionGroupedAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
@@ -12451,7 +12451,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_bulk_with_prorationValidation_Works()
+    public void NewSubscriptionBulkWithProrationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
@@ -12503,7 +12503,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_with_prorated_minimumValidation_Works()
+    public void NewSubscriptionGroupedWithProratedMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
@@ -12556,7 +12556,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_with_metered_minimumValidation_Works()
+    public void NewSubscriptionGroupedWithMeteredMinimumValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
@@ -12622,7 +12622,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsValidation_Works()
+    public void GroupedWithMinMaxThresholdsValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds()
@@ -12674,7 +12674,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_matrix_with_display_nameValidation_Works()
+    public void NewSubscriptionMatrixWithDisplayNameValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
@@ -12733,7 +12733,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_tiered_packageValidation_Works()
+    public void NewSubscriptionGroupedTieredPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
@@ -12789,7 +12789,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_max_group_tiered_packageValidation_Works()
+    public void NewSubscriptionMaxGroupTieredPackageValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
@@ -12845,7 +12845,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_unit_pricingValidation_Works()
+    public void NewSubscriptionScalableMatrixWithUnitPricingValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
@@ -12908,7 +12908,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_tiered_pricingValidation_Works()
+    public void NewSubscriptionScalableMatrixWithTieredPricingValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
@@ -12974,7 +12974,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_cumulative_grouped_bulkValidation_Works()
+    public void NewSubscriptionCumulativeGroupedBulkValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
@@ -13033,7 +13033,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void cumulative_grouped_allocationValidation_Works()
+    public void CumulativeGroupedAllocationValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation()
@@ -13085,7 +13085,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_minimum_compositeValidation_Works()
+    public void NewSubscriptionMinimumCompositeValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
@@ -13131,7 +13131,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void percentValidation_Works()
+    public void PercentValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercent()
@@ -13177,7 +13177,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void event_outputValidation_Works()
+    public void EventOutputValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput()
@@ -13228,7 +13228,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_unitSerializationRoundtrip_Works()
+    public void NewSubscriptionUnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionUnitPrice()
@@ -13280,7 +13280,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tieredSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPrice()
@@ -13344,7 +13344,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_bulkSerializationRoundtrip_Works()
+    public void NewSubscriptionBulkSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionBulkPrice()
@@ -13396,7 +13396,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void bulk_with_filtersSerializationRoundtrip_Works()
+    public void BulkWithFiltersSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters()
@@ -13456,7 +13456,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionPackagePrice()
@@ -13508,7 +13508,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_matrixSerializationRoundtrip_Works()
+    public void NewSubscriptionMatrixSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixPrice()
@@ -13568,7 +13568,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_threshold_total_amountSerializationRoundtrip_Works()
+    public void NewSubscriptionThresholdTotalAmountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionThresholdTotalAmountPrice()
@@ -13629,7 +13629,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tiered_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackagePrice()
@@ -13689,7 +13689,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tiered_with_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredWithMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredWithMinimumPrice()
@@ -13761,7 +13761,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_tieredSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedTieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPrice()
@@ -13821,7 +13821,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_tiered_package_with_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionTieredPackageWithMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionTieredPackageWithMinimumPrice()
@@ -13892,7 +13892,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_package_with_allocationSerializationRoundtrip_Works()
+    public void NewSubscriptionPackageWithAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionPackageWithAllocationPrice()
@@ -13950,7 +13950,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_unit_with_percentSerializationRoundtrip_Works()
+    public void NewSubscriptionUnitWithPercentSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithPercentPrice()
@@ -14003,7 +14003,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_matrix_with_allocationSerializationRoundtrip_Works()
+    public void NewSubscriptionMatrixWithAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithAllocationPrice()
@@ -14065,7 +14065,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void tiered_with_prorationSerializationRoundtrip_Works()
+    public void TieredWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration()
@@ -14119,7 +14119,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_unit_with_prorationSerializationRoundtrip_Works()
+    public void NewSubscriptionUnitWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionUnitWithProrationPrice()
@@ -14172,7 +14172,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_allocationSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedAllocationPrice()
@@ -14230,7 +14230,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_bulk_with_prorationSerializationRoundtrip_Works()
+    public void NewSubscriptionBulkWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionBulkWithProrationPrice()
@@ -14288,7 +14288,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice()
@@ -14347,7 +14347,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice()
@@ -14419,7 +14419,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds()
@@ -14477,7 +14477,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_matrix_with_display_nameSerializationRoundtrip_Works()
+    public void NewSubscriptionMatrixWithDisplayNameSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice()
@@ -14542,7 +14542,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_grouped_tiered_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionGroupedTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionGroupedTieredPackagePrice()
@@ -14604,7 +14604,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_max_group_tiered_packageSerializationRoundtrip_Works()
+    public void NewSubscriptionMaxGroupTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMaxGroupTieredPackagePrice()
@@ -14666,7 +14666,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    public void NewSubscriptionScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPrice()
@@ -14735,7 +14735,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    public void NewSubscriptionScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPrice()
@@ -14807,7 +14807,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    public void NewSubscriptionCumulativeGroupedBulkSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice()
@@ -14872,7 +14872,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation()
@@ -14930,7 +14930,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void new_subscription_minimum_compositeSerializationRoundtrip_Works()
+    public void NewSubscriptionMinimumCompositeSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::NewSubscriptionMinimumCompositePrice()
@@ -14982,7 +14982,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void percentSerializationRoundtrip_Works()
+    public void PercentSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercent()
@@ -15034,7 +15034,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTest : TestBas
     }
 
     [Fact]
-    public void event_outputSerializationRoundtrip_Works()
+    public void EventOutputSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePrice value = new(
             new Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput()
@@ -16098,7 +16098,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -16112,7 +16112,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -16135,7 +16135,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -16155,7 +16155,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -16956,7 +16956,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -16970,7 +16970,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -16993,7 +16993,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -17013,7 +17013,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig value =
             new(
@@ -17798,7 +17798,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -17812,7 +17812,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -17835,7 +17835,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -17855,7 +17855,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -18640,7 +18640,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -18654,7 +18654,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -18677,7 +18677,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -18697,7 +18697,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -19378,7 +19378,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
             new(
@@ -19392,7 +19392,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
             new(
@@ -19415,7 +19415,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
             new(
@@ -19435,7 +19435,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig value =
             new(
@@ -20250,7 +20250,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
             new(
@@ -20264,7 +20264,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
             new(
@@ -20287,7 +20287,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
             new(
@@ -20307,7 +20307,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig value =
             new(
