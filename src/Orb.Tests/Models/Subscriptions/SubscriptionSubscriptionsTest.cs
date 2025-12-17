@@ -2614,8 +2614,8 @@ public class SubscriptionSubscriptionsTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionSubscriptions>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionSubscriptions>(element);
         Assert.NotNull(deserialized);
 
         List<Subscription> expectedData =

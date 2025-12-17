@@ -124,8 +124,8 @@ public class PlanPhaseAmountDiscountAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -307,9 +307,9 @@ public class PlanPhaseAmountDiscountAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustmentFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 

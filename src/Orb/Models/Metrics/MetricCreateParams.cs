@@ -27,8 +27,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "description"); }
-        init { ModelBase.Set(this._rawBodyData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
+        init { JsonModel.Set(this._rawBodyData, "description", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "item_id"); }
-        init { ModelBase.Set(this._rawBodyData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "item_id"); }
+        init { JsonModel.Set(this._rawBodyData, "item_id", value); }
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "name"); }
-        init { ModelBase.Set(this._rawBodyData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "name"); }
+        init { JsonModel.Set(this._rawBodyData, "name", value); }
     }
 
     /// <summary>
@@ -54,8 +54,8 @@ public sealed record class MetricCreateParams : ParamsBase
     /// </summary>
     public required string Sql
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "sql"); }
-        init { ModelBase.Set(this._rawBodyData, "sql", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "sql"); }
+        init { JsonModel.Set(this._rawBodyData, "sql", value); }
     }
 
     /// <summary>
@@ -67,12 +67,12 @@ public sealed record class MetricCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     public MetricCreateParams() { }
@@ -108,7 +108,7 @@ public sealed record class MetricCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static MetricCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -130,9 +130,13 @@ public sealed record class MetricCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

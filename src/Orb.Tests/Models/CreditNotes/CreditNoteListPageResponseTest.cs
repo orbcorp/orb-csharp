@@ -348,8 +348,8 @@ public class CreditNoteListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreditNoteListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreditNoteListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Models::SharedCreditNote> expectedData =

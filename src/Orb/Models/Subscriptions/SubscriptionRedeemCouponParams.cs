@@ -28,12 +28,12 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, ChangeOption>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, ChangeOption>>(
                 this.RawBodyData,
                 "change_option"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "change_option", value); }
+        init { JsonModel.Set(this._rawBodyData, "change_option", value); }
     }
 
     /// <summary>
@@ -45,12 +45,12 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(
+            return JsonModel.GetNullableStruct<bool>(
                 this.RawBodyData,
                 "allow_invoice_credit_or_void"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
+        init { JsonModel.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -61,12 +61,12 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "change_date"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "change_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "change_date", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     /// </summary>
     public string? CouponID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "coupon_id"); }
-        init { ModelBase.Set(this._rawBodyData, "coupon_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "coupon_id"); }
+        init { JsonModel.Set(this._rawBodyData, "coupon_id", value); }
     }
 
     /// <summary>
@@ -85,9 +85,9 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawBodyData, "coupon_redemption_code");
+            return JsonModel.GetNullableClass<string>(this.RawBodyData, "coupon_redemption_code");
         }
-        init { ModelBase.Set(this._rawBodyData, "coupon_redemption_code", value); }
+        init { JsonModel.Set(this._rawBodyData, "coupon_redemption_code", value); }
     }
 
     public SubscriptionRedeemCouponParams() { }
@@ -125,7 +125,7 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionRedeemCouponParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -150,9 +150,13 @@ public sealed record class SubscriptionRedeemCouponParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

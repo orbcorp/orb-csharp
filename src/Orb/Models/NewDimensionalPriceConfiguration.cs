@@ -8,20 +8,20 @@ using Orb.Core;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         NewDimensionalPriceConfiguration,
         NewDimensionalPriceConfigurationFromRaw
     >)
 )]
-public sealed record class NewDimensionalPriceConfiguration : ModelBase
+public sealed record class NewDimensionalPriceConfiguration : JsonModel
 {
     /// <summary>
     /// The list of dimension values matching (in order) the dimensions of the price group
     /// </summary>
     public required IReadOnlyList<string> DimensionValues
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "dimension_values"); }
-        init { ModelBase.Set(this._rawData, "dimension_values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "dimension_values"); }
+        init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
     /// <summary>
@@ -31,9 +31,9 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawData, "dimensional_price_group_id");
+            return JsonModel.GetNullableClass<string>(this.RawData, "dimensional_price_group_id");
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_group_id", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -43,12 +43,12 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(
+            return JsonModel.GetNullableClass<string>(
                 this.RawData,
                 "external_dimensional_price_group_id"
             );
         }
-        init { ModelBase.Set(this._rawData, "external_dimensional_price_group_id", value); }
+        init { JsonModel.Set(this._rawData, "external_dimensional_price_group_id", value); }
     }
 
     /// <inheritdoc/>
@@ -95,7 +95,7 @@ public sealed record class NewDimensionalPriceConfiguration : ModelBase
     }
 }
 
-class NewDimensionalPriceConfigurationFromRaw : IFromRaw<NewDimensionalPriceConfiguration>
+class NewDimensionalPriceConfigurationFromRaw : IFromRawJson<NewDimensionalPriceConfiguration>
 {
     /// <inheritdoc/>
     public NewDimensionalPriceConfiguration FromRawUnchecked(

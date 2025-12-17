@@ -265,10 +265,10 @@ public class NewSubscriptionCumulativeGroupedBulkPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionCumulativeGroupedBulkPrice>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -758,9 +758,9 @@ public class CumulativeGroupedBulkConfigTest : TestBase
             Group = "group",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::CumulativeGroupedBulkConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -851,8 +851,8 @@ public class DimensionValueTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::DimensionValue>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::DimensionValue>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -991,10 +991,10 @@ public class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfigTest :
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1019,10 +1019,10 @@ public class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfigTest :
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

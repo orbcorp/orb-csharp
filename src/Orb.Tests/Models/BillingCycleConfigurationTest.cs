@@ -35,8 +35,8 @@ public class BillingCycleConfigurationTest : TestBase
     {
         var model = new BillingCycleConfiguration { Duration = 0, DurationUnit = DurationUnit.Day };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BillingCycleConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BillingCycleConfiguration>(element);
         Assert.NotNull(deserialized);
 
         long expectedDuration = 0;

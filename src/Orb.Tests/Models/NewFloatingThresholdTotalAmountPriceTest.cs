@@ -232,8 +232,10 @@ public class NewFloatingThresholdTotalAmountPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPrice>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingThresholdTotalAmountPriceCadence> expectedCadence =
@@ -709,8 +711,8 @@ public class ThresholdTotalAmountConfigTest : TestBase
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountConfig>(element);
         Assert.NotNull(deserialized);
 
         List<ConsumptionTable> expectedConsumptionTable =
@@ -841,8 +843,8 @@ public class ConsumptionTableTest : TestBase
     {
         var model = new ConsumptionTable { Threshold = "threshold", TotalAmount = "total_amount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConsumptionTable>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ConsumptionTable>(element);
         Assert.NotNull(deserialized);
 
         string expectedThreshold = "threshold";
@@ -908,10 +910,10 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -936,10 +938,10 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

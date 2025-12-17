@@ -31,8 +31,8 @@ public class EventDeprecateResponseTest : TestBase
     {
         var model = new EventDeprecateResponse { Deprecated = "deprecated" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventDeprecateResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventDeprecateResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedDeprecated = "deprecated";

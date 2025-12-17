@@ -36,7 +36,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<
+            return JsonModel.GetNotNullStruct<
 #if NET
             DateOnly
 #else
@@ -44,7 +44,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
 #endif
             >(this.RawBodyData, "payment_received_date");
         }
-        init { ModelBase.Set(this._rawBodyData, "payment_received_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "payment_received_date", value); }
     }
 
     /// <summary>
@@ -52,8 +52,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? ExternalID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_id", value); }
     }
 
     /// <summary>
@@ -61,8 +61,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? Notes
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "notes"); }
-        init { ModelBase.Set(this._rawBodyData, "notes", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "notes"); }
+        init { JsonModel.Set(this._rawBodyData, "notes", value); }
     }
 
     public InvoiceMarkPaidParams() { }
@@ -98,7 +98,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceMarkPaidParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -123,9 +123,13 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

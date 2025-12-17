@@ -363,8 +363,8 @@ public class CustomerTest : TestBase
             ReportingConfiguration = new(true),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Customer>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Customer>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -861,8 +861,8 @@ public class HierarchyTest : TestBase
             Parent = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Hierarchy>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Hierarchy>(element);
         Assert.NotNull(deserialized);
 
         List<CustomerMinified> expectedChildren =
@@ -1032,8 +1032,8 @@ public class AccountingSyncConfigurationTest : TestBase
             Excluded = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AccountingSyncConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AccountingSyncConfiguration>(element);
         Assert.NotNull(deserialized);
 
         List<AccountingProvider> expectedAccountingProviders =
@@ -1117,8 +1117,8 @@ public class AccountingProviderTest : TestBase
             ProviderType = AccountingProviderProviderType.Quickbooks,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AccountingProvider>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AccountingProvider>(element);
         Assert.NotNull(deserialized);
 
         string expectedExternalProviderID = "external_provider_id";
@@ -1266,8 +1266,8 @@ public class CustomerPaymentConfigurationTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfiguration>(element);
         Assert.NotNull(deserialized);
 
         List<CustomerPaymentConfigurationPaymentProvider> expectedPaymentProviders =
@@ -1406,9 +1406,9 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
             ExcludedPaymentMethodTypes = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CustomerPaymentConfigurationPaymentProvider>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -1584,8 +1584,8 @@ public class ReportingConfigurationTest : TestBase
     {
         var model = new ReportingConfiguration { Exempt = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ReportingConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ReportingConfiguration>(element);
         Assert.NotNull(deserialized);
 
         bool expectedExempt = true;

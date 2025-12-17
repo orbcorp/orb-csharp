@@ -226,8 +226,8 @@ public class NewPlanPackageWithAllocationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanPackageWithAllocationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanPackageWithAllocationPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanPackageWithAllocationPriceCadence> expectedCadence =
@@ -685,10 +685,10 @@ public class NewPlanPackageWithAllocationPricePackageWithAllocationConfigTest : 
             PackageSize = "package_size",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanPackageWithAllocationPricePackageWithAllocationConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -762,9 +762,11 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanPackageWithAllocationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanPackageWithAllocationPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -788,9 +790,11 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanPackageWithAllocationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanPackageWithAllocationPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

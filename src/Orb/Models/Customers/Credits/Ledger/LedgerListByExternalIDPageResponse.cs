@@ -10,35 +10,35 @@ using System = System;
 namespace Orb.Models.Customers.Credits.Ledger;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerListByExternalIDPageResponse,
         LedgerListByExternalIDPageResponseFromRaw
     >)
 )]
-public sealed record class LedgerListByExternalIDPageResponse : ModelBase
+public sealed record class LedgerListByExternalIDPageResponse : JsonModel
 {
     public required IReadOnlyList<LedgerListByExternalIDPageResponseData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<LedgerListByExternalIDPageResponseData>>(
+            return JsonModel.GetNotNullClass<List<LedgerListByExternalIDPageResponseData>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -80,7 +80,7 @@ public sealed record class LedgerListByExternalIDPageResponse : ModelBase
     }
 }
 
-class LedgerListByExternalIDPageResponseFromRaw : IFromRaw<LedgerListByExternalIDPageResponse>
+class LedgerListByExternalIDPageResponseFromRaw : IFromRawJson<LedgerListByExternalIDPageResponse>
 {
     /// <inheritdoc/>
     public LedgerListByExternalIDPageResponse FromRawUnchecked(
@@ -97,11 +97,11 @@ public record class LedgerListByExternalIDPageResponseData
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -314,67 +314,70 @@ public record class LedgerListByExternalIDPageResponseData
 
     public LedgerListByExternalIDPageResponseData(
         IncrementLedgerEntry value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerListByExternalIDPageResponseData(
         DecrementLedgerEntry value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerListByExternalIDPageResponseData(
         ExpirationChangeLedgerEntry value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerListByExternalIDPageResponseData(
         CreditBlockExpiryLedgerEntry value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerListByExternalIDPageResponseData(VoidLedgerEntry value, JsonElement? json = null)
+    public LedgerListByExternalIDPageResponseData(
+        VoidLedgerEntry value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerListByExternalIDPageResponseData(
         VoidInitiatedLedgerEntry value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerListByExternalIDPageResponseData(
         AmendmentLedgerEntry value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerListByExternalIDPageResponseData(JsonElement json)
+    public LedgerListByExternalIDPageResponseData(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -722,11 +725,11 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? entryType;
         try
         {
-            entryType = json.GetProperty("entry_type").GetString();
+            entryType = element.GetProperty("entry_type").GetString();
         }
         catch
         {
@@ -740,13 +743,13 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -755,20 +758,20 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "decrement":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -777,20 +780,20 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "expiration_change":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -799,20 +802,20 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "credit_block_expiry":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -821,17 +824,20 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -840,20 +846,20 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void_initiated":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -862,20 +868,20 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amendment":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -884,11 +890,11 @@ sealed class LedgerListByExternalIDPageResponseDataConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new LedgerListByExternalIDPageResponseData(json);
+                return new LedgerListByExternalIDPageResponseData(element);
             }
         }
     }

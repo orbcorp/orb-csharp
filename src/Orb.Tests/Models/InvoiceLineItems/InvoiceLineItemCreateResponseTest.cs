@@ -766,8 +766,8 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             UsageCustomerIDs = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemCreateResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLineItemCreateResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1336,8 +1336,8 @@ public class AdjustmentTest : TestBase
                 UsageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1367,8 +1367,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1400,8 +1400,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1432,8 +1432,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1463,8 +1463,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1543,8 +1543,8 @@ public class SubLineItemTest : TestBase
                 ScaledQuantity = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SubLineItem>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SubLineItem>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1568,8 +1568,8 @@ public class SubLineItemTest : TestBase
                 Type = Models::TierSubLineItemType.Tier,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SubLineItem>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SubLineItem>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1587,8 +1587,8 @@ public class SubLineItemTest : TestBase
                 Type = Models::OtherSubLineItemType.Null,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SubLineItem>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SubLineItem>(element);
 
         Assert.Equal(value, deserialized);
     }

@@ -145,8 +145,8 @@ public class AdjustmentIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AdjustmentInterval>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AdjustmentInterval>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -395,8 +395,8 @@ public class AdjustmentTest : TestBase
                 UsageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -426,8 +426,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -458,8 +458,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -490,8 +490,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -521,8 +521,8 @@ public class AdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Adjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Adjustment>(element);
 
         Assert.Equal(value, deserialized);
     }

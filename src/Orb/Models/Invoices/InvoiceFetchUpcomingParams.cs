@@ -16,8 +16,8 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
 {
     public required string SubscriptionID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawQueryData, "subscription_id"); }
-        init { ModelBase.Set(this._rawQueryData, "subscription_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawQueryData, "subscription_id"); }
+        init { JsonModel.Set(this._rawQueryData, "subscription_id", value); }
     }
 
     public InvoiceFetchUpcomingParams() { }
@@ -46,7 +46,7 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceFetchUpcomingParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

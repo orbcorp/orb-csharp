@@ -102,8 +102,8 @@ public class TopUpCreateByExternalIDResponseTest : TestBase
             ExpiresAfterUnit = TopUpCreateByExternalIDResponseExpiresAfterUnit.Day,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopUpCreateByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TopUpCreateByExternalIDResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

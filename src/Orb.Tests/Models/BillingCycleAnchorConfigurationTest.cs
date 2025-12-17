@@ -50,8 +50,8 @@ public class BillingCycleAnchorConfigurationTest : TestBase
             Year = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BillingCycleAnchorConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BillingCycleAnchorConfiguration>(element);
         Assert.NotNull(deserialized);
 
         long expectedDay = 1;

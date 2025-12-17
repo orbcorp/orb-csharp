@@ -579,8 +579,8 @@ public class CostListResponseTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CostListResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CostListResponse>(element);
         Assert.NotNull(deserialized);
 
         List<AggregatedCost> expectedData =

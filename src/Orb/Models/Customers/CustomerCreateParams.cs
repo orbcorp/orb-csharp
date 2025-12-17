@@ -36,8 +36,8 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public required string Email
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "email"); }
-        init { ModelBase.Set(this._rawBodyData, "email", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "email"); }
+        init { JsonModel.Set(this._rawBodyData, "email", value); }
     }
 
     /// <summary>
@@ -45,20 +45,20 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "name"); }
-        init { ModelBase.Set(this._rawBodyData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "name"); }
+        init { JsonModel.Set(this._rawBodyData, "name", value); }
     }
 
     public NewAccountingSyncConfiguration? AccountingSyncConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<NewAccountingSyncConfiguration>(
+            return JsonModel.GetNullableClass<NewAccountingSyncConfiguration>(
                 this.RawBodyData,
                 "accounting_sync_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "accounting_sync_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "accounting_sync_configuration", value); }
     }
 
     /// <summary>
@@ -70,9 +70,9 @@ public sealed record class CustomerCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawBodyData, "additional_emails");
+            return JsonModel.GetNullableClass<List<string>>(this.RawBodyData, "additional_emails");
         }
-        init { ModelBase.Set(this._rawBodyData, "additional_emails", value); }
+        init { JsonModel.Set(this._rawBodyData, "additional_emails", value); }
     }
 
     /// <summary>
@@ -82,8 +82,8 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
-        init { ModelBase.Set(this._rawBodyData, "auto_collection", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
+        init { JsonModel.Set(this._rawBodyData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -94,17 +94,17 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public bool? AutoIssuance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_issuance"); }
-        init { ModelBase.Set(this._rawBodyData, "auto_issuance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_issuance"); }
+        init { JsonModel.Set(this._rawBodyData, "auto_issuance", value); }
     }
 
     public AddressInput? BillingAddress
     {
         get
         {
-            return ModelBase.GetNullableClass<AddressInput>(this.RawBodyData, "billing_address");
+            return JsonModel.GetNullableClass<AddressInput>(this.RawBodyData, "billing_address");
         }
-        init { ModelBase.Set(this._rawBodyData, "billing_address", value); }
+        init { JsonModel.Set(this._rawBodyData, "billing_address", value); }
     }
 
     /// <summary>
@@ -113,14 +113,14 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "currency"); }
-        init { ModelBase.Set(this._rawBodyData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "currency"); }
+        init { JsonModel.Set(this._rawBodyData, "currency", value); }
     }
 
     public bool? EmailDelivery
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "email_delivery"); }
-        init { ModelBase.Set(this._rawBodyData, "email_delivery", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "email_delivery"); }
+        init { JsonModel.Set(this._rawBodyData, "email_delivery", value); }
     }
 
     /// <summary>
@@ -130,8 +130,8 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -141,12 +141,12 @@ public sealed record class CustomerCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<CustomerHierarchyConfig>(
+            return JsonModel.GetNullableClass<CustomerHierarchyConfig>(
                 this.RawBodyData,
                 "hierarchy"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "hierarchy", value); }
+        init { JsonModel.Set(this._rawBodyData, "hierarchy", value); }
     }
 
     /// <summary>
@@ -158,12 +158,12 @@ public sealed record class CustomerCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -174,12 +174,12 @@ public sealed record class CustomerCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<PaymentConfiguration>(
+            return JsonModel.GetNullableClass<PaymentConfiguration>(
                 this.RawBodyData,
                 "payment_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "payment_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "payment_configuration", value); }
     }
 
     /// <summary>
@@ -190,12 +190,12 @@ public sealed record class CustomerCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, CustomerCreateParamsPaymentProvider>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, CustomerCreateParamsPaymentProvider>>(
                 this.RawBodyData,
                 "payment_provider"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "payment_provider", value); }
+        init { JsonModel.Set(this._rawBodyData, "payment_provider", value); }
     }
 
     /// <summary>
@@ -204,41 +204,41 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public string? PaymentProviderID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "payment_provider_id"); }
-        init { ModelBase.Set(this._rawBodyData, "payment_provider_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_provider_id"); }
+        init { JsonModel.Set(this._rawBodyData, "payment_provider_id", value); }
     }
 
     public NewReportingConfiguration? ReportingConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<NewReportingConfiguration>(
+            return JsonModel.GetNullableClass<NewReportingConfiguration>(
                 this.RawBodyData,
                 "reporting_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "reporting_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "reporting_configuration", value); }
     }
 
     public AddressInput? ShippingAddress
     {
         get
         {
-            return ModelBase.GetNullableClass<AddressInput>(this.RawBodyData, "shipping_address");
+            return JsonModel.GetNullableClass<AddressInput>(this.RawBodyData, "shipping_address");
         }
-        init { ModelBase.Set(this._rawBodyData, "shipping_address", value); }
+        init { JsonModel.Set(this._rawBodyData, "shipping_address", value); }
     }
 
     public TaxConfiguration? TaxConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<TaxConfiguration>(
+            return JsonModel.GetNullableClass<TaxConfiguration>(
                 this.RawBodyData,
                 "tax_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "tax_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "tax_configuration", value); }
     }
 
     /// <summary>
@@ -348,8 +348,8 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public CustomerTaxID? TaxID
     {
-        get { return ModelBase.GetNullableClass<CustomerTaxID>(this.RawBodyData, "tax_id"); }
-        init { ModelBase.Set(this._rawBodyData, "tax_id", value); }
+        get { return JsonModel.GetNullableClass<CustomerTaxID>(this.RawBodyData, "tax_id"); }
+        init { JsonModel.Set(this._rawBodyData, "tax_id", value); }
     }
 
     /// <summary>
@@ -359,8 +359,8 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// </summary>
     public string? Timezone
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "timezone"); }
-        init { ModelBase.Set(this._rawBodyData, "timezone", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "timezone"); }
+        init { JsonModel.Set(this._rawBodyData, "timezone", value); }
     }
 
     public CustomerCreateParams() { }
@@ -396,7 +396,7 @@ public sealed record class CustomerCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static CustomerCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -418,9 +418,13 @@ public sealed record class CustomerCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -437,8 +441,8 @@ public sealed record class CustomerCreateParams : ParamsBase
 /// Payment configuration for the customer, applicable when using Orb Invoicing with
 /// a supported payment provider such as Stripe.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PaymentConfiguration, PaymentConfigurationFromRaw>))]
-public sealed record class PaymentConfiguration : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PaymentConfiguration, PaymentConfigurationFromRaw>))]
+public sealed record class PaymentConfiguration : JsonModel
 {
     /// <summary>
     /// Provider-specific payment configuration.
@@ -447,7 +451,7 @@ public sealed record class PaymentConfiguration : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<global::Orb.Models.Customers.PaymentProvider>>(
+            return JsonModel.GetNullableClass<List<global::Orb.Models.Customers.PaymentProvider>>(
                 this.RawData,
                 "payment_providers"
             );
@@ -459,7 +463,7 @@ public sealed record class PaymentConfiguration : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "payment_providers", value);
+            JsonModel.Set(this._rawData, "payment_providers", value);
         }
     }
 
@@ -499,7 +503,7 @@ public sealed record class PaymentConfiguration : ModelBase
     }
 }
 
-class PaymentConfigurationFromRaw : IFromRaw<PaymentConfiguration>
+class PaymentConfigurationFromRaw : IFromRawJson<PaymentConfiguration>
 {
     /// <inheritdoc/>
     public PaymentConfiguration FromRawUnchecked(
@@ -508,9 +512,9 @@ class PaymentConfigurationFromRaw : IFromRaw<PaymentConfiguration>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<global::Orb.Models.Customers.PaymentProvider, PaymentProviderFromRaw>)
+    typeof(JsonModelConverter<global::Orb.Models.Customers.PaymentProvider, PaymentProviderFromRaw>)
 )]
-public sealed record class PaymentProvider : ModelBase
+public sealed record class PaymentProvider : JsonModel
 {
     /// <summary>
     /// The payment provider to configure.
@@ -519,12 +523,12 @@ public sealed record class PaymentProvider : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, ProviderType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, ProviderType>>(
                 this.RawData,
                 "provider_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "provider_type", value); }
+        init { JsonModel.Set(this._rawData, "provider_type", value); }
     }
 
     /// <summary>
@@ -538,7 +542,7 @@ public sealed record class PaymentProvider : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(
+            return JsonModel.GetNullableClass<List<string>>(
                 this.RawData,
                 "excluded_payment_method_types"
             );
@@ -550,7 +554,7 @@ public sealed record class PaymentProvider : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "excluded_payment_method_types", value);
+            JsonModel.Set(this._rawData, "excluded_payment_method_types", value);
         }
     }
 
@@ -595,7 +599,7 @@ public sealed record class PaymentProvider : ModelBase
     }
 }
 
-class PaymentProviderFromRaw : IFromRaw<global::Orb.Models.Customers.PaymentProvider>
+class PaymentProviderFromRaw : IFromRawJson<global::Orb.Models.Customers.PaymentProvider>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
@@ -710,11 +714,11 @@ public record class TaxConfiguration
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public bool TaxExempt
@@ -747,45 +751,45 @@ public record class TaxConfiguration
         }
     }
 
-    public TaxConfiguration(NewAvalaraTaxConfiguration value, JsonElement? json = null)
+    public TaxConfiguration(NewAvalaraTaxConfiguration value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TaxConfiguration(NewTaxJarConfiguration value, JsonElement? json = null)
+    public TaxConfiguration(NewTaxJarConfiguration value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TaxConfiguration(NewSphereConfiguration value, JsonElement? json = null)
+    public TaxConfiguration(NewSphereConfiguration value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TaxConfiguration(Numeral value, JsonElement? json = null)
+    public TaxConfiguration(Numeral value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TaxConfiguration(Anrok value, JsonElement? json = null)
+    public TaxConfiguration(Anrok value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TaxConfiguration(Stripe value, JsonElement? json = null)
+    public TaxConfiguration(Stripe value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TaxConfiguration(JsonElement json)
+    public TaxConfiguration(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1080,11 +1084,11 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? taxProvider;
         try
         {
-            taxProvider = json.GetProperty("tax_provider").GetString();
+            taxProvider = element.GetProperty("tax_provider").GetString();
         }
         catch
         {
@@ -1098,13 +1102,13 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewAvalaraTaxConfiguration>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1113,20 +1117,20 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "taxjar":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewTaxJarConfiguration>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1135,20 +1139,20 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "sphere":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSphereConfiguration>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1157,17 +1161,17 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "numeral":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Numeral>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Numeral>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1176,17 +1180,17 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "anrok":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Anrok>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Anrok>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1195,17 +1199,17 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "stripe":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Stripe>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Stripe>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1214,11 +1218,11 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new TaxConfiguration(json);
+                return new TaxConfiguration(element);
             }
         }
     }
@@ -1233,19 +1237,19 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Numeral, NumeralFromRaw>))]
-public sealed record class Numeral : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Numeral, NumeralFromRaw>))]
+public sealed record class Numeral : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1254,8 +1258,8 @@ public sealed record class Numeral : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -1311,26 +1315,26 @@ public sealed record class Numeral : ModelBase
     }
 }
 
-class NumeralFromRaw : IFromRaw<Numeral>
+class NumeralFromRaw : IFromRawJson<Numeral>
 {
     /// <inheritdoc/>
     public Numeral FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Numeral.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Anrok, AnrokFromRaw>))]
-public sealed record class Anrok : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Anrok, AnrokFromRaw>))]
+public sealed record class Anrok : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1339,8 +1343,8 @@ public sealed record class Anrok : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -1396,26 +1400,26 @@ public sealed record class Anrok : ModelBase
     }
 }
 
-class AnrokFromRaw : IFromRaw<Anrok>
+class AnrokFromRaw : IFromRawJson<Anrok>
 {
     /// <inheritdoc/>
     public Anrok FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Anrok.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Stripe, StripeFromRaw>))]
-public sealed record class Stripe : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Stripe, StripeFromRaw>))]
+public sealed record class Stripe : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1424,8 +1428,8 @@ public sealed record class Stripe : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -1481,7 +1485,7 @@ public sealed record class Stripe : ModelBase
     }
 }
 
-class StripeFromRaw : IFromRaw<Stripe>
+class StripeFromRaw : IFromRawJson<Stripe>
 {
     /// <inheritdoc/>
     public Stripe FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

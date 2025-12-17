@@ -7,16 +7,16 @@ using Orb.Core;
 
 namespace Orb.Models.Events;
 
-[JsonConverter(typeof(ModelConverter<EventUpdateResponse, EventUpdateResponseFromRaw>))]
-public sealed record class EventUpdateResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<EventUpdateResponse, EventUpdateResponseFromRaw>))]
+public sealed record class EventUpdateResponse : JsonModel
 {
     /// <summary>
     /// event_id of the amended event, if successfully ingested
     /// </summary>
     public required string Amended
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amended"); }
-        init { ModelBase.Set(this._rawData, "amended", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amended"); }
+        init { JsonModel.Set(this._rawData, "amended", value); }
     }
 
     /// <inheritdoc/>
@@ -59,7 +59,7 @@ public sealed record class EventUpdateResponse : ModelBase
     }
 }
 
-class EventUpdateResponseFromRaw : IFromRaw<EventUpdateResponse>
+class EventUpdateResponseFromRaw : IFromRawJson<EventUpdateResponse>
 {
     /// <inheritdoc/>
     public EventUpdateResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

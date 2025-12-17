@@ -77,8 +77,8 @@ public class ConversionRateTieredConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateTieredConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateTieredConfig>(element);
         Assert.NotNull(deserialized);
 
         List<ConversionRateTier> expectedTiers =

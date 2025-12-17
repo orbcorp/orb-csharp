@@ -286,9 +286,9 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<NewPlanScalableMatrixWithTieredPricingPrice>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -906,10 +906,10 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
                 SecondDimension = "second_dimension",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1136,10 +1136,10 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
                 SecondDimensionValue = "second_dimension_value",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1274,10 +1274,10 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1349,10 +1349,10 @@ public class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigTest
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1377,10 +1377,10 @@ public class NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfigTest
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanScalableMatrixWithTieredPricingPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

@@ -7,25 +7,27 @@ using Orb.Core;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionSubscriptions, SubscriptionSubscriptionsFromRaw>))]
-public sealed record class SubscriptionSubscriptions : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<SubscriptionSubscriptions, SubscriptionSubscriptionsFromRaw>)
+)]
+public sealed record class SubscriptionSubscriptions : JsonModel
 {
     public required IReadOnlyList<Subscription> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Subscription>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Subscription>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +67,7 @@ public sealed record class SubscriptionSubscriptions : ModelBase
     }
 }
 
-class SubscriptionSubscriptionsFromRaw : IFromRaw<SubscriptionSubscriptions>
+class SubscriptionSubscriptionsFromRaw : IFromRawJson<SubscriptionSubscriptions>
 {
     /// <inheritdoc/>
     public SubscriptionSubscriptions FromRawUnchecked(

@@ -278,10 +278,10 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -803,9 +803,9 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::GroupedWithMeteredMinimumConfig>(json);
+            JsonSerializer.Deserialize<Subscriptions::GroupedWithMeteredMinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -902,8 +902,8 @@ public class ScalingFactorTest : TestBase
             ScalingValue = "scaling_value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::ScalingFactor>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ScalingFactor>(element);
         Assert.NotNull(deserialized);
 
         string expectedScalingFactorValue = "scaling_factor";
@@ -968,8 +968,8 @@ public class UnitAmountTest : TestBase
             UnitAmountValue = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitAmount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitAmount>(element);
         Assert.NotNull(deserialized);
 
         string expectedPricingValue = "pricing_value";
@@ -1112,10 +1112,10 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
                     UnitConfig = new("unit_amount"),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1141,10 +1141,10 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
                     ),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

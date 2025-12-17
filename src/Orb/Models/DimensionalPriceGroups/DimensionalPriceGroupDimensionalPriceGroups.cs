@@ -8,29 +8,29 @@ using Orb.Core;
 namespace Orb.Models.DimensionalPriceGroups;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         DimensionalPriceGroupDimensionalPriceGroups,
         DimensionalPriceGroupDimensionalPriceGroupsFromRaw
     >)
 )]
-public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBase
+public sealed record class DimensionalPriceGroupDimensionalPriceGroups : JsonModel
 {
     public required IReadOnlyList<DimensionalPriceGroup> Data
     {
-        get { return ModelBase.GetNotNullClass<List<DimensionalPriceGroup>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<DimensionalPriceGroup>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -75,7 +75,7 @@ public sealed record class DimensionalPriceGroupDimensionalPriceGroups : ModelBa
 }
 
 class DimensionalPriceGroupDimensionalPriceGroupsFromRaw
-    : IFromRaw<DimensionalPriceGroupDimensionalPriceGroups>
+    : IFromRawJson<DimensionalPriceGroupDimensionalPriceGroups>
 {
     /// <inheritdoc/>
     public DimensionalPriceGroupDimensionalPriceGroups FromRawUnchecked(

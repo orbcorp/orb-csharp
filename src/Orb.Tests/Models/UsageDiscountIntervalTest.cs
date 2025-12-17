@@ -113,8 +113,8 @@ public class UsageDiscountIntervalTest : TestBase
             UsageDiscount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
@@ -285,8 +285,8 @@ public class UsageDiscountIntervalFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UsageDiscountIntervalFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountIntervalFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, UsageDiscountIntervalFilterField> expectedField =

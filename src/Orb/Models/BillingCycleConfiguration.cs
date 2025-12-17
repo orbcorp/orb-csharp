@@ -9,25 +9,27 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<BillingCycleConfiguration, BillingCycleConfigurationFromRaw>))]
-public sealed record class BillingCycleConfiguration : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<BillingCycleConfiguration, BillingCycleConfigurationFromRaw>)
+)]
+public sealed record class BillingCycleConfiguration : JsonModel
 {
     public required long Duration
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "duration"); }
-        init { ModelBase.Set(this._rawData, "duration", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "duration"); }
+        init { JsonModel.Set(this._rawData, "duration", value); }
     }
 
     public required ApiEnum<string, DurationUnit> DurationUnit
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DurationUnit>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, DurationUnit>>(
                 this.RawData,
                 "duration_unit"
             );
         }
-        init { ModelBase.Set(this._rawData, "duration_unit", value); }
+        init { JsonModel.Set(this._rawData, "duration_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -64,7 +66,7 @@ public sealed record class BillingCycleConfiguration : ModelBase
     }
 }
 
-class BillingCycleConfigurationFromRaw : IFromRaw<BillingCycleConfiguration>
+class BillingCycleConfigurationFromRaw : IFromRawJson<BillingCycleConfiguration>
 {
     /// <inheritdoc/>
     public BillingCycleConfiguration FromRawUnchecked(

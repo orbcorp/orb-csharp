@@ -124,8 +124,8 @@ public class PlanPhaseMaximumAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -303,8 +303,8 @@ public class PlanPhaseMaximumAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustmentFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustmentFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PlanPhaseMaximumAdjustmentFilterField> expectedField =

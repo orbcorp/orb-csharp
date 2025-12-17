@@ -51,8 +51,8 @@ public class CouponRedemptionTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CouponRedemption>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CouponRedemption>(element);
         Assert.NotNull(deserialized);
 
         string expectedCouponID = "coupon_id";

@@ -29,8 +29,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "description"); }
-        init { ModelBase.Set(this._rawBodyData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
+        init { JsonModel.Set(this._rawBodyData, "description", value); }
     }
 
     /// <summary>
@@ -39,8 +39,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public bool? MarkAsPaid
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "mark_as_paid"); }
-        init { ModelBase.Set(this._rawBodyData, "mark_as_paid", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "mark_as_paid"); }
+        init { JsonModel.Set(this._rawBodyData, "mark_as_paid", value); }
     }
 
     /// <summary>
@@ -49,8 +49,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentExternalID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "payment_external_id"); }
-        init { ModelBase.Set(this._rawBodyData, "payment_external_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_external_id"); }
+        init { JsonModel.Set(this._rawBodyData, "payment_external_id", value); }
     }
 
     /// <summary>
@@ -58,8 +58,8 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     /// </summary>
     public string? PaymentNotes
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "payment_notes"); }
-        init { ModelBase.Set(this._rawBodyData, "payment_notes", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_notes"); }
+        init { JsonModel.Set(this._rawBodyData, "payment_notes", value); }
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<
+            return JsonModel.GetNullableStruct<
 #if NET
             DateOnly
 #else
@@ -84,7 +84,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
 #endif
             >(this.RawBodyData, "payment_received_date");
         }
-        init { ModelBase.Set(this._rawBodyData, "payment_received_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "payment_received_date", value); }
     }
 
     /// <summary>
@@ -95,12 +95,12 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(
+            return JsonModel.GetNullableClass<string>(
                 this.RawBodyData,
                 "previously_collected_amount"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "previously_collected_amount", value); }
+        init { JsonModel.Set(this._rawBodyData, "previously_collected_amount", value); }
     }
 
     public SubscriptionChangeApplyParams() { }
@@ -138,7 +138,7 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionChangeApplyParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -163,9 +163,13 @@ public sealed record class SubscriptionChangeApplyParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

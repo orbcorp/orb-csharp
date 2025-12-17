@@ -79,8 +79,8 @@ public class DimensionalPriceGroupTest : TestBase
             Name = "name",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionalPriceGroup>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<DimensionalPriceGroup>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

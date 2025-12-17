@@ -111,8 +111,8 @@ public class AllocationTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Allocation>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Allocation>(element);
         Assert.NotNull(deserialized);
 
         bool expectedAllowsRollover = true;
@@ -297,8 +297,8 @@ public class FilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Field> expectedField = Field.PriceID;

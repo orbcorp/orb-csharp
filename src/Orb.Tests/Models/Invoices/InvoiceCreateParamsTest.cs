@@ -137,8 +137,8 @@ public class LineItemTest : TestBase
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LineItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<LineItem>(element);
         Assert.NotNull(deserialized);
 
 #if NET
@@ -301,8 +301,8 @@ public class DueDateTest : TestBase
             DateTimeOffset
 #endif
             .Parse("2019-12-27"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DueDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DueDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -311,8 +311,8 @@ public class DueDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DueDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DueDate>(element);
 
         Assert.Equal(value, deserialized);
     }

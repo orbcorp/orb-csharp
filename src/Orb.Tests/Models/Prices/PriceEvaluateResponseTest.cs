@@ -77,8 +77,8 @@ public class PriceEvaluateResponseTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluateResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceEvaluateResponse>(element);
         Assert.NotNull(deserialized);
 
         List<EvaluatePriceGroup> expectedData =

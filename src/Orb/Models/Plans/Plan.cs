@@ -15,13 +15,13 @@ namespace Orb.Models.Plans;
 /// be subscribed to by a customer. Plans define the billing behavior of the subscription.
 /// You can see more about how to configure prices in the [Price resource](/reference/price).
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]
-public sealed record class Plan : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Plan, PlanFromRaw>))]
+public sealed record class Plan : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required IReadOnlyList<PlanAdjustment> Adjustments
     {
-        get { return ModelBase.GetNotNullClass<List<PlanAdjustment>>(this.RawData, "adjustments"); }
-        init { ModelBase.Set(this._rawData, "adjustments", value); }
+        get { return JsonModel.GetNotNullClass<List<PlanAdjustment>>(this.RawData, "adjustments"); }
+        init { JsonModel.Set(this._rawData, "adjustments", value); }
     }
 
     /// <summary>
@@ -41,8 +41,8 @@ public sealed record class Plan : ModelBase
     [System::Obsolete("deprecated")]
     public required BasePlan? BasePlan
     {
-        get { return ModelBase.GetNullableClass<BasePlan>(this.RawData, "base_plan"); }
-        init { ModelBase.Set(this._rawData, "base_plan", value); }
+        get { return JsonModel.GetNullableClass<BasePlan>(this.RawData, "base_plan"); }
+        init { JsonModel.Set(this._rawData, "base_plan", value); }
     }
 
     /// <summary>
@@ -52,17 +52,17 @@ public sealed record class Plan : ModelBase
     [System::Obsolete("deprecated")]
     public required string? BasePlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "base_plan_id"); }
-        init { ModelBase.Set(this._rawData, "base_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "base_plan_id"); }
+        init { JsonModel.Set(this._rawData, "base_plan_id", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public sealed record class Plan : ModelBase
     [System::Obsolete("deprecated")]
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -81,21 +81,21 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string? DefaultInvoiceMemo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "default_invoice_memo"); }
-        init { ModelBase.Set(this._rawData, "default_invoice_memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "default_invoice_memo"); }
+        init { JsonModel.Set(this._rawData, "default_invoice_memo", value); }
     }
 
     public required string Description
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     [System::Obsolete("deprecated")]
     public required SharedDiscount? Discount
     {
-        get { return ModelBase.GetNullableClass<SharedDiscount>(this.RawData, "discount"); }
-        init { ModelBase.Set(this._rawData, "discount", value); }
+        get { return JsonModel.GetNullableClass<SharedDiscount>(this.RawData, "discount"); }
+        init { JsonModel.Set(this._rawData, "discount", value); }
     }
 
     /// <summary>
@@ -105,8 +105,8 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_plan_id"); }
-        init { ModelBase.Set(this._rawData, "external_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_plan_id"); }
+        init { JsonModel.Set(this._rawData, "external_plan_id", value); }
     }
 
     /// <summary>
@@ -115,22 +115,22 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string InvoicingCurrency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "invoicing_currency"); }
-        init { ModelBase.Set(this._rawData, "invoicing_currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "invoicing_currency"); }
+        init { JsonModel.Set(this._rawData, "invoicing_currency", value); }
     }
 
     [System::Obsolete("deprecated")]
     public required Maximum? Maximum
     {
-        get { return ModelBase.GetNullableClass<Maximum>(this.RawData, "maximum"); }
-        init { ModelBase.Set(this._rawData, "maximum", value); }
+        get { return JsonModel.GetNullableClass<Maximum>(this.RawData, "maximum"); }
+        init { JsonModel.Set(this._rawData, "maximum", value); }
     }
 
     [System::Obsolete("deprecated")]
     public required string? MaximumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "maximum_amount"); }
-        init { ModelBase.Set(this._rawData, "maximum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "maximum_amount"); }
+        init { JsonModel.Set(this._rawData, "maximum_amount", value); }
     }
 
     /// <summary>
@@ -143,29 +143,29 @@ public sealed record class Plan : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     [System::Obsolete("deprecated")]
     public required Minimum? Minimum
     {
-        get { return ModelBase.GetNullableClass<Minimum>(this.RawData, "minimum"); }
-        init { ModelBase.Set(this._rawData, "minimum", value); }
+        get { return JsonModel.GetNullableClass<Minimum>(this.RawData, "minimum"); }
+        init { JsonModel.Set(this._rawData, "minimum", value); }
     }
 
     [System::Obsolete("deprecated")]
     public required string? MinimumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -177,14 +177,14 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "net_terms"); }
-        init { ModelBase.Set(this._rawData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "net_terms"); }
+        init { JsonModel.Set(this._rawData, "net_terms", value); }
     }
 
     public required IReadOnlyList<PlanPlanPhase>? PlanPhases
     {
-        get { return ModelBase.GetNullableClass<List<PlanPlanPhase>>(this.RawData, "plan_phases"); }
-        init { ModelBase.Set(this._rawData, "plan_phases", value); }
+        get { return JsonModel.GetNullableClass<List<PlanPlanPhase>>(this.RawData, "plan_phases"); }
+        init { JsonModel.Set(this._rawData, "plan_phases", value); }
     }
 
     /// <summary>
@@ -193,35 +193,35 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required IReadOnlyList<Models::Price> Prices
     {
-        get { return ModelBase.GetNotNullClass<List<Models::Price>>(this.RawData, "prices"); }
-        init { ModelBase.Set(this._rawData, "prices", value); }
+        get { return JsonModel.GetNotNullClass<List<Models::Price>>(this.RawData, "prices"); }
+        init { JsonModel.Set(this._rawData, "prices", value); }
     }
 
     public required Product Product
     {
-        get { return ModelBase.GetNotNullClass<Product>(this.RawData, "product"); }
-        init { ModelBase.Set(this._rawData, "product", value); }
+        get { return JsonModel.GetNotNullClass<Product>(this.RawData, "product"); }
+        init { JsonModel.Set(this._rawData, "product", value); }
     }
 
     public required ApiEnum<string, PlanStatus> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, PlanStatus>>(this.RawData, "status");
+            return JsonModel.GetNotNullClass<ApiEnum<string, PlanStatus>>(this.RawData, "status");
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     public required TrialConfig TrialConfig
     {
-        get { return ModelBase.GetNotNullClass<TrialConfig>(this.RawData, "trial_config"); }
-        init { ModelBase.Set(this._rawData, "trial_config", value); }
+        get { return JsonModel.GetNotNullClass<TrialConfig>(this.RawData, "trial_config"); }
+        init { JsonModel.Set(this._rawData, "trial_config", value); }
     }
 
     public required long Version
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "version"); }
-        init { ModelBase.Set(this._rawData, "version", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "version"); }
+        init { JsonModel.Set(this._rawData, "version", value); }
     }
 
     /// <inheritdoc/>
@@ -299,7 +299,7 @@ public sealed record class Plan : ModelBase
     }
 }
 
-class PlanFromRaw : IFromRaw<Plan>
+class PlanFromRaw : IFromRawJson<Plan>
 {
     /// <inheritdoc/>
     public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -311,11 +311,11 @@ public record class PlanAdjustment
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -388,42 +388,48 @@ public record class PlanAdjustment
         }
     }
 
-    public PlanAdjustment(Models::PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(
+        Models::PlanPhaseUsageDiscountAdjustment value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanAdjustment(Models::PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(
+        Models::PlanPhaseAmountDiscountAdjustment value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PlanAdjustment(
         Models::PlanPhasePercentageDiscountAdjustment value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanAdjustment(Models::PlanPhaseMinimumAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(Models::PlanPhaseMinimumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanAdjustment(Models::PlanPhaseMaximumAdjustment value, JsonElement? json = null)
+    public PlanAdjustment(Models::PlanPhaseMaximumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanAdjustment(JsonElement json)
+    public PlanAdjustment(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -705,11 +711,11 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? adjustmentType;
         try
         {
-            adjustmentType = json.GetProperty("adjustment_type").GetString();
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
         }
         catch
         {
@@ -724,13 +730,13 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseUsageDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -739,7 +745,7 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount_discount":
             {
@@ -747,13 +753,13 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseAmountDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -762,7 +768,7 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percentage_discount":
             {
@@ -770,13 +776,13 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhasePercentageDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -785,7 +791,7 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
@@ -793,13 +799,13 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseMinimumAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -808,7 +814,7 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "maximum":
             {
@@ -816,13 +822,13 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseMaximumAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -831,11 +837,11 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new PlanAdjustment(json);
+                return new PlanAdjustment(element);
             }
         }
     }
@@ -855,13 +861,13 @@ sealed class PlanAdjustmentConverter : JsonConverter<PlanAdjustment>
 /// overriding prices from the parent.
 /// </summary>
 [System::Obsolete("deprecated")]
-[JsonConverter(typeof(ModelConverter<BasePlan, BasePlanFromRaw>))]
-public sealed record class BasePlan : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BasePlan, BasePlanFromRaw>))]
+public sealed record class BasePlan : JsonModel
 {
     public required string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -871,14 +877,14 @@ public sealed record class BasePlan : ModelBase
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_plan_id"); }
-        init { ModelBase.Set(this._rawData, "external_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_plan_id"); }
+        init { JsonModel.Set(this._rawData, "external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -914,32 +920,32 @@ public sealed record class BasePlan : ModelBase
     }
 }
 
-class BasePlanFromRaw : IFromRaw<BasePlan>
+class BasePlanFromRaw : IFromRawJson<BasePlan>
 {
     /// <inheritdoc/>
     public BasePlan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BasePlan.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<PlanPlanPhase, PlanPlanPhaseFromRaw>))]
-public sealed record class PlanPlanPhase : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PlanPlanPhase, PlanPlanPhaseFromRaw>))]
+public sealed record class PlanPlanPhase : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     public required SharedDiscount? Discount
     {
-        get { return ModelBase.GetNullableClass<SharedDiscount>(this.RawData, "discount"); }
-        init { ModelBase.Set(this._rawData, "discount", value); }
+        get { return JsonModel.GetNullableClass<SharedDiscount>(this.RawData, "discount"); }
+        init { JsonModel.Set(this._rawData, "discount", value); }
     }
 
     /// <summary>
@@ -948,50 +954,50 @@ public sealed record class PlanPlanPhase : ModelBase
     /// </summary>
     public required long? Duration
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "duration"); }
-        init { ModelBase.Set(this._rawData, "duration", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "duration"); }
+        init { JsonModel.Set(this._rawData, "duration", value); }
     }
 
     public required ApiEnum<string, PlanPlanPhaseDurationUnit>? DurationUnit
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, PlanPlanPhaseDurationUnit>>(
                 this.RawData,
                 "duration_unit"
             );
         }
-        init { ModelBase.Set(this._rawData, "duration_unit", value); }
+        init { JsonModel.Set(this._rawData, "duration_unit", value); }
     }
 
     public required Maximum? Maximum
     {
-        get { return ModelBase.GetNullableClass<Maximum>(this.RawData, "maximum"); }
-        init { ModelBase.Set(this._rawData, "maximum", value); }
+        get { return JsonModel.GetNullableClass<Maximum>(this.RawData, "maximum"); }
+        init { JsonModel.Set(this._rawData, "maximum", value); }
     }
 
     public required string? MaximumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "maximum_amount"); }
-        init { ModelBase.Set(this._rawData, "maximum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "maximum_amount"); }
+        init { JsonModel.Set(this._rawData, "maximum_amount", value); }
     }
 
     public required Minimum? Minimum
     {
-        get { return ModelBase.GetNullableClass<Minimum>(this.RawData, "minimum"); }
-        init { ModelBase.Set(this._rawData, "minimum", value); }
+        get { return JsonModel.GetNullableClass<Minimum>(this.RawData, "minimum"); }
+        init { JsonModel.Set(this._rawData, "minimum", value); }
     }
 
     public required string? MinimumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -999,8 +1005,8 @@ public sealed record class PlanPlanPhase : ModelBase
     /// </summary>
     public required long Order
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "order"); }
-        init { ModelBase.Set(this._rawData, "order", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "order"); }
+        init { JsonModel.Set(this._rawData, "order", value); }
     }
 
     /// <inheritdoc/>
@@ -1044,7 +1050,7 @@ public sealed record class PlanPlanPhase : ModelBase
     }
 }
 
-class PlanPlanPhaseFromRaw : IFromRaw<PlanPlanPhase>
+class PlanPlanPhaseFromRaw : IFromRawJson<PlanPlanPhase>
 {
     /// <inheritdoc/>
     public PlanPlanPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -1104,28 +1110,28 @@ sealed class PlanPlanPhaseDurationUnitConverter : JsonConverter<PlanPlanPhaseDur
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Product, ProductFromRaw>))]
-public sealed record class Product : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Product, ProductFromRaw>))]
+public sealed record class Product : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -1161,7 +1167,7 @@ public sealed record class Product : ModelBase
     }
 }
 
-class ProductFromRaw : IFromRaw<Product>
+class ProductFromRaw : IFromRawJson<Product>
 {
     /// <inheritdoc/>
     public Product FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -1215,25 +1221,25 @@ sealed class PlanStatusConverter : JsonConverter<PlanStatus>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TrialConfig, TrialConfigFromRaw>))]
-public sealed record class TrialConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TrialConfig, TrialConfigFromRaw>))]
+public sealed record class TrialConfig : JsonModel
 {
     public required long? TrialPeriod
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "trial_period"); }
-        init { ModelBase.Set(this._rawData, "trial_period", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "trial_period"); }
+        init { JsonModel.Set(this._rawData, "trial_period", value); }
     }
 
     public required ApiEnum<string, TrialPeriodUnit> TrialPeriodUnit
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TrialPeriodUnit>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, TrialPeriodUnit>>(
                 this.RawData,
                 "trial_period_unit"
             );
         }
-        init { ModelBase.Set(this._rawData, "trial_period_unit", value); }
+        init { JsonModel.Set(this._rawData, "trial_period_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -1268,7 +1274,7 @@ public sealed record class TrialConfig : ModelBase
     }
 }
 
-class TrialConfigFromRaw : IFromRaw<TrialConfig>
+class TrialConfigFromRaw : IFromRawJson<TrialConfig>
 {
     /// <inheritdoc/>
     public TrialConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

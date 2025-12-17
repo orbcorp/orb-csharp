@@ -11,11 +11,11 @@ public record class InvoiceLevelDiscount
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string? Reason
@@ -30,27 +30,27 @@ public record class InvoiceLevelDiscount
         }
     }
 
-    public InvoiceLevelDiscount(PercentageDiscount value, JsonElement? json = null)
+    public InvoiceLevelDiscount(PercentageDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceLevelDiscount(AmountDiscount value, JsonElement? json = null)
+    public InvoiceLevelDiscount(AmountDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceLevelDiscount(TrialDiscount value, JsonElement? json = null)
+    public InvoiceLevelDiscount(TrialDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceLevelDiscount(JsonElement json)
+    public InvoiceLevelDiscount(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -250,11 +250,11 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? discountType;
         try
         {
-            discountType = json.GetProperty("discount_type").GetString();
+            discountType = element.GetProperty("discount_type").GetString();
         }
         catch
         {
@@ -268,13 +268,13 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -283,17 +283,17 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -302,17 +302,17 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "trial":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TrialDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<TrialDiscount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -321,11 +321,11 @@ sealed class InvoiceLevelDiscountConverter : JsonConverter<InvoiceLevelDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new InvoiceLevelDiscount(json);
+                return new InvoiceLevelDiscount(element);
             }
         }
     }

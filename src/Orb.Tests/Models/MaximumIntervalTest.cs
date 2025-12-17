@@ -107,8 +107,8 @@ public class MaximumIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MaximumInterval>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MaximumInterval>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
@@ -223,8 +223,8 @@ public class MaximumIntervalFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MaximumIntervalFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MaximumIntervalFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MaximumIntervalFilterField> expectedField =

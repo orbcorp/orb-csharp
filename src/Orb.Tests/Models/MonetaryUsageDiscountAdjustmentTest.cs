@@ -124,8 +124,8 @@ public class MonetaryUsageDiscountAdjustmentTest : TestBase
             UsageDiscount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -303,8 +303,10 @@ public class MonetaryUsageDiscountAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustmentFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustmentFilter>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MonetaryUsageDiscountAdjustmentFilterField> expectedField =

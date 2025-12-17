@@ -124,8 +124,8 @@ public class PlanPhaseUsageDiscountAdjustmentTest : TestBase
             UsageDiscount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -305,8 +305,10 @@ public class PlanPhaseUsageDiscountAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustmentFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustmentFilter>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PlanPhaseUsageDiscountAdjustmentFilterField> expectedField =

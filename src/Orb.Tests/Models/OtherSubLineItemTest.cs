@@ -62,8 +62,8 @@ public class OtherSubLineItemTest : TestBase
             Type = OtherSubLineItemType.Null,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "9.00";

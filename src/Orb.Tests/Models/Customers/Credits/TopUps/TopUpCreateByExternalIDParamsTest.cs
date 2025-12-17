@@ -59,9 +59,9 @@ public class TopUpCreateByExternalIDParamsInvoiceSettingsTest : TestBase
             RequireSuccessfulPayment = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<TopUpCreateByExternalIDParamsInvoiceSettings>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 

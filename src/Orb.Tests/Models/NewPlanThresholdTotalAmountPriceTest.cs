@@ -238,8 +238,8 @@ public class NewPlanThresholdTotalAmountPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanThresholdTotalAmountPriceCadence> expectedCadence =
@@ -730,10 +730,10 @@ public class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigTest : Te
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -881,10 +881,10 @@ public class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumpti
             TotalAmount = "total_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -955,9 +955,11 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -981,9 +983,11 @@ public class NewPlanThresholdTotalAmountPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanThresholdTotalAmountPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

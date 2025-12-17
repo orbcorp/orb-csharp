@@ -30,12 +30,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewAccountingSyncConfiguration>(
+            return JsonModel.GetNullableClass<NewAccountingSyncConfiguration>(
                 this.RawBodyData,
                 "accounting_sync_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "accounting_sync_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "accounting_sync_configuration", value); }
     }
 
     /// <summary>
@@ -47,9 +47,9 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawBodyData, "additional_emails");
+            return JsonModel.GetNullableClass<List<string>>(this.RawBodyData, "additional_emails");
         }
-        init { ModelBase.Set(this._rawBodyData, "additional_emails", value); }
+        init { JsonModel.Set(this._rawBodyData, "additional_emails", value); }
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
-        init { ModelBase.Set(this._rawBodyData, "auto_collection", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
+        init { JsonModel.Set(this._rawBodyData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -71,17 +71,17 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public bool? AutoIssuance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_issuance"); }
-        init { ModelBase.Set(this._rawBodyData, "auto_issuance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_issuance"); }
+        init { JsonModel.Set(this._rawBodyData, "auto_issuance", value); }
     }
 
     public AddressInput? BillingAddress
     {
         get
         {
-            return ModelBase.GetNullableClass<AddressInput>(this.RawBodyData, "billing_address");
+            return JsonModel.GetNullableClass<AddressInput>(this.RawBodyData, "billing_address");
         }
-        init { ModelBase.Set(this._rawBodyData, "billing_address", value); }
+        init { JsonModel.Set(this._rawBodyData, "billing_address", value); }
     }
 
     /// <summary>
@@ -90,8 +90,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "currency"); }
-        init { ModelBase.Set(this._rawBodyData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "currency"); }
+        init { JsonModel.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -99,14 +99,14 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Email
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "email"); }
-        init { ModelBase.Set(this._rawBodyData, "email", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "email"); }
+        init { JsonModel.Set(this._rawBodyData, "email", value); }
     }
 
     public bool? EmailDelivery
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "email_delivery"); }
-        init { ModelBase.Set(this._rawBodyData, "email_delivery", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "email_delivery"); }
+        init { JsonModel.Set(this._rawBodyData, "email_delivery", value); }
     }
 
     /// <summary>
@@ -117,8 +117,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -128,12 +128,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<CustomerHierarchyConfig>(
+            return JsonModel.GetNullableClass<CustomerHierarchyConfig>(
                 this.RawBodyData,
                 "hierarchy"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "hierarchy", value); }
+        init { JsonModel.Set(this._rawBodyData, "hierarchy", value); }
     }
 
     /// <summary>
@@ -145,12 +145,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -158,8 +158,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "name"); }
-        init { ModelBase.Set(this._rawBodyData, "name", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "name"); }
+        init { JsonModel.Set(this._rawBodyData, "name", value); }
     }
 
     /// <summary>
@@ -170,12 +170,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<CustomerUpdateByExternalIDParamsPaymentConfiguration>(
+            return JsonModel.GetNullableClass<CustomerUpdateByExternalIDParamsPaymentConfiguration>(
                 this.RawBodyData,
                 "payment_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "payment_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "payment_configuration", value); }
     }
 
     /// <summary>
@@ -189,11 +189,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, CustomerUpdateByExternalIDParamsPaymentProvider>
             >(this.RawBodyData, "payment_provider");
         }
-        init { ModelBase.Set(this._rawBodyData, "payment_provider", value); }
+        init { JsonModel.Set(this._rawBodyData, "payment_provider", value); }
     }
 
     /// <summary>
@@ -202,41 +202,41 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public string? PaymentProviderID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "payment_provider_id"); }
-        init { ModelBase.Set(this._rawBodyData, "payment_provider_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "payment_provider_id"); }
+        init { JsonModel.Set(this._rawBodyData, "payment_provider_id", value); }
     }
 
     public NewReportingConfiguration? ReportingConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<NewReportingConfiguration>(
+            return JsonModel.GetNullableClass<NewReportingConfiguration>(
                 this.RawBodyData,
                 "reporting_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "reporting_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "reporting_configuration", value); }
     }
 
     public AddressInput? ShippingAddress
     {
         get
         {
-            return ModelBase.GetNullableClass<AddressInput>(this.RawBodyData, "shipping_address");
+            return JsonModel.GetNullableClass<AddressInput>(this.RawBodyData, "shipping_address");
         }
-        init { ModelBase.Set(this._rawBodyData, "shipping_address", value); }
+        init { JsonModel.Set(this._rawBodyData, "shipping_address", value); }
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration? TaxConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<CustomerUpdateByExternalIDParamsTaxConfiguration>(
+            return JsonModel.GetNullableClass<CustomerUpdateByExternalIDParamsTaxConfiguration>(
                 this.RawBodyData,
                 "tax_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "tax_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "tax_configuration", value); }
     }
 
     /// <summary>
@@ -346,8 +346,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// </summary>
     public CustomerTaxID? TaxID
     {
-        get { return ModelBase.GetNullableClass<CustomerTaxID>(this.RawBodyData, "tax_id"); }
-        init { ModelBase.Set(this._rawBodyData, "tax_id", value); }
+        get { return JsonModel.GetNullableClass<CustomerTaxID>(this.RawBodyData, "tax_id"); }
+        init { JsonModel.Set(this._rawBodyData, "tax_id", value); }
     }
 
     public CustomerUpdateByExternalIDParams() { }
@@ -385,7 +385,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static CustomerUpdateByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -410,9 +410,13 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -430,12 +434,12 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 /// a supported payment provider such as Stripe.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CustomerUpdateByExternalIDParamsPaymentConfiguration,
         CustomerUpdateByExternalIDParamsPaymentConfigurationFromRaw
     >)
 )]
-public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration : ModelBase
+public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration : JsonModel
 {
     /// <summary>
     /// Provider-specific payment configuration.
@@ -444,7 +448,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>
             >(this.RawData, "payment_providers");
         }
@@ -455,7 +459,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
                 return;
             }
 
-            ModelBase.Set(this._rawData, "payment_providers", value);
+            JsonModel.Set(this._rawData, "payment_providers", value);
         }
     }
 
@@ -502,7 +506,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
 }
 
 class CustomerUpdateByExternalIDParamsPaymentConfigurationFromRaw
-    : IFromRaw<CustomerUpdateByExternalIDParamsPaymentConfiguration>
+    : IFromRawJson<CustomerUpdateByExternalIDParamsPaymentConfiguration>
 {
     /// <inheritdoc/>
     public CustomerUpdateByExternalIDParamsPaymentConfiguration FromRawUnchecked(
@@ -511,13 +515,13 @@ class CustomerUpdateByExternalIDParamsPaymentConfigurationFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider,
         CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderFromRaw
     >)
 )]
 public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The payment provider to configure.
@@ -529,14 +533,14 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderProviderType
                 >
             >(this.RawData, "provider_type");
         }
-        init { ModelBase.Set(this._rawData, "provider_type", value); }
+        init { JsonModel.Set(this._rawData, "provider_type", value); }
     }
 
     /// <summary>
@@ -550,7 +554,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(
+            return JsonModel.GetNullableClass<List<string>>(
                 this.RawData,
                 "excluded_payment_method_types"
             );
@@ -562,7 +566,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
                 return;
             }
 
-            ModelBase.Set(this._rawData, "excluded_payment_method_types", value);
+            JsonModel.Set(this._rawData, "excluded_payment_method_types", value);
         }
     }
 
@@ -619,7 +623,7 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
 }
 
 class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProviderFromRaw
-    : IFromRaw<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>
+    : IFromRawJson<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>
 {
     /// <inheritdoc/>
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider FromRawUnchecked(
@@ -747,11 +751,11 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public bool TaxExempt
@@ -786,61 +790,61 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration(
         NewAvalaraTaxConfiguration value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration(
         NewTaxJarConfiguration value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration(
         NewSphereConfiguration value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration(
         CustomerUpdateByExternalIDParamsTaxConfigurationNumeral value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration(
         CustomerUpdateByExternalIDParamsTaxConfigurationAnrok value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public CustomerUpdateByExternalIDParamsTaxConfiguration(
         CustomerUpdateByExternalIDParamsTaxConfigurationStripe value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public CustomerUpdateByExternalIDParamsTaxConfiguration(JsonElement json)
+    public CustomerUpdateByExternalIDParamsTaxConfiguration(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1155,11 +1159,11 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? taxProvider;
         try
         {
-            taxProvider = json.GetProperty("tax_provider").GetString();
+            taxProvider = element.GetProperty("tax_provider").GetString();
         }
         catch
         {
@@ -1173,13 +1177,13 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewAvalaraTaxConfiguration>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1188,20 +1192,20 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "taxjar":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewTaxJarConfiguration>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1210,20 +1214,20 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "sphere":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSphereConfiguration>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1232,7 +1236,7 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "numeral":
             {
@@ -1240,13 +1244,13 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationNumeral>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1255,7 +1259,7 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "anrok":
             {
@@ -1263,13 +1267,13 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1278,7 +1282,7 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "stripe":
             {
@@ -1286,13 +1290,13 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationStripe>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1301,11 +1305,11 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new CustomerUpdateByExternalIDParamsTaxConfiguration(json);
+                return new CustomerUpdateByExternalIDParamsTaxConfiguration(element);
             }
         }
     }
@@ -1321,23 +1325,23 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CustomerUpdateByExternalIDParamsTaxConfigurationNumeral,
         CustomerUpdateByExternalIDParamsTaxConfigurationNumeralFromRaw
     >)
 )]
-public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumeral : ModelBase
+public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumeral : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1346,8 +1350,8 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -1412,7 +1416,7 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
 }
 
 class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralFromRaw
-    : IFromRaw<CustomerUpdateByExternalIDParamsTaxConfigurationNumeral>
+    : IFromRawJson<CustomerUpdateByExternalIDParamsTaxConfigurationNumeral>
 {
     /// <inheritdoc/>
     public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral FromRawUnchecked(
@@ -1421,23 +1425,23 @@ class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CustomerUpdateByExternalIDParamsTaxConfigurationAnrok,
         CustomerUpdateByExternalIDParamsTaxConfigurationAnrokFromRaw
     >)
 )]
-public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok : ModelBase
+public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1446,8 +1450,8 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -1512,7 +1516,7 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
 }
 
 class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokFromRaw
-    : IFromRaw<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>
+    : IFromRawJson<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>
 {
     /// <inheritdoc/>
     public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok FromRawUnchecked(
@@ -1521,23 +1525,23 @@ class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CustomerUpdateByExternalIDParamsTaxConfigurationStripe,
         CustomerUpdateByExternalIDParamsTaxConfigurationStripeFromRaw
     >)
 )]
-public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStripe : ModelBase
+public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStripe : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public JsonElement TaxProvider
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "tax_provider"); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -1546,8 +1550,8 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -1612,7 +1616,7 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
 }
 
 class CustomerUpdateByExternalIDParamsTaxConfigurationStripeFromRaw
-    : IFromRaw<CustomerUpdateByExternalIDParamsTaxConfigurationStripe>
+    : IFromRawJson<CustomerUpdateByExternalIDParamsTaxConfigurationStripe>
 {
     /// <inheritdoc/>
     public CustomerUpdateByExternalIDParamsTaxConfigurationStripe FromRawUnchecked(

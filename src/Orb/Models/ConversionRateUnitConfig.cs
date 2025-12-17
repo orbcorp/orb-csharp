@@ -7,16 +7,18 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<ConversionRateUnitConfig, ConversionRateUnitConfigFromRaw>))]
-public sealed record class ConversionRateUnitConfig : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<ConversionRateUnitConfig, ConversionRateUnitConfigFromRaw>)
+)]
+public sealed record class ConversionRateUnitConfig : JsonModel
 {
     /// <summary>
     /// Amount per unit of overage
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -59,7 +61,7 @@ public sealed record class ConversionRateUnitConfig : ModelBase
     }
 }
 
-class ConversionRateUnitConfigFromRaw : IFromRaw<ConversionRateUnitConfig>
+class ConversionRateUnitConfigFromRaw : IFromRawJson<ConversionRateUnitConfig>
 {
     /// <inheritdoc/>
     public ConversionRateUnitConfig FromRawUnchecked(

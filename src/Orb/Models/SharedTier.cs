@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SharedTier, SharedTierFromRaw>))]
-public sealed record class SharedTier : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SharedTier, SharedTierFromRaw>))]
+public sealed record class SharedTier : JsonModel
 {
     /// <summary>
     /// Exclusive tier starting value
     /// </summary>
     public required double FirstUnit
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "first_unit"); }
-        init { ModelBase.Set(this._rawData, "first_unit", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "first_unit"); }
+        init { JsonModel.Set(this._rawData, "first_unit", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class SharedTier : ModelBase
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public sealed record class SharedTier : ModelBase
     /// </summary>
     public double? LastUnit
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "last_unit"); }
-        init { ModelBase.Set(this._rawData, "last_unit", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "last_unit"); }
+        init { JsonModel.Set(this._rawData, "last_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -74,7 +74,7 @@ public sealed record class SharedTier : ModelBase
     }
 }
 
-class SharedTierFromRaw : IFromRaw<SharedTier>
+class SharedTierFromRaw : IFromRawJson<SharedTier>
 {
     /// <inheritdoc/>
     public SharedTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

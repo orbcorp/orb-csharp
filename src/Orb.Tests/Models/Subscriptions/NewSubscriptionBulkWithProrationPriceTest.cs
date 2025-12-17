@@ -235,9 +235,11 @@ public class NewSubscriptionBulkWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPrice>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         Subscriptions::BulkWithProrationConfig expectedBulkWithProrationConfig = new(
@@ -589,8 +591,10 @@ public class BulkWithProrationConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         List<Subscriptions::BulkWithProrationConfigTier> expectedTiers =
@@ -666,9 +670,9 @@ public class BulkWithProrationConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::BulkWithProrationConfigTier>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -917,10 +921,10 @@ public class NewSubscriptionBulkWithProrationPriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -945,10 +949,10 @@ public class NewSubscriptionBulkWithProrationPriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkWithProrationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

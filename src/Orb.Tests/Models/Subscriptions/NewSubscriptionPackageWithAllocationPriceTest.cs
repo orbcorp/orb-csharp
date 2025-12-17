@@ -237,10 +237,10 @@ public class NewSubscriptionPackageWithAllocationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPrice>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -723,9 +723,9 @@ public class PackageWithAllocationConfigTest : TestBase
             PackageSize = "package_size",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::PackageWithAllocationConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -799,10 +799,10 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -827,10 +827,10 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

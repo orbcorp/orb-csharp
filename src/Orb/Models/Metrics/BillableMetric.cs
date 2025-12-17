@@ -15,19 +15,19 @@ namespace Orb.Models.Metrics;
 /// are defined by the query that transforms raw usage events into meaningful values
 /// for your customers.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BillableMetric, BillableMetricFromRaw>))]
-public sealed record class BillableMetric : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BillableMetric, BillableMetricFromRaw>))]
+public sealed record class BillableMetric : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public sealed record class BillableMetric : ModelBase
     /// </summary>
     public required Item Item
     {
-        get { return ModelBase.GetNotNullClass<Item>(this.RawData, "item"); }
-        init { ModelBase.Set(this._rawData, "item", value); }
+        get { return JsonModel.GetNotNullClass<Item>(this.RawData, "item"); }
+        init { JsonModel.Set(this._rawData, "item", value); }
     }
 
     /// <summary>
@@ -51,27 +51,27 @@ public sealed record class BillableMetric : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Metrics.Status> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, global::Orb.Models.Metrics.Status>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, global::Orb.Models.Metrics.Status>>(
                 this.RawData,
                 "status"
             );
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     /// <inheritdoc/>
@@ -110,7 +110,7 @@ public sealed record class BillableMetric : ModelBase
     }
 }
 
-class BillableMetricFromRaw : IFromRaw<BillableMetric>
+class BillableMetricFromRaw : IFromRawJson<BillableMetric>
 {
     /// <inheritdoc/>
     public BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

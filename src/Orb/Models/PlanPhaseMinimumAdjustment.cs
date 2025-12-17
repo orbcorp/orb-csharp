@@ -10,25 +10,25 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<PlanPhaseMinimumAdjustment, PlanPhaseMinimumAdjustmentFromRaw>)
+    typeof(JsonModelConverter<PlanPhaseMinimumAdjustment, PlanPhaseMinimumAdjustmentFromRaw>)
 )]
-public sealed record class PlanPhaseMinimumAdjustment : ModelBase
+public sealed record class PlanPhaseMinimumAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> AdjustmentType
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
             >(this.RawData, "adjustment_type");
         }
-        init { ModelBase.Set(this._rawData, "adjustment_type", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
     }
 
     /// <summary>
@@ -39,9 +39,9 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -51,12 +51,12 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PlanPhaseMinimumAdjustmentFilter>>(
+            return JsonModel.GetNotNullClass<List<PlanPhaseMinimumAdjustmentFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -65,8 +65,8 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
-        init { ModelBase.Set(this._rawData, "is_invoice_level", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
+        init { JsonModel.Set(this._rawData, "is_invoice_level", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -84,8 +84,8 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// </summary>
     public required string MinimumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <summary>
@@ -93,8 +93,8 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// </summary>
     public required long? PlanPhaseOrder
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
-        init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
+        init { JsonModel.Set(this._rawData, "plan_phase_order", value); }
     }
 
     /// <summary>
@@ -102,8 +102,8 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// </summary>
     public required string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <summary>
@@ -112,8 +112,8 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
-        init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
+        init { JsonModel.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
     /// <inheritdoc/>
@@ -165,7 +165,7 @@ public sealed record class PlanPhaseMinimumAdjustment : ModelBase
     }
 }
 
-class PlanPhaseMinimumAdjustmentFromRaw : IFromRaw<PlanPhaseMinimumAdjustment>
+class PlanPhaseMinimumAdjustmentFromRaw : IFromRawJson<PlanPhaseMinimumAdjustment>
 {
     /// <inheritdoc/>
     public PlanPhaseMinimumAdjustment FromRawUnchecked(
@@ -216,12 +216,12 @@ sealed class PlanPhaseMinimumAdjustmentAdjustmentTypeConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PlanPhaseMinimumAdjustmentFilter,
         PlanPhaseMinimumAdjustmentFilterFromRaw
     >)
 )]
-public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
+public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -230,11 +230,11 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -244,11 +244,11 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -256,8 +256,8 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -297,7 +297,7 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : ModelBase
     }
 }
 
-class PlanPhaseMinimumAdjustmentFilterFromRaw : IFromRaw<PlanPhaseMinimumAdjustmentFilter>
+class PlanPhaseMinimumAdjustmentFilterFromRaw : IFromRawJson<PlanPhaseMinimumAdjustmentFilter>
 {
     /// <inheritdoc/>
     public PlanPhaseMinimumAdjustmentFilter FromRawUnchecked(

@@ -113,8 +113,8 @@ public class PercentageDiscountIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PercentageDiscountInterval>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PercentageDiscountInterval>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIntervalIDs = ["string"];
@@ -289,8 +289,8 @@ public class PercentageDiscountIntervalFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PercentageDiscountIntervalFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PercentageDiscountIntervalFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PercentageDiscountIntervalFilterField> expectedField =

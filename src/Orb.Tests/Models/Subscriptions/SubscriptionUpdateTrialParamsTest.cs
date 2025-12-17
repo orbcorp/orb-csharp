@@ -26,8 +26,8 @@ public class TrialEndDateTest : TestBase
     public void DateTimeOffsetSerializationRoundtripWorks()
     {
         TrialEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TrialEndDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TrialEndDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -36,8 +36,8 @@ public class TrialEndDateTest : TestBase
     public void UnionMember1SerializationRoundtripWorks()
     {
         TrialEndDate value = new(UnionMember1.Immediate);
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TrialEndDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TrialEndDate>(element);
 
         Assert.Equal(value, deserialized);
     }

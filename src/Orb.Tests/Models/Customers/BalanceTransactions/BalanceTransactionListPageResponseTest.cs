@@ -118,8 +118,8 @@ public class BalanceTransactionListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BalanceTransactionListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BalanceTransactionListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Data> expectedData =
@@ -262,8 +262,8 @@ public class DataTest : TestBase
             Type = DataType.Increment,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "cgZa3SXcsPTVyC4Y";

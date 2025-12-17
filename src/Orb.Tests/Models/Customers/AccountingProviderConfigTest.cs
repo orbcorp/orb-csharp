@@ -45,8 +45,8 @@ public class AccountingProviderConfigTest : TestBase
             ProviderType = "provider_type",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AccountingProviderConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AccountingProviderConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedExternalProviderID = "external_provider_id";

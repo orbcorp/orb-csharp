@@ -31,8 +31,8 @@ public class ThresholdTest : TestBase
     {
         var model = new Threshold { Value = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Threshold>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Threshold>(element);
         Assert.NotNull(deserialized);
 
         double expectedValue = 0;

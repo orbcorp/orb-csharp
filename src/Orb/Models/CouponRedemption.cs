@@ -8,25 +8,25 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<CouponRedemption, CouponRedemptionFromRaw>))]
-public sealed record class CouponRedemption : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CouponRedemption, CouponRedemptionFromRaw>))]
+public sealed record class CouponRedemption : JsonModel
 {
     public required string CouponID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "coupon_id"); }
-        init { ModelBase.Set(this._rawData, "coupon_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "coupon_id"); }
+        init { JsonModel.Set(this._rawData, "coupon_id", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -64,7 +64,7 @@ public sealed record class CouponRedemption : ModelBase
     }
 }
 
-class CouponRedemptionFromRaw : IFromRaw<CouponRedemption>
+class CouponRedemptionFromRaw : IFromRawJson<CouponRedemption>
 {
     /// <inheritdoc/>
     public CouponRedemption FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

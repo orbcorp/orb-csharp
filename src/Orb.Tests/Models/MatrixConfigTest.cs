@@ -62,8 +62,8 @@ public class MatrixConfigTest : TestBase
             MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedDefaultUnitAmount = "default_unit_amount";

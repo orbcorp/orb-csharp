@@ -31,8 +31,8 @@ public class TopLevelPingResponseTest : TestBase
     {
         var model = new TopLevelPingResponse { Response = "response" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopLevelPingResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TopLevelPingResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedResponse = "response";

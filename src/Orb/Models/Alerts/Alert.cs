@@ -15,16 +15,16 @@ namespace Orb.Models.Alerts;
 ///
 /// <para>Alerts created through the API can be scoped to either customers or subscriptions.</para>
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Alert, AlertFromRaw>))]
-public sealed record class Alert : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Alert, AlertFromRaw>))]
+public sealed record class Alert : JsonModel
 {
     /// <summary>
     /// Also referred to as alert_id in this documentation.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ public sealed record class Alert : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -44,8 +44,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -53,8 +53,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required CustomerMinified? Customer
     {
-        get { return ModelBase.GetNullableClass<CustomerMinified>(this.RawData, "customer"); }
-        init { ModelBase.Set(this._rawData, "customer", value); }
+        get { return JsonModel.GetNullableClass<CustomerMinified>(this.RawData, "customer"); }
+        init { JsonModel.Set(this._rawData, "customer", value); }
     }
 
     /// <summary>
@@ -62,8 +62,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required bool Enabled
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "enabled"); }
-        init { ModelBase.Set(this._rawData, "enabled", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "enabled"); }
+        init { JsonModel.Set(this._rawData, "enabled", value); }
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required Metric? Metric
     {
-        get { return ModelBase.GetNullableClass<Metric>(this.RawData, "metric"); }
-        init { ModelBase.Set(this._rawData, "metric", value); }
+        get { return JsonModel.GetNullableClass<Metric>(this.RawData, "metric"); }
+        init { JsonModel.Set(this._rawData, "metric", value); }
     }
 
     /// <summary>
@@ -80,8 +80,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required Plan? Plan
     {
-        get { return ModelBase.GetNullableClass<Plan>(this.RawData, "plan"); }
-        init { ModelBase.Set(this._rawData, "plan", value); }
+        get { return JsonModel.GetNullableClass<Plan>(this.RawData, "plan"); }
+        init { JsonModel.Set(this._rawData, "plan", value); }
     }
 
     /// <summary>
@@ -91,9 +91,9 @@ public sealed record class Alert : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionMinified>(this.RawData, "subscription");
+            return JsonModel.GetNullableClass<SubscriptionMinified>(this.RawData, "subscription");
         }
-        init { ModelBase.Set(this._rawData, "subscription", value); }
+        init { JsonModel.Set(this._rawData, "subscription", value); }
     }
 
     /// <summary>
@@ -101,8 +101,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required IReadOnlyList<Threshold>? Thresholds
     {
-        get { return ModelBase.GetNullableClass<List<Threshold>>(this.RawData, "thresholds"); }
-        init { ModelBase.Set(this._rawData, "thresholds", value); }
+        get { return JsonModel.GetNullableClass<List<Threshold>>(this.RawData, "thresholds"); }
+        init { JsonModel.Set(this._rawData, "thresholds", value); }
     }
 
     /// <summary>
@@ -110,8 +110,8 @@ public sealed record class Alert : ModelBase
     /// </summary>
     public required ApiEnum<string, AlertType> Type
     {
-        get { return ModelBase.GetNotNullClass<ApiEnum<string, AlertType>>(this.RawData, "type"); }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        get { return JsonModel.GetNotNullClass<ApiEnum<string, AlertType>>(this.RawData, "type"); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <summary>
@@ -121,12 +121,12 @@ public sealed record class Alert : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<BalanceAlertStatus>>(
+            return JsonModel.GetNullableClass<List<BalanceAlertStatus>>(
                 this.RawData,
                 "balance_alert_status"
             );
         }
-        init { ModelBase.Set(this._rawData, "balance_alert_status", value); }
+        init { JsonModel.Set(this._rawData, "balance_alert_status", value); }
     }
 
     /// <inheritdoc/>
@@ -176,7 +176,7 @@ public sealed record class Alert : ModelBase
     }
 }
 
-class AlertFromRaw : IFromRaw<Alert>
+class AlertFromRaw : IFromRawJson<Alert>
 {
     /// <inheritdoc/>
     public Alert FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -186,13 +186,13 @@ class AlertFromRaw : IFromRaw<Alert>
 /// <summary>
 /// The metric the alert applies to.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Metric, MetricFromRaw>))]
-public sealed record class Metric : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Metric, MetricFromRaw>))]
+public sealed record class Metric : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <inheritdoc/>
@@ -233,7 +233,7 @@ public sealed record class Metric : ModelBase
     }
 }
 
-class MetricFromRaw : IFromRaw<Metric>
+class MetricFromRaw : IFromRawJson<Metric>
 {
     /// <inheritdoc/>
     public Metric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -243,13 +243,13 @@ class MetricFromRaw : IFromRaw<Metric>
 /// <summary>
 /// The plan the alert applies to.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]
-public sealed record class Plan : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Plan, PlanFromRaw>))]
+public sealed record class Plan : JsonModel
 {
     public required string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -259,20 +259,20 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_plan_id"); }
-        init { ModelBase.Set(this._rawData, "external_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_plan_id"); }
+        init { JsonModel.Set(this._rawData, "external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     public required string PlanVersion
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "plan_version"); }
-        init { ModelBase.Set(this._rawData, "plan_version", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "plan_version"); }
+        init { JsonModel.Set(this._rawData, "plan_version", value); }
     }
 
     /// <inheritdoc/>
@@ -309,7 +309,7 @@ public sealed record class Plan : ModelBase
     }
 }
 
-class PlanFromRaw : IFromRaw<Plan>
+class PlanFromRaw : IFromRawJson<Plan>
 {
     /// <inheritdoc/>
     public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -375,16 +375,16 @@ sealed class AlertTypeConverter : JsonConverter<AlertType>
 /// <summary>
 /// Alert status is used to determine if an alert is currently in-alert or not.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BalanceAlertStatus, BalanceAlertStatusFromRaw>))]
-public sealed record class BalanceAlertStatus : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BalanceAlertStatus, BalanceAlertStatusFromRaw>))]
+public sealed record class BalanceAlertStatus : JsonModel
 {
     /// <summary>
     /// Whether the alert is currently in-alert or not.
     /// </summary>
     public required bool InAlert
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "in_alert"); }
-        init { ModelBase.Set(this._rawData, "in_alert", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "in_alert"); }
+        init { JsonModel.Set(this._rawData, "in_alert", value); }
     }
 
     /// <summary>
@@ -392,8 +392,8 @@ public sealed record class BalanceAlertStatus : ModelBase
     /// </summary>
     public required double ThresholdValue
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "threshold_value"); }
-        init { ModelBase.Set(this._rawData, "threshold_value", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "threshold_value"); }
+        init { JsonModel.Set(this._rawData, "threshold_value", value); }
     }
 
     /// <inheritdoc/>
@@ -430,7 +430,7 @@ public sealed record class BalanceAlertStatus : ModelBase
     }
 }
 
-class BalanceAlertStatusFromRaw : IFromRaw<BalanceAlertStatus>
+class BalanceAlertStatusFromRaw : IFromRawJson<BalanceAlertStatus>
 {
     /// <inheritdoc/>
     public BalanceAlertStatus FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

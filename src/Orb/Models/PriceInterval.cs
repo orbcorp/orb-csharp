@@ -12,13 +12,13 @@ namespace Orb.Models;
 /// The Price Interval resource represents a period of time for which a price will
 /// bill on a subscription. A subscription’s price intervals define its billing behavior.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PriceInterval, PriceIntervalFromRaw>))]
-public sealed record class PriceInterval : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PriceInterval, PriceIntervalFromRaw>))]
+public sealed record class PriceInterval : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -26,8 +26,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required long BillingCycleDay
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "billing_cycle_day"); }
-        init { ModelBase.Set(this._rawData, "billing_cycle_day", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "billing_cycle_day"); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_day", value); }
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required bool CanDeferBilling
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "can_defer_billing"); }
-        init { ModelBase.Set(this._rawData, "can_defer_billing", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "can_defer_billing"); }
+        init { JsonModel.Set(this._rawData, "can_defer_billing", value); }
     }
 
     /// <summary>
@@ -50,12 +50,12 @@ public sealed record class PriceInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(
+            return JsonModel.GetNullableStruct<DateTimeOffset>(
                 this.RawData,
                 "current_billing_period_end_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "current_billing_period_end_date", value); }
+        init { JsonModel.Set(this._rawData, "current_billing_period_end_date", value); }
     }
 
     /// <summary>
@@ -67,12 +67,12 @@ public sealed record class PriceInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(
+            return JsonModel.GetNullableStruct<DateTimeOffset>(
                 this.RawData,
                 "current_billing_period_start_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "current_billing_period_start_date", value); }
+        init { JsonModel.Set(this._rawData, "current_billing_period_start_date", value); }
     }
 
     /// <summary>
@@ -81,8 +81,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required DateTimeOffset? EndDate
     {
-        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -90,8 +90,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required string? Filter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "filter"); }
-        init { ModelBase.Set(this._rawData, "filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "filter"); }
+        init { JsonModel.Set(this._rawData, "filter", value); }
     }
 
     /// <summary>
@@ -102,12 +102,12 @@ public sealed record class PriceInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<FixedFeeQuantityTransition>>(
+            return JsonModel.GetNullableClass<List<FixedFeeQuantityTransition>>(
                 this.RawData,
                 "fixed_fee_quantity_transitions"
             );
         }
-        init { ModelBase.Set(this._rawData, "fixed_fee_quantity_transitions", value); }
+        init { JsonModel.Set(this._rawData, "fixed_fee_quantity_transitions", value); }
     }
 
     /// <summary>
@@ -123,8 +123,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required Price Price
     {
-        get { return ModelBase.GetNotNullClass<Price>(this.RawData, "price"); }
-        init { ModelBase.Set(this._rawData, "price", value); }
+        get { return JsonModel.GetNotNullClass<Price>(this.RawData, "price"); }
+        init { JsonModel.Set(this._rawData, "price", value); }
     }
 
     /// <summary>
@@ -133,8 +133,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required DateTimeOffset StartDate
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <summary>
@@ -143,8 +143,8 @@ public sealed record class PriceInterval : ModelBase
     /// </summary>
     public required IReadOnlyList<string>? UsageCustomerIDs
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
-        init { ModelBase.Set(this._rawData, "usage_customer_ids", value); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
+        init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
     }
 
     /// <inheritdoc/>
@@ -191,7 +191,7 @@ public sealed record class PriceInterval : ModelBase
     }
 }
 
-class PriceIntervalFromRaw : IFromRaw<PriceInterval>
+class PriceIntervalFromRaw : IFromRawJson<PriceInterval>
 {
     /// <inheritdoc/>
     public PriceInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

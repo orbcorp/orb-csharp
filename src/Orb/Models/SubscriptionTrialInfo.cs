@@ -8,13 +8,13 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionTrialInfo, SubscriptionTrialInfoFromRaw>))]
-public sealed record class SubscriptionTrialInfo : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SubscriptionTrialInfo, SubscriptionTrialInfoFromRaw>))]
+public sealed record class SubscriptionTrialInfo : JsonModel
 {
     public required DateTimeOffset? EndDate
     {
-        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <inheritdoc/>
@@ -57,7 +57,7 @@ public sealed record class SubscriptionTrialInfo : ModelBase
     }
 }
 
-class SubscriptionTrialInfoFromRaw : IFromRaw<SubscriptionTrialInfo>
+class SubscriptionTrialInfoFromRaw : IFromRawJson<SubscriptionTrialInfo>
 {
     /// <inheritdoc/>
     public SubscriptionTrialInfo FromRawUnchecked(

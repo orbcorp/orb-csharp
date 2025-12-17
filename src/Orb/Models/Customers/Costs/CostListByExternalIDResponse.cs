@@ -8,14 +8,14 @@ using Orb.Core;
 namespace Orb.Models.Customers.Costs;
 
 [JsonConverter(
-    typeof(ModelConverter<CostListByExternalIDResponse, CostListByExternalIDResponseFromRaw>)
+    typeof(JsonModelConverter<CostListByExternalIDResponse, CostListByExternalIDResponseFromRaw>)
 )]
-public sealed record class CostListByExternalIDResponse : ModelBase
+public sealed record class CostListByExternalIDResponse : JsonModel
 {
     public required IReadOnlyList<AggregatedCost> Data
     {
-        get { return ModelBase.GetNotNullClass<List<AggregatedCost>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<AggregatedCost>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -61,7 +61,7 @@ public sealed record class CostListByExternalIDResponse : ModelBase
     }
 }
 
-class CostListByExternalIDResponseFromRaw : IFromRaw<CostListByExternalIDResponse>
+class CostListByExternalIDResponseFromRaw : IFromRawJson<CostListByExternalIDResponse>
 {
     /// <inheritdoc/>
     public CostListByExternalIDResponse FromRawUnchecked(

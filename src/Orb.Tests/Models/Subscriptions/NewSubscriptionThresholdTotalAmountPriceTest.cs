@@ -249,10 +249,10 @@ public class NewSubscriptionThresholdTotalAmountPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPrice>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -768,9 +768,9 @@ public class ThresholdTotalAmountConfigTest : TestBase
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::ThresholdTotalAmountConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -914,8 +914,8 @@ public class ConsumptionTableTest : TestBase
             TotalAmount = "total_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::ConsumptionTable>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::ConsumptionTable>(element);
         Assert.NotNull(deserialized);
 
         string expectedThreshold = "threshold";
@@ -985,10 +985,10 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1013,10 +1013,10 @@ public class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigTest : 
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionThresholdTotalAmountPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

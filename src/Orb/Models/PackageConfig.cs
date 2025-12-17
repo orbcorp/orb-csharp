@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for package pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PackageConfig, PackageConfigFromRaw>))]
-public sealed record class PackageConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PackageConfig, PackageConfigFromRaw>))]
+public sealed record class PackageConfig : JsonModel
 {
     /// <summary>
     /// A currency amount to rate usage by
     /// </summary>
     public required string PackageAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "package_amount"); }
-        init { ModelBase.Set(this._rawData, "package_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_amount"); }
+        init { JsonModel.Set(this._rawData, "package_amount", value); }
     }
 
     /// <summary>
@@ -28,8 +28,8 @@ public sealed record class PackageConfig : ModelBase
     /// </summary>
     public required long PackageSize
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "package_size"); }
-        init { ModelBase.Set(this._rawData, "package_size", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "package_size"); }
+        init { JsonModel.Set(this._rawData, "package_size", value); }
     }
 
     /// <inheritdoc/>
@@ -64,7 +64,7 @@ public sealed record class PackageConfig : ModelBase
     }
 }
 
-class PackageConfigFromRaw : IFromRaw<PackageConfig>
+class PackageConfigFromRaw : IFromRawJson<PackageConfig>
 {
     /// <inheritdoc/>
     public PackageConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

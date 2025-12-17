@@ -281,8 +281,8 @@ public class NewPlanTieredWithMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanTieredWithMinimumPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanTieredWithMinimumPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanTieredWithMinimumPriceCadence> expectedCadence =
@@ -881,9 +881,11 @@ public class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceTieredWithMinimumConfig>(json);
+            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceTieredWithMinimumConfig>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         List<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier> expectedTiers =
@@ -1105,10 +1107,10 @@ public class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTierTest : Test
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1182,9 +1184,9 @@ public class NewPlanTieredWithMinimumPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1208,9 +1210,9 @@ public class NewPlanTieredWithMinimumPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanTieredWithMinimumPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

@@ -173,8 +173,8 @@ public class AmendmentLedgerEntryTest : TestBase
             StartingBalance = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

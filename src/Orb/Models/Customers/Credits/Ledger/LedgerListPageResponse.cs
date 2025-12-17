@@ -9,30 +9,30 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<LedgerListPageResponse, LedgerListPageResponseFromRaw>))]
-public sealed record class LedgerListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<LedgerListPageResponse, LedgerListPageResponseFromRaw>))]
+public sealed record class LedgerListPageResponse : JsonModel
 {
     public required IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.Data> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<global::Orb.Models.Customers.Credits.Ledger.Data>
             >(this.RawData, "data");
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -72,7 +72,7 @@ public sealed record class LedgerListPageResponse : ModelBase
     }
 }
 
-class LedgerListPageResponseFromRaw : IFromRaw<LedgerListPageResponse>
+class LedgerListPageResponseFromRaw : IFromRawJson<LedgerListPageResponse>
 {
     /// <inheritdoc/>
     public LedgerListPageResponse FromRawUnchecked(
@@ -89,11 +89,11 @@ public record class Data
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -304,51 +304,51 @@ public record class Data
         }
     }
 
-    public Data(IncrementLedgerEntry value, JsonElement? json = null)
+    public Data(IncrementLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(DecrementLedgerEntry value, JsonElement? json = null)
+    public Data(DecrementLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(ExpirationChangeLedgerEntry value, JsonElement? json = null)
+    public Data(ExpirationChangeLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(CreditBlockExpiryLedgerEntry value, JsonElement? json = null)
+    public Data(CreditBlockExpiryLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(VoidLedgerEntry value, JsonElement? json = null)
+    public Data(VoidLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(VoidInitiatedLedgerEntry value, JsonElement? json = null)
+    public Data(VoidInitiatedLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(AmendmentLedgerEntry value, JsonElement? json = null)
+    public Data(AmendmentLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Data(JsonElement json)
+    public Data(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -690,11 +690,11 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? entryType;
         try
         {
-            entryType = json.GetProperty("entry_type").GetString();
+            entryType = element.GetProperty("entry_type").GetString();
         }
         catch
         {
@@ -708,13 +708,13 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -723,20 +723,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "decrement":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -745,20 +745,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "expiration_change":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -767,20 +767,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "credit_block_expiry":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -789,17 +789,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -808,20 +811,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void_initiated":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -830,20 +833,20 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amendment":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -852,11 +855,11 @@ sealed class DataConverter : JsonConverter<global::Orb.Models.Customers.Credits.
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new global::Orb.Models.Customers.Credits.Ledger.Data(json);
+                return new global::Orb.Models.Customers.Credits.Ledger.Data(element);
             }
         }
     }

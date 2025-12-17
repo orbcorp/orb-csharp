@@ -7,16 +7,16 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<TaxAmount, TaxAmountFromRaw>))]
-public sealed record class TaxAmount : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TaxAmount, TaxAmountFromRaw>))]
+public sealed record class TaxAmount : JsonModel
 {
     /// <summary>
     /// The amount of additional tax incurred by this tax rate.
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -24,8 +24,8 @@ public sealed record class TaxAmount : ModelBase
     /// </summary>
     public required string TaxRateDescription
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tax_rate_description"); }
-        init { ModelBase.Set(this._rawData, "tax_rate_description", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tax_rate_description"); }
+        init { JsonModel.Set(this._rawData, "tax_rate_description", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class TaxAmount : ModelBase
     /// </summary>
     public required string? TaxRatePercentage
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tax_rate_percentage"); }
-        init { ModelBase.Set(this._rawData, "tax_rate_percentage", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tax_rate_percentage"); }
+        init { JsonModel.Set(this._rawData, "tax_rate_percentage", value); }
     }
 
     /// <inheritdoc/>
@@ -70,7 +70,7 @@ public sealed record class TaxAmount : ModelBase
     }
 }
 
-class TaxAmountFromRaw : IFromRaw<TaxAmount>
+class TaxAmountFromRaw : IFromRawJson<TaxAmount>
 {
     /// <inheritdoc/>
     public TaxAmount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

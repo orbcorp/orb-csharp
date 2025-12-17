@@ -12,13 +12,13 @@ namespace Orb.Models.DimensionalPriceGroups;
 /// by a set of dimensions. Prices in a price group must specify the parition used
 /// to derive their usage.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<DimensionalPriceGroup, DimensionalPriceGroupFromRaw>))]
-public sealed record class DimensionalPriceGroup : ModelBase
+[JsonConverter(typeof(JsonModelConverter<DimensionalPriceGroup, DimensionalPriceGroupFromRaw>))]
+public sealed record class DimensionalPriceGroup : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -28,8 +28,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// </summary>
     public required string BillableMetricID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "dimensions"); }
-        init { ModelBase.Set(this._rawData, "dimensions", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "dimensions"); }
+        init { JsonModel.Set(this._rawData, "dimensions", value); }
     }
 
     /// <summary>
@@ -48,12 +48,12 @@ public sealed record class DimensionalPriceGroup : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(
+            return JsonModel.GetNullableClass<string>(
                 this.RawData,
                 "external_dimensional_price_group_id"
             );
         }
-        init { ModelBase.Set(this._rawData, "external_dimensional_price_group_id", value); }
+        init { JsonModel.Set(this._rawData, "external_dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -66,9 +66,9 @@ public sealed record class DimensionalPriceGroup : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -76,8 +76,8 @@ public sealed record class DimensionalPriceGroup : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -118,7 +118,7 @@ public sealed record class DimensionalPriceGroup : ModelBase
     }
 }
 
-class DimensionalPriceGroupFromRaw : IFromRaw<DimensionalPriceGroup>
+class DimensionalPriceGroupFromRaw : IFromRawJson<DimensionalPriceGroup>
 {
     /// <inheritdoc/>
     public DimensionalPriceGroup FromRawUnchecked(

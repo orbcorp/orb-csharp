@@ -31,8 +31,8 @@ public class BillableMetricTinyTest : TestBase
     {
         var model = new BillableMetricTiny { ID = "id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BillableMetricTiny>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BillableMetricTiny>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

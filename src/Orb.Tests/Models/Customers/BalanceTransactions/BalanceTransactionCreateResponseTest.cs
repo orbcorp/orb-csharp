@@ -92,9 +92,11 @@ public class BalanceTransactionCreateResponseTest : TestBase
             Type = BalanceTransactions::BalanceTransactionCreateResponseType.Increment,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(json);
+            JsonSerializer.Deserialize<BalanceTransactions::BalanceTransactionCreateResponse>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         string expectedID = "cgZa3SXcsPTVyC4Y";

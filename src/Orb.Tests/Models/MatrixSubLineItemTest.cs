@@ -72,8 +72,8 @@ public class MatrixSubLineItemTest : TestBase
             ScaledQuantity = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "9.00";

@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<Maximum, MaximumFromRaw>))]
-public sealed record class Maximum : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Maximum, MaximumFromRaw>))]
+public sealed record class Maximum : JsonModel
 {
     /// <summary>
     /// List of price_ids that this maximum amount applies to. For plan/plan phase
@@ -21,9 +21,9 @@ public sealed record class Maximum : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ public sealed record class Maximum : ModelBase
     /// </summary>
     public required IReadOnlyList<MaximumFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<MaximumFilter>>(this.RawData, "filters"); }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        get { return JsonModel.GetNotNullClass<List<MaximumFilter>>(this.RawData, "filters"); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public sealed record class Maximum : ModelBase
     /// </summary>
     public required string MaximumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "maximum_amount"); }
-        init { ModelBase.Set(this._rawData, "maximum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "maximum_amount"); }
+        init { JsonModel.Set(this._rawData, "maximum_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -84,15 +84,15 @@ public sealed record class Maximum : ModelBase
     }
 }
 
-class MaximumFromRaw : IFromRaw<Maximum>
+class MaximumFromRaw : IFromRawJson<Maximum>
 {
     /// <inheritdoc/>
     public Maximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Maximum.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<MaximumFilter, MaximumFilterFromRaw>))]
-public sealed record class MaximumFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MaximumFilter, MaximumFilterFromRaw>))]
+public sealed record class MaximumFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -101,12 +101,12 @@ public sealed record class MaximumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MaximumFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -116,12 +116,12 @@ public sealed record class MaximumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MaximumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -129,8 +129,8 @@ public sealed record class MaximumFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -166,7 +166,7 @@ public sealed record class MaximumFilter : ModelBase
     }
 }
 
-class MaximumFilterFromRaw : IFromRaw<MaximumFilter>
+class MaximumFilterFromRaw : IFromRawJson<MaximumFilter>
 {
     /// <inheritdoc/>
     public MaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

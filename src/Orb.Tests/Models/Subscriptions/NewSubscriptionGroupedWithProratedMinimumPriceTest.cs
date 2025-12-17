@@ -242,10 +242,10 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithProratedMinimumPrice>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -670,9 +670,9 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
             UnitRate = "unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::GroupedWithProratedMinimumConfig>(json);
+            JsonSerializer.Deserialize<Subscriptions::GroupedWithProratedMinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -818,10 +818,10 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigT
                     UnitConfig = new("unit_amount"),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -847,10 +847,10 @@ public class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigT
                     ),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

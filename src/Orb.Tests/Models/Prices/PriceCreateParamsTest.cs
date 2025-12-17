@@ -1716,8 +1716,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1777,8 +1777,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1826,8 +1826,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1882,8 +1882,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1931,8 +1931,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1988,8 +1988,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2046,8 +2046,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2103,8 +2103,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2171,8 +2171,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2228,8 +2228,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2296,8 +2296,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2351,8 +2351,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2400,8 +2400,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2459,8 +2459,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2511,8 +2511,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2560,8 +2560,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2614,8 +2614,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2668,8 +2668,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2723,8 +2723,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2791,8 +2791,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2845,8 +2845,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2907,8 +2907,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2966,8 +2966,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3025,8 +3025,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3090,8 +3090,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3158,8 +3158,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3220,8 +3220,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3274,8 +3274,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3323,8 +3323,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3371,8 +3371,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3424,8 +3424,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3654,8 +3654,8 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(element);
         Assert.NotNull(deserialized);
 
         BulkWithFiltersConfig expectedBulkWithFiltersConfig = new()
@@ -4008,8 +4008,8 @@ public class BulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfig>(element);
         Assert.NotNull(deserialized);
 
         List<Filter> expectedFilters = [new() { PropertyKey = "x", PropertyValue = "x" }];
@@ -4078,8 +4078,8 @@ public class FilterTest : TestBase
     {
         var model = new Filter { PropertyKey = "x", PropertyValue = "x" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Filter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Filter>(element);
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -4128,8 +4128,8 @@ public class TierTest : TestBase
     {
         var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Tier>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -4303,8 +4303,8 @@ public class ConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4328,8 +4328,8 @@ public class ConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4554,8 +4554,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, GroupedWithMinMaxThresholdsCadence> expectedCadence =
@@ -4948,8 +4948,8 @@ public class GroupedWithMinMaxThresholdsConfigTest : TestBase
             PerUnitRate = "per_unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -5025,9 +5025,9 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5051,9 +5051,9 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5278,8 +5278,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, CumulativeGroupedAllocationCadence> expectedCadence =
@@ -5672,8 +5672,8 @@ public class CumulativeGroupedAllocationConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocationConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedCumulativeAllocation = "cumulative_allocation";
@@ -5749,9 +5749,9 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(json);
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5775,9 +5775,9 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(json);
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5972,8 +5972,8 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Percent>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Percent>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PercentCadence> expectedCadence = PercentCadence.Annual;
@@ -6302,8 +6302,8 @@ public class PercentConfigTest : TestBase
     {
         var model = new PercentConfig { Percent = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PercentConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PercentConfig>(element);
         Assert.NotNull(deserialized);
 
         double expectedPercent = 0;
@@ -6367,8 +6367,8 @@ public class PercentConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6392,8 +6392,8 @@ public class PercentConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6608,8 +6608,8 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventOutput>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventOutput>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, EventOutputCadence> expectedCadence = EventOutputCadence.Annual;
@@ -6987,8 +6987,8 @@ public class EventOutputConfigTest : TestBase
             GroupingKey = "grouping_key",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventOutputConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitRatingKey = "x";
@@ -7111,8 +7111,8 @@ public class EventOutputConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7136,8 +7136,8 @@ public class EventOutputConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

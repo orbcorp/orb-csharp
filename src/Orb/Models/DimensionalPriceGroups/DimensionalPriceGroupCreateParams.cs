@@ -29,8 +29,8 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
 
     public required string BillableMetricID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawBodyData, "billable_metric_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawBodyData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -38,26 +38,26 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawBodyData, "dimensions"); }
-        init { ModelBase.Set(this._rawBodyData, "dimensions", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawBodyData, "dimensions"); }
+        init { JsonModel.Set(this._rawBodyData, "dimensions", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "name"); }
-        init { ModelBase.Set(this._rawBodyData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "name"); }
+        init { JsonModel.Set(this._rawBodyData, "name", value); }
     }
 
     public string? ExternalDimensionalPriceGroupID
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(
+            return JsonModel.GetNullableClass<string>(
                 this.RawBodyData,
                 "external_dimensional_price_group_id"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "external_dimensional_price_group_id", value); }
+        init { JsonModel.Set(this._rawBodyData, "external_dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -69,12 +69,12 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     public DimensionalPriceGroupCreateParams() { }
@@ -112,7 +112,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static DimensionalPriceGroupCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -134,9 +134,13 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

@@ -9,19 +9,19 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewMinimum, NewMinimumFromRaw>))]
-public sealed record class NewMinimum : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewMinimum, NewMinimumFromRaw>))]
+public sealed record class NewMinimum : JsonModel
 {
     public required ApiEnum<string, NewMinimumAdjustmentType> AdjustmentType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewMinimumAdjustmentType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewMinimumAdjustmentType>>(
                 this.RawData,
                 "adjustment_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustment_type", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
     }
 
     /// <summary>
@@ -29,14 +29,14 @@ public sealed record class NewMinimum : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     public required string MinimumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <summary>
@@ -46,12 +46,12 @@ public sealed record class NewMinimum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<bool, NewMinimumAppliesToAll>>(
+            return JsonModel.GetNullableClass<ApiEnum<bool, NewMinimumAppliesToAll>>(
                 this.RawData,
                 "applies_to_all"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_all", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_all", value); }
     }
 
     /// <summary>
@@ -61,9 +61,9 @@ public sealed record class NewMinimum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_item_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_item_ids", value); }
     }
 
     /// <summary>
@@ -73,9 +73,9 @@ public sealed record class NewMinimum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -83,8 +83,8 @@ public sealed record class NewMinimum : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -92,8 +92,8 @@ public sealed record class NewMinimum : ModelBase
     /// </summary>
     public IReadOnlyList<NewMinimumFilter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<NewMinimumFilter>>(this.RawData, "filters"); }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        get { return JsonModel.GetNullableClass<List<NewMinimumFilter>>(this.RawData, "filters"); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public sealed record class NewMinimum : ModelBase
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
         init
         {
             if (value == null)
@@ -110,7 +110,7 @@ public sealed record class NewMinimum : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "is_invoice_level", value);
+            JsonModel.Set(this._rawData, "is_invoice_level", value);
         }
     }
 
@@ -121,12 +121,12 @@ public sealed record class NewMinimum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, NewMinimumPriceType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, NewMinimumPriceType>>(
                 this.RawData,
                 "price_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "price_type", value); }
+        init { JsonModel.Set(this._rawData, "price_type", value); }
     }
 
     /// <inheritdoc/>
@@ -172,7 +172,7 @@ public sealed record class NewMinimum : ModelBase
     }
 }
 
-class NewMinimumFromRaw : IFromRaw<NewMinimum>
+class NewMinimumFromRaw : IFromRawJson<NewMinimum>
 {
     /// <inheritdoc/>
     public NewMinimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -264,8 +264,8 @@ sealed class NewMinimumAppliesToAllConverter : JsonConverter<NewMinimumAppliesTo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<NewMinimumFilter, NewMinimumFilterFromRaw>))]
-public sealed record class NewMinimumFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewMinimumFilter, NewMinimumFilterFromRaw>))]
+public sealed record class NewMinimumFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -274,12 +274,12 @@ public sealed record class NewMinimumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewMinimumFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewMinimumFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -289,12 +289,12 @@ public sealed record class NewMinimumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewMinimumFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewMinimumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -302,8 +302,8 @@ public sealed record class NewMinimumFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -341,7 +341,7 @@ public sealed record class NewMinimumFilter : ModelBase
     }
 }
 
-class NewMinimumFilterFromRaw : IFromRaw<NewMinimumFilter>
+class NewMinimumFilterFromRaw : IFromRawJson<NewMinimumFilter>
 {
     /// <inheritdoc/>
     public NewMinimumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

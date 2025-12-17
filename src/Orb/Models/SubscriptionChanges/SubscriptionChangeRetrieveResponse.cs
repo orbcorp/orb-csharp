@@ -15,17 +15,17 @@ namespace Orb.Models.SubscriptionChanges;
 /// as well as any changes/creation of invoices (see `subscription.changed_resources`).
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionChangeRetrieveResponse,
         SubscriptionChangeRetrieveResponseFromRaw
     >)
 )]
-public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
+public sealed record class SubscriptionChangeRetrieveResponse : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     /// </summary>
     public required string ChangeType
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "change_type"); }
-        init { ModelBase.Set(this._rawData, "change_type", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "change_type"); }
+        init { JsonModel.Set(this._rawData, "change_type", value); }
     }
 
     /// <summary>
@@ -44,32 +44,32 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "expiration_time"
             );
         }
-        init { ModelBase.Set(this._rawData, "expiration_time", value); }
+        init { JsonModel.Set(this._rawData, "expiration_time", value); }
     }
 
     public required ApiEnum<string, SubscriptionChangeRetrieveResponseStatus> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, SubscriptionChangeRetrieveResponseStatus>
             >(this.RawData, "status");
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     public required MutatedSubscription? Subscription
     {
         get
         {
-            return ModelBase.GetNullableClass<MutatedSubscription>(this.RawData, "subscription");
+            return JsonModel.GetNullableClass<MutatedSubscription>(this.RawData, "subscription");
         }
-        init { ModelBase.Set(this._rawData, "subscription", value); }
+        init { JsonModel.Set(this._rawData, "subscription", value); }
     }
 
     /// <summary>
@@ -79,9 +79,9 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "applied_at");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "applied_at");
         }
-        init { ModelBase.Set(this._rawData, "applied_at", value); }
+        init { JsonModel.Set(this._rawData, "applied_at", value); }
     }
 
     /// <summary>
@@ -89,8 +89,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     /// </summary>
     public string? BillingCycleAlignment
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billing_cycle_alignment"); }
-        init { ModelBase.Set(this._rawData, "billing_cycle_alignment", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billing_cycle_alignment"); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_alignment", value); }
     }
 
     /// <summary>
@@ -100,12 +100,12 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "cancelled_at"
             );
         }
-        init { ModelBase.Set(this._rawData, "cancelled_at", value); }
+        init { JsonModel.Set(this._rawData, "cancelled_at", value); }
     }
 
     /// <summary>
@@ -113,8 +113,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     /// </summary>
     public string? ChangeOption
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "change_option"); }
-        init { ModelBase.Set(this._rawData, "change_option", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "change_option"); }
+        init { JsonModel.Set(this._rawData, "change_option", value); }
     }
 
     /// <summary>
@@ -124,12 +124,12 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "effective_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "effective_date", value); }
+        init { JsonModel.Set(this._rawData, "effective_date", value); }
     }
 
     /// <summary>
@@ -137,8 +137,8 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     /// </summary>
     public string? PlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "plan_id"); }
-        init { ModelBase.Set(this._rawData, "plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "plan_id"); }
+        init { JsonModel.Set(this._rawData, "plan_id", value); }
     }
 
     /// <inheritdoc/>
@@ -186,7 +186,7 @@ public sealed record class SubscriptionChangeRetrieveResponse : ModelBase
     }
 }
 
-class SubscriptionChangeRetrieveResponseFromRaw : IFromRaw<SubscriptionChangeRetrieveResponse>
+class SubscriptionChangeRetrieveResponseFromRaw : IFromRawJson<SubscriptionChangeRetrieveResponse>
 {
     /// <inheritdoc/>
     public SubscriptionChangeRetrieveResponse FromRawUnchecked(

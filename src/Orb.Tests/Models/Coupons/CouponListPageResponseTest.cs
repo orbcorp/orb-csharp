@@ -164,8 +164,8 @@ public class CouponListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CouponListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CouponListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Coupon> expectedData =

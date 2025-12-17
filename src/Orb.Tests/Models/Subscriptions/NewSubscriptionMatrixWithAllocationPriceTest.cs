@@ -232,9 +232,9 @@ public class NewSubscriptionMatrixWithAllocationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -699,10 +699,10 @@ public class NewSubscriptionMatrixWithAllocationPriceConversionRateConfigTest : 
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -727,10 +727,10 @@ public class NewSubscriptionMatrixWithAllocationPriceConversionRateConfigTest : 
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

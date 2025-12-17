@@ -7,25 +7,27 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<CustomerListPageResponse, CustomerListPageResponseFromRaw>))]
-public sealed record class CustomerListPageResponse : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<CustomerListPageResponse, CustomerListPageResponseFromRaw>)
+)]
+public sealed record class CustomerListPageResponse : JsonModel
 {
     public required IReadOnlyList<Customer> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Customer>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Customer>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +67,7 @@ public sealed record class CustomerListPageResponse : ModelBase
     }
 }
 
-class CustomerListPageResponseFromRaw : IFromRaw<CustomerListPageResponse>
+class CustomerListPageResponseFromRaw : IFromRawJson<CustomerListPageResponse>
 {
     /// <inheritdoc/>
     public CustomerListPageResponse FromRawUnchecked(

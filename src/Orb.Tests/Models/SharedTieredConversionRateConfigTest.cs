@@ -83,8 +83,8 @@ public class SharedTieredConversionRateConfigTest : TestBase
             ),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, ConversionRateType> expectedConversionRateType = ConversionRateType.Tiered;

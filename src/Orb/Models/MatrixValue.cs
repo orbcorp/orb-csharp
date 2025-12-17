@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single matrix value
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixValue, MatrixValueFromRaw>))]
-public sealed record class MatrixValue : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MatrixValue, MatrixValueFromRaw>))]
+public sealed record class MatrixValue : JsonModel
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
-        init { ModelBase.Set(this._rawData, "dimension_values", value); }
+        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
+        init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class MatrixValue : ModelBase
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -63,7 +63,7 @@ public sealed record class MatrixValue : ModelBase
     }
 }
 
-class MatrixValueFromRaw : IFromRaw<MatrixValue>
+class MatrixValueFromRaw : IFromRawJson<MatrixValue>
 {
     /// <inheritdoc/>
     public MatrixValue FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

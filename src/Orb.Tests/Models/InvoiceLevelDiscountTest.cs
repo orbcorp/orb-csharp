@@ -99,8 +99,8 @@ public class InvoiceLevelDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLevelDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLevelDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -126,8 +126,8 @@ public class InvoiceLevelDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLevelDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLevelDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -154,8 +154,8 @@ public class InvoiceLevelDiscountTest : TestBase
                 TrialPercentageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceLevelDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceLevelDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }

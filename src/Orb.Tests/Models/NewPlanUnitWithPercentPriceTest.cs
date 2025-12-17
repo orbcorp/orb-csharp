@@ -209,8 +209,8 @@ public class NewPlanUnitWithPercentPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithPercentPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanUnitWithPercentPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanUnitWithPercentPriceCadence> expectedCadence =
@@ -630,9 +630,9 @@ public class NewPlanUnitWithPercentPriceUnitWithPercentConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanUnitWithPercentPriceUnitWithPercentConfig>(json);
+            JsonSerializer.Deserialize<NewPlanUnitWithPercentPriceUnitWithPercentConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedPercent = "percent";
@@ -702,9 +702,9 @@ public class NewPlanUnitWithPercentPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanUnitWithPercentPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanUnitWithPercentPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -728,9 +728,9 @@ public class NewPlanUnitWithPercentPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanUnitWithPercentPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanUnitWithPercentPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

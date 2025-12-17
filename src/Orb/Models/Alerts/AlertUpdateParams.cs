@@ -27,8 +27,8 @@ public sealed record class AlertUpdateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get { return ModelBase.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
-        init { ModelBase.Set(this._rawBodyData, "thresholds", value); }
+        get { return JsonModel.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
+        init { JsonModel.Set(this._rawBodyData, "thresholds", value); }
     }
 
     public AlertUpdateParams() { }
@@ -64,7 +64,7 @@ public sealed record class AlertUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static AlertUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -89,9 +89,13 @@ public sealed record class AlertUpdateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

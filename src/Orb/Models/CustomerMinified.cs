@@ -7,19 +7,19 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<CustomerMinified, CustomerMinifiedFromRaw>))]
-public sealed record class CustomerMinified : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CustomerMinified, CustomerMinifiedFromRaw>))]
+public sealed record class CustomerMinified : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed record class CustomerMinified : ModelBase
     }
 }
 
-class CustomerMinifiedFromRaw : IFromRaw<CustomerMinified>
+class CustomerMinifiedFromRaw : IFromRawJson<CustomerMinified>
 {
     /// <inheritdoc/>
     public CustomerMinified FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

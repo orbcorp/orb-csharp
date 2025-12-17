@@ -206,8 +206,8 @@ public class NewSubscriptionUnitPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewSubscriptionUnitPriceCadence> expectedCadence =
@@ -623,9 +623,9 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPriceConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -650,9 +650,9 @@ public class NewSubscriptionUnitPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPriceConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);

@@ -8,23 +8,23 @@ using Orb.Core;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<DimensionalPriceConfiguration, DimensionalPriceConfigurationFromRaw>)
+    typeof(JsonModelConverter<DimensionalPriceConfiguration, DimensionalPriceConfigurationFromRaw>)
 )]
-public sealed record class DimensionalPriceConfiguration : ModelBase
+public sealed record class DimensionalPriceConfiguration : JsonModel
 {
     public required IReadOnlyList<string> DimensionValues
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "dimension_values"); }
-        init { ModelBase.Set(this._rawData, "dimension_values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "dimension_values"); }
+        init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
     public required string DimensionalPriceGroupID
     {
         get
         {
-            return ModelBase.GetNotNullClass<string>(this.RawData, "dimensional_price_group_id");
+            return JsonModel.GetNotNullClass<string>(this.RawData, "dimensional_price_group_id");
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_group_id", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_group_id", value); }
     }
 
     /// <inheritdoc/>
@@ -63,7 +63,7 @@ public sealed record class DimensionalPriceConfiguration : ModelBase
     }
 }
 
-class DimensionalPriceConfigurationFromRaw : IFromRaw<DimensionalPriceConfiguration>
+class DimensionalPriceConfigurationFromRaw : IFromRawJson<DimensionalPriceConfiguration>
 {
     /// <inheritdoc/>
     public DimensionalPriceConfiguration FromRawUnchecked(

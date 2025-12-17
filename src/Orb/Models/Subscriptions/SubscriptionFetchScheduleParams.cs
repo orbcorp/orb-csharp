@@ -23,8 +23,8 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -40,7 +40,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -48,42 +48,42 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "start_date[gt]");
+            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "start_date[gt]");
         }
-        init { ModelBase.Set(this._rawQueryData, "start_date[gt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "start_date[gt]", value); }
     }
 
     public DateTimeOffset? StartDateGte
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(
+            return JsonModel.GetNullableStruct<DateTimeOffset>(
                 this.RawQueryData,
                 "start_date[gte]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "start_date[gte]", value); }
+        init { JsonModel.Set(this._rawQueryData, "start_date[gte]", value); }
     }
 
     public DateTimeOffset? StartDateLt
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "start_date[lt]");
+            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "start_date[lt]");
         }
-        init { ModelBase.Set(this._rawQueryData, "start_date[lt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "start_date[lt]", value); }
     }
 
     public DateTimeOffset? StartDateLte
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(
+            return JsonModel.GetNullableStruct<DateTimeOffset>(
                 this.RawQueryData,
                 "start_date[lte]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "start_date[lte]", value); }
+        init { JsonModel.Set(this._rawQueryData, "start_date[lte]", value); }
     }
 
     public SubscriptionFetchScheduleParams() { }
@@ -114,7 +114,7 @@ public sealed record class SubscriptionFetchScheduleParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionFetchScheduleParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

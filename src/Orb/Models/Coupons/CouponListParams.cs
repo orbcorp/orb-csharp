@@ -24,8 +24,8 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -41,7 +41,7 @@ public sealed record class CouponListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -50,8 +50,8 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public string? RedemptionCode
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "redemption_code"); }
-        init { ModelBase.Set(this._rawQueryData, "redemption_code", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "redemption_code"); }
+        init { JsonModel.Set(this._rawQueryData, "redemption_code", value); }
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public sealed record class CouponListParams : ParamsBase
     /// </summary>
     public bool? ShowArchived
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "show_archived"); }
-        init { ModelBase.Set(this._rawQueryData, "show_archived", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "show_archived"); }
+        init { JsonModel.Set(this._rawQueryData, "show_archived", value); }
     }
 
     public CouponListParams() { }
@@ -89,7 +89,7 @@ public sealed record class CouponListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static CouponListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

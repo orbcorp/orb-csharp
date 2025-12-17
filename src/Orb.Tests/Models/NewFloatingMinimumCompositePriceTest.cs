@@ -204,8 +204,8 @@ public class NewFloatingMinimumCompositePriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingMinimumCompositePrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingMinimumCompositePrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingMinimumCompositePriceCadence> expectedCadence =
@@ -549,8 +549,8 @@ public class MinimumConfigTest : TestBase
     {
         var model = new MinimumConfig { MinimumAmount = "minimum_amount", Prorated = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -718,9 +718,11 @@ public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -744,9 +746,11 @@ public class NewFloatingMinimumCompositePriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingMinimumCompositePriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

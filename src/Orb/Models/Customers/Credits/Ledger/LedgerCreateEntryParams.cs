@@ -106,8 +106,8 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
 
     public required Body Body
     {
-        get { return ModelBase.GetNotNullClass<Body>(this.RawBodyData, "body"); }
-        init { ModelBase.Set(this._rawBodyData, "body", value); }
+        get { return JsonModel.GetNotNullClass<Body>(this.RawBodyData, "body"); }
+        init { JsonModel.Set(this._rawBodyData, "body", value); }
     }
 
     public LedgerCreateEntryParams() { }
@@ -143,7 +143,7 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static LedgerCreateEntryParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -168,9 +168,13 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -188,11 +192,11 @@ public record class Body
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public double? Amount
@@ -279,39 +283,39 @@ public record class Body
         }
     }
 
-    public Body(Increment value, JsonElement? json = null)
+    public Body(Increment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Body(Decrement value, JsonElement? json = null)
+    public Body(Decrement value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Body(ExpirationChange value, JsonElement? json = null)
+    public Body(ExpirationChange value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Body(Void value, JsonElement? json = null)
+    public Body(Void value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Body(Amendment value, JsonElement? json = null)
+    public Body(Amendment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Body(JsonElement json)
+    public Body(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -569,11 +573,11 @@ sealed class BodyConverter : JsonConverter<Body>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? entryType;
         try
         {
-            entryType = json.GetProperty("entry_type").GetString();
+            entryType = element.GetProperty("entry_type").GetString();
         }
         catch
         {
@@ -586,11 +590,11 @@ sealed class BodyConverter : JsonConverter<Body>
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Increment>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Increment>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -599,17 +603,17 @@ sealed class BodyConverter : JsonConverter<Body>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "decrement":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Decrement>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Decrement>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -618,17 +622,20 @@ sealed class BodyConverter : JsonConverter<Body>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "expiration_change":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<ExpirationChange>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<ExpirationChange>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -637,17 +644,17 @@ sealed class BodyConverter : JsonConverter<Body>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Void>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Void>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -656,17 +663,17 @@ sealed class BodyConverter : JsonConverter<Body>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amendment":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Amendment>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Amendment>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -675,11 +682,11 @@ sealed class BodyConverter : JsonConverter<Body>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new Body(json);
+                return new Body(element);
             }
         }
     }
@@ -690,8 +697,8 @@ sealed class BodyConverter : JsonConverter<Body>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Increment, IncrementFromRaw>))]
-public sealed record class Increment : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Increment, IncrementFromRaw>))]
+public sealed record class Increment : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -699,14 +706,14 @@ public sealed record class Increment : ModelBase
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -715,8 +722,8 @@ public sealed record class Increment : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -726,8 +733,8 @@ public sealed record class Increment : ModelBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -738,12 +745,12 @@ public sealed record class Increment : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "effective_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "effective_date", value); }
+        init { JsonModel.Set(this._rawData, "effective_date", value); }
     }
 
     /// <summary>
@@ -753,9 +760,9 @@ public sealed record class Increment : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     /// <summary>
@@ -766,11 +773,11 @@ public sealed record class Increment : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<global::Orb.Models.Customers.Credits.Ledger.Filter>
             >(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -782,9 +789,9 @@ public sealed record class Increment : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<InvoiceSettings>(this.RawData, "invoice_settings");
+            return JsonModel.GetNullableClass<InvoiceSettings>(this.RawData, "invoice_settings");
         }
-        init { ModelBase.Set(this._rawData, "invoice_settings", value); }
+        init { JsonModel.Set(this._rawData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -796,12 +803,12 @@ public sealed record class Increment : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -810,8 +817,8 @@ public sealed record class Increment : ModelBase
     /// </summary>
     public string? PerUnitCostBasis
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <inheritdoc/>
@@ -877,7 +884,7 @@ public sealed record class Increment : ModelBase
     }
 }
 
-class IncrementFromRaw : IFromRaw<Increment>
+class IncrementFromRaw : IFromRawJson<Increment>
 {
     /// <inheritdoc/>
     public Increment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -888,12 +895,12 @@ class IncrementFromRaw : IFromRaw<Increment>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Customers.Credits.Ledger.Filter,
         global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw
     >)
 )]
-public sealed record class Filter : ModelBase
+public sealed record class Filter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -902,11 +909,11 @@ public sealed record class Filter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -916,11 +923,11 @@ public sealed record class Filter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -928,8 +935,8 @@ public sealed record class Filter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -967,7 +974,7 @@ public sealed record class Filter : ModelBase
     }
 }
 
-class FilterFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Ledger.Filter>
+class FilterFromRaw : IFromRawJson<global::Orb.Models.Customers.Credits.Ledger.Filter>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
@@ -1071,8 +1078,8 @@ sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Cred
 /// credits. If `invoice_settings` is passed, you must specify per_unit_cost_basis,
 /// as the calculation of the invoice total is done on that basis.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<InvoiceSettings, InvoiceSettingsFromRaw>))]
-public sealed record class InvoiceSettings : ModelBase
+[JsonConverter(typeof(JsonModelConverter<InvoiceSettings, InvoiceSettingsFromRaw>))]
+public sealed record class InvoiceSettings : JsonModel
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -1080,8 +1087,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public required bool AutoCollection
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
-        init { ModelBase.Set(this._rawData, "auto_collection", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
+        init { JsonModel.Set(this._rawData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -1090,8 +1097,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public CustomDueDate? CustomDueDate
     {
-        get { return ModelBase.GetNullableClass<CustomDueDate>(this.RawData, "custom_due_date"); }
-        init { ModelBase.Set(this._rawData, "custom_due_date", value); }
+        get { return JsonModel.GetNullableClass<CustomDueDate>(this.RawData, "custom_due_date"); }
+        init { JsonModel.Set(this._rawData, "custom_due_date", value); }
     }
 
     /// <summary>
@@ -1101,8 +1108,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public InvoiceDate? InvoiceDate
     {
-        get { return ModelBase.GetNullableClass<InvoiceDate>(this.RawData, "invoice_date"); }
-        init { ModelBase.Set(this._rawData, "invoice_date", value); }
+        get { return JsonModel.GetNullableClass<InvoiceDate>(this.RawData, "invoice_date"); }
+        init { JsonModel.Set(this._rawData, "invoice_date", value); }
     }
 
     /// <summary>
@@ -1111,8 +1118,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public string? ItemID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -1120,8 +1127,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
-        init { ModelBase.Set(this._rawData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "memo"); }
+        init { JsonModel.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -1134,8 +1141,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "net_terms"); }
-        init { ModelBase.Set(this._rawData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "net_terms"); }
+        init { JsonModel.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -1146,7 +1153,7 @@ public sealed record class InvoiceSettings : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
+            return JsonModel.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
         }
         init
         {
@@ -1155,7 +1162,7 @@ public sealed record class InvoiceSettings : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "require_successful_payment", value);
+            JsonModel.Set(this._rawData, "require_successful_payment", value);
         }
     }
 
@@ -1203,7 +1210,7 @@ public sealed record class InvoiceSettings : ModelBase
     }
 }
 
-class InvoiceSettingsFromRaw : IFromRaw<InvoiceSettings>
+class InvoiceSettingsFromRaw : IFromRawJson<InvoiceSettings>
 {
     /// <inheritdoc/>
     public InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -1219,11 +1226,11 @@ public record class CustomDueDate
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public CustomDueDate(
@@ -1232,21 +1239,21 @@ public record class CustomDueDate
 #else
         System::DateTimeOffset
 #endif
-        value, JsonElement? json = null)
+        value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public CustomDueDate(System::DateTimeOffset value, JsonElement? json = null)
+    public CustomDueDate(System::DateTimeOffset value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public CustomDueDate(JsonElement json)
+    public CustomDueDate(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1473,7 +1480,7 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -1482,7 +1489,7 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1491,14 +1498,14 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(
@@ -1521,11 +1528,11 @@ public record class InvoiceDate
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public InvoiceDate(
@@ -1534,21 +1541,21 @@ public record class InvoiceDate
 #else
         System::DateTimeOffset
 #endif
-        value, JsonElement? json = null)
+        value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceDate(System::DateTimeOffset value, JsonElement? json = null)
+    public InvoiceDate(System::DateTimeOffset value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceDate(JsonElement json)
+    public InvoiceDate(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1771,7 +1778,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -1780,7 +1787,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1789,14 +1796,14 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(
@@ -1809,8 +1816,8 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Decrement, DecrementFromRaw>))]
-public sealed record class Decrement : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Decrement, DecrementFromRaw>))]
+public sealed record class Decrement : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -1818,14 +1825,14 @@ public sealed record class Decrement : ModelBase
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -1834,8 +1841,8 @@ public sealed record class Decrement : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -1845,8 +1852,8 @@ public sealed record class Decrement : ModelBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -1858,12 +1865,12 @@ public sealed record class Decrement : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -1921,20 +1928,20 @@ public sealed record class Decrement : ModelBase
     }
 }
 
-class DecrementFromRaw : IFromRaw<Decrement>
+class DecrementFromRaw : IFromRawJson<Decrement>
 {
     /// <inheritdoc/>
     public Decrement FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Decrement.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<ExpirationChange, ExpirationChangeFromRaw>))]
-public sealed record class ExpirationChange : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ExpirationChange, ExpirationChangeFromRaw>))]
+public sealed record class ExpirationChange : JsonModel
 {
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -1952,7 +1959,7 @@ public sealed record class ExpirationChange : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<
+            return JsonModel.GetNotNullStruct<
 #if NET
             System::DateOnly
 #else
@@ -1960,7 +1967,7 @@ public sealed record class ExpirationChange : ModelBase
 #endif
             >(this.RawData, "target_expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "target_expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "target_expiry_date", value); }
     }
 
     /// <summary>
@@ -1969,8 +1976,8 @@ public sealed record class ExpirationChange : ModelBase
     /// </summary>
     public double? Amount
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -1979,8 +1986,8 @@ public sealed record class ExpirationChange : ModelBase
     /// </summary>
     public string? BlockID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "block_id"); }
-        init { ModelBase.Set(this._rawData, "block_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "block_id"); }
+        init { JsonModel.Set(this._rawData, "block_id", value); }
     }
 
     /// <summary>
@@ -1989,8 +1996,8 @@ public sealed record class ExpirationChange : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2000,8 +2007,8 @@ public sealed record class ExpirationChange : ModelBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2011,9 +2018,9 @@ public sealed record class ExpirationChange : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     /// <summary>
@@ -2025,12 +2032,12 @@ public sealed record class ExpirationChange : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -2099,15 +2106,15 @@ public sealed record class ExpirationChange : ModelBase
     }
 }
 
-class ExpirationChangeFromRaw : IFromRaw<ExpirationChange>
+class ExpirationChangeFromRaw : IFromRawJson<ExpirationChange>
 {
     /// <inheritdoc/>
     public ExpirationChange FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         ExpirationChange.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Void, VoidFromRaw>))]
-public sealed record class Void : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Void, VoidFromRaw>))]
+public sealed record class Void : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2115,8 +2122,8 @@ public sealed record class Void : ModelBase
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -2124,14 +2131,14 @@ public sealed record class Void : ModelBase
     /// </summary>
     public required string BlockID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "block_id"); }
-        init { ModelBase.Set(this._rawData, "block_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "block_id"); }
+        init { JsonModel.Set(this._rawData, "block_id", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -2140,8 +2147,8 @@ public sealed record class Void : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2151,8 +2158,8 @@ public sealed record class Void : ModelBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2164,12 +2171,12 @@ public sealed record class Void : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -2179,12 +2186,12 @@ public sealed record class Void : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, VoidReason>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, VoidReason>>(
                 this.RawData,
                 "void_reason"
             );
         }
-        init { ModelBase.Set(this._rawData, "void_reason", value); }
+        init { JsonModel.Set(this._rawData, "void_reason", value); }
     }
 
     /// <inheritdoc/>
@@ -2237,7 +2244,7 @@ public sealed record class Void : ModelBase
     }
 }
 
-class VoidFromRaw : IFromRaw<Void>
+class VoidFromRaw : IFromRawJson<Void>
 {
     /// <inheritdoc/>
     public Void FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -2288,8 +2295,8 @@ sealed class VoidReasonConverter : JsonConverter<VoidReason>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Amendment, AmendmentFromRaw>))]
-public sealed record class Amendment : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Amendment, AmendmentFromRaw>))]
+public sealed record class Amendment : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2297,8 +2304,8 @@ public sealed record class Amendment : ModelBase
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -2306,14 +2313,14 @@ public sealed record class Amendment : ModelBase
     /// </summary>
     public required string BlockID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "block_id"); }
-        init { ModelBase.Set(this._rawData, "block_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "block_id"); }
+        init { JsonModel.Set(this._rawData, "block_id", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -2322,8 +2329,8 @@ public sealed record class Amendment : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2333,8 +2340,8 @@ public sealed record class Amendment : ModelBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2346,12 +2353,12 @@ public sealed record class Amendment : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -2403,7 +2410,7 @@ public sealed record class Amendment : ModelBase
     }
 }
 
-class AmendmentFromRaw : IFromRaw<Amendment>
+class AmendmentFromRaw : IFromRawJson<Amendment>
 {
     /// <inheritdoc/>
     public Amendment FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

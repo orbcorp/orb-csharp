@@ -7,13 +7,15 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<NewReportingConfiguration, NewReportingConfigurationFromRaw>))]
-public sealed record class NewReportingConfiguration : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<NewReportingConfiguration, NewReportingConfigurationFromRaw>)
+)]
+public sealed record class NewReportingConfiguration : JsonModel
 {
     public required bool Exempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "exempt"); }
-        init { ModelBase.Set(this._rawData, "exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "exempt"); }
+        init { JsonModel.Set(this._rawData, "exempt", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +58,7 @@ public sealed record class NewReportingConfiguration : ModelBase
     }
 }
 
-class NewReportingConfigurationFromRaw : IFromRaw<NewReportingConfiguration>
+class NewReportingConfigurationFromRaw : IFromRawJson<NewReportingConfiguration>
 {
     /// <inheritdoc/>
     public NewReportingConfiguration FromRawUnchecked(

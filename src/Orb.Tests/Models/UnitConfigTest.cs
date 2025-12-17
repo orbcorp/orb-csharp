@@ -33,8 +33,8 @@ public class UnitConfigTest : TestBase
     {
         var model = new UnitConfig { UnitAmount = "unit_amount", Prorated = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";

@@ -178,9 +178,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -198,9 +198,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -227,9 +227,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -249,9 +249,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -270,9 +270,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBody>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -490,9 +490,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(json);
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -754,10 +754,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterTest : TestBa
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1037,10 +1037,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
             RequireSuccessfulPayment = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1338,10 +1338,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
 #endif
             .Parse("2019-12-27")
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1353,10 +1353,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1400,10 +1400,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
 #endif
             .Parse("2019-12-27")
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1415,10 +1415,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1486,9 +1486,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyDecrementTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(json);
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -1691,10 +1691,10 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -1938,9 +1938,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
             VoidReason = LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason.Refund,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -2181,9 +2181,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyAmendmentTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(json);
+            JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;

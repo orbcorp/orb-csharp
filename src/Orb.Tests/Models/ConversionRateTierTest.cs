@@ -50,8 +50,8 @@ public class ConversionRateTierTest : TestBase
             LastUnit = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateTier>(element);
         Assert.NotNull(deserialized);
 
         double expectedFirstUnit = 0;

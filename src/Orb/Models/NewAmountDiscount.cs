@@ -9,25 +9,25 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewAmountDiscount, NewAmountDiscountFromRaw>))]
-public sealed record class NewAmountDiscount : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewAmountDiscount, NewAmountDiscountFromRaw>))]
+public sealed record class NewAmountDiscount : JsonModel
 {
     public required ApiEnum<string, NewAmountDiscountAdjustmentType> AdjustmentType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewAmountDiscountAdjustmentType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewAmountDiscountAdjustmentType>>(
                 this.RawData,
                 "adjustment_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustment_type", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
     }
 
     public required string AmountDiscount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount_discount"); }
-        init { ModelBase.Set(this._rawData, "amount_discount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_discount"); }
+        init { JsonModel.Set(this._rawData, "amount_discount", value); }
     }
 
     /// <summary>
@@ -37,12 +37,12 @@ public sealed record class NewAmountDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<bool, AppliesToAll>>(
+            return JsonModel.GetNullableClass<ApiEnum<bool, AppliesToAll>>(
                 this.RawData,
                 "applies_to_all"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_all", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_all", value); }
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public sealed record class NewAmountDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_item_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_item_ids", value); }
     }
 
     /// <summary>
@@ -64,9 +64,9 @@ public sealed record class NewAmountDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class NewAmountDiscount : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -85,12 +85,12 @@ public sealed record class NewAmountDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<NewAmountDiscountFilter>>(
+            return JsonModel.GetNullableClass<List<NewAmountDiscountFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ public sealed record class NewAmountDiscount : ModelBase
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
         init
         {
             if (value == null)
@@ -107,7 +107,7 @@ public sealed record class NewAmountDiscount : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "is_invoice_level", value);
+            JsonModel.Set(this._rawData, "is_invoice_level", value);
         }
     }
 
@@ -118,12 +118,12 @@ public sealed record class NewAmountDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, PriceType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, PriceType>>(
                 this.RawData,
                 "price_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "price_type", value); }
+        init { JsonModel.Set(this._rawData, "price_type", value); }
     }
 
     /// <inheritdoc/>
@@ -170,7 +170,7 @@ public sealed record class NewAmountDiscount : ModelBase
     }
 }
 
-class NewAmountDiscountFromRaw : IFromRaw<NewAmountDiscount>
+class NewAmountDiscountFromRaw : IFromRawJson<NewAmountDiscount>
 {
     /// <inheritdoc/>
     public NewAmountDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -263,8 +263,8 @@ sealed class AppliesToAllConverter : JsonConverter<AppliesToAll>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<NewAmountDiscountFilter, NewAmountDiscountFilterFromRaw>))]
-public sealed record class NewAmountDiscountFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewAmountDiscountFilter, NewAmountDiscountFilterFromRaw>))]
+public sealed record class NewAmountDiscountFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -273,12 +273,12 @@ public sealed record class NewAmountDiscountFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -288,12 +288,12 @@ public sealed record class NewAmountDiscountFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewAmountDiscountFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -301,8 +301,8 @@ public sealed record class NewAmountDiscountFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -340,7 +340,7 @@ public sealed record class NewAmountDiscountFilter : ModelBase
     }
 }
 
-class NewAmountDiscountFilterFromRaw : IFromRaw<NewAmountDiscountFilter>
+class NewAmountDiscountFilterFromRaw : IFromRawJson<NewAmountDiscountFilter>
 {
     /// <inheritdoc/>
     public NewAmountDiscountFilter FromRawUnchecked(

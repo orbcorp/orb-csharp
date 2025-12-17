@@ -63,9 +63,9 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
+            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -77,9 +77,9 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
+            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -89,8 +89,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public DateTimeOffset? CloseTime
     {
-        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "close_time"); }
-        init { ModelBase.Set(this._rawBodyData, "close_time", value); }
+        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "close_time"); }
+        init { JsonModel.Set(this._rawBodyData, "close_time", value); }
     }
 
     /// <summary>
@@ -99,8 +99,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
     }
 
     /// <summary>
@@ -109,8 +109,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "deprecation_filter"); }
-        init { ModelBase.Set(this._rawBodyData, "deprecation_filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "deprecation_filter"); }
+        init { JsonModel.Set(this._rawBodyData, "deprecation_filter", value); }
     }
 
     /// <summary>
@@ -119,8 +119,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -131,7 +131,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "replace_existing_events");
+            return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "replace_existing_events");
         }
         init
         {
@@ -140,7 +140,7 @@ public sealed record class BackfillCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "replace_existing_events", value);
+            JsonModel.Set(this._rawBodyData, "replace_existing_events", value);
         }
     }
 
@@ -177,7 +177,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static BackfillCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -199,9 +199,13 @@ public sealed record class BackfillCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

@@ -113,8 +113,8 @@ public class AmountDiscountIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AmountDiscountInterval>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AmountDiscountInterval>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmountDiscount = "amount_discount";
@@ -285,8 +285,8 @@ public class AmountDiscountIntervalFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AmountDiscountIntervalFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AmountDiscountIntervalFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, AmountDiscountIntervalFilterField> expectedField =

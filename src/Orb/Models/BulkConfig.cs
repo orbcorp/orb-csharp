@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for bulk pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkConfig, BulkConfigFromRaw>))]
-public sealed record class BulkConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BulkConfig, BulkConfigFromRaw>))]
+public sealed record class BulkConfig : JsonModel
 {
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
     public required IReadOnlyList<BulkTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<BulkTier>>(this.RawData, "tiers"); }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        get { return JsonModel.GetNotNullClass<List<BulkTier>>(this.RawData, "tiers"); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -63,7 +63,7 @@ public sealed record class BulkConfig : ModelBase
     }
 }
 
-class BulkConfigFromRaw : IFromRaw<BulkConfig>
+class BulkConfigFromRaw : IFromRawJson<BulkConfig>
 {
     /// <inheritdoc/>
     public BulkConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

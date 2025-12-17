@@ -8,26 +8,26 @@ using Orb.Core;
 namespace Orb.Models.CreditNotes;
 
 [JsonConverter(
-    typeof(ModelConverter<CreditNoteListPageResponse, CreditNoteListPageResponseFromRaw>)
+    typeof(JsonModelConverter<CreditNoteListPageResponse, CreditNoteListPageResponseFromRaw>)
 )]
-public sealed record class CreditNoteListPageResponse : ModelBase
+public sealed record class CreditNoteListPageResponse : JsonModel
 {
     public required IReadOnlyList<SharedCreditNote> Data
     {
-        get { return ModelBase.GetNotNullClass<List<SharedCreditNote>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<SharedCreditNote>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -67,7 +67,7 @@ public sealed record class CreditNoteListPageResponse : ModelBase
     }
 }
 
-class CreditNoteListPageResponseFromRaw : IFromRaw<CreditNoteListPageResponse>
+class CreditNoteListPageResponseFromRaw : IFromRawJson<CreditNoteListPageResponse>
 {
     /// <inheritdoc/>
     public CreditNoteListPageResponse FromRawUnchecked(

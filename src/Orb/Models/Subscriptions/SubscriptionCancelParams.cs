@@ -80,12 +80,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CancelOption>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, CancelOption>>(
                 this.RawBodyData,
                 "cancel_option"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "cancel_option", value); }
+        init { JsonModel.Set(this._rawBodyData, "cancel_option", value); }
     }
 
     /// <summary>
@@ -97,12 +97,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(
+            return JsonModel.GetNullableStruct<bool>(
                 this.RawBodyData,
                 "allow_invoice_credit_or_void"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
+        init { JsonModel.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -113,12 +113,12 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "cancellation_date"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "cancellation_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "cancellation_date", value); }
     }
 
     public SubscriptionCancelParams() { }
@@ -154,7 +154,7 @@ public sealed record class SubscriptionCancelParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionCancelParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -179,9 +179,13 @@ public sealed record class SubscriptionCancelParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

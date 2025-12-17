@@ -31,8 +31,8 @@ public class CreditNoteTinyTest : TestBase
     {
         var model = new CreditNoteTiny { ID = "id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreditNoteTiny>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreditNoteTiny>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

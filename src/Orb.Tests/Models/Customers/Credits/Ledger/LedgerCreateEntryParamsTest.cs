@@ -176,8 +176,8 @@ public class BodyTest : TestBase
                 PerUnitCostBasis = "per_unit_cost_basis",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -194,8 +194,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -221,8 +221,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -241,8 +241,8 @@ public class BodyTest : TestBase
                 VoidReason = Ledger::VoidReason.Refund,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -260,8 +260,8 @@ public class BodyTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Body>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -473,8 +473,8 @@ public class IncrementTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Increment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Increment>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -726,8 +726,8 @@ public class FilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Filter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Filter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Ledger::Field> expectedField = Ledger::Field.ItemID;
@@ -982,8 +982,8 @@ public class InvoiceSettingsTest : TestBase
             RequireSuccessfulPayment = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceSettings>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceSettings>(element);
         Assert.NotNull(deserialized);
 
         bool expectedAutoCollection = true;
@@ -1275,8 +1275,8 @@ public class CustomDueDateTest : TestBase
             DateTimeOffset
 #endif
             .Parse("2019-12-27"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1285,8 +1285,8 @@ public class CustomDueDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         Ledger::CustomDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1324,8 +1324,8 @@ public class InvoiceDateTest : TestBase
             DateTimeOffset
 #endif
             .Parse("2019-12-27"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1334,8 +1334,8 @@ public class InvoiceDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         Ledger::InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1401,8 +1401,8 @@ public class DecrementTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Decrement>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Decrement>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -1602,8 +1602,8 @@ public class ExpirationChangeTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::ExpirationChange>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::ExpirationChange>(element);
         Assert.NotNull(deserialized);
 
         JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
@@ -1843,8 +1843,8 @@ public class VoidTest : TestBase
             VoidReason = Ledger::VoidReason.Refund,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Void>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Void>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;
@@ -2070,8 +2070,8 @@ public class AmendmentTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Ledger::Amendment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Ledger::Amendment>(element);
         Assert.NotNull(deserialized);
 
         double expectedAmount = 0;

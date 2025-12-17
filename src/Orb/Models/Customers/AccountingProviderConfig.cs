@@ -7,19 +7,21 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<AccountingProviderConfig, AccountingProviderConfigFromRaw>))]
-public sealed record class AccountingProviderConfig : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<AccountingProviderConfig, AccountingProviderConfigFromRaw>)
+)]
+public sealed record class AccountingProviderConfig : JsonModel
 {
     public required string ExternalProviderID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "external_provider_id"); }
-        init { ModelBase.Set(this._rawData, "external_provider_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "external_provider_id"); }
+        init { JsonModel.Set(this._rawData, "external_provider_id", value); }
     }
 
     public required string ProviderType
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "provider_type"); }
-        init { ModelBase.Set(this._rawData, "provider_type", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "provider_type"); }
+        init { JsonModel.Set(this._rawData, "provider_type", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +58,7 @@ public sealed record class AccountingProviderConfig : ModelBase
     }
 }
 
-class AccountingProviderConfigFromRaw : IFromRaw<AccountingProviderConfig>
+class AccountingProviderConfigFromRaw : IFromRawJson<AccountingProviderConfig>
 {
     /// <inheritdoc/>
     public AccountingProviderConfig FromRawUnchecked(

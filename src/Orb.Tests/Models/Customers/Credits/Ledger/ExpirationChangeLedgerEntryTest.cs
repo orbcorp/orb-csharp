@@ -180,8 +180,8 @@ public class ExpirationChangeLedgerEntryTest : TestBase
             StartingBalance = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

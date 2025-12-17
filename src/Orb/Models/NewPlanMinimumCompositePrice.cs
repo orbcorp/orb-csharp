@@ -10,9 +10,9 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<NewPlanMinimumCompositePrice, NewPlanMinimumCompositePriceFromRaw>)
+    typeof(JsonModelConverter<NewPlanMinimumCompositePrice, NewPlanMinimumCompositePriceFromRaw>)
 )]
-public sealed record class NewPlanMinimumCompositePrice : ModelBase
+public sealed record class NewPlanMinimumCompositePrice : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -21,12 +21,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewPlanMinimumCompositePriceCadence>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewPlanMinimumCompositePriceCadence>>(
                 this.RawData,
                 "cadence"
             );
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -34,8 +34,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -45,12 +45,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<NewPlanMinimumCompositePriceMinimumConfig>(
+            return JsonModel.GetNotNullClass<NewPlanMinimumCompositePriceMinimumConfig>(
                 this.RawData,
                 "minimum_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "minimum_config", value); }
+        init { JsonModel.Set(this._rawData, "minimum_config", value); }
     }
 
     /// <summary>
@@ -60,11 +60,11 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewPlanMinimumCompositePriceModelType>
             >(this.RawData, "model_type");
         }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -72,8 +72,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -81,8 +81,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -91,8 +91,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -103,12 +103,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -116,8 +116,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -127,12 +127,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewPlanMinimumCompositePriceConversionRateConfig>(
+            return JsonModel.GetNullableClass<NewPlanMinimumCompositePriceConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -141,8 +141,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -152,12 +152,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -165,8 +165,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -174,8 +174,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -183,8 +183,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -195,12 +195,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -212,12 +212,12 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -226,8 +226,8 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -280,7 +280,7 @@ public sealed record class NewPlanMinimumCompositePrice : ModelBase
     }
 }
 
-class NewPlanMinimumCompositePriceFromRaw : IFromRaw<NewPlanMinimumCompositePrice>
+class NewPlanMinimumCompositePriceFromRaw : IFromRawJson<NewPlanMinimumCompositePrice>
 {
     /// <inheritdoc/>
     public NewPlanMinimumCompositePrice FromRawUnchecked(
@@ -352,20 +352,20 @@ sealed class NewPlanMinimumCompositePriceCadenceConverter
 /// Configuration for minimum pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         NewPlanMinimumCompositePriceMinimumConfig,
         NewPlanMinimumCompositePriceMinimumConfigFromRaw
     >)
 )]
-public sealed record class NewPlanMinimumCompositePriceMinimumConfig : ModelBase
+public sealed record class NewPlanMinimumCompositePriceMinimumConfig : JsonModel
 {
     /// <summary>
     /// The minimum amount to apply
     /// </summary>
     public required string MinimumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <summary>
@@ -373,7 +373,7 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : ModelBase
     /// </summary>
     public bool? Prorated
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "prorated"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorated"); }
         init
         {
             if (value == null)
@@ -381,7 +381,7 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "prorated", value);
+            JsonModel.Set(this._rawData, "prorated", value);
         }
     }
 
@@ -431,7 +431,7 @@ public sealed record class NewPlanMinimumCompositePriceMinimumConfig : ModelBase
 }
 
 class NewPlanMinimumCompositePriceMinimumConfigFromRaw
-    : IFromRaw<NewPlanMinimumCompositePriceMinimumConfig>
+    : IFromRawJson<NewPlanMinimumCompositePriceMinimumConfig>
 {
     /// <inheritdoc/>
     public NewPlanMinimumCompositePriceMinimumConfig FromRawUnchecked(
@@ -489,34 +489,34 @@ public record class NewPlanMinimumCompositePriceConversionRateConfig
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewPlanMinimumCompositePriceConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public NewPlanMinimumCompositePriceConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public NewPlanMinimumCompositePriceConversionRateConfig(JsonElement json)
+    public NewPlanMinimumCompositePriceConversionRateConfig(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -686,11 +686,11 @@ sealed class NewPlanMinimumCompositePriceConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -704,13 +704,13 @@ sealed class NewPlanMinimumCompositePriceConversionRateConfigConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -719,20 +719,20 @@ sealed class NewPlanMinimumCompositePriceConversionRateConfigConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -741,11 +741,11 @@ sealed class NewPlanMinimumCompositePriceConversionRateConfigConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new NewPlanMinimumCompositePriceConversionRateConfig(json);
+                return new NewPlanMinimumCompositePriceConversionRateConfig(element);
             }
         }
     }

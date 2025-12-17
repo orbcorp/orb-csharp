@@ -229,8 +229,10 @@ public class NewPlanGroupedWithProratedMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanGroupedWithProratedMinimumPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanGroupedWithProratedMinimumPrice>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanGroupedWithProratedMinimumPriceCadence> expectedCadence =
@@ -635,10 +637,10 @@ public class NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumCon
             UnitRate = "unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithProratedMinimumPriceGroupedWithProratedMinimumConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -770,10 +772,10 @@ public class NewPlanGroupedWithProratedMinimumPriceConversionRateConfigTest : Te
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithProratedMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -798,10 +800,10 @@ public class NewPlanGroupedWithProratedMinimumPriceConversionRateConfigTest : Te
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanGroupedWithProratedMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

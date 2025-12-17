@@ -9,16 +9,16 @@ using System = System;
 
 namespace Orb.Models.Prices;
 
-[JsonConverter(typeof(ModelConverter<EvaluatePriceGroup, EvaluatePriceGroupFromRaw>))]
-public sealed record class EvaluatePriceGroup : ModelBase
+[JsonConverter(typeof(JsonModelConverter<EvaluatePriceGroup, EvaluatePriceGroupFromRaw>))]
+public sealed record class EvaluatePriceGroup : JsonModel
 {
     /// <summary>
     /// The price's output for the group
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -28,9 +28,9 @@ public sealed record class EvaluatePriceGroup : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<GroupingValue>>(this.RawData, "grouping_values");
+            return JsonModel.GetNotNullClass<List<GroupingValue>>(this.RawData, "grouping_values");
         }
-        init { ModelBase.Set(this._rawData, "grouping_values", value); }
+        init { JsonModel.Set(this._rawData, "grouping_values", value); }
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ public sealed record class EvaluatePriceGroup : ModelBase
     /// </summary>
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -80,7 +80,7 @@ public sealed record class EvaluatePriceGroup : ModelBase
     }
 }
 
-class EvaluatePriceGroupFromRaw : IFromRaw<EvaluatePriceGroup>
+class EvaluatePriceGroupFromRaw : IFromRawJson<EvaluatePriceGroup>
 {
     /// <inheritdoc/>
     public EvaluatePriceGroup FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -92,34 +92,34 @@ public record class GroupingValue
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public GroupingValue(string value, JsonElement? json = null)
+    public GroupingValue(string value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public GroupingValue(double value, JsonElement? json = null)
+    public GroupingValue(double value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public GroupingValue(bool value, JsonElement? json = null)
+    public GroupingValue(bool value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public GroupingValue(JsonElement json)
+    public GroupingValue(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -312,13 +312,13 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<string>(json, options);
+            var deserialized = JsonSerializer.Deserialize<string>(element, options);
             if (deserialized != null)
             {
-                return new(deserialized, json);
+                return new(deserialized, element);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -328,7 +328,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<double>(json, options));
+            return new(JsonSerializer.Deserialize<double>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -337,14 +337,14 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<bool>(json, options));
+            return new(JsonSerializer.Deserialize<bool>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(

@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for a single bulk pricing tier
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BulkTier, BulkTierFromRaw>))]
-public sealed record class BulkTier : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BulkTier, BulkTierFromRaw>))]
+public sealed record class BulkTier : JsonModel
 {
     /// <summary>
     /// Amount per unit
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class BulkTier : ModelBase
     /// </summary>
     public double? MaximumUnits
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "maximum_units"); }
-        init { ModelBase.Set(this._rawData, "maximum_units", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "maximum_units"); }
+        init { JsonModel.Set(this._rawData, "maximum_units", value); }
     }
 
     /// <inheritdoc/>
@@ -70,7 +70,7 @@ public sealed record class BulkTier : ModelBase
     }
 }
 
-class BulkTierFromRaw : IFromRaw<BulkTier>
+class BulkTierFromRaw : IFromRawJson<BulkTier>
 {
     /// <inheritdoc/>
     public BulkTier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

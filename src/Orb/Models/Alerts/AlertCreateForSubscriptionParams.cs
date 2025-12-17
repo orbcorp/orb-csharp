@@ -39,8 +39,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get { return ModelBase.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
-        init { ModelBase.Set(this._rawBodyData, "thresholds", value); }
+        get { return JsonModel.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
+        init { JsonModel.Set(this._rawBodyData, "thresholds", value); }
     }
 
     /// <summary>
@@ -50,12 +50,12 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, AlertCreateForSubscriptionParamsType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, AlertCreateForSubscriptionParamsType>>(
                 this.RawBodyData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "type", value); }
+        init { JsonModel.Set(this._rawBodyData, "type", value); }
     }
 
     /// <summary>
@@ -63,8 +63,8 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     /// </summary>
     public string? MetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "metric_id"); }
-        init { ModelBase.Set(this._rawBodyData, "metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "metric_id"); }
+        init { JsonModel.Set(this._rawBodyData, "metric_id", value); }
     }
 
     public AlertCreateForSubscriptionParams() { }
@@ -102,7 +102,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static AlertCreateForSubscriptionParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -127,9 +127,13 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

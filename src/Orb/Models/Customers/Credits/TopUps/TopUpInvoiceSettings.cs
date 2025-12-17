@@ -7,8 +7,8 @@ using Orb.Core;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpInvoiceSettings, TopUpInvoiceSettingsFromRaw>))]
-public sealed record class TopUpInvoiceSettings : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TopUpInvoiceSettings, TopUpInvoiceSettingsFromRaw>))]
+public sealed record class TopUpInvoiceSettings : JsonModel
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -16,8 +16,8 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     /// </summary>
     public required bool AutoCollection
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
-        init { ModelBase.Set(this._rawData, "auto_collection", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
+        init { JsonModel.Set(this._rawData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     /// </summary>
     public required long NetTerms
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "net_terms"); }
-        init { ModelBase.Set(this._rawData, "net_terms", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "net_terms"); }
+        init { JsonModel.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     /// </summary>
     public string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
-        init { ModelBase.Set(this._rawData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "memo"); }
+        init { JsonModel.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
+            return JsonModel.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
         }
         init
         {
@@ -59,7 +59,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "require_successful_payment", value);
+            JsonModel.Set(this._rawData, "require_successful_payment", value);
         }
     }
 
@@ -99,7 +99,7 @@ public sealed record class TopUpInvoiceSettings : ModelBase
     }
 }
 
-class TopUpInvoiceSettingsFromRaw : IFromRaw<TopUpInvoiceSettings>
+class TopUpInvoiceSettingsFromRaw : IFromRawJson<TopUpInvoiceSettings>
 {
     /// <inheritdoc/>
     public TopUpInvoiceSettings FromRawUnchecked(

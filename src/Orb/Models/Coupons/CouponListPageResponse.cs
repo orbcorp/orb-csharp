@@ -7,25 +7,25 @@ using Orb.Core;
 
 namespace Orb.Models.Coupons;
 
-[JsonConverter(typeof(ModelConverter<CouponListPageResponse, CouponListPageResponseFromRaw>))]
-public sealed record class CouponListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CouponListPageResponse, CouponListPageResponseFromRaw>))]
+public sealed record class CouponListPageResponse : JsonModel
 {
     public required IReadOnlyList<Coupon> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Coupon>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Coupon>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +65,7 @@ public sealed record class CouponListPageResponse : ModelBase
     }
 }
 
-class CouponListPageResponseFromRaw : IFromRaw<CouponListPageResponse>
+class CouponListPageResponseFromRaw : IFromRawJson<CouponListPageResponse>
 {
     /// <inheritdoc/>
     public CouponListPageResponse FromRawUnchecked(

@@ -10,9 +10,12 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<SharedUnitConversionRateConfig, SharedUnitConversionRateConfigFromRaw>)
+    typeof(JsonModelConverter<
+        SharedUnitConversionRateConfig,
+        SharedUnitConversionRateConfigFromRaw
+    >)
 )]
-public sealed record class SharedUnitConversionRateConfig : ModelBase
+public sealed record class SharedUnitConversionRateConfig : JsonModel
 {
     public required ApiEnum<
         string,
@@ -21,20 +24,20 @@ public sealed record class SharedUnitConversionRateConfig : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, SharedUnitConversionRateConfigConversionRateType>
             >(this.RawData, "conversion_rate_type");
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_type", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_type", value); }
     }
 
     public required ConversionRateUnitConfig UnitConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<ConversionRateUnitConfig>(this.RawData, "unit_config");
+            return JsonModel.GetNotNullClass<ConversionRateUnitConfig>(this.RawData, "unit_config");
         }
-        init { ModelBase.Set(this._rawData, "unit_config", value); }
+        init { JsonModel.Set(this._rawData, "unit_config", value); }
     }
 
     /// <inheritdoc/>
@@ -73,7 +76,7 @@ public sealed record class SharedUnitConversionRateConfig : ModelBase
     }
 }
 
-class SharedUnitConversionRateConfigFromRaw : IFromRaw<SharedUnitConversionRateConfig>
+class SharedUnitConversionRateConfigFromRaw : IFromRawJson<SharedUnitConversionRateConfig>
 {
     /// <inheritdoc/>
     public SharedUnitConversionRateConfig FromRawUnchecked(

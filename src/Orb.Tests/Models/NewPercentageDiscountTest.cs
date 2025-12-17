@@ -133,8 +133,8 @@ public class NewPercentageDiscountTest : TestBase
             PriceType = NewPercentageDiscountPriceType.Usage,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPercentageDiscount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPercentageDiscount>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPercentageDiscountAdjustmentType> expectedAdjustmentType =
@@ -573,8 +573,8 @@ public class NewPercentageDiscountFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPercentageDiscountFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPercentageDiscountFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPercentageDiscountFilterField> expectedField =

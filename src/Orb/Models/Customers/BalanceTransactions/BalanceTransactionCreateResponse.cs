@@ -10,31 +10,31 @@ using System = System;
 namespace Orb.Models.Customers.BalanceTransactions;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         BalanceTransactionCreateResponse,
         BalanceTransactionCreateResponseFromRaw
     >)
 )]
-public sealed record class BalanceTransactionCreateResponse : ModelBase
+public sealed record class BalanceTransactionCreateResponse : JsonModel
 {
     /// <summary>
     /// A unique id for this transaction.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action> Action
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Action>
             >(this.RawData, "action");
         }
-        init { ModelBase.Set(this._rawData, "action", value); }
+        init { JsonModel.Set(this._rawData, "action", value); }
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -53,15 +53,15 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     public required CreditNoteTiny? CreditNote
     {
-        get { return ModelBase.GetNullableClass<CreditNoteTiny>(this.RawData, "credit_note"); }
-        init { ModelBase.Set(this._rawData, "credit_note", value); }
+        get { return JsonModel.GetNullableClass<CreditNoteTiny>(this.RawData, "credit_note"); }
+        init { JsonModel.Set(this._rawData, "credit_note", value); }
     }
 
     /// <summary>
@@ -69,8 +69,8 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -78,14 +78,14 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string EndingBalance
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "ending_balance"); }
-        init { ModelBase.Set(this._rawData, "ending_balance", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "ending_balance"); }
+        init { JsonModel.Set(this._rawData, "ending_balance", value); }
     }
 
     public required InvoiceTiny? Invoice
     {
-        get { return ModelBase.GetNullableClass<InvoiceTiny>(this.RawData, "invoice"); }
-        init { ModelBase.Set(this._rawData, "invoice", value); }
+        get { return JsonModel.GetNullableClass<InvoiceTiny>(this.RawData, "invoice"); }
+        init { JsonModel.Set(this._rawData, "invoice", value); }
     }
 
     /// <summary>
@@ -94,20 +94,20 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     /// </summary>
     public required string StartingBalance
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "starting_balance"); }
-        init { ModelBase.Set(this._rawData, "starting_balance", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "starting_balance"); }
+        init { JsonModel.Set(this._rawData, "starting_balance", value); }
     }
 
     public required ApiEnum<string, BalanceTransactionCreateResponseType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, BalanceTransactionCreateResponseType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, BalanceTransactionCreateResponseType>>(
                 this.RawData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <inheritdoc/>
@@ -154,7 +154,7 @@ public sealed record class BalanceTransactionCreateResponse : ModelBase
     }
 }
 
-class BalanceTransactionCreateResponseFromRaw : IFromRaw<BalanceTransactionCreateResponse>
+class BalanceTransactionCreateResponseFromRaw : IFromRawJson<BalanceTransactionCreateResponse>
 {
     /// <inheritdoc/>
     public BalanceTransactionCreateResponse FromRawUnchecked(

@@ -53,8 +53,8 @@ public class NewSphereConfigurationTest : TestBase
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewSphereConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewSphereConfiguration>(element);
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;

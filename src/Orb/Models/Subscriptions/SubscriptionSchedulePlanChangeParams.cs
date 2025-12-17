@@ -183,11 +183,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, SubscriptionSchedulePlanChangeParamsChangeOption>
             >(this.RawBodyData, "change_option");
         }
-        init { ModelBase.Set(this._rawBodyData, "change_option", value); }
+        init { JsonModel.Set(this._rawBodyData, "change_option", value); }
     }
 
     /// <summary>
@@ -198,11 +198,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<SubscriptionSchedulePlanChangeParamsAddAdjustment>
             >(this.RawBodyData, "add_adjustments");
         }
-        init { ModelBase.Set(this._rawBodyData, "add_adjustments", value); }
+        init { JsonModel.Set(this._rawBodyData, "add_adjustments", value); }
     }
 
     /// <summary>
@@ -213,12 +213,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<SubscriptionSchedulePlanChangeParamsAddPrice>>(
+            return JsonModel.GetNullableClass<List<SubscriptionSchedulePlanChangeParamsAddPrice>>(
                 this.RawBodyData,
                 "add_prices"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "add_prices", value); }
+        init { JsonModel.Set(this._rawBodyData, "add_prices", value); }
     }
 
     /// <summary>
@@ -229,12 +229,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(
+            return JsonModel.GetNullableStruct<bool>(
                 this.RawBodyData,
                 "align_billing_with_plan_change_date"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "align_billing_with_plan_change_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "align_billing_with_plan_change_date", value); }
     }
 
     /// <summary>
@@ -244,8 +244,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
-        init { ModelBase.Set(this._rawBodyData, "auto_collection", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
+        init { JsonModel.Set(this._rawBodyData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -257,24 +257,24 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, BillingCycleAlignment>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, BillingCycleAlignment>>(
                 this.RawBodyData,
                 "billing_cycle_alignment"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "billing_cycle_alignment", value); }
+        init { JsonModel.Set(this._rawBodyData, "billing_cycle_alignment", value); }
     }
 
     public BillingCycleAnchorConfiguration? BillingCycleAnchorConfiguration
     {
         get
         {
-            return ModelBase.GetNullableClass<BillingCycleAnchorConfiguration>(
+            return JsonModel.GetNullableClass<BillingCycleAnchorConfiguration>(
                 this.RawBodyData,
                 "billing_cycle_anchor_configuration"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "billing_cycle_anchor_configuration", value); }
+        init { JsonModel.Set(this._rawBodyData, "billing_cycle_anchor_configuration", value); }
     }
 
     /// <summary>
@@ -286,12 +286,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "change_date"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "change_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "change_date", value); }
     }
 
     /// <summary>
@@ -303,9 +303,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawBodyData, "coupon_redemption_code");
+            return JsonModel.GetNullableClass<string>(this.RawBodyData, "coupon_redemption_code");
         }
-        init { ModelBase.Set(this._rawBodyData, "coupon_redemption_code", value); }
+        init { JsonModel.Set(this._rawBodyData, "coupon_redemption_code", value); }
     }
 
     [System::Obsolete("deprecated")]
@@ -313,9 +313,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<double>(this.RawBodyData, "credits_overage_rate");
+            return JsonModel.GetNullableStruct<double>(this.RawBodyData, "credits_overage_rate");
         }
-        init { ModelBase.Set(this._rawBodyData, "credits_overage_rate", value); }
+        init { JsonModel.Set(this._rawBodyData, "credits_overage_rate", value); }
     }
 
     /// <summary>
@@ -324,8 +324,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public string? DefaultInvoiceMemo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "default_invoice_memo"); }
-        init { ModelBase.Set(this._rawBodyData, "default_invoice_memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "default_invoice_memo"); }
+        init { JsonModel.Set(this._rawBodyData, "default_invoice_memo", value); }
     }
 
     /// <summary>
@@ -334,8 +334,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public string? ExternalPlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_plan_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_plan_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_plan_id", value); }
     }
 
     /// <summary>
@@ -345,8 +345,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public string? Filter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "filter"); }
-        init { ModelBase.Set(this._rawBodyData, "filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "filter"); }
+        init { JsonModel.Set(this._rawBodyData, "filter", value); }
     }
 
     /// <summary>
@@ -354,8 +354,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public long? InitialPhaseOrder
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "initial_phase_order"); }
-        init { ModelBase.Set(this._rawBodyData, "initial_phase_order", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "initial_phase_order"); }
+        init { JsonModel.Set(this._rawBodyData, "initial_phase_order", value); }
     }
 
     /// <summary>
@@ -365,8 +365,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public string? InvoicingThreshold
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "invoicing_threshold"); }
-        init { ModelBase.Set(this._rawBodyData, "invoicing_threshold", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "invoicing_threshold"); }
+        init { JsonModel.Set(this._rawBodyData, "invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -376,8 +376,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
-        init { ModelBase.Set(this._rawBodyData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
+        init { JsonModel.Set(this._rawBodyData, "net_terms", value); }
     }
 
     [System::Obsolete("deprecated")]
@@ -385,12 +385,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<double>(
+            return JsonModel.GetNullableStruct<double>(
                 this.RawBodyData,
                 "per_credit_overage_amount"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "per_credit_overage_amount", value); }
+        init { JsonModel.Set(this._rawBodyData, "per_credit_overage_amount", value); }
     }
 
     /// <summary>
@@ -399,8 +399,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public string? PlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "plan_id"); }
-        init { ModelBase.Set(this._rawBodyData, "plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "plan_id"); }
+        init { JsonModel.Set(this._rawBodyData, "plan_id", value); }
     }
 
     /// <summary>
@@ -409,8 +409,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public long? PlanVersionNumber
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "plan_version_number"); }
-        init { ModelBase.Set(this._rawBodyData, "plan_version_number", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "plan_version_number"); }
+        init { JsonModel.Set(this._rawBodyData, "plan_version_number", value); }
     }
 
     /// <summary>
@@ -421,12 +421,12 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<JsonElement>>(
+            return JsonModel.GetNullableClass<List<JsonElement>>(
                 this.RawBodyData,
                 "price_overrides"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "price_overrides", value); }
+        init { JsonModel.Set(this._rawBodyData, "price_overrides", value); }
     }
 
     /// <summary>
@@ -437,11 +437,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<SubscriptionSchedulePlanChangeParamsRemoveAdjustment>
             >(this.RawBodyData, "remove_adjustments");
         }
-        init { ModelBase.Set(this._rawBodyData, "remove_adjustments", value); }
+        init { JsonModel.Set(this._rawBodyData, "remove_adjustments", value); }
     }
 
     /// <summary>
@@ -452,11 +452,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<SubscriptionSchedulePlanChangeParamsRemovePrice>
             >(this.RawBodyData, "remove_prices");
         }
-        init { ModelBase.Set(this._rawBodyData, "remove_prices", value); }
+        init { JsonModel.Set(this._rawBodyData, "remove_prices", value); }
     }
 
     /// <summary>
@@ -467,11 +467,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<SubscriptionSchedulePlanChangeParamsReplaceAdjustment>
             >(this.RawBodyData, "replace_adjustments");
         }
-        init { ModelBase.Set(this._rawBodyData, "replace_adjustments", value); }
+        init { JsonModel.Set(this._rawBodyData, "replace_adjustments", value); }
     }
 
     /// <summary>
@@ -482,11 +482,11 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<SubscriptionSchedulePlanChangeParamsReplacePrice>
             >(this.RawBodyData, "replace_prices");
         }
-        init { ModelBase.Set(this._rawBodyData, "replace_prices", value); }
+        init { JsonModel.Set(this._rawBodyData, "replace_prices", value); }
     }
 
     /// <summary>
@@ -496,8 +496,8 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     /// </summary>
     public long? TrialDurationDays
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "trial_duration_days"); }
-        init { ModelBase.Set(this._rawBodyData, "trial_duration_days", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "trial_duration_days"); }
+        init { JsonModel.Set(this._rawBodyData, "trial_duration_days", value); }
     }
 
     /// <summary>
@@ -512,9 +512,9 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawBodyData, "usage_customer_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawBodyData, "usage_customer_ids");
         }
-        init { ModelBase.Set(this._rawBodyData, "usage_customer_ids", value); }
+        init { JsonModel.Set(this._rawBodyData, "usage_customer_ids", value); }
     }
 
     public SubscriptionSchedulePlanChangeParams() { }
@@ -552,7 +552,7 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionSchedulePlanChangeParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -577,9 +577,13 @@ public sealed record class SubscriptionSchedulePlanChangeParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -643,12 +647,12 @@ sealed class SubscriptionSchedulePlanChangeParamsChangeOptionConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddAdjustment,
         SubscriptionSchedulePlanChangeParamsAddAdjustmentFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : JsonModel
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the subscription.
@@ -657,12 +661,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment>(
                 this.RawData,
                 "adjustment"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustment", value); }
+        init { JsonModel.Set(this._rawData, "adjustment", value); }
     }
 
     /// <summary>
@@ -673,9 +677,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -683,8 +687,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
     /// </summary>
     public long? PlanPhaseOrder
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
-        init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
+        init { JsonModel.Set(this._rawData, "plan_phase_order", value); }
     }
 
     /// <summary>
@@ -696,9 +700,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -751,7 +755,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddAdjustment : M
 }
 
 class SubscriptionSchedulePlanChangeParamsAddAdjustmentFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddAdjustment>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddAdjustment>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddAdjustment FromRawUnchecked(
@@ -767,11 +771,11 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string? Currency
@@ -804,52 +808,52 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
         NewPercentageDiscount value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
         NewUsageDiscount value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
         NewAmountDiscount value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
         NewMinimum value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(
         NewMaximum value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(JsonElement json)
+    public SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1124,11 +1128,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? adjustmentType;
         try
         {
-            adjustmentType = json.GetProperty("adjustment_type").GetString();
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
         }
         catch
         {
@@ -1142,13 +1146,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPercentageDiscount>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1157,17 +1161,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "usage_discount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1176,17 +1183,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount_discount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1195,17 +1205,17 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewMinimum>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewMinimum>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1214,17 +1224,17 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "maximum":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewMaximum>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewMaximum>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1233,11 +1243,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(json);
+                return new SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment(element);
             }
         }
     }
@@ -1253,12 +1263,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverte
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPrice,
         SubscriptionSchedulePlanChangeParamsAddPriceFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : JsonModel
 {
     /// <summary>
     /// The definition of a new allocation price to create and add to the subscription.
@@ -1267,9 +1277,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     {
         get
         {
-            return ModelBase.GetNullableClass<NewAllocationPrice>(this.RawData, "allocation_price");
+            return JsonModel.GetNullableClass<NewAllocationPrice>(this.RawData, "allocation_price");
         }
-        init { ModelBase.Set(this._rawData, "allocation_price", value); }
+        init { JsonModel.Set(this._rawData, "allocation_price", value); }
     }
 
     /// <summary>
@@ -1281,9 +1291,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     {
         get
         {
-            return ModelBase.GetNullableClass<List<DiscountOverride>>(this.RawData, "discounts");
+            return JsonModel.GetNullableClass<List<DiscountOverride>>(this.RawData, "discounts");
         }
-        init { ModelBase.Set(this._rawData, "discounts", value); }
+        init { JsonModel.Set(this._rawData, "discounts", value); }
     }
 
     /// <summary>
@@ -1294,9 +1304,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -1304,8 +1314,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -1315,8 +1325,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     [System::Obsolete("deprecated")]
     public string? MaximumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "maximum_amount"); }
-        init { ModelBase.Set(this._rawData, "maximum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "maximum_amount"); }
+        init { JsonModel.Set(this._rawData, "maximum_amount", value); }
     }
 
     /// <summary>
@@ -1326,8 +1336,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     [System::Obsolete("deprecated")]
     public string? MinimumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <summary>
@@ -1335,8 +1345,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     /// </summary>
     public long? PlanPhaseOrder
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
-        init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
+        init { JsonModel.Set(this._rawData, "plan_phase_order", value); }
     }
 
     /// <summary>
@@ -1346,12 +1356,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePrice>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePrice>(
                 this.RawData,
                 "price"
             );
         }
-        init { ModelBase.Set(this._rawData, "price", value); }
+        init { JsonModel.Set(this._rawData, "price", value); }
     }
 
     /// <summary>
@@ -1359,8 +1369,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     /// </summary>
     public string? PriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     /// <summary>
@@ -1372,9 +1382,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -1427,7 +1437,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPrice : ModelB
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPriceFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPrice>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPrice>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPrice FromRawUnchecked(
@@ -1443,11 +1453,11 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ItemID
@@ -1975,286 +1985,286 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionUnitPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionTieredPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionBulkPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMatrixPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionThresholdTotalAmountPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionTieredWithMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionGroupedTieredPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionTieredPackageWithMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionPackageWithAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionUnitWithPercentPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMatrixWithAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionUnitWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionGroupedAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionBulkWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionGroupedWithProratedMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionGroupedWithMeteredMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMatrixWithDisplayNamePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionGroupedTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMaxGroupTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionScalableMatrixWithUnitPricingPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionScalableMatrixWithTieredPricingPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionCumulativeGroupedBulkPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         NewSubscriptionMinimumCompositePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePricePercent value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePrice(
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubscriptionSchedulePlanChangeParamsAddPricePrice(JsonElement json)
+    public SubscriptionSchedulePlanChangeParamsAddPricePrice(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -3561,11 +3571,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? modelType;
         try
         {
-            modelType = json.GetProperty("model_type").GetString();
+            modelType = element.GetProperty("model_type").GetString();
         }
         catch
         {
@@ -3579,13 +3589,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3594,20 +3604,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionTieredPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3616,20 +3626,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3638,7 +3648,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk_with_filters":
             {
@@ -3646,13 +3656,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3661,20 +3671,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "package":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3683,20 +3693,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3705,7 +3715,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "threshold_total_amount":
             {
@@ -3713,13 +3723,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionThresholdTotalAmountPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3728,7 +3738,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_package":
             {
@@ -3736,13 +3746,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3751,7 +3761,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_with_minimum":
             {
@@ -3759,13 +3769,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionTieredWithMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3774,7 +3784,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_tiered":
             {
@@ -3782,13 +3792,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3797,7 +3807,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_package_with_minimum":
             {
@@ -3805,13 +3815,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionTieredPackageWithMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3820,7 +3830,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "package_with_allocation":
             {
@@ -3828,13 +3838,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionPackageWithAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3843,7 +3853,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "unit_with_percent":
             {
@@ -3851,13 +3861,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionUnitWithPercentPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3866,7 +3876,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix_with_allocation":
             {
@@ -3874,13 +3884,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3889,7 +3899,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_with_proration":
             {
@@ -3897,13 +3907,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3912,7 +3922,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "unit_with_proration":
             {
@@ -3920,13 +3930,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionUnitWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3935,7 +3945,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_allocation":
             {
@@ -3943,13 +3953,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3958,7 +3968,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk_with_proration":
             {
@@ -3966,13 +3976,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionBulkWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3981,7 +3991,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_prorated_minimum":
             {
@@ -3989,13 +3999,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedWithProratedMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4004,7 +4014,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_metered_minimum":
             {
@@ -4012,13 +4022,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedWithMeteredMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4027,7 +4037,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_min_max_thresholds":
             {
@@ -4035,13 +4045,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4050,7 +4060,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix_with_display_name":
             {
@@ -4058,13 +4068,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4073,7 +4083,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_tiered_package":
             {
@@ -4081,13 +4091,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4096,7 +4106,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "max_group_tiered_package":
             {
@@ -4104,13 +4114,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMaxGroupTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4119,7 +4129,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "scalable_matrix_with_unit_pricing":
             {
@@ -4127,13 +4137,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionScalableMatrixWithUnitPricingPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4142,7 +4152,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
@@ -4150,13 +4160,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionScalableMatrixWithTieredPricingPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4165,7 +4175,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "cumulative_grouped_bulk":
             {
@@ -4173,13 +4183,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionCumulativeGroupedBulkPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4188,7 +4198,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "cumulative_grouped_allocation":
             {
@@ -4196,13 +4206,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4211,7 +4221,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
@@ -4219,13 +4229,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMinimumCompositePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4234,7 +4244,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percent":
             {
@@ -4242,13 +4252,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePricePercent>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4257,7 +4267,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "event_output":
             {
@@ -4265,13 +4275,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4280,11 +4290,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new SubscriptionSchedulePlanChangeParamsAddPricePrice(json);
+                return new SubscriptionSchedulePlanChangeParamsAddPricePrice(element);
             }
         }
     }
@@ -4300,13 +4310,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters,
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -4315,12 +4325,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>(
                 this.RawData,
                 "bulk_with_filters_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "bulk_with_filters_config", value); }
+        init { JsonModel.Set(this._rawData, "bulk_with_filters_config", value); }
     }
 
     /// <summary>
@@ -4333,14 +4343,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -4348,8 +4358,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -4357,8 +4367,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -4366,8 +4376,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -4375,8 +4385,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -4385,8 +4395,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -4397,12 +4407,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -4410,8 +4420,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -4421,12 +4431,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -4435,8 +4445,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -4446,12 +4456,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -4459,8 +4469,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -4468,8 +4478,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -4477,8 +4487,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -4489,12 +4499,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -4506,12 +4516,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -4520,8 +4530,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -4594,7 +4604,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFilters FromRawUnchecked(
@@ -4606,13 +4616,13 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersFromRaw
 /// Configuration for bulk_with_filters pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig,
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -4621,11 +4631,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
             >(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -4635,11 +4645,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier>
             >(this.RawData, "tiers");
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -4692,7 +4702,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
@@ -4707,21 +4717,21 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFi
 /// Configuration for a single property filter
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter,
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Event property key to filter on
     /// </summary>
     public required string PropertyKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_key"); }
-        init { ModelBase.Set(this._rawData, "property_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_key"); }
+        init { JsonModel.Set(this._rawData, "property_key", value); }
     }
 
     /// <summary>
@@ -4729,8 +4739,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public required string PropertyValue
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_value"); }
-        init { ModelBase.Set(this._rawData, "property_value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_value"); }
+        init { JsonModel.Set(this._rawData, "property_value", value); }
     }
 
     /// <inheritdoc/>
@@ -4777,7 +4787,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
@@ -4792,21 +4802,21 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFi
 /// Configuration for a single bulk pricing tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier,
         SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Amount per unit
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -4814,8 +4824,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
     /// </summary>
     public string? TierLowerBound
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <inheritdoc/>
@@ -4871,7 +4881,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulk
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
@@ -4963,36 +4973,36 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -5164,11 +5174,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -5182,13 +5192,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -5197,20 +5207,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -5219,12 +5229,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -5241,13 +5251,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCon
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration,
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -5259,14 +5269,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -5274,8 +5284,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -5283,8 +5293,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -5292,8 +5302,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -5303,12 +5313,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>(
                 this.RawData,
                 "tiered_with_proration_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "tiered_with_proration_config", value); }
+        init { JsonModel.Set(this._rawData, "tiered_with_proration_config", value); }
     }
 
     /// <summary>
@@ -5316,8 +5326,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -5326,8 +5336,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -5338,12 +5348,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -5351,8 +5361,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -5362,12 +5372,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -5376,8 +5386,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -5387,12 +5397,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -5400,8 +5410,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -5409,8 +5419,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -5418,8 +5428,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -5430,12 +5440,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -5447,12 +5457,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -5461,8 +5471,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -5535,7 +5545,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProration FromRawUnchecked(
@@ -5624,13 +5634,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig,
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -5640,11 +5650,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier>
             >(this.RawData, "tiers");
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -5702,7 +5712,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
@@ -5717,21 +5727,21 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTiered
 /// Configuration for a single tiered with proration tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier,
         SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Inclusive tier starting value
     /// </summary>
     public required string TierLowerBound
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <summary>
@@ -5739,8 +5749,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -5787,7 +5797,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceTier
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
@@ -5805,36 +5815,36 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -6006,11 +6016,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -6024,13 +6034,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -6039,20 +6049,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -6061,12 +6071,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -6083,13 +6093,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds,
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -6101,14 +6111,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -6118,12 +6128,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 this.RawData,
                 "grouped_with_min_max_thresholds_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "grouped_with_min_max_thresholds_config", value); }
+        init { JsonModel.Set(this._rawData, "grouped_with_min_max_thresholds_config", value); }
     }
 
     /// <summary>
@@ -6131,8 +6141,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -6140,8 +6150,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -6149,8 +6159,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -6158,8 +6168,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -6168,8 +6178,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -6180,12 +6190,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -6193,8 +6203,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -6204,12 +6214,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -6218,8 +6228,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -6229,12 +6239,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -6242,8 +6252,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -6251,8 +6261,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -6260,8 +6270,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -6272,12 +6282,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -6289,12 +6299,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -6303,8 +6313,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -6381,7 +6391,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
@@ -6473,21 +6483,21 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
         SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The event property used to group before applying thresholds
     /// </summary>
     public required string GroupingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <summary>
@@ -6495,8 +6505,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public required string MaximumCharge
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "maximum_charge"); }
-        init { ModelBase.Set(this._rawData, "maximum_charge", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "maximum_charge"); }
+        init { JsonModel.Set(this._rawData, "maximum_charge", value); }
     }
 
     /// <summary>
@@ -6504,8 +6514,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public required string MinimumCharge
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_charge"); }
-        init { ModelBase.Set(this._rawData, "minimum_charge", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_charge"); }
+        init { JsonModel.Set(this._rawData, "minimum_charge", value); }
     }
 
     /// <summary>
@@ -6513,8 +6523,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
     /// </summary>
     public required string PerUnitRate
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_rate"); }
-        init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_rate"); }
+        init { JsonModel.Set(this._rawData, "per_unit_rate", value); }
     }
 
     /// <inheritdoc/>
@@ -6563,7 +6573,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceGrou
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
@@ -6581,36 +6591,36 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -6782,11 +6792,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -6800,13 +6810,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -6815,20 +6825,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -6837,12 +6847,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -6859,13 +6869,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation,
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -6877,14 +6887,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -6894,12 +6904,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 this.RawData,
                 "cumulative_grouped_allocation_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "cumulative_grouped_allocation_config", value); }
+        init { JsonModel.Set(this._rawData, "cumulative_grouped_allocation_config", value); }
     }
 
     /// <summary>
@@ -6907,8 +6917,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -6916,8 +6926,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -6925,8 +6935,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -6934,8 +6944,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -6944,8 +6954,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -6956,12 +6966,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -6969,8 +6979,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -6980,12 +6990,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -6994,8 +7004,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -7005,12 +7015,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -7018,8 +7028,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -7027,8 +7037,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -7036,8 +7046,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -7048,12 +7058,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -7065,12 +7075,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -7079,8 +7089,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -7157,7 +7167,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocation FromRawUnchecked(
@@ -7249,21 +7259,21 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
         SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The overall allocation across all groups
     /// </summary>
     public required string CumulativeAllocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "cumulative_allocation"); }
-        init { ModelBase.Set(this._rawData, "cumulative_allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "cumulative_allocation"); }
+        init { JsonModel.Set(this._rawData, "cumulative_allocation", value); }
     }
 
     /// <summary>
@@ -7271,8 +7281,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public required string GroupAllocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "group_allocation"); }
-        init { ModelBase.Set(this._rawData, "group_allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "group_allocation"); }
+        init { JsonModel.Set(this._rawData, "group_allocation", value); }
     }
 
     /// <summary>
@@ -7280,8 +7290,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public required string GroupingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <summary>
@@ -7289,8 +7299,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -7339,7 +7349,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumu
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
@@ -7357,36 +7367,36 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -7558,11 +7568,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -7576,13 +7586,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -7591,20 +7601,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -7613,12 +7623,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -7635,12 +7645,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePricePercent,
         SubscriptionSchedulePlanChangeParamsAddPricePricePercentFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePercent : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePercent : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -7652,11 +7662,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, SubscriptionSchedulePlanChangeParamsAddPricePricePercentCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -7664,8 +7674,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -7673,8 +7683,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -7682,8 +7692,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -7693,12 +7703,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>(
                 this.RawData,
                 "percent_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "percent_config", value); }
+        init { JsonModel.Set(this._rawData, "percent_config", value); }
     }
 
     /// <summary>
@@ -7706,8 +7716,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -7716,8 +7726,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -7728,12 +7738,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -7741,8 +7751,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -7752,12 +7762,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -7766,8 +7776,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -7777,12 +7787,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -7790,8 +7800,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -7799,8 +7809,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -7808,8 +7818,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -7820,12 +7830,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -7837,12 +7847,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -7851,8 +7861,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -7925,7 +7935,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePricePercentFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePricePercent>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePricePercent>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercent FromRawUnchecked(
@@ -8003,21 +8013,21 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentCadenceConv
 /// Configuration for percent pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig,
         SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// What percent of the component subtotals to charge
     /// </summary>
     public required double Percent
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percent"); }
-        init { ModelBase.Set(this._rawData, "percent", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percent"); }
+        init { JsonModel.Set(this._rawData, "percent", value); }
     }
 
     /// <inheritdoc/>
@@ -8067,7 +8077,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePricePerc
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfig FromRawUnchecked(
@@ -8085,36 +8095,36 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -8286,11 +8296,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -8304,13 +8314,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -8319,20 +8329,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -8341,12 +8351,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -8363,12 +8373,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionR
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput,
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -8380,11 +8390,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -8394,12 +8404,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>(
                 this.RawData,
                 "event_output_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "event_output_config", value); }
+        init { JsonModel.Set(this._rawData, "event_output_config", value); }
     }
 
     /// <summary>
@@ -8407,8 +8417,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -8416,8 +8426,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -8425,8 +8435,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -8434,8 +8444,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -8444,8 +8454,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -8456,12 +8466,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -8469,8 +8479,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -8480,12 +8490,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -8494,8 +8504,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -8505,12 +8515,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -8518,8 +8528,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -8527,8 +8537,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -8536,8 +8546,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -8548,12 +8558,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -8565,12 +8575,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -8579,8 +8589,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -8653,7 +8663,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput FromRawUnchecked(
@@ -8737,21 +8747,21 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputCadence
 /// Configuration for event_output pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig,
         SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
     /// </summary>
     public required string UnitRatingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_rating_key"); }
-        init { ModelBase.Set(this._rawData, "unit_rating_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_rating_key"); }
+        init { JsonModel.Set(this._rawData, "unit_rating_key", value); }
     }
 
     /// <summary>
@@ -8761,8 +8771,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? DefaultUnitRate
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "default_unit_rate"); }
-        init { ModelBase.Set(this._rawData, "default_unit_rate", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "default_unit_rate"); }
+        init { JsonModel.Set(this._rawData, "default_unit_rate", value); }
     }
 
     /// <summary>
@@ -8771,8 +8781,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
     /// </summary>
     public string? GroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <inheritdoc/>
@@ -8826,7 +8836,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsAddPricePriceEven
 }
 
 class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputConfig FromRawUnchecked(
@@ -8844,36 +8854,36 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -9045,11 +9055,11 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -9063,13 +9073,13 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9078,20 +9088,20 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9100,12 +9110,12 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConvers
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -9174,20 +9184,20 @@ sealed class BillingCycleAlignmentConverter : JsonConverter<BillingCycleAlignmen
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsRemoveAdjustment,
         SubscriptionSchedulePlanChangeParamsRemoveAdjustmentFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment : JsonModel
 {
     /// <summary>
     /// The id of the adjustment to remove on the subscription.
     /// </summary>
     public required string AdjustmentID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "adjustment_id"); }
-        init { ModelBase.Set(this._rawData, "adjustment_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "adjustment_id"); }
+        init { JsonModel.Set(this._rawData, "adjustment_id", value); }
     }
 
     /// <inheritdoc/>
@@ -9237,7 +9247,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemoveAdjustment 
 }
 
 class SubscriptionSchedulePlanChangeParamsRemoveAdjustmentFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsRemoveAdjustment>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsRemoveAdjustment>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsRemoveAdjustment FromRawUnchecked(
@@ -9246,20 +9256,20 @@ class SubscriptionSchedulePlanChangeParamsRemoveAdjustmentFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsRemovePrice,
         SubscriptionSchedulePlanChangeParamsRemovePriceFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : JsonModel
 {
     /// <summary>
     /// The external price id of the price to remove on the subscription.
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -9267,8 +9277,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Mod
     /// </summary>
     public string? PriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     /// <inheritdoc/>
@@ -9310,7 +9320,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsRemovePrice : Mod
 }
 
 class SubscriptionSchedulePlanChangeParamsRemovePriceFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsRemovePrice>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsRemovePrice>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsRemovePrice FromRawUnchecked(
@@ -9319,12 +9329,12 @@ class SubscriptionSchedulePlanChangeParamsRemovePriceFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplaceAdjustment,
         SubscriptionSchedulePlanChangeParamsReplaceAdjustmentFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment : JsonModel
 {
     /// <summary>
     /// The definition of a new adjustment to create and add to the subscription.
@@ -9333,12 +9343,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment>(
                 this.RawData,
                 "adjustment"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustment", value); }
+        init { JsonModel.Set(this._rawData, "adjustment", value); }
     }
 
     /// <summary>
@@ -9346,8 +9356,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
     /// </summary>
     public required string ReplacesAdjustmentID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "replaces_adjustment_id"); }
-        init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "replaces_adjustment_id"); }
+        init { JsonModel.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
     /// <inheritdoc/>
@@ -9391,7 +9401,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplaceAdjustment
 }
 
 class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplaceAdjustment>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplaceAdjustment>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustment FromRawUnchecked(
@@ -9407,11 +9417,11 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string? Currency
@@ -9444,52 +9454,52 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
         NewPercentageDiscount value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
         NewUsageDiscount value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
         NewAmountDiscount value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
         NewMinimum value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(
         NewMaximum value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(JsonElement json)
+    public SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -9766,11 +9776,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? adjustmentType;
         try
         {
-            adjustmentType = json.GetProperty("adjustment_type").GetString();
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
         }
         catch
         {
@@ -9784,13 +9794,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewPercentageDiscount>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9799,17 +9809,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "usage_discount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewUsageDiscount>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9818,17 +9831,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount_discount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewAmountDiscount>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9837,17 +9853,17 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewMinimum>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewMinimum>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9856,17 +9872,17 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "maximum":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<NewMaximum>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<NewMaximum>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -9875,11 +9891,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(json);
+                return new SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment(element);
             }
         }
     }
@@ -9895,20 +9911,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConv
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePrice,
         SubscriptionSchedulePlanChangeParamsReplacePriceFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : JsonModel
 {
     /// <summary>
     /// The id of the price on the plan to replace in the subscription.
     /// </summary>
     public required string ReplacesPriceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "replaces_price_id"); }
-        init { ModelBase.Set(this._rawData, "replaces_price_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "replaces_price_id"); }
+        init { JsonModel.Set(this._rawData, "replaces_price_id", value); }
     }
 
     /// <summary>
@@ -9918,9 +9934,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<NewAllocationPrice>(this.RawData, "allocation_price");
+            return JsonModel.GetNullableClass<NewAllocationPrice>(this.RawData, "allocation_price");
         }
-        init { ModelBase.Set(this._rawData, "allocation_price", value); }
+        init { JsonModel.Set(this._rawData, "allocation_price", value); }
     }
 
     /// <summary>
@@ -9932,9 +9948,9 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<List<DiscountOverride>>(this.RawData, "discounts");
+            return JsonModel.GetNullableClass<List<DiscountOverride>>(this.RawData, "discounts");
         }
-        init { ModelBase.Set(this._rawData, "discounts", value); }
+        init { JsonModel.Set(this._rawData, "discounts", value); }
     }
 
     /// <summary>
@@ -9942,8 +9958,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -9951,8 +9967,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -9962,8 +9978,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     [System::Obsolete("deprecated")]
     public string? MaximumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "maximum_amount"); }
-        init { ModelBase.Set(this._rawData, "maximum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "maximum_amount"); }
+        init { JsonModel.Set(this._rawData, "maximum_amount", value); }
     }
 
     /// <summary>
@@ -9973,8 +9989,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     [System::Obsolete("deprecated")]
     public string? MinimumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <summary>
@@ -9984,12 +10000,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePrice>(
                 this.RawData,
                 "price"
             );
         }
-        init { ModelBase.Set(this._rawData, "price", value); }
+        init { JsonModel.Set(this._rawData, "price", value); }
     }
 
     /// <summary>
@@ -9997,8 +10013,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
     /// </summary>
     public string? PriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     /// <inheritdoc/>
@@ -10057,7 +10073,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePrice : Mo
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePriceFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePrice>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePrice>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePrice FromRawUnchecked(
@@ -10073,11 +10089,11 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ItemID
@@ -10605,286 +10621,286 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionUnitPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionTieredPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionBulkPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMatrixPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionThresholdTotalAmountPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionTieredWithMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionGroupedTieredPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionTieredPackageWithMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionPackageWithAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionUnitWithPercentPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMatrixWithAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionUnitWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionGroupedAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionBulkWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionGroupedWithProratedMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionGroupedWithMeteredMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMatrixWithDisplayNamePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionGroupedTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMaxGroupTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionScalableMatrixWithUnitPricingPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionScalableMatrixWithTieredPricingPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionCumulativeGroupedBulkPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         NewSubscriptionMinimumCompositePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercent value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePrice(
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubscriptionSchedulePlanChangeParamsReplacePricePrice(JsonElement json)
+    public SubscriptionSchedulePlanChangeParamsReplacePricePrice(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -12196,11 +12212,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? modelType;
         try
         {
-            modelType = json.GetProperty("model_type").GetString();
+            modelType = element.GetProperty("model_type").GetString();
         }
         catch
         {
@@ -12214,13 +12230,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionUnitPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12229,20 +12245,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionTieredPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12251,20 +12267,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionBulkPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12273,7 +12289,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk_with_filters":
             {
@@ -12281,13 +12297,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12296,20 +12312,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "package":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionPackagePrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12318,20 +12334,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewSubscriptionMatrixPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12340,7 +12356,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "threshold_total_amount":
             {
@@ -12348,13 +12364,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionThresholdTotalAmountPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12363,7 +12379,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_package":
             {
@@ -12371,13 +12387,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12386,7 +12402,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_with_minimum":
             {
@@ -12394,13 +12410,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionTieredWithMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12409,7 +12425,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_tiered":
             {
@@ -12417,13 +12433,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12432,7 +12448,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_package_with_minimum":
             {
@@ -12440,13 +12456,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionTieredPackageWithMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12455,7 +12471,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "package_with_allocation":
             {
@@ -12463,13 +12479,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionPackageWithAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12478,7 +12494,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "unit_with_percent":
             {
@@ -12486,13 +12502,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionUnitWithPercentPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12501,7 +12517,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix_with_allocation":
             {
@@ -12509,13 +12525,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMatrixWithAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12524,7 +12540,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_with_proration":
             {
@@ -12532,13 +12548,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12547,7 +12563,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "unit_with_proration":
             {
@@ -12555,13 +12571,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionUnitWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12570,7 +12586,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_allocation":
             {
@@ -12578,13 +12594,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12593,7 +12609,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk_with_proration":
             {
@@ -12601,13 +12617,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionBulkWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12616,7 +12632,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_prorated_minimum":
             {
@@ -12624,13 +12640,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedWithProratedMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12639,7 +12655,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_metered_minimum":
             {
@@ -12647,13 +12663,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedWithMeteredMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12662,7 +12678,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_min_max_thresholds":
             {
@@ -12670,13 +12686,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12685,7 +12701,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix_with_display_name":
             {
@@ -12693,13 +12709,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMatrixWithDisplayNamePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12708,7 +12724,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_tiered_package":
             {
@@ -12716,13 +12732,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionGroupedTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12731,7 +12747,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "max_group_tiered_package":
             {
@@ -12739,13 +12755,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMaxGroupTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12754,7 +12770,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "scalable_matrix_with_unit_pricing":
             {
@@ -12762,13 +12778,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionScalableMatrixWithUnitPricingPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12777,7 +12793,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
@@ -12785,13 +12801,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionScalableMatrixWithTieredPricingPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12800,7 +12816,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "cumulative_grouped_bulk":
             {
@@ -12808,13 +12824,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionCumulativeGroupedBulkPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12823,7 +12839,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "cumulative_grouped_allocation":
             {
@@ -12831,13 +12847,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12846,7 +12862,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
@@ -12854,13 +12870,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewSubscriptionMinimumCompositePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12869,7 +12885,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percent":
             {
@@ -12877,13 +12893,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePricePercent>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12892,7 +12908,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "event_output":
             {
@@ -12900,13 +12916,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -12915,11 +12931,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new SubscriptionSchedulePlanChangeParamsReplacePricePrice(json);
+                return new SubscriptionSchedulePlanChangeParamsReplacePricePrice(element);
             }
         }
     }
@@ -12935,13 +12951,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -12950,12 +12966,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>(
                 this.RawData,
                 "bulk_with_filters_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "bulk_with_filters_config", value); }
+        init { JsonModel.Set(this._rawData, "bulk_with_filters_config", value); }
     }
 
     /// <summary>
@@ -12968,14 +12984,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -12983,8 +12999,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -12992,8 +13008,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -13001,8 +13017,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -13010,8 +13026,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -13020,8 +13036,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -13032,12 +13048,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -13045,8 +13061,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -13056,12 +13072,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -13070,8 +13086,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -13081,12 +13097,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -13094,8 +13110,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -13103,8 +13119,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -13112,8 +13128,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -13124,12 +13140,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -13141,12 +13157,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -13155,8 +13171,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -13229,7 +13245,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilters FromRawUnchecked(
@@ -13244,13 +13260,13 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersFromRa
 /// Configuration for bulk_with_filters pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -13259,11 +13275,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
             >(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -13273,11 +13289,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
             >(this.RawData, "tiers");
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -13330,7 +13346,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
@@ -13345,21 +13361,21 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWi
 /// Configuration for a single property filter
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Event property key to filter on
     /// </summary>
     public required string PropertyKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_key"); }
-        init { ModelBase.Set(this._rawData, "property_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_key"); }
+        init { JsonModel.Set(this._rawData, "property_key", value); }
     }
 
     /// <summary>
@@ -13367,8 +13383,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string PropertyValue
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_value"); }
-        init { ModelBase.Set(this._rawData, "property_value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_value"); }
+        init { JsonModel.Set(this._rawData, "property_value", value); }
     }
 
     /// <inheritdoc/>
@@ -13415,7 +13431,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
@@ -13430,21 +13446,21 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWi
 /// Configuration for a single bulk pricing tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Amount per unit
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -13452,8 +13468,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? TierLowerBound
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <inheritdoc/>
@@ -13509,7 +13525,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
@@ -13601,36 +13617,36 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -13802,11 +13818,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -13820,13 +13836,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -13835,20 +13851,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -13857,12 +13873,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -13879,13 +13895,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -13897,14 +13913,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -13912,8 +13928,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -13921,8 +13937,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -13930,8 +13946,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -13941,12 +13957,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>(
                 this.RawData,
                 "tiered_with_proration_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "tiered_with_proration_config", value); }
+        init { JsonModel.Set(this._rawData, "tiered_with_proration_config", value); }
     }
 
     /// <summary>
@@ -13954,8 +13970,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -13964,8 +13980,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -13976,12 +13992,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -13989,8 +14005,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -14000,12 +14016,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -14014,8 +14030,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -14025,12 +14041,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -14038,8 +14054,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -14047,8 +14063,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -14056,8 +14072,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -14068,12 +14084,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -14085,12 +14101,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -14099,8 +14115,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -14173,7 +14189,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProration FromRawUnchecked(
@@ -14264,13 +14280,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
 /// Configuration for tiered_with_proration pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -14280,11 +14296,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
             >(this.RawData, "tiers");
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -14342,7 +14358,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfig FromRawUnchecked(
@@ -14357,21 +14373,21 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTi
 /// Configuration for a single tiered with proration tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Inclusive tier starting value
     /// </summary>
     public required string TierLowerBound
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <summary>
@@ -14379,8 +14395,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -14427,7 +14443,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTieredWithProrationConfigTier FromRawUnchecked(
@@ -14445,36 +14461,36 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -14646,11 +14662,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -14664,13 +14680,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -14679,20 +14695,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -14701,12 +14717,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -14723,13 +14739,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -14741,14 +14757,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -14758,12 +14774,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 this.RawData,
                 "grouped_with_min_max_thresholds_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "grouped_with_min_max_thresholds_config", value); }
+        init { JsonModel.Set(this._rawData, "grouped_with_min_max_thresholds_config", value); }
     }
 
     /// <summary>
@@ -14771,8 +14787,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -14780,8 +14796,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -14789,8 +14805,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -14798,8 +14814,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -14808,8 +14824,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -14820,12 +14836,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -14833,8 +14849,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -14844,12 +14860,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -14858,8 +14874,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -14869,12 +14885,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -14882,8 +14898,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -14891,8 +14907,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -14900,8 +14916,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -14912,12 +14928,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -14929,12 +14945,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -14943,8 +14959,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -15021,7 +15037,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholds FromRawUnchecked(
@@ -15113,21 +15129,21 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The event property used to group before applying thresholds
     /// </summary>
     public required string GroupingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <summary>
@@ -15135,8 +15151,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string MaximumCharge
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "maximum_charge"); }
-        init { ModelBase.Set(this._rawData, "maximum_charge", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "maximum_charge"); }
+        init { JsonModel.Set(this._rawData, "maximum_charge", value); }
     }
 
     /// <summary>
@@ -15144,8 +15160,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string MinimumCharge
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_charge"); }
-        init { ModelBase.Set(this._rawData, "minimum_charge", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_charge"); }
+        init { JsonModel.Set(this._rawData, "minimum_charge", value); }
     }
 
     /// <summary>
@@ -15153,8 +15169,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string PerUnitRate
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_rate"); }
-        init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_rate"); }
+        init { JsonModel.Set(this._rawData, "per_unit_rate", value); }
     }
 
     /// <inheritdoc/>
@@ -15203,7 +15219,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
@@ -15221,36 +15237,36 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -15422,11 +15438,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -15440,13 +15456,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -15455,20 +15471,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -15477,12 +15493,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -15499,13 +15515,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -15517,14 +15533,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -15534,12 +15550,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 this.RawData,
                 "cumulative_grouped_allocation_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "cumulative_grouped_allocation_config", value); }
+        init { JsonModel.Set(this._rawData, "cumulative_grouped_allocation_config", value); }
     }
 
     /// <summary>
@@ -15547,8 +15563,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -15556,8 +15572,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -15565,8 +15581,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -15574,8 +15590,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -15584,8 +15600,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -15596,12 +15612,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -15609,8 +15625,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -15620,12 +15636,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -15634,8 +15650,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -15645,12 +15661,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -15658,8 +15674,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -15667,8 +15683,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -15676,8 +15692,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -15688,12 +15704,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -15705,12 +15721,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -15719,8 +15735,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -15797,7 +15813,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocation FromRawUnchecked(
@@ -15889,21 +15905,21 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The overall allocation across all groups
     /// </summary>
     public required string CumulativeAllocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "cumulative_allocation"); }
-        init { ModelBase.Set(this._rawData, "cumulative_allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "cumulative_allocation"); }
+        init { JsonModel.Set(this._rawData, "cumulative_allocation", value); }
     }
 
     /// <summary>
@@ -15911,8 +15927,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string GroupAllocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "group_allocation"); }
-        init { ModelBase.Set(this._rawData, "group_allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "group_allocation"); }
+        init { JsonModel.Set(this._rawData, "group_allocation", value); }
     }
 
     /// <summary>
@@ -15920,8 +15936,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string GroupingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <summary>
@@ -15929,8 +15945,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -15979,7 +15995,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
@@ -15997,36 +16013,36 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -16198,11 +16214,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -16216,13 +16232,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -16231,20 +16247,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -16253,12 +16269,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -16275,12 +16291,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercent,
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercentFromRaw
     >)
 )]
-public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent : ModelBase
+public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -16292,11 +16308,11 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, SubscriptionSchedulePlanChangeParamsReplacePricePricePercentCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -16304,8 +16320,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -16313,8 +16329,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -16322,8 +16338,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -16333,12 +16349,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>(
                 this.RawData,
                 "percent_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "percent_config", value); }
+        init { JsonModel.Set(this._rawData, "percent_config", value); }
     }
 
     /// <summary>
@@ -16346,8 +16362,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -16356,8 +16372,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -16368,12 +16384,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -16381,8 +16397,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -16392,12 +16408,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -16406,8 +16422,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -16417,12 +16433,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -16430,8 +16446,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -16439,8 +16455,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -16448,8 +16464,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -16460,12 +16476,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -16477,12 +16493,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -16491,8 +16507,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -16565,7 +16581,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePricePercent>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePricePercent>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercent FromRawUnchecked(
@@ -16649,21 +16665,21 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentCadence
 /// Configuration for percent pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig,
         SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// What percent of the component subtotals to charge
     /// </summary>
     public required double Percent
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percent"); }
-        init { ModelBase.Set(this._rawData, "percent", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percent"); }
+        init { JsonModel.Set(this._rawData, "percent", value); }
     }
 
     /// <inheritdoc/>
@@ -16713,7 +16729,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfig FromRawUnchecked(
@@ -16731,36 +16747,36 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -16932,11 +16948,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -16950,13 +16966,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -16965,20 +16981,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -16987,12 +17003,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -17009,13 +17025,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConvers
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -17027,14 +17043,14 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -17044,12 +17060,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>(
+            return JsonModel.GetNotNullClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>(
                 this.RawData,
                 "event_output_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "event_output_config", value); }
+        init { JsonModel.Set(this._rawData, "event_output_config", value); }
     }
 
     /// <summary>
@@ -17057,8 +17073,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -17066,8 +17082,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -17075,8 +17091,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -17084,8 +17100,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -17094,8 +17110,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -17106,12 +17122,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -17119,8 +17135,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -17130,12 +17146,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig>(
+            return JsonModel.GetNullableClass<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -17144,8 +17160,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -17155,12 +17171,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -17168,8 +17184,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -17177,8 +17193,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -17186,8 +17202,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -17198,12 +17214,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -17215,12 +17231,12 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -17229,8 +17245,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -17303,7 +17319,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutput FromRawUnchecked(
@@ -17389,21 +17405,21 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCad
 /// Configuration for event_output pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig,
         SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfigFromRaw
     >)
 )]
 public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
     /// </summary>
     public required string UnitRatingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_rating_key"); }
-        init { ModelBase.Set(this._rawData, "unit_rating_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_rating_key"); }
+        init { JsonModel.Set(this._rawData, "unit_rating_key", value); }
     }
 
     /// <summary>
@@ -17413,8 +17429,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? DefaultUnitRate
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "default_unit_rate"); }
-        init { ModelBase.Set(this._rawData, "default_unit_rate", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "default_unit_rate"); }
+        init { JsonModel.Set(this._rawData, "default_unit_rate", value); }
     }
 
     /// <summary>
@@ -17423,8 +17439,8 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// </summary>
     public string? GroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <inheritdoc/>
@@ -17479,7 +17495,7 @@ public sealed record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
 }
 
 class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfigFromRaw
-    : IFromRaw<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>
+    : IFromRawJson<SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig>
 {
     /// <inheritdoc/>
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutputConfig FromRawUnchecked(
@@ -17497,36 +17513,36 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -17698,11 +17714,11 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -17716,13 +17732,13 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -17731,20 +17747,20 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -17753,12 +17769,12 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCon
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig(
-                    json
+                    element
                 );
             }
         }

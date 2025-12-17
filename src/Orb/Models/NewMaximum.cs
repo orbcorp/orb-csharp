@@ -9,25 +9,25 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewMaximum, NewMaximumFromRaw>))]
-public sealed record class NewMaximum : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewMaximum, NewMaximumFromRaw>))]
+public sealed record class NewMaximum : JsonModel
 {
     public required ApiEnum<string, NewMaximumAdjustmentType> AdjustmentType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewMaximumAdjustmentType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewMaximumAdjustmentType>>(
                 this.RawData,
                 "adjustment_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustment_type", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
     }
 
     public required string MaximumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "maximum_amount"); }
-        init { ModelBase.Set(this._rawData, "maximum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "maximum_amount"); }
+        init { JsonModel.Set(this._rawData, "maximum_amount", value); }
     }
 
     /// <summary>
@@ -37,12 +37,12 @@ public sealed record class NewMaximum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<bool, NewMaximumAppliesToAll>>(
+            return JsonModel.GetNullableClass<ApiEnum<bool, NewMaximumAppliesToAll>>(
                 this.RawData,
                 "applies_to_all"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_all", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_all", value); }
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public sealed record class NewMaximum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_item_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_item_ids", value); }
     }
 
     /// <summary>
@@ -64,9 +64,9 @@ public sealed record class NewMaximum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class NewMaximum : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -83,8 +83,8 @@ public sealed record class NewMaximum : ModelBase
     /// </summary>
     public IReadOnlyList<NewMaximumFilter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<NewMaximumFilter>>(this.RawData, "filters"); }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        get { return JsonModel.GetNullableClass<List<NewMaximumFilter>>(this.RawData, "filters"); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -93,7 +93,7 @@ public sealed record class NewMaximum : ModelBase
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
         init
         {
             if (value == null)
@@ -101,7 +101,7 @@ public sealed record class NewMaximum : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "is_invoice_level", value);
+            JsonModel.Set(this._rawData, "is_invoice_level", value);
         }
     }
 
@@ -112,12 +112,12 @@ public sealed record class NewMaximum : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, NewMaximumPriceType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, NewMaximumPriceType>>(
                 this.RawData,
                 "price_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "price_type", value); }
+        init { JsonModel.Set(this._rawData, "price_type", value); }
     }
 
     /// <inheritdoc/>
@@ -162,7 +162,7 @@ public sealed record class NewMaximum : ModelBase
     }
 }
 
-class NewMaximumFromRaw : IFromRaw<NewMaximum>
+class NewMaximumFromRaw : IFromRawJson<NewMaximum>
 {
     /// <inheritdoc/>
     public NewMaximum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -254,8 +254,8 @@ sealed class NewMaximumAppliesToAllConverter : JsonConverter<NewMaximumAppliesTo
     }
 }
 
-[JsonConverter(typeof(ModelConverter<NewMaximumFilter, NewMaximumFilterFromRaw>))]
-public sealed record class NewMaximumFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewMaximumFilter, NewMaximumFilterFromRaw>))]
+public sealed record class NewMaximumFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -264,12 +264,12 @@ public sealed record class NewMaximumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewMaximumFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewMaximumFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -279,12 +279,12 @@ public sealed record class NewMaximumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewMaximumFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewMaximumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -292,8 +292,8 @@ public sealed record class NewMaximumFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -331,7 +331,7 @@ public sealed record class NewMaximumFilter : ModelBase
     }
 }
 
-class NewMaximumFilterFromRaw : IFromRaw<NewMaximumFilter>
+class NewMaximumFilterFromRaw : IFromRawJson<NewMaximumFilter>
 {
     /// <inheritdoc/>
     public NewMaximumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

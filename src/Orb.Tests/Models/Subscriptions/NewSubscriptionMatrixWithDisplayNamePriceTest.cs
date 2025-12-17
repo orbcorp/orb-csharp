@@ -265,10 +265,10 @@ public class NewSubscriptionMatrixWithDisplayNamePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePrice>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -758,9 +758,9 @@ public class MatrixWithDisplayNameConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -852,9 +852,11 @@ public class MatrixWithDisplayNameConfigUnitAmountTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfigUnitAmount>(json);
+            JsonSerializer.Deserialize<Subscriptions::MatrixWithDisplayNameConfigUnitAmount>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         string expectedDimensionValue = "dimension_value";
@@ -993,10 +995,10 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1021,10 +1023,10 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

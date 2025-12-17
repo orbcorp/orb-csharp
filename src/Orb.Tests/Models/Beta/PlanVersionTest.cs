@@ -679,8 +679,8 @@ public class PlanVersionTest : TestBase
             Version = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanVersion>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanVersion>(element);
         Assert.NotNull(deserialized);
 
         List<PlanVersionAdjustment> expectedAdjustments =
@@ -1199,8 +1199,8 @@ public class PlanVersionAdjustmentTest : TestBase
                 UsageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1231,8 +1231,8 @@ public class PlanVersionAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1264,8 +1264,8 @@ public class PlanVersionAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1296,8 +1296,8 @@ public class PlanVersionAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1327,8 +1327,8 @@ public class PlanVersionAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }

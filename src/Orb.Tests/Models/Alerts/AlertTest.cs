@@ -136,8 +136,8 @@ public class AlertTest : TestBase
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Alert>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Alert>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "XuxCbt7x9L82yyeF";
@@ -354,8 +354,8 @@ public class MetricTest : TestBase
     {
         var model = new Metric { ID = "id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Metric>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Metric>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -424,8 +424,8 @@ public class PlanTest : TestBase
             PlanVersion = "plan_version",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Plan>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Plan>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "m2t5akQeh2obwxeU";
@@ -546,8 +546,8 @@ public class BalanceAlertStatusTest : TestBase
     {
         var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BalanceAlertStatus>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BalanceAlertStatus>(element);
         Assert.NotNull(deserialized);
 
         bool expectedInAlert = true;

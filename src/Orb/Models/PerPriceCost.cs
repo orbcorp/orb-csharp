@@ -7,16 +7,16 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<PerPriceCost, PerPriceCostFromRaw>))]
-public sealed record class PerPriceCost : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PerPriceCost, PerPriceCostFromRaw>))]
+public sealed record class PerPriceCost : JsonModel
 {
     /// <summary>
     /// The price object
     /// </summary>
     public required Price Price
     {
-        get { return ModelBase.GetNotNullClass<Price>(this.RawData, "price"); }
-        init { ModelBase.Set(this._rawData, "price", value); }
+        get { return JsonModel.GetNotNullClass<Price>(this.RawData, "price"); }
+        init { JsonModel.Set(this._rawData, "price", value); }
     }
 
     /// <summary>
@@ -24,8 +24,8 @@ public sealed record class PerPriceCost : ModelBase
     /// </summary>
     public required string PriceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class PerPriceCost : ModelBase
     /// </summary>
     public required string Subtotal
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { ModelBase.Set(this._rawData, "subtotal", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
+        init { JsonModel.Set(this._rawData, "subtotal", value); }
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ public sealed record class PerPriceCost : ModelBase
     /// </summary>
     public required string Total
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "total"); }
-        init { ModelBase.Set(this._rawData, "total", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "total"); }
+        init { JsonModel.Set(this._rawData, "total", value); }
     }
 
     /// <summary>
@@ -51,8 +51,8 @@ public sealed record class PerPriceCost : ModelBase
     /// </summary>
     public double? Quantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -90,7 +90,7 @@ public sealed record class PerPriceCost : ModelBase
     }
 }
 
-class PerPriceCostFromRaw : IFromRaw<PerPriceCost>
+class PerPriceCostFromRaw : IFromRawJson<PerPriceCost>
 {
     /// <inheritdoc/>
     public PerPriceCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

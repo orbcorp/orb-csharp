@@ -340,8 +340,8 @@ public class SharedCreditNoteTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedCreditNote>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNote>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -972,8 +972,8 @@ public class SharedCreditNoteLineItemTest : TestBase
             StartTimeInclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteLineItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteLineItem>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1423,8 +1423,8 @@ public class DiscountTest : TestBase
             Reason = "reason",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Discount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Discount>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1658,8 +1658,8 @@ public class MaximumAmountAdjustmentTest : TestBase
             Reason = "reason",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MaximumAmountAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MaximumAmountAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmountApplied = "amount_applied";
@@ -1847,8 +1847,8 @@ public class AppliesToPriceTest : TestBase
     {
         var model = new AppliesToPrice { ID = "id", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AppliesToPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AppliesToPrice>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -2049,8 +2049,8 @@ public class SharedCreditNoteDiscountTest : TestBase
             Reason = "reason",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscount>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmountApplied = "amount_applied";
@@ -2241,8 +2241,10 @@ public class SharedCreditNoteDiscountAppliesToPriceTest : TestBase
     {
         var model = new SharedCreditNoteDiscountAppliesToPrice { ID = "id", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscountAppliesToPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedCreditNoteDiscountAppliesToPrice>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

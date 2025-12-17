@@ -8,14 +8,17 @@ using Orb.Core;
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(
-    typeof(ModelConverter<SubscriptionFetchCostsResponse, SubscriptionFetchCostsResponseFromRaw>)
+    typeof(JsonModelConverter<
+        SubscriptionFetchCostsResponse,
+        SubscriptionFetchCostsResponseFromRaw
+    >)
 )]
-public sealed record class SubscriptionFetchCostsResponse : ModelBase
+public sealed record class SubscriptionFetchCostsResponse : JsonModel
 {
     public required IReadOnlyList<AggregatedCost> Data
     {
-        get { return ModelBase.GetNotNullClass<List<AggregatedCost>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<AggregatedCost>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -63,7 +66,7 @@ public sealed record class SubscriptionFetchCostsResponse : ModelBase
     }
 }
 
-class SubscriptionFetchCostsResponseFromRaw : IFromRaw<SubscriptionFetchCostsResponse>
+class SubscriptionFetchCostsResponseFromRaw : IFromRawJson<SubscriptionFetchCostsResponse>
 {
     /// <inheritdoc/>
     public SubscriptionFetchCostsResponse FromRawUnchecked(

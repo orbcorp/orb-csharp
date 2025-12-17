@@ -124,8 +124,8 @@ public class MonetaryMaximumAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -303,8 +303,8 @@ public class MonetaryMaximumAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustmentFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustmentFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MonetaryMaximumAdjustmentFilterField> expectedField =

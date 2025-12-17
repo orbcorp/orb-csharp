@@ -27,12 +27,12 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
+            return JsonModel.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
                 this.RawBodyData,
                 "discount"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "discount", value); }
+        init { JsonModel.Set(this._rawBodyData, "discount", value); }
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public required string RedemptionCode
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "redemption_code"); }
-        init { ModelBase.Set(this._rawBodyData, "redemption_code", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "redemption_code"); }
+        init { JsonModel.Set(this._rawBodyData, "redemption_code", value); }
     }
 
     /// <summary>
@@ -50,8 +50,8 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public long? DurationInMonths
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "duration_in_months"); }
-        init { ModelBase.Set(this._rawBodyData, "duration_in_months", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "duration_in_months"); }
+        init { JsonModel.Set(this._rawBodyData, "duration_in_months", value); }
     }
 
     /// <summary>
@@ -60,8 +60,8 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public long? MaxRedemptions
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "max_redemptions"); }
-        init { ModelBase.Set(this._rawBodyData, "max_redemptions", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "max_redemptions"); }
+        init { JsonModel.Set(this._rawBodyData, "max_redemptions", value); }
     }
 
     public CouponCreateParams() { }
@@ -97,7 +97,7 @@ public sealed record class CouponCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static CouponCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -119,9 +119,13 @@ public sealed record class CouponCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -139,11 +143,11 @@ public record class Discount
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public JsonElement DiscountType
@@ -151,21 +155,21 @@ public record class Discount
         get { return Match(percentage: (x) => x.DiscountType, amount: (x) => x.DiscountType); }
     }
 
-    public Discount(Percentage value, JsonElement? json = null)
+    public Discount(Percentage value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Discount(Amount value, JsonElement? json = null)
+    public Discount(Amount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Discount(JsonElement json)
+    public Discount(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -319,11 +323,11 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? discountType;
         try
         {
-            discountType = json.GetProperty("discount_type").GetString();
+            discountType = element.GetProperty("discount_type").GetString();
         }
         catch
         {
@@ -336,11 +340,11 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Percentage>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Percentage>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -349,17 +353,17 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<Amount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<Amount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -368,11 +372,11 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new global::Orb.Models.Coupons.Discount(json);
+                return new global::Orb.Models.Coupons.Discount(element);
             }
         }
     }
@@ -387,19 +391,19 @@ sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discou
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Percentage, PercentageFromRaw>))]
-public sealed record class Percentage : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Percentage, PercentageFromRaw>))]
+public sealed record class Percentage : JsonModel
 {
     public JsonElement DiscountType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     public required double PercentageDiscount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
+        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
     }
 
     /// <inheritdoc/>
@@ -454,26 +458,26 @@ public sealed record class Percentage : ModelBase
     }
 }
 
-class PercentageFromRaw : IFromRaw<Percentage>
+class PercentageFromRaw : IFromRawJson<Percentage>
 {
     /// <inheritdoc/>
     public Percentage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Percentage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Amount, AmountFromRaw>))]
-public sealed record class Amount : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Amount, AmountFromRaw>))]
+public sealed record class Amount : JsonModel
 {
     public required string AmountDiscount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount_discount"); }
-        init { ModelBase.Set(this._rawData, "amount_discount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_discount"); }
+        init { JsonModel.Set(this._rawData, "amount_discount", value); }
     }
 
     public JsonElement DiscountType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     /// <inheritdoc/>
@@ -528,7 +532,7 @@ public sealed record class Amount : ModelBase
     }
 }
 
-class AmountFromRaw : IFromRaw<Amount>
+class AmountFromRaw : IFromRawJson<Amount>
 {
     /// <inheritdoc/>
     public Amount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

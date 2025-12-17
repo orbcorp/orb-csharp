@@ -291,9 +291,11 @@ public class NewSubscriptionTieredWithMinimumPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredWithMinimumPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredWithMinimumPrice>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<
@@ -913,8 +915,10 @@ public class TieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         List<Subscriptions::TieredWithMinimumConfigTier> expectedTiers =
@@ -1135,9 +1139,9 @@ public class TieredWithMinimumConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::TieredWithMinimumConfigTier>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -1211,10 +1215,10 @@ public class NewSubscriptionTieredWithMinimumPriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredWithMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1239,10 +1243,10 @@ public class NewSubscriptionTieredWithMinimumPriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionTieredWithMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

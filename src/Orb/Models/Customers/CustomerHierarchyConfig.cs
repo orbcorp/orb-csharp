@@ -7,8 +7,8 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<CustomerHierarchyConfig, CustomerHierarchyConfigFromRaw>))]
-public sealed record class CustomerHierarchyConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CustomerHierarchyConfig, CustomerHierarchyConfigFromRaw>))]
+public sealed record class CustomerHierarchyConfig : JsonModel
 {
     /// <summary>
     /// A list of child customer IDs to add to the hierarchy. The desired child customers
@@ -16,7 +16,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     /// </summary>
     public IReadOnlyList<string>? ChildCustomerIDs
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "child_customer_ids"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "child_customer_ids"); }
         init
         {
             if (value == null)
@@ -24,7 +24,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "child_customer_ids", value);
+            JsonModel.Set(this._rawData, "child_customer_ids", value);
         }
     }
 
@@ -34,8 +34,8 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     /// </summary>
     public string? ParentCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "parent_customer_id"); }
-        init { ModelBase.Set(this._rawData, "parent_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "parent_customer_id"); }
+        init { JsonModel.Set(this._rawData, "parent_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -72,7 +72,7 @@ public sealed record class CustomerHierarchyConfig : ModelBase
     }
 }
 
-class CustomerHierarchyConfigFromRaw : IFromRaw<CustomerHierarchyConfig>
+class CustomerHierarchyConfigFromRaw : IFromRawJson<CustomerHierarchyConfig>
 {
     /// <inheritdoc/>
     public CustomerHierarchyConfig FromRawUnchecked(

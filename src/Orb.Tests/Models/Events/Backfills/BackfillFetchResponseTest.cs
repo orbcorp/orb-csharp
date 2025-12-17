@@ -95,8 +95,8 @@ public class BackfillFetchResponseTest : TestBase
             DeprecationFilter = "my_numeric_property > 100 AND my_other_property = 'bar'",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BackfillFetchResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BackfillFetchResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

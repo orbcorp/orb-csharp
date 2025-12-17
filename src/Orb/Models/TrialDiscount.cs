@@ -9,19 +9,19 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<TrialDiscount, TrialDiscountFromRaw>))]
-public sealed record class TrialDiscount : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TrialDiscount, TrialDiscountFromRaw>))]
+public sealed record class TrialDiscount : JsonModel
 {
     public required ApiEnum<string, TrialDiscountDiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TrialDiscountDiscountType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, TrialDiscountDiscountType>>(
                 this.RawData,
                 "discount_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     /// <summary>
@@ -32,9 +32,9 @@ public sealed record class TrialDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -44,15 +44,15 @@ public sealed record class TrialDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<TrialDiscountFilter>>(this.RawData, "filters");
+            return JsonModel.GetNullableClass<List<TrialDiscountFilter>>(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     public string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <summary>
@@ -60,8 +60,8 @@ public sealed record class TrialDiscount : ModelBase
     /// </summary>
     public string? TrialAmountDiscount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "trial_amount_discount"); }
-        init { ModelBase.Set(this._rawData, "trial_amount_discount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "trial_amount_discount"); }
+        init { JsonModel.Set(this._rawData, "trial_amount_discount", value); }
     }
 
     /// <summary>
@@ -71,9 +71,9 @@ public sealed record class TrialDiscount : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<double>(this.RawData, "trial_percentage_discount");
+            return JsonModel.GetNullableStruct<double>(this.RawData, "trial_percentage_discount");
         }
-        init { ModelBase.Set(this._rawData, "trial_percentage_discount", value); }
+        init { JsonModel.Set(this._rawData, "trial_percentage_discount", value); }
     }
 
     /// <inheritdoc/>
@@ -122,7 +122,7 @@ public sealed record class TrialDiscount : ModelBase
     }
 }
 
-class TrialDiscountFromRaw : IFromRaw<TrialDiscount>
+class TrialDiscountFromRaw : IFromRawJson<TrialDiscount>
 {
     /// <inheritdoc/>
     public TrialDiscount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -170,8 +170,8 @@ sealed class TrialDiscountDiscountTypeConverter : JsonConverter<TrialDiscountDis
     }
 }
 
-[JsonConverter(typeof(ModelConverter<TrialDiscountFilter, TrialDiscountFilterFromRaw>))]
-public sealed record class TrialDiscountFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TrialDiscountFilter, TrialDiscountFilterFromRaw>))]
+public sealed record class TrialDiscountFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -180,12 +180,12 @@ public sealed record class TrialDiscountFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TrialDiscountFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, TrialDiscountFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -195,12 +195,12 @@ public sealed record class TrialDiscountFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TrialDiscountFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, TrialDiscountFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -208,8 +208,8 @@ public sealed record class TrialDiscountFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -247,7 +247,7 @@ public sealed record class TrialDiscountFilter : ModelBase
     }
 }
 
-class TrialDiscountFilterFromRaw : IFromRaw<TrialDiscountFilter>
+class TrialDiscountFilterFromRaw : IFromRawJson<TrialDiscountFilter>
 {
     /// <inheritdoc/>
     public TrialDiscountFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

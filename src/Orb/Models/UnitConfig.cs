@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for unit pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<UnitConfig, UnitConfigFromRaw>))]
-public sealed record class UnitConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<UnitConfig, UnitConfigFromRaw>))]
+public sealed record class UnitConfig : JsonModel
 {
     /// <summary>
     /// Rate per unit of usage
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public sealed record class UnitConfig : ModelBase
     /// </summary>
     public bool? Prorated
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "prorated"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorated"); }
         init
         {
             if (value == null)
@@ -35,7 +35,7 @@ public sealed record class UnitConfig : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "prorated", value);
+            JsonModel.Set(this._rawData, "prorated", value);
         }
     }
 
@@ -78,7 +78,7 @@ public sealed record class UnitConfig : ModelBase
     }
 }
 
-class UnitConfigFromRaw : IFromRaw<UnitConfig>
+class UnitConfigFromRaw : IFromRawJson<UnitConfig>
 {
     /// <inheritdoc/>
     public UnitConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

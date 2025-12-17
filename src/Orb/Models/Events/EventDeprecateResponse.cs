@@ -7,16 +7,16 @@ using Orb.Core;
 
 namespace Orb.Models.Events;
 
-[JsonConverter(typeof(ModelConverter<EventDeprecateResponse, EventDeprecateResponseFromRaw>))]
-public sealed record class EventDeprecateResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<EventDeprecateResponse, EventDeprecateResponseFromRaw>))]
+public sealed record class EventDeprecateResponse : JsonModel
 {
     /// <summary>
     /// event_id of the deprecated event, if successfully updated
     /// </summary>
     public required string Deprecated
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "deprecated"); }
-        init { ModelBase.Set(this._rawData, "deprecated", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "deprecated"); }
+        init { JsonModel.Set(this._rawData, "deprecated", value); }
     }
 
     /// <inheritdoc/>
@@ -59,7 +59,7 @@ public sealed record class EventDeprecateResponse : ModelBase
     }
 }
 
-class EventDeprecateResponseFromRaw : IFromRaw<EventDeprecateResponse>
+class EventDeprecateResponseFromRaw : IFromRawJson<EventDeprecateResponse>
 {
     /// <inheritdoc/>
     public EventDeprecateResponse FromRawUnchecked(

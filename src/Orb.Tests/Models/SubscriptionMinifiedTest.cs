@@ -31,8 +31,8 @@ public class SubscriptionMinifiedTest : TestBase
     {
         var model = new SubscriptionMinified { ID = "VDGsT23osdLb84KD" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionMinified>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionMinified>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "VDGsT23osdLb84KD";

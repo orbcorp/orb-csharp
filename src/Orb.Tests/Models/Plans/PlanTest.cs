@@ -1174,8 +1174,8 @@ public class PlanTest : TestBase
             Version = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Plan>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Plan>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -1955,8 +1955,8 @@ public class PlanAdjustmentTest : TestBase
                 UsageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -1987,8 +1987,8 @@ public class PlanAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2020,8 +2020,8 @@ public class PlanAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2052,8 +2052,8 @@ public class PlanAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2083,8 +2083,8 @@ public class PlanAdjustmentTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PlanAdjustment>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -2137,8 +2137,8 @@ public class BasePlanTest : TestBase
             Name = "Example plan",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BasePlan>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BasePlan>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "m2t5akQeh2obwxeU";
@@ -2416,8 +2416,8 @@ public class PlanPlanPhaseTest : TestBase
             Order = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPlanPhase>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPlanPhase>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -2659,8 +2659,8 @@ public class ProductTest : TestBase
             Name = "name",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Product>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Product>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -2774,8 +2774,8 @@ public class TrialConfigTest : TestBase
     {
         var model = new TrialConfig { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TrialConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TrialConfig>(element);
         Assert.NotNull(deserialized);
 
         long expectedTrialPeriod = 0;

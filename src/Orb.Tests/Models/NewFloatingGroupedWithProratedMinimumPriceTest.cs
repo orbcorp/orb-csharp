@@ -228,9 +228,9 @@ public class NewFloatingGroupedWithProratedMinimumPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPrice>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -628,8 +628,8 @@ public class GroupedWithProratedMinimumConfigTest : TestBase
             UnitRate = "unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -760,10 +760,10 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -788,10 +788,10 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

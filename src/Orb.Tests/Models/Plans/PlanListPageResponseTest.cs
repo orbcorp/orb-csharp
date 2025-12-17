@@ -1173,8 +1173,8 @@ public class PlanListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Plan> expectedData =

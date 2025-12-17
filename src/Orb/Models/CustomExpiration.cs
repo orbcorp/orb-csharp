@@ -9,25 +9,25 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<CustomExpiration, CustomExpirationFromRaw>))]
-public sealed record class CustomExpiration : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CustomExpiration, CustomExpirationFromRaw>))]
+public sealed record class CustomExpiration : JsonModel
 {
     public required long Duration
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "duration"); }
-        init { ModelBase.Set(this._rawData, "duration", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "duration"); }
+        init { JsonModel.Set(this._rawData, "duration", value); }
     }
 
     public required ApiEnum<string, CustomExpirationDurationUnit> DurationUnit
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CustomExpirationDurationUnit>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, CustomExpirationDurationUnit>>(
                 this.RawData,
                 "duration_unit"
             );
         }
-        init { ModelBase.Set(this._rawData, "duration_unit", value); }
+        init { JsonModel.Set(this._rawData, "duration_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -64,7 +64,7 @@ public sealed record class CustomExpiration : ModelBase
     }
 }
 
-class CustomExpirationFromRaw : IFromRaw<CustomExpiration>
+class CustomExpirationFromRaw : IFromRawJson<CustomExpiration>
 {
     /// <inheritdoc/>
     public CustomExpiration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

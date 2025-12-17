@@ -78,8 +78,8 @@ public class EventVolumesTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventVolumes>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventVolumes>(element);
         Assert.NotNull(deserialized);
 
         List<Data> expectedData =
@@ -166,8 +166,8 @@ public class DataTest : TestBase
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
         Assert.NotNull(deserialized);
 
         long expectedCount = 0;

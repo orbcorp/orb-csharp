@@ -129,8 +129,8 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -311,8 +311,8 @@ public class PlanPhaseMinimumAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustmentFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustmentFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField> expectedField =

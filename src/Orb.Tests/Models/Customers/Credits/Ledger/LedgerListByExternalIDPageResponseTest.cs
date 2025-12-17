@@ -1654,8 +1654,8 @@ public class LedgerListByExternalIDPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<LedgerListByExternalIDPageResponseData> expectedData =
@@ -3512,8 +3512,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 ],
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3556,8 +3558,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 PriceID = "price_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3598,8 +3602,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3639,8 +3645,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3682,8 +3690,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 VoidReason = "void_reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3726,8 +3736,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 VoidReason = "void_reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -3767,8 +3779,10 @@ public class LedgerListByExternalIDPageResponseDataTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerListByExternalIDPageResponseData>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }

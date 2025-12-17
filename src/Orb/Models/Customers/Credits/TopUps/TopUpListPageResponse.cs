@@ -9,30 +9,30 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpListPageResponse, TopUpListPageResponseFromRaw>))]
-public sealed record class TopUpListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TopUpListPageResponse, TopUpListPageResponseFromRaw>))]
+public sealed record class TopUpListPageResponse : JsonModel
 {
     public required IReadOnlyList<global::Orb.Models.Customers.Credits.TopUps.Data> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<global::Orb.Models.Customers.Credits.TopUps.Data>
             >(this.RawData, "data");
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -72,7 +72,7 @@ public sealed record class TopUpListPageResponse : ModelBase
     }
 }
 
-class TopUpListPageResponseFromRaw : IFromRaw<TopUpListPageResponse>
+class TopUpListPageResponseFromRaw : IFromRawJson<TopUpListPageResponse>
 {
     /// <inheritdoc/>
     public TopUpListPageResponse FromRawUnchecked(
@@ -81,17 +81,17 @@ class TopUpListPageResponseFromRaw : IFromRaw<TopUpListPageResponse>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Customers.Credits.TopUps.Data,
         global::Orb.Models.Customers.Credits.TopUps.DataFromRaw
     >)
 )]
-public sealed record class Data : ModelBase
+public sealed record class Data : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -99,8 +99,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -109,8 +109,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -120,12 +120,12 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<TopUpInvoiceSettings>(
+            return JsonModel.GetNotNullClass<TopUpInvoiceSettings>(
                 this.RawData,
                 "invoice_settings"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoice_settings", value); }
+        init { JsonModel.Set(this._rawData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -133,8 +133,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -143,8 +143,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string Threshold
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "threshold"); }
-        init { ModelBase.Set(this._rawData, "threshold", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }
+        init { JsonModel.Set(this._rawData, "threshold", value); }
     }
 
     /// <summary>
@@ -153,8 +153,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "expires_after"); }
-        init { ModelBase.Set(this._rawData, "expires_after", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "expires_after"); }
+        init { JsonModel.Set(this._rawData, "expires_after", value); }
     }
 
     /// <summary>
@@ -164,12 +164,12 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, DataExpiresAfterUnit>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, DataExpiresAfterUnit>>(
                 this.RawData,
                 "expires_after_unit"
             );
         }
-        init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
+        init { JsonModel.Set(this._rawData, "expires_after_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -212,7 +212,7 @@ public sealed record class Data : ModelBase
     }
 }
 
-class DataFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.TopUps.Data>
+class DataFromRaw : IFromRawJson<global::Orb.Models.Customers.Credits.TopUps.Data>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Customers.Credits.TopUps.Data FromRawUnchecked(

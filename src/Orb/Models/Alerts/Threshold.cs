@@ -10,8 +10,8 @@ namespace Orb.Models.Alerts;
 /// <summary>
 /// Thresholds are used to define the conditions under which an alert will be triggered.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Threshold, ThresholdFromRaw>))]
-public sealed record class Threshold : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Threshold, ThresholdFromRaw>))]
+public sealed record class Threshold : JsonModel
 {
     /// <summary>
     /// The value at which an alert will fire. For credit balance alerts, the alert
@@ -20,8 +20,8 @@ public sealed record class Threshold : ModelBase
     /// </summary>
     public required double Value
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "value"); }
-        init { ModelBase.Set(this._rawData, "value", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "value"); }
+        init { JsonModel.Set(this._rawData, "value", value); }
     }
 
     /// <inheritdoc/>
@@ -62,7 +62,7 @@ public sealed record class Threshold : ModelBase
     }
 }
 
-class ThresholdFromRaw : IFromRaw<Threshold>
+class ThresholdFromRaw : IFromRawJson<Threshold>
 {
     /// <inheritdoc/>
     public Threshold FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

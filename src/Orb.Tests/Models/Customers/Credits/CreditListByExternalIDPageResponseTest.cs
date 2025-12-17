@@ -145,8 +145,8 @@ public class CreditListByExternalIDPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<CreditListByExternalIDPageResponseData> expectedData =
@@ -329,8 +329,10 @@ public class CreditListByExternalIDPageResponseDataTest : TestBase
             Status = CreditListByExternalIDPageResponseDataStatus.Active,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseData>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -447,9 +449,9 @@ public class CreditListByExternalIDPageResponseDataFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CreditListByExternalIDPageResponseDataFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 

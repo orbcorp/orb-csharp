@@ -7,13 +7,13 @@ using Orb.Core;
 
 namespace Orb.Models.Prices;
 
-[JsonConverter(typeof(ModelConverter<PriceEvaluateResponse, PriceEvaluateResponseFromRaw>))]
-public sealed record class PriceEvaluateResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PriceEvaluateResponse, PriceEvaluateResponseFromRaw>))]
+public sealed record class PriceEvaluateResponse : JsonModel
 {
     public required IReadOnlyList<EvaluatePriceGroup> Data
     {
-        get { return ModelBase.GetNotNullClass<List<EvaluatePriceGroup>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<EvaluatePriceGroup>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -59,7 +59,7 @@ public sealed record class PriceEvaluateResponse : ModelBase
     }
 }
 
-class PriceEvaluateResponseFromRaw : IFromRaw<PriceEvaluateResponse>
+class PriceEvaluateResponseFromRaw : IFromRawJson<PriceEvaluateResponse>
 {
     /// <inheritdoc/>
     public PriceEvaluateResponse FromRawUnchecked(

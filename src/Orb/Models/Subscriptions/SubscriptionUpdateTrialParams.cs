@@ -47,8 +47,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public required TrialEndDate TrialEndDate
     {
-        get { return ModelBase.GetNotNullClass<TrialEndDate>(this.RawBodyData, "trial_end_date"); }
-        init { ModelBase.Set(this._rawBodyData, "trial_end_date", value); }
+        get { return JsonModel.GetNotNullClass<TrialEndDate>(this.RawBodyData, "trial_end_date"); }
+        init { JsonModel.Set(this._rawBodyData, "trial_end_date", value); }
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     /// </summary>
     public bool? Shift
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "shift"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "shift"); }
         init
         {
             if (value == null)
@@ -65,7 +65,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "shift", value);
+            JsonModel.Set(this._rawBodyData, "shift", value);
         }
     }
 
@@ -104,7 +104,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionUpdateTrialParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -129,9 +129,13 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -153,28 +157,28 @@ public record class TrialEndDate
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public TrialEndDate(System::DateTimeOffset value, JsonElement? json = null)
+    public TrialEndDate(System::DateTimeOffset value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TrialEndDate(ApiEnum<string, UnionMember1> value, JsonElement? json = null)
+    public TrialEndDate(ApiEnum<string, UnionMember1> value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public TrialEndDate(JsonElement json)
+    public TrialEndDate(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -337,17 +341,17 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             var deserialized = JsonSerializer.Deserialize<ApiEnum<string, UnionMember1>>(
-                json,
+                element,
                 options
             );
             if (deserialized != null)
             {
                 deserialized.Validate();
-                return new(deserialized, json);
+                return new(deserialized, element);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -357,14 +361,14 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(

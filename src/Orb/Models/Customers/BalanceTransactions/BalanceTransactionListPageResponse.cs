@@ -10,29 +10,29 @@ using System = System;
 namespace Orb.Models.Customers.BalanceTransactions;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         BalanceTransactionListPageResponse,
         BalanceTransactionListPageResponseFromRaw
     >)
 )]
-public sealed record class BalanceTransactionListPageResponse : ModelBase
+public sealed record class BalanceTransactionListPageResponse : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Data>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Data>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -74,7 +74,7 @@ public sealed record class BalanceTransactionListPageResponse : ModelBase
     }
 }
 
-class BalanceTransactionListPageResponseFromRaw : IFromRaw<BalanceTransactionListPageResponse>
+class BalanceTransactionListPageResponseFromRaw : IFromRawJson<BalanceTransactionListPageResponse>
 {
     /// <inheritdoc/>
     public BalanceTransactionListPageResponse FromRawUnchecked(
@@ -82,25 +82,25 @@ class BalanceTransactionListPageResponseFromRaw : IFromRaw<BalanceTransactionLis
     ) => BalanceTransactionListPageResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Data, DataFromRaw>))]
-public sealed record class Data : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : JsonModel
 {
     /// <summary>
     /// A unique id for this transaction.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required ApiEnum<string, DataAction> Action
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DataAction>>(this.RawData, "action");
+            return JsonModel.GetNotNullClass<ApiEnum<string, DataAction>>(this.RawData, "action");
         }
-        init { ModelBase.Set(this._rawData, "action", value); }
+        init { JsonModel.Set(this._rawData, "action", value); }
     }
 
     /// <summary>
@@ -108,8 +108,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -119,15 +119,15 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     public required CreditNoteTiny? CreditNote
     {
-        get { return ModelBase.GetNullableClass<CreditNoteTiny>(this.RawData, "credit_note"); }
-        init { ModelBase.Set(this._rawData, "credit_note", value); }
+        get { return JsonModel.GetNullableClass<CreditNoteTiny>(this.RawData, "credit_note"); }
+        init { JsonModel.Set(this._rawData, "credit_note", value); }
     }
 
     /// <summary>
@@ -135,8 +135,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -144,14 +144,14 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string EndingBalance
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "ending_balance"); }
-        init { ModelBase.Set(this._rawData, "ending_balance", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "ending_balance"); }
+        init { JsonModel.Set(this._rawData, "ending_balance", value); }
     }
 
     public required InvoiceTiny? Invoice
     {
-        get { return ModelBase.GetNullableClass<InvoiceTiny>(this.RawData, "invoice"); }
-        init { ModelBase.Set(this._rawData, "invoice", value); }
+        get { return JsonModel.GetNullableClass<InvoiceTiny>(this.RawData, "invoice"); }
+        init { JsonModel.Set(this._rawData, "invoice", value); }
     }
 
     /// <summary>
@@ -160,14 +160,14 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string StartingBalance
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "starting_balance"); }
-        init { ModelBase.Set(this._rawData, "starting_balance", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "starting_balance"); }
+        init { JsonModel.Set(this._rawData, "starting_balance", value); }
     }
 
     public required ApiEnum<string, DataType> Type
     {
-        get { return ModelBase.GetNotNullClass<ApiEnum<string, DataType>>(this.RawData, "type"); }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        get { return JsonModel.GetNotNullClass<ApiEnum<string, DataType>>(this.RawData, "type"); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <inheritdoc/>
@@ -210,7 +210,7 @@ public sealed record class Data : ModelBase
     }
 }
 
-class DataFromRaw : IFromRaw<Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

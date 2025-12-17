@@ -10,12 +10,12 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         NewFloatingScalableMatrixWithUnitPricingPrice,
         NewFloatingScalableMatrixWithUnitPricingPriceFromRaw
     >)
 )]
-public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : ModelBase
+public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -24,11 +24,11 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewFloatingScalableMatrixWithUnitPricingPriceCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -59,11 +59,11 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewFloatingScalableMatrixWithUnitPricingPriceModelType>
             >(this.RawData, "model_type");
         }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -82,12 +82,12 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNotNullClass<ScalableMatrixWithUnitPricingConfig>(
+            return JsonModel.GetNotNullClass<ScalableMatrixWithUnitPricingConfig>(
                 this.RawData,
                 "scalable_matrix_with_unit_pricing_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "scalable_matrix_with_unit_pricing_config", value); }
+        init { JsonModel.Set(this._rawData, "scalable_matrix_with_unit_pricing_config", value); }
     }
 
     /// <summary>
@@ -95,8 +95,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -105,8 +105,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -117,12 +117,12 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -130,8 +130,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -141,12 +141,12 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig>(
+            return JsonModel.GetNullableClass<NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -156,12 +156,12 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -169,8 +169,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -178,8 +178,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -187,8 +187,8 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -199,12 +199,12 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -216,12 +216,12 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -278,7 +278,7 @@ public sealed record class NewFloatingScalableMatrixWithUnitPricingPrice : Model
 }
 
 class NewFloatingScalableMatrixWithUnitPricingPriceFromRaw
-    : IFromRaw<NewFloatingScalableMatrixWithUnitPricingPrice>
+    : IFromRawJson<NewFloatingScalableMatrixWithUnitPricingPrice>
 {
     /// <inheritdoc/>
     public NewFloatingScalableMatrixWithUnitPricingPrice FromRawUnchecked(
@@ -397,20 +397,20 @@ sealed class NewFloatingScalableMatrixWithUnitPricingPriceModelTypeConverter
 /// Configuration for scalable_matrix_with_unit_pricing pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         ScalableMatrixWithUnitPricingConfig,
         ScalableMatrixWithUnitPricingConfigFromRaw
     >)
 )]
-public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
+public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
 {
     /// <summary>
     /// Used to determine the unit rate
     /// </summary>
     public required string FirstDimension
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "first_dimension"); }
-        init { ModelBase.Set(this._rawData, "first_dimension", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension"); }
+        init { JsonModel.Set(this._rawData, "first_dimension", value); }
     }
 
     /// <summary>
@@ -420,11 +420,11 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
             >(this.RawData, "matrix_scaling_factors");
         }
-        init { ModelBase.Set(this._rawData, "matrix_scaling_factors", value); }
+        init { JsonModel.Set(this._rawData, "matrix_scaling_factors", value); }
     }
 
     /// <summary>
@@ -432,8 +432,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// </summary>
     public required string UnitPrice
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_price"); }
-        init { ModelBase.Set(this._rawData, "unit_price", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_price"); }
+        init { JsonModel.Set(this._rawData, "unit_price", value); }
     }
 
     /// <summary>
@@ -441,8 +441,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// </summary>
     public bool? Prorate
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "prorate"); }
-        init { ModelBase.Set(this._rawData, "prorate", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorate"); }
+        init { JsonModel.Set(this._rawData, "prorate", value); }
     }
 
     /// <summary>
@@ -450,8 +450,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     /// </summary>
     public string? SecondDimension
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "second_dimension"); }
-        init { ModelBase.Set(this._rawData, "second_dimension", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension"); }
+        init { JsonModel.Set(this._rawData, "second_dimension", value); }
     }
 
     /// <inheritdoc/>
@@ -496,7 +496,7 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : ModelBase
     }
 }
 
-class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRaw<ScalableMatrixWithUnitPricingConfig>
+class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRawJson<ScalableMatrixWithUnitPricingConfig>
 {
     /// <inheritdoc/>
     public ScalableMatrixWithUnitPricingConfig FromRawUnchecked(
@@ -508,20 +508,20 @@ class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRaw<ScalableMatrixWithUn
 /// Configuration for a single matrix scaling factor
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         ScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
         ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
     >)
 )]
-public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFactor : ModelBase
+public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFactor : JsonModel
 {
     /// <summary>
     /// First dimension value
     /// </summary>
     public required string FirstDimensionValue
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
-        init { ModelBase.Set(this._rawData, "first_dimension_value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
+        init { JsonModel.Set(this._rawData, "first_dimension_value", value); }
     }
 
     /// <summary>
@@ -529,8 +529,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
     /// </summary>
     public required string ScalingFactor
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
-        init { ModelBase.Set(this._rawData, "scaling_factor", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
+        init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
     /// <summary>
@@ -538,8 +538,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
     /// </summary>
     public string? SecondDimensionValue
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "second_dimension_value"); }
-        init { ModelBase.Set(this._rawData, "second_dimension_value", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension_value"); }
+        init { JsonModel.Set(this._rawData, "second_dimension_value", value); }
     }
 
     /// <inheritdoc/>
@@ -584,7 +584,7 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
 }
 
 class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
-    : IFromRaw<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+    : IFromRawJson<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
 {
     /// <inheritdoc/>
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
@@ -597,34 +597,34 @@ public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateC
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig(JsonElement json)
+    public NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -796,11 +796,11 @@ sealed class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigCo
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -814,13 +814,13 @@ sealed class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigCo
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -829,20 +829,20 @@ sealed class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigCo
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -851,11 +851,13 @@ sealed class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigCo
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig(json);
+                return new NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig(
+                    element
+                );
             }
         }
     }

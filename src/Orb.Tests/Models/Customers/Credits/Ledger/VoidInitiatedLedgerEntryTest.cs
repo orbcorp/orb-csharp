@@ -190,8 +190,8 @@ public class VoidInitiatedLedgerEntryTest : TestBase
             VoidReason = "void_reason",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

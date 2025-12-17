@@ -108,12 +108,12 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<LedgerCreateEntryByExternalIDParamsBody>(
+            return JsonModel.GetNotNullClass<LedgerCreateEntryByExternalIDParamsBody>(
                 this.RawBodyData,
                 "body"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "body", value); }
+        init { JsonModel.Set(this._rawBodyData, "body", value); }
     }
 
     public LedgerCreateEntryByExternalIDParams() { }
@@ -151,7 +151,7 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static LedgerCreateEntryByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -179,9 +179,13 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -199,11 +203,11 @@ public record class LedgerCreateEntryByExternalIDParamsBody
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public double? Amount
@@ -292,52 +296,52 @@ public record class LedgerCreateEntryByExternalIDParamsBody
 
     public LedgerCreateEntryByExternalIDParamsBody(
         LedgerCreateEntryByExternalIDParamsBodyIncrement value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBody(
         LedgerCreateEntryByExternalIDParamsBodyDecrement value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBody(
         LedgerCreateEntryByExternalIDParamsBodyExpirationChange value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBody(
         LedgerCreateEntryByExternalIDParamsBodyVoid value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBody(
         LedgerCreateEntryByExternalIDParamsBodyAmendment value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryByExternalIDParamsBody(JsonElement json)
+    public LedgerCreateEntryByExternalIDParamsBody(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -624,11 +628,11 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? entryType;
         try
         {
-            entryType = json.GetProperty("entry_type").GetString();
+            entryType = element.GetProperty("entry_type").GetString();
         }
         catch
         {
@@ -643,13 +647,13 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyIncrement>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -658,7 +662,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "decrement":
             {
@@ -666,13 +670,13 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyDecrement>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -681,7 +685,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "expiration_change":
             {
@@ -689,13 +693,13 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -704,7 +708,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void":
             {
@@ -712,13 +716,13 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyVoid>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -727,7 +731,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amendment":
             {
@@ -735,13 +739,13 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDParamsBodyAmendment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -750,11 +754,11 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new LedgerCreateEntryByExternalIDParamsBody(json);
+                return new LedgerCreateEntryByExternalIDParamsBody(element);
             }
         }
     }
@@ -770,12 +774,12 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyIncrement,
         LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw
     >)
 )]
-public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -783,14 +787,14 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -799,8 +803,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -810,8 +814,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -822,12 +826,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "effective_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "effective_date", value); }
+        init { JsonModel.Set(this._rawData, "effective_date", value); }
     }
 
     /// <summary>
@@ -837,9 +841,9 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     /// <summary>
@@ -850,11 +854,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
             >(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -866,12 +870,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
+            return JsonModel.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>(
                 this.RawData,
                 "invoice_settings"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoice_settings", value); }
+        init { JsonModel.Set(this._rawData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -883,12 +887,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -897,8 +901,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
     /// </summary>
     public string? PerUnitCostBasis
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <inheritdoc/>
@@ -971,7 +975,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrement : Mo
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrement>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyIncrement>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyIncrement FromRawUnchecked(
@@ -983,12 +987,12 @@ class LedgerCreateEntryByExternalIDParamsBodyIncrementFromRaw
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyIncrementFilter,
         LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFromRaw
     >)
 )]
-public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilter : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -1000,11 +1004,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterField>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -1017,11 +1021,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -1029,8 +1033,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -1075,7 +1079,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementFilte
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyIncrementFilter>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyIncrementFilter FromRawUnchecked(
@@ -1184,13 +1188,13 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperatorConve
 /// as the calculation of the invoice total is done on that basis.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings,
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw
     >)
 )]
 public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -1198,8 +1202,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public required bool AutoCollection
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
-        init { ModelBase.Set(this._rawData, "auto_collection", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
+        init { JsonModel.Set(this._rawData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -1210,12 +1214,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     {
         get
         {
-            return ModelBase.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
+            return JsonModel.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate>(
                 this.RawData,
                 "custom_due_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "custom_due_date", value); }
+        init { JsonModel.Set(this._rawData, "custom_due_date", value); }
     }
 
     /// <summary>
@@ -1227,12 +1231,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     {
         get
         {
-            return ModelBase.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
+            return JsonModel.GetNullableClass<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate>(
                 this.RawData,
                 "invoice_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoice_date", value); }
+        init { JsonModel.Set(this._rawData, "invoice_date", value); }
     }
 
     /// <summary>
@@ -1241,8 +1245,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public string? ItemID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -1250,8 +1254,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
-        init { ModelBase.Set(this._rawData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "memo"); }
+        init { JsonModel.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -1264,8 +1268,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     /// </summary>
     public long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "net_terms"); }
-        init { ModelBase.Set(this._rawData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "net_terms"); }
+        init { JsonModel.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -1276,7 +1280,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
+            return JsonModel.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
         }
         init
         {
@@ -1285,7 +1289,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
                 return;
             }
 
-            ModelBase.Set(this._rawData, "require_successful_payment", value);
+            JsonModel.Set(this._rawData, "require_successful_payment", value);
         }
     }
 
@@ -1342,7 +1346,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoi
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings FromRawUnchecked(
@@ -1361,11 +1365,11 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
@@ -1375,27 +1379,27 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         System::DateTimeOffset
 #endif
         value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
         System::DateTimeOffset value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1630,7 +1634,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -1639,7 +1643,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1648,14 +1652,14 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(
@@ -1680,11 +1684,11 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
@@ -1694,27 +1698,27 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
         System::DateTimeOffset
 #endif
         value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
         System::DateTimeOffset value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1949,7 +1953,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -1958,7 +1962,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1967,14 +1971,14 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(
@@ -1988,12 +1992,12 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyDecrement,
         LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw
     >)
 )]
-public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2001,14 +2005,14 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -2017,8 +2021,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2028,8 +2032,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2041,12 +2045,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -2111,7 +2115,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyDecrement : Mo
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyDecrement>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyDecrement>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyDecrement FromRawUnchecked(
@@ -2120,17 +2124,17 @@ class LedgerCreateEntryByExternalIDParamsBodyDecrementFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyExpirationChange,
         LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw
     >)
 )]
-public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChange : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChange : JsonModel
 {
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -2148,7 +2152,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     {
         get
         {
-            return ModelBase.GetNotNullStruct<
+            return JsonModel.GetNotNullStruct<
 #if NET
             System::DateOnly
 #else
@@ -2156,7 +2160,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
 #endif
             >(this.RawData, "target_expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "target_expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "target_expiry_date", value); }
     }
 
     /// <summary>
@@ -2165,8 +2169,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public double? Amount
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -2175,8 +2179,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public string? BlockID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "block_id"); }
-        init { ModelBase.Set(this._rawData, "block_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "block_id"); }
+        init { JsonModel.Set(this._rawData, "block_id", value); }
     }
 
     /// <summary>
@@ -2185,8 +2189,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2196,8 +2200,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2207,9 +2211,9 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     /// <summary>
@@ -2221,12 +2225,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -2303,7 +2307,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyExpirationChan
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyExpirationChange>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyExpirationChange FromRawUnchecked(
@@ -2312,12 +2316,12 @@ class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeFromRaw
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyVoid,
         LedgerCreateEntryByExternalIDParamsBodyVoidFromRaw
     >)
 )]
-public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2325,8 +2329,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -2334,14 +2338,14 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     /// </summary>
     public required string BlockID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "block_id"); }
-        init { ModelBase.Set(this._rawData, "block_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "block_id"); }
+        init { JsonModel.Set(this._rawData, "block_id", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -2350,8 +2354,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2361,8 +2365,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2374,12 +2378,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -2389,11 +2393,11 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, LedgerCreateEntryByExternalIDParamsBodyVoidVoidReason>
             >(this.RawData, "void_reason");
         }
-        init { ModelBase.Set(this._rawData, "void_reason", value); }
+        init { JsonModel.Set(this._rawData, "void_reason", value); }
     }
 
     /// <inheritdoc/>
@@ -2453,7 +2457,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyVoid : ModelBa
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyVoidFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyVoid>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyVoid>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyVoid FromRawUnchecked(
@@ -2507,12 +2511,12 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyVoidVoidReasonConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         LedgerCreateEntryByExternalIDParamsBodyAmendment,
         LedgerCreateEntryByExternalIDParamsBodyAmendmentFromRaw
     >)
 )]
-public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : ModelBase
+public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : JsonModel
 {
     /// <summary>
     /// The number of credits to effect. Note that this is required for increment,
@@ -2520,8 +2524,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     /// </summary>
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -2529,14 +2533,14 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     /// </summary>
     public required string BlockID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "block_id"); }
-        init { ModelBase.Set(this._rawData, "block_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "block_id"); }
+        init { JsonModel.Set(this._rawData, "block_id", value); }
     }
 
     public JsonElement EntryType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "entry_type"); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     /// <summary>
@@ -2545,8 +2549,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -2556,8 +2560,8 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -2569,12 +2573,12 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -2633,7 +2637,7 @@ public sealed record class LedgerCreateEntryByExternalIDParamsBodyAmendment : Mo
 }
 
 class LedgerCreateEntryByExternalIDParamsBodyAmendmentFromRaw
-    : IFromRaw<LedgerCreateEntryByExternalIDParamsBodyAmendment>
+    : IFromRawJson<LedgerCreateEntryByExternalIDParamsBodyAmendment>
 {
     /// <inheritdoc/>
     public LedgerCreateEntryByExternalIDParamsBodyAmendment FromRawUnchecked(

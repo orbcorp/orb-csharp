@@ -274,9 +274,9 @@ public class NewFloatingTieredPackageWithMinimumPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPrice>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -860,8 +860,8 @@ public class TieredPackageWithMinimumConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         double expectedPackageSize = 0;
@@ -963,8 +963,8 @@ public class TieredPackageWithMinimumConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConfigTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -1037,10 +1037,10 @@ public class NewFloatingTieredPackageWithMinimumPriceConversionRateConfigTest : 
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1065,10 +1065,10 @@ public class NewFloatingTieredPackageWithMinimumPriceConversionRateConfigTest : 
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

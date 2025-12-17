@@ -8,9 +8,12 @@ using Orb.Core;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<BillingCycleAnchorConfiguration, BillingCycleAnchorConfigurationFromRaw>)
+    typeof(JsonModelConverter<
+        BillingCycleAnchorConfiguration,
+        BillingCycleAnchorConfigurationFromRaw
+    >)
 )]
-public sealed record class BillingCycleAnchorConfiguration : ModelBase
+public sealed record class BillingCycleAnchorConfiguration : JsonModel
 {
     /// <summary>
     /// The day of the month on which the billing cycle is anchored. If the maximum
@@ -20,8 +23,8 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     /// </summary>
     public required long Day
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "day"); }
-        init { ModelBase.Set(this._rawData, "day", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "day"); }
+        init { JsonModel.Set(this._rawData, "day", value); }
     }
 
     /// <summary>
@@ -30,8 +33,8 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     /// </summary>
     public long? Month
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "month"); }
-        init { ModelBase.Set(this._rawData, "month", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "month"); }
+        init { JsonModel.Set(this._rawData, "month", value); }
     }
 
     /// <summary>
@@ -40,8 +43,8 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     /// </summary>
     public long? Year
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "year"); }
-        init { ModelBase.Set(this._rawData, "year", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "year"); }
+        init { JsonModel.Set(this._rawData, "year", value); }
     }
 
     /// <inheritdoc/>
@@ -88,7 +91,7 @@ public sealed record class BillingCycleAnchorConfiguration : ModelBase
     }
 }
 
-class BillingCycleAnchorConfigurationFromRaw : IFromRaw<BillingCycleAnchorConfiguration>
+class BillingCycleAnchorConfigurationFromRaw : IFromRawJson<BillingCycleAnchorConfiguration>
 {
     /// <inheritdoc/>
     public BillingCycleAnchorConfiguration FromRawUnchecked(

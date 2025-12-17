@@ -31,12 +31,12 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(
+            return JsonModel.GetNullableStruct<bool>(
                 this.RawBodyData,
                 "allow_invoice_credit_or_void"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
+        init { JsonModel.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -51,14 +51,14 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
 #endif
     ? EffectiveDate
     {
-        get { return ModelBase.GetNullableStruct<
+        get { return JsonModel.GetNullableStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
             >(this.RawBodyData, "effective_date"); }
-        init { ModelBase.Set(this._rawBodyData, "effective_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "effective_date", value); }
     }
 
     public SubscriptionTriggerPhaseParams() { }
@@ -96,7 +96,7 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionTriggerPhaseParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -121,9 +121,13 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

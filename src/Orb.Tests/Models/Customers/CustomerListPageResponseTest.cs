@@ -373,8 +373,8 @@ public class CustomerListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CustomerListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Customer> expectedData =

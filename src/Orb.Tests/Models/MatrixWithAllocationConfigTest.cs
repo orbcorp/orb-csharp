@@ -67,8 +67,8 @@ public class MatrixWithAllocationConfigTest : TestBase
             MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -154,8 +154,10 @@ public class MatrixWithAllocationConfigMatrixValueTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConfigMatrixValue>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConfigMatrixValue>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         List<string?> expectedDimensionValues = ["string"];

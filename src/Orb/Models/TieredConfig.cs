@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for tiered pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredConfig, TieredConfigFromRaw>))]
-public sealed record class TieredConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TieredConfig, TieredConfigFromRaw>))]
+public sealed record class TieredConfig : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
     public required IReadOnlyList<SharedTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<SharedTier>>(this.RawData, "tiers"); }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        get { return JsonModel.GetNotNullClass<List<SharedTier>>(this.RawData, "tiers"); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public sealed record class TieredConfig : ModelBase
     /// </summary>
     public bool? Prorated
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "prorated"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorated"); }
         init
         {
             if (value == null)
@@ -35,7 +35,7 @@ public sealed record class TieredConfig : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "prorated", value);
+            JsonModel.Set(this._rawData, "prorated", value);
         }
     }
 
@@ -81,7 +81,7 @@ public sealed record class TieredConfig : ModelBase
     }
 }
 
-class TieredConfigFromRaw : IFromRaw<TieredConfig>
+class TieredConfigFromRaw : IFromRawJson<TieredConfig>
 {
     /// <inheritdoc/>
     public TieredConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

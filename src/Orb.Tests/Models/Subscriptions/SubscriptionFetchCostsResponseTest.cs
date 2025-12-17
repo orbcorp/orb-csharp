@@ -579,8 +579,8 @@ public class SubscriptionFetchCostsResponseTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionFetchCostsResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionFetchCostsResponse>(element);
         Assert.NotNull(deserialized);
 
         List<AggregatedCost> expectedData =

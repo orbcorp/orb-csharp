@@ -215,9 +215,11 @@ public class NewSubscriptionUnitWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPrice>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<
@@ -644,8 +646,10 @@ public class UnitWithProrationConfigTest : TestBase
     {
         var model = new Subscriptions::UnitWithProrationConfig { UnitAmount = "unit_amount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithProrationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithProrationConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -709,10 +713,10 @@ public class NewSubscriptionUnitWithProrationPriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -737,10 +741,10 @@ public class NewSubscriptionUnitWithProrationPriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithProrationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

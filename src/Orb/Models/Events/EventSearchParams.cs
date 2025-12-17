@@ -41,8 +41,8 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> EventIDs
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawBodyData, "event_ids"); }
-        init { ModelBase.Set(this._rawBodyData, "event_ids", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawBodyData, "event_ids"); }
+        init { JsonModel.Set(this._rawBodyData, "event_ids", value); }
     }
 
     /// <summary>
@@ -53,9 +53,9 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
+            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -66,9 +66,9 @@ public sealed record class EventSearchParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
+            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
     }
 
     public EventSearchParams() { }
@@ -104,7 +104,7 @@ public sealed record class EventSearchParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static EventSearchParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -126,9 +126,13 @@ public sealed record class EventSearchParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

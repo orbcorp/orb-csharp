@@ -8,26 +8,29 @@ using Orb.Core;
 namespace Orb.Models.Customers;
 
 [JsonConverter(
-    typeof(ModelConverter<NewAccountingSyncConfiguration, NewAccountingSyncConfigurationFromRaw>)
+    typeof(JsonModelConverter<
+        NewAccountingSyncConfiguration,
+        NewAccountingSyncConfigurationFromRaw
+    >)
 )]
-public sealed record class NewAccountingSyncConfiguration : ModelBase
+public sealed record class NewAccountingSyncConfiguration : JsonModel
 {
     public IReadOnlyList<AccountingProviderConfig>? AccountingProviders
     {
         get
         {
-            return ModelBase.GetNullableClass<List<AccountingProviderConfig>>(
+            return JsonModel.GetNullableClass<List<AccountingProviderConfig>>(
                 this.RawData,
                 "accounting_providers"
             );
         }
-        init { ModelBase.Set(this._rawData, "accounting_providers", value); }
+        init { JsonModel.Set(this._rawData, "accounting_providers", value); }
     }
 
     public bool? Excluded
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "excluded"); }
-        init { ModelBase.Set(this._rawData, "excluded", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "excluded"); }
+        init { JsonModel.Set(this._rawData, "excluded", value); }
     }
 
     /// <inheritdoc/>
@@ -69,7 +72,7 @@ public sealed record class NewAccountingSyncConfiguration : ModelBase
     }
 }
 
-class NewAccountingSyncConfigurationFromRaw : IFromRaw<NewAccountingSyncConfiguration>
+class NewAccountingSyncConfigurationFromRaw : IFromRawJson<NewAccountingSyncConfiguration>
 {
     /// <inheritdoc/>
     public NewAccountingSyncConfiguration FromRawUnchecked(

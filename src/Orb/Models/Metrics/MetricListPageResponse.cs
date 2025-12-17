@@ -7,25 +7,25 @@ using Orb.Core;
 
 namespace Orb.Models.Metrics;
 
-[JsonConverter(typeof(ModelConverter<MetricListPageResponse, MetricListPageResponseFromRaw>))]
-public sealed record class MetricListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MetricListPageResponse, MetricListPageResponseFromRaw>))]
+public sealed record class MetricListPageResponse : JsonModel
 {
     public required IReadOnlyList<BillableMetric> Data
     {
-        get { return ModelBase.GetNotNullClass<List<BillableMetric>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<BillableMetric>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +65,7 @@ public sealed record class MetricListPageResponse : ModelBase
     }
 }
 
-class MetricListPageResponseFromRaw : IFromRaw<MetricListPageResponse>
+class MetricListPageResponseFromRaw : IFromRawJson<MetricListPageResponse>
 {
     /// <inheritdoc/>
     public MetricListPageResponse FromRawUnchecked(

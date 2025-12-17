@@ -188,8 +188,8 @@ public class DecrementLedgerEntryTest : TestBase
             PriceID = "price_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

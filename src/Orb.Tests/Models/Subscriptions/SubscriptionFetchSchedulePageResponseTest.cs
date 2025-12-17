@@ -112,8 +112,10 @@ public class SubscriptionFetchSchedulePageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionFetchSchedulePageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionFetchSchedulePageResponse>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         List<SubscriptionFetchSchedulePageResponseData> expectedData =
@@ -246,9 +248,9 @@ public class SubscriptionFetchSchedulePageResponseDataTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<SubscriptionFetchSchedulePageResponseData>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -335,8 +337,8 @@ public class PlanTest : TestBase
             Name = "Example plan",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Plan>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Plan>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "m2t5akQeh2obwxeU";

@@ -35,8 +35,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "amount"); }
-        init { ModelBase.Set(this._rawBodyData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "amount"); }
+        init { JsonModel.Set(this._rawBodyData, "amount", value); }
     }
 
     /// <summary>
@@ -50,14 +50,14 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 #endif
     EndDate
     {
-        get { return ModelBase.GetNotNullStruct<
+        get { return JsonModel.GetNotNullStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
             >(this.RawBodyData, "end_date"); }
-        init { ModelBase.Set(this._rawBodyData, "end_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "end_date", value); }
     }
 
     /// <summary>
@@ -65,8 +65,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string InvoiceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "invoice_id"); }
-        init { ModelBase.Set(this._rawBodyData, "invoice_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "invoice_id"); }
+        init { JsonModel.Set(this._rawBodyData, "invoice_id", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
-        init { ModelBase.Set(this._rawBodyData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
+        init { JsonModel.Set(this._rawBodyData, "quantity", value); }
     }
 
     /// <summary>
@@ -89,14 +89,14 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
 #endif
     StartDate
     {
-        get { return ModelBase.GetNotNullStruct<
+        get { return JsonModel.GetNotNullStruct<
 #if NET
             DateOnly
 #else
             DateTimeOffset
 #endif
             >(this.RawBodyData, "start_date"); }
-        init { ModelBase.Set(this._rawBodyData, "start_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "start_date", value); }
     }
 
     /// <summary>
@@ -107,8 +107,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? ItemID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "item_id"); }
-        init { ModelBase.Set(this._rawBodyData, "item_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "item_id"); }
+        init { JsonModel.Set(this._rawBodyData, "item_id", value); }
     }
 
     /// <summary>
@@ -121,8 +121,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "name"); }
-        init { ModelBase.Set(this._rawBodyData, "name", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "name"); }
+        init { JsonModel.Set(this._rawBodyData, "name", value); }
     }
 
     public InvoiceLineItemCreateParams() { }
@@ -158,7 +158,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceLineItemCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -180,9 +180,13 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

@@ -220,8 +220,8 @@ public class NewFloatingGroupedAllocationPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedAllocationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedAllocationPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingGroupedAllocationPriceCadence> expectedCadence =
@@ -608,8 +608,8 @@ public class GroupedAllocationConfigTest : TestBase
             OverageUnitRate = "overage_unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -738,9 +738,11 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingGroupedAllocationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingGroupedAllocationPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -764,9 +766,11 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingGroupedAllocationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingGroupedAllocationPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

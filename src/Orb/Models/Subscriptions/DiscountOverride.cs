@@ -9,18 +9,18 @@ using System = System;
 
 namespace Orb.Models.Subscriptions;
 
-[JsonConverter(typeof(ModelConverter<DiscountOverride, DiscountOverrideFromRaw>))]
-public sealed record class DiscountOverride : ModelBase
+[JsonConverter(typeof(JsonModelConverter<DiscountOverride, DiscountOverrideFromRaw>))]
+public sealed record class DiscountOverride : JsonModel
 {
     public required ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Subscriptions.DiscountType>
             >(this.RawData, "discount_type");
         }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     /// <summary>
@@ -28,8 +28,8 @@ public sealed record class DiscountOverride : ModelBase
     /// </summary>
     public string? AmountDiscount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "amount_discount"); }
-        init { ModelBase.Set(this._rawData, "amount_discount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "amount_discount"); }
+        init { JsonModel.Set(this._rawData, "amount_discount", value); }
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ public sealed record class DiscountOverride : ModelBase
     /// </summary>
     public double? PercentageDiscount
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "percentage_discount"); }
-        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "percentage_discount"); }
+        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
     }
 
     /// <summary>
@@ -48,8 +48,8 @@ public sealed record class DiscountOverride : ModelBase
     /// </summary>
     public double? UsageDiscount
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "usage_discount"); }
-        init { ModelBase.Set(this._rawData, "usage_discount", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "usage_discount"); }
+        init { JsonModel.Set(this._rawData, "usage_discount", value); }
     }
 
     /// <inheritdoc/>
@@ -97,7 +97,7 @@ public sealed record class DiscountOverride : ModelBase
     }
 }
 
-class DiscountOverrideFromRaw : IFromRaw<DiscountOverride>
+class DiscountOverrideFromRaw : IFromRawJson<DiscountOverride>
 {
     /// <inheritdoc/>
     public DiscountOverride FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

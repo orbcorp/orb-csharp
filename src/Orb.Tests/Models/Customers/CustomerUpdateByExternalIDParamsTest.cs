@@ -81,9 +81,11 @@ public class CustomerUpdateByExternalIDParamsPaymentConfigurationTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfiguration>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         List<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider> expectedPaymentProviders =
@@ -229,10 +231,10 @@ public class CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
             ExcludedPaymentMethodTypes = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -573,9 +575,9 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
                 TaxExemptionCode = "tax_exemption_code",
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -591,9 +593,9 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -609,9 +611,9 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -626,9 +628,9 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -643,9 +645,9 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -660,9 +662,9 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfiguration>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -715,10 +717,10 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationNumeralTest : TestB
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationNumeral>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -839,9 +841,11 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationAnrokTest : TestBas
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>(json);
+            JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationAnrok>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;
@@ -957,10 +961,10 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationStripeTest : TestBa
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateByExternalIDParamsTaxConfigurationStripe>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 

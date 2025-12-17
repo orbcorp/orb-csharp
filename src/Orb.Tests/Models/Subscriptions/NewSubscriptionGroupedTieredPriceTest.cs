@@ -242,9 +242,9 @@ public class NewSubscriptionGroupedTieredPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Subscriptions::NewSubscriptionGroupedTieredPriceCadence> expectedCadence =
@@ -680,8 +680,8 @@ public class GroupedTieredConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedTieredConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedTieredConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -758,8 +758,10 @@ public class GroupedTieredConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedTieredConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedTieredConfigTier>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -887,10 +889,10 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -915,10 +917,10 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
