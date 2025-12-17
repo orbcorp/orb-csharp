@@ -38,12 +38,12 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<InvoiceUpdateParamsDueDate>(
+            return JsonModel.GetNullableClass<InvoiceUpdateParamsDueDate>(
                 this.RawBodyData,
                 "due_date"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "due_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "due_date", value); }
     }
 
     /// <summary>
@@ -51,8 +51,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public InvoiceDate? InvoiceDate
     {
-        get { return ModelBase.GetNullableClass<InvoiceDate>(this.RawBodyData, "invoice_date"); }
-        init { ModelBase.Set(this._rawBodyData, "invoice_date", value); }
+        get { return JsonModel.GetNullableClass<InvoiceDate>(this.RawBodyData, "invoice_date"); }
+        init { JsonModel.Set(this._rawBodyData, "invoice_date", value); }
     }
 
     /// <summary>
@@ -64,12 +64,12 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -82,8 +82,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
-        init { ModelBase.Set(this._rawBodyData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
+        init { JsonModel.Set(this._rawBodyData, "net_terms", value); }
     }
 
     public InvoiceUpdateParams() { }
@@ -119,7 +119,7 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -143,9 +143,13 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -167,11 +171,11 @@ public record class InvoiceUpdateParamsDueDate
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public InvoiceUpdateParamsDueDate(
@@ -180,21 +184,21 @@ public record class InvoiceUpdateParamsDueDate
 #else
         System::DateTimeOffset
 #endif
-        value, JsonElement? json = null)
+        value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceUpdateParamsDueDate(System::DateTimeOffset value, JsonElement? json = null)
+    public InvoiceUpdateParamsDueDate(System::DateTimeOffset value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceUpdateParamsDueDate(JsonElement json)
+    public InvoiceUpdateParamsDueDate(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -424,7 +428,7 @@ sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdatePa
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -433,7 +437,7 @@ sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdatePa
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -442,14 +446,14 @@ sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdatePa
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(
@@ -470,11 +474,11 @@ public record class InvoiceDate
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public InvoiceDate(
@@ -483,21 +487,21 @@ public record class InvoiceDate
 #else
         System::DateTimeOffset
 #endif
-        value, JsonElement? json = null)
+        value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceDate(System::DateTimeOffset value, JsonElement? json = null)
+    public InvoiceDate(System::DateTimeOffset value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public InvoiceDate(JsonElement json)
+    public InvoiceDate(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -720,7 +724,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -729,7 +733,7 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -738,14 +742,14 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(

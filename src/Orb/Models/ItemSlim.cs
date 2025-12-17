@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// A minimal representation of an Item containing only the essential identifying information.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ItemSlim, ItemSlimFromRaw>))]
-public sealed record class ItemSlim : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ItemSlim, ItemSlimFromRaw>))]
+public sealed record class ItemSlim : JsonModel
 {
     /// <summary>
     /// The Orb-assigned unique identifier for the item.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class ItemSlim : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -63,7 +63,7 @@ public sealed record class ItemSlim : ModelBase
     }
 }
 
-class ItemSlimFromRaw : IFromRaw<ItemSlim>
+class ItemSlimFromRaw : IFromRawJson<ItemSlim>
 {
     /// <inheritdoc/>
     public ItemSlim FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

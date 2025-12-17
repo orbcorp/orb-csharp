@@ -9,31 +9,33 @@ using System = System;
 
 namespace Orb.Models.Events.Backfills;
 
-[JsonConverter(typeof(ModelConverter<BackfillListPageResponse, BackfillListPageResponseFromRaw>))]
-public sealed record class BackfillListPageResponse : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<BackfillListPageResponse, BackfillListPageResponseFromRaw>)
+)]
+public sealed record class BackfillListPageResponse : JsonModel
 {
     public required IReadOnlyList<global::Orb.Models.Events.Backfills.Data> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Events.Backfills.Data>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.Events.Backfills.Data>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -73,7 +75,7 @@ public sealed record class BackfillListPageResponse : ModelBase
     }
 }
 
-class BackfillListPageResponseFromRaw : IFromRaw<BackfillListPageResponse>
+class BackfillListPageResponseFromRaw : IFromRawJson<BackfillListPageResponse>
 {
     /// <inheritdoc/>
     public BackfillListPageResponse FromRawUnchecked(
@@ -86,17 +88,17 @@ class BackfillListPageResponseFromRaw : IFromRaw<BackfillListPageResponse>
 /// events in a timeframe.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Events.Backfills.Data,
         global::Orb.Models.Events.Backfills.DataFromRaw
     >)
 )]
-public sealed record class Data : ModelBase
+public sealed record class Data : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -107,18 +109,18 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "close_time");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "close_time");
         }
-        init { ModelBase.Set(this._rawData, "close_time", value); }
+        init { JsonModel.Set(this._rawData, "close_time", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -127,8 +129,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { ModelBase.Set(this._rawData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
+        init { JsonModel.Set(this._rawData, "customer_id", value); }
     }
 
     /// <summary>
@@ -136,8 +138,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required long EventsIngested
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "events_ingested"); }
-        init { ModelBase.Set(this._rawData, "events_ingested", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "events_ingested"); }
+        init { JsonModel.Set(this._rawData, "events_ingested", value); }
     }
 
     /// <summary>
@@ -147,8 +149,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public required bool ReplaceExistingEvents
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "replace_existing_events"); }
-        init { ModelBase.Set(this._rawData, "replace_existing_events", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "replace_existing_events"); }
+        init { JsonModel.Set(this._rawData, "replace_existing_events", value); }
     }
 
     /// <summary>
@@ -158,9 +160,9 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "reverted_at");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "reverted_at");
         }
-        init { ModelBase.Set(this._rawData, "reverted_at", value); }
+        init { JsonModel.Set(this._rawData, "reverted_at", value); }
     }
 
     /// <summary>
@@ -170,33 +172,33 @@ public sealed record class Data : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DataStatus>>(this.RawData, "status");
+            return JsonModel.GetNotNullClass<ApiEnum<string, DataStatus>>(this.RawData, "status");
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -205,8 +207,8 @@ public sealed record class Data : ModelBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "deprecation_filter"); }
-        init { ModelBase.Set(this._rawData, "deprecation_filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "deprecation_filter"); }
+        init { JsonModel.Set(this._rawData, "deprecation_filter", value); }
     }
 
     /// <inheritdoc/>
@@ -252,7 +254,7 @@ public sealed record class Data : ModelBase
     }
 }
 
-class DataFromRaw : IFromRaw<global::Orb.Models.Events.Backfills.Data>
+class DataFromRaw : IFromRawJson<global::Orb.Models.Events.Backfills.Data>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Events.Backfills.Data FromRawUnchecked(

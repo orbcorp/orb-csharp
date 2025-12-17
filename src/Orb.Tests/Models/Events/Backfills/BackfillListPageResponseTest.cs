@@ -122,8 +122,8 @@ public class BackfillListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BackfillListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BackfillListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Data> expectedData =
@@ -274,8 +274,8 @@ public class DataTest : TestBase
             DeprecationFilter = "my_numeric_property > 100 AND my_other_property = 'bar'",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

@@ -204,8 +204,8 @@ public class NewFloatingUnitWithPercentPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingUnitWithPercentPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingUnitWithPercentPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingUnitWithPercentPriceCadence> expectedCadence =
@@ -605,8 +605,8 @@ public class UnitWithPercentConfigTest : TestBase
     {
         var model = new UnitWithPercentConfig { Percent = "percent", UnitAmount = "unit_amount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedPercent = "percent";
@@ -672,9 +672,11 @@ public class NewFloatingUnitWithPercentPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingUnitWithPercentPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingUnitWithPercentPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -698,9 +700,11 @@ public class NewFloatingUnitWithPercentPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingUnitWithPercentPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingUnitWithPercentPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

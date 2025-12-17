@@ -106,8 +106,8 @@ public class EventSearchResponseTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventSearchResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventSearchResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Data> expectedData =
@@ -246,8 +246,8 @@ public class DataTest : TestBase
             Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

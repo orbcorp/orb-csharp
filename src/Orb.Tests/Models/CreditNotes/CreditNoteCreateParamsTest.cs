@@ -118,8 +118,8 @@ public class LineItemTest : TestBase
             .Parse("2023-09-22"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LineItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<LineItem>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "amount";

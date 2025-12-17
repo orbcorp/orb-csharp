@@ -10,12 +10,12 @@ using System = System;
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         NewSubscriptionThresholdTotalAmountPrice,
         NewSubscriptionThresholdTotalAmountPriceFromRaw
     >)
 )]
-public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
+public sealed record class NewSubscriptionThresholdTotalAmountPrice : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -24,11 +24,11 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewSubscriptionThresholdTotalAmountPriceCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -47,11 +47,11 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewSubscriptionThresholdTotalAmountPriceModelType>
             >(this.RawData, "model_type");
         }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -70,12 +70,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>(
+            return JsonModel.GetNotNullClass<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>(
                 this.RawData,
                 "threshold_total_amount_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "threshold_total_amount_config", value); }
+        init { JsonModel.Set(this._rawData, "threshold_total_amount_config", value); }
     }
 
     /// <summary>
@@ -83,8 +83,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -93,8 +93,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -105,12 +105,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -118,8 +118,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -129,12 +129,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewSubscriptionThresholdTotalAmountPriceConversionRateConfig>(
+            return JsonModel.GetNullableClass<NewSubscriptionThresholdTotalAmountPriceConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -143,8 +143,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -154,12 +154,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -167,8 +167,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -176,8 +176,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -185,8 +185,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -197,12 +197,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -214,12 +214,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -228,8 +228,8 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -287,7 +287,7 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : ModelBase
 }
 
 class NewSubscriptionThresholdTotalAmountPriceFromRaw
-    : IFromRaw<NewSubscriptionThresholdTotalAmountPrice>
+    : IFromRawJson<NewSubscriptionThresholdTotalAmountPrice>
 {
     /// <inheritdoc/>
     public NewSubscriptionThresholdTotalAmountPrice FromRawUnchecked(
@@ -406,12 +406,12 @@ sealed class NewSubscriptionThresholdTotalAmountPriceModelTypeConverter
 /// Configuration for threshold_total_amount pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig,
         global::Orb.Models.Subscriptions.ThresholdTotalAmountConfigFromRaw
     >)
 )]
-public sealed record class ThresholdTotalAmountConfig : ModelBase
+public sealed record class ThresholdTotalAmountConfig : JsonModel
 {
     /// <summary>
     /// When the quantity consumed passes a provided threshold, the configured total
@@ -421,11 +421,11 @@ public sealed record class ThresholdTotalAmountConfig : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<global::Orb.Models.Subscriptions.ConsumptionTable>
             >(this.RawData, "consumption_table");
         }
-        init { ModelBase.Set(this._rawData, "consumption_table", value); }
+        init { JsonModel.Set(this._rawData, "consumption_table", value); }
     }
 
     /// <summary>
@@ -433,8 +433,8 @@ public sealed record class ThresholdTotalAmountConfig : ModelBase
     /// </summary>
     public bool? Prorate
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "prorate"); }
-        init { ModelBase.Set(this._rawData, "prorate", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorate"); }
+        init { JsonModel.Set(this._rawData, "prorate", value); }
     }
 
     /// <inheritdoc/>
@@ -486,7 +486,7 @@ public sealed record class ThresholdTotalAmountConfig : ModelBase
 }
 
 class ThresholdTotalAmountConfigFromRaw
-    : IFromRaw<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>
+    : IFromRawJson<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
@@ -498,20 +498,20 @@ class ThresholdTotalAmountConfigFromRaw
 /// Configuration for a single threshold
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Subscriptions.ConsumptionTable,
         global::Orb.Models.Subscriptions.ConsumptionTableFromRaw
     >)
 )]
-public sealed record class ConsumptionTable : ModelBase
+public sealed record class ConsumptionTable : JsonModel
 {
     /// <summary>
     /// Quantity threshold
     /// </summary>
     public required string Threshold
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "threshold"); }
-        init { ModelBase.Set(this._rawData, "threshold", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }
+        init { JsonModel.Set(this._rawData, "threshold", value); }
     }
 
     /// <summary>
@@ -519,8 +519,8 @@ public sealed record class ConsumptionTable : ModelBase
     /// </summary>
     public required string TotalAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "total_amount"); }
-        init { ModelBase.Set(this._rawData, "total_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "total_amount"); }
+        init { JsonModel.Set(this._rawData, "total_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -557,7 +557,7 @@ public sealed record class ConsumptionTable : ModelBase
     }
 }
 
-class ConsumptionTableFromRaw : IFromRaw<global::Orb.Models.Subscriptions.ConsumptionTable>
+class ConsumptionTableFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.ConsumptionTable>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
@@ -570,34 +570,34 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewSubscriptionThresholdTotalAmountPriceConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public NewSubscriptionThresholdTotalAmountPriceConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public NewSubscriptionThresholdTotalAmountPriceConversionRateConfig(JsonElement json)
+    public NewSubscriptionThresholdTotalAmountPriceConversionRateConfig(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -767,11 +767,11 @@ sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConvert
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -785,13 +785,13 @@ sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConvert
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -800,20 +800,20 @@ sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConvert
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -822,11 +822,11 @@ sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConvert
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new NewSubscriptionThresholdTotalAmountPriceConversionRateConfig(json);
+                return new NewSubscriptionThresholdTotalAmountPriceConversionRateConfig(element);
             }
         }
     }

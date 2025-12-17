@@ -254,8 +254,8 @@ public class NewPlanCumulativeGroupedBulkPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanCumulativeGroupedBulkPriceCadence> expectedCadence =
@@ -730,10 +730,10 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigTest : 
             Group = "group",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -828,10 +828,10 @@ public class NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensi
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceCumulativeGroupedBulkConfigDimensionValue>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -961,9 +961,11 @@ public class NewPlanCumulativeGroupedBulkPriceConversionRateConfigTest : TestBas
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -987,9 +989,11 @@ public class NewPlanCumulativeGroupedBulkPriceConversionRateConfigTest : TestBas
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanCumulativeGroupedBulkPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

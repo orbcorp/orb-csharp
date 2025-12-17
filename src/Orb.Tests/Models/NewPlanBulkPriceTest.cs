@@ -206,8 +206,8 @@ public class NewPlanBulkPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanBulkPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanBulkPrice>(element);
         Assert.NotNull(deserialized);
 
         BulkConfig expectedBulkConfig = new(
@@ -628,8 +628,10 @@ public class NewPlanBulkPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<NewPlanBulkPriceConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<NewPlanBulkPriceConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -653,8 +655,10 @@ public class NewPlanBulkPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<NewPlanBulkPriceConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<NewPlanBulkPriceConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }

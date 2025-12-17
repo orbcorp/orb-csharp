@@ -225,8 +225,8 @@ public class NewPlanGroupedAllocationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanGroupedAllocationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanGroupedAllocationPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanGroupedAllocationPriceCadence> expectedCadence =
@@ -625,9 +625,11 @@ public class NewPlanGroupedAllocationPriceGroupedAllocationConfigTest : TestBase
             OverageUnitRate = "overage_unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceGroupedAllocationConfig>(json);
+            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceGroupedAllocationConfig>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -756,9 +758,9 @@ public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -782,9 +784,9 @@ public class NewPlanGroupedAllocationPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanGroupedAllocationPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

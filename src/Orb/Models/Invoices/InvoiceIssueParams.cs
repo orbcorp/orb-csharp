@@ -35,7 +35,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
     /// </summary>
     public bool? Synchronous
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "synchronous"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "synchronous"); }
         init
         {
             if (value == null)
@@ -43,7 +43,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "synchronous", value);
+            JsonModel.Set(this._rawBodyData, "synchronous", value);
         }
     }
 
@@ -80,7 +80,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceIssueParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -105,9 +105,13 @@ public sealed record class InvoiceIssueParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

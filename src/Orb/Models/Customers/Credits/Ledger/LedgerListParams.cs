@@ -86,48 +86,48 @@ public sealed record class LedgerListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "created_at[gt]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "created_at[gt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "created_at[gt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtGte
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "created_at[gte]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "created_at[gte]", value); }
+        init { JsonModel.Set(this._rawQueryData, "created_at[gte]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLt
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "created_at[lt]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "created_at[lt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "created_at[lt]", value); }
     }
 
     public System::DateTimeOffset? CreatedAtLte
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "created_at[lte]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "created_at[lte]", value); }
+        init { JsonModel.Set(this._rawQueryData, "created_at[lte]", value); }
     }
 
     /// <summary>
@@ -135,8 +135,8 @@ public sealed record class LedgerListParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "currency"); }
-        init { ModelBase.Set(this._rawQueryData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "currency"); }
+        init { JsonModel.Set(this._rawQueryData, "currency", value); }
     }
 
     /// <summary>
@@ -145,32 +145,32 @@ public sealed record class LedgerListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
     }
 
     public ApiEnum<string, EntryStatus>? EntryStatus
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, EntryStatus>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, EntryStatus>>(
                 this.RawQueryData,
                 "entry_status"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "entry_status", value); }
+        init { JsonModel.Set(this._rawQueryData, "entry_status", value); }
     }
 
     public ApiEnum<string, EntryType>? EntryType
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, EntryType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, EntryType>>(
                 this.RawQueryData,
                 "entry_type"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "entry_type", value); }
+        init { JsonModel.Set(this._rawQueryData, "entry_type", value); }
     }
 
     /// <summary>
@@ -178,7 +178,7 @@ public sealed record class LedgerListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -186,14 +186,14 @@ public sealed record class LedgerListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
     public string? MinimumAmount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawQueryData, "minimum_amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawQueryData, "minimum_amount", value); }
     }
 
     public LedgerListParams() { }
@@ -222,7 +222,7 @@ public sealed record class LedgerListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static LedgerListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

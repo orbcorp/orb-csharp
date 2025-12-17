@@ -15,16 +15,16 @@ namespace Orb.Models.Coupons;
 /// using a redemption code, which applies the discount to a subscription or invoice.
 /// The duration of a coupon determines how long it remains available for use by end users.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Coupon, CouponFromRaw>))]
-public sealed record class Coupon : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Coupon, CouponFromRaw>))]
+public sealed record class Coupon : JsonModel
 {
     /// <summary>
     /// Also referred to as coupon_id in this documentation.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -35,15 +35,15 @@ public sealed record class Coupon : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "archived_at");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "archived_at");
         }
-        init { ModelBase.Set(this._rawData, "archived_at", value); }
+        init { JsonModel.Set(this._rawData, "archived_at", value); }
     }
 
     public required CouponDiscount Discount
     {
-        get { return ModelBase.GetNotNullClass<CouponDiscount>(this.RawData, "discount"); }
-        init { ModelBase.Set(this._rawData, "discount", value); }
+        get { return JsonModel.GetNotNullClass<CouponDiscount>(this.RawData, "discount"); }
+        init { JsonModel.Set(this._rawData, "discount", value); }
     }
 
     /// <summary>
@@ -52,8 +52,8 @@ public sealed record class Coupon : ModelBase
     /// </summary>
     public required long? DurationInMonths
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "duration_in_months"); }
-        init { ModelBase.Set(this._rawData, "duration_in_months", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "duration_in_months"); }
+        init { JsonModel.Set(this._rawData, "duration_in_months", value); }
     }
 
     /// <summary>
@@ -62,8 +62,8 @@ public sealed record class Coupon : ModelBase
     /// </summary>
     public required long? MaxRedemptions
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "max_redemptions"); }
-        init { ModelBase.Set(this._rawData, "max_redemptions", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "max_redemptions"); }
+        init { JsonModel.Set(this._rawData, "max_redemptions", value); }
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public sealed record class Coupon : ModelBase
     /// </summary>
     public required string RedemptionCode
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "redemption_code"); }
-        init { ModelBase.Set(this._rawData, "redemption_code", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "redemption_code"); }
+        init { JsonModel.Set(this._rawData, "redemption_code", value); }
     }
 
     /// <summary>
@@ -80,8 +80,8 @@ public sealed record class Coupon : ModelBase
     /// </summary>
     public required long TimesRedeemed
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "times_redeemed"); }
-        init { ModelBase.Set(this._rawData, "times_redeemed", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "times_redeemed"); }
+        init { JsonModel.Set(this._rawData, "times_redeemed", value); }
     }
 
     /// <inheritdoc/>
@@ -121,7 +121,7 @@ public sealed record class Coupon : ModelBase
     }
 }
 
-class CouponFromRaw : IFromRaw<Coupon>
+class CouponFromRaw : IFromRawJson<Coupon>
 {
     /// <inheritdoc/>
     public Coupon FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -133,11 +133,11 @@ public record class CouponDiscount
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string? Reason
@@ -145,21 +145,21 @@ public record class CouponDiscount
         get { return Match<string?>(percentage: (x) => x.Reason, amount: (x) => x.Reason); }
     }
 
-    public CouponDiscount(PercentageDiscount value, JsonElement? json = null)
+    public CouponDiscount(PercentageDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public CouponDiscount(AmountDiscount value, JsonElement? json = null)
+    public CouponDiscount(AmountDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public CouponDiscount(JsonElement json)
+    public CouponDiscount(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -322,11 +322,11 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? discountType;
         try
         {
-            discountType = json.GetProperty("discount_type").GetString();
+            discountType = element.GetProperty("discount_type").GetString();
         }
         catch
         {
@@ -340,13 +340,13 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -355,17 +355,17 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -374,11 +374,11 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new CouponDiscount(json);
+                return new CouponDiscount(element);
             }
         }
     }

@@ -64,8 +64,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public required string EventName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "event_name"); }
-        init { ModelBase.Set(this._rawBodyData, "event_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "event_name"); }
+        init { JsonModel.Set(this._rawBodyData, "event_name", value); }
     }
 
     /// <summary>
@@ -76,12 +76,12 @@ public sealed record class EventUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNotNullClass<Dictionary<string, JsonElement>>(
                 this.RawBodyData,
                 "properties"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "properties", value); }
+        init { JsonModel.Set(this._rawBodyData, "properties", value); }
     }
 
     /// <summary>
@@ -91,8 +91,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timestamp"); }
-        init { ModelBase.Set(this._rawBodyData, "timestamp", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timestamp"); }
+        init { JsonModel.Set(this._rawBodyData, "timestamp", value); }
     }
 
     /// <summary>
@@ -100,8 +100,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
     }
 
     /// <summary>
@@ -109,8 +109,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     public EventUpdateParams() { }
@@ -146,7 +146,7 @@ public sealed record class EventUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static EventUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -170,9 +170,13 @@ public sealed record class EventUpdateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

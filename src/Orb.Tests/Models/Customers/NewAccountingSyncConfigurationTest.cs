@@ -75,8 +75,8 @@ public class NewAccountingSyncConfigurationTest : TestBase
             Excluded = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewAccountingSyncConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewAccountingSyncConfiguration>(element);
         Assert.NotNull(deserialized);
 
         List<AccountingProviderConfig> expectedAccountingProviders =

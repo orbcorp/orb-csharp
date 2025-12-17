@@ -214,9 +214,9 @@ public class NewSubscriptionUnitWithPercentPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithPercentPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithPercentPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Subscriptions::NewSubscriptionUnitWithPercentPriceCadence> expectedCadence =
@@ -650,8 +650,10 @@ public class UnitWithPercentConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithPercentConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::UnitWithPercentConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedPercent = "percent";
@@ -721,10 +723,10 @@ public class NewSubscriptionUnitWithPercentPriceConversionRateConfigTest : TestB
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -749,10 +751,10 @@ public class NewSubscriptionUnitWithPercentPriceConversionRateConfigTest : TestB
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionUnitWithPercentPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

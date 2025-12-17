@@ -215,9 +215,11 @@ public class NewSubscriptionMinimumCompositePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMinimumCompositePrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMinimumCompositePrice>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<
@@ -594,8 +596,8 @@ public class MinimumConfigTest : TestBase
             Prorated = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::MinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -773,10 +775,10 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -801,10 +803,10 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

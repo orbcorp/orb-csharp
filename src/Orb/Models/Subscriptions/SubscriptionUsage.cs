@@ -14,28 +14,28 @@ public record class SubscriptionUsage
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public SubscriptionUsage(UngroupedSubscriptionUsage value, JsonElement? json = null)
+    public SubscriptionUsage(UngroupedSubscriptionUsage value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubscriptionUsage(GroupedSubscriptionUsage value, JsonElement? json = null)
+    public SubscriptionUsage(GroupedSubscriptionUsage value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubscriptionUsage(JsonElement json)
+    public SubscriptionUsage(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -201,17 +201,17 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             var deserialized = JsonSerializer.Deserialize<UngroupedSubscriptionUsage>(
-                json,
+                element,
                 options
             );
             if (deserialized != null)
             {
                 deserialized.Validate();
-                return new(deserialized, json);
+                return new(deserialized, element);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -221,11 +221,14 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(json, options);
+            var deserialized = JsonSerializer.Deserialize<GroupedSubscriptionUsage>(
+                element,
+                options
+            );
             if (deserialized != null)
             {
                 deserialized.Validate();
-                return new(deserialized, json);
+                return new(deserialized, element);
             }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
@@ -233,7 +236,7 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(
@@ -247,14 +250,14 @@ sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<UngroupedSubscriptionUsage, UngroupedSubscriptionUsageFromRaw>)
+    typeof(JsonModelConverter<UngroupedSubscriptionUsage, UngroupedSubscriptionUsageFromRaw>)
 )]
-public sealed record class UngroupedSubscriptionUsage : ModelBase
+public sealed record class UngroupedSubscriptionUsage : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Data>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Data>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -300,7 +303,7 @@ public sealed record class UngroupedSubscriptionUsage : ModelBase
     }
 }
 
-class UngroupedSubscriptionUsageFromRaw : IFromRaw<UngroupedSubscriptionUsage>
+class UngroupedSubscriptionUsageFromRaw : IFromRawJson<UngroupedSubscriptionUsage>
 {
     /// <inheritdoc/>
     public UngroupedSubscriptionUsage FromRawUnchecked(
@@ -308,31 +311,31 @@ class UngroupedSubscriptionUsageFromRaw : IFromRaw<UngroupedSubscriptionUsage>
     ) => UngroupedSubscriptionUsage.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Data, DataFromRaw>))]
-public sealed record class Data : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : JsonModel
 {
     public required BillableMetric BillableMetric
     {
-        get { return ModelBase.GetNotNullClass<BillableMetric>(this.RawData, "billable_metric"); }
-        init { ModelBase.Set(this._rawData, "billable_metric", value); }
+        get { return JsonModel.GetNotNullClass<BillableMetric>(this.RawData, "billable_metric"); }
+        init { JsonModel.Set(this._rawData, "billable_metric", value); }
     }
 
     public required IReadOnlyList<DataUsage> Usage
     {
-        get { return ModelBase.GetNotNullClass<List<DataUsage>>(this.RawData, "usage"); }
-        init { ModelBase.Set(this._rawData, "usage", value); }
+        get { return JsonModel.GetNotNullClass<List<DataUsage>>(this.RawData, "usage"); }
+        init { JsonModel.Set(this._rawData, "usage", value); }
     }
 
     public required ApiEnum<string, DataViewMode> ViewMode
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DataViewMode>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, DataViewMode>>(
                 this.RawData,
                 "view_mode"
             );
         }
-        init { ModelBase.Set(this._rawData, "view_mode", value); }
+        init { JsonModel.Set(this._rawData, "view_mode", value); }
     }
 
     /// <inheritdoc/>
@@ -371,26 +374,26 @@ public sealed record class Data : ModelBase
     }
 }
 
-class DataFromRaw : IFromRaw<Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Data.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<BillableMetric, BillableMetricFromRaw>))]
-public sealed record class BillableMetric : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BillableMetric, BillableMetricFromRaw>))]
+public sealed record class BillableMetric : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -425,44 +428,44 @@ public sealed record class BillableMetric : ModelBase
     }
 }
 
-class BillableMetricFromRaw : IFromRaw<BillableMetric>
+class BillableMetricFromRaw : IFromRawJson<BillableMetric>
 {
     /// <inheritdoc/>
     public BillableMetric FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         BillableMetric.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<DataUsage, DataUsageFromRaw>))]
-public sealed record class DataUsage : ModelBase
+[JsonConverter(typeof(JsonModelConverter<DataUsage, DataUsageFromRaw>))]
+public sealed record class DataUsage : JsonModel
 {
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <inheritdoc/>
@@ -498,7 +501,7 @@ public sealed record class DataUsage : ModelBase
     }
 }
 
-class DataUsageFromRaw : IFromRaw<DataUsage>
+class DataUsageFromRaw : IFromRawJson<DataUsage>
 {
     /// <inheritdoc/>
     public DataUsage FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -549,31 +552,33 @@ sealed class DataViewModeConverter : JsonConverter<DataViewMode>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<GroupedSubscriptionUsage, GroupedSubscriptionUsageFromRaw>))]
-public sealed record class GroupedSubscriptionUsage : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<GroupedSubscriptionUsage, GroupedSubscriptionUsageFromRaw>)
+)]
+public sealed record class GroupedSubscriptionUsage : JsonModel
 {
     public required IReadOnlyList<GroupedSubscriptionUsageData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<GroupedSubscriptionUsageData>>(
+            return JsonModel.GetNotNullClass<List<GroupedSubscriptionUsageData>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public PaginationMetadata? PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNullableClass<PaginationMetadata>(
+            return JsonModel.GetNullableClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -620,7 +625,7 @@ public sealed record class GroupedSubscriptionUsage : ModelBase
     }
 }
 
-class GroupedSubscriptionUsageFromRaw : IFromRaw<GroupedSubscriptionUsage>
+class GroupedSubscriptionUsageFromRaw : IFromRawJson<GroupedSubscriptionUsage>
 {
     /// <inheritdoc/>
     public GroupedSubscriptionUsage FromRawUnchecked(
@@ -629,50 +634,50 @@ class GroupedSubscriptionUsageFromRaw : IFromRaw<GroupedSubscriptionUsage>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<GroupedSubscriptionUsageData, GroupedSubscriptionUsageDataFromRaw>)
+    typeof(JsonModelConverter<GroupedSubscriptionUsageData, GroupedSubscriptionUsageDataFromRaw>)
 )]
-public sealed record class GroupedSubscriptionUsageData : ModelBase
+public sealed record class GroupedSubscriptionUsageData : JsonModel
 {
     public required GroupedSubscriptionUsageDataBillableMetric BillableMetric
     {
         get
         {
-            return ModelBase.GetNotNullClass<GroupedSubscriptionUsageDataBillableMetric>(
+            return JsonModel.GetNotNullClass<GroupedSubscriptionUsageDataBillableMetric>(
                 this.RawData,
                 "billable_metric"
             );
         }
-        init { ModelBase.Set(this._rawData, "billable_metric", value); }
+        init { JsonModel.Set(this._rawData, "billable_metric", value); }
     }
 
     public required MetricGroup MetricGroup
     {
-        get { return ModelBase.GetNotNullClass<MetricGroup>(this.RawData, "metric_group"); }
-        init { ModelBase.Set(this._rawData, "metric_group", value); }
+        get { return JsonModel.GetNotNullClass<MetricGroup>(this.RawData, "metric_group"); }
+        init { JsonModel.Set(this._rawData, "metric_group", value); }
     }
 
     public required IReadOnlyList<GroupedSubscriptionUsageDataUsage> Usage
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<GroupedSubscriptionUsageDataUsage>>(
+            return JsonModel.GetNotNullClass<List<GroupedSubscriptionUsageDataUsage>>(
                 this.RawData,
                 "usage"
             );
         }
-        init { ModelBase.Set(this._rawData, "usage", value); }
+        init { JsonModel.Set(this._rawData, "usage", value); }
     }
 
     public required ApiEnum<string, GroupedSubscriptionUsageDataViewMode> ViewMode
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, GroupedSubscriptionUsageDataViewMode>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, GroupedSubscriptionUsageDataViewMode>>(
                 this.RawData,
                 "view_mode"
             );
         }
-        init { ModelBase.Set(this._rawData, "view_mode", value); }
+        init { JsonModel.Set(this._rawData, "view_mode", value); }
     }
 
     /// <inheritdoc/>
@@ -714,7 +719,7 @@ public sealed record class GroupedSubscriptionUsageData : ModelBase
     }
 }
 
-class GroupedSubscriptionUsageDataFromRaw : IFromRaw<GroupedSubscriptionUsageData>
+class GroupedSubscriptionUsageDataFromRaw : IFromRawJson<GroupedSubscriptionUsageData>
 {
     /// <inheritdoc/>
     public GroupedSubscriptionUsageData FromRawUnchecked(
@@ -723,23 +728,23 @@ class GroupedSubscriptionUsageDataFromRaw : IFromRaw<GroupedSubscriptionUsageDat
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         GroupedSubscriptionUsageDataBillableMetric,
         GroupedSubscriptionUsageDataBillableMetricFromRaw
     >)
 )]
-public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBase
+public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -781,7 +786,7 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : ModelBas
 }
 
 class GroupedSubscriptionUsageDataBillableMetricFromRaw
-    : IFromRaw<GroupedSubscriptionUsageDataBillableMetric>
+    : IFromRawJson<GroupedSubscriptionUsageDataBillableMetric>
 {
     /// <inheritdoc/>
     public GroupedSubscriptionUsageDataBillableMetric FromRawUnchecked(
@@ -789,19 +794,19 @@ class GroupedSubscriptionUsageDataBillableMetricFromRaw
     ) => GroupedSubscriptionUsageDataBillableMetric.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<MetricGroup, MetricGroupFromRaw>))]
-public sealed record class MetricGroup : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MetricGroup, MetricGroupFromRaw>))]
+public sealed record class MetricGroup : JsonModel
 {
     public required string PropertyKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_key"); }
-        init { ModelBase.Set(this._rawData, "property_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_key"); }
+        init { JsonModel.Set(this._rawData, "property_key", value); }
     }
 
     public required string PropertyValue
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_value"); }
-        init { ModelBase.Set(this._rawData, "property_value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_value"); }
+        init { JsonModel.Set(this._rawData, "property_value", value); }
     }
 
     /// <inheritdoc/>
@@ -836,7 +841,7 @@ public sealed record class MetricGroup : ModelBase
     }
 }
 
-class MetricGroupFromRaw : IFromRaw<MetricGroup>
+class MetricGroupFromRaw : IFromRawJson<MetricGroup>
 {
     /// <inheritdoc/>
     public MetricGroup FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -844,41 +849,41 @@ class MetricGroupFromRaw : IFromRaw<MetricGroup>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         GroupedSubscriptionUsageDataUsage,
         GroupedSubscriptionUsageDataUsageFromRaw
     >)
 )]
-public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
+public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 {
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <inheritdoc/>
@@ -918,7 +923,7 @@ public sealed record class GroupedSubscriptionUsageDataUsage : ModelBase
     }
 }
 
-class GroupedSubscriptionUsageDataUsageFromRaw : IFromRaw<GroupedSubscriptionUsageDataUsage>
+class GroupedSubscriptionUsageDataUsageFromRaw : IFromRawJson<GroupedSubscriptionUsageDataUsage>
 {
     /// <inheritdoc/>
     public GroupedSubscriptionUsageDataUsage FromRawUnchecked(

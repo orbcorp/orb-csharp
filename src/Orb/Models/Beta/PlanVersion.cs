@@ -14,8 +14,8 @@ namespace Orb.Models.Beta;
 /// The PlanVersion resource represents the prices and adjustments present on a specific
 /// version of a plan.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<PlanVersion, PlanVersionFromRaw>))]
-public sealed record class PlanVersion : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PlanVersion, PlanVersionFromRaw>))]
+public sealed record class PlanVersion : JsonModel
 {
     /// <summary>
     /// Adjustments for this plan. If the plan has phases, this includes adjustments
@@ -25,30 +25,30 @@ public sealed record class PlanVersion : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PlanVersionAdjustment>>(
+            return JsonModel.GetNotNullClass<List<PlanVersionAdjustment>>(
                 this.RawData,
                 "adjustments"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustments", value); }
+        init { JsonModel.Set(this._rawData, "adjustments", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     public required IReadOnlyList<PlanVersionPhase>? PlanPhases
     {
         get
         {
-            return ModelBase.GetNullableClass<List<PlanVersionPhase>>(this.RawData, "plan_phases");
+            return JsonModel.GetNullableClass<List<PlanVersionPhase>>(this.RawData, "plan_phases");
         }
-        init { ModelBase.Set(this._rawData, "plan_phases", value); }
+        init { JsonModel.Set(this._rawData, "plan_phases", value); }
     }
 
     /// <summary>
@@ -57,14 +57,14 @@ public sealed record class PlanVersion : ModelBase
     /// </summary>
     public required IReadOnlyList<Models::Price> Prices
     {
-        get { return ModelBase.GetNotNullClass<List<Models::Price>>(this.RawData, "prices"); }
-        init { ModelBase.Set(this._rawData, "prices", value); }
+        get { return JsonModel.GetNotNullClass<List<Models::Price>>(this.RawData, "prices"); }
+        init { JsonModel.Set(this._rawData, "prices", value); }
     }
 
     public required long Version
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "version"); }
-        init { ModelBase.Set(this._rawData, "version", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "version"); }
+        init { JsonModel.Set(this._rawData, "version", value); }
     }
 
     /// <inheritdoc/>
@@ -111,7 +111,7 @@ public sealed record class PlanVersion : ModelBase
     }
 }
 
-class PlanVersionFromRaw : IFromRaw<PlanVersion>
+class PlanVersionFromRaw : IFromRawJson<PlanVersion>
 {
     /// <inheritdoc/>
     public PlanVersion FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -123,11 +123,11 @@ public record class PlanVersionAdjustment
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -202,46 +202,52 @@ public record class PlanVersionAdjustment
 
     public PlanVersionAdjustment(
         Models::PlanPhaseUsageDiscountAdjustment value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PlanVersionAdjustment(
         Models::PlanPhaseAmountDiscountAdjustment value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PlanVersionAdjustment(
         Models::PlanPhasePercentageDiscountAdjustment value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanVersionAdjustment(Models::PlanPhaseMinimumAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(
+        Models::PlanPhaseMinimumAdjustment value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanVersionAdjustment(Models::PlanPhaseMaximumAdjustment value, JsonElement? json = null)
+    public PlanVersionAdjustment(
+        Models::PlanPhaseMaximumAdjustment value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PlanVersionAdjustment(JsonElement json)
+    public PlanVersionAdjustment(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -527,11 +533,11 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? adjustmentType;
         try
         {
-            adjustmentType = json.GetProperty("adjustment_type").GetString();
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
         }
         catch
         {
@@ -546,13 +552,13 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseUsageDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -561,7 +567,7 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount_discount":
             {
@@ -569,13 +575,13 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseAmountDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -584,7 +590,7 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percentage_discount":
             {
@@ -592,13 +598,13 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhasePercentageDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -607,7 +613,7 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
@@ -615,13 +621,13 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseMinimumAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -630,7 +636,7 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "maximum":
             {
@@ -638,13 +644,13 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<Models::PlanPhaseMaximumAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -653,11 +659,11 @@ sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustmen
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new PlanVersionAdjustment(json);
+                return new PlanVersionAdjustment(element);
             }
         }
     }

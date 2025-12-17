@@ -48,8 +48,8 @@ public class CustomExpirationTest : TestBase
             DurationUnit = CustomExpirationDurationUnit.Day,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CustomExpiration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomExpiration>(element);
         Assert.NotNull(deserialized);
 
         long expectedDuration = 0;

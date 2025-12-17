@@ -58,8 +58,8 @@ public class NewDimensionalPriceConfigurationTest : TestBase
             ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewDimensionalPriceConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewDimensionalPriceConfiguration>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedDimensionValues = ["string"];

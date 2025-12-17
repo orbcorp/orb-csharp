@@ -557,8 +557,8 @@ public class AggregatedCostTest : TestBase
             Total = "total",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AggregatedCost>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AggregatedCost>(element);
         Assert.NotNull(deserialized);
 
         List<PerPriceCost> expectedPerPriceCosts =

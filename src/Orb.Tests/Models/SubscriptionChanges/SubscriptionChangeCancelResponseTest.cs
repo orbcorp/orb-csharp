@@ -6234,8 +6234,8 @@ public class SubscriptionChangeCancelResponseTest : TestBase
             PlanID = "plan_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubscriptionChangeCancelResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubscriptionChangeCancelResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

@@ -38,8 +38,8 @@ public class MatrixValueTest : TestBase
     {
         var model = new MatrixValue { DimensionValues = ["string"], UnitAmount = "unit_amount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixValue>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixValue>(element);
         Assert.NotNull(deserialized);
 
         List<string?> expectedDimensionValues = ["string"];

@@ -13,16 +13,16 @@ namespace Orb.Models;
 /// The [Credit Note](/invoicing/credit-notes) resource represents a credit that
 /// has been applied to a particular invoice.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<SharedCreditNote, SharedCreditNoteFromRaw>))]
-public sealed record class SharedCreditNote : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SharedCreditNote, SharedCreditNoteFromRaw>))]
+public sealed record class SharedCreditNote : JsonModel
 {
     /// <summary>
     /// The Orb id of this credit note.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -32,9 +32,9 @@ public sealed record class SharedCreditNote : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string CreditNoteNumber
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "credit_note_number"); }
-        init { ModelBase.Set(this._rawData, "credit_note_number", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "credit_note_number"); }
+        init { JsonModel.Set(this._rawData, "credit_note_number", value); }
     }
 
     /// <summary>
@@ -51,14 +51,14 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string? CreditNotePdf
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "credit_note_pdf"); }
-        init { ModelBase.Set(this._rawData, "credit_note_pdf", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "credit_note_pdf"); }
+        init { JsonModel.Set(this._rawData, "credit_note_pdf", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get { return ModelBase.GetNotNullClass<CustomerMinified>(this.RawData, "customer"); }
-        init { ModelBase.Set(this._rawData, "customer", value); }
+        get { return JsonModel.GetNotNullClass<CustomerMinified>(this.RawData, "customer"); }
+        init { JsonModel.Set(this._rawData, "customer", value); }
     }
 
     /// <summary>
@@ -66,8 +66,8 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string InvoiceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "invoice_id"); }
-        init { ModelBase.Set(this._rawData, "invoice_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "invoice_id"); }
+        init { JsonModel.Set(this._rawData, "invoice_id", value); }
     }
 
     /// <summary>
@@ -77,12 +77,12 @@ public sealed record class SharedCreditNote : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<SharedCreditNoteLineItem>>(
+            return JsonModel.GetNotNullClass<List<SharedCreditNoteLineItem>>(
                 this.RawData,
                 "line_items"
             );
         }
-        init { ModelBase.Set(this._rawData, "line_items", value); }
+        init { JsonModel.Set(this._rawData, "line_items", value); }
     }
 
     /// <summary>
@@ -92,12 +92,12 @@ public sealed record class SharedCreditNote : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<MaximumAmountAdjustment>(
+            return JsonModel.GetNullableClass<MaximumAmountAdjustment>(
                 this.RawData,
                 "maximum_amount_adjustment"
             );
         }
-        init { ModelBase.Set(this._rawData, "maximum_amount_adjustment", value); }
+        init { JsonModel.Set(this._rawData, "maximum_amount_adjustment", value); }
     }
 
     /// <summary>
@@ -105,8 +105,8 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
-        init { ModelBase.Set(this._rawData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "memo"); }
+        init { JsonModel.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -114,14 +114,14 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string? MinimumAmountRefunded
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "minimum_amount_refunded"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount_refunded", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "minimum_amount_refunded"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount_refunded", value); }
     }
 
     public required ApiEnum<string, Reason>? Reason
     {
-        get { return ModelBase.GetNullableClass<ApiEnum<string, Reason>>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<ApiEnum<string, Reason>>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <summary>
@@ -129,8 +129,8 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string Subtotal
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { ModelBase.Set(this._rawData, "subtotal", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
+        init { JsonModel.Set(this._rawData, "subtotal", value); }
     }
 
     /// <summary>
@@ -138,20 +138,20 @@ public sealed record class SharedCreditNote : ModelBase
     /// </summary>
     public required string Total
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "total"); }
-        init { ModelBase.Set(this._rawData, "total", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "total"); }
+        init { JsonModel.Set(this._rawData, "total", value); }
     }
 
     public required ApiEnum<string, SharedCreditNoteType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, SharedCreditNoteType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, SharedCreditNoteType>>(
                 this.RawData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <summary>
@@ -161,9 +161,9 @@ public sealed record class SharedCreditNote : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "voided_at");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "voided_at");
         }
-        init { ModelBase.Set(this._rawData, "voided_at", value); }
+        init { JsonModel.Set(this._rawData, "voided_at", value); }
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ public sealed record class SharedCreditNote : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<SharedCreditNoteDiscount>>(
+            return JsonModel.GetNullableClass<List<SharedCreditNoteDiscount>>(
                 this.RawData,
                 "discounts"
             );
@@ -185,7 +185,7 @@ public sealed record class SharedCreditNote : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "discounts", value);
+            JsonModel.Set(this._rawData, "discounts", value);
         }
     }
 
@@ -243,23 +243,25 @@ public sealed record class SharedCreditNote : ModelBase
     }
 }
 
-class SharedCreditNoteFromRaw : IFromRaw<SharedCreditNote>
+class SharedCreditNoteFromRaw : IFromRawJson<SharedCreditNote>
 {
     /// <inheritdoc/>
     public SharedCreditNote FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         SharedCreditNote.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<SharedCreditNoteLineItem, SharedCreditNoteLineItemFromRaw>))]
-public sealed record class SharedCreditNoteLineItem : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<SharedCreditNoteLineItem, SharedCreditNoteLineItemFromRaw>)
+)]
+public sealed record class SharedCreditNoteLineItem : JsonModel
 {
     /// <summary>
     /// The Orb id of this resource.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -267,8 +269,8 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -276,8 +278,8 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -285,8 +287,8 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -294,8 +296,8 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public required double? Quantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     /// <summary>
@@ -303,8 +305,8 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public required string Subtotal
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { ModelBase.Set(this._rawData, "subtotal", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
+        init { JsonModel.Set(this._rawData, "subtotal", value); }
     }
 
     /// <summary>
@@ -312,8 +314,8 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public required IReadOnlyList<TaxAmount> TaxAmounts
     {
-        get { return ModelBase.GetNotNullClass<List<TaxAmount>>(this.RawData, "tax_amounts"); }
-        init { ModelBase.Set(this._rawData, "tax_amounts", value); }
+        get { return JsonModel.GetNotNullClass<List<TaxAmount>>(this.RawData, "tax_amounts"); }
+        init { JsonModel.Set(this._rawData, "tax_amounts", value); }
     }
 
     /// <summary>
@@ -321,7 +323,7 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     /// </summary>
     public IReadOnlyList<Discount>? Discounts
     {
-        get { return ModelBase.GetNullableClass<List<Discount>>(this.RawData, "discounts"); }
+        get { return JsonModel.GetNullableClass<List<Discount>>(this.RawData, "discounts"); }
         init
         {
             if (value == null)
@@ -329,7 +331,7 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "discounts", value);
+            JsonModel.Set(this._rawData, "discounts", value);
         }
     }
 
@@ -340,12 +342,12 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "end_time_exclusive"
             );
         }
-        init { ModelBase.Set(this._rawData, "end_time_exclusive", value); }
+        init { JsonModel.Set(this._rawData, "end_time_exclusive", value); }
     }
 
     /// <summary>
@@ -355,12 +357,12 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "start_time_inclusive"
             );
         }
-        init { ModelBase.Set(this._rawData, "start_time_inclusive", value); }
+        init { JsonModel.Set(this._rawData, "start_time_inclusive", value); }
     }
 
     /// <inheritdoc/>
@@ -411,7 +413,7 @@ public sealed record class SharedCreditNoteLineItem : ModelBase
     }
 }
 
-class SharedCreditNoteLineItemFromRaw : IFromRaw<SharedCreditNoteLineItem>
+class SharedCreditNoteLineItemFromRaw : IFromRawJson<SharedCreditNoteLineItem>
 {
     /// <inheritdoc/>
     public SharedCreditNoteLineItem FromRawUnchecked(
@@ -419,58 +421,58 @@ class SharedCreditNoteLineItemFromRaw : IFromRaw<SharedCreditNoteLineItem>
     ) => SharedCreditNoteLineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Discount, DiscountFromRaw>))]
-public sealed record class Discount : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Discount, DiscountFromRaw>))]
+public sealed record class Discount : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string AmountApplied
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount_applied"); }
-        init { ModelBase.Set(this._rawData, "amount_applied", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_applied"); }
+        init { JsonModel.Set(this._rawData, "amount_applied", value); }
     }
 
     public required IReadOnlyList<string> AppliesToPriceIDs
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     public required ApiEnum<string, DiscountDiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, DiscountDiscountType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, DiscountDiscountType>>(
                 this.RawData,
                 "discount_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     public required double PercentageDiscount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
+        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
     }
 
     public string? AmountDiscount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "amount_discount"); }
-        init { ModelBase.Set(this._rawData, "amount_discount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "amount_discount"); }
+        init { JsonModel.Set(this._rawData, "amount_discount", value); }
     }
 
     public string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <inheritdoc/>
@@ -510,7 +512,7 @@ public sealed record class Discount : ModelBase
     }
 }
 
-class DiscountFromRaw : IFromRaw<Discount>
+class DiscountFromRaw : IFromRawJson<Discount>
 {
     /// <inheritdoc/>
     public Discount FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -564,49 +566,49 @@ sealed class DiscountDiscountTypeConverter : JsonConverter<DiscountDiscountType>
 /// <summary>
 /// The maximum amount applied on the original invoice
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MaximumAmountAdjustment, MaximumAmountAdjustmentFromRaw>))]
-public sealed record class MaximumAmountAdjustment : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MaximumAmountAdjustment, MaximumAmountAdjustmentFromRaw>))]
+public sealed record class MaximumAmountAdjustment : JsonModel
 {
     public required string AmountApplied
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount_applied"); }
-        init { ModelBase.Set(this._rawData, "amount_applied", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_applied"); }
+        init { JsonModel.Set(this._rawData, "amount_applied", value); }
     }
 
     public required ApiEnum<string, MaximumAmountAdjustmentDiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MaximumAmountAdjustmentDiscountType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MaximumAmountAdjustmentDiscountType>>(
                 this.RawData,
                 "discount_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     public required double PercentageDiscount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
+        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
     }
 
     public IReadOnlyList<AppliesToPrice>? AppliesToPrices
     {
         get
         {
-            return ModelBase.GetNullableClass<List<AppliesToPrice>>(
+            return JsonModel.GetNullableClass<List<AppliesToPrice>>(
                 this.RawData,
                 "applies_to_prices"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_prices", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_prices", value); }
     }
 
     public string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <inheritdoc/>
@@ -649,7 +651,7 @@ public sealed record class MaximumAmountAdjustment : ModelBase
     }
 }
 
-class MaximumAmountAdjustmentFromRaw : IFromRaw<MaximumAmountAdjustment>
+class MaximumAmountAdjustmentFromRaw : IFromRawJson<MaximumAmountAdjustment>
 {
     /// <inheritdoc/>
     public MaximumAmountAdjustment FromRawUnchecked(
@@ -699,19 +701,19 @@ sealed class MaximumAmountAdjustmentDiscountTypeConverter
     }
 }
 
-[JsonConverter(typeof(ModelConverter<AppliesToPrice, AppliesToPriceFromRaw>))]
-public sealed record class AppliesToPrice : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AppliesToPrice, AppliesToPriceFromRaw>))]
+public sealed record class AppliesToPrice : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -746,7 +748,7 @@ public sealed record class AppliesToPrice : ModelBase
     }
 }
 
-class AppliesToPriceFromRaw : IFromRaw<AppliesToPrice>
+class AppliesToPriceFromRaw : IFromRawJson<AppliesToPrice>
 {
     /// <inheritdoc/>
     public AppliesToPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -843,49 +845,51 @@ sealed class SharedCreditNoteTypeConverter : JsonConverter<SharedCreditNoteType>
     }
 }
 
-[JsonConverter(typeof(ModelConverter<SharedCreditNoteDiscount, SharedCreditNoteDiscountFromRaw>))]
-public sealed record class SharedCreditNoteDiscount : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<SharedCreditNoteDiscount, SharedCreditNoteDiscountFromRaw>)
+)]
+public sealed record class SharedCreditNoteDiscount : JsonModel
 {
     public required string AmountApplied
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount_applied"); }
-        init { ModelBase.Set(this._rawData, "amount_applied", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_applied"); }
+        init { JsonModel.Set(this._rawData, "amount_applied", value); }
     }
 
     public required ApiEnum<string, SharedCreditNoteDiscountDiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, SharedCreditNoteDiscountDiscountType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, SharedCreditNoteDiscountDiscountType>>(
                 this.RawData,
                 "discount_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     public required double PercentageDiscount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
+        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
     }
 
     public IReadOnlyList<SharedCreditNoteDiscountAppliesToPrice>? AppliesToPrices
     {
         get
         {
-            return ModelBase.GetNullableClass<List<SharedCreditNoteDiscountAppliesToPrice>>(
+            return JsonModel.GetNullableClass<List<SharedCreditNoteDiscountAppliesToPrice>>(
                 this.RawData,
                 "applies_to_prices"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_prices", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_prices", value); }
     }
 
     public string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <inheritdoc/>
@@ -928,7 +932,7 @@ public sealed record class SharedCreditNoteDiscount : ModelBase
     }
 }
 
-class SharedCreditNoteDiscountFromRaw : IFromRaw<SharedCreditNoteDiscount>
+class SharedCreditNoteDiscountFromRaw : IFromRawJson<SharedCreditNoteDiscount>
 {
     /// <inheritdoc/>
     public SharedCreditNoteDiscount FromRawUnchecked(
@@ -979,23 +983,23 @@ sealed class SharedCreditNoteDiscountDiscountTypeConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SharedCreditNoteDiscountAppliesToPrice,
         SharedCreditNoteDiscountAppliesToPriceFromRaw
     >)
 )]
-public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
+public sealed record class SharedCreditNoteDiscountAppliesToPrice : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -1035,7 +1039,7 @@ public sealed record class SharedCreditNoteDiscountAppliesToPrice : ModelBase
 }
 
 class SharedCreditNoteDiscountAppliesToPriceFromRaw
-    : IFromRaw<SharedCreditNoteDiscountAppliesToPrice>
+    : IFromRawJson<SharedCreditNoteDiscountAppliesToPrice>
 {
     /// <inheritdoc/>
     public SharedCreditNoteDiscountAppliesToPrice FromRawUnchecked(

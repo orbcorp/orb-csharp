@@ -87,8 +87,8 @@ public class TierSubLineItemTest : TestBase
             Type = TierSubLineItemType.Tier,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "9.00";
@@ -180,8 +180,8 @@ public class TierConfigTest : TestBase
             UnitAmount = "3.00",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TierConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TierConfig>(element);
         Assert.NotNull(deserialized);
 
         double expectedFirstUnit = 1;

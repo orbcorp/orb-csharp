@@ -1406,8 +1406,8 @@ public class InvoiceListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<InvoiceListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Invoice> expectedData =

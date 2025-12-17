@@ -33,8 +33,8 @@ public class ItemSlimTest : TestBase
     {
         var model = new ItemSlim { ID = "id", Name = "name" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ItemSlim>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ItemSlim>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

@@ -32,8 +32,8 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     /// </summary>
     public string? ExternalPlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_plan_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_plan_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_plan_id", value); }
     }
 
     /// <summary>
@@ -45,12 +45,12 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     public ExternalPlanIDUpdateParams() { }
@@ -86,7 +86,7 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ExternalPlanIDUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -111,9 +111,13 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

@@ -10,28 +10,28 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PlanPhaseAmountDiscountAdjustment,
         PlanPhaseAmountDiscountAdjustmentFromRaw
     >)
 )]
-public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
+public sealed record class PlanPhaseAmountDiscountAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required ApiEnum<string, PlanPhaseAmountDiscountAdjustmentAdjustmentType> AdjustmentType
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PlanPhaseAmountDiscountAdjustmentAdjustmentType>
             >(this.RawData, "adjustment_type");
         }
-        init { ModelBase.Set(this._rawData, "adjustment_type", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// </summary>
     public required string AmountDiscount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount_discount"); }
-        init { ModelBase.Set(this._rawData, "amount_discount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_discount"); }
+        init { JsonModel.Set(this._rawData, "amount_discount", value); }
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -64,12 +64,12 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PlanPhaseAmountDiscountAdjustmentFilter>>(
+            return JsonModel.GetNotNullClass<List<PlanPhaseAmountDiscountAdjustmentFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -78,8 +78,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
-        init { ModelBase.Set(this._rawData, "is_invoice_level", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
+        init { JsonModel.Set(this._rawData, "is_invoice_level", value); }
     }
 
     /// <summary>
@@ -87,8 +87,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// </summary>
     public required long? PlanPhaseOrder
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
-        init { ModelBase.Set(this._rawData, "plan_phase_order", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
+        init { JsonModel.Set(this._rawData, "plan_phase_order", value); }
     }
 
     /// <summary>
@@ -96,8 +96,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// </summary>
     public required string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <summary>
@@ -106,8 +106,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
-        init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
+        init { JsonModel.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
     /// <inheritdoc/>
@@ -160,7 +160,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustment : ModelBase
     }
 }
 
-class PlanPhaseAmountDiscountAdjustmentFromRaw : IFromRaw<PlanPhaseAmountDiscountAdjustment>
+class PlanPhaseAmountDiscountAdjustmentFromRaw : IFromRawJson<PlanPhaseAmountDiscountAdjustment>
 {
     /// <inheritdoc/>
     public PlanPhaseAmountDiscountAdjustment FromRawUnchecked(
@@ -211,12 +211,12 @@ sealed class PlanPhaseAmountDiscountAdjustmentAdjustmentTypeConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PlanPhaseAmountDiscountAdjustmentFilter,
         PlanPhaseAmountDiscountAdjustmentFilterFromRaw
     >)
 )]
-public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
+public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -225,11 +225,11 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PlanPhaseAmountDiscountAdjustmentFilterField>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -239,11 +239,11 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PlanPhaseAmountDiscountAdjustmentFilterOperator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -251,8 +251,8 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -293,7 +293,7 @@ public sealed record class PlanPhaseAmountDiscountAdjustmentFilter : ModelBase
 }
 
 class PlanPhaseAmountDiscountAdjustmentFilterFromRaw
-    : IFromRaw<PlanPhaseAmountDiscountAdjustmentFilter>
+    : IFromRawJson<PlanPhaseAmountDiscountAdjustmentFilter>
 {
     /// <inheritdoc/>
     public PlanPhaseAmountDiscountAdjustmentFilter FromRawUnchecked(

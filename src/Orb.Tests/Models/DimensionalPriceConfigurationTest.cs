@@ -50,8 +50,8 @@ public class DimensionalPriceConfigurationTest : TestBase
             DimensionalPriceGroupID = "dimensional_price_group_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionalPriceConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<DimensionalPriceConfiguration>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedDimensionValues = ["string"];

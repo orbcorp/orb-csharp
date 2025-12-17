@@ -248,8 +248,10 @@ public class NewFloatingCumulativeGroupedBulkPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPrice>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingCumulativeGroupedBulkPriceCadence> expectedCadence =
@@ -709,8 +711,8 @@ public class CumulativeGroupedBulkConfigTest : TestBase
             Group = "group",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkConfig>(element);
         Assert.NotNull(deserialized);
 
         List<DimensionValue> expectedDimensionValues =
@@ -800,8 +802,8 @@ public class DimensionValueTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DimensionValue>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<DimensionValue>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -932,10 +934,10 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -960,10 +962,10 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

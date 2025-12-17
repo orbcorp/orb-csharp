@@ -235,9 +235,11 @@ public class NewSubscriptionGroupedAllocationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedAllocationPrice>(json);
+            JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedAllocationPrice>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<
@@ -651,8 +653,10 @@ public class GroupedAllocationConfigTest : TestBase
             OverageUnitRate = "overage_unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedAllocationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscriptions::GroupedAllocationConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -787,10 +791,10 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -815,10 +819,10 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

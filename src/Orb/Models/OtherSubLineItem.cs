@@ -9,46 +9,46 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<OtherSubLineItem, OtherSubLineItemFromRaw>))]
-public sealed record class OtherSubLineItem : ModelBase
+[JsonConverter(typeof(JsonModelConverter<OtherSubLineItem, OtherSubLineItemFromRaw>))]
+public sealed record class OtherSubLineItem : JsonModel
 {
     /// <summary>
     /// The total amount for this sub line item.
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return ModelBase.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
-        init { ModelBase.Set(this._rawData, "grouping", value); }
+        get { return JsonModel.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
+        init { JsonModel.Set(this._rawData, "grouping", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     public required ApiEnum<string, OtherSubLineItemType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, OtherSubLineItemType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, OtherSubLineItemType>>(
                 this.RawData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <inheritdoc/>
@@ -88,7 +88,7 @@ public sealed record class OtherSubLineItem : ModelBase
     }
 }
 
-class OtherSubLineItemFromRaw : IFromRaw<OtherSubLineItem>
+class OtherSubLineItemFromRaw : IFromRawJson<OtherSubLineItem>
 {
     /// <inheritdoc/>
     public OtherSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

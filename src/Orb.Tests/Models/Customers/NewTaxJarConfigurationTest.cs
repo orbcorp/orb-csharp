@@ -53,8 +53,8 @@ public class NewTaxJarConfigurationTest : TestBase
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewTaxJarConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewTaxJarConfiguration>(element);
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;

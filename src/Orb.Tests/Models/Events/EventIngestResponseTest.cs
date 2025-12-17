@@ -62,8 +62,8 @@ public class EventIngestResponseTest : TestBase
             Debug = new() { Duplicate = ["string"], Ingested = ["string"] },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventIngestResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventIngestResponse>(element);
         Assert.NotNull(deserialized);
 
         List<ValidationFailed> expectedValidationFailed =
@@ -204,8 +204,8 @@ public class ValidationFailedTest : TestBase
             ValidationErrors = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ValidationFailed>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ValidationFailed>(element);
         Assert.NotNull(deserialized);
 
         string expectedIdempotencyKey = "idempotency_key";
@@ -270,8 +270,8 @@ public class DebugTest : TestBase
     {
         var model = new Debug { Duplicate = ["string"], Ingested = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Debug>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Debug>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedDuplicate = ["string"];

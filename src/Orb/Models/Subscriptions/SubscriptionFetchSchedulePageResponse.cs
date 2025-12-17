@@ -9,35 +9,35 @@ using Orb.Core;
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionFetchSchedulePageResponse,
         SubscriptionFetchSchedulePageResponseFromRaw
     >)
 )]
-public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
+public sealed record class SubscriptionFetchSchedulePageResponse : JsonModel
 {
     public required IReadOnlyList<SubscriptionFetchSchedulePageResponseData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<SubscriptionFetchSchedulePageResponseData>>(
+            return JsonModel.GetNotNullClass<List<SubscriptionFetchSchedulePageResponseData>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -79,7 +79,8 @@ public sealed record class SubscriptionFetchSchedulePageResponse : ModelBase
     }
 }
 
-class SubscriptionFetchSchedulePageResponseFromRaw : IFromRaw<SubscriptionFetchSchedulePageResponse>
+class SubscriptionFetchSchedulePageResponseFromRaw
+    : IFromRawJson<SubscriptionFetchSchedulePageResponse>
 {
     /// <inheritdoc/>
     public SubscriptionFetchSchedulePageResponse FromRawUnchecked(
@@ -88,35 +89,35 @@ class SubscriptionFetchSchedulePageResponseFromRaw : IFromRaw<SubscriptionFetchS
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SubscriptionFetchSchedulePageResponseData,
         SubscriptionFetchSchedulePageResponseDataFromRaw
     >)
 )]
-public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
+public sealed record class SubscriptionFetchSchedulePageResponseData : JsonModel
 {
     public required DateTimeOffset CreatedAt
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "created_at"); }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "created_at"); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     public required Plan? Plan
     {
-        get { return ModelBase.GetNullableClass<Plan>(this.RawData, "plan"); }
-        init { ModelBase.Set(this._rawData, "plan", value); }
+        get { return JsonModel.GetNullableClass<Plan>(this.RawData, "plan"); }
+        init { JsonModel.Set(this._rawData, "plan", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -160,7 +161,7 @@ public sealed record class SubscriptionFetchSchedulePageResponseData : ModelBase
 }
 
 class SubscriptionFetchSchedulePageResponseDataFromRaw
-    : IFromRaw<SubscriptionFetchSchedulePageResponseData>
+    : IFromRawJson<SubscriptionFetchSchedulePageResponseData>
 {
     /// <inheritdoc/>
     public SubscriptionFetchSchedulePageResponseData FromRawUnchecked(
@@ -168,13 +169,13 @@ class SubscriptionFetchSchedulePageResponseDataFromRaw
     ) => SubscriptionFetchSchedulePageResponseData.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Plan, PlanFromRaw>))]
-public sealed record class Plan : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Plan, PlanFromRaw>))]
+public sealed record class Plan : JsonModel
 {
     public required string? ID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -184,14 +185,14 @@ public sealed record class Plan : ModelBase
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_plan_id"); }
-        init { ModelBase.Set(this._rawData, "external_plan_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_plan_id"); }
+        init { JsonModel.Set(this._rawData, "external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <inheritdoc/>
@@ -227,7 +228,7 @@ public sealed record class Plan : ModelBase
     }
 }
 
-class PlanFromRaw : IFromRaw<Plan>
+class PlanFromRaw : IFromRawJson<Plan>
 {
     /// <inheritdoc/>
     public Plan FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

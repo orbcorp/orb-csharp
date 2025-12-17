@@ -95,8 +95,8 @@ public class AffectedBlockTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AffectedBlock>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AffectedBlock>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -197,8 +197,8 @@ public class AffectedBlockFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AffectedBlockFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AffectedBlockFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, AffectedBlockFilterField> expectedField = AffectedBlockFilterField.PriceID;

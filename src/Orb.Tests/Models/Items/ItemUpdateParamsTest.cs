@@ -48,8 +48,8 @@ public class ExternalConnectionTest : TestBase
             ExternalEntityID = "external_entity_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ExternalConnection>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ExternalConnection>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, ExternalConnectionName> expectedExternalConnectionName =

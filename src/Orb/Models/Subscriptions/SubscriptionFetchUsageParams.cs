@@ -149,23 +149,23 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawQueryData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawQueryData, "billable_metric_id", value); }
     }
 
     public string? FirstDimensionKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "first_dimension_key"); }
-        init { ModelBase.Set(this._rawQueryData, "first_dimension_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "first_dimension_key"); }
+        init { JsonModel.Set(this._rawQueryData, "first_dimension_key", value); }
     }
 
     public string? FirstDimensionValue
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawQueryData, "first_dimension_value");
+            return JsonModel.GetNullableClass<string>(this.RawQueryData, "first_dimension_value");
         }
-        init { ModelBase.Set(this._rawQueryData, "first_dimension_value", value); }
+        init { JsonModel.Set(this._rawQueryData, "first_dimension_value", value); }
     }
 
     /// <summary>
@@ -175,12 +175,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, Granularity>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, Granularity>>(
                 this.RawQueryData,
                 "granularity"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "granularity", value); }
+        init { JsonModel.Set(this._rawQueryData, "granularity", value); }
     }
 
     /// <summary>
@@ -188,26 +188,26 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     /// </summary>
     public string? GroupBy
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "group_by"); }
-        init { ModelBase.Set(this._rawQueryData, "group_by", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "group_by"); }
+        init { JsonModel.Set(this._rawQueryData, "group_by", value); }
     }
 
     public string? SecondDimensionKey
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawQueryData, "second_dimension_key");
+            return JsonModel.GetNullableClass<string>(this.RawQueryData, "second_dimension_key");
         }
-        init { ModelBase.Set(this._rawQueryData, "second_dimension_key", value); }
+        init { JsonModel.Set(this._rawQueryData, "second_dimension_key", value); }
     }
 
     public string? SecondDimensionValue
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawQueryData, "second_dimension_value");
+            return JsonModel.GetNullableClass<string>(this.RawQueryData, "second_dimension_value");
         }
-        init { ModelBase.Set(this._rawQueryData, "second_dimension_value", value); }
+        init { JsonModel.Set(this._rawQueryData, "second_dimension_value", value); }
     }
 
     /// <summary>
@@ -217,12 +217,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawQueryData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -232,12 +232,12 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawQueryData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -249,11 +249,11 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, SubscriptionFetchUsageParamsViewMode>
             >(this.RawQueryData, "view_mode");
         }
-        init { ModelBase.Set(this._rawQueryData, "view_mode", value); }
+        init { JsonModel.Set(this._rawQueryData, "view_mode", value); }
     }
 
     public SubscriptionFetchUsageParams() { }
@@ -282,7 +282,7 @@ public sealed record class SubscriptionFetchUsageParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionFetchUsageParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

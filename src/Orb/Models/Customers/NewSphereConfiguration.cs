@@ -9,25 +9,25 @@ using System = System;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<NewSphereConfiguration, NewSphereConfigurationFromRaw>))]
-public sealed record class NewSphereConfiguration : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewSphereConfiguration, NewSphereConfigurationFromRaw>))]
+public sealed record class NewSphereConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public required ApiEnum<string, NewSphereConfigurationTaxProvider> TaxProvider
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewSphereConfigurationTaxProvider>>(
                 this.RawData,
                 "tax_provider"
             );
         }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class NewSphereConfiguration : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     /// <inheritdoc/>
@@ -75,7 +75,7 @@ public sealed record class NewSphereConfiguration : ModelBase
     }
 }
 
-class NewSphereConfigurationFromRaw : IFromRaw<NewSphereConfiguration>
+class NewSphereConfigurationFromRaw : IFromRawJson<NewSphereConfiguration>
 {
     /// <inheritdoc/>
     public NewSphereConfiguration FromRawUnchecked(

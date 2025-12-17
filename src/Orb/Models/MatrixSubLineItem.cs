@@ -9,58 +9,58 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<MatrixSubLineItem, MatrixSubLineItemFromRaw>))]
-public sealed record class MatrixSubLineItem : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MatrixSubLineItem, MatrixSubLineItemFromRaw>))]
+public sealed record class MatrixSubLineItem : JsonModel
 {
     /// <summary>
     /// The total amount for this sub line item.
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return ModelBase.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
-        init { ModelBase.Set(this._rawData, "grouping", value); }
+        get { return JsonModel.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
+        init { JsonModel.Set(this._rawData, "grouping", value); }
     }
 
     public required SubLineItemMatrixConfig MatrixConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<SubLineItemMatrixConfig>(
+            return JsonModel.GetNotNullClass<SubLineItemMatrixConfig>(
                 this.RawData,
                 "matrix_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "matrix_config", value); }
+        init { JsonModel.Set(this._rawData, "matrix_config", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     public required ApiEnum<string, MatrixSubLineItemType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MatrixSubLineItemType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MatrixSubLineItemType>>(
                 this.RawData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <summary>
@@ -68,8 +68,8 @@ public sealed record class MatrixSubLineItem : ModelBase
     /// </summary>
     public double? ScaledQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "scaled_quantity"); }
-        init { ModelBase.Set(this._rawData, "scaled_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "scaled_quantity"); }
+        init { JsonModel.Set(this._rawData, "scaled_quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -111,7 +111,7 @@ public sealed record class MatrixSubLineItem : ModelBase
     }
 }
 
-class MatrixSubLineItemFromRaw : IFromRaw<MatrixSubLineItem>
+class MatrixSubLineItemFromRaw : IFromRawJson<MatrixSubLineItem>
 {
     /// <inheritdoc/>
     public MatrixSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

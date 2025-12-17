@@ -36,8 +36,8 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
             DateTimeOffset
 #endif
             .Parse("2019-12-27"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -46,8 +46,8 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         InvoiceUpdateParamsDueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -85,8 +85,8 @@ public class InvoiceDateTest : TestBase
             DateTimeOffset
 #endif
             .Parse("2019-12-27"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -95,8 +95,8 @@ public class InvoiceDateTest : TestBase
     public void DateTimeSerializationRoundtripWorks()
     {
         InvoiceDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
 
         Assert.Equal(value, deserialized);
     }

@@ -7,25 +7,25 @@ using Orb.Core;
 
 namespace Orb.Models.Alerts;
 
-[JsonConverter(typeof(ModelConverter<AlertListPageResponse, AlertListPageResponseFromRaw>))]
-public sealed record class AlertListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AlertListPageResponse, AlertListPageResponseFromRaw>))]
+public sealed record class AlertListPageResponse : JsonModel
 {
     public required IReadOnlyList<Alert> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Alert>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Alert>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +65,7 @@ public sealed record class AlertListPageResponse : ModelBase
     }
 }
 
-class AlertListPageResponseFromRaw : IFromRaw<AlertListPageResponse>
+class AlertListPageResponseFromRaw : IFromRawJson<AlertListPageResponse>
 {
     /// <inheritdoc/>
     public AlertListPageResponse FromRawUnchecked(

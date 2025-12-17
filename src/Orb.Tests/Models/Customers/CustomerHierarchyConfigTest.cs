@@ -51,8 +51,8 @@ public class CustomerHierarchyConfigTest : TestBase
             ParentCustomerID = "parent_customer_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CustomerHierarchyConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerHierarchyConfig>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedChildCustomerIDs = ["string"];

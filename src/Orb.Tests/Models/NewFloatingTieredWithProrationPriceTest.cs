@@ -208,8 +208,8 @@ public class NewFloatingTieredWithProrationPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingTieredWithProrationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingTieredWithProrationPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingTieredWithProrationPriceCadence> expectedCadence =
@@ -631,8 +631,8 @@ public class TieredWithProrationConfigTest : TestBase
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfig>(element);
         Assert.NotNull(deserialized);
 
         List<TieredWithProrationConfigTier> expectedTiers =
@@ -701,8 +701,8 @@ public class TieredWithProrationConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProrationConfigTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -772,10 +772,10 @@ public class NewFloatingTieredWithProrationPriceConversionRateConfigTest : TestB
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingTieredWithProrationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -800,10 +800,10 @@ public class NewFloatingTieredWithProrationPriceConversionRateConfigTest : TestB
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingTieredWithProrationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

@@ -9,25 +9,25 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits;
 
-[JsonConverter(typeof(ModelConverter<CreditListPageResponse, CreditListPageResponseFromRaw>))]
-public sealed record class CreditListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CreditListPageResponse, CreditListPageResponseFromRaw>))]
+public sealed record class CreditListPageResponse : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Data>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Data>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -67,7 +67,7 @@ public sealed record class CreditListPageResponse : ModelBase
     }
 }
 
-class CreditListPageResponseFromRaw : IFromRaw<CreditListPageResponse>
+class CreditListPageResponseFromRaw : IFromRawJson<CreditListPageResponse>
 {
     /// <inheritdoc/>
     public CreditListPageResponse FromRawUnchecked(
@@ -75,75 +75,75 @@ class CreditListPageResponseFromRaw : IFromRaw<CreditListPageResponse>
     ) => CreditListPageResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Data, DataFromRaw>))]
-public sealed record class Data : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required double Balance
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "balance"); }
-        init { ModelBase.Set(this._rawData, "balance", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "balance"); }
+        init { JsonModel.Set(this._rawData, "balance", value); }
     }
 
     public required System::DateTimeOffset? EffectiveDate
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "effective_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "effective_date", value); }
+        init { JsonModel.Set(this._rawData, "effective_date", value); }
     }
 
     public required System::DateTimeOffset? ExpiryDate
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     public required IReadOnlyList<global::Orb.Models.Customers.Credits.Filter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Customers.Credits.Filter>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.Customers.Credits.Filter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     public required double? MaximumInitialBalance
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "maximum_initial_balance"); }
-        init { ModelBase.Set(this._rawData, "maximum_initial_balance", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "maximum_initial_balance"); }
+        init { JsonModel.Set(this._rawData, "maximum_initial_balance", value); }
     }
 
     public required string? PerUnitCostBasis
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Customers.Credits.Status> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.Credits.Status>
             >(this.RawData, "status");
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     /// <inheritdoc/>
@@ -187,7 +187,7 @@ public sealed record class Data : ModelBase
     }
 }
 
-class DataFromRaw : IFromRaw<Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
     public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -198,12 +198,12 @@ class DataFromRaw : IFromRaw<Data>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Customers.Credits.Filter,
         global::Orb.Models.Customers.Credits.FilterFromRaw
     >)
 )]
-public sealed record class Filter : ModelBase
+public sealed record class Filter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -212,11 +212,11 @@ public sealed record class Filter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.Credits.Field>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -226,11 +226,11 @@ public sealed record class Filter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.Credits.Operator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -238,8 +238,8 @@ public sealed record class Filter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -277,7 +277,7 @@ public sealed record class Filter : ModelBase
     }
 }
 
-class FilterFromRaw : IFromRaw<global::Orb.Models.Customers.Credits.Filter>
+class FilterFromRaw : IFromRawJson<global::Orb.Models.Customers.Credits.Filter>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Customers.Credits.Filter FromRawUnchecked(

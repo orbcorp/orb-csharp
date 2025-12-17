@@ -28,8 +28,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "currency"); }
-        init { ModelBase.Set(this._rawBodyData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "currency"); }
+        init { JsonModel.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -40,24 +40,24 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "invoice_date"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "invoice_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "invoice_date", value); }
     }
 
     public required IReadOnlyList<global::Orb.Models.Invoices.LineItem> LineItems
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Invoices.LineItem>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.Invoices.LineItem>>(
                 this.RawBodyData,
                 "line_items"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "line_items", value); }
+        init { JsonModel.Set(this._rawBodyData, "line_items", value); }
     }
 
     /// <summary>
@@ -66,8 +66,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
     }
 
     /// <summary>
@@ -75,8 +75,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public SharedDiscount? Discount
     {
-        get { return ModelBase.GetNullableClass<SharedDiscount>(this.RawBodyData, "discount"); }
-        init { ModelBase.Set(this._rawBodyData, "discount", value); }
+        get { return JsonModel.GetNullableClass<SharedDiscount>(this.RawBodyData, "discount"); }
+        init { JsonModel.Set(this._rawBodyData, "discount", value); }
     }
 
     /// <summary>
@@ -85,8 +85,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public DueDate? DueDate
     {
-        get { return ModelBase.GetNullableClass<DueDate>(this.RawBodyData, "due_date"); }
-        init { ModelBase.Set(this._rawBodyData, "due_date", value); }
+        get { return JsonModel.GetNullableClass<DueDate>(this.RawBodyData, "due_date"); }
+        init { JsonModel.Set(this._rawBodyData, "due_date", value); }
     }
 
     /// <summary>
@@ -95,8 +95,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -105,8 +105,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "memo"); }
-        init { ModelBase.Set(this._rawBodyData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "memo"); }
+        init { JsonModel.Set(this._rawBodyData, "memo", value); }
     }
 
     /// <summary>
@@ -118,12 +118,12 @@ public sealed record class InvoiceCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -136,8 +136,8 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
-        init { ModelBase.Set(this._rawBodyData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
+        init { JsonModel.Set(this._rawBodyData, "net_terms", value); }
     }
 
     /// <summary>
@@ -147,7 +147,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     /// </summary>
     public bool? WillAutoIssue
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "will_auto_issue"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "will_auto_issue"); }
         init
         {
             if (value == null)
@@ -155,7 +155,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "will_auto_issue", value);
+            JsonModel.Set(this._rawBodyData, "will_auto_issue", value);
         }
     }
 
@@ -192,7 +192,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -214,9 +214,13 @@ public sealed record class InvoiceCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -230,12 +234,12 @@ public sealed record class InvoiceCreateParams : ParamsBase
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Invoices.LineItem,
         global::Orb.Models.Invoices.LineItemFromRaw
     >)
 )]
-public sealed record class LineItem : ModelBase
+public sealed record class LineItem : JsonModel
 {
     /// <summary>
     /// A date string to specify the line item's end date in the customer's timezone.
@@ -248,31 +252,31 @@ public sealed record class LineItem : ModelBase
 #endif
     EndDate
     {
-        get { return ModelBase.GetNotNullStruct<
+        get { return JsonModel.GetNotNullStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
             >(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Invoices.ModelType> ModelType
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Invoices.ModelType>
             >(this.RawData, "model_type");
         }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -280,8 +284,8 @@ public sealed record class LineItem : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -289,8 +293,8 @@ public sealed record class LineItem : ModelBase
     /// </summary>
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     /// <summary>
@@ -304,14 +308,14 @@ public sealed record class LineItem : ModelBase
 #endif
     StartDate
     {
-        get { return ModelBase.GetNotNullStruct<
+        get { return JsonModel.GetNotNullStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
             >(this.RawData, "start_date"); }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <summary>
@@ -319,8 +323,8 @@ public sealed record class LineItem : ModelBase
     /// </summary>
     public required UnitConfig UnitConfig
     {
-        get { return ModelBase.GetNotNullClass<UnitConfig>(this.RawData, "unit_config"); }
-        init { ModelBase.Set(this._rawData, "unit_config", value); }
+        get { return JsonModel.GetNotNullClass<UnitConfig>(this.RawData, "unit_config"); }
+        init { JsonModel.Set(this._rawData, "unit_config", value); }
     }
 
     /// <inheritdoc/>
@@ -362,7 +366,7 @@ public sealed record class LineItem : ModelBase
     }
 }
 
-class LineItemFromRaw : IFromRaw<global::Orb.Models.Invoices.LineItem>
+class LineItemFromRaw : IFromRawJson<global::Orb.Models.Invoices.LineItem>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Invoices.LineItem FromRawUnchecked(
@@ -420,11 +424,11 @@ public record class DueDate
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public DueDate(
@@ -433,21 +437,21 @@ public record class DueDate
 #else
         System::DateTimeOffset
 #endif
-        value, JsonElement? json = null)
+        value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public DueDate(System::DateTimeOffset value, JsonElement? json = null)
+    public DueDate(System::DateTimeOffset value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public DueDate(JsonElement json)
+    public DueDate(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -670,7 +674,7 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
             return new(JsonSerializer.Deserialize<
@@ -679,7 +683,7 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 #else
                 System::DateTimeOffset
 #endif
-                >(json, options));
+                >(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -688,14 +692,14 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(json, options));
+            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
             // ignore
         }
 
-        return new(json);
+        return new(element);
     }
 
     public override void Write(Utf8JsonWriter writer, DueDate? value, JsonSerializerOptions options)

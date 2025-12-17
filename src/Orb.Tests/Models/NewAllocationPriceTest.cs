@@ -131,8 +131,8 @@ public class NewAllocationPriceTest : TestBase
             PerUnitCostBasis = "per_unit_cost_basis",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewAllocationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewAllocationPrice>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "10.00";
@@ -521,8 +521,8 @@ public class NewAllocationPriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewAllocationPriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewAllocationPriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewAllocationPriceFilterField> expectedField =

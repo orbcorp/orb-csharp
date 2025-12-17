@@ -248,8 +248,8 @@ public class NewFloatingTieredPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingTieredPriceCadence> expectedCadence =
@@ -726,9 +726,9 @@ public class NewFloatingTieredPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPriceConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -753,9 +753,9 @@ public class NewFloatingTieredPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPriceConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);

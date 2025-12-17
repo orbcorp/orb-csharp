@@ -520,8 +520,8 @@ public class PriceListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Models::Price> expectedData =

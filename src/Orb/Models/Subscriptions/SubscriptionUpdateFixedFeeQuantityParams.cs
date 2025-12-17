@@ -40,14 +40,14 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// </summary>
     public required string PriceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
-        init { ModelBase.Set(this._rawBodyData, "price_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
+        init { JsonModel.Set(this._rawBodyData, "price_id", value); }
     }
 
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
-        init { ModelBase.Set(this._rawBodyData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
+        init { JsonModel.Set(this._rawBodyData, "quantity", value); }
     }
 
     /// <summary>
@@ -59,12 +59,12 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(
+            return JsonModel.GetNullableStruct<bool>(
                 this.RawBodyData,
                 "allow_invoice_credit_or_void"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
+        init { JsonModel.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption>
             >(this.RawBodyData, "change_option");
         }
@@ -87,7 +87,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "change_option", value);
+            JsonModel.Set(this._rawBodyData, "change_option", value);
         }
     }
 
@@ -106,7 +106,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<
+            return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
@@ -114,7 +114,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
 #endif
             >(this.RawBodyData, "effective_date");
         }
-        init { ModelBase.Set(this._rawBodyData, "effective_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "effective_date", value); }
     }
 
     public SubscriptionUpdateFixedFeeQuantityParams() { }
@@ -152,7 +152,7 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionUpdateFixedFeeQuantityParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -177,9 +177,13 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

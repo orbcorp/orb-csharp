@@ -33,8 +33,8 @@ public class PaginationMetadataTest : TestBase
     {
         var model = new PaginationMetadata { HasMore = true, NextCursor = "next_cursor" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PaginationMetadata>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PaginationMetadata>(element);
         Assert.NotNull(deserialized);
 
         bool expectedHasMore = true;

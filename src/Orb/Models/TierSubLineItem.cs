@@ -9,52 +9,52 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<TierSubLineItem, TierSubLineItemFromRaw>))]
-public sealed record class TierSubLineItem : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TierSubLineItem, TierSubLineItemFromRaw>))]
+public sealed record class TierSubLineItem : JsonModel
 {
     /// <summary>
     /// The total amount for this sub line item.
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return ModelBase.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
-        init { ModelBase.Set(this._rawData, "grouping", value); }
+        get { return JsonModel.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
+        init { JsonModel.Set(this._rawData, "grouping", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     public required TierConfig TierConfig
     {
-        get { return ModelBase.GetNotNullClass<TierConfig>(this.RawData, "tier_config"); }
-        init { ModelBase.Set(this._rawData, "tier_config", value); }
+        get { return JsonModel.GetNotNullClass<TierConfig>(this.RawData, "tier_config"); }
+        init { JsonModel.Set(this._rawData, "tier_config", value); }
     }
 
     public required ApiEnum<string, TierSubLineItemType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TierSubLineItemType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, TierSubLineItemType>>(
                 this.RawData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     /// <inheritdoc/>
@@ -93,32 +93,32 @@ public sealed record class TierSubLineItem : ModelBase
     }
 }
 
-class TierSubLineItemFromRaw : IFromRaw<TierSubLineItem>
+class TierSubLineItemFromRaw : IFromRawJson<TierSubLineItem>
 {
     /// <inheritdoc/>
     public TierSubLineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TierSubLineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<TierConfig, TierConfigFromRaw>))]
-public sealed record class TierConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TierConfig, TierConfigFromRaw>))]
+public sealed record class TierConfig : JsonModel
 {
     public required double FirstUnit
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "first_unit"); }
-        init { ModelBase.Set(this._rawData, "first_unit", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "first_unit"); }
+        init { JsonModel.Set(this._rawData, "first_unit", value); }
     }
 
     public required double? LastUnit
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "last_unit"); }
-        init { ModelBase.Set(this._rawData, "last_unit", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "last_unit"); }
+        init { JsonModel.Set(this._rawData, "last_unit", value); }
     }
 
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -154,7 +154,7 @@ public sealed record class TierConfig : ModelBase
     }
 }
 
-class TierConfigFromRaw : IFromRaw<TierConfig>
+class TierConfigFromRaw : IFromRawJson<TierConfig>
 {
     /// <inheritdoc/>
     public TierConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

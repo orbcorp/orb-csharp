@@ -101,9 +101,9 @@ public class DimensionalPriceGroupDimensionalPriceGroupsTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<DimensionalPriceGroupDimensionalPriceGroups>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 

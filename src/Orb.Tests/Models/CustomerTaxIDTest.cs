@@ -52,8 +52,8 @@ public class CustomerTaxIDTest : TestBase
             Value = "value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CustomerTaxID>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerTaxID>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Country> expectedCountry = Country.Ad;

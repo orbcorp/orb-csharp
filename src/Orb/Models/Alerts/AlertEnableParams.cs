@@ -22,8 +22,8 @@ public sealed record class AlertEnableParams : ParamsBase
     /// </summary>
     public string? SubscriptionID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "subscription_id"); }
-        init { ModelBase.Set(this._rawQueryData, "subscription_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "subscription_id"); }
+        init { JsonModel.Set(this._rawQueryData, "subscription_id", value); }
     }
 
     public AlertEnableParams() { }
@@ -52,7 +52,7 @@ public sealed record class AlertEnableParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static AlertEnableParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

@@ -10,17 +10,17 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         MonetaryPercentageDiscountAdjustment,
         MonetaryPercentageDiscountAdjustmentFromRaw
     >)
 )]
-public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
+public sealed record class MonetaryPercentageDiscountAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required ApiEnum<
@@ -30,11 +30,11 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, MonetaryPercentageDiscountAdjustmentAdjustmentType>
             >(this.RawData, "adjustment_type");
         }
-        init { ModelBase.Set(this._rawData, "adjustment_type", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -54,9 +54,9 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -66,12 +66,12 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MonetaryPercentageDiscountAdjustmentFilter>>(
+            return JsonModel.GetNotNullClass<List<MonetaryPercentageDiscountAdjustmentFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -80,8 +80,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
-        init { ModelBase.Set(this._rawData, "is_invoice_level", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
+        init { JsonModel.Set(this._rawData, "is_invoice_level", value); }
     }
 
     /// <summary>
@@ -90,8 +90,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     /// </summary>
     public required double PercentageDiscount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { ModelBase.Set(this._rawData, "percentage_discount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
+        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
     }
 
     /// <summary>
@@ -99,8 +99,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     /// </summary>
     public required string? Reason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reason"); }
-        init { ModelBase.Set(this._rawData, "reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
+        init { JsonModel.Set(this._rawData, "reason", value); }
     }
 
     /// <summary>
@@ -109,8 +109,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
-        init { ModelBase.Set(this._rawData, "replaces_adjustment_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
+        init { JsonModel.Set(this._rawData, "replaces_adjustment_id", value); }
     }
 
     /// <inheritdoc/>
@@ -163,7 +163,8 @@ public sealed record class MonetaryPercentageDiscountAdjustment : ModelBase
     }
 }
 
-class MonetaryPercentageDiscountAdjustmentFromRaw : IFromRaw<MonetaryPercentageDiscountAdjustment>
+class MonetaryPercentageDiscountAdjustmentFromRaw
+    : IFromRawJson<MonetaryPercentageDiscountAdjustment>
 {
     /// <inheritdoc/>
     public MonetaryPercentageDiscountAdjustment FromRawUnchecked(
@@ -216,12 +217,12 @@ sealed class MonetaryPercentageDiscountAdjustmentAdjustmentTypeConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         MonetaryPercentageDiscountAdjustmentFilter,
         MonetaryPercentageDiscountAdjustmentFilterFromRaw
     >)
 )]
-public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBase
+public sealed record class MonetaryPercentageDiscountAdjustmentFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -230,11 +231,11 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, MonetaryPercentageDiscountAdjustmentFilterField>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -244,11 +245,11 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, MonetaryPercentageDiscountAdjustmentFilterOperator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -256,8 +257,8 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -300,7 +301,7 @@ public sealed record class MonetaryPercentageDiscountAdjustmentFilter : ModelBas
 }
 
 class MonetaryPercentageDiscountAdjustmentFilterFromRaw
-    : IFromRaw<MonetaryPercentageDiscountAdjustmentFilter>
+    : IFromRawJson<MonetaryPercentageDiscountAdjustmentFilter>
 {
     /// <inheritdoc/>
     public MonetaryPercentageDiscountAdjustmentFilter FromRawUnchecked(

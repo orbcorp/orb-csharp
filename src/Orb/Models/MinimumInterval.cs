@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<MinimumInterval, MinimumIntervalFromRaw>))]
-public sealed record class MinimumInterval : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MinimumInterval, MinimumIntervalFromRaw>))]
+public sealed record class MinimumInterval : JsonModel
 {
     /// <summary>
     /// The price interval ids that this minimum interval applies to.
@@ -19,12 +19,12 @@ public sealed record class MinimumInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(
+            return JsonModel.GetNotNullClass<List<string>>(
                 this.RawData,
                 "applies_to_price_interval_ids"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ public sealed record class MinimumInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -46,9 +46,9 @@ public sealed record class MinimumInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MinimumIntervalFilter>>(this.RawData, "filters");
+            return JsonModel.GetNotNullClass<List<MinimumIntervalFilter>>(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -57,8 +57,8 @@ public sealed record class MinimumInterval : ModelBase
     /// </summary>
     public required string MinimumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <summary>
@@ -68,9 +68,9 @@ public sealed record class MinimumInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -111,15 +111,15 @@ public sealed record class MinimumInterval : ModelBase
     }
 }
 
-class MinimumIntervalFromRaw : IFromRaw<MinimumInterval>
+class MinimumIntervalFromRaw : IFromRawJson<MinimumInterval>
 {
     /// <inheritdoc/>
     public MinimumInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         MinimumInterval.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<MinimumIntervalFilter, MinimumIntervalFilterFromRaw>))]
-public sealed record class MinimumIntervalFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MinimumIntervalFilter, MinimumIntervalFilterFromRaw>))]
+public sealed record class MinimumIntervalFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -128,12 +128,12 @@ public sealed record class MinimumIntervalFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -143,12 +143,12 @@ public sealed record class MinimumIntervalFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -156,8 +156,8 @@ public sealed record class MinimumIntervalFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -195,7 +195,7 @@ public sealed record class MinimumIntervalFilter : ModelBase
     }
 }
 
-class MinimumIntervalFilterFromRaw : IFromRaw<MinimumIntervalFilter>
+class MinimumIntervalFilterFromRaw : IFromRawJson<MinimumIntervalFilter>
 {
     /// <inheritdoc/>
     public MinimumIntervalFilter FromRawUnchecked(

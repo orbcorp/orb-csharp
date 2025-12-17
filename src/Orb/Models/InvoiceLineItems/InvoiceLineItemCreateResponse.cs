@@ -10,17 +10,17 @@ using System = System;
 namespace Orb.Models.InvoiceLineItems;
 
 [JsonConverter(
-    typeof(ModelConverter<InvoiceLineItemCreateResponse, InvoiceLineItemCreateResponseFromRaw>)
+    typeof(JsonModelConverter<InvoiceLineItemCreateResponse, InvoiceLineItemCreateResponseFromRaw>)
 )]
-public sealed record class InvoiceLineItemCreateResponse : ModelBase
+public sealed record class InvoiceLineItemCreateResponse : JsonModel
 {
     /// <summary>
     /// A unique ID for this line item.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -29,8 +29,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string AdjustedSubtotal
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "adjusted_subtotal"); }
-        init { ModelBase.Set(this._rawData, "adjusted_subtotal", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "adjusted_subtotal"); }
+        init { JsonModel.Set(this._rawData, "adjusted_subtotal", value); }
     }
 
     /// <summary>
@@ -42,12 +42,12 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.InvoiceLineItems.Adjustment>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.InvoiceLineItems.Adjustment>>(
                 this.RawData,
                 "adjustments"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustments", value); }
+        init { JsonModel.Set(this._rawData, "adjustments", value); }
     }
 
     /// <summary>
@@ -56,8 +56,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -65,8 +65,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string CreditsApplied
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "credits_applied"); }
-        init { ModelBase.Set(this._rawData, "credits_applied", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "credits_applied"); }
+        init { JsonModel.Set(this._rawData, "credits_applied", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required System::DateTimeOffset EndDate
     {
-        get { return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        get { return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "end_date"); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -83,8 +83,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string? Filter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "filter"); }
-        init { ModelBase.Set(this._rawData, "filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "filter"); }
+        init { JsonModel.Set(this._rawData, "filter", value); }
     }
 
     /// <summary>
@@ -94,8 +94,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string? Grouping
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "grouping"); }
-        init { ModelBase.Set(this._rawData, "grouping", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "grouping"); }
+        init { JsonModel.Set(this._rawData, "grouping", value); }
     }
 
     /// <summary>
@@ -103,8 +103,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -112,8 +112,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string PartiallyInvoicedAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "partially_invoiced_amount"); }
-        init { ModelBase.Set(this._rawData, "partially_invoiced_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "partially_invoiced_amount"); }
+        init { JsonModel.Set(this._rawData, "partially_invoiced_amount", value); }
     }
 
     /// <summary>
@@ -129,8 +129,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required Price Price
     {
-        get { return ModelBase.GetNotNullClass<Price>(this.RawData, "price"); }
-        init { ModelBase.Set(this._rawData, "price", value); }
+        get { return JsonModel.GetNotNullClass<Price>(this.RawData, "price"); }
+        init { JsonModel.Set(this._rawData, "price", value); }
     }
 
     /// <summary>
@@ -138,8 +138,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     /// <summary>
@@ -149,9 +149,9 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <summary>
@@ -162,12 +162,12 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.InvoiceLineItems.SubLineItem>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.InvoiceLineItems.SubLineItem>>(
                 this.RawData,
                 "sub_line_items"
             );
         }
-        init { ModelBase.Set(this._rawData, "sub_line_items", value); }
+        init { JsonModel.Set(this._rawData, "sub_line_items", value); }
     }
 
     /// <summary>
@@ -175,8 +175,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required string Subtotal
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { ModelBase.Set(this._rawData, "subtotal", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
+        init { JsonModel.Set(this._rawData, "subtotal", value); }
     }
 
     /// <summary>
@@ -185,8 +185,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required IReadOnlyList<TaxAmount> TaxAmounts
     {
-        get { return ModelBase.GetNotNullClass<List<TaxAmount>>(this.RawData, "tax_amounts"); }
-        init { ModelBase.Set(this._rawData, "tax_amounts", value); }
+        get { return JsonModel.GetNotNullClass<List<TaxAmount>>(this.RawData, "tax_amounts"); }
+        init { JsonModel.Set(this._rawData, "tax_amounts", value); }
     }
 
     /// <summary>
@@ -194,8 +194,8 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     /// </summary>
     public required IReadOnlyList<string>? UsageCustomerIDs
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
-        init { ModelBase.Set(this._rawData, "usage_customer_ids", value); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
+        init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
     }
 
     /// <inheritdoc/>
@@ -258,7 +258,7 @@ public sealed record class InvoiceLineItemCreateResponse : ModelBase
     }
 }
 
-class InvoiceLineItemCreateResponseFromRaw : IFromRaw<InvoiceLineItemCreateResponse>
+class InvoiceLineItemCreateResponseFromRaw : IFromRawJson<InvoiceLineItemCreateResponse>
 {
     /// <inheritdoc/>
     public InvoiceLineItemCreateResponse FromRawUnchecked(
@@ -271,11 +271,11 @@ public record class Adjustment
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -348,39 +348,39 @@ public record class Adjustment
         }
     }
 
-    public Adjustment(MonetaryUsageDiscountAdjustment value, JsonElement? json = null)
+    public Adjustment(MonetaryUsageDiscountAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(MonetaryAmountDiscountAdjustment value, JsonElement? json = null)
+    public Adjustment(MonetaryAmountDiscountAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(MonetaryPercentageDiscountAdjustment value, JsonElement? json = null)
+    public Adjustment(MonetaryPercentageDiscountAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(MonetaryMinimumAdjustment value, JsonElement? json = null)
+    public Adjustment(MonetaryMinimumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(MonetaryMaximumAdjustment value, JsonElement? json = null)
+    public Adjustment(MonetaryMaximumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(JsonElement json)
+    public Adjustment(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -654,11 +654,11 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? adjustmentType;
         try
         {
-            adjustmentType = json.GetProperty("adjustment_type").GetString();
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
         }
         catch
         {
@@ -672,13 +672,13 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryUsageDiscountAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -687,20 +687,20 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount_discount":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryAmountDiscountAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -709,7 +709,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percentage_discount":
             {
@@ -717,13 +717,13 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<MonetaryPercentageDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -732,20 +732,20 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -754,20 +754,20 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "maximum":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<MonetaryMaximumAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -776,11 +776,11 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new global::Orb.Models.InvoiceLineItems.Adjustment(json);
+                return new global::Orb.Models.InvoiceLineItems.Adjustment(element);
             }
         }
     }
@@ -800,11 +800,11 @@ public record class SubLineItem
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string Amount
@@ -844,27 +844,27 @@ public record class SubLineItem
         }
     }
 
-    public SubLineItem(MatrixSubLineItem value, JsonElement? json = null)
+    public SubLineItem(MatrixSubLineItem value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubLineItem(TierSubLineItem value, JsonElement? json = null)
+    public SubLineItem(TierSubLineItem value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubLineItem(OtherSubLineItem value, JsonElement? json = null)
+    public SubLineItem(OtherSubLineItem value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SubLineItem(JsonElement json)
+    public SubLineItem(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -1064,11 +1064,11 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLine
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? type;
         try
         {
-            type = json.GetProperty("type").GetString();
+            type = element.GetProperty("type").GetString();
         }
         catch
         {
@@ -1081,11 +1081,14 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLine
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<MatrixSubLineItem>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1094,17 +1097,20 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLine
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tier":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<TierSubLineItem>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1113,17 +1119,20 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLine
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "'null'":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<OtherSubLineItem>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -1132,11 +1141,11 @@ sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.InvoiceLine
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new global::Orb.Models.InvoiceLineItems.SubLineItem(json);
+                return new global::Orb.Models.InvoiceLineItems.SubLineItem(element);
             }
         }
     }

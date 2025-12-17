@@ -3978,8 +3978,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4110,8 +4110,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4230,8 +4230,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4358,8 +4358,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4478,8 +4478,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4606,8 +4606,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4734,8 +4734,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4862,8 +4862,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5001,8 +5001,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5129,8 +5129,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5267,8 +5267,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5392,8 +5392,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5512,8 +5512,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5641,8 +5641,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5763,8 +5763,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -5883,8 +5883,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6008,8 +6008,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6133,8 +6133,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6258,8 +6258,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6392,8 +6392,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6518,8 +6518,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6650,8 +6650,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6779,8 +6779,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -6908,8 +6908,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7044,8 +7044,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7183,8 +7183,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7315,8 +7315,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7441,8 +7441,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7561,8 +7561,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7681,8 +7681,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -7806,8 +7806,8 @@ public class PriceTest : TestBase
                 },
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Price>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Price>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -8301,8 +8301,8 @@ public class UnitTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Unit>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Unit>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -9181,8 +9181,8 @@ public class CompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, CompositePriceFilterField> expectedField =
@@ -9377,8 +9377,8 @@ public class UnitConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -9402,8 +9402,8 @@ public class UnitConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<UnitConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -10004,8 +10004,8 @@ public class TieredTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tiered>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Tiered>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -10957,8 +10957,8 @@ public class TieredCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, TieredCompositePriceFilterField> expectedField =
@@ -11151,8 +11151,8 @@ public class TieredConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -11176,8 +11176,8 @@ public class TieredConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -11731,8 +11731,8 @@ public class BulkTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Bulk>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Bulk>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -12613,8 +12613,8 @@ public class BulkCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, BulkCompositePriceFilterField> expectedField =
@@ -12807,8 +12807,8 @@ public class BulkConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<BulkConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<BulkConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -12832,8 +12832,8 @@ public class BulkConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<BulkConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<BulkConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -13422,8 +13422,8 @@ public class BulkWithFiltersTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFilters>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -14307,8 +14307,8 @@ public class BulkWithFiltersConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfig>(element);
         Assert.NotNull(deserialized);
 
         List<BulkWithFiltersConfigFilter> expectedFilters =
@@ -14380,8 +14380,8 @@ public class BulkWithFiltersConfigFilterTest : TestBase
     {
         var model = new BulkWithFiltersConfigFilter { PropertyKey = "x", PropertyValue = "x" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigFilter>(element);
         Assert.NotNull(deserialized);
 
         string expectedPropertyKey = "x";
@@ -14442,8 +14442,8 @@ public class BulkWithFiltersConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConfigTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -14627,8 +14627,8 @@ public class BulkWithFiltersCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, BulkWithFiltersCompositePriceFilterField> expectedField =
@@ -14829,8 +14829,8 @@ public class BulkWithFiltersConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -14854,8 +14854,8 @@ public class BulkWithFiltersConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<BulkWithFiltersConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -15412,8 +15412,8 @@ public class PackageTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Package>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Package>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -16297,8 +16297,8 @@ public class PackageCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PackageCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PackageCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PackageCompositePriceFilterField> expectedField =
@@ -16495,8 +16495,8 @@ public class PackageConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PackageConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PackageConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -16520,8 +16520,8 @@ public class PackageConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PackageConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PackageConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -17094,8 +17094,8 @@ public class MatrixTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Matrix>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Matrix>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -18005,8 +18005,8 @@ public class MatrixCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MatrixCompositePriceFilterField> expectedField =
@@ -18199,8 +18199,8 @@ public class MatrixConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<MatrixConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<MatrixConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -18224,8 +18224,8 @@ public class MatrixConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<MatrixConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<MatrixConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -18815,8 +18815,8 @@ public class ThresholdTotalAmountTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmount>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -19749,9 +19749,9 @@ public class ThresholdTotalAmountCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -19955,9 +19955,9 @@ public class ThresholdTotalAmountConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -19982,9 +19982,9 @@ public class ThresholdTotalAmountConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<ThresholdTotalAmountConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -20110,9 +20110,9 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigTest : TestBase
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<ThresholdTotalAmountThresholdTotalAmountConfig>(json);
+            JsonSerializer.Deserialize<ThresholdTotalAmountThresholdTotalAmountConfig>(element);
         Assert.NotNull(deserialized);
 
         List<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable> expectedConsumptionTable =
@@ -20258,10 +20258,10 @@ public class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTableTest 
             TotalAmount = "total_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -20810,8 +20810,8 @@ public class TieredPackageTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackage>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackage>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -21743,8 +21743,8 @@ public class TieredPackageCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, TieredPackageCompositePriceFilterField> expectedField =
@@ -21945,8 +21945,8 @@ public class TieredPackageConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -21970,8 +21970,8 @@ public class TieredPackageConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -22097,8 +22097,8 @@ public class TieredPackageTieredPackageConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageTieredPackageConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageTieredPackageConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedPackageSize = "package_size";
@@ -22175,8 +22175,10 @@ public class TieredPackageTieredPackageConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageTieredPackageConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageTieredPackageConfigTier>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -22769,8 +22771,8 @@ public class TieredWithMinimumTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithMinimum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimum>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -23767,8 +23769,10 @@ public class TieredWithMinimumCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumCompositePriceFilter>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, TieredWithMinimumCompositePriceFilterField> expectedField =
@@ -23969,8 +23973,10 @@ public class TieredWithMinimumConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -23994,8 +24000,10 @@ public class TieredWithMinimumConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<TieredWithMinimumConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -24168,9 +24176,9 @@ public class TieredWithMinimumTieredWithMinimumConfigTest : TestBase
             Prorate = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<TieredWithMinimumTieredWithMinimumConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -24392,9 +24400,9 @@ public class TieredWithMinimumTieredWithMinimumConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<TieredWithMinimumTieredWithMinimumConfigTier>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -24946,8 +24954,8 @@ public class GroupedTieredTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTiered>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTiered>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -25879,8 +25887,8 @@ public class GroupedTieredCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, GroupedTieredCompositePriceFilterField> expectedField =
@@ -26081,8 +26089,8 @@ public class GroupedTieredConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -26106,8 +26114,8 @@ public class GroupedTieredConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -26175,8 +26183,8 @@ public class GroupedTieredGroupedTieredConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredGroupedTieredConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredGroupedTieredConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -26253,8 +26261,10 @@ public class GroupedTieredGroupedTieredConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredGroupedTieredConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredGroupedTieredConfigTier>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -26902,8 +26912,8 @@ public class TieredPackageWithMinimumTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimum>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -27902,9 +27912,9 @@ public class TieredPackageWithMinimumCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -28110,9 +28120,9 @@ public class TieredPackageWithMinimumConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -28137,9 +28147,9 @@ public class TieredPackageWithMinimumConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TieredPackageWithMinimumConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -28307,10 +28317,10 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTest : TestBa
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<TieredPackageWithMinimumTieredPackageWithMinimumConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -28416,10 +28426,10 @@ public class TieredPackageWithMinimumTieredPackageWithMinimumConfigTierTest : Te
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<TieredPackageWithMinimumTieredPackageWithMinimumConfigTier>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -28960,8 +28970,8 @@ public class PackageWithAllocationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PackageWithAllocation>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PackageWithAllocation>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -29874,9 +29884,9 @@ public class PackageWithAllocationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<PackageWithAllocationCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -30082,9 +30092,9 @@ public class PackageWithAllocationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PackageWithAllocationConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -30109,9 +30119,9 @@ public class PackageWithAllocationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<PackageWithAllocationConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -30166,9 +30176,9 @@ public class PackageWithAllocationPackageWithAllocationConfigTest : TestBase
             PackageSize = "package_size",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PackageWithAllocationPackageWithAllocationConfig>(json);
+            JsonSerializer.Deserialize<PackageWithAllocationPackageWithAllocationConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -30747,8 +30757,8 @@ public class UnitWithPercentTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercent>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercent>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -31636,8 +31646,8 @@ public class UnitWithPercentCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, UnitWithPercentCompositePriceFilterField> expectedField =
@@ -31838,8 +31848,8 @@ public class UnitWithPercentConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -31863,8 +31873,8 @@ public class UnitWithPercentConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -31970,8 +31980,10 @@ public class UnitWithPercentUnitWithPercentConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithPercentUnitWithPercentConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitWithPercentUnitWithPercentConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedPercent = "percent";
@@ -32512,8 +32524,8 @@ public class MatrixWithAllocationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocation>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithAllocation>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -33434,9 +33446,9 @@ public class MatrixWithAllocationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -33640,9 +33652,9 @@ public class MatrixWithAllocationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -33667,9 +33679,9 @@ public class MatrixWithAllocationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MatrixWithAllocationConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -34234,8 +34246,8 @@ public class TieredWithProrationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredWithProration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredWithProration>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -35132,9 +35144,9 @@ public class TieredWithProrationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -35338,9 +35350,9 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -35365,9 +35377,9 @@ public class TieredWithProrationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -35476,9 +35488,9 @@ public class TieredWithProrationTieredWithProrationConfigTest : TestBase
             Tiers = [new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<TieredWithProrationTieredWithProrationConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -35549,9 +35561,9 @@ public class TieredWithProrationTieredWithProrationConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<TieredWithProrationTieredWithProrationConfigTier>(json);
+            JsonSerializer.Deserialize<TieredWithProrationTieredWithProrationConfigTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -36070,8 +36082,8 @@ public class UnitWithProrationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithProration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProration>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -36956,8 +36968,10 @@ public class UnitWithProrationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitWithProrationCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationCompositePriceFilter>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, UnitWithProrationCompositePriceFilterField> expectedField =
@@ -37158,8 +37172,10 @@ public class UnitWithProrationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<UnitWithProrationConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -37183,8 +37199,10 @@ public class UnitWithProrationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<UnitWithProrationConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<UnitWithProrationConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -37278,9 +37296,9 @@ public class UnitWithProrationUnitWithProrationConfigTest : TestBase
     {
         var model = new UnitWithProrationUnitWithProrationConfig { UnitAmount = "unit_amount" };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<UnitWithProrationUnitWithProrationConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -37812,8 +37830,8 @@ public class GroupedAllocationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocation>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocation>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -38726,8 +38744,10 @@ public class GroupedAllocationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocationCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationCompositePriceFilter>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, GroupedAllocationCompositePriceFilterField> expectedField =
@@ -38928,8 +38948,10 @@ public class GroupedAllocationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -38953,8 +38975,10 @@ public class GroupedAllocationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupedAllocationConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -39009,9 +39033,9 @@ public class GroupedAllocationGroupedAllocationConfigTest : TestBase
             OverageUnitRate = "overage_unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<GroupedAllocationGroupedAllocationConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -39610,8 +39634,8 @@ public class BulkWithProrationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProration>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -40466,9 +40490,9 @@ public class BulkWithProrationBulkWithProrationConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<BulkWithProrationBulkWithProrationConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -40545,9 +40569,9 @@ public class BulkWithProrationBulkWithProrationConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<BulkWithProrationBulkWithProrationConfigTier>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -40732,8 +40756,10 @@ public class BulkWithProrationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProrationCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationCompositePriceFilter>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, BulkWithProrationCompositePriceFilterField> expectedField =
@@ -40934,8 +40960,10 @@ public class BulkWithProrationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -40959,8 +40987,10 @@ public class BulkWithProrationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -41542,8 +41572,8 @@ public class GroupedWithProratedMinimumTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithProratedMinimum>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -42463,9 +42493,9 @@ public class GroupedWithProratedMinimumCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithProratedMinimumCompositePriceFilter>(json);
+            JsonSerializer.Deserialize<GroupedWithProratedMinimumCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, GroupedWithProratedMinimumCompositePriceFilterField> expectedField =
@@ -42670,9 +42700,9 @@ public class GroupedWithProratedMinimumConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithProratedMinimumConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithProratedMinimumConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -42696,9 +42726,9 @@ public class GroupedWithProratedMinimumConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithProratedMinimumConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithProratedMinimumConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -42754,10 +42784,10 @@ public class GroupedWithProratedMinimumGroupedWithProratedMinimumConfigTest : Te
             UnitRate = "unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<GroupedWithProratedMinimumGroupedWithProratedMinimumConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -43398,8 +43428,8 @@ public class GroupedWithMeteredMinimumTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimum>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -44373,9 +44403,9 @@ public class GroupedWithMeteredMinimumCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMeteredMinimumCompositePriceFilter>(json);
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, GroupedWithMeteredMinimumCompositePriceFilterField> expectedField =
@@ -44580,9 +44610,9 @@ public class GroupedWithMeteredMinimumConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMeteredMinimumConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -44606,9 +44636,9 @@ public class GroupedWithMeteredMinimumConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMeteredMinimumConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithMeteredMinimumConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -44702,10 +44732,10 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigTest : Test
             UnitAmounts = [new() { PricingValue = "pricing_value", UnitAmount = "unit_amount" }],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -44803,10 +44833,10 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFact
             ScalingValue = "scaling_value",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -44875,10 +44905,10 @@ public class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmountT
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -45479,8 +45509,8 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholds>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -46405,9 +46435,9 @@ public class GroupedWithMinMaxThresholdsCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsCompositePriceFilter>(json);
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, GroupedWithMinMaxThresholdsCompositePriceFilterField> expectedField =
@@ -46612,9 +46642,9 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -46638,9 +46668,9 @@ public class GroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(json);
+            JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -46698,8 +46728,8 @@ public class GroupedWithMinMaxThresholdsConfigTest : TestBase
             PerUnitRate = "per_unit_rate",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMinMaxThresholdsConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -47330,8 +47360,8 @@ public class MatrixWithDisplayNameTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayName>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayName>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -48286,9 +48316,9 @@ public class MatrixWithDisplayNameCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -48494,9 +48524,9 @@ public class MatrixWithDisplayNameConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -48521,9 +48551,9 @@ public class MatrixWithDisplayNameConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -48609,9 +48639,9 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<MatrixWithDisplayNameMatrixWithDisplayNameConfig>(json);
+            JsonSerializer.Deserialize<MatrixWithDisplayNameMatrixWithDisplayNameConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedDimension = "dimension";
@@ -48704,10 +48734,10 @@ public class MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmountTest : Te
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<MatrixWithDisplayNameMatrixWithDisplayNameConfigUnitAmount>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -49320,8 +49350,8 @@ public class GroupedTieredPackageTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackage>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredPackage>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -50260,9 +50290,9 @@ public class GroupedTieredPackageCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -50466,9 +50496,9 @@ public class GroupedTieredPackageConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -50493,9 +50523,9 @@ public class GroupedTieredPackageConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<GroupedTieredPackageConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -50570,9 +50600,9 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedTieredPackageGroupedTieredPackageConfig>(json);
+            JsonSerializer.Deserialize<GroupedTieredPackageGroupedTieredPackageConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -50653,9 +50683,9 @@ public class GroupedTieredPackageGroupedTieredPackageConfigTierTest : TestBase
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<GroupedTieredPackageGroupedTieredPackageConfigTier>(json);
+            JsonSerializer.Deserialize<GroupedTieredPackageGroupedTieredPackageConfigTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedPerUnit = "per_unit";
@@ -51264,8 +51294,8 @@ public class MaxGroupTieredPackageTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackage>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackage>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -52202,9 +52232,9 @@ public class MaxGroupTieredPackageCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -52410,9 +52440,9 @@ public class MaxGroupTieredPackageConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -52437,9 +52467,9 @@ public class MaxGroupTieredPackageConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<MaxGroupTieredPackageConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -52514,9 +52544,9 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<MaxGroupTieredPackageMaxGroupTieredPackageConfig>(json);
+            JsonSerializer.Deserialize<MaxGroupTieredPackageMaxGroupTieredPackageConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -52597,9 +52627,11 @@ public class MaxGroupTieredPackageMaxGroupTieredPackageConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier>(json);
+            JsonSerializer.Deserialize<MaxGroupTieredPackageMaxGroupTieredPackageConfigTier>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -53236,8 +53268,8 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricing>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithUnitPricing>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -54223,9 +54255,9 @@ public class ScalableMatrixWithUnitPricingCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingCompositePriceFilter>(json);
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, ScalableMatrixWithUnitPricingCompositePriceFilterField> expectedField =
@@ -54432,9 +54464,9 @@ public class ScalableMatrixWithUnitPricingConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConversionRateConfig>(json);
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -54458,9 +54490,9 @@ public class ScalableMatrixWithUnitPricingConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConversionRateConfig>(json);
+            JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -54622,10 +54654,10 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigTes
             SecondDimension = "second_dimension",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -54828,10 +54860,10 @@ public class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMat
                 SecondDimensionValue = "second_dimension_value",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -55487,8 +55519,8 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricing>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricing>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -56492,9 +56524,11 @@ public class ScalableMatrixWithTieredPricingCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingCompositePriceFilter>(json);
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingCompositePriceFilter>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, ScalableMatrixWithTieredPricingCompositePriceFilterField> expectedField =
@@ -56705,9 +56739,11 @@ public class ScalableMatrixWithTieredPricingConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConversionRateConfig>(json);
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -56731,9 +56767,11 @@ public class ScalableMatrixWithTieredPricingConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConversionRateConfig>(json);
+            JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -56910,10 +56948,10 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
             SecondDimension = "second_dimension",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -57135,10 +57173,10 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
                 SecondDimensionValue = "second_dimension_value",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -57269,10 +57307,10 @@ public class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfi
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -57838,8 +57876,8 @@ public class CumulativeGroupedBulkTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulk>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulk>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -58794,9 +58832,9 @@ public class CumulativeGroupedBulkCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkCompositePriceFilter>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -59002,9 +59040,9 @@ public class CumulativeGroupedBulkConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -59029,9 +59067,9 @@ public class CumulativeGroupedBulkConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<CumulativeGroupedBulkConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -59117,9 +59155,9 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigTest : TestBase
             Group = "group",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<CumulativeGroupedBulkCumulativeGroupedBulkConfig>(json);
+            JsonSerializer.Deserialize<CumulativeGroupedBulkCumulativeGroupedBulkConfig>(element);
         Assert.NotNull(deserialized);
 
         List<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue> expectedDimensionValues =
@@ -59212,10 +59250,10 @@ public class CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValueTest 
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<CumulativeGroupedBulkCumulativeGroupedBulkConfigDimensionValue>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -59819,8 +59857,8 @@ public class CumulativeGroupedAllocationTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocation>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -60745,9 +60783,9 @@ public class CumulativeGroupedAllocationCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<CumulativeGroupedAllocationCompositePriceFilter>(json);
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, CumulativeGroupedAllocationCompositePriceFilterField> expectedField =
@@ -60952,9 +60990,9 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(json);
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -60978,9 +61016,9 @@ public class CumulativeGroupedAllocationConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(json);
+            JsonSerializer.Deserialize<CumulativeGroupedAllocationConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -61038,8 +61076,8 @@ public class CumulativeGroupedAllocationConfigTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CumulativeGroupedAllocationConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedCumulativeAllocation = "cumulative_allocation";
@@ -61622,8 +61660,8 @@ public class PriceMinimumTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimum>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -62508,8 +62546,8 @@ public class PriceMinimumCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimumCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PriceMinimumCompositePriceFilterField> expectedField =
@@ -62710,8 +62748,8 @@ public class PriceMinimumConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimumConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -62735,8 +62773,8 @@ public class PriceMinimumConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimumConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -62784,8 +62822,8 @@ public class PriceMinimumMinimumConfigTest : TestBase
             Prorated = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceMinimumMinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceMinimumMinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedMinimumAmount = "minimum_amount";
@@ -63401,8 +63439,8 @@ public class PercentTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Percent>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Percent>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -64282,8 +64320,8 @@ public class PercentCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PercentCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PercentCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, PercentCompositePriceFilterField> expectedField =
@@ -64480,8 +64518,8 @@ public class PercentConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -64505,8 +64543,8 @@ public class PercentConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<PercentConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -64540,8 +64578,8 @@ public class PercentConfigTest : TestBase
     {
         var model = new PercentConfig { Percent = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PercentConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PercentConfig>(element);
         Assert.NotNull(deserialized);
 
         double expectedPercent = 0;
@@ -65126,8 +65164,8 @@ public class EventOutputTest : TestBase
             },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventOutput>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventOutput>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -66038,8 +66076,8 @@ public class EventOutputCompositePriceFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventOutputCompositePriceFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventOutputCompositePriceFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, EventOutputCompositePriceFilterField> expectedField =
@@ -66240,8 +66278,8 @@ public class EventOutputConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -66265,8 +66303,8 @@ public class EventOutputConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -66319,8 +66357,8 @@ public class EventOutputConfigTest : TestBase
             GroupingKey = "grouping_key",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventOutputConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventOutputConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitRatingKey = "x";

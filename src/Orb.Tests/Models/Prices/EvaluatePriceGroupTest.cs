@@ -55,8 +55,8 @@ public class EvaluatePriceGroupTest : TestBase
             Quantity = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EvaluatePriceGroup>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EvaluatePriceGroup>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "amount";
@@ -113,8 +113,8 @@ public class GroupingValueTest : TestBase
     public void StringSerializationRoundtripWorks()
     {
         GroupingValue value = new("string");
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupingValue>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupingValue>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -123,8 +123,8 @@ public class GroupingValueTest : TestBase
     public void DoubleSerializationRoundtripWorks()
     {
         GroupingValue value = new(0);
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupingValue>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupingValue>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -133,8 +133,8 @@ public class GroupingValueTest : TestBase
     public void BoolSerializationRoundtripWorks()
     {
         GroupingValue value = new(true);
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<GroupingValue>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<GroupingValue>(element);
 
         Assert.Equal(value, deserialized);
     }

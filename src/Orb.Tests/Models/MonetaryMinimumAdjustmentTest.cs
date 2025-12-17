@@ -129,8 +129,8 @@ public class MonetaryMinimumAdjustmentTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustment>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -311,8 +311,8 @@ public class MonetaryMinimumAdjustmentFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustmentFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MonetaryMinimumAdjustmentFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MonetaryMinimumAdjustmentFilterField> expectedField =

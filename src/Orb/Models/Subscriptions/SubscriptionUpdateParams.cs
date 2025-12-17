@@ -30,8 +30,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public bool? AutoCollection
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
-        init { ModelBase.Set(this._rawBodyData, "auto_collection", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "auto_collection"); }
+        init { JsonModel.Set(this._rawBodyData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? DefaultInvoiceMemo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "default_invoice_memo"); }
-        init { ModelBase.Set(this._rawBodyData, "default_invoice_memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "default_invoice_memo"); }
+        init { JsonModel.Set(this._rawBodyData, "default_invoice_memo", value); }
     }
 
     /// <summary>
@@ -51,8 +51,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public string? InvoicingThreshold
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "invoicing_threshold"); }
-        init { ModelBase.Set(this._rawBodyData, "invoicing_threshold", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "invoicing_threshold"); }
+        init { JsonModel.Set(this._rawBodyData, "invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -64,12 +64,12 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     /// <summary>
@@ -80,8 +80,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
-        init { ModelBase.Set(this._rawBodyData, "net_terms", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
+        init { JsonModel.Set(this._rawBodyData, "net_terms", value); }
     }
 
     public SubscriptionUpdateParams() { }
@@ -117,7 +117,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -142,9 +142,13 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

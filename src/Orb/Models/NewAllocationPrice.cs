@@ -9,16 +9,16 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<NewAllocationPrice, NewAllocationPriceFromRaw>))]
-public sealed record class NewAllocationPrice : ModelBase
+[JsonConverter(typeof(JsonModelConverter<NewAllocationPrice, NewAllocationPriceFromRaw>))]
+public sealed record class NewAllocationPrice : JsonModel
 {
     /// <summary>
     /// An amount of the currency to allocate to the customer at the specified cadence.
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -26,8 +26,8 @@ public sealed record class NewAllocationPrice : ModelBase
     /// </summary>
     public required ApiEnum<string, Cadence> Cadence
     {
-        get { return ModelBase.GetNotNullClass<ApiEnum<string, Cadence>>(this.RawData, "cadence"); }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        get { return JsonModel.GetNotNullClass<ApiEnum<string, Cadence>>(this.RawData, "cadence"); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class NewAllocationPrice : ModelBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -47,9 +47,9 @@ public sealed record class NewAllocationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<CustomExpiration>(this.RawData, "custom_expiration");
+            return JsonModel.GetNullableClass<CustomExpiration>(this.RawData, "custom_expiration");
         }
-        init { ModelBase.Set(this._rawData, "custom_expiration", value); }
+        init { JsonModel.Set(this._rawData, "custom_expiration", value); }
     }
 
     /// <summary>
@@ -58,8 +58,8 @@ public sealed record class NewAllocationPrice : ModelBase
     /// </summary>
     public bool? ExpiresAtEndOfCadence
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "expires_at_end_of_cadence"); }
-        init { ModelBase.Set(this._rawData, "expires_at_end_of_cadence", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "expires_at_end_of_cadence"); }
+        init { JsonModel.Set(this._rawData, "expires_at_end_of_cadence", value); }
     }
 
     /// <summary>
@@ -69,12 +69,12 @@ public sealed record class NewAllocationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<NewAllocationPriceFilter>>(
+            return JsonModel.GetNullableClass<List<NewAllocationPriceFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -84,8 +84,8 @@ public sealed record class NewAllocationPrice : ModelBase
     /// </summary>
     public string? ItemID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public sealed record class NewAllocationPrice : ModelBase
     /// </summary>
     public string? PerUnitCostBasis
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
         init
         {
             if (value == null)
@@ -103,7 +103,7 @@ public sealed record class NewAllocationPrice : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "per_unit_cost_basis", value);
+            JsonModel.Set(this._rawData, "per_unit_cost_basis", value);
         }
     }
 
@@ -150,7 +150,7 @@ public sealed record class NewAllocationPrice : ModelBase
     }
 }
 
-class NewAllocationPriceFromRaw : IFromRaw<NewAllocationPrice>
+class NewAllocationPriceFromRaw : IFromRawJson<NewAllocationPrice>
 {
     /// <inheritdoc/>
     public NewAllocationPrice FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -212,8 +212,10 @@ sealed class CadenceConverter : JsonConverter<Cadence>
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<NewAllocationPriceFilter, NewAllocationPriceFilterFromRaw>))]
-public sealed record class NewAllocationPriceFilter : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<NewAllocationPriceFilter, NewAllocationPriceFilterFromRaw>)
+)]
+public sealed record class NewAllocationPriceFilter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -222,12 +224,12 @@ public sealed record class NewAllocationPriceFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -237,12 +239,12 @@ public sealed record class NewAllocationPriceFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -250,8 +252,8 @@ public sealed record class NewAllocationPriceFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -289,7 +291,7 @@ public sealed record class NewAllocationPriceFilter : ModelBase
     }
 }
 
-class NewAllocationPriceFilterFromRaw : IFromRaw<NewAllocationPriceFilter>
+class NewAllocationPriceFilterFromRaw : IFromRawJson<NewAllocationPriceFilter>
 {
     /// <inheritdoc/>
     public NewAllocationPriceFilter FromRawUnchecked(

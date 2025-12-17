@@ -106,8 +106,8 @@ public class UsageDiscountTest : TestBase
             Reason = "reason",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UsageDiscount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscount>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, UsageDiscountDiscountType> expectedDiscountType =
@@ -338,8 +338,8 @@ public class UsageDiscountFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UsageDiscountFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UsageDiscountFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, UsageDiscountFilterField> expectedField = UsageDiscountFilterField.PriceID;

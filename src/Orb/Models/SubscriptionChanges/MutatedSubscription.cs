@@ -11,13 +11,13 @@ using System = System;
 
 namespace Orb.Models.SubscriptionChanges;
 
-[JsonConverter(typeof(ModelConverter<MutatedSubscription, MutatedSubscriptionFromRaw>))]
-public sealed record class MutatedSubscription : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MutatedSubscription, MutatedSubscriptionFromRaw>))]
+public sealed record class MutatedSubscription : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -25,8 +25,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required long? ActivePlanPhaseOrder
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "active_plan_phase_order"); }
-        init { ModelBase.Set(this._rawData, "active_plan_phase_order", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "active_plan_phase_order"); }
+        init { JsonModel.Set(this._rawData, "active_plan_phase_order", value); }
     }
 
     /// <summary>
@@ -37,12 +37,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<AdjustmentInterval>>(
+            return JsonModel.GetNotNullClass<List<AdjustmentInterval>>(
                 this.RawData,
                 "adjustment_intervals"
             );
         }
-        init { ModelBase.Set(this._rawData, "adjustment_intervals", value); }
+        init { JsonModel.Set(this._rawData, "adjustment_intervals", value); }
     }
 
     /// <summary>
@@ -52,20 +52,20 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required bool? AutoCollection
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "auto_collection"); }
-        init { ModelBase.Set(this._rawData, "auto_collection", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "auto_collection"); }
+        init { JsonModel.Set(this._rawData, "auto_collection", value); }
     }
 
     public required BillingCycleAnchorConfiguration BillingCycleAnchorConfiguration
     {
         get
         {
-            return ModelBase.GetNotNullClass<BillingCycleAnchorConfiguration>(
+            return JsonModel.GetNotNullClass<BillingCycleAnchorConfiguration>(
                 this.RawData,
                 "billing_cycle_anchor_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_anchor_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_anchor_configuration", value); }
     }
 
     /// <summary>
@@ -76,17 +76,17 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required long BillingCycleDay
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "billing_cycle_day"); }
-        init { ModelBase.Set(this._rawData, "billing_cycle_day", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "billing_cycle_day"); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_day", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -98,12 +98,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "current_billing_period_end_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "current_billing_period_end_date", value); }
+        init { JsonModel.Set(this._rawData, "current_billing_period_end_date", value); }
     }
 
     /// <summary>
@@ -115,12 +115,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "current_billing_period_start_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "current_billing_period_start_date", value); }
+        init { JsonModel.Set(this._rawData, "current_billing_period_start_date", value); }
     }
 
     /// <summary>
@@ -142,8 +142,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required Customer Customer
     {
-        get { return ModelBase.GetNotNullClass<Customer>(this.RawData, "customer"); }
-        init { ModelBase.Set(this._rawData, "customer", value); }
+        get { return JsonModel.GetNotNullClass<Customer>(this.RawData, "customer"); }
+        init { JsonModel.Set(this._rawData, "customer", value); }
     }
 
     /// <summary>
@@ -152,8 +152,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required string? DefaultInvoiceMemo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "default_invoice_memo"); }
-        init { ModelBase.Set(this._rawData, "default_invoice_memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "default_invoice_memo"); }
+        init { JsonModel.Set(this._rawData, "default_invoice_memo", value); }
     }
 
     /// <summary>
@@ -165,12 +165,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<DiscountInterval>>(
+            return JsonModel.GetNotNullClass<List<DiscountInterval>>(
                 this.RawData,
                 "discount_intervals"
             );
         }
-        init { ModelBase.Set(this._rawData, "discount_intervals", value); }
+        init { JsonModel.Set(this._rawData, "discount_intervals", value); }
     }
 
     /// <summary>
@@ -180,27 +180,27 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     public required IReadOnlyList<FixedFeeQuantityScheduleEntry> FixedFeeQuantitySchedule
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<FixedFeeQuantityScheduleEntry>>(
+            return JsonModel.GetNotNullClass<List<FixedFeeQuantityScheduleEntry>>(
                 this.RawData,
                 "fixed_fee_quantity_schedule"
             );
         }
-        init { ModelBase.Set(this._rawData, "fixed_fee_quantity_schedule", value); }
+        init { JsonModel.Set(this._rawData, "fixed_fee_quantity_schedule", value); }
     }
 
     public required string? InvoicingThreshold
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoicing_threshold"); }
-        init { ModelBase.Set(this._rawData, "invoicing_threshold", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoicing_threshold"); }
+        init { JsonModel.Set(this._rawData, "invoicing_threshold", value); }
     }
 
     /// <summary>
@@ -212,12 +212,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MaximumInterval>>(
+            return JsonModel.GetNotNullClass<List<MaximumInterval>>(
                 this.RawData,
                 "maximum_intervals"
             );
         }
-        init { ModelBase.Set(this._rawData, "maximum_intervals", value); }
+        init { JsonModel.Set(this._rawData, "maximum_intervals", value); }
     }
 
     /// <summary>
@@ -230,9 +230,9 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -244,12 +244,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MinimumInterval>>(
+            return JsonModel.GetNotNullClass<List<MinimumInterval>>(
                 this.RawData,
                 "minimum_intervals"
             );
         }
-        init { ModelBase.Set(this._rawData, "minimum_intervals", value); }
+        init { JsonModel.Set(this._rawData, "minimum_intervals", value); }
     }
 
     /// <summary>
@@ -257,8 +257,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -269,8 +269,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required long NetTerms
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "net_terms"); }
-        init { ModelBase.Set(this._rawData, "net_terms", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "net_terms"); }
+        init { JsonModel.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -280,12 +280,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<SubscriptionChangeMinified>(
+            return JsonModel.GetNullableClass<SubscriptionChangeMinified>(
                 this.RawData,
                 "pending_subscription_change"
             );
         }
-        init { ModelBase.Set(this._rawData, "pending_subscription_change", value); }
+        init { JsonModel.Set(this._rawData, "pending_subscription_change", value); }
     }
 
     /// <summary>
@@ -295,8 +295,8 @@ public sealed record class MutatedSubscription : ModelBase
     /// </summary>
     public required Plan? Plan
     {
-        get { return ModelBase.GetNullableClass<Plan>(this.RawData, "plan"); }
-        init { ModelBase.Set(this._rawData, "plan", value); }
+        get { return JsonModel.GetNullableClass<Plan>(this.RawData, "plan"); }
+        init { JsonModel.Set(this._rawData, "plan", value); }
     }
 
     /// <summary>
@@ -306,18 +306,18 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PriceInterval>>(this.RawData, "price_intervals");
+            return JsonModel.GetNotNullClass<List<PriceInterval>>(this.RawData, "price_intervals");
         }
-        init { ModelBase.Set(this._rawData, "price_intervals", value); }
+        init { JsonModel.Set(this._rawData, "price_intervals", value); }
     }
 
     public required CouponRedemption? RedeemedCoupon
     {
         get
         {
-            return ModelBase.GetNullableClass<CouponRedemption>(this.RawData, "redeemed_coupon");
+            return JsonModel.GetNullableClass<CouponRedemption>(this.RawData, "redeemed_coupon");
         }
-        init { ModelBase.Set(this._rawData, "redeemed_coupon", value); }
+        init { JsonModel.Set(this._rawData, "redeemed_coupon", value); }
     }
 
     /// <summary>
@@ -327,26 +327,26 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.SubscriptionChanges.Status>
             >(this.RawData, "status");
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     public required SubscriptionTrialInfo TrialInfo
     {
-        get { return ModelBase.GetNotNullClass<SubscriptionTrialInfo>(this.RawData, "trial_info"); }
-        init { ModelBase.Set(this._rawData, "trial_info", value); }
+        get { return JsonModel.GetNotNullClass<SubscriptionTrialInfo>(this.RawData, "trial_info"); }
+        init { JsonModel.Set(this._rawData, "trial_info", value); }
     }
 
     /// <summary>
@@ -358,12 +358,12 @@ public sealed record class MutatedSubscription : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ChangedSubscriptionResources>(
+            return JsonModel.GetNullableClass<ChangedSubscriptionResources>(
                 this.RawData,
                 "changed_resources"
             );
         }
-        init { ModelBase.Set(this._rawData, "changed_resources", value); }
+        init { JsonModel.Set(this._rawData, "changed_resources", value); }
     }
 
     /// <inheritdoc/>
@@ -456,7 +456,7 @@ public sealed record class MutatedSubscription : ModelBase
     }
 }
 
-class MutatedSubscriptionFromRaw : IFromRaw<MutatedSubscription>
+class MutatedSubscriptionFromRaw : IFromRawJson<MutatedSubscription>
 {
     /// <inheritdoc/>
     public MutatedSubscription FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -468,11 +468,11 @@ public record class DiscountInterval
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public System::DateTimeOffset? EndDate
@@ -499,27 +499,27 @@ public record class DiscountInterval
         }
     }
 
-    public DiscountInterval(AmountDiscountInterval value, JsonElement? json = null)
+    public DiscountInterval(AmountDiscountInterval value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public DiscountInterval(PercentageDiscountInterval value, JsonElement? json = null)
+    public DiscountInterval(PercentageDiscountInterval value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public DiscountInterval(UsageDiscountInterval value, JsonElement? json = null)
+    public DiscountInterval(UsageDiscountInterval value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public DiscountInterval(JsonElement json)
+    public DiscountInterval(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -718,11 +718,11 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? discountType;
         try
         {
-            discountType = json.GetProperty("discount_type").GetString();
+            discountType = element.GetProperty("discount_type").GetString();
         }
         catch
         {
@@ -736,13 +736,13 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmountDiscountInterval>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -751,20 +751,20 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percentage":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscountInterval>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -773,20 +773,20 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "usage":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -795,11 +795,11 @@ sealed class DiscountIntervalConverter : JsonConverter<DiscountInterval>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new DiscountInterval(json);
+                return new DiscountInterval(element);
             }
         }
     }

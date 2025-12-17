@@ -57,8 +57,8 @@ public class DiscountOverrideTest : TestBase
             UsageDiscount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<DiscountOverride>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<DiscountOverride>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, DiscountType> expectedDiscountType = DiscountType.Percentage;

@@ -9,32 +9,32 @@ using Orb.Core;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<FixedFeeQuantityScheduleEntry, FixedFeeQuantityScheduleEntryFromRaw>)
+    typeof(JsonModelConverter<FixedFeeQuantityScheduleEntry, FixedFeeQuantityScheduleEntryFromRaw>)
 )]
-public sealed record class FixedFeeQuantityScheduleEntry : ModelBase
+public sealed record class FixedFeeQuantityScheduleEntry : JsonModel
 {
     public required DateTimeOffset? EndDate
     {
-        get { return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     public required string PriceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     public required double Quantity
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -75,7 +75,7 @@ public sealed record class FixedFeeQuantityScheduleEntry : ModelBase
     }
 }
 
-class FixedFeeQuantityScheduleEntryFromRaw : IFromRaw<FixedFeeQuantityScheduleEntry>
+class FixedFeeQuantityScheduleEntryFromRaw : IFromRawJson<FixedFeeQuantityScheduleEntry>
 {
     /// <inheritdoc/>
     public FixedFeeQuantityScheduleEntry FromRawUnchecked(

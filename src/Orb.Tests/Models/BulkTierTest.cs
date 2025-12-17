@@ -33,8 +33,8 @@ public class BulkTierTest : TestBase
     {
         var model = new BulkTier { UnitAmount = "unit_amount", MaximumUnits = 0 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";

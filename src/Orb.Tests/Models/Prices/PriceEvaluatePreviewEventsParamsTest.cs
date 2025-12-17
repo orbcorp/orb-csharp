@@ -83,8 +83,8 @@ public class EventTest : TestBase
             ExternalCustomerID = "external_customer_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Event>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Event>(element);
         Assert.NotNull(deserialized);
 
         string expectedEventName = "event_name";
@@ -415,9 +415,9 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationTest : TestBase
             PriceID = "price_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluation>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluation>(element);
         Assert.NotNull(deserialized);
 
         string expectedExternalPriceID = "external_price_id";
@@ -2479,9 +2479,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2540,9 +2542,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2589,9 +2593,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2646,9 +2652,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2695,9 +2703,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2752,9 +2762,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2809,9 +2821,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2866,9 +2880,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2934,9 +2950,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2991,9 +3009,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3059,9 +3079,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3113,9 +3135,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3162,9 +3186,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3220,9 +3246,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3271,9 +3299,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3320,9 +3350,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3374,9 +3406,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3428,9 +3462,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3483,9 +3519,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3551,9 +3589,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3606,9 +3646,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3667,9 +3709,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3725,9 +3769,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3783,9 +3829,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3848,9 +3896,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3916,9 +3966,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3977,9 +4029,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -4032,9 +4086,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -4081,9 +4137,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -4129,9 +4187,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -4183,9 +4243,11 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(json);
+            JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -4425,10 +4487,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -4802,10 +4864,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                 ],
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -4898,10 +4960,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                 PropertyValue = "x",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -4975,10 +5037,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                 TierLowerBound = "tier_lower_bound",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -5205,10 +5267,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                     UnitConfig = new("unit_amount"),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -5234,10 +5296,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                     ),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -5477,10 +5539,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -5946,10 +6008,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 PerUnitRate = "per_unit_rate",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -6031,10 +6093,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                     UnitConfig = new("unit_amount"),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -6060,10 +6122,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                     ),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -6303,10 +6365,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -6772,10 +6834,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                 UnitAmount = "unit_amount",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -6857,10 +6919,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                     UnitConfig = new("unit_amount"),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -6886,10 +6948,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                     ),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -7093,10 +7155,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentTest : T
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -7451,10 +7513,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentC
             Percent = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -7523,10 +7585,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -7551,10 +7613,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -7778,10 +7840,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputTest
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -8184,10 +8246,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEven
                 GroupingKey = "grouping_key",
             };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -8326,10 +8388,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
                     UnitConfig = new("unit_amount"),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -8355,10 +8417,10 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
                     ),
                 }
             );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

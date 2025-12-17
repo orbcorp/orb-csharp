@@ -109,31 +109,31 @@ namespace Orb.Models;
 /// | Zambia Tax Identification Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification
 /// Number |</para>
 /// </summary>
-[JsonConverter(typeof(ModelConverter<CustomerTaxID, CustomerTaxIDFromRaw>))]
-public sealed record class CustomerTaxID : ModelBase
+[JsonConverter(typeof(JsonModelConverter<CustomerTaxID, CustomerTaxIDFromRaw>))]
+public sealed record class CustomerTaxID : JsonModel
 {
     public required ApiEnum<string, Country> Country
     {
-        get { return ModelBase.GetNotNullClass<ApiEnum<string, Country>>(this.RawData, "country"); }
-        init { ModelBase.Set(this._rawData, "country", value); }
+        get { return JsonModel.GetNotNullClass<ApiEnum<string, Country>>(this.RawData, "country"); }
+        init { JsonModel.Set(this._rawData, "country", value); }
     }
 
     public required ApiEnum<string, CustomerTaxIDType> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>(
                 this.RawData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawData, "type", value); }
+        init { JsonModel.Set(this._rawData, "type", value); }
     }
 
     public required string Value
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "value"); }
-        init { ModelBase.Set(this._rawData, "value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "value"); }
+        init { JsonModel.Set(this._rawData, "value", value); }
     }
 
     /// <inheritdoc/>
@@ -169,7 +169,7 @@ public sealed record class CustomerTaxID : ModelBase
     }
 }
 
-class CustomerTaxIDFromRaw : IFromRaw<CustomerTaxID>
+class CustomerTaxIDFromRaw : IFromRawJson<CustomerTaxID>
 {
     /// <inheritdoc/>
     public CustomerTaxID FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

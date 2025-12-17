@@ -31,8 +31,8 @@ public class ConversionRateUnitConfigTest : TestBase
     {
         var model = new ConversionRateUnitConfig { UnitAmount = "unit_amount" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateUnitConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateUnitConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";

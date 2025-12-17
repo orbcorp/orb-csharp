@@ -10,12 +10,12 @@ using System = System;
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         NewSubscriptionTieredPackagePrice,
         NewSubscriptionTieredPackagePriceFromRaw
     >)
 )]
-public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
+public sealed record class NewSubscriptionTieredPackagePrice : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -24,11 +24,11 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewSubscriptionTieredPackagePriceCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -47,11 +47,11 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewSubscriptionTieredPackagePriceModelType>
             >(this.RawData, "model_type");
         }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -70,12 +70,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<global::Orb.Models.Subscriptions.TieredPackageConfig>(
+            return JsonModel.GetNotNullClass<global::Orb.Models.Subscriptions.TieredPackageConfig>(
                 this.RawData,
                 "tiered_package_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "tiered_package_config", value); }
+        init { JsonModel.Set(this._rawData, "tiered_package_config", value); }
     }
 
     /// <summary>
@@ -83,8 +83,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -93,8 +93,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -105,12 +105,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -118,8 +118,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -129,12 +129,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewSubscriptionTieredPackagePriceConversionRateConfig>(
+            return JsonModel.GetNullableClass<NewSubscriptionTieredPackagePriceConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -143,8 +143,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -154,12 +154,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -167,8 +167,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -176,8 +176,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -185,8 +185,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -197,12 +197,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -214,12 +214,12 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -228,8 +228,8 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     /// </summary>
     public string? ReferenceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "reference_id"); }
-        init { ModelBase.Set(this._rawData, "reference_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "reference_id"); }
+        init { JsonModel.Set(this._rawData, "reference_id", value); }
     }
 
     /// <inheritdoc/>
@@ -284,7 +284,7 @@ public sealed record class NewSubscriptionTieredPackagePrice : ModelBase
     }
 }
 
-class NewSubscriptionTieredPackagePriceFromRaw : IFromRaw<NewSubscriptionTieredPackagePrice>
+class NewSubscriptionTieredPackagePriceFromRaw : IFromRawJson<NewSubscriptionTieredPackagePrice>
 {
     /// <inheritdoc/>
     public NewSubscriptionTieredPackagePrice FromRawUnchecked(
@@ -401,20 +401,20 @@ sealed class NewSubscriptionTieredPackagePriceModelTypeConverter
 /// Configuration for tiered_package pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Subscriptions.TieredPackageConfig,
         global::Orb.Models.Subscriptions.TieredPackageConfigFromRaw
     >)
 )]
-public sealed record class TieredPackageConfig : ModelBase
+public sealed record class TieredPackageConfig : JsonModel
 {
     /// <summary>
     /// Package size
     /// </summary>
     public required string PackageSize
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "package_size"); }
-        init { ModelBase.Set(this._rawData, "package_size", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
+        init { JsonModel.Set(this._rawData, "package_size", value); }
     }
 
     /// <summary>
@@ -427,11 +427,11 @@ public sealed record class TieredPackageConfig : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
             >(this.RawData, "tiers");
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -473,7 +473,8 @@ public sealed record class TieredPackageConfig : ModelBase
     }
 }
 
-class TieredPackageConfigFromRaw : IFromRaw<global::Orb.Models.Subscriptions.TieredPackageConfig>
+class TieredPackageConfigFromRaw
+    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageConfig>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Subscriptions.TieredPackageConfig FromRawUnchecked(
@@ -485,20 +486,20 @@ class TieredPackageConfigFromRaw : IFromRaw<global::Orb.Models.Subscriptions.Tie
 /// Configuration for a single tier with business logic
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Subscriptions.TieredPackageConfigTier,
         global::Orb.Models.Subscriptions.TieredPackageConfigTierFromRaw
     >)
 )]
-public sealed record class TieredPackageConfigTier : ModelBase
+public sealed record class TieredPackageConfigTier : JsonModel
 {
     /// <summary>
     /// Price per package
     /// </summary>
     public required string PerUnit
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit"); }
-        init { ModelBase.Set(this._rawData, "per_unit", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit"); }
+        init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
     /// <summary>
@@ -506,8 +507,8 @@ public sealed record class TieredPackageConfigTier : ModelBase
     /// </summary>
     public required string TierLowerBound
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <inheritdoc/>
@@ -547,7 +548,7 @@ public sealed record class TieredPackageConfigTier : ModelBase
 }
 
 class TieredPackageConfigTierFromRaw
-    : IFromRaw<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
+    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageConfigTier>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Subscriptions.TieredPackageConfigTier FromRawUnchecked(
@@ -560,34 +561,34 @@ public record class NewSubscriptionTieredPackagePriceConversionRateConfig
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewSubscriptionTieredPackagePriceConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public NewSubscriptionTieredPackagePriceConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public NewSubscriptionTieredPackagePriceConversionRateConfig(JsonElement json)
+    public NewSubscriptionTieredPackagePriceConversionRateConfig(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -757,11 +758,11 @@ sealed class NewSubscriptionTieredPackagePriceConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -775,13 +776,13 @@ sealed class NewSubscriptionTieredPackagePriceConversionRateConfigConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -790,20 +791,20 @@ sealed class NewSubscriptionTieredPackagePriceConversionRateConfigConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -812,11 +813,11 @@ sealed class NewSubscriptionTieredPackagePriceConversionRateConfigConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new NewSubscriptionTieredPackagePriceConversionRateConfig(json);
+                return new NewSubscriptionTieredPackagePriceConversionRateConfig(element);
             }
         }
     }

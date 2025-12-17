@@ -93,8 +93,8 @@ public class MinimumTest : TestBase
             MinimumAmount = "minimum_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Minimum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Minimum>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIDs = ["string"];
@@ -195,8 +195,8 @@ public class MinimumFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MinimumFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MinimumFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MinimumFilterField> expectedField = MinimumFilterField.PriceID;

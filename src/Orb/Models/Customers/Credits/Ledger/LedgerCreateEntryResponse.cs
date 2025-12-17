@@ -15,11 +15,11 @@ public record class LedgerCreateEntryResponse
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -230,51 +230,54 @@ public record class LedgerCreateEntryResponse
         }
     }
 
-    public LedgerCreateEntryResponse(IncrementLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(IncrementLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(DecrementLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(DecrementLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(ExpirationChangeLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(ExpirationChangeLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(CreditBlockExpiryLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(
+        CreditBlockExpiryLedgerEntry value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(VoidLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(VoidLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(VoidInitiatedLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(VoidInitiatedLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(AmendmentLedgerEntry value, JsonElement? json = null)
+    public LedgerCreateEntryResponse(AmendmentLedgerEntry value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public LedgerCreateEntryResponse(JsonElement json)
+    public LedgerCreateEntryResponse(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -614,11 +617,11 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? entryType;
         try
         {
-            entryType = json.GetProperty("entry_type").GetString();
+            entryType = element.GetProperty("entry_type").GetString();
         }
         catch
         {
@@ -632,13 +635,13 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -647,20 +650,20 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "decrement":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<DecrementLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -669,20 +672,20 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "expiration_change":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<ExpirationChangeLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -691,20 +694,20 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "credit_block_expiry":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -713,17 +716,20 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<VoidLedgerEntry>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -732,20 +738,20 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "void_initiated":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<VoidInitiatedLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -754,20 +760,20 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amendment":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<AmendmentLedgerEntry>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -776,11 +782,11 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new LedgerCreateEntryResponse(json);
+                return new LedgerCreateEntryResponse(element);
             }
         }
     }

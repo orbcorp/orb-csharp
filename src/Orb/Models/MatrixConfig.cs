@@ -10,16 +10,16 @@ namespace Orb.Models;
 /// <summary>
 /// Configuration for matrix pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<MatrixConfig, MatrixConfigFromRaw>))]
-public sealed record class MatrixConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MatrixConfig, MatrixConfigFromRaw>))]
+public sealed record class MatrixConfig : JsonModel
 {
     /// <summary>
     /// Default per unit rate for any usage not bucketed into a specified matrix_value
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
-        init { ModelBase.Set(this._rawData, "default_unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
+        init { JsonModel.Set(this._rawData, "default_unit_amount", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class MatrixConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
-        init { ModelBase.Set(this._rawData, "dimensions", value); }
+        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
+        init { JsonModel.Set(this._rawData, "dimensions", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class MatrixConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<MatrixValue> MatrixValues
     {
-        get { return ModelBase.GetNotNullClass<List<MatrixValue>>(this.RawData, "matrix_values"); }
-        init { ModelBase.Set(this._rawData, "matrix_values", value); }
+        get { return JsonModel.GetNotNullClass<List<MatrixValue>>(this.RawData, "matrix_values"); }
+        init { JsonModel.Set(this._rawData, "matrix_values", value); }
     }
 
     /// <inheritdoc/>
@@ -76,7 +76,7 @@ public sealed record class MatrixConfig : ModelBase
     }
 }
 
-class MatrixConfigFromRaw : IFromRaw<MatrixConfig>
+class MatrixConfigFromRaw : IFromRawJson<MatrixConfig>
 {
     /// <inheritdoc/>
     public MatrixConfig FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

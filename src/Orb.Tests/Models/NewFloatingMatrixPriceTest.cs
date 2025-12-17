@@ -220,8 +220,8 @@ public class NewFloatingMatrixPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingMatrixPriceCadence> expectedCadence =
@@ -656,9 +656,9 @@ public class NewFloatingMatrixPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixPriceConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);
@@ -683,9 +683,9 @@ public class NewFloatingMatrixPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixPriceConversionRateConfig>(
-            json
+            element
         );
 
         Assert.Equal(value, deserialized);

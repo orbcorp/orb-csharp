@@ -8,23 +8,23 @@ using Orb.Core;
 namespace Orb.Models.Prices;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsResponse,
         PriceEvaluatePreviewEventsResponseFromRaw
     >)
 )]
-public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
+public sealed record class PriceEvaluatePreviewEventsResponse : JsonModel
 {
     public required IReadOnlyList<PriceEvaluatePreviewEventsResponseData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PriceEvaluatePreviewEventsResponseData>>(
+            return JsonModel.GetNotNullClass<List<PriceEvaluatePreviewEventsResponseData>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -72,7 +72,7 @@ public sealed record class PriceEvaluatePreviewEventsResponse : ModelBase
     }
 }
 
-class PriceEvaluatePreviewEventsResponseFromRaw : IFromRaw<PriceEvaluatePreviewEventsResponse>
+class PriceEvaluatePreviewEventsResponseFromRaw : IFromRawJson<PriceEvaluatePreviewEventsResponse>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsResponse FromRawUnchecked(
@@ -81,20 +81,20 @@ class PriceEvaluatePreviewEventsResponseFromRaw : IFromRaw<PriceEvaluatePreviewE
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsResponseData,
         PriceEvaluatePreviewEventsResponseDataFromRaw
     >)
 )]
-public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
+public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
 {
     /// <summary>
     /// The currency of the price
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -104,12 +104,12 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<EvaluatePriceGroup>>(
+            return JsonModel.GetNotNullClass<List<EvaluatePriceGroup>>(
                 this.RawData,
                 "price_groups"
             );
         }
-        init { ModelBase.Set(this._rawData, "price_groups", value); }
+        init { JsonModel.Set(this._rawData, "price_groups", value); }
     }
 
     /// <summary>
@@ -117,8 +117,8 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -126,8 +126,8 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
     /// </summary>
     public long? InlinePriceIndex
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "inline_price_index"); }
-        init { ModelBase.Set(this._rawData, "inline_price_index", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "inline_price_index"); }
+        init { JsonModel.Set(this._rawData, "inline_price_index", value); }
     }
 
     /// <summary>
@@ -135,8 +135,8 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
     /// </summary>
     public string? PriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     /// <inheritdoc/>
@@ -182,7 +182,7 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : ModelBase
 }
 
 class PriceEvaluatePreviewEventsResponseDataFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsResponseData>
+    : IFromRawJson<PriceEvaluatePreviewEventsResponseData>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsResponseData FromRawUnchecked(

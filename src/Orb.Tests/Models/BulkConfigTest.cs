@@ -45,8 +45,8 @@ public class BulkConfigTest : TestBase
             Tiers = [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkConfig>(element);
         Assert.NotNull(deserialized);
 
         List<BulkTier> expectedTiers = [new() { UnitAmount = "unit_amount", MaximumUnits = 0 }];

@@ -7,19 +7,19 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<PaginationMetadata, PaginationMetadataFromRaw>))]
-public sealed record class PaginationMetadata : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PaginationMetadata, PaginationMetadataFromRaw>))]
+public sealed record class PaginationMetadata : JsonModel
 {
     public required bool HasMore
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "has_more"); }
-        init { ModelBase.Set(this._rawData, "has_more", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "has_more"); }
+        init { JsonModel.Set(this._rawData, "has_more", value); }
     }
 
     public required string? NextCursor
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "next_cursor"); }
-        init { ModelBase.Set(this._rawData, "next_cursor", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "next_cursor"); }
+        init { JsonModel.Set(this._rawData, "next_cursor", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed record class PaginationMetadata : ModelBase
     }
 }
 
-class PaginationMetadataFromRaw : IFromRaw<PaginationMetadata>
+class PaginationMetadataFromRaw : IFromRawJson<PaginationMetadata>
 {
     /// <inheritdoc/>
     public PaginationMetadata FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

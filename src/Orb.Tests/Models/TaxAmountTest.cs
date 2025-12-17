@@ -50,8 +50,8 @@ public class TaxAmountTest : TestBase
             TaxRatePercentage = "tax_rate_percentage",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TaxAmount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TaxAmount>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmount = "amount";

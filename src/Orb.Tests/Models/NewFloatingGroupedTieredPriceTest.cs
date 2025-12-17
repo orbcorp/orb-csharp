@@ -232,8 +232,8 @@ public class NewFloatingGroupedTieredPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedTieredPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedTieredPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingGroupedTieredPriceCadence> expectedCadence =
@@ -653,8 +653,8 @@ public class GroupedTieredConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -731,8 +731,8 @@ public class GroupedTieredConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedTieredConfigTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedTieredConfigTier>(element);
         Assert.NotNull(deserialized);
 
         string expectedTierLowerBound = "tier_lower_bound";
@@ -858,9 +858,9 @@ public class NewFloatingGroupedTieredPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -884,9 +884,9 @@ public class NewFloatingGroupedTieredPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingGroupedTieredPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

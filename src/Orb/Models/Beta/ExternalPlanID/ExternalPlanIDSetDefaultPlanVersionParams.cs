@@ -27,8 +27,8 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     /// </summary>
     public required long Version
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawBodyData, "version"); }
-        init { ModelBase.Set(this._rawBodyData, "version", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawBodyData, "version"); }
+        init { JsonModel.Set(this._rawBodyData, "version", value); }
     }
 
     public ExternalPlanIDSetDefaultPlanVersionParams() { }
@@ -66,7 +66,7 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ExternalPlanIDSetDefaultPlanVersionParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -94,9 +94,13 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

@@ -85,8 +85,8 @@ public class EventTest : TestBase
             ExternalCustomerID = "external_customer_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Event>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Event>(element);
         Assert.NotNull(deserialized);
 
         string expectedEventName = "event_name";

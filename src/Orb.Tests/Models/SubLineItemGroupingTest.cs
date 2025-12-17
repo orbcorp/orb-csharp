@@ -33,8 +33,8 @@ public class SubLineItemGroupingTest : TestBase
     {
         var model = new SubLineItemGrouping { Key = "region", Value = "west" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubLineItemGrouping>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubLineItemGrouping>(element);
         Assert.NotNull(deserialized);
 
         string expectedKey = "region";

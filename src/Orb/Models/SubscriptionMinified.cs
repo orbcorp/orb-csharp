@@ -7,13 +7,13 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubscriptionMinified, SubscriptionMinifiedFromRaw>))]
-public sealed record class SubscriptionMinified : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SubscriptionMinified, SubscriptionMinifiedFromRaw>))]
+public sealed record class SubscriptionMinified : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed record class SubscriptionMinified : ModelBase
     }
 }
 
-class SubscriptionMinifiedFromRaw : IFromRaw<SubscriptionMinified>
+class SubscriptionMinifiedFromRaw : IFromRawJson<SubscriptionMinified>
 {
     /// <inheritdoc/>
     public SubscriptionMinified FromRawUnchecked(

@@ -9,19 +9,19 @@ using System = System;
 
 namespace Orb.Models.Beta;
 
-[JsonConverter(typeof(ModelConverter<PlanVersionPhase, PlanVersionPhaseFromRaw>))]
-public sealed record class PlanVersionPhase : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PlanVersionPhase, PlanVersionPhaseFromRaw>))]
+public sealed record class PlanVersionPhase : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     /// <summary>
@@ -30,25 +30,25 @@ public sealed record class PlanVersionPhase : ModelBase
     /// </summary>
     public required long? Duration
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "duration"); }
-        init { ModelBase.Set(this._rawData, "duration", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "duration"); }
+        init { JsonModel.Set(this._rawData, "duration", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Beta.DurationUnit>? DurationUnit
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.Beta.DurationUnit>
             >(this.RawData, "duration_unit");
         }
-        init { ModelBase.Set(this._rawData, "duration_unit", value); }
+        init { JsonModel.Set(this._rawData, "duration_unit", value); }
     }
 
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -56,8 +56,8 @@ public sealed record class PlanVersionPhase : ModelBase
     /// </summary>
     public required long Order
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "order"); }
-        init { ModelBase.Set(this._rawData, "order", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "order"); }
+        init { JsonModel.Set(this._rawData, "order", value); }
     }
 
     /// <inheritdoc/>
@@ -98,7 +98,7 @@ public sealed record class PlanVersionPhase : ModelBase
     }
 }
 
-class PlanVersionPhaseFromRaw : IFromRaw<PlanVersionPhase>
+class PlanVersionPhaseFromRaw : IFromRawJson<PlanVersionPhase>
 {
     /// <inheritdoc/>
     public PlanVersionPhase FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

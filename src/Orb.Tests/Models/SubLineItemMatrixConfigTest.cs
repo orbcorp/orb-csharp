@@ -36,8 +36,8 @@ public class SubLineItemMatrixConfigTest : TestBase
     {
         var model = new SubLineItemMatrixConfig { DimensionValues = ["string"] };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SubLineItemMatrixConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SubLineItemMatrixConfig>(element);
         Assert.NotNull(deserialized);
 
         List<string?> expectedDimensionValues = ["string"];

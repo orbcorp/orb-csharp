@@ -579,8 +579,8 @@ public class CostListByExternalIDResponseTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CostListByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CostListByExternalIDResponse>(element);
         Assert.NotNull(deserialized);
 
         List<AggregatedCost> expectedData =

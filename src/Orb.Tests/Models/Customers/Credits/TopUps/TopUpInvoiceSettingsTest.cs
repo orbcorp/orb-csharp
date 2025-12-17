@@ -55,8 +55,8 @@ public class TopUpInvoiceSettingsTest : TestBase
             RequireSuccessfulPayment = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopUpInvoiceSettings>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TopUpInvoiceSettings>(element);
         Assert.NotNull(deserialized);
 
         bool expectedAutoCollection = true;

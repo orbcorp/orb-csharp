@@ -185,8 +185,8 @@ public sealed record class EventIngestParams : ParamsBase
 
     public required IReadOnlyList<Event> Events
     {
-        get { return ModelBase.GetNotNullClass<List<Event>>(this.RawBodyData, "events"); }
-        init { ModelBase.Set(this._rawBodyData, "events", value); }
+        get { return JsonModel.GetNotNullClass<List<Event>>(this.RawBodyData, "events"); }
+        init { JsonModel.Set(this._rawBodyData, "events", value); }
     }
 
     /// <summary>
@@ -195,8 +195,8 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public string? BackfillID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "backfill_id"); }
-        init { ModelBase.Set(this._rawQueryData, "backfill_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "backfill_id"); }
+        init { JsonModel.Set(this._rawQueryData, "backfill_id", value); }
     }
 
     /// <summary>
@@ -204,7 +204,7 @@ public sealed record class EventIngestParams : ParamsBase
     /// </summary>
     public bool? Debug
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "debug"); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "debug"); }
         init
         {
             if (value == null)
@@ -212,7 +212,7 @@ public sealed record class EventIngestParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "debug", value);
+            JsonModel.Set(this._rawQueryData, "debug", value);
         }
     }
 
@@ -249,7 +249,7 @@ public sealed record class EventIngestParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static EventIngestParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -271,9 +271,13 @@ public sealed record class EventIngestParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -286,16 +290,16 @@ public sealed record class EventIngestParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Event, EventFromRaw>))]
-public sealed record class Event : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Event, EventFromRaw>))]
+public sealed record class Event : JsonModel
 {
     /// <summary>
     /// A name to meaningfully identify the action or event type.
     /// </summary>
     public required string EventName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "event_name"); }
-        init { ModelBase.Set(this._rawData, "event_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "event_name"); }
+        init { JsonModel.Set(this._rawData, "event_name", value); }
     }
 
     /// <summary>
@@ -305,8 +309,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public required string IdempotencyKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
-        init { ModelBase.Set(this._rawData, "idempotency_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
+        init { JsonModel.Set(this._rawData, "idempotency_key", value); }
     }
 
     /// <summary>
@@ -317,12 +321,12 @@ public sealed record class Event : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNotNullClass<Dictionary<string, JsonElement>>(
                 this.RawData,
                 "properties"
             );
         }
-        init { ModelBase.Set(this._rawData, "properties", value); }
+        init { JsonModel.Set(this._rawData, "properties", value); }
     }
 
     /// <summary>
@@ -332,8 +336,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timestamp"); }
-        init { ModelBase.Set(this._rawData, "timestamp", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timestamp"); }
+        init { JsonModel.Set(this._rawData, "timestamp", value); }
     }
 
     /// <summary>
@@ -341,8 +345,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { ModelBase.Set(this._rawData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
+        init { JsonModel.Set(this._rawData, "customer_id", value); }
     }
 
     /// <summary>
@@ -350,8 +354,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -390,7 +394,7 @@ public sealed record class Event : ModelBase
     }
 }
 
-class EventFromRaw : IFromRaw<Event>
+class EventFromRaw : IFromRawJson<Event>
 {
     /// <inheritdoc/>
     public Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

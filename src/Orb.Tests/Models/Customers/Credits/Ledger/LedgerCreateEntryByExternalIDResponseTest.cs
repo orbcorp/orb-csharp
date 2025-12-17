@@ -1038,8 +1038,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 ],
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1082,8 +1084,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 PriceID = "price_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1124,8 +1128,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1165,8 +1171,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1208,8 +1216,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 VoidReason = "void_reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1252,8 +1262,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 VoidReason = "void_reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -1293,8 +1305,10 @@ public class LedgerCreateEntryByExternalIDResponseTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<LedgerCreateEntryByExternalIDResponse>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }

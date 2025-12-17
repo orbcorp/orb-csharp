@@ -7,8 +7,8 @@ using Orb.Core;
 
 namespace Orb.Models.Events;
 
-[JsonConverter(typeof(ModelConverter<EventIngestResponse, EventIngestResponseFromRaw>))]
-public sealed record class EventIngestResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<EventIngestResponse, EventIngestResponseFromRaw>))]
+public sealed record class EventIngestResponse : JsonModel
 {
     /// <summary>
     /// Contains all failing validation events. In the case of a 200, this array will
@@ -18,12 +18,12 @@ public sealed record class EventIngestResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ValidationFailed>>(
+            return JsonModel.GetNotNullClass<List<ValidationFailed>>(
                 this.RawData,
                 "validation_failed"
             );
         }
-        init { ModelBase.Set(this._rawData, "validation_failed", value); }
+        init { JsonModel.Set(this._rawData, "validation_failed", value); }
     }
 
     /// <summary>
@@ -32,8 +32,8 @@ public sealed record class EventIngestResponse : ModelBase
     /// </summary>
     public Debug? Debug
     {
-        get { return ModelBase.GetNullableClass<Debug>(this.RawData, "debug"); }
-        init { ModelBase.Set(this._rawData, "debug", value); }
+        get { return JsonModel.GetNullableClass<Debug>(this.RawData, "debug"); }
+        init { JsonModel.Set(this._rawData, "debug", value); }
     }
 
     /// <inheritdoc/>
@@ -80,23 +80,23 @@ public sealed record class EventIngestResponse : ModelBase
     }
 }
 
-class EventIngestResponseFromRaw : IFromRaw<EventIngestResponse>
+class EventIngestResponseFromRaw : IFromRawJson<EventIngestResponse>
 {
     /// <inheritdoc/>
     public EventIngestResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         EventIngestResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<ValidationFailed, ValidationFailedFromRaw>))]
-public sealed record class ValidationFailed : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ValidationFailed, ValidationFailedFromRaw>))]
+public sealed record class ValidationFailed : JsonModel
 {
     /// <summary>
     /// The passed idempotency_key corresponding to the validation_errors
     /// </summary>
     public required string IdempotencyKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
-        init { ModelBase.Set(this._rawData, "idempotency_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "idempotency_key"); }
+        init { JsonModel.Set(this._rawData, "idempotency_key", value); }
     }
 
     /// <summary>
@@ -104,8 +104,8 @@ public sealed record class ValidationFailed : ModelBase
     /// </summary>
     public required IReadOnlyList<string> ValidationErrors
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "validation_errors"); }
-        init { ModelBase.Set(this._rawData, "validation_errors", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "validation_errors"); }
+        init { JsonModel.Set(this._rawData, "validation_errors", value); }
     }
 
     /// <inheritdoc/>
@@ -142,7 +142,7 @@ public sealed record class ValidationFailed : ModelBase
     }
 }
 
-class ValidationFailedFromRaw : IFromRaw<ValidationFailed>
+class ValidationFailedFromRaw : IFromRawJson<ValidationFailed>
 {
     /// <inheritdoc/>
     public ValidationFailed FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -153,19 +153,19 @@ class ValidationFailedFromRaw : IFromRaw<ValidationFailed>
 /// Optional debug information (only present when debug=true is passed to the endpoint).
 /// Contains ingested and duplicate event idempotency keys.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Debug, DebugFromRaw>))]
-public sealed record class Debug : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Debug, DebugFromRaw>))]
+public sealed record class Debug : JsonModel
 {
     public required IReadOnlyList<string> Duplicate
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "duplicate"); }
-        init { ModelBase.Set(this._rawData, "duplicate", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "duplicate"); }
+        init { JsonModel.Set(this._rawData, "duplicate", value); }
     }
 
     public required IReadOnlyList<string> Ingested
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "ingested"); }
-        init { ModelBase.Set(this._rawData, "ingested", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "ingested"); }
+        init { JsonModel.Set(this._rawData, "ingested", value); }
     }
 
     /// <inheritdoc/>
@@ -200,7 +200,7 @@ public sealed record class Debug : ModelBase
     }
 }
 
-class DebugFromRaw : IFromRaw<Debug>
+class DebugFromRaw : IFromRawJson<Debug>
 {
     /// <inheritdoc/>
     public Debug FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

@@ -8,25 +8,25 @@ using Models = Orb.Models;
 
 namespace Orb.Models.Prices;
 
-[JsonConverter(typeof(ModelConverter<PriceListPageResponse, PriceListPageResponseFromRaw>))]
-public sealed record class PriceListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PriceListPageResponse, PriceListPageResponseFromRaw>))]
+public sealed record class PriceListPageResponse : JsonModel
 {
     public required IReadOnlyList<Models::Price> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Models::Price>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Models::Price>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required Models::PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<Models::PaginationMetadata>(
+            return JsonModel.GetNotNullClass<Models::PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -66,7 +66,7 @@ public sealed record class PriceListPageResponse : ModelBase
     }
 }
 
-class PriceListPageResponseFromRaw : IFromRaw<PriceListPageResponse>
+class PriceListPageResponseFromRaw : IFromRawJson<PriceListPageResponse>
 {
     /// <inheritdoc/>
     public PriceListPageResponse FromRawUnchecked(

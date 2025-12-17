@@ -10,35 +10,35 @@ using System = System;
 namespace Orb.Models.Customers.Credits;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CreditListByExternalIDPageResponse,
         CreditListByExternalIDPageResponseFromRaw
     >)
 )]
-public sealed record class CreditListByExternalIDPageResponse : ModelBase
+public sealed record class CreditListByExternalIDPageResponse : JsonModel
 {
     public required IReadOnlyList<CreditListByExternalIDPageResponseData> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<CreditListByExternalIDPageResponseData>>(
+            return JsonModel.GetNotNullClass<List<CreditListByExternalIDPageResponseData>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -80,7 +80,7 @@ public sealed record class CreditListByExternalIDPageResponse : ModelBase
     }
 }
 
-class CreditListByExternalIDPageResponseFromRaw : IFromRaw<CreditListByExternalIDPageResponse>
+class CreditListByExternalIDPageResponseFromRaw : IFromRawJson<CreditListByExternalIDPageResponse>
 {
     /// <inheritdoc/>
     public CreditListByExternalIDPageResponse FromRawUnchecked(
@@ -89,79 +89,79 @@ class CreditListByExternalIDPageResponseFromRaw : IFromRaw<CreditListByExternalI
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CreditListByExternalIDPageResponseData,
         CreditListByExternalIDPageResponseDataFromRaw
     >)
 )]
-public sealed record class CreditListByExternalIDPageResponseData : ModelBase
+public sealed record class CreditListByExternalIDPageResponseData : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required double Balance
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "balance"); }
-        init { ModelBase.Set(this._rawData, "balance", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "balance"); }
+        init { JsonModel.Set(this._rawData, "balance", value); }
     }
 
     public required System::DateTimeOffset? EffectiveDate
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawData,
                 "effective_date"
             );
         }
-        init { ModelBase.Set(this._rawData, "effective_date", value); }
+        init { JsonModel.Set(this._rawData, "effective_date", value); }
     }
 
     public required System::DateTimeOffset? ExpiryDate
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     public required IReadOnlyList<CreditListByExternalIDPageResponseDataFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<CreditListByExternalIDPageResponseDataFilter>>(
+            return JsonModel.GetNotNullClass<List<CreditListByExternalIDPageResponseDataFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     public required double? MaximumInitialBalance
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "maximum_initial_balance"); }
-        init { ModelBase.Set(this._rawData, "maximum_initial_balance", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "maximum_initial_balance"); }
+        init { JsonModel.Set(this._rawData, "maximum_initial_balance", value); }
     }
 
     public required string? PerUnitCostBasis
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     public required ApiEnum<string, CreditListByExternalIDPageResponseDataStatus> Status
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, CreditListByExternalIDPageResponseDataStatus>
             >(this.RawData, "status");
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     /// <inheritdoc/>
@@ -210,7 +210,7 @@ public sealed record class CreditListByExternalIDPageResponseData : ModelBase
 }
 
 class CreditListByExternalIDPageResponseDataFromRaw
-    : IFromRaw<CreditListByExternalIDPageResponseData>
+    : IFromRawJson<CreditListByExternalIDPageResponseData>
 {
     /// <inheritdoc/>
     public CreditListByExternalIDPageResponseData FromRawUnchecked(
@@ -222,12 +222,12 @@ class CreditListByExternalIDPageResponseDataFromRaw
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         CreditListByExternalIDPageResponseDataFilter,
         CreditListByExternalIDPageResponseDataFilterFromRaw
     >)
 )]
-public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelBase
+public sealed record class CreditListByExternalIDPageResponseDataFilter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
@@ -236,11 +236,11 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, CreditListByExternalIDPageResponseDataFilterField>
             >(this.RawData, "field");
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -250,11 +250,11 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, CreditListByExternalIDPageResponseDataFilterOperator>
             >(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -262,8 +262,8 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -306,7 +306,7 @@ public sealed record class CreditListByExternalIDPageResponseDataFilter : ModelB
 }
 
 class CreditListByExternalIDPageResponseDataFilterFromRaw
-    : IFromRaw<CreditListByExternalIDPageResponseDataFilter>
+    : IFromRawJson<CreditListByExternalIDPageResponseDataFilter>
 {
     /// <inheritdoc/>
     public CreditListByExternalIDPageResponseDataFilter FromRawUnchecked(

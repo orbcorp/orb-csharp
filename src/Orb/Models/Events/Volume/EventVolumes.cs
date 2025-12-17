@@ -8,19 +8,19 @@ using Orb.Core;
 
 namespace Orb.Models.Events.Volume;
 
-[JsonConverter(typeof(ModelConverter<EventVolumes, EventVolumesFromRaw>))]
-public sealed record class EventVolumes : ModelBase
+[JsonConverter(typeof(JsonModelConverter<EventVolumes, EventVolumesFromRaw>))]
+public sealed record class EventVolumes : JsonModel
 {
     public required IReadOnlyList<global::Orb.Models.Events.Volume.Data> Data
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.Events.Volume.Data>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.Events.Volume.Data>>(
                 this.RawData,
                 "data"
             );
         }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     /// <inheritdoc/>
@@ -64,7 +64,7 @@ public sealed record class EventVolumes : ModelBase
     }
 }
 
-class EventVolumesFromRaw : IFromRaw<EventVolumes>
+class EventVolumesFromRaw : IFromRawJson<EventVolumes>
 {
     /// <inheritdoc/>
     public EventVolumes FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -76,32 +76,32 @@ class EventVolumesFromRaw : IFromRaw<EventVolumes>
 /// used for the aggregation is the `timestamp` datetime field on events.
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.Events.Volume.Data,
         global::Orb.Models.Events.Volume.DataFromRaw
     >)
 )]
-public sealed record class Data : ModelBase
+public sealed record class Data : JsonModel
 {
     /// <summary>
     /// The number of events ingested with a timestamp between the timeframe
     /// </summary>
     public required long Count
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "count"); }
-        init { ModelBase.Set(this._rawData, "count", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "count"); }
+        init { JsonModel.Set(this._rawData, "count", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
-        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
+        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
-        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
+        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <inheritdoc/>
@@ -139,7 +139,7 @@ public sealed record class Data : ModelBase
     }
 }
 
-class DataFromRaw : IFromRaw<global::Orb.Models.Events.Volume.Data>
+class DataFromRaw : IFromRawJson<global::Orb.Models.Events.Volume.Data>
 {
     /// <inheritdoc/>
     public global::Orb.Models.Events.Volume.Data FromRawUnchecked(

@@ -50,8 +50,8 @@ public class SharedTierTest : TestBase
             LastUnit = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedTier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedTier>(element);
         Assert.NotNull(deserialized);
 
         double expectedFirstUnit = 0;

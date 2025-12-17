@@ -9,33 +9,33 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<Allocation, AllocationFromRaw>))]
-public sealed record class Allocation : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Allocation, AllocationFromRaw>))]
+public sealed record class Allocation : JsonModel
 {
     public required bool AllowsRollover
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "allows_rollover"); }
-        init { ModelBase.Set(this._rawData, "allows_rollover", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "allows_rollover"); }
+        init { JsonModel.Set(this._rawData, "allows_rollover", value); }
     }
 
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     public required CustomExpiration? CustomExpiration
     {
         get
         {
-            return ModelBase.GetNullableClass<CustomExpiration>(this.RawData, "custom_expiration");
+            return JsonModel.GetNullableClass<CustomExpiration>(this.RawData, "custom_expiration");
         }
-        init { ModelBase.Set(this._rawData, "custom_expiration", value); }
+        init { JsonModel.Set(this._rawData, "custom_expiration", value); }
     }
 
     public IReadOnlyList<Filter>? Filters
     {
-        get { return ModelBase.GetNullableClass<List<Filter>>(this.RawData, "filters"); }
+        get { return JsonModel.GetNullableClass<List<Filter>>(this.RawData, "filters"); }
         init
         {
             if (value == null)
@@ -43,7 +43,7 @@ public sealed record class Allocation : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "filters", value);
+            JsonModel.Set(this._rawData, "filters", value);
         }
     }
 
@@ -84,23 +84,23 @@ public sealed record class Allocation : ModelBase
     }
 }
 
-class AllocationFromRaw : IFromRaw<Allocation>
+class AllocationFromRaw : IFromRawJson<Allocation>
 {
     /// <inheritdoc/>
     public Allocation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Allocation.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<Filter, FilterFromRaw>))]
-public sealed record class Filter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
+public sealed record class Filter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
     /// </summary>
     public required ApiEnum<string, Field> Field
     {
-        get { return ModelBase.GetNotNullClass<ApiEnum<string, Field>>(this.RawData, "field"); }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        get { return JsonModel.GetNotNullClass<ApiEnum<string, Field>>(this.RawData, "field"); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -110,9 +110,9 @@ public sealed record class Filter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, Operator>>(this.RawData, "operator");
+            return JsonModel.GetNotNullClass<ApiEnum<string, Operator>>(this.RawData, "operator");
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -120,8 +120,8 @@ public sealed record class Filter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -157,7 +157,7 @@ public sealed record class Filter : ModelBase
     }
 }
 
-class FilterFromRaw : IFromRaw<Filter>
+class FilterFromRaw : IFromRawJson<Filter>
 {
     /// <inheritdoc/>
     public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

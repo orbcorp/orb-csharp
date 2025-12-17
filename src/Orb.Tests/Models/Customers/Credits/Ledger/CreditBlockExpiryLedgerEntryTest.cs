@@ -173,8 +173,8 @@ public class CreditBlockExpiryLedgerEntryTest : TestBase
             StartingBalance = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CreditBlockExpiryLedgerEntry>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

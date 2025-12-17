@@ -8,16 +8,16 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<AggregatedCost, AggregatedCostFromRaw>))]
-public sealed record class AggregatedCost : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AggregatedCost, AggregatedCostFromRaw>))]
+public sealed record class AggregatedCost : JsonModel
 {
     public required IReadOnlyList<PerPriceCost> PerPriceCosts
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<PerPriceCost>>(this.RawData, "per_price_costs");
+            return JsonModel.GetNotNullClass<List<PerPriceCost>>(this.RawData, "per_price_costs");
         }
-        init { ModelBase.Set(this._rawData, "per_price_costs", value); }
+        init { JsonModel.Set(this._rawData, "per_price_costs", value); }
     }
 
     /// <summary>
@@ -25,20 +25,20 @@ public sealed record class AggregatedCost : ModelBase
     /// </summary>
     public required string Subtotal
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { ModelBase.Set(this._rawData, "subtotal", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
+        init { JsonModel.Set(this._rawData, "subtotal", value); }
     }
 
     public required DateTimeOffset TimeframeEnd
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
-        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_end"); }
+        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required DateTimeOffset TimeframeStart
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
-        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timeframe_start"); }
+        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -46,8 +46,8 @@ public sealed record class AggregatedCost : ModelBase
     /// </summary>
     public required string Total
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "total"); }
-        init { ModelBase.Set(this._rawData, "total", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "total"); }
+        init { JsonModel.Set(this._rawData, "total", value); }
     }
 
     /// <inheritdoc/>
@@ -88,7 +88,7 @@ public sealed record class AggregatedCost : ModelBase
     }
 }
 
-class AggregatedCostFromRaw : IFromRaw<AggregatedCost>
+class AggregatedCostFromRaw : IFromRawJson<AggregatedCost>
 {
     /// <inheritdoc/>
     public AggregatedCost FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

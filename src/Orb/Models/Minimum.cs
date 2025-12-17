@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<Minimum, MinimumFromRaw>))]
-public sealed record class Minimum : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Minimum, MinimumFromRaw>))]
+public sealed record class Minimum : JsonModel
 {
     /// <summary>
     /// List of price_ids that this minimum amount applies to. For plan/plan phase
@@ -21,9 +21,9 @@ public sealed record class Minimum : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ public sealed record class Minimum : ModelBase
     /// </summary>
     public required IReadOnlyList<MinimumFilter> Filters
     {
-        get { return ModelBase.GetNotNullClass<List<MinimumFilter>>(this.RawData, "filters"); }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        get { return JsonModel.GetNotNullClass<List<MinimumFilter>>(this.RawData, "filters"); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public sealed record class Minimum : ModelBase
     /// </summary>
     public required string MinimumAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { ModelBase.Set(this._rawData, "minimum_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
+        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -84,15 +84,15 @@ public sealed record class Minimum : ModelBase
     }
 }
 
-class MinimumFromRaw : IFromRaw<Minimum>
+class MinimumFromRaw : IFromRawJson<Minimum>
 {
     /// <inheritdoc/>
     public Minimum FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Minimum.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<MinimumFilter, MinimumFilterFromRaw>))]
-public sealed record class MinimumFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<MinimumFilter, MinimumFilterFromRaw>))]
+public sealed record class MinimumFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -101,12 +101,12 @@ public sealed record class MinimumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -116,12 +116,12 @@ public sealed record class MinimumFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, MinimumFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -129,8 +129,8 @@ public sealed record class MinimumFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -166,7 +166,7 @@ public sealed record class MinimumFilter : ModelBase
     }
 }
 
-class MinimumFilterFromRaw : IFromRaw<MinimumFilter>
+class MinimumFilterFromRaw : IFromRawJson<MinimumFilter>
 {
     /// <inheritdoc/>
     public MinimumFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

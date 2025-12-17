@@ -10,12 +10,12 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         NewFloatingTieredWithProrationPrice,
         NewFloatingTieredWithProrationPriceFromRaw
     >)
 )]
-public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
+public sealed record class NewFloatingTieredWithProrationPrice : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -24,11 +24,11 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewFloatingTieredWithProrationPriceCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -56,11 +56,11 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewFloatingTieredWithProrationPriceModelType>
             >(this.RawData, "model_type");
         }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -68,8 +68,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -79,12 +79,12 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<TieredWithProrationConfig>(
+            return JsonModel.GetNotNullClass<TieredWithProrationConfig>(
                 this.RawData,
                 "tiered_with_proration_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "tiered_with_proration_config", value); }
+        init { JsonModel.Set(this._rawData, "tiered_with_proration_config", value); }
     }
 
     /// <summary>
@@ -92,8 +92,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -102,8 +102,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -114,12 +114,12 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -127,8 +127,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -138,12 +138,12 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewFloatingTieredWithProrationPriceConversionRateConfig>(
+            return JsonModel.GetNullableClass<NewFloatingTieredWithProrationPriceConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -153,12 +153,12 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -166,8 +166,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -175,8 +175,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -184,8 +184,8 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -196,12 +196,12 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -213,12 +213,12 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -272,7 +272,7 @@ public sealed record class NewFloatingTieredWithProrationPrice : ModelBase
     }
 }
 
-class NewFloatingTieredWithProrationPriceFromRaw : IFromRaw<NewFloatingTieredWithProrationPrice>
+class NewFloatingTieredWithProrationPriceFromRaw : IFromRawJson<NewFloatingTieredWithProrationPrice>
 {
     /// <inheritdoc/>
     public NewFloatingTieredWithProrationPrice FromRawUnchecked(
@@ -390,8 +390,10 @@ sealed class NewFloatingTieredWithProrationPriceModelTypeConverter
 /// <summary>
 /// Configuration for tiered_with_proration pricing
 /// </summary>
-[JsonConverter(typeof(ModelConverter<TieredWithProrationConfig, TieredWithProrationConfigFromRaw>))]
-public sealed record class TieredWithProrationConfig : ModelBase
+[JsonConverter(
+    typeof(JsonModelConverter<TieredWithProrationConfig, TieredWithProrationConfigFromRaw>)
+)]
+public sealed record class TieredWithProrationConfig : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
@@ -401,12 +403,12 @@ public sealed record class TieredWithProrationConfig : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<TieredWithProrationConfigTier>>(
+            return JsonModel.GetNotNullClass<List<TieredWithProrationConfigTier>>(
                 this.RawData,
                 "tiers"
             );
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -452,7 +454,7 @@ public sealed record class TieredWithProrationConfig : ModelBase
     }
 }
 
-class TieredWithProrationConfigFromRaw : IFromRaw<TieredWithProrationConfig>
+class TieredWithProrationConfigFromRaw : IFromRawJson<TieredWithProrationConfig>
 {
     /// <inheritdoc/>
     public TieredWithProrationConfig FromRawUnchecked(
@@ -464,17 +466,17 @@ class TieredWithProrationConfigFromRaw : IFromRaw<TieredWithProrationConfig>
 /// Configuration for a single tiered with proration tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<TieredWithProrationConfigTier, TieredWithProrationConfigTierFromRaw>)
+    typeof(JsonModelConverter<TieredWithProrationConfigTier, TieredWithProrationConfigTierFromRaw>)
 )]
-public sealed record class TieredWithProrationConfigTier : ModelBase
+public sealed record class TieredWithProrationConfigTier : JsonModel
 {
     /// <summary>
     /// Inclusive tier starting value
     /// </summary>
     public required string TierLowerBound
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <summary>
@@ -482,8 +484,8 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -522,7 +524,7 @@ public sealed record class TieredWithProrationConfigTier : ModelBase
     }
 }
 
-class TieredWithProrationConfigTierFromRaw : IFromRaw<TieredWithProrationConfigTier>
+class TieredWithProrationConfigTierFromRaw : IFromRawJson<TieredWithProrationConfigTier>
 {
     /// <inheritdoc/>
     public TieredWithProrationConfigTier FromRawUnchecked(
@@ -535,34 +537,34 @@ public record class NewFloatingTieredWithProrationPriceConversionRateConfig
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public NewFloatingTieredWithProrationPriceConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public NewFloatingTieredWithProrationPriceConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public NewFloatingTieredWithProrationPriceConversionRateConfig(JsonElement json)
+    public NewFloatingTieredWithProrationPriceConversionRateConfig(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -732,11 +734,11 @@ sealed class NewFloatingTieredWithProrationPriceConversionRateConfigConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -750,13 +752,13 @@ sealed class NewFloatingTieredWithProrationPriceConversionRateConfigConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -765,20 +767,20 @@ sealed class NewFloatingTieredWithProrationPriceConversionRateConfigConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -787,11 +789,11 @@ sealed class NewFloatingTieredWithProrationPriceConversionRateConfigConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new NewFloatingTieredWithProrationPriceConversionRateConfig(json);
+                return new NewFloatingTieredWithProrationPriceConversionRateConfig(element);
             }
         }
     }

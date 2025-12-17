@@ -111,8 +111,8 @@ public class TrialDiscountTest : TestBase
             TrialPercentageDiscount = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TrialDiscount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TrialDiscount>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, TrialDiscountDiscountType> expectedDiscountType =
@@ -348,8 +348,8 @@ public class TrialDiscountFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TrialDiscountFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TrialDiscountFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, TrialDiscountFilterField> expectedField = TrialDiscountFilterField.PriceID;

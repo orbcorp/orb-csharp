@@ -572,8 +572,8 @@ public class PriceIntervalTest : TestBase
             UsageCustomerIDs = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceInterval>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceInterval>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

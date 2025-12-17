@@ -9,13 +9,13 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.TopUps;
 
-[JsonConverter(typeof(ModelConverter<TopUpCreateResponse, TopUpCreateResponseFromRaw>))]
-public sealed record class TopUpCreateResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TopUpCreateResponse, TopUpCreateResponseFromRaw>))]
+public sealed record class TopUpCreateResponse : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -23,8 +23,8 @@ public sealed record class TopUpCreateResponse : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class TopUpCreateResponse : ModelBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -44,12 +44,12 @@ public sealed record class TopUpCreateResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<TopUpInvoiceSettings>(
+            return JsonModel.GetNotNullClass<TopUpInvoiceSettings>(
                 this.RawData,
                 "invoice_settings"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoice_settings", value); }
+        init { JsonModel.Set(this._rawData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -57,8 +57,8 @@ public sealed record class TopUpCreateResponse : ModelBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -67,8 +67,8 @@ public sealed record class TopUpCreateResponse : ModelBase
     /// </summary>
     public required string Threshold
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "threshold"); }
-        init { ModelBase.Set(this._rawData, "threshold", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }
+        init { JsonModel.Set(this._rawData, "threshold", value); }
     }
 
     /// <summary>
@@ -77,8 +77,8 @@ public sealed record class TopUpCreateResponse : ModelBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "expires_after"); }
-        init { ModelBase.Set(this._rawData, "expires_after", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "expires_after"); }
+        init { JsonModel.Set(this._rawData, "expires_after", value); }
     }
 
     /// <summary>
@@ -88,12 +88,12 @@ public sealed record class TopUpCreateResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, TopUpCreateResponseExpiresAfterUnit>>(
                 this.RawData,
                 "expires_after_unit"
             );
         }
-        init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
+        init { JsonModel.Set(this._rawData, "expires_after_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -136,7 +136,7 @@ public sealed record class TopUpCreateResponse : ModelBase
     }
 }
 
-class TopUpCreateResponseFromRaw : IFromRaw<TopUpCreateResponse>
+class TopUpCreateResponseFromRaw : IFromRawJson<TopUpCreateResponse>
 {
     /// <inheritdoc/>
     public TopUpCreateResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

@@ -254,8 +254,8 @@ public class NewPlanMatrixWithDisplayNamePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanMatrixWithDisplayNamePriceCadence> expectedCadence =
@@ -730,10 +730,10 @@ public class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigTest : 
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfig>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -827,10 +827,10 @@ public class NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmo
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceMatrixWithDisplayNameConfigUnitAmount>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -960,9 +960,11 @@ public class NewPlanMatrixWithDisplayNamePriceConversionRateConfigTest : TestBas
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -986,9 +988,11 @@ public class NewPlanMatrixWithDisplayNamePriceConversionRateConfigTest : TestBas
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanMatrixWithDisplayNamePriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

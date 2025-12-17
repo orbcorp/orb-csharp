@@ -209,8 +209,8 @@ public class NewPlanMinimumCompositePriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanMinimumCompositePriceCadence> expectedCadence =
@@ -579,9 +579,9 @@ public class NewPlanMinimumCompositePriceMinimumConfigTest : TestBase
             Prorated = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<NewPlanMinimumCompositePriceMinimumConfig>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -760,9 +760,9 @@ public class NewPlanMinimumCompositePriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanMinimumCompositePriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanMinimumCompositePriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -786,9 +786,9 @@ public class NewPlanMinimumCompositePriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanMinimumCompositePriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanMinimumCompositePriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

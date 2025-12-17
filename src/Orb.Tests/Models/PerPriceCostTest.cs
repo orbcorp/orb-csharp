@@ -490,8 +490,8 @@ public class PerPriceCostTest : TestBase
             Quantity = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PerPriceCost>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PerPriceCost>(element);
         Assert.NotNull(deserialized);
 
         Price expectedPrice = new Unit()

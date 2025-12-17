@@ -9,19 +9,19 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<AdjustmentInterval, AdjustmentIntervalFromRaw>))]
-public sealed record class AdjustmentInterval : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AdjustmentInterval, AdjustmentIntervalFromRaw>))]
+public sealed record class AdjustmentInterval : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required Adjustment Adjustment
     {
-        get { return ModelBase.GetNotNullClass<Adjustment>(this.RawData, "adjustment"); }
-        init { ModelBase.Set(this._rawData, "adjustment", value); }
+        get { return JsonModel.GetNotNullClass<Adjustment>(this.RawData, "adjustment"); }
+        init { JsonModel.Set(this._rawData, "adjustment", value); }
     }
 
     /// <summary>
@@ -31,12 +31,12 @@ public sealed record class AdjustmentInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(
+            return JsonModel.GetNotNullClass<List<string>>(
                 this.RawData,
                 "applies_to_price_interval_ids"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
     }
 
     /// <summary>
@@ -46,9 +46,9 @@ public sealed record class AdjustmentInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -58,9 +58,9 @@ public sealed record class AdjustmentInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -100,7 +100,7 @@ public sealed record class AdjustmentInterval : ModelBase
     }
 }
 
-class AdjustmentIntervalFromRaw : IFromRaw<AdjustmentInterval>
+class AdjustmentIntervalFromRaw : IFromRawJson<AdjustmentInterval>
 {
     /// <inheritdoc/>
     public AdjustmentInterval FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -112,11 +112,11 @@ public record class Adjustment
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string ID
@@ -189,39 +189,39 @@ public record class Adjustment
         }
     }
 
-    public Adjustment(PlanPhaseUsageDiscountAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhaseUsageDiscountAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(PlanPhaseAmountDiscountAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhaseAmountDiscountAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(PlanPhasePercentageDiscountAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhasePercentageDiscountAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(PlanPhaseMinimumAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhaseMinimumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(PlanPhaseMaximumAdjustment value, JsonElement? json = null)
+    public Adjustment(PlanPhaseMaximumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public Adjustment(JsonElement json)
+    public Adjustment(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -488,11 +488,11 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? adjustmentType;
         try
         {
-            adjustmentType = json.GetProperty("adjustment_type").GetString();
+            adjustmentType = element.GetProperty("adjustment_type").GetString();
         }
         catch
         {
@@ -506,13 +506,13 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseUsageDiscountAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -521,7 +521,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount_discount":
             {
@@ -529,13 +529,13 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PlanPhaseAmountDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -544,7 +544,7 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percentage_discount":
             {
@@ -552,13 +552,13 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PlanPhasePercentageDiscountAdjustment>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -567,20 +567,20 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseMinimumAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -589,20 +589,20 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "maximum":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PlanPhaseMaximumAdjustment>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -611,11 +611,11 @@ sealed class AdjustmentConverter : JsonConverter<Adjustment>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new Adjustment(json);
+                return new Adjustment(element);
             }
         }
     }

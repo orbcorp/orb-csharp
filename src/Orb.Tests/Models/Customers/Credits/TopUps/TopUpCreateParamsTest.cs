@@ -57,8 +57,8 @@ public class InvoiceSettingsTest : TestBase
             RequireSuccessfulPayment = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceSettings>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<InvoiceSettings>(element);
         Assert.NotNull(deserialized);
 
         bool expectedAutoCollection = true;

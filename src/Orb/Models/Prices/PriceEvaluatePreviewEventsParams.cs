@@ -43,12 +43,12 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -58,12 +58,12 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public IReadOnlyList<Event>? Events
     {
-        get { return ModelBase.GetNullableClass<List<Event>>(this.RawBodyData, "events"); }
+        get { return JsonModel.GetNullableClass<List<Event>>(this.RawBodyData, "events"); }
         init
         {
             if (value == null)
@@ -88,7 +88,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "events", value);
+            JsonModel.Set(this._rawBodyData, "events", value);
         }
     }
 
@@ -97,8 +97,8 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<PriceEvaluatePreviewEventsParamsPriceEvaluation>
             >(this.RawBodyData, "price_evaluations");
         }
@@ -119,7 +119,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "price_evaluations", value);
+            JsonModel.Set(this._rawBodyData, "price_evaluations", value);
         }
     }
 
@@ -158,7 +158,7 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static PriceEvaluatePreviewEventsParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -182,9 +182,13 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -197,16 +201,16 @@ public sealed record class PriceEvaluatePreviewEventsParams : ParamsBase
     }
 }
 
-[JsonConverter(typeof(ModelConverter<Event, EventFromRaw>))]
-public sealed record class Event : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Event, EventFromRaw>))]
+public sealed record class Event : JsonModel
 {
     /// <summary>
     /// A name to meaningfully identify the action or event type.
     /// </summary>
     public required string EventName
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "event_name"); }
-        init { ModelBase.Set(this._rawData, "event_name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "event_name"); }
+        init { JsonModel.Set(this._rawData, "event_name", value); }
     }
 
     /// <summary>
@@ -217,12 +221,12 @@ public sealed record class Event : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, JsonElement>>(
+            return JsonModel.GetNotNullClass<Dictionary<string, JsonElement>>(
                 this.RawData,
                 "properties"
             );
         }
-        init { ModelBase.Set(this._rawData, "properties", value); }
+        init { JsonModel.Set(this._rawData, "properties", value); }
     }
 
     /// <summary>
@@ -234,9 +238,9 @@ public sealed record class Event : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "timestamp");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "timestamp");
         }
-        init { ModelBase.Set(this._rawData, "timestamp", value); }
+        init { JsonModel.Set(this._rawData, "timestamp", value); }
     }
 
     /// <summary>
@@ -244,8 +248,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { ModelBase.Set(this._rawData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
+        init { JsonModel.Set(this._rawData, "customer_id", value); }
     }
 
     /// <summary>
@@ -253,8 +257,8 @@ public sealed record class Event : ModelBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -292,7 +296,7 @@ public sealed record class Event : ModelBase
     }
 }
 
-class EventFromRaw : IFromRaw<Event>
+class EventFromRaw : IFromRawJson<Event>
 {
     /// <inheritdoc/>
     public Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -300,20 +304,20 @@ class EventFromRaw : IFromRaw<Event>
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluation,
         PriceEvaluatePreviewEventsParamsPriceEvaluationFromRaw
     >)
 )]
-public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : JsonModel
 {
     /// <summary>
     /// The external ID of a price to evaluate that exists in your Orb account.
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -322,8 +326,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
     /// </summary>
     public string? Filter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "filter"); }
-        init { ModelBase.Set(this._rawData, "filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "filter"); }
+        init { JsonModel.Set(this._rawData, "filter", value); }
     }
 
     /// <summary>
@@ -332,7 +336,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
     /// </summary>
     public IReadOnlyList<string>? GroupingKeys
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawData, "grouping_keys"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "grouping_keys"); }
         init
         {
             if (value == null)
@@ -340,7 +344,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
                 return;
             }
 
-            ModelBase.Set(this._rawData, "grouping_keys", value);
+            JsonModel.Set(this._rawData, "grouping_keys", value);
         }
     }
 
@@ -351,12 +355,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
+            return JsonModel.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPrice>(
                 this.RawData,
                 "price"
             );
         }
-        init { ModelBase.Set(this._rawData, "price", value); }
+        init { JsonModel.Set(this._rawData, "price", value); }
     }
 
     /// <summary>
@@ -364,8 +368,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
     /// </summary>
     public string? PriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     /// <inheritdoc/>
@@ -410,7 +414,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluation : Mod
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluation>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluation>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluation FromRawUnchecked(
@@ -426,11 +430,11 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string Currency
@@ -915,286 +919,286 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingBulkPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingThresholdTotalAmountPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredWithMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedTieredPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredPackageWithMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingPackageWithAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitWithPercentPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixWithAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingTieredWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingUnitWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedAllocationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingBulkWithProrationPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedWithProratedMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedWithMeteredMinimumPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMatrixWithDisplayNamePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingGroupedTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMaxGroupTieredPackagePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingScalableMatrixWithUnitPricingPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingScalableMatrixWithTieredPricingPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingCumulativeGroupedBulkPrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         NewFloatingMinimumCompositePrice value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(JsonElement json)
+    public PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -2453,11 +2457,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? modelType;
         try
         {
-            modelType = json.GetProperty("model_type").GetString();
+            modelType = element.GetProperty("model_type").GetString();
         }
         catch
         {
@@ -2471,13 +2475,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingUnitPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2486,20 +2490,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2508,20 +2512,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingBulkPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2530,7 +2534,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk_with_filters":
             {
@@ -2538,13 +2542,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2553,20 +2557,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "package":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingPackagePrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2575,20 +2579,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2597,7 +2601,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "threshold_total_amount":
             {
@@ -2605,13 +2609,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingThresholdTotalAmountPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2620,20 +2624,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_package":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingTieredPackagePrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2642,7 +2646,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_with_minimum":
             {
@@ -2650,13 +2654,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingTieredWithMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2665,20 +2669,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedTieredPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2687,7 +2691,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_package_with_minimum":
             {
@@ -2695,13 +2699,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingTieredPackageWithMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2710,7 +2714,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "package_with_allocation":
             {
@@ -2718,13 +2722,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2733,20 +2737,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "unit_with_percent":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingUnitWithPercentPrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2755,7 +2759,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix_with_allocation":
             {
@@ -2763,13 +2767,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingMatrixWithAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2778,7 +2782,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered_with_proration":
             {
@@ -2786,13 +2790,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingTieredWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2801,7 +2805,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "unit_with_proration":
             {
@@ -2809,13 +2813,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingUnitWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2824,7 +2828,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_allocation":
             {
@@ -2832,13 +2836,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingGroupedAllocationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2847,7 +2851,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "bulk_with_proration":
             {
@@ -2855,13 +2859,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingBulkWithProrationPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2870,7 +2874,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_prorated_minimum":
             {
@@ -2878,13 +2882,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingGroupedWithProratedMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2893,7 +2897,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_metered_minimum":
             {
@@ -2901,13 +2905,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingGroupedWithMeteredMinimumPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2916,7 +2920,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_with_min_max_thresholds":
             {
@@ -2924,13 +2928,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2939,7 +2943,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "matrix_with_display_name":
             {
@@ -2947,13 +2951,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingMatrixWithDisplayNamePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2962,7 +2966,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "grouped_tiered_package":
             {
@@ -2970,13 +2974,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingGroupedTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -2985,7 +2989,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "max_group_tiered_package":
             {
@@ -2993,13 +2997,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingMaxGroupTieredPackagePrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3008,7 +3012,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "scalable_matrix_with_unit_pricing":
             {
@@ -3016,13 +3020,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingScalableMatrixWithUnitPricingPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3031,7 +3035,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "scalable_matrix_with_tiered_pricing":
             {
@@ -3039,13 +3043,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingScalableMatrixWithTieredPricingPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3054,7 +3058,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "cumulative_grouped_bulk":
             {
@@ -3062,13 +3066,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<NewFloatingCumulativeGroupedBulkPrice>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3077,7 +3081,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "cumulative_grouped_allocation":
             {
@@ -3085,13 +3089,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3100,20 +3104,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "minimum":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<NewFloatingMinimumCompositePrice>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3122,7 +3126,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "percent":
             {
@@ -3130,13 +3134,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3145,7 +3149,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "event_output":
             {
@@ -3153,13 +3157,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                 {
                     var deserialized =
                         JsonSerializer.Deserialize<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>(
-                            json,
+                            element,
                             options
                         );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -3168,11 +3172,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(json);
+                return new PriceEvaluatePreviewEventsParamsPriceEvaluationPrice(element);
             }
         }
     }
@@ -3188,13 +3192,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Configuration for bulk_with_filters pricing
@@ -3203,12 +3207,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
+            return JsonModel.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>(
                 this.RawData,
                 "bulk_with_filters_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "bulk_with_filters_config", value); }
+        init { JsonModel.Set(this._rawData, "bulk_with_filters_config", value); }
     }
 
     /// <summary>
@@ -3221,14 +3225,14 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -3236,8 +3240,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -3245,8 +3249,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -3254,8 +3258,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -3263,8 +3267,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -3272,8 +3276,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -3282,8 +3286,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -3294,12 +3298,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -3307,8 +3311,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -3318,12 +3322,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
+            return JsonModel.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -3333,12 +3337,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -3346,8 +3350,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -3355,8 +3359,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -3364,8 +3368,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -3376,12 +3380,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -3393,12 +3397,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -3470,7 +3474,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters FromRawUnchecked(
@@ -3485,13 +3489,13 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersFromRaw
 /// Configuration for bulk_with_filters pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Property filters to apply (all must match)
@@ -3500,11 +3504,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>
             >(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -3514,11 +3518,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 List<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>
             >(this.RawData, "tiers");
         }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -3571,7 +3575,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfig FromRawUnchecked(
@@ -3586,21 +3590,21 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWit
 /// Configuration for a single property filter
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Event property key to filter on
     /// </summary>
     public required string PropertyKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_key"); }
-        init { ModelBase.Set(this._rawData, "property_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_key"); }
+        init { JsonModel.Set(this._rawData, "property_key", value); }
     }
 
     /// <summary>
@@ -3608,8 +3612,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public required string PropertyValue
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "property_value"); }
-        init { ModelBase.Set(this._rawData, "property_value", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "property_value"); }
+        init { JsonModel.Set(this._rawData, "property_value", value); }
     }
 
     /// <inheritdoc/>
@@ -3656,7 +3660,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilterFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigFilter FromRawUnchecked(
@@ -3671,21 +3675,21 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWit
 /// Configuration for a single bulk pricing tier
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// Amount per unit
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <summary>
@@ -3693,8 +3697,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
     /// </summary>
     public string? TierLowerBound
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tier_lower_bound"); }
-        init { ModelBase.Set(this._rawData, "tier_lower_bound", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tier_lower_bound"); }
+        init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
     /// <inheritdoc/>
@@ -3750,7 +3754,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceB
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTierFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersBulkWithFiltersConfigTier FromRawUnchecked(
@@ -3842,36 +3846,36 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -4043,11 +4047,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -4061,13 +4065,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4076,20 +4080,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4098,12 +4102,12 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -4120,13 +4124,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -4138,14 +4142,14 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -4153,8 +4157,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -4164,12 +4168,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
+            return JsonModel.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>(
                 this.RawData,
                 "grouped_with_min_max_thresholds_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "grouped_with_min_max_thresholds_config", value); }
+        init { JsonModel.Set(this._rawData, "grouped_with_min_max_thresholds_config", value); }
     }
 
     /// <summary>
@@ -4177,8 +4181,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -4186,8 +4190,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -4195,8 +4199,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -4204,8 +4208,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -4214,8 +4218,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -4226,12 +4230,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -4239,8 +4243,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -4250,12 +4254,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
+            return JsonModel.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -4265,12 +4269,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -4278,8 +4282,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -4287,8 +4291,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -4296,8 +4300,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -4308,12 +4312,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -4325,12 +4329,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -4406,7 +4410,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds FromRawUnchecked(
@@ -4498,21 +4502,21 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
 /// Configuration for grouped_with_min_max_thresholds pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The event property used to group before applying thresholds
     /// </summary>
     public required string GroupingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <summary>
@@ -4520,8 +4524,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string MaximumCharge
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "maximum_charge"); }
-        init { ModelBase.Set(this._rawData, "maximum_charge", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "maximum_charge"); }
+        init { JsonModel.Set(this._rawData, "maximum_charge", value); }
     }
 
     /// <summary>
@@ -4529,8 +4533,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string MinimumCharge
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "minimum_charge"); }
-        init { ModelBase.Set(this._rawData, "minimum_charge", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_charge"); }
+        init { JsonModel.Set(this._rawData, "minimum_charge", value); }
     }
 
     /// <summary>
@@ -4538,8 +4542,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
     /// </summary>
     public required string PerUnitRate
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_rate"); }
-        init { ModelBase.Set(this._rawData, "per_unit_rate", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_rate"); }
+        init { JsonModel.Set(this._rawData, "per_unit_rate", value); }
     }
 
     /// <inheritdoc/>
@@ -4588,7 +4592,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceG
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig FromRawUnchecked(
@@ -4606,36 +4610,36 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -4807,11 +4811,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -4825,13 +4829,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4840,20 +4844,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -4862,12 +4866,12 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -4884,13 +4888,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -4902,14 +4906,14 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -4919,12 +4923,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
+            return JsonModel.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>(
                 this.RawData,
                 "cumulative_grouped_allocation_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "cumulative_grouped_allocation_config", value); }
+        init { JsonModel.Set(this._rawData, "cumulative_grouped_allocation_config", value); }
     }
 
     /// <summary>
@@ -4932,8 +4936,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -4941,8 +4945,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -4950,8 +4954,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -4959,8 +4963,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -4968,8 +4972,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -4978,8 +4982,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -4990,12 +4994,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -5003,8 +5007,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -5014,12 +5018,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
+            return JsonModel.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -5029,12 +5033,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -5042,8 +5046,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -5051,8 +5055,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -5060,8 +5064,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -5072,12 +5076,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -5089,12 +5093,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -5170,7 +5174,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation FromRawUnchecked(
@@ -5262,21 +5266,21 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
 /// Configuration for cumulative_grouped_allocation pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The overall allocation across all groups
     /// </summary>
     public required string CumulativeAllocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "cumulative_allocation"); }
-        init { ModelBase.Set(this._rawData, "cumulative_allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "cumulative_allocation"); }
+        init { JsonModel.Set(this._rawData, "cumulative_allocation", value); }
     }
 
     /// <summary>
@@ -5284,8 +5288,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string GroupAllocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "group_allocation"); }
-        init { ModelBase.Set(this._rawData, "group_allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "group_allocation"); }
+        init { JsonModel.Set(this._rawData, "group_allocation", value); }
     }
 
     /// <summary>
@@ -5293,8 +5297,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string GroupingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <summary>
@@ -5302,8 +5306,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -5352,7 +5356,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceC
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig FromRawUnchecked(
@@ -5370,36 +5374,36 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -5571,11 +5575,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -5589,13 +5593,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -5604,20 +5608,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -5626,12 +5630,12 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -5648,12 +5652,12 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentFromRaw
     >)
 )]
-public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent : ModelBase
+public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -5665,11 +5669,11 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadence>
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -5677,8 +5681,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -5686,8 +5690,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -5695,8 +5699,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -5704,8 +5708,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -5715,12 +5719,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
+            return JsonModel.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>(
                 this.RawData,
                 "percent_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "percent_config", value); }
+        init { JsonModel.Set(this._rawData, "percent_config", value); }
     }
 
     /// <summary>
@@ -5728,8 +5732,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -5738,8 +5742,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -5750,12 +5754,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -5763,8 +5767,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -5774,12 +5778,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
+            return JsonModel.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -5789,12 +5793,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -5802,8 +5806,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -5811,8 +5815,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -5820,8 +5824,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -5832,12 +5836,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -5849,12 +5853,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -5926,7 +5930,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent FromRawUnchecked(
@@ -6007,21 +6011,21 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentCadenceC
 /// Configuration for percent pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfigFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// What percent of the component subtotals to charge
     /// </summary>
     public required double Percent
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "percent"); }
-        init { ModelBase.Set(this._rawData, "percent", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percent"); }
+        init { JsonModel.Set(this._rawData, "percent", value); }
     }
 
     /// <inheritdoc/>
@@ -6071,7 +6075,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceP
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfigFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfig FromRawUnchecked(
@@ -6089,36 +6093,36 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -6290,11 +6294,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -6308,13 +6312,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -6323,20 +6327,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -6345,12 +6349,12 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig(
-                    json
+                    element
                 );
             }
         }
@@ -6367,13 +6371,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
@@ -6385,14 +6389,14 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<
                     string,
                     PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCadence
                 >
             >(this.RawData, "cadence");
         }
-        init { ModelBase.Set(this._rawData, "cadence", value); }
+        init { JsonModel.Set(this._rawData, "cadence", value); }
     }
 
     /// <summary>
@@ -6400,8 +6404,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -6411,12 +6415,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
+            return JsonModel.GetNotNullClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>(
                 this.RawData,
                 "event_output_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "event_output_config", value); }
+        init { JsonModel.Set(this._rawData, "event_output_config", value); }
     }
 
     /// <summary>
@@ -6424,8 +6428,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string ItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { ModelBase.Set(this._rawData, "item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
+        init { JsonModel.Set(this._rawData, "item_id", value); }
     }
 
     /// <summary>
@@ -6433,8 +6437,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public JsonElement ModelType
     {
-        get { return ModelBase.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
-        init { ModelBase.Set(this._rawData, "model_type", value); }
+        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "model_type"); }
+        init { JsonModel.Set(this._rawData, "model_type", value); }
     }
 
     /// <summary>
@@ -6442,8 +6446,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -6451,8 +6455,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? BillableMetricID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
-        init { ModelBase.Set(this._rawData, "billable_metric_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "billable_metric_id"); }
+        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
     }
 
     /// <summary>
@@ -6461,8 +6465,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public bool? BilledInAdvance
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
-        init { ModelBase.Set(this._rawData, "billed_in_advance", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "billed_in_advance"); }
+        init { JsonModel.Set(this._rawData, "billed_in_advance", value); }
     }
 
     /// <summary>
@@ -6473,12 +6477,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "billing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "billing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "billing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -6486,8 +6490,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public double? ConversionRate
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
-        init { ModelBase.Set(this._rawData, "conversion_rate", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "conversion_rate"); }
+        init { JsonModel.Set(this._rawData, "conversion_rate", value); }
     }
 
     /// <summary>
@@ -6497,12 +6501,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
+            return JsonModel.GetNullableClass<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig>(
                 this.RawData,
                 "conversion_rate_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_config", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_config", value); }
     }
 
     /// <summary>
@@ -6512,12 +6516,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNullableClass<NewDimensionalPriceConfiguration>(
+            return JsonModel.GetNullableClass<NewDimensionalPriceConfiguration>(
                 this.RawData,
                 "dimensional_price_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "dimensional_price_configuration", value); }
+        init { JsonModel.Set(this._rawData, "dimensional_price_configuration", value); }
     }
 
     /// <summary>
@@ -6525,8 +6529,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? ExternalPriceID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "external_price_id"); }
-        init { ModelBase.Set(this._rawData, "external_price_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_price_id"); }
+        init { JsonModel.Set(this._rawData, "external_price_id", value); }
     }
 
     /// <summary>
@@ -6534,8 +6538,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public double? FixedPriceQuantity
     {
-        get { return ModelBase.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
-        init { ModelBase.Set(this._rawData, "fixed_price_quantity", value); }
+        get { return JsonModel.GetNullableStruct<double>(this.RawData, "fixed_price_quantity"); }
+        init { JsonModel.Set(this._rawData, "fixed_price_quantity", value); }
     }
 
     /// <summary>
@@ -6543,8 +6547,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? InvoiceGroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
-        init { ModelBase.Set(this._rawData, "invoice_grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "invoice_grouping_key"); }
+        init { JsonModel.Set(this._rawData, "invoice_grouping_key", value); }
     }
 
     /// <summary>
@@ -6555,12 +6559,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNullableClass<NewBillingCycleConfiguration>(
+            return JsonModel.GetNullableClass<NewBillingCycleConfiguration>(
                 this.RawData,
                 "invoicing_cycle_configuration"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoicing_cycle_configuration", value); }
+        init { JsonModel.Set(this._rawData, "invoicing_cycle_configuration", value); }
     }
 
     /// <summary>
@@ -6572,12 +6576,12 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -6649,7 +6653,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput FromRawUnchecked(
@@ -6735,21 +6739,21 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputCade
 /// Configuration for event_output pricing
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig,
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfigFromRaw
     >)
 )]
 public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig
-    : ModelBase
+    : JsonModel
 {
     /// <summary>
     /// The key in the event data to extract the unit rate from.
     /// </summary>
     public required string UnitRatingKey
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_rating_key"); }
-        init { ModelBase.Set(this._rawData, "unit_rating_key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_rating_key"); }
+        init { JsonModel.Set(this._rawData, "unit_rating_key", value); }
     }
 
     /// <summary>
@@ -6759,8 +6763,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? DefaultUnitRate
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "default_unit_rate"); }
-        init { ModelBase.Set(this._rawData, "default_unit_rate", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "default_unit_rate"); }
+        init { JsonModel.Set(this._rawData, "default_unit_rate", value); }
     }
 
     /// <summary>
@@ -6769,8 +6773,8 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
     /// </summary>
     public string? GroupingKey
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "grouping_key"); }
-        init { ModelBase.Set(this._rawData, "grouping_key", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "grouping_key"); }
+        init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
     /// <inheritdoc/>
@@ -6824,7 +6828,7 @@ public sealed record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceE
 }
 
 class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfigFromRaw
-    : IFromRaw<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>
+    : IFromRawJson<PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig>
 {
     /// <inheritdoc/>
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutputConfig FromRawUnchecked(
@@ -6842,36 +6846,36 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
         SharedUnitConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
         SharedTieredConversionRateConfig value,
-        JsonElement? json = null
+        JsonElement? element = null
     )
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
     public PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
-        JsonElement json
+        JsonElement element
     )
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -7043,11 +7047,11 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? conversionRateType;
         try
         {
-            conversionRateType = json.GetProperty("conversion_rate_type").GetString();
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
         }
         catch
         {
@@ -7061,13 +7065,13 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -7076,20 +7080,20 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "tiered":
             {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -7098,12 +7102,12 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
                 return new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig(
-                    json
+                    element
                 );
             }
         }

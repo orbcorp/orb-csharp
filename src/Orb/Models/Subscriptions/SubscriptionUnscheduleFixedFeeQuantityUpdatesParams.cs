@@ -30,8 +30,8 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     /// </summary>
     public required string PriceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
-        init { ModelBase.Set(this._rawBodyData, "price_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
+        init { JsonModel.Set(this._rawBodyData, "price_id", value); }
     }
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams() { }
@@ -69,7 +69,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static SubscriptionUnscheduleFixedFeeQuantityUpdatesParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -97,9 +97,13 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

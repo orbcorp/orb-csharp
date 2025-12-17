@@ -7,43 +7,43 @@ using Orb.Core;
 
 namespace Orb.Models.Customers;
 
-[JsonConverter(typeof(ModelConverter<AddressInput, AddressInputFromRaw>))]
-public sealed record class AddressInput : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AddressInput, AddressInputFromRaw>))]
+public sealed record class AddressInput : JsonModel
 {
     public string? City
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "city"); }
-        init { ModelBase.Set(this._rawData, "city", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "city"); }
+        init { JsonModel.Set(this._rawData, "city", value); }
     }
 
     public string? Country
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "country"); }
-        init { ModelBase.Set(this._rawData, "country", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "country"); }
+        init { JsonModel.Set(this._rawData, "country", value); }
     }
 
     public string? Line1
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "line1"); }
-        init { ModelBase.Set(this._rawData, "line1", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "line1"); }
+        init { JsonModel.Set(this._rawData, "line1", value); }
     }
 
     public string? Line2
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "line2"); }
-        init { ModelBase.Set(this._rawData, "line2", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "line2"); }
+        init { JsonModel.Set(this._rawData, "line2", value); }
     }
 
     public string? PostalCode
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "postal_code"); }
-        init { ModelBase.Set(this._rawData, "postal_code", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "postal_code"); }
+        init { JsonModel.Set(this._rawData, "postal_code", value); }
     }
 
     public string? State
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "state"); }
-        init { ModelBase.Set(this._rawData, "state", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "state"); }
+        init { JsonModel.Set(this._rawData, "state", value); }
     }
 
     /// <inheritdoc/>
@@ -82,7 +82,7 @@ public sealed record class AddressInput : ModelBase
     }
 }
 
-class AddressInputFromRaw : IFromRaw<AddressInput>
+class AddressInputFromRaw : IFromRawJson<AddressInput>
 {
     /// <inheritdoc/>
     public AddressInput FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

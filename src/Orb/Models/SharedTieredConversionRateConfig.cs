@@ -10,35 +10,35 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         SharedTieredConversionRateConfig,
         SharedTieredConversionRateConfigFromRaw
     >)
 )]
-public sealed record class SharedTieredConversionRateConfig : ModelBase
+public sealed record class SharedTieredConversionRateConfig : JsonModel
 {
     public required ApiEnum<string, ConversionRateType> ConversionRateType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, ConversionRateType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, ConversionRateType>>(
                 this.RawData,
                 "conversion_rate_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "conversion_rate_type", value); }
+        init { JsonModel.Set(this._rawData, "conversion_rate_type", value); }
     }
 
     public required ConversionRateTieredConfig TieredConfig
     {
         get
         {
-            return ModelBase.GetNotNullClass<ConversionRateTieredConfig>(
+            return JsonModel.GetNotNullClass<ConversionRateTieredConfig>(
                 this.RawData,
                 "tiered_config"
             );
         }
-        init { ModelBase.Set(this._rawData, "tiered_config", value); }
+        init { JsonModel.Set(this._rawData, "tiered_config", value); }
     }
 
     /// <inheritdoc/>
@@ -77,7 +77,7 @@ public sealed record class SharedTieredConversionRateConfig : ModelBase
     }
 }
 
-class SharedTieredConversionRateConfigFromRaw : IFromRaw<SharedTieredConversionRateConfig>
+class SharedTieredConversionRateConfigFromRaw : IFromRawJson<SharedTieredConversionRateConfig>
 {
     /// <inheritdoc/>
     public SharedTieredConversionRateConfig FromRawUnchecked(

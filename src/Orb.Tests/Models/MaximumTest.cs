@@ -93,8 +93,8 @@ public class MaximumTest : TestBase
             MaximumAmount = "maximum_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Maximum>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Maximum>(element);
         Assert.NotNull(deserialized);
 
         List<string> expectedAppliesToPriceIDs = ["string"];
@@ -195,8 +195,8 @@ public class MaximumFilterTest : TestBase
             Values = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MaximumFilter>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MaximumFilter>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, MaximumFilterField> expectedField = MaximumFilterField.PriceID;

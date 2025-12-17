@@ -33,8 +33,8 @@ public class PackageConfigTest : TestBase
     {
         var model = new PackageConfig { PackageAmount = "package_amount", PackageSize = 1 };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PackageConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PackageConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedPackageAmount = "package_amount";

@@ -31,8 +31,8 @@ public class NewReportingConfigurationTest : TestBase
     {
         var model = new NewReportingConfiguration { Exempt = true };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewReportingConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewReportingConfiguration>(element);
         Assert.NotNull(deserialized);
 
         bool expectedExempt = true;

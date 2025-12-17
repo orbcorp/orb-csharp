@@ -220,8 +220,8 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingBulkWithProrationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingBulkWithProrationPrice>(element);
         Assert.NotNull(deserialized);
 
         BulkWithProrationConfig expectedBulkWithProrationConfig = new(
@@ -552,8 +552,8 @@ public class BulkWithProrationConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfig>(element);
         Assert.NotNull(deserialized);
 
         List<Tier> expectedTiers =
@@ -615,8 +615,8 @@ public class TierTest : TestBase
     {
         var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Tier>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Tier>(element);
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -848,9 +848,11 @@ public class NewFloatingBulkWithProrationPriceConversionRateConfigTest : TestBas
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingBulkWithProrationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingBulkWithProrationPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -874,9 +876,11 @@ public class NewFloatingBulkWithProrationPriceConversionRateConfigTest : TestBas
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingBulkWithProrationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewFloatingBulkWithProrationPriceConversionRateConfig>(
+                element
+            );
 
         Assert.Equal(value, deserialized);
     }

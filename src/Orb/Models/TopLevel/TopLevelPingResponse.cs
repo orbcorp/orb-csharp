@@ -7,13 +7,13 @@ using Orb.Core;
 
 namespace Orb.Models.TopLevel;
 
-[JsonConverter(typeof(ModelConverter<TopLevelPingResponse, TopLevelPingResponseFromRaw>))]
-public sealed record class TopLevelPingResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<TopLevelPingResponse, TopLevelPingResponseFromRaw>))]
+public sealed record class TopLevelPingResponse : JsonModel
 {
     public required string Response
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "response"); }
-        init { ModelBase.Set(this._rawData, "response", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "response"); }
+        init { JsonModel.Set(this._rawData, "response", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed record class TopLevelPingResponse : ModelBase
     }
 }
 
-class TopLevelPingResponseFromRaw : IFromRaw<TopLevelPingResponse>
+class TopLevelPingResponseFromRaw : IFromRawJson<TopLevelPingResponse>
 {
     /// <inheritdoc/>
     public TopLevelPingResponse FromRawUnchecked(

@@ -67,8 +67,8 @@ public class PlanVersionPhaseTest : TestBase
             Order = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PlanVersionPhase>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PlanVersionPhase>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

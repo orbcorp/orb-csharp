@@ -65,8 +65,8 @@ public class AddressInputTest : TestBase
             State = "state",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<AddressInput>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<AddressInput>(element);
         Assert.NotNull(deserialized);
 
         string expectedCity = "city";

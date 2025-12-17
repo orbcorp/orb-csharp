@@ -9,8 +9,8 @@ using System = System;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<UsageDiscountInterval, UsageDiscountIntervalFromRaw>))]
-public sealed record class UsageDiscountInterval : ModelBase
+[JsonConverter(typeof(JsonModelConverter<UsageDiscountInterval, UsageDiscountIntervalFromRaw>))]
+public sealed record class UsageDiscountInterval : JsonModel
 {
     /// <summary>
     /// The price interval ids that this discount interval applies to.
@@ -19,24 +19,24 @@ public sealed record class UsageDiscountInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<string>>(
+            return JsonModel.GetNotNullClass<List<string>>(
                 this.RawData,
                 "applies_to_price_interval_ids"
             );
         }
-        init { ModelBase.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
     }
 
     public required ApiEnum<string, UsageDiscountIntervalDiscountType> DiscountType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalDiscountType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalDiscountType>>(
                 this.RawData,
                 "discount_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "discount_type", value); }
+        init { JsonModel.Set(this._rawData, "discount_type", value); }
     }
 
     /// <summary>
@@ -46,9 +46,9 @@ public sealed record class UsageDiscountInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
         }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -58,12 +58,12 @@ public sealed record class UsageDiscountInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<UsageDiscountIntervalFilter>>(
+            return JsonModel.GetNotNullClass<List<UsageDiscountIntervalFilter>>(
                 this.RawData,
                 "filters"
             );
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     /// <summary>
@@ -73,9 +73,9 @@ public sealed record class UsageDiscountInterval : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
         }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <summary>
@@ -84,8 +84,8 @@ public sealed record class UsageDiscountInterval : ModelBase
     /// </summary>
     public required double UsageDiscount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "usage_discount"); }
-        init { ModelBase.Set(this._rawData, "usage_discount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "usage_discount"); }
+        init { JsonModel.Set(this._rawData, "usage_discount", value); }
     }
 
     /// <inheritdoc/>
@@ -129,7 +129,7 @@ public sealed record class UsageDiscountInterval : ModelBase
     }
 }
 
-class UsageDiscountIntervalFromRaw : IFromRaw<UsageDiscountInterval>
+class UsageDiscountIntervalFromRaw : IFromRawJson<UsageDiscountInterval>
 {
     /// <inheritdoc/>
     public UsageDiscountInterval FromRawUnchecked(
@@ -180,9 +180,9 @@ sealed class UsageDiscountIntervalDiscountTypeConverter
 }
 
 [JsonConverter(
-    typeof(ModelConverter<UsageDiscountIntervalFilter, UsageDiscountIntervalFilterFromRaw>)
+    typeof(JsonModelConverter<UsageDiscountIntervalFilter, UsageDiscountIntervalFilterFromRaw>)
 )]
-public sealed record class UsageDiscountIntervalFilter : ModelBase
+public sealed record class UsageDiscountIntervalFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -191,12 +191,12 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -206,12 +206,12 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, UsageDiscountIntervalFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -219,8 +219,8 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -258,7 +258,7 @@ public sealed record class UsageDiscountIntervalFilter : ModelBase
     }
 }
 
-class UsageDiscountIntervalFilterFromRaw : IFromRaw<UsageDiscountIntervalFilter>
+class UsageDiscountIntervalFilterFromRaw : IFromRawJson<UsageDiscountIntervalFilter>
 {
     /// <inheritdoc/>
     public UsageDiscountIntervalFilter FromRawUnchecked(

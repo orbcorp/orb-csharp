@@ -31,8 +31,8 @@ public class InvoiceTinyTest : TestBase
     {
         var model = new InvoiceTiny { ID = "gXcsPTVyC4YZa3Sc" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<InvoiceTiny>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<InvoiceTiny>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "gXcsPTVyC4YZa3Sc";

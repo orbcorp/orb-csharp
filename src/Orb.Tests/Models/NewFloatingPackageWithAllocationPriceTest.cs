@@ -220,8 +220,10 @@ public class NewFloatingPackageWithAllocationPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPrice>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingPackageWithAllocationPriceCadence> expectedCadence =
@@ -666,8 +668,8 @@ public class PackageWithAllocationConfigTest : TestBase
             PackageSize = "package_size",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PackageWithAllocationConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedAllocation = "allocation";
@@ -740,10 +742,10 @@ public class NewFloatingPackageWithAllocationPriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -768,10 +770,10 @@ public class NewFloatingPackageWithAllocationPriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingPackageWithAllocationPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

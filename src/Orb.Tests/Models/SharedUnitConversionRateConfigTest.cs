@@ -50,8 +50,8 @@ public class SharedUnitConversionRateConfigTest : TestBase
             UnitConfig = new("unit_amount"),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<

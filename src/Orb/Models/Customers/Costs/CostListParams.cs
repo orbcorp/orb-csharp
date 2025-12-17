@@ -116,8 +116,8 @@ public sealed record class CostListParams : ParamsBase
     /// </summary>
     public string? Currency
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "currency"); }
-        init { ModelBase.Set(this._rawQueryData, "currency", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "currency"); }
+        init { JsonModel.Set(this._rawQueryData, "currency", value); }
     }
 
     /// <summary>
@@ -127,12 +127,12 @@ public sealed record class CostListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawQueryData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -142,12 +142,12 @@ public sealed record class CostListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawQueryData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -159,12 +159,12 @@ public sealed record class CostListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ViewMode>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, ViewMode>>(
                 this.RawQueryData,
                 "view_mode"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "view_mode", value); }
+        init { JsonModel.Set(this._rawQueryData, "view_mode", value); }
     }
 
     public CostListParams() { }
@@ -193,7 +193,7 @@ public sealed record class CostListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static CostListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

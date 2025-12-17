@@ -117,8 +117,8 @@ public class PriceEvaluatePreviewEventsResponseTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponse>(element);
         Assert.NotNull(deserialized);
 
         List<PriceEvaluatePreviewEventsResponseData> expectedData =
@@ -271,8 +271,10 @@ public class PriceEvaluatePreviewEventsResponseDataTest : TestBase
             PriceID = "price_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponseData>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<PriceEvaluatePreviewEventsResponseData>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedCurrency = "currency";

@@ -82,8 +82,8 @@ public class TieredConfigTest : TestBase
             Prorated = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TieredConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TieredConfig>(element);
         Assert.NotNull(deserialized);
 
         List<SharedTier> expectedTiers =

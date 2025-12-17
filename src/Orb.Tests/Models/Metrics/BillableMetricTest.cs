@@ -139,8 +139,8 @@ public class BillableMetricTest : TestBase
             Status = Status.Active,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BillableMetric>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BillableMetric>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

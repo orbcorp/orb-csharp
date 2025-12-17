@@ -264,9 +264,9 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<NewFloatingGroupedWithMeteredMinimumPrice>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -765,8 +765,8 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<GroupedWithMeteredMinimumConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedGroupingKey = "x";
@@ -863,8 +863,8 @@ public class ScalingFactorTest : TestBase
             ScalingValue = "scaling_value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalingFactor>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ScalingFactor>(element);
         Assert.NotNull(deserialized);
 
         string expectedScalingFactorValue = "scaling_factor";
@@ -929,8 +929,8 @@ public class UnitAmountTest : TestBase
             UnitAmountValue = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<UnitAmount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<UnitAmount>(element);
         Assert.NotNull(deserialized);
 
         string expectedPricingValue = "pricing_value";
@@ -1058,10 +1058,10 @@ public class NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfigTest :
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1086,10 +1086,10 @@ public class NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfigTest :
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingGroupedWithMeteredMinimumPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

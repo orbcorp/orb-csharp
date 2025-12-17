@@ -50,12 +50,12 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<global::Orb.Models.CreditNotes.LineItem>>(
+            return JsonModel.GetNotNullClass<List<global::Orb.Models.CreditNotes.LineItem>>(
                 this.RawBodyData,
                 "line_items"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "line_items", value); }
+        init { JsonModel.Set(this._rawBodyData, "line_items", value); }
     }
 
     /// <summary>
@@ -65,11 +65,11 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.CreditNotes.Reason>
             >(this.RawBodyData, "reason");
         }
-        init { ModelBase.Set(this._rawBodyData, "reason", value); }
+        init { JsonModel.Set(this._rawBodyData, "reason", value); }
     }
 
     /// <summary>
@@ -87,14 +87,14 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 #endif
     ? EndDate
     {
-        get { return ModelBase.GetNullableStruct<
+        get { return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
             >(this.RawBodyData, "end_date"); }
-        init { ModelBase.Set(this._rawBodyData, "end_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "end_date", value); }
     }
 
     /// <summary>
@@ -102,8 +102,8 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// </summary>
     public string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "memo"); }
-        init { ModelBase.Set(this._rawBodyData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "memo"); }
+        init { JsonModel.Set(this._rawBodyData, "memo", value); }
     }
 
     /// <summary>
@@ -123,7 +123,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<
+            return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
@@ -131,7 +131,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 #endif
             >(this.RawBodyData, "start_date");
         }
-        init { ModelBase.Set(this._rawBodyData, "start_date", value); }
+        init { JsonModel.Set(this._rawBodyData, "start_date", value); }
     }
 
     public CreditNoteCreateParams() { }
@@ -167,7 +167,7 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static CreditNoteCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -189,9 +189,13 @@ public sealed record class CreditNoteCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -205,20 +209,20 @@ public sealed record class CreditNoteCreateParams : ParamsBase
 }
 
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         global::Orb.Models.CreditNotes.LineItem,
         global::Orb.Models.CreditNotes.LineItemFromRaw
     >)
 )]
-public sealed record class LineItem : ModelBase
+public sealed record class LineItem : JsonModel
 {
     /// <summary>
     /// The total amount in the invoice's currency to credit this line item.
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -226,8 +230,8 @@ public sealed record class LineItem : ModelBase
     /// </summary>
     public required string InvoiceLineItemID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "invoice_line_item_id"); }
-        init { ModelBase.Set(this._rawData, "invoice_line_item_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "invoice_line_item_id"); }
+        init { JsonModel.Set(this._rawData, "invoice_line_item_id", value); }
     }
 
     /// <summary>
@@ -244,14 +248,14 @@ public sealed record class LineItem : ModelBase
 #endif
     ? EndDate
     {
-        get { return ModelBase.GetNullableStruct<
+        get { return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
             >(this.RawData, "end_date"); }
-        init { ModelBase.Set(this._rawData, "end_date", value); }
+        init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
     /// <summary>
@@ -269,14 +273,14 @@ public sealed record class LineItem : ModelBase
 #endif
     ? StartDate
     {
-        get { return ModelBase.GetNullableStruct<
+        get { return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
             >(this.RawData, "start_date"); }
-        init { ModelBase.Set(this._rawData, "start_date", value); }
+        init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -315,7 +319,7 @@ public sealed record class LineItem : ModelBase
     }
 }
 
-class LineItemFromRaw : IFromRaw<global::Orb.Models.CreditNotes.LineItem>
+class LineItemFromRaw : IFromRawJson<global::Orb.Models.CreditNotes.LineItem>
 {
     /// <inheritdoc/>
     public global::Orb.Models.CreditNotes.LineItem FromRawUnchecked(

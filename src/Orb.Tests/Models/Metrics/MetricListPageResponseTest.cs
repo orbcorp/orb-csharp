@@ -165,8 +165,8 @@ public class MetricListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MetricListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MetricListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<BillableMetric> expectedData =

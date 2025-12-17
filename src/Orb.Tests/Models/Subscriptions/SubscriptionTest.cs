@@ -2582,8 +2582,8 @@ public class SubscriptionTest : TestBase
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Subscription>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Subscription>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -4006,8 +4006,8 @@ public class DiscountIntervalTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4034,8 +4034,8 @@ public class DiscountIntervalTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -4062,8 +4062,8 @@ public class DiscountIntervalTest : TestBase
                 UsageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<DiscountInterval>(element);
 
         Assert.Equal(value, deserialized);
     }

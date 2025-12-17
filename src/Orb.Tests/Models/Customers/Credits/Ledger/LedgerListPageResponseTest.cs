@@ -1654,8 +1654,8 @@ public class LedgerListPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<LedgerListPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<LedgerListPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<Data> expectedData =
@@ -3512,8 +3512,8 @@ public class DataTest : TestBase
                 ],
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3556,8 +3556,8 @@ public class DataTest : TestBase
                 PriceID = "price_id",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3598,8 +3598,8 @@ public class DataTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3639,8 +3639,8 @@ public class DataTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3682,8 +3682,8 @@ public class DataTest : TestBase
                 VoidReason = "void_reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3726,8 +3726,8 @@ public class DataTest : TestBase
                 VoidReason = "void_reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -3767,8 +3767,8 @@ public class DataTest : TestBase
                 StartingBalance = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<Data>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<Data>(element);
 
         Assert.Equal(value, deserialized);
     }

@@ -132,8 +132,8 @@ public class CouponTest : TestBase
             TimesRedeemed = 0,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Coupon>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Coupon>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "7iz2yanVjQoBZhyH";
@@ -272,8 +272,8 @@ public class CouponDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -299,8 +299,8 @@ public class CouponDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CouponDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }

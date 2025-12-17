@@ -123,8 +123,8 @@ public class SharedDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -151,8 +151,8 @@ public class SharedDiscountTest : TestBase
                 TrialPercentageDiscount = 0,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -178,8 +178,8 @@ public class SharedDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -205,8 +205,8 @@ public class SharedDiscountTest : TestBase
                 Reason = "reason",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<SharedDiscount>(element);
 
         Assert.Equal(value, deserialized);
     }

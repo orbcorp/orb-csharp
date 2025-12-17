@@ -10,26 +10,26 @@ using System = System;
 namespace Orb.Models.Customers;
 
 [JsonConverter(
-    typeof(ModelConverter<NewAvalaraTaxConfiguration, NewAvalaraTaxConfigurationFromRaw>)
+    typeof(JsonModelConverter<NewAvalaraTaxConfiguration, NewAvalaraTaxConfigurationFromRaw>)
 )]
-public sealed record class NewAvalaraTaxConfiguration : ModelBase
+public sealed record class NewAvalaraTaxConfiguration : JsonModel
 {
     public required bool TaxExempt
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
-        init { ModelBase.Set(this._rawData, "tax_exempt", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "tax_exempt"); }
+        init { JsonModel.Set(this._rawData, "tax_exempt", value); }
     }
 
     public required ApiEnum<string, TaxProvider> TaxProvider
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, TaxProvider>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, TaxProvider>>(
                 this.RawData,
                 "tax_provider"
             );
         }
-        init { ModelBase.Set(this._rawData, "tax_provider", value); }
+        init { JsonModel.Set(this._rawData, "tax_provider", value); }
     }
 
     /// <summary>
@@ -38,14 +38,14 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
     /// </summary>
     public bool? AutomaticTaxEnabled
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
-        init { ModelBase.Set(this._rawData, "automatic_tax_enabled", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "automatic_tax_enabled"); }
+        init { JsonModel.Set(this._rawData, "automatic_tax_enabled", value); }
     }
 
     public string? TaxExemptionCode
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "tax_exemption_code"); }
-        init { ModelBase.Set(this._rawData, "tax_exemption_code", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "tax_exemption_code"); }
+        init { JsonModel.Set(this._rawData, "tax_exemption_code", value); }
     }
 
     /// <inheritdoc/>
@@ -84,7 +84,7 @@ public sealed record class NewAvalaraTaxConfiguration : ModelBase
     }
 }
 
-class NewAvalaraTaxConfigurationFromRaw : IFromRaw<NewAvalaraTaxConfiguration>
+class NewAvalaraTaxConfigurationFromRaw : IFromRawJson<NewAvalaraTaxConfiguration>
 {
     /// <inheritdoc/>
     public NewAvalaraTaxConfiguration FromRawUnchecked(

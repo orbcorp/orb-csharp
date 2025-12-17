@@ -34,8 +34,8 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "currency"); }
-        init { ModelBase.Set(this._rawBodyData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "currency"); }
+        init { JsonModel.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -45,12 +45,12 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, global::Orb.Models.Alerts.Type>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, global::Orb.Models.Alerts.Type>>(
                 this.RawBodyData,
                 "type"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "type", value); }
+        init { JsonModel.Set(this._rawBodyData, "type", value); }
     }
 
     /// <summary>
@@ -58,8 +58,8 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     /// </summary>
     public IReadOnlyList<Threshold>? Thresholds
     {
-        get { return ModelBase.GetNullableClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
-        init { ModelBase.Set(this._rawBodyData, "thresholds", value); }
+        get { return JsonModel.GetNullableClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
+        init { JsonModel.Set(this._rawBodyData, "thresholds", value); }
     }
 
     public AlertCreateForCustomerParams() { }
@@ -95,7 +95,7 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static AlertCreateForCustomerParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -120,9 +120,13 @@ public sealed record class AlertCreateForCustomerParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

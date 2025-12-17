@@ -27,19 +27,19 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
 
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "amount"); }
-        init { ModelBase.Set(this._rawBodyData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "amount"); }
+        init { JsonModel.Set(this._rawBodyData, "amount", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type> Type
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
             >(this.RawBodyData, "type");
         }
-        init { ModelBase.Set(this._rawBodyData, "type", value); }
+        init { JsonModel.Set(this._rawBodyData, "type", value); }
     }
 
     /// <summary>
@@ -47,8 +47,8 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     /// </summary>
     public string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "description"); }
-        init { ModelBase.Set(this._rawBodyData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
+        init { JsonModel.Set(this._rawBodyData, "description", value); }
     }
 
     public BalanceTransactionCreateParams() { }
@@ -86,7 +86,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static BalanceTransactionCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -111,9 +111,13 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

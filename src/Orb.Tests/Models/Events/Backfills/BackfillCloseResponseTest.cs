@@ -95,8 +95,8 @@ public class BackfillCloseResponseTest : TestBase
             DeprecationFilter = "my_numeric_property > 100 AND my_other_property = 'bar'",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<BackfillCloseResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<BackfillCloseResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

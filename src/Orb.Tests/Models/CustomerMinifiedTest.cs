@@ -33,8 +33,8 @@ public class CustomerMinifiedTest : TestBase
     {
         var model = new CustomerMinified { ID = "id", ExternalCustomerID = "external_customer_id" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<CustomerMinified>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<CustomerMinified>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

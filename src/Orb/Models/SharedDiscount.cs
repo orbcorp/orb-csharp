@@ -11,11 +11,11 @@ public record class SharedDiscount
 {
     public object? Value { get; } = null;
 
-    JsonElement? _json = null;
+    JsonElement? _element = null;
 
     public JsonElement Json
     {
-        get { return this._json ??= JsonSerializer.SerializeToElement(this.Value); }
+        get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
     public string? Reason
@@ -31,33 +31,33 @@ public record class SharedDiscount
         }
     }
 
-    public SharedDiscount(PercentageDiscount value, JsonElement? json = null)
+    public SharedDiscount(PercentageDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SharedDiscount(TrialDiscount value, JsonElement? json = null)
+    public SharedDiscount(TrialDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SharedDiscount(UsageDiscount value, JsonElement? json = null)
+    public SharedDiscount(UsageDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SharedDiscount(AmountDiscount value, JsonElement? json = null)
+    public SharedDiscount(AmountDiscount value, JsonElement? element = null)
     {
         this.Value = value;
-        this._json = json;
+        this._element = element;
     }
 
-    public SharedDiscount(JsonElement json)
+    public SharedDiscount(JsonElement element)
     {
-        this._json = json;
+        this._element = element;
     }
 
     /// <summary>
@@ -287,11 +287,11 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
         JsonSerializerOptions options
     )
     {
-        var json = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         string? discountType;
         try
         {
-            discountType = json.GetProperty("discount_type").GetString();
+            discountType = element.GetProperty("discount_type").GetString();
         }
         catch
         {
@@ -305,13 +305,13 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<PercentageDiscount>(
-                        json,
+                        element,
                         options
                     );
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -320,17 +320,17 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "trial":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<TrialDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<TrialDiscount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -339,17 +339,17 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "usage":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UsageDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<UsageDiscount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -358,17 +358,17 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             case "amount":
             {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(json, options);
+                    var deserialized = JsonSerializer.Deserialize<AmountDiscount>(element, options);
                     if (deserialized != null)
                     {
                         deserialized.Validate();
-                        return new(deserialized, json);
+                        return new(deserialized, element);
                     }
                 }
                 catch (System::Exception e)
@@ -377,11 +377,11 @@ sealed class SharedDiscountConverter : JsonConverter<SharedDiscount>
                     // ignore
                 }
 
-                return new(json);
+                return new(element);
             }
             default:
             {
-                return new SharedDiscount(json);
+                return new SharedDiscount(element);
             }
         }
     }

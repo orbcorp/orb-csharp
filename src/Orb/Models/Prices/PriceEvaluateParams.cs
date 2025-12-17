@@ -51,9 +51,9 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
+            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
     }
 
     /// <summary>
@@ -63,9 +63,9 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
+            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
         }
-        init { ModelBase.Set(this._rawBodyData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -73,8 +73,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
     }
 
     /// <summary>
@@ -82,8 +82,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { ModelBase.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
+        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
     }
 
     /// <summary>
@@ -92,8 +92,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? Filter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "filter"); }
-        init { ModelBase.Set(this._rawBodyData, "filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "filter"); }
+        init { JsonModel.Set(this._rawBodyData, "filter", value); }
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public IReadOnlyList<string>? GroupingKeys
     {
-        get { return ModelBase.GetNullableClass<List<string>>(this.RawBodyData, "grouping_keys"); }
+        get { return JsonModel.GetNullableClass<List<string>>(this.RawBodyData, "grouping_keys"); }
         init
         {
             if (value == null)
@@ -110,7 +110,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawBodyData, "grouping_keys", value);
+            JsonModel.Set(this._rawBodyData, "grouping_keys", value);
         }
     }
 
@@ -147,7 +147,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static PriceEvaluateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -172,9 +172,13 @@ public sealed record class PriceEvaluateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

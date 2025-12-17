@@ -1544,8 +1544,8 @@ public class IncrementLedgerEntryTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<IncrementLedgerEntry>(element);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

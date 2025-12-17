@@ -8,17 +8,17 @@ using Orb.Core;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<ConversionRateTieredConfig, ConversionRateTieredConfigFromRaw>)
+    typeof(JsonModelConverter<ConversionRateTieredConfig, ConversionRateTieredConfigFromRaw>)
 )]
-public sealed record class ConversionRateTieredConfig : ModelBase
+public sealed record class ConversionRateTieredConfig : JsonModel
 {
     /// <summary>
     /// Tiers for rating based on total usage quantities into the specified tier
     /// </summary>
     public required IReadOnlyList<ConversionRateTier> Tiers
     {
-        get { return ModelBase.GetNotNullClass<List<ConversionRateTier>>(this.RawData, "tiers"); }
-        init { ModelBase.Set(this._rawData, "tiers", value); }
+        get { return JsonModel.GetNotNullClass<List<ConversionRateTier>>(this.RawData, "tiers"); }
+        init { JsonModel.Set(this._rawData, "tiers", value); }
     }
 
     /// <inheritdoc/>
@@ -64,7 +64,7 @@ public sealed record class ConversionRateTieredConfig : ModelBase
     }
 }
 
-class ConversionRateTieredConfigFromRaw : IFromRaw<ConversionRateTieredConfig>
+class ConversionRateTieredConfigFromRaw : IFromRawJson<ConversionRateTieredConfig>
 {
     /// <inheritdoc/>
     public ConversionRateTieredConfig FromRawUnchecked(

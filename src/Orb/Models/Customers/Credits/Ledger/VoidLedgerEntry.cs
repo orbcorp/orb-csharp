@@ -9,88 +9,88 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<VoidLedgerEntry, VoidLedgerEntryFromRaw>))]
-public sealed record class VoidLedgerEntry : ModelBase
+[JsonConverter(typeof(JsonModelConverter<VoidLedgerEntry, VoidLedgerEntryFromRaw>))]
+public sealed record class VoidLedgerEntry : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required double Amount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     public required AffectedBlock CreditBlock
     {
-        get { return ModelBase.GetNotNullClass<AffectedBlock>(this.RawData, "credit_block"); }
-        init { ModelBase.Set(this._rawData, "credit_block", value); }
+        get { return JsonModel.GetNotNullClass<AffectedBlock>(this.RawData, "credit_block"); }
+        init { JsonModel.Set(this._rawData, "credit_block", value); }
     }
 
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get { return ModelBase.GetNotNullClass<CustomerMinified>(this.RawData, "customer"); }
-        init { ModelBase.Set(this._rawData, "customer", value); }
+        get { return JsonModel.GetNotNullClass<CustomerMinified>(this.RawData, "customer"); }
+        init { JsonModel.Set(this._rawData, "customer", value); }
     }
 
     public required string? Description
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "description"); }
-        init { ModelBase.Set(this._rawData, "description", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
+        init { JsonModel.Set(this._rawData, "description", value); }
     }
 
     public required double EndingBalance
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "ending_balance"); }
-        init { ModelBase.Set(this._rawData, "ending_balance", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "ending_balance"); }
+        init { JsonModel.Set(this._rawData, "ending_balance", value); }
     }
 
     public required ApiEnum<string, VoidLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, VoidLedgerEntryEntryStatus>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, VoidLedgerEntryEntryStatus>>(
                 this.RawData,
                 "entry_status"
             );
         }
-        init { ModelBase.Set(this._rawData, "entry_status", value); }
+        init { JsonModel.Set(this._rawData, "entry_status", value); }
     }
 
     public required ApiEnum<string, VoidLedgerEntryEntryType> EntryType
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, VoidLedgerEntryEntryType>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, VoidLedgerEntryEntryType>>(
                 this.RawData,
                 "entry_type"
             );
         }
-        init { ModelBase.Set(this._rawData, "entry_type", value); }
+        init { JsonModel.Set(this._rawData, "entry_type", value); }
     }
 
     public required long LedgerSequenceNumber
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "ledger_sequence_number"); }
-        init { ModelBase.Set(this._rawData, "ledger_sequence_number", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "ledger_sequence_number"); }
+        init { JsonModel.Set(this._rawData, "ledger_sequence_number", value); }
     }
 
     /// <summary>
@@ -103,27 +103,27 @@ public sealed record class VoidLedgerEntry : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     public required double StartingBalance
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "starting_balance"); }
-        init { ModelBase.Set(this._rawData, "starting_balance", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "starting_balance"); }
+        init { JsonModel.Set(this._rawData, "starting_balance", value); }
     }
 
     public required double VoidAmount
     {
-        get { return ModelBase.GetNotNullStruct<double>(this.RawData, "void_amount"); }
-        init { ModelBase.Set(this._rawData, "void_amount", value); }
+        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "void_amount"); }
+        init { JsonModel.Set(this._rawData, "void_amount", value); }
     }
 
     public required string? VoidReason
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "void_reason"); }
-        init { ModelBase.Set(this._rawData, "void_reason", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "void_reason"); }
+        init { JsonModel.Set(this._rawData, "void_reason", value); }
     }
 
     /// <inheritdoc/>
@@ -171,7 +171,7 @@ public sealed record class VoidLedgerEntry : ModelBase
     }
 }
 
-class VoidLedgerEntryFromRaw : IFromRaw<VoidLedgerEntry>
+class VoidLedgerEntryFromRaw : IFromRawJson<VoidLedgerEntry>
 {
     /// <inheritdoc/>
     public VoidLedgerEntry FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

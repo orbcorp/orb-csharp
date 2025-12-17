@@ -9,26 +9,26 @@ using Orb.Core;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<FixedFeeQuantityTransition, FixedFeeQuantityTransitionFromRaw>)
+    typeof(JsonModelConverter<FixedFeeQuantityTransition, FixedFeeQuantityTransitionFromRaw>)
 )]
-public sealed record class FixedFeeQuantityTransition : ModelBase
+public sealed record class FixedFeeQuantityTransition : JsonModel
 {
     public required DateTimeOffset EffectiveDate
     {
-        get { return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawData, "effective_date"); }
-        init { ModelBase.Set(this._rawData, "effective_date", value); }
+        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "effective_date"); }
+        init { JsonModel.Set(this._rawData, "effective_date", value); }
     }
 
     public required string PriceID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "price_id"); }
-        init { ModelBase.Set(this._rawData, "price_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "price_id"); }
+        init { JsonModel.Set(this._rawData, "price_id", value); }
     }
 
     public required long Quantity
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "quantity"); }
-        init { ModelBase.Set(this._rawData, "quantity", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "quantity"); }
+        init { JsonModel.Set(this._rawData, "quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -66,7 +66,7 @@ public sealed record class FixedFeeQuantityTransition : ModelBase
     }
 }
 
-class FixedFeeQuantityTransitionFromRaw : IFromRaw<FixedFeeQuantityTransition>
+class FixedFeeQuantityTransitionFromRaw : IFromRawJson<FixedFeeQuantityTransition>
 {
     /// <inheritdoc/>
     public FixedFeeQuantityTransition FromRawUnchecked(

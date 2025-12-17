@@ -7,16 +7,16 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubLineItemMatrixConfig, SubLineItemMatrixConfigFromRaw>))]
-public sealed record class SubLineItemMatrixConfig : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SubLineItemMatrixConfig, SubLineItemMatrixConfigFromRaw>))]
+public sealed record class SubLineItemMatrixConfig : JsonModel
 {
     /// <summary>
     /// The ordered dimension values for this line item.
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
-        init { ModelBase.Set(this._rawData, "dimension_values", value); }
+        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
+        init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
     /// <inheritdoc/>
@@ -59,7 +59,7 @@ public sealed record class SubLineItemMatrixConfig : ModelBase
     }
 }
 
-class SubLineItemMatrixConfigFromRaw : IFromRaw<SubLineItemMatrixConfig>
+class SubLineItemMatrixConfigFromRaw : IFromRawJson<SubLineItemMatrixConfig>
 {
     /// <inheritdoc/>
     public SubLineItemMatrixConfig FromRawUnchecked(

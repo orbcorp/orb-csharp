@@ -9,37 +9,37 @@ using System = System;
 
 namespace Orb.Models.Customers.Credits.Ledger;
 
-[JsonConverter(typeof(ModelConverter<AffectedBlock, AffectedBlockFromRaw>))]
-public sealed record class AffectedBlock : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AffectedBlock, AffectedBlockFromRaw>))]
+public sealed record class AffectedBlock : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     public required System::DateTimeOffset? ExpiryDate
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
         }
-        init { ModelBase.Set(this._rawData, "expiry_date", value); }
+        init { JsonModel.Set(this._rawData, "expiry_date", value); }
     }
 
     public required IReadOnlyList<AffectedBlockFilter> Filters
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<AffectedBlockFilter>>(this.RawData, "filters");
+            return JsonModel.GetNotNullClass<List<AffectedBlockFilter>>(this.RawData, "filters");
         }
-        init { ModelBase.Set(this._rawData, "filters", value); }
+        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     public required string? PerUnitCostBasis
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <inheritdoc/>
@@ -79,15 +79,15 @@ public sealed record class AffectedBlock : ModelBase
     }
 }
 
-class AffectedBlockFromRaw : IFromRaw<AffectedBlock>
+class AffectedBlockFromRaw : IFromRawJson<AffectedBlock>
 {
     /// <inheritdoc/>
     public AffectedBlock FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         AffectedBlock.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ModelConverter<AffectedBlockFilter, AffectedBlockFilterFromRaw>))]
-public sealed record class AffectedBlockFilter : ModelBase
+[JsonConverter(typeof(JsonModelConverter<AffectedBlockFilter, AffectedBlockFilterFromRaw>))]
+public sealed record class AffectedBlockFilter : JsonModel
 {
     /// <summary>
     /// The property of the price to filter on.
@@ -96,12 +96,12 @@ public sealed record class AffectedBlockFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, AffectedBlockFilterField>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, AffectedBlockFilterField>>(
                 this.RawData,
                 "field"
             );
         }
-        init { ModelBase.Set(this._rawData, "field", value); }
+        init { JsonModel.Set(this._rawData, "field", value); }
     }
 
     /// <summary>
@@ -111,12 +111,12 @@ public sealed record class AffectedBlockFilter : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, AffectedBlockFilterOperator>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, AffectedBlockFilterOperator>>(
                 this.RawData,
                 "operator"
             );
         }
-        init { ModelBase.Set(this._rawData, "operator", value); }
+        init { JsonModel.Set(this._rawData, "operator", value); }
     }
 
     /// <summary>
@@ -124,8 +124,8 @@ public sealed record class AffectedBlockFilter : ModelBase
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return ModelBase.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { ModelBase.Set(this._rawData, "values", value); }
+        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
+        init { JsonModel.Set(this._rawData, "values", value); }
     }
 
     /// <inheritdoc/>
@@ -163,7 +163,7 @@ public sealed record class AffectedBlockFilter : ModelBase
     }
 }
 
-class AffectedBlockFilterFromRaw : IFromRaw<AffectedBlockFilter>
+class AffectedBlockFilterFromRaw : IFromRawJson<AffectedBlockFilter>
 {
     /// <inheritdoc/>
     public AffectedBlockFilter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

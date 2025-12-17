@@ -57,8 +57,8 @@ public class NewAvalaraTaxConfigurationTest : TestBase
             TaxExemptionCode = "tax_exemption_code",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewAvalaraTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewAvalaraTaxConfiguration>(element);
         Assert.NotNull(deserialized);
 
         bool expectedTaxExempt = true;

@@ -13,13 +13,13 @@ namespace Orb.Models.Events.Backfills;
 /// A backfill represents an update to historical usage data, adding or replacing
 /// events in a timeframe.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<BackfillCloseResponse, BackfillCloseResponseFromRaw>))]
-public sealed record class BackfillCloseResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BackfillCloseResponse, BackfillCloseResponseFromRaw>))]
+public sealed record class BackfillCloseResponse : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -30,18 +30,18 @@ public sealed record class BackfillCloseResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "close_time");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "close_time");
         }
-        init { ModelBase.Set(this._rawData, "close_time", value); }
+        init { JsonModel.Set(this._rawData, "close_time", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -50,8 +50,8 @@ public sealed record class BackfillCloseResponse : ModelBase
     /// </summary>
     public required string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { ModelBase.Set(this._rawData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
+        init { JsonModel.Set(this._rawData, "customer_id", value); }
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public sealed record class BackfillCloseResponse : ModelBase
     /// </summary>
     public required long EventsIngested
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "events_ingested"); }
-        init { ModelBase.Set(this._rawData, "events_ingested", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "events_ingested"); }
+        init { JsonModel.Set(this._rawData, "events_ingested", value); }
     }
 
     /// <summary>
@@ -70,8 +70,8 @@ public sealed record class BackfillCloseResponse : ModelBase
     /// </summary>
     public required bool ReplaceExistingEvents
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "replace_existing_events"); }
-        init { ModelBase.Set(this._rawData, "replace_existing_events", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "replace_existing_events"); }
+        init { JsonModel.Set(this._rawData, "replace_existing_events", value); }
     }
 
     /// <summary>
@@ -81,9 +81,9 @@ public sealed record class BackfillCloseResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "reverted_at");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "reverted_at");
         }
-        init { ModelBase.Set(this._rawData, "reverted_at", value); }
+        init { JsonModel.Set(this._rawData, "reverted_at", value); }
     }
 
     /// <summary>
@@ -93,36 +93,36 @@ public sealed record class BackfillCloseResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, BackfillCloseResponseStatus>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, BackfillCloseResponseStatus>>(
                 this.RawData,
                 "status"
             );
         }
-        init { ModelBase.Set(this._rawData, "status", value); }
+        init { JsonModel.Set(this._rawData, "status", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_end"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_end", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
                 this.RawData,
                 "timeframe_start"
             );
         }
-        init { ModelBase.Set(this._rawData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -131,8 +131,8 @@ public sealed record class BackfillCloseResponse : ModelBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "deprecation_filter"); }
-        init { ModelBase.Set(this._rawData, "deprecation_filter", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "deprecation_filter"); }
+        init { JsonModel.Set(this._rawData, "deprecation_filter", value); }
     }
 
     /// <inheritdoc/>
@@ -178,7 +178,7 @@ public sealed record class BackfillCloseResponse : ModelBase
     }
 }
 
-class BackfillCloseResponseFromRaw : IFromRaw<BackfillCloseResponse>
+class BackfillCloseResponseFromRaw : IFromRawJson<BackfillCloseResponse>
 {
     /// <inheritdoc/>
     public BackfillCloseResponse FromRawUnchecked(

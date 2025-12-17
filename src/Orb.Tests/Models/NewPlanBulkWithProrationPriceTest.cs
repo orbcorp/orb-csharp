@@ -225,8 +225,8 @@ public class NewPlanBulkWithProrationPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanBulkWithProrationPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanBulkWithProrationPrice>(element);
         Assert.NotNull(deserialized);
 
         NewPlanBulkWithProrationPriceBulkWithProrationConfig expectedBulkWithProrationConfig = new(
@@ -569,9 +569,11 @@ public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceBulkWithProrationConfig>(json);
+            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceBulkWithProrationConfig>(
+                element
+            );
         Assert.NotNull(deserialized);
 
         List<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier> expectedTiers =
@@ -648,10 +650,10 @@ public class NewPlanBulkWithProrationPriceBulkWithProrationConfigTierTest : Test
             TierLowerBound = "tier_lower_bound",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceBulkWithProrationConfigTier>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -894,9 +896,9 @@ public class NewPlanBulkWithProrationPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -920,9 +922,9 @@ public class NewPlanBulkWithProrationPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
-            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceConversionRateConfig>(json);
+            JsonSerializer.Deserialize<NewPlanBulkWithProrationPriceConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

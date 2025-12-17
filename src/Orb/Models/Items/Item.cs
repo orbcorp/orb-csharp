@@ -14,16 +14,16 @@ namespace Orb.Models.Items;
 /// with all line items, billable metrics, and prices and are used for defining external
 /// sync behavior for invoices and tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Item, ItemFromRaw>))]
-public sealed record class Item : ModelBase
+[JsonConverter(typeof(JsonModelConverter<Item, ItemFromRaw>))]
+public sealed record class Item : JsonModel
 {
     /// <summary>
     /// The Orb-assigned unique identifier for the item.
     /// </summary>
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -33,9 +33,9 @@ public sealed record class Item : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
+            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
         }
-        init { ModelBase.Set(this._rawData, "created_at", value); }
+        init { JsonModel.Set(this._rawData, "created_at", value); }
     }
 
     /// <summary>
@@ -46,12 +46,12 @@ public sealed record class Item : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<ItemExternalConnection>>(
+            return JsonModel.GetNotNullClass<List<ItemExternalConnection>>(
                 this.RawData,
                 "external_connections"
             );
         }
-        init { ModelBase.Set(this._rawData, "external_connections", value); }
+        init { JsonModel.Set(this._rawData, "external_connections", value); }
     }
 
     /// <summary>
@@ -64,9 +64,9 @@ public sealed record class Item : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
         }
-        init { ModelBase.Set(this._rawData, "metadata", value); }
+        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public sealed record class Item : ModelBase
     /// </summary>
     public required string Name
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "name"); }
-        init { ModelBase.Set(this._rawData, "name", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
+        init { JsonModel.Set(this._rawData, "name", value); }
     }
 
     /// <summary>
@@ -85,9 +85,9 @@ public sealed record class Item : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(this.RawData, "archived_at");
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "archived_at");
         }
-        init { ModelBase.Set(this._rawData, "archived_at", value); }
+        init { JsonModel.Set(this._rawData, "archived_at", value); }
     }
 
     /// <inheritdoc/>
@@ -129,7 +129,7 @@ public sealed record class Item : ModelBase
     }
 }
 
-class ItemFromRaw : IFromRaw<Item>
+class ItemFromRaw : IFromRawJson<Item>
 {
     /// <inheritdoc/>
     public Item FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
@@ -140,8 +140,8 @@ class ItemFromRaw : IFromRaw<Item>
 /// Represents a connection between an Item and an external system for invoicing
 /// or tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ItemExternalConnection, ItemExternalConnectionFromRaw>))]
-public sealed record class ItemExternalConnection : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ItemExternalConnection, ItemExternalConnectionFromRaw>))]
+public sealed record class ItemExternalConnection : JsonModel
 {
     /// <summary>
     /// The name of the external system this item is connected to.
@@ -153,11 +153,11 @@ public sealed record class ItemExternalConnection : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, ItemExternalConnectionExternalConnectionName>
             >(this.RawData, "external_connection_name");
         }
-        init { ModelBase.Set(this._rawData, "external_connection_name", value); }
+        init { JsonModel.Set(this._rawData, "external_connection_name", value); }
     }
 
     /// <summary>
@@ -165,8 +165,8 @@ public sealed record class ItemExternalConnection : ModelBase
     /// </summary>
     public required string ExternalEntityID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
-        init { ModelBase.Set(this._rawData, "external_entity_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
+        init { JsonModel.Set(this._rawData, "external_entity_id", value); }
     }
 
     /// <inheritdoc/>
@@ -203,7 +203,7 @@ public sealed record class ItemExternalConnection : ModelBase
     }
 }
 
-class ItemExternalConnectionFromRaw : IFromRaw<ItemExternalConnection>
+class ItemExternalConnectionFromRaw : IFromRawJson<ItemExternalConnection>
 {
     /// <inheritdoc/>
     public ItemExternalConnection FromRawUnchecked(

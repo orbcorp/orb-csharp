@@ -11,17 +11,17 @@ namespace Orb.Models;
 /// Configuration for matrix pricing with usage allocation
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<MatrixWithAllocationConfig, MatrixWithAllocationConfigFromRaw>)
+    typeof(JsonModelConverter<MatrixWithAllocationConfig, MatrixWithAllocationConfigFromRaw>)
 )]
-public sealed record class MatrixWithAllocationConfig : ModelBase
+public sealed record class MatrixWithAllocationConfig : JsonModel
 {
     /// <summary>
     /// Usage allocation
     /// </summary>
     public required string Allocation
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "allocation"); }
-        init { ModelBase.Set(this._rawData, "allocation", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "allocation"); }
+        init { JsonModel.Set(this._rawData, "allocation", value); }
     }
 
     /// <summary>
@@ -29,8 +29,8 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
-        init { ModelBase.Set(this._rawData, "default_unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
+        init { JsonModel.Set(this._rawData, "default_unit_amount", value); }
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
-        init { ModelBase.Set(this._rawData, "dimensions", value); }
+        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
+        init { JsonModel.Set(this._rawData, "dimensions", value); }
     }
 
     /// <summary>
@@ -49,12 +49,12 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<List<MatrixWithAllocationConfigMatrixValue>>(
+            return JsonModel.GetNotNullClass<List<MatrixWithAllocationConfigMatrixValue>>(
                 this.RawData,
                 "matrix_values"
             );
         }
-        init { ModelBase.Set(this._rawData, "matrix_values", value); }
+        init { JsonModel.Set(this._rawData, "matrix_values", value); }
     }
 
     /// <inheritdoc/>
@@ -96,7 +96,7 @@ public sealed record class MatrixWithAllocationConfig : ModelBase
     }
 }
 
-class MatrixWithAllocationConfigFromRaw : IFromRaw<MatrixWithAllocationConfig>
+class MatrixWithAllocationConfigFromRaw : IFromRawJson<MatrixWithAllocationConfig>
 {
     /// <inheritdoc/>
     public MatrixWithAllocationConfig FromRawUnchecked(
@@ -108,12 +108,12 @@ class MatrixWithAllocationConfigFromRaw : IFromRaw<MatrixWithAllocationConfig>
 /// Configuration for a single matrix value
 /// </summary>
 [JsonConverter(
-    typeof(ModelConverter<
+    typeof(JsonModelConverter<
         MatrixWithAllocationConfigMatrixValue,
         MatrixWithAllocationConfigMatrixValueFromRaw
     >)
 )]
-public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
+public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
 {
     /// <summary>
     /// One or two matrix keys to filter usage to this Matrix value by. For example,
@@ -122,8 +122,8 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return ModelBase.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
-        init { ModelBase.Set(this._rawData, "dimension_values", value); }
+        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
+        init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
     /// <summary>
@@ -131,8 +131,8 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
     /// </summary>
     public required string UnitAmount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { ModelBase.Set(this._rawData, "unit_amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
+        init { JsonModel.Set(this._rawData, "unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -171,7 +171,8 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : ModelBase
     }
 }
 
-class MatrixWithAllocationConfigMatrixValueFromRaw : IFromRaw<MatrixWithAllocationConfigMatrixValue>
+class MatrixWithAllocationConfigMatrixValueFromRaw
+    : IFromRawJson<MatrixWithAllocationConfigMatrixValue>
 {
     /// <inheritdoc/>
     public MatrixWithAllocationConfigMatrixValue FromRawUnchecked(

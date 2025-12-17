@@ -82,9 +82,9 @@ public class CustomerUpdateParamsPaymentConfigurationTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsPaymentConfiguration>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -231,10 +231,10 @@ public class CustomerUpdateParamsPaymentConfigurationPaymentProviderTest : TestB
             ExcludedPaymentMethodTypes = ["string"],
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
             JsonSerializer.Deserialize<CustomerUpdateParamsPaymentConfigurationPaymentProvider>(
-                json
+                element
             );
         Assert.NotNull(deserialized);
 
@@ -552,8 +552,10 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
                 TaxExemptionCode = "tax_exemption_code",
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -569,8 +571,10 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -586,8 +590,10 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -602,8 +608,10 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -618,8 +626,10 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -634,8 +644,10 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
                 AutomaticTaxEnabled = true,
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfiguration>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -687,9 +699,9 @@ public class CustomerUpdateParamsTaxConfigurationNumeralTest : TestBase
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfigurationNumeral>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -805,9 +817,9 @@ public class CustomerUpdateParamsTaxConfigurationAnrokTest : TestBase
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfigurationAnrok>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -923,9 +935,9 @@ public class CustomerUpdateParamsTaxConfigurationStripeTest : TestBase
             AutomaticTaxEnabled = true,
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<CustomerUpdateParamsTaxConfigurationStripe>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 

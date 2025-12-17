@@ -282,9 +282,9 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized =
-            JsonSerializer.Deserialize<NewFloatingScalableMatrixWithTieredPricingPrice>(json);
+            JsonSerializer.Deserialize<NewFloatingScalableMatrixWithTieredPricingPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingScalableMatrixWithTieredPricingPriceCadence> expectedCadence =
@@ -885,8 +885,10 @@ public class ScalableMatrixWithTieredPricingConfigTest : TestBase
             SecondDimension = "second_dimension",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConfig>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedFirstDimension = "first_dimension";
@@ -1100,8 +1102,8 @@ public class MatrixScalingFactorTest : TestBase
             SecondDimensionValue = "second_dimension_value",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixScalingFactor>(element);
         Assert.NotNull(deserialized);
 
         string expectedFirstDimensionValue = "first_dimension_value";
@@ -1225,9 +1227,9 @@ public class ScalableMatrixWithTieredPricingConfigTierTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<ScalableMatrixWithTieredPricingConfigTier>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -1298,10 +1300,10 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -1326,10 +1328,10 @@ public class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

@@ -200,8 +200,8 @@ public class NewFloatingBulkPriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingBulkPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingBulkPrice>(element);
         Assert.NotNull(deserialized);
 
         BulkConfig expectedBulkConfig = new(
@@ -610,8 +610,8 @@ public class ConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }
@@ -635,8 +635,8 @@ public class ConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<ConversionRateConfig>(element);
 
         Assert.Equal(value, deserialized);
     }

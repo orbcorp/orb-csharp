@@ -10,17 +10,17 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(
-    typeof(ModelConverter<NewBillingCycleConfiguration, NewBillingCycleConfigurationFromRaw>)
+    typeof(JsonModelConverter<NewBillingCycleConfiguration, NewBillingCycleConfigurationFromRaw>)
 )]
-public sealed record class NewBillingCycleConfiguration : ModelBase
+public sealed record class NewBillingCycleConfiguration : JsonModel
 {
     /// <summary>
     /// The duration of the billing period.
     /// </summary>
     public required long Duration
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "duration"); }
-        init { ModelBase.Set(this._rawData, "duration", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "duration"); }
+        init { JsonModel.Set(this._rawData, "duration", value); }
     }
 
     /// <summary>
@@ -30,11 +30,11 @@ public sealed record class NewBillingCycleConfiguration : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<
+            return JsonModel.GetNotNullClass<
                 ApiEnum<string, NewBillingCycleConfigurationDurationUnit>
             >(this.RawData, "duration_unit");
         }
-        init { ModelBase.Set(this._rawData, "duration_unit", value); }
+        init { JsonModel.Set(this._rawData, "duration_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -71,7 +71,7 @@ public sealed record class NewBillingCycleConfiguration : ModelBase
     }
 }
 
-class NewBillingCycleConfigurationFromRaw : IFromRaw<NewBillingCycleConfiguration>
+class NewBillingCycleConfigurationFromRaw : IFromRawJson<NewBillingCycleConfiguration>
 {
     /// <inheritdoc/>
     public NewBillingCycleConfiguration FromRawUnchecked(

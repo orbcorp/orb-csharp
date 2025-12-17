@@ -209,9 +209,9 @@ public class NewSubscriptionBulkPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
+        string element = JsonSerializer.Serialize(model);
         var deserialized = JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkPrice>(
-            json
+            element
         );
         Assert.NotNull(deserialized);
 
@@ -637,10 +637,10 @@ public class NewSubscriptionBulkPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -665,10 +665,10 @@ public class NewSubscriptionBulkPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<Subscriptions::NewSubscriptionBulkPriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

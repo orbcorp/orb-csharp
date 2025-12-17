@@ -248,8 +248,10 @@ public class NewFloatingMatrixWithDisplayNamePriceTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixWithDisplayNamePrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewFloatingMatrixWithDisplayNamePrice>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewFloatingMatrixWithDisplayNamePriceCadence> expectedCadence =
@@ -709,8 +711,8 @@ public class MatrixWithDisplayNameConfigTest : TestBase
             ],
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfig>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfig>(element);
         Assert.NotNull(deserialized);
 
         string expectedDimension = "dimension";
@@ -800,8 +802,10 @@ public class MatrixWithDisplayNameConfigUnitAmountTest : TestBase
             UnitAmount = "unit_amount",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfigUnitAmount>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<MatrixWithDisplayNameConfigUnitAmount>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedDimensionValue = "dimension_value";
@@ -932,10 +936,10 @@ public class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigTest : Tes
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingMatrixWithDisplayNamePriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);
@@ -960,10 +964,10 @@ public class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigTest : Tes
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
+        string element = JsonSerializer.Serialize(value);
         var deserialized =
             JsonSerializer.Deserialize<NewFloatingMatrixWithDisplayNamePriceConversionRateConfig>(
-                json
+                element
             );
 
         Assert.Equal(value, deserialized);

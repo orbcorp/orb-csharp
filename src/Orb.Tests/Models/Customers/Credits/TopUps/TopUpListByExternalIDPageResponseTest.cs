@@ -133,8 +133,8 @@ public class TopUpListByExternalIDPageResponseTest : TestBase
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponse>(element);
         Assert.NotNull(deserialized);
 
         List<TopUpListByExternalIDPageResponseData> expectedData =
@@ -302,8 +302,10 @@ public class TopUpListByExternalIDPageResponseDataTest : TestBase
             ExpiresAfterUnit = TopUpListByExternalIDPageResponseDataExpiresAfterUnit.Day,
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponseData>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<TopUpListByExternalIDPageResponseData>(
+            element
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "id";

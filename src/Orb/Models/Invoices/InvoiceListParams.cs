@@ -28,20 +28,20 @@ public sealed record class InvoiceListParams : ParamsBase
 {
     public string? Amount
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "amount"); }
-        init { ModelBase.Set(this._rawQueryData, "amount", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "amount"); }
+        init { JsonModel.Set(this._rawQueryData, "amount", value); }
     }
 
     public string? AmountGt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "amount[gt]"); }
-        init { ModelBase.Set(this._rawQueryData, "amount[gt]", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "amount[gt]"); }
+        init { JsonModel.Set(this._rawQueryData, "amount[gt]", value); }
     }
 
     public string? AmountLt
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "amount[lt]"); }
-        init { ModelBase.Set(this._rawQueryData, "amount[lt]", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "amount[lt]"); }
+        init { JsonModel.Set(this._rawQueryData, "amount[lt]", value); }
     }
 
     /// <summary>
@@ -50,26 +50,26 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
     }
 
     public string? CustomerID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "customer_id"); }
-        init { ModelBase.Set(this._rawQueryData, "customer_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "customer_id"); }
+        init { JsonModel.Set(this._rawQueryData, "customer_id", value); }
     }
 
     public ApiEnum<string, DateType>? DateType
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, DateType>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, DateType>>(
                 this.RawQueryData,
                 "date_type"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "date_type", value); }
+        init { JsonModel.Set(this._rawQueryData, "date_type", value); }
     }
 
     public
@@ -80,14 +80,14 @@ public sealed record class InvoiceListParams : ParamsBase
 #endif
     ? DueDate
     {
-        get { return ModelBase.GetNullableStruct<
+        get { return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
             System::DateTimeOffset
 #endif
             >(this.RawQueryData, "due_date"); }
-        init { ModelBase.Set(this._rawQueryData, "due_date", value); }
+        init { JsonModel.Set(this._rawQueryData, "due_date", value); }
     }
 
     /// <summary>
@@ -98,8 +98,8 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public string? DueDateWindow
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "due_date_window"); }
-        init { ModelBase.Set(this._rawQueryData, "due_date_window", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "due_date_window"); }
+        init { JsonModel.Set(this._rawQueryData, "due_date_window", value); }
     }
 
     public
@@ -112,7 +112,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<
+            return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
@@ -120,7 +120,7 @@ public sealed record class InvoiceListParams : ParamsBase
 #endif
             >(this.RawQueryData, "due_date[gt]");
         }
-        init { ModelBase.Set(this._rawQueryData, "due_date[gt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "due_date[gt]", value); }
     }
 
     public
@@ -133,7 +133,7 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<
+            return JsonModel.GetNullableStruct<
 #if NET
             System::DateOnly
 #else
@@ -141,70 +141,70 @@ public sealed record class InvoiceListParams : ParamsBase
 #endif
             >(this.RawQueryData, "due_date[lt]");
         }
-        init { ModelBase.Set(this._rawQueryData, "due_date[lt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "due_date[lt]", value); }
     }
 
     public string? ExternalCustomerID
     {
         get
         {
-            return ModelBase.GetNullableClass<string>(this.RawQueryData, "external_customer_id");
+            return JsonModel.GetNullableClass<string>(this.RawQueryData, "external_customer_id");
         }
-        init { ModelBase.Set(this._rawQueryData, "external_customer_id", value); }
+        init { JsonModel.Set(this._rawQueryData, "external_customer_id", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateGt
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "invoice_date[gt]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "invoice_date[gt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "invoice_date[gt]", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateGte
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "invoice_date[gte]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "invoice_date[gte]", value); }
+        init { JsonModel.Set(this._rawQueryData, "invoice_date[gte]", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateLt
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "invoice_date[lt]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "invoice_date[lt]", value); }
+        init { JsonModel.Set(this._rawQueryData, "invoice_date[lt]", value); }
     }
 
     public System::DateTimeOffset? InvoiceDateLte
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawQueryData,
                 "invoice_date[lte]"
             );
         }
-        init { ModelBase.Set(this._rawQueryData, "invoice_date[lte]", value); }
+        init { JsonModel.Set(this._rawQueryData, "invoice_date[lte]", value); }
     }
 
     public bool? IsRecurring
     {
-        get { return ModelBase.GetNullableStruct<bool>(this.RawQueryData, "is_recurring"); }
-        init { ModelBase.Set(this._rawQueryData, "is_recurring", value); }
+        get { return JsonModel.GetNullableStruct<bool>(this.RawQueryData, "is_recurring"); }
+        init { JsonModel.Set(this._rawQueryData, "is_recurring", value); }
     }
 
     /// <summary>
@@ -212,7 +212,7 @@ public sealed record class InvoiceListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -220,7 +220,7 @@ public sealed record class InvoiceListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -228,17 +228,17 @@ public sealed record class InvoiceListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 List<ApiEnum<string, global::Orb.Models.Invoices.Status>>
             >(this.RawQueryData, "status");
         }
-        init { ModelBase.Set(this._rawQueryData, "status", value); }
+        init { JsonModel.Set(this._rawQueryData, "status", value); }
     }
 
     public string? SubscriptionID
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "subscription_id"); }
-        init { ModelBase.Set(this._rawQueryData, "subscription_id", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "subscription_id"); }
+        init { JsonModel.Set(this._rawQueryData, "subscription_id", value); }
     }
 
     public InvoiceListParams() { }
@@ -267,7 +267,7 @@ public sealed record class InvoiceListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static InvoiceListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

@@ -225,8 +225,8 @@ public class NewPlanMatrixPriceTest : TestBase
             ReferenceID = "reference_id",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPrice>(element);
         Assert.NotNull(deserialized);
 
         ApiEnum<string, NewPlanMatrixPriceCadence> expectedCadence =
@@ -676,8 +676,10 @@ public class NewPlanMatrixPriceConversionRateConfigTest : TestBase
                 UnitConfig = new("unit_amount"),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPriceConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPriceConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }
@@ -701,8 +703,10 @@ public class NewPlanMatrixPriceConversionRateConfigTest : TestBase
                 ),
             }
         );
-        string json = JsonSerializer.Serialize(value);
-        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPriceConversionRateConfig>(json);
+        string element = JsonSerializer.Serialize(value);
+        var deserialized = JsonSerializer.Deserialize<NewPlanMatrixPriceConversionRateConfig>(
+            element
+        );
 
         Assert.Equal(value, deserialized);
     }

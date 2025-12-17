@@ -10,14 +10,17 @@ using System = System;
 namespace Orb.Models.Customers.Credits.TopUps;
 
 [JsonConverter(
-    typeof(ModelConverter<TopUpCreateByExternalIDResponse, TopUpCreateByExternalIDResponseFromRaw>)
+    typeof(JsonModelConverter<
+        TopUpCreateByExternalIDResponse,
+        TopUpCreateByExternalIDResponseFromRaw
+    >)
 )]
-public sealed record class TopUpCreateByExternalIDResponse : ModelBase
+public sealed record class TopUpCreateByExternalIDResponse : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <summary>
@@ -25,8 +28,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { ModelBase.Set(this._rawData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
+        init { JsonModel.Set(this._rawData, "amount", value); }
     }
 
     /// <summary>
@@ -35,8 +38,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { ModelBase.Set(this._rawData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
+        init { JsonModel.Set(this._rawData, "currency", value); }
     }
 
     /// <summary>
@@ -46,12 +49,12 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<TopUpInvoiceSettings>(
+            return JsonModel.GetNotNullClass<TopUpInvoiceSettings>(
                 this.RawData,
                 "invoice_settings"
             );
         }
-        init { ModelBase.Set(this._rawData, "invoice_settings", value); }
+        init { JsonModel.Set(this._rawData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -59,8 +62,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -69,8 +72,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public required string Threshold
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "threshold"); }
-        init { ModelBase.Set(this._rawData, "threshold", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }
+        init { JsonModel.Set(this._rawData, "threshold", value); }
     }
 
     /// <summary>
@@ -79,8 +82,8 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawData, "expires_after"); }
-        init { ModelBase.Set(this._rawData, "expires_after", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawData, "expires_after"); }
+        init { JsonModel.Set(this._rawData, "expires_after", value); }
     }
 
     /// <summary>
@@ -90,11 +93,11 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableClass<
+            return JsonModel.GetNullableClass<
                 ApiEnum<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>
             >(this.RawData, "expires_after_unit");
         }
-        init { ModelBase.Set(this._rawData, "expires_after_unit", value); }
+        init { JsonModel.Set(this._rawData, "expires_after_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -139,7 +142,7 @@ public sealed record class TopUpCreateByExternalIDResponse : ModelBase
     }
 }
 
-class TopUpCreateByExternalIDResponseFromRaw : IFromRaw<TopUpCreateByExternalIDResponse>
+class TopUpCreateByExternalIDResponseFromRaw : IFromRawJson<TopUpCreateByExternalIDResponse>
 {
     /// <inheritdoc/>
     public TopUpCreateByExternalIDResponse FromRawUnchecked(

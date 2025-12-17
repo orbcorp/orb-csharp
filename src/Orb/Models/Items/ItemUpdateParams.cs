@@ -28,12 +28,12 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<List<ExternalConnection>>(
+            return JsonModel.GetNullableClass<List<ExternalConnection>>(
                 this.RawBodyData,
                 "external_connections"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "external_connections", value); }
+        init { JsonModel.Set(this._rawBodyData, "external_connections", value); }
     }
 
     /// <summary>
@@ -45,18 +45,18 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<Dictionary<string, string?>>(
+            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
                 this.RawBodyData,
                 "metadata"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "metadata", value); }
+        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
     }
 
     public string? Name
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawBodyData, "name"); }
-        init { ModelBase.Set(this._rawBodyData, "name", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "name"); }
+        init { JsonModel.Set(this._rawBodyData, "name", value); }
     }
 
     public ItemUpdateParams() { }
@@ -92,7 +92,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static ItemUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -116,9 +116,13 @@ public sealed record class ItemUpdateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -135,8 +139,8 @@ public sealed record class ItemUpdateParams : ParamsBase
 /// Represents a connection between an Item and an external system for invoicing
 /// or tax calculation purposes.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<ExternalConnection, ExternalConnectionFromRaw>))]
-public sealed record class ExternalConnection : ModelBase
+[JsonConverter(typeof(JsonModelConverter<ExternalConnection, ExternalConnectionFromRaw>))]
+public sealed record class ExternalConnection : JsonModel
 {
     /// <summary>
     /// The name of the external system this item is connected to.
@@ -145,12 +149,12 @@ public sealed record class ExternalConnection : ModelBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
+            return JsonModel.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
                 this.RawData,
                 "external_connection_name"
             );
         }
-        init { ModelBase.Set(this._rawData, "external_connection_name", value); }
+        init { JsonModel.Set(this._rawData, "external_connection_name", value); }
     }
 
     /// <summary>
@@ -158,8 +162,8 @@ public sealed record class ExternalConnection : ModelBase
     /// </summary>
     public required string ExternalEntityID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
-        init { ModelBase.Set(this._rawData, "external_entity_id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
+        init { JsonModel.Set(this._rawData, "external_entity_id", value); }
     }
 
     /// <inheritdoc/>
@@ -196,7 +200,7 @@ public sealed record class ExternalConnection : ModelBase
     }
 }
 
-class ExternalConnectionFromRaw : IFromRaw<ExternalConnection>
+class ExternalConnectionFromRaw : IFromRawJson<ExternalConnection>
 {
     /// <inheritdoc/>
     public ExternalConnection FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

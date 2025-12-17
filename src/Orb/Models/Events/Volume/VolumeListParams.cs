@@ -32,9 +32,9 @@ public sealed record class VolumeListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullStruct<DateTimeOffset>(this.RawQueryData, "timeframe_start");
+            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawQueryData, "timeframe_start");
         }
-        init { ModelBase.Set(this._rawQueryData, "timeframe_start", value); }
+        init { JsonModel.Set(this._rawQueryData, "timeframe_start", value); }
     }
 
     /// <summary>
@@ -43,8 +43,8 @@ public sealed record class VolumeListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { ModelBase.Set(this._rawQueryData, "cursor", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
+        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public sealed record class VolumeListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
         init
         {
             if (value == null)
@@ -60,7 +60,7 @@ public sealed record class VolumeListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "limit", value);
+            JsonModel.Set(this._rawQueryData, "limit", value);
         }
     }
 
@@ -74,7 +74,7 @@ public sealed record class VolumeListParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "timeframe_end");
+            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "timeframe_end");
         }
         init
         {
@@ -83,7 +83,7 @@ public sealed record class VolumeListParams : ParamsBase
                 return;
             }
 
-            ModelBase.Set(this._rawQueryData, "timeframe_end", value);
+            JsonModel.Set(this._rawQueryData, "timeframe_end", value);
         }
     }
 
@@ -113,7 +113,7 @@ public sealed record class VolumeListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static VolumeListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

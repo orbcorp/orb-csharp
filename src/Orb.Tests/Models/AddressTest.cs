@@ -65,8 +65,8 @@ public class AddressTest : TestBase
             State = "state",
         };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<Address>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<Address>(element);
         Assert.NotNull(deserialized);
 
         string expectedCity = "city";

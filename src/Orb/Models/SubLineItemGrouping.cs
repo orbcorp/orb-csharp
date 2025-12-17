@@ -7,13 +7,13 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<SubLineItemGrouping, SubLineItemGroupingFromRaw>))]
-public sealed record class SubLineItemGrouping : ModelBase
+[JsonConverter(typeof(JsonModelConverter<SubLineItemGrouping, SubLineItemGroupingFromRaw>))]
+public sealed record class SubLineItemGrouping : JsonModel
 {
     public required string Key
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "key"); }
-        init { ModelBase.Set(this._rawData, "key", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "key"); }
+        init { JsonModel.Set(this._rawData, "key", value); }
     }
 
     /// <summary>
@@ -21,8 +21,8 @@ public sealed record class SubLineItemGrouping : ModelBase
     /// </summary>
     public required string? Value
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "value"); }
-        init { ModelBase.Set(this._rawData, "value", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "value"); }
+        init { JsonModel.Set(this._rawData, "value", value); }
     }
 
     /// <inheritdoc/>
@@ -59,7 +59,7 @@ public sealed record class SubLineItemGrouping : ModelBase
     }
 }
 
-class SubLineItemGroupingFromRaw : IFromRaw<SubLineItemGrouping>
+class SubLineItemGroupingFromRaw : IFromRawJson<SubLineItemGrouping>
 {
     /// <inheritdoc/>
     public SubLineItemGrouping FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

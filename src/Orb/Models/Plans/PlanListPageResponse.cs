@@ -7,25 +7,25 @@ using Orb.Core;
 
 namespace Orb.Models.Plans;
 
-[JsonConverter(typeof(ModelConverter<PlanListPageResponse, PlanListPageResponseFromRaw>))]
-public sealed record class PlanListPageResponse : ModelBase
+[JsonConverter(typeof(JsonModelConverter<PlanListPageResponse, PlanListPageResponseFromRaw>))]
+public sealed record class PlanListPageResponse : JsonModel
 {
     public required IReadOnlyList<Plan> Data
     {
-        get { return ModelBase.GetNotNullClass<List<Plan>>(this.RawData, "data"); }
-        init { ModelBase.Set(this._rawData, "data", value); }
+        get { return JsonModel.GetNotNullClass<List<Plan>>(this.RawData, "data"); }
+        init { JsonModel.Set(this._rawData, "data", value); }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
         get
         {
-            return ModelBase.GetNotNullClass<PaginationMetadata>(
+            return JsonModel.GetNotNullClass<PaginationMetadata>(
                 this.RawData,
                 "pagination_metadata"
             );
         }
-        init { ModelBase.Set(this._rawData, "pagination_metadata", value); }
+        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -65,7 +65,7 @@ public sealed record class PlanListPageResponse : ModelBase
     }
 }
 
-class PlanListPageResponseFromRaw : IFromRaw<PlanListPageResponse>
+class PlanListPageResponseFromRaw : IFromRawJson<PlanListPageResponse>
 {
     /// <inheritdoc/>
     public PlanListPageResponse FromRawUnchecked(

@@ -31,8 +31,8 @@ public class EventUpdateResponseTest : TestBase
     {
         var model = new EventUpdateResponse { Amended = "amended" };
 
-        string json = JsonSerializer.Serialize(model);
-        var deserialized = JsonSerializer.Deserialize<EventUpdateResponse>(json);
+        string element = JsonSerializer.Serialize(model);
+        var deserialized = JsonSerializer.Deserialize<EventUpdateResponse>(element);
         Assert.NotNull(deserialized);
 
         string expectedAmended = "amended";

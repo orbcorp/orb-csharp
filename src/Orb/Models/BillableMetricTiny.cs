@@ -7,13 +7,13 @@ using Orb.Core;
 
 namespace Orb.Models;
 
-[JsonConverter(typeof(ModelConverter<BillableMetricTiny, BillableMetricTinyFromRaw>))]
-public sealed record class BillableMetricTiny : ModelBase
+[JsonConverter(typeof(JsonModelConverter<BillableMetricTiny, BillableMetricTinyFromRaw>))]
+public sealed record class BillableMetricTiny : JsonModel
 {
     public required string ID
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawData, "id"); }
-        init { ModelBase.Set(this._rawData, "id", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
+        init { JsonModel.Set(this._rawData, "id", value); }
     }
 
     /// <inheritdoc/>
@@ -56,7 +56,7 @@ public sealed record class BillableMetricTiny : ModelBase
     }
 }
 
-class BillableMetricTinyFromRaw : IFromRaw<BillableMetricTiny>
+class BillableMetricTinyFromRaw : IFromRawJson<BillableMetricTiny>
 {
     /// <inheritdoc/>
     public BillableMetricTiny FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>

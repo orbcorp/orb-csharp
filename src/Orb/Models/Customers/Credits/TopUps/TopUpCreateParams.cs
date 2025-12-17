@@ -34,8 +34,8 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "amount"); }
-        init { ModelBase.Set(this._rawBodyData, "amount", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "amount"); }
+        init { JsonModel.Set(this._rawBodyData, "amount", value); }
     }
 
     /// <summary>
@@ -44,8 +44,8 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// </summary>
     public required string Currency
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "currency"); }
-        init { ModelBase.Set(this._rawBodyData, "currency", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "currency"); }
+        init { JsonModel.Set(this._rawBodyData, "currency", value); }
     }
 
     /// <summary>
@@ -55,9 +55,9 @@ public sealed record class TopUpCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNotNullClass<InvoiceSettings>(this.RawBodyData, "invoice_settings");
+            return JsonModel.GetNotNullClass<InvoiceSettings>(this.RawBodyData, "invoice_settings");
         }
-        init { ModelBase.Set(this._rawBodyData, "invoice_settings", value); }
+        init { JsonModel.Set(this._rawBodyData, "invoice_settings", value); }
     }
 
     /// <summary>
@@ -65,8 +65,8 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// </summary>
     public required string PerUnitCostBasis
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "per_unit_cost_basis"); }
-        init { ModelBase.Set(this._rawBodyData, "per_unit_cost_basis", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "per_unit_cost_basis"); }
+        init { JsonModel.Set(this._rawBodyData, "per_unit_cost_basis", value); }
     }
 
     /// <summary>
@@ -75,8 +75,8 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// </summary>
     public required string Threshold
     {
-        get { return ModelBase.GetNotNullClass<string>(this.RawBodyData, "threshold"); }
-        init { ModelBase.Set(this._rawBodyData, "threshold", value); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "threshold"); }
+        init { JsonModel.Set(this._rawBodyData, "threshold", value); }
     }
 
     /// <summary>
@@ -87,12 +87,12 @@ public sealed record class TopUpCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<System::DateTimeOffset>(
+            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
                 this.RawBodyData,
                 "active_from"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "active_from", value); }
+        init { JsonModel.Set(this._rawBodyData, "active_from", value); }
     }
 
     /// <summary>
@@ -101,8 +101,8 @@ public sealed record class TopUpCreateParams : ParamsBase
     /// </summary>
     public long? ExpiresAfter
     {
-        get { return ModelBase.GetNullableStruct<long>(this.RawBodyData, "expires_after"); }
-        init { ModelBase.Set(this._rawBodyData, "expires_after", value); }
+        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "expires_after"); }
+        init { JsonModel.Set(this._rawBodyData, "expires_after", value); }
     }
 
     /// <summary>
@@ -112,12 +112,12 @@ public sealed record class TopUpCreateParams : ParamsBase
     {
         get
         {
-            return ModelBase.GetNullableClass<ApiEnum<string, ExpiresAfterUnit>>(
+            return JsonModel.GetNullableClass<ApiEnum<string, ExpiresAfterUnit>>(
                 this.RawBodyData,
                 "expires_after_unit"
             );
         }
-        init { ModelBase.Set(this._rawBodyData, "expires_after_unit", value); }
+        init { JsonModel.Set(this._rawBodyData, "expires_after_unit", value); }
     }
 
     public TopUpCreateParams() { }
@@ -153,7 +153,7 @@ public sealed record class TopUpCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRaw.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
     public static TopUpCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -178,9 +178,13 @@ public sealed record class TopUpCreateParams : ParamsBase
         }.Uri;
     }
 
-    internal override StringContent? BodyContent()
+    internal override HttpContent? BodyContent()
     {
-        return new(JsonSerializer.Serialize(this.RawBodyData), Encoding.UTF8, "application/json");
+        return new StringContent(
+            JsonSerializer.Serialize(this.RawBodyData),
+            Encoding.UTF8,
+            "application/json"
+        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
@@ -196,8 +200,8 @@ public sealed record class TopUpCreateParams : ParamsBase
 /// <summary>
 /// Settings for invoices generated by triggered top-ups.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<InvoiceSettings, InvoiceSettingsFromRaw>))]
-public sealed record class InvoiceSettings : ModelBase
+[JsonConverter(typeof(JsonModelConverter<InvoiceSettings, InvoiceSettingsFromRaw>))]
+public sealed record class InvoiceSettings : JsonModel
 {
     /// <summary>
     /// Whether the credits purchase invoice should auto collect with the customer's
@@ -205,8 +209,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public required bool AutoCollection
     {
-        get { return ModelBase.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
-        init { ModelBase.Set(this._rawData, "auto_collection", value); }
+        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "auto_collection"); }
+        init { JsonModel.Set(this._rawData, "auto_collection", value); }
     }
 
     /// <summary>
@@ -216,8 +220,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public required long NetTerms
     {
-        get { return ModelBase.GetNotNullStruct<long>(this.RawData, "net_terms"); }
-        init { ModelBase.Set(this._rawData, "net_terms", value); }
+        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "net_terms"); }
+        init { JsonModel.Set(this._rawData, "net_terms", value); }
     }
 
     /// <summary>
@@ -225,8 +229,8 @@ public sealed record class InvoiceSettings : ModelBase
     /// </summary>
     public string? Memo
     {
-        get { return ModelBase.GetNullableClass<string>(this.RawData, "memo"); }
-        init { ModelBase.Set(this._rawData, "memo", value); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "memo"); }
+        init { JsonModel.Set(this._rawData, "memo", value); }
     }
 
     /// <summary>
@@ -239,7 +243,7 @@ public sealed record class InvoiceSettings : ModelBase
     {
         get
         {
-            return ModelBase.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
+            return JsonModel.GetNullableStruct<bool>(this.RawData, "require_successful_payment");
         }
         init
         {
@@ -248,7 +252,7 @@ public sealed record class InvoiceSettings : ModelBase
                 return;
             }
 
-            ModelBase.Set(this._rawData, "require_successful_payment", value);
+            JsonModel.Set(this._rawData, "require_successful_payment", value);
         }
     }
 
@@ -286,7 +290,7 @@ public sealed record class InvoiceSettings : ModelBase
     }
 }
 
-class InvoiceSettingsFromRaw : IFromRaw<InvoiceSettings>
+class InvoiceSettingsFromRaw : IFromRawJson<InvoiceSettings>
 {
     /// <inheritdoc/>
     public InvoiceSettings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
