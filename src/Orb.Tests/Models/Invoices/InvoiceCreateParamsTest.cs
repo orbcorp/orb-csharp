@@ -272,7 +272,7 @@ public class ModelTypeTest : TestBase
 public class DueDateTest : TestBase
 {
     [Fact]
-    public void dateValidation_Works()
+    public void DateValidationWorks()
     {
         DueDate value = new(
 #if NET
@@ -285,14 +285,14 @@ public class DueDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void dateSerializationRoundtrip_Works()
+    public void DateSerializationRoundtripWorks()
     {
         DueDate value = new(
 #if NET
@@ -308,7 +308,7 @@ public class DueDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         DueDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);

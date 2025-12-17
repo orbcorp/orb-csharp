@@ -405,7 +405,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
 public class TaxConfigurationTest : TestBase
 {
     [Fact]
-    public void new_avalaraValidation_Works()
+    public void NewAvalaraValidationWorks()
     {
         TaxConfiguration value = new(
             new NewAvalaraTaxConfiguration()
@@ -420,7 +420,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_tax_jarValidation_Works()
+    public void NewTaxJarValidationWorks()
     {
         TaxConfiguration value = new(
             new NewTaxJarConfiguration()
@@ -434,7 +434,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_sphereValidation_Works()
+    public void NewSphereValidationWorks()
     {
         TaxConfiguration value = new(
             new NewSphereConfiguration()
@@ -448,7 +448,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void numeralValidation_Works()
+    public void NumeralValidationWorks()
     {
         TaxConfiguration value = new(
             new Numeral() { TaxExempt = true, AutomaticTaxEnabled = true }
@@ -457,21 +457,21 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void anrokValidation_Works()
+    public void AnrokValidationWorks()
     {
         TaxConfiguration value = new(new Anrok() { TaxExempt = true, AutomaticTaxEnabled = true });
         value.Validate();
     }
 
     [Fact]
-    public void stripeValidation_Works()
+    public void StripeValidationWorks()
     {
         TaxConfiguration value = new(new Stripe() { TaxExempt = true, AutomaticTaxEnabled = true });
         value.Validate();
     }
 
     [Fact]
-    public void new_avalaraSerializationRoundtrip_Works()
+    public void NewAvalaraSerializationRoundtripWorks()
     {
         TaxConfiguration value = new(
             new NewAvalaraTaxConfiguration()
@@ -489,7 +489,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_tax_jarSerializationRoundtrip_Works()
+    public void NewTaxJarSerializationRoundtripWorks()
     {
         TaxConfiguration value = new(
             new NewTaxJarConfiguration()
@@ -506,7 +506,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_sphereSerializationRoundtrip_Works()
+    public void NewSphereSerializationRoundtripWorks()
     {
         TaxConfiguration value = new(
             new NewSphereConfiguration()
@@ -523,7 +523,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void numeralSerializationRoundtrip_Works()
+    public void NumeralSerializationRoundtripWorks()
     {
         TaxConfiguration value = new(
             new Numeral() { TaxExempt = true, AutomaticTaxEnabled = true }
@@ -535,7 +535,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void anrokSerializationRoundtrip_Works()
+    public void AnrokSerializationRoundtripWorks()
     {
         TaxConfiguration value = new(new Anrok() { TaxExempt = true, AutomaticTaxEnabled = true });
         string json = JsonSerializer.Serialize(value);
@@ -545,7 +545,7 @@ public class TaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void stripeSerializationRoundtrip_Works()
+    public void StripeSerializationRoundtripWorks()
     {
         TaxConfiguration value = new(new Stripe() { TaxExempt = true, AutomaticTaxEnabled = true });
         string json = JsonSerializer.Serialize(value);

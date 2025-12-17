@@ -1343,7 +1343,7 @@ public class ScalableMatrixWithTieredPricingConfigTierTest : TestBase
 public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
             new(
@@ -1357,7 +1357,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
             new(
@@ -1380,7 +1380,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
             new(
@@ -1400,7 +1400,7 @@ public class NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateCo
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithTieredPricingPriceConversionRateConfig value =
             new(

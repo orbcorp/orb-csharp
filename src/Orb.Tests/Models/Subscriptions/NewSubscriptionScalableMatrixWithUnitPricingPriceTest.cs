@@ -1193,7 +1193,7 @@ public class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorTest : TestBa
 public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
@@ -1207,7 +1207,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
@@ -1230,7 +1230,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(
@@ -1250,7 +1250,7 @@ public class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig value =
             new(

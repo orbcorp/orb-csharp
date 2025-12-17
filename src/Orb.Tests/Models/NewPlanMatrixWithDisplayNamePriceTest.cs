@@ -916,7 +916,7 @@ public class NewPlanMatrixWithDisplayNamePriceModelTypeTest : TestBase
 public class NewPlanMatrixWithDisplayNamePriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -929,7 +929,7 @@ public class NewPlanMatrixWithDisplayNamePriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -951,7 +951,7 @@ public class NewPlanMatrixWithDisplayNamePriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -968,7 +968,7 @@ public class NewPlanMatrixWithDisplayNamePriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

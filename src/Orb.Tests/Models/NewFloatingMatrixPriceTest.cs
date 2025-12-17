@@ -612,7 +612,7 @@ public class NewFloatingMatrixPriceModelTypeTest : TestBase
 public class NewFloatingMatrixPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingMatrixPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -625,7 +625,7 @@ public class NewFloatingMatrixPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingMatrixPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -647,7 +647,7 @@ public class NewFloatingMatrixPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingMatrixPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -665,7 +665,7 @@ public class NewFloatingMatrixPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingMatrixPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

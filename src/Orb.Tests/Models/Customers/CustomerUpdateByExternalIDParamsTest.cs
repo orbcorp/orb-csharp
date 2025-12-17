@@ -480,7 +480,7 @@ public class CustomerUpdateByExternalIDParamsPaymentProviderTest : TestBase
 public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
 {
     [Fact]
-    public void new_avalaraValidation_Works()
+    public void NewAvalaraValidationWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new NewAvalaraTaxConfiguration()
@@ -495,7 +495,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_tax_jarValidation_Works()
+    public void NewTaxJarValidationWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new NewTaxJarConfiguration()
@@ -509,7 +509,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_sphereValidation_Works()
+    public void NewSphereValidationWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new NewSphereConfiguration()
@@ -523,7 +523,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void numeralValidation_Works()
+    public void NumeralValidationWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral()
@@ -536,7 +536,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void anrokValidation_Works()
+    public void AnrokValidationWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok()
@@ -549,7 +549,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void stripeValidation_Works()
+    public void StripeValidationWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new CustomerUpdateByExternalIDParamsTaxConfigurationStripe()
@@ -562,7 +562,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_avalaraSerializationRoundtrip_Works()
+    public void NewAvalaraSerializationRoundtripWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new NewAvalaraTaxConfiguration()
@@ -581,7 +581,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_tax_jarSerializationRoundtrip_Works()
+    public void NewTaxJarSerializationRoundtripWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new NewTaxJarConfiguration()
@@ -599,7 +599,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_sphereSerializationRoundtrip_Works()
+    public void NewSphereSerializationRoundtripWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new NewSphereConfiguration()
@@ -617,7 +617,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void numeralSerializationRoundtrip_Works()
+    public void NumeralSerializationRoundtripWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new CustomerUpdateByExternalIDParamsTaxConfigurationNumeral()
@@ -634,7 +634,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void anrokSerializationRoundtrip_Works()
+    public void AnrokSerializationRoundtripWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new CustomerUpdateByExternalIDParamsTaxConfigurationAnrok()
@@ -651,7 +651,7 @@ public class CustomerUpdateByExternalIDParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void stripeSerializationRoundtrip_Works()
+    public void StripeSerializationRoundtripWorks()
     {
         CustomerUpdateByExternalIDParamsTaxConfiguration value = new(
             new CustomerUpdateByExternalIDParamsTaxConfigurationStripe()

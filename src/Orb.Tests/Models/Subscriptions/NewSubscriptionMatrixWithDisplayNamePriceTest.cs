@@ -949,7 +949,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceModelTypeTest : TestBase
 public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -962,7 +962,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -984,7 +984,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -1003,7 +1003,7 @@ public class NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfigTest :
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

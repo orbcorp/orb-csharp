@@ -888,7 +888,7 @@ public class NewFloatingMatrixWithDisplayNamePriceModelTypeTest : TestBase
 public class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -901,7 +901,7 @@ public class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -923,7 +923,7 @@ public class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -942,7 +942,7 @@ public class NewFloatingMatrixWithDisplayNamePriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingMatrixWithDisplayNamePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

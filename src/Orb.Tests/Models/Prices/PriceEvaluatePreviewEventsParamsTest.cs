@@ -809,7 +809,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationTest : TestBase
 public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
 {
     [Fact]
-    public void new_floating_unitValidation_Works()
+    public void NewFloatingUnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingUnitPrice()
@@ -854,7 +854,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tieredValidation_Works()
+    public void NewFloatingTieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredPrice()
@@ -911,7 +911,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulkValidation_Works()
+    public void NewFloatingBulkValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingBulkPrice()
@@ -956,7 +956,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersValidation_Works()
+    public void BulkWithFiltersValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
@@ -1009,7 +1009,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_packageValidation_Works()
+    public void NewFloatingPackageValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingPackagePrice()
@@ -1054,7 +1054,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrixValidation_Works()
+    public void NewFloatingMatrixValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMatrixPrice()
@@ -1107,7 +1107,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_threshold_total_amountValidation_Works()
+    public void NewFloatingThresholdTotalAmountValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingThresholdTotalAmountPrice()
@@ -1160,7 +1160,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_packageValidation_Works()
+    public void NewFloatingTieredPackageValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredPackagePrice()
@@ -1213,7 +1213,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_minimumValidation_Works()
+    public void NewFloatingTieredWithMinimumValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredWithMinimumPrice()
@@ -1277,7 +1277,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tieredValidation_Works()
+    public void NewFloatingGroupedTieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedTieredPrice()
@@ -1330,7 +1330,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_package_with_minimumValidation_Works()
+    public void NewFloatingTieredPackageWithMinimumValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredPackageWithMinimumPrice()
@@ -1394,7 +1394,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_package_with_allocationValidation_Works()
+    public void NewFloatingPackageWithAllocationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingPackageWithAllocationPrice()
@@ -1444,7 +1444,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_percentValidation_Works()
+    public void NewFloatingUnitWithPercentValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingUnitWithPercentPrice()
@@ -1489,7 +1489,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_allocationValidation_Works()
+    public void NewFloatingMatrixWithAllocationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMatrixWithAllocationPrice()
@@ -1543,7 +1543,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_prorationValidation_Works()
+    public void NewFloatingTieredWithProrationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredWithProrationPrice()
@@ -1590,7 +1590,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_prorationValidation_Works()
+    public void NewFloatingUnitWithProrationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingUnitWithProrationPrice()
@@ -1635,7 +1635,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_allocationValidation_Works()
+    public void NewFloatingGroupedAllocationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedAllocationPrice()
@@ -1685,7 +1685,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulk_with_prorationValidation_Works()
+    public void NewFloatingBulkWithProrationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingBulkWithProrationPrice()
@@ -1735,7 +1735,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_prorated_minimumValidation_Works()
+    public void NewFloatingGroupedWithProratedMinimumValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedWithProratedMinimumPrice()
@@ -1786,7 +1786,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_metered_minimumValidation_Works()
+    public void NewFloatingGroupedWithMeteredMinimumValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedWithMeteredMinimumPrice()
@@ -1850,7 +1850,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsValidation_Works()
+    public void GroupedWithMinMaxThresholdsValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
@@ -1901,7 +1901,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_display_nameValidation_Works()
+    public void NewFloatingMatrixWithDisplayNameValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMatrixWithDisplayNamePrice()
@@ -1958,7 +1958,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tiered_packageValidation_Works()
+    public void NewFloatingGroupedTieredPackageValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedTieredPackagePrice()
@@ -2012,7 +2012,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_max_group_tiered_packageValidation_Works()
+    public void NewFloatingMaxGroupTieredPackageValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMaxGroupTieredPackagePrice()
@@ -2066,7 +2066,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_unit_pricingValidation_Works()
+    public void NewFloatingScalableMatrixWithUnitPricingValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingScalableMatrixWithUnitPricingPrice()
@@ -2127,7 +2127,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_tiered_pricingValidation_Works()
+    public void NewFloatingScalableMatrixWithTieredPricingValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingScalableMatrixWithTieredPricingPrice()
@@ -2191,7 +2191,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_cumulative_grouped_bulkValidation_Works()
+    public void NewFloatingCumulativeGroupedBulkValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingCumulativeGroupedBulkPrice()
@@ -2248,7 +2248,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationValidation_Works()
+    public void CumulativeGroupedAllocationValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
@@ -2299,7 +2299,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_minimum_compositeValidation_Works()
+    public void NewFloatingMinimumCompositeValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMinimumCompositePrice()
@@ -2344,7 +2344,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void percentValidation_Works()
+    public void PercentValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
@@ -2388,7 +2388,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputValidation_Works()
+    public void EventOutputValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
@@ -2438,7 +2438,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unitSerializationRoundtrip_Works()
+    public void NewFloatingUnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingUnitPrice()
@@ -2487,7 +2487,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tieredSerializationRoundtrip_Works()
+    public void NewFloatingTieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredPrice()
@@ -2548,7 +2548,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulkSerializationRoundtrip_Works()
+    public void NewFloatingBulkSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingBulkPrice()
@@ -2597,7 +2597,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersSerializationRoundtrip_Works()
+    public void BulkWithFiltersSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters()
@@ -2654,7 +2654,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_packageSerializationRoundtrip_Works()
+    public void NewFloatingPackageSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingPackagePrice()
@@ -2703,7 +2703,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrixSerializationRoundtrip_Works()
+    public void NewFloatingMatrixSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMatrixPrice()
@@ -2760,7 +2760,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_threshold_total_amountSerializationRoundtrip_Works()
+    public void NewFloatingThresholdTotalAmountSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingThresholdTotalAmountPrice()
@@ -2817,7 +2817,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_packageSerializationRoundtrip_Works()
+    public void NewFloatingTieredPackageSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredPackagePrice()
@@ -2874,7 +2874,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_minimumSerializationRoundtrip_Works()
+    public void NewFloatingTieredWithMinimumSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredWithMinimumPrice()
@@ -2942,7 +2942,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tieredSerializationRoundtrip_Works()
+    public void NewFloatingGroupedTieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedTieredPrice()
@@ -2999,7 +2999,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_package_with_minimumSerializationRoundtrip_Works()
+    public void NewFloatingTieredPackageWithMinimumSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredPackageWithMinimumPrice()
@@ -3067,7 +3067,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_package_with_allocationSerializationRoundtrip_Works()
+    public void NewFloatingPackageWithAllocationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingPackageWithAllocationPrice()
@@ -3121,7 +3121,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_percentSerializationRoundtrip_Works()
+    public void NewFloatingUnitWithPercentSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingUnitWithPercentPrice()
@@ -3170,7 +3170,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_allocationSerializationRoundtrip_Works()
+    public void NewFloatingMatrixWithAllocationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMatrixWithAllocationPrice()
@@ -3228,7 +3228,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_prorationSerializationRoundtrip_Works()
+    public void NewFloatingTieredWithProrationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingTieredWithProrationPrice()
@@ -3279,7 +3279,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_prorationSerializationRoundtrip_Works()
+    public void NewFloatingUnitWithProrationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingUnitWithProrationPrice()
@@ -3328,7 +3328,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_allocationSerializationRoundtrip_Works()
+    public void NewFloatingGroupedAllocationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedAllocationPrice()
@@ -3382,7 +3382,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulk_with_prorationSerializationRoundtrip_Works()
+    public void NewFloatingBulkWithProrationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingBulkWithProrationPrice()
@@ -3436,7 +3436,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    public void NewFloatingGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedWithProratedMinimumPrice()
@@ -3491,7 +3491,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    public void NewFloatingGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedWithMeteredMinimumPrice()
@@ -3559,7 +3559,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholds()
@@ -3614,7 +3614,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_display_nameSerializationRoundtrip_Works()
+    public void NewFloatingMatrixWithDisplayNameSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMatrixWithDisplayNamePrice()
@@ -3675,7 +3675,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tiered_packageSerializationRoundtrip_Works()
+    public void NewFloatingGroupedTieredPackageSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingGroupedTieredPackagePrice()
@@ -3733,7 +3733,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_max_group_tiered_packageSerializationRoundtrip_Works()
+    public void NewFloatingMaxGroupTieredPackageSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMaxGroupTieredPackagePrice()
@@ -3791,7 +3791,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    public void NewFloatingScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingScalableMatrixWithUnitPricingPrice()
@@ -3856,7 +3856,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    public void NewFloatingScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingScalableMatrixWithTieredPricingPrice()
@@ -3924,7 +3924,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    public void NewFloatingCumulativeGroupedBulkSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingCumulativeGroupedBulkPrice()
@@ -3985,7 +3985,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocation()
@@ -4040,7 +4040,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void new_floating_minimum_compositeSerializationRoundtrip_Works()
+    public void NewFloatingMinimumCompositeSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new NewFloatingMinimumCompositePrice()
@@ -4089,7 +4089,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void percentSerializationRoundtrip_Works()
+    public void PercentSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercent()
@@ -4137,7 +4137,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceTest : TestBase
     }
 
     [Fact]
-    public void event_outputSerializationRoundtrip_Works()
+    public void EventOutputSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPrice value = new(
             new PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutput()
@@ -5158,7 +5158,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5172,7 +5172,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5195,7 +5195,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5215,7 +5215,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig value =
             new(
@@ -5984,7 +5984,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -5998,7 +5998,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -6021,7 +6021,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -6041,7 +6041,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinM
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig value =
             new(
@@ -6810,7 +6810,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -6824,7 +6824,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -6847,7 +6847,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -6867,7 +6867,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroup
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig value =
             new(
@@ -7479,7 +7479,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -7492,7 +7492,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -7514,7 +7514,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -7533,7 +7533,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversi
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -8279,7 +8279,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
@@ -8293,7 +8293,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
@@ -8316,7 +8316,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(
@@ -8336,7 +8336,7 @@ public class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConv
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig value =
             new(

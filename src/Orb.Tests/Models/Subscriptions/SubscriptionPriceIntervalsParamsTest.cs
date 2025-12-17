@@ -717,21 +717,21 @@ public class AddTest : TestBase
 public class StartDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::StartDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::StartDate value = new(BillingCycleRelativeDate.StartOfTerm);
         value.Validate();
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::StartDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -741,7 +741,7 @@ public class StartDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::StartDate value = new(BillingCycleRelativeDate.StartOfTerm);
         string json = JsonSerializer.Serialize(value);
@@ -754,28 +754,28 @@ public class StartDateTest : TestBase
 public class DiscountTest : TestBase
 {
     [Fact]
-    public void amountValidation_Works()
+    public void AmountValidationWorks()
     {
         Subscriptions::Discount value = new(new Subscriptions::Amount(0));
         value.Validate();
     }
 
     [Fact]
-    public void percentageValidation_Works()
+    public void PercentageValidationWorks()
     {
         Subscriptions::Discount value = new(new Subscriptions::Percentage(0.15));
         value.Validate();
     }
 
     [Fact]
-    public void usageValidation_Works()
+    public void UsageValidationWorks()
     {
         Subscriptions::Discount value = new(new Subscriptions::Usage(2));
         value.Validate();
     }
 
     [Fact]
-    public void amountSerializationRoundtrip_Works()
+    public void AmountSerializationRoundtripWorks()
     {
         Subscriptions::Discount value = new(new Subscriptions::Amount(0));
         string json = JsonSerializer.Serialize(value);
@@ -785,7 +785,7 @@ public class DiscountTest : TestBase
     }
 
     [Fact]
-    public void percentageSerializationRoundtrip_Works()
+    public void PercentageSerializationRoundtripWorks()
     {
         Subscriptions::Discount value = new(new Subscriptions::Percentage(0.15));
         string json = JsonSerializer.Serialize(value);
@@ -795,7 +795,7 @@ public class DiscountTest : TestBase
     }
 
     [Fact]
-    public void usageSerializationRoundtrip_Works()
+    public void UsageSerializationRoundtripWorks()
     {
         Subscriptions::Discount value = new(new Subscriptions::Usage(2));
         string json = JsonSerializer.Serialize(value);
@@ -962,21 +962,21 @@ public class UsageTest : TestBase
 public class EndDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::EndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::EndDate value = new(BillingCycleRelativeDate.StartOfTerm);
         value.Validate();
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -986,7 +986,7 @@ public class EndDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EndDate value = new(BillingCycleRelativeDate.StartOfTerm);
         string json = JsonSerializer.Serialize(value);
@@ -1069,7 +1069,7 @@ public class FixedFeeQuantityTransitionTest : TestBase
 public class PriceModelTest : TestBase
 {
     [Fact]
-    public void new_floating_unitValidation_Works()
+    public void NewFloatingUnitValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingUnitPrice()
@@ -1114,7 +1114,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tieredValidation_Works()
+    public void NewFloatingTieredValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredPrice()
@@ -1171,7 +1171,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulkValidation_Works()
+    public void NewFloatingBulkValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingBulkPrice()
@@ -1216,7 +1216,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersValidation_Works()
+    public void BulkWithFiltersValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelBulkWithFilters()
@@ -1268,7 +1268,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_packageValidation_Works()
+    public void NewFloatingPackageValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingPackagePrice()
@@ -1313,7 +1313,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrixValidation_Works()
+    public void NewFloatingMatrixValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMatrixPrice()
@@ -1366,7 +1366,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_threshold_total_amountValidation_Works()
+    public void NewFloatingThresholdTotalAmountValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingThresholdTotalAmountPrice()
@@ -1419,7 +1419,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_packageValidation_Works()
+    public void NewFloatingTieredPackageValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredPackagePrice()
@@ -1472,7 +1472,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_minimumValidation_Works()
+    public void NewFloatingTieredWithMinimumValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredWithMinimumPrice()
@@ -1536,7 +1536,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tieredValidation_Works()
+    public void NewFloatingGroupedTieredValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedTieredPrice()
@@ -1589,7 +1589,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_package_with_minimumValidation_Works()
+    public void NewFloatingTieredPackageWithMinimumValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredPackageWithMinimumPrice()
@@ -1653,7 +1653,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_package_with_allocationValidation_Works()
+    public void NewFloatingPackageWithAllocationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingPackageWithAllocationPrice()
@@ -1703,7 +1703,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_percentValidation_Works()
+    public void NewFloatingUnitWithPercentValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingUnitWithPercentPrice()
@@ -1748,7 +1748,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_allocationValidation_Works()
+    public void NewFloatingMatrixWithAllocationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMatrixWithAllocationPrice()
@@ -1802,7 +1802,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_prorationValidation_Works()
+    public void NewFloatingTieredWithProrationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredWithProrationPrice()
@@ -1849,7 +1849,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_prorationValidation_Works()
+    public void NewFloatingUnitWithProrationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingUnitWithProrationPrice()
@@ -1894,7 +1894,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_allocationValidation_Works()
+    public void NewFloatingGroupedAllocationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedAllocationPrice()
@@ -1944,7 +1944,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulk_with_prorationValidation_Works()
+    public void NewFloatingBulkWithProrationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingBulkWithProrationPrice()
@@ -1994,7 +1994,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_prorated_minimumValidation_Works()
+    public void NewFloatingGroupedWithProratedMinimumValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedWithProratedMinimumPrice()
@@ -2045,7 +2045,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_metered_minimumValidation_Works()
+    public void NewFloatingGroupedWithMeteredMinimumValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedWithMeteredMinimumPrice()
@@ -2109,7 +2109,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsValidation_Works()
+    public void GroupedWithMinMaxThresholdsValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelGroupedWithMinMaxThresholds()
@@ -2159,7 +2159,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_display_nameValidation_Works()
+    public void NewFloatingMatrixWithDisplayNameValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMatrixWithDisplayNamePrice()
@@ -2216,7 +2216,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tiered_packageValidation_Works()
+    public void NewFloatingGroupedTieredPackageValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedTieredPackagePrice()
@@ -2270,7 +2270,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_max_group_tiered_packageValidation_Works()
+    public void NewFloatingMaxGroupTieredPackageValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMaxGroupTieredPackagePrice()
@@ -2324,7 +2324,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_unit_pricingValidation_Works()
+    public void NewFloatingScalableMatrixWithUnitPricingValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingScalableMatrixWithUnitPricingPrice()
@@ -2385,7 +2385,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_tiered_pricingValidation_Works()
+    public void NewFloatingScalableMatrixWithTieredPricingValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingScalableMatrixWithTieredPricingPrice()
@@ -2449,7 +2449,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_cumulative_grouped_bulkValidation_Works()
+    public void NewFloatingCumulativeGroupedBulkValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingCumulativeGroupedBulkPrice()
@@ -2506,7 +2506,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationValidation_Works()
+    public void CumulativeGroupedAllocationValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelCumulativeGroupedAllocation()
@@ -2556,7 +2556,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_minimum_compositeValidation_Works()
+    public void NewFloatingMinimumCompositeValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMinimumCompositePrice()
@@ -2601,7 +2601,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void percentValidation_Works()
+    public void PercentValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelPercent()
@@ -2645,7 +2645,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void event_outputValidation_Works()
+    public void EventOutputValidationWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelEventOutput()
@@ -2694,7 +2694,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unitSerializationRoundtrip_Works()
+    public void NewFloatingUnitSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingUnitPrice()
@@ -2742,7 +2742,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tieredSerializationRoundtrip_Works()
+    public void NewFloatingTieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredPrice()
@@ -2802,7 +2802,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulkSerializationRoundtrip_Works()
+    public void NewFloatingBulkSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingBulkPrice()
@@ -2850,7 +2850,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void bulk_with_filtersSerializationRoundtrip_Works()
+    public void BulkWithFiltersSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelBulkWithFilters()
@@ -2905,7 +2905,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_packageSerializationRoundtrip_Works()
+    public void NewFloatingPackageSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingPackagePrice()
@@ -2953,7 +2953,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrixSerializationRoundtrip_Works()
+    public void NewFloatingMatrixSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMatrixPrice()
@@ -3009,7 +3009,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_threshold_total_amountSerializationRoundtrip_Works()
+    public void NewFloatingThresholdTotalAmountSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingThresholdTotalAmountPrice()
@@ -3065,7 +3065,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_packageSerializationRoundtrip_Works()
+    public void NewFloatingTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredPackagePrice()
@@ -3121,7 +3121,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_minimumSerializationRoundtrip_Works()
+    public void NewFloatingTieredWithMinimumSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredWithMinimumPrice()
@@ -3188,7 +3188,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tieredSerializationRoundtrip_Works()
+    public void NewFloatingGroupedTieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedTieredPrice()
@@ -3244,7 +3244,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_package_with_minimumSerializationRoundtrip_Works()
+    public void NewFloatingTieredPackageWithMinimumSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredPackageWithMinimumPrice()
@@ -3311,7 +3311,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_package_with_allocationSerializationRoundtrip_Works()
+    public void NewFloatingPackageWithAllocationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingPackageWithAllocationPrice()
@@ -3364,7 +3364,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_percentSerializationRoundtrip_Works()
+    public void NewFloatingUnitWithPercentSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingUnitWithPercentPrice()
@@ -3412,7 +3412,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_allocationSerializationRoundtrip_Works()
+    public void NewFloatingMatrixWithAllocationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMatrixWithAllocationPrice()
@@ -3469,7 +3469,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_tiered_with_prorationSerializationRoundtrip_Works()
+    public void NewFloatingTieredWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingTieredWithProrationPrice()
@@ -3519,7 +3519,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_unit_with_prorationSerializationRoundtrip_Works()
+    public void NewFloatingUnitWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingUnitWithProrationPrice()
@@ -3567,7 +3567,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_allocationSerializationRoundtrip_Works()
+    public void NewFloatingGroupedAllocationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedAllocationPrice()
@@ -3620,7 +3620,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_bulk_with_prorationSerializationRoundtrip_Works()
+    public void NewFloatingBulkWithProrationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingBulkWithProrationPrice()
@@ -3673,7 +3673,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_prorated_minimumSerializationRoundtrip_Works()
+    public void NewFloatingGroupedWithProratedMinimumSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedWithProratedMinimumPrice()
@@ -3727,7 +3727,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_with_metered_minimumSerializationRoundtrip_Works()
+    public void NewFloatingGroupedWithMeteredMinimumSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedWithMeteredMinimumPrice()
@@ -3794,7 +3794,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void grouped_with_min_max_thresholdsSerializationRoundtrip_Works()
+    public void GroupedWithMinMaxThresholdsSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelGroupedWithMinMaxThresholds()
@@ -3847,7 +3847,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_matrix_with_display_nameSerializationRoundtrip_Works()
+    public void NewFloatingMatrixWithDisplayNameSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMatrixWithDisplayNamePrice()
@@ -3907,7 +3907,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_grouped_tiered_packageSerializationRoundtrip_Works()
+    public void NewFloatingGroupedTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingGroupedTieredPackagePrice()
@@ -3964,7 +3964,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_max_group_tiered_packageSerializationRoundtrip_Works()
+    public void NewFloatingMaxGroupTieredPackageSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMaxGroupTieredPackagePrice()
@@ -4021,7 +4021,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_unit_pricingSerializationRoundtrip_Works()
+    public void NewFloatingScalableMatrixWithUnitPricingSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingScalableMatrixWithUnitPricingPrice()
@@ -4085,7 +4085,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_scalable_matrix_with_tiered_pricingSerializationRoundtrip_Works()
+    public void NewFloatingScalableMatrixWithTieredPricingSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingScalableMatrixWithTieredPricingPrice()
@@ -4152,7 +4152,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_cumulative_grouped_bulkSerializationRoundtrip_Works()
+    public void NewFloatingCumulativeGroupedBulkSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingCumulativeGroupedBulkPrice()
@@ -4212,7 +4212,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void cumulative_grouped_allocationSerializationRoundtrip_Works()
+    public void CumulativeGroupedAllocationSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelCumulativeGroupedAllocation()
@@ -4265,7 +4265,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void new_floating_minimum_compositeSerializationRoundtrip_Works()
+    public void NewFloatingMinimumCompositeSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new NewFloatingMinimumCompositePrice()
@@ -4313,7 +4313,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void percentSerializationRoundtrip_Works()
+    public void PercentSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelPercent()
@@ -4360,7 +4360,7 @@ public class PriceModelTest : TestBase
     }
 
     [Fact]
-    public void event_outputSerializationRoundtrip_Works()
+    public void EventOutputSerializationRoundtripWorks()
     {
         Subscriptions::PriceModel value = new(
             new Subscriptions::PriceModelEventOutput()
@@ -5314,7 +5314,7 @@ public class PriceModelBulkWithFiltersCadenceTest : TestBase
 public class PriceModelBulkWithFiltersConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::PriceModelBulkWithFiltersConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -5327,7 +5327,7 @@ public class PriceModelBulkWithFiltersConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::PriceModelBulkWithFiltersConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -5349,7 +5349,7 @@ public class PriceModelBulkWithFiltersConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelBulkWithFiltersConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -5368,7 +5368,7 @@ public class PriceModelBulkWithFiltersConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelBulkWithFiltersConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -6070,7 +6070,7 @@ public class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
 public class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -6083,7 +6083,7 @@ public class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -6105,7 +6105,7 @@ public class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -6124,7 +6124,7 @@ public class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelGroupedWithMinMaxThresholdsConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -6826,7 +6826,7 @@ public class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationCon
 public class PriceModelCumulativeGroupedAllocationConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -6839,7 +6839,7 @@ public class PriceModelCumulativeGroupedAllocationConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -6861,7 +6861,7 @@ public class PriceModelCumulativeGroupedAllocationConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -6880,7 +6880,7 @@ public class PriceModelCumulativeGroupedAllocationConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelCumulativeGroupedAllocationConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -7454,7 +7454,7 @@ public class PriceModelPercentPercentConfigTest : TestBase
 public class PriceModelPercentConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::PriceModelPercentConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -7467,7 +7467,7 @@ public class PriceModelPercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::PriceModelPercentConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -7489,7 +7489,7 @@ public class PriceModelPercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelPercentConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -7506,7 +7506,7 @@ public class PriceModelPercentConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelPercentConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -8212,7 +8212,7 @@ public class PriceModelEventOutputEventOutputConfigTest : TestBase
 public class PriceModelEventOutputConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::PriceModelEventOutputConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -8225,7 +8225,7 @@ public class PriceModelEventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::PriceModelEventOutputConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -8247,7 +8247,7 @@ public class PriceModelEventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelEventOutputConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -8266,7 +8266,7 @@ public class PriceModelEventOutputConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::PriceModelEventOutputConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -8567,7 +8567,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
 public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -8576,7 +8576,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBa
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value = new(
             BillingCycleRelativeDate.StartOfTerm
@@ -8585,7 +8585,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBa
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -8600,7 +8600,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBa
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentStartDate value = new(
             BillingCycleRelativeDate.StartOfTerm
@@ -8618,7 +8618,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateTest : TestBa
 public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestBase
 {
     [Fact]
-    public void new_percentage_discountValidation_Works()
+    public void NewPercentageDiscountValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewPercentageDiscount()
@@ -8646,7 +8646,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_usage_discountValidation_Works()
+    public void NewUsageDiscountValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewUsageDiscount()
@@ -8674,7 +8674,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_amount_discountValidation_Works()
+    public void NewAmountDiscountValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewAmountDiscount()
@@ -8702,7 +8702,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_minimumValidation_Works()
+    public void NewMinimumValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewMinimum()
@@ -8731,7 +8731,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_maximumValidation_Works()
+    public void NewMaximumValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewMaximum()
@@ -8759,7 +8759,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_percentage_discountSerializationRoundtrip_Works()
+    public void NewPercentageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewPercentageDiscount()
@@ -8793,7 +8793,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_usage_discountSerializationRoundtrip_Works()
+    public void NewUsageDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewUsageDiscount()
@@ -8827,7 +8827,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_amount_discountSerializationRoundtrip_Works()
+    public void NewAmountDiscountSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewAmountDiscount()
@@ -8861,7 +8861,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_minimumSerializationRoundtrip_Works()
+    public void NewMinimumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewMinimum()
@@ -8896,7 +8896,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
     }
 
     [Fact]
-    public void new_maximumSerializationRoundtrip_Works()
+    public void NewMaximumSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment value = new(
             new NewMaximum()
@@ -8933,7 +8933,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
 public class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -8942,7 +8942,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate value = new(
             BillingCycleRelativeDate.StartOfTerm
@@ -8951,7 +8951,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateTest : TestBase
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -8966,7 +8966,7 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustmentEndDate value = new(
             BillingCycleRelativeDate.StartOfTerm
@@ -9368,21 +9368,21 @@ public class EditTest : TestBase
 public class EditEndDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::EditEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::EditEndDate value = new(BillingCycleRelativeDate.StartOfTerm);
         value.Validate();
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EditEndDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -9392,7 +9392,7 @@ public class EditEndDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditEndDate value = new(BillingCycleRelativeDate.StartOfTerm);
         string json = JsonSerializer.Serialize(value);
@@ -9473,21 +9473,21 @@ public class EditFixedFeeQuantityTransitionTest : TestBase
 public class EditStartDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::EditStartDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         value.Validate();
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::EditStartDate value = new(BillingCycleRelativeDate.StartOfTerm);
         value.Validate();
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EditStartDate value = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"));
         string json = JsonSerializer.Serialize(value);
@@ -9497,7 +9497,7 @@ public class EditStartDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditStartDate value = new(BillingCycleRelativeDate.StartOfTerm);
         string json = JsonSerializer.Serialize(value);
@@ -9702,7 +9702,7 @@ public class EditAdjustmentTest : TestBase
 public class EditAdjustmentEndDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::EditAdjustmentEndDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -9711,14 +9711,14 @@ public class EditAdjustmentEndDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::EditAdjustmentEndDate value = new(BillingCycleRelativeDate.StartOfTerm);
         value.Validate();
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EditAdjustmentEndDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -9730,7 +9730,7 @@ public class EditAdjustmentEndDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditAdjustmentEndDate value = new(BillingCycleRelativeDate.StartOfTerm);
         string json = JsonSerializer.Serialize(value);
@@ -9743,7 +9743,7 @@ public class EditAdjustmentEndDateTest : TestBase
 public class EditAdjustmentStartDateTest : TestBase
 {
     [Fact]
-    public void date_timeValidation_Works()
+    public void DateTimeValidationWorks()
     {
         Subscriptions::EditAdjustmentStartDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -9752,14 +9752,14 @@ public class EditAdjustmentStartDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeValidation_Works()
+    public void BillingCycleRelativeValidationWorks()
     {
         Subscriptions::EditAdjustmentStartDate value = new(BillingCycleRelativeDate.StartOfTerm);
         value.Validate();
     }
 
     [Fact]
-    public void date_timeSerializationRoundtrip_Works()
+    public void DateTimeSerializationRoundtripWorks()
     {
         Subscriptions::EditAdjustmentStartDate value = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
@@ -9771,7 +9771,7 @@ public class EditAdjustmentStartDateTest : TestBase
     }
 
     [Fact]
-    public void billing_cycle_relativeSerializationRoundtrip_Works()
+    public void BillingCycleRelativeSerializationRoundtripWorks()
     {
         Subscriptions::EditAdjustmentStartDate value = new(BillingCycleRelativeDate.StartOfTerm);
         string json = JsonSerializer.Serialize(value);

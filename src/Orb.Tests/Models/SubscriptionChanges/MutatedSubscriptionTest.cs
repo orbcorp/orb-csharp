@@ -11644,7 +11644,7 @@ public class MutatedSubscriptionTest : TestBase
 public class DiscountIntervalTest : TestBase
 {
     [Fact]
-    public void amountValidation_Works()
+    public void AmountValidationWorks()
     {
         DiscountInterval value = new(
             new Models::AmountDiscountInterval()
@@ -11669,7 +11669,7 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
-    public void percentageValidation_Works()
+    public void PercentageValidationWorks()
     {
         DiscountInterval value = new(
             new Models::PercentageDiscountInterval()
@@ -11694,7 +11694,7 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
-    public void usageValidation_Works()
+    public void UsageValidationWorks()
     {
         DiscountInterval value = new(
             new Models::UsageDiscountInterval()
@@ -11719,7 +11719,7 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
-    public void amountSerializationRoundtrip_Works()
+    public void AmountSerializationRoundtripWorks()
     {
         DiscountInterval value = new(
             new Models::AmountDiscountInterval()
@@ -11747,7 +11747,7 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
-    public void percentageSerializationRoundtrip_Works()
+    public void PercentageSerializationRoundtripWorks()
     {
         DiscountInterval value = new(
             new Models::PercentageDiscountInterval()
@@ -11775,7 +11775,7 @@ public class DiscountIntervalTest : TestBase
     }
 
     [Fact]
-    public void usageSerializationRoundtrip_Works()
+    public void UsageSerializationRoundtripWorks()
     {
         DiscountInterval value = new(
             new Models::UsageDiscountInterval()

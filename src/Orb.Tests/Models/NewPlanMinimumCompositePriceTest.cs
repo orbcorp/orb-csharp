@@ -716,7 +716,7 @@ public class NewPlanMinimumCompositePriceModelTypeTest : TestBase
 public class NewPlanMinimumCompositePriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanMinimumCompositePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -729,7 +729,7 @@ public class NewPlanMinimumCompositePriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanMinimumCompositePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -751,7 +751,7 @@ public class NewPlanMinimumCompositePriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanMinimumCompositePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -768,7 +768,7 @@ public class NewPlanMinimumCompositePriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanMinimumCompositePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

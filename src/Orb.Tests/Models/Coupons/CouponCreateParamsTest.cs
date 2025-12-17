@@ -6,21 +6,21 @@ namespace Orb.Tests.Models.Coupons;
 public class DiscountTest : TestBase
 {
     [Fact]
-    public void percentageValidation_Works()
+    public void PercentageValidationWorks()
     {
         Discount value = new(new Percentage(0));
         value.Validate();
     }
 
     [Fact]
-    public void amountValidation_Works()
+    public void AmountValidationWorks()
     {
         Discount value = new(new Amount("amount_discount"));
         value.Validate();
     }
 
     [Fact]
-    public void percentageSerializationRoundtrip_Works()
+    public void PercentageSerializationRoundtripWorks()
     {
         Discount value = new(new Percentage(0));
         string json = JsonSerializer.Serialize(value);
@@ -30,7 +30,7 @@ public class DiscountTest : TestBase
     }
 
     [Fact]
-    public void amountSerializationRoundtrip_Works()
+    public void AmountSerializationRoundtripWorks()
     {
         Discount value = new(new Amount("amount_discount"));
         string json = JsonSerializer.Serialize(value);

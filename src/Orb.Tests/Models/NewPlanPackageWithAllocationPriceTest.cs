@@ -718,7 +718,7 @@ public class NewPlanPackageWithAllocationPricePackageWithAllocationConfigTest : 
 public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -731,7 +731,7 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -753,7 +753,7 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -770,7 +770,7 @@ public class NewPlanPackageWithAllocationPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewPlanPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

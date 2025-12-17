@@ -729,7 +729,7 @@ public class NewSubscriptionMinimumCompositePriceModelTypeTest : TestBase
 public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -742,7 +742,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -764,7 +764,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -783,7 +783,7 @@ public class NewSubscriptionMinimumCompositePriceConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionMinimumCompositePriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

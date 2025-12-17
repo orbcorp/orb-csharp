@@ -1065,7 +1065,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceModelTypeTest : TestBa
 public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
@@ -1079,7 +1079,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
@@ -1102,7 +1102,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(
@@ -1122,7 +1122,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfigTe
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceConversionRateConfig value =
             new(

@@ -564,7 +564,7 @@ public class NewFloatingUnitPriceModelTypeTest : TestBase
 public class NewFloatingUnitPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingUnitPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -577,7 +577,7 @@ public class NewFloatingUnitPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingUnitPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -599,7 +599,7 @@ public class NewFloatingUnitPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingUnitPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -617,7 +617,7 @@ public class NewFloatingUnitPriceConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingUnitPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

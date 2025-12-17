@@ -716,7 +716,7 @@ public class NewFloatingGroupedWithProratedMinimumPriceModelTypeTest : TestBase
 public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -729,7 +729,7 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -751,7 +751,7 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -770,7 +770,7 @@ public class NewFloatingGroupedWithProratedMinimumPriceConversionRateConfigTest 
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingGroupedWithProratedMinimumPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

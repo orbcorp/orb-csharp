@@ -864,7 +864,7 @@ public class ConsumptionTableTest : TestBase
 public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -877,7 +877,7 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -899,7 +899,7 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -918,7 +918,7 @@ public class NewFloatingThresholdTotalAmountPriceConversionRateConfigTest : Test
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingThresholdTotalAmountPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

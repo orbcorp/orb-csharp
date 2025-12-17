@@ -566,7 +566,7 @@ public class ModelTypeTest : TestBase
 public class ConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         ConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -579,7 +579,7 @@ public class ConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         ConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -601,7 +601,7 @@ public class ConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         ConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -617,7 +617,7 @@ public class ConversionRateConfigTest : TestBase
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         ConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

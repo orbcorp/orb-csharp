@@ -755,7 +755,7 @@ public class PackageWithAllocationConfigTest : TestBase
 public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -768,7 +768,7 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -790,7 +790,7 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -809,7 +809,7 @@ public class NewSubscriptionPackageWithAllocationPriceConversionRateConfigTest :
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionPackageWithAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

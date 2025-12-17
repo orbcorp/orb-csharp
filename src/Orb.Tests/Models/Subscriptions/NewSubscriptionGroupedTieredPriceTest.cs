@@ -843,7 +843,7 @@ public class NewSubscriptionGroupedTieredPriceModelTypeTest : TestBase
 public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -856,7 +856,7 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -878,7 +878,7 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -897,7 +897,7 @@ public class NewSubscriptionGroupedTieredPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedTieredPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

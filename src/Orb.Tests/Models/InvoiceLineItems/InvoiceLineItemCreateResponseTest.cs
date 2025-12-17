@@ -1167,7 +1167,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
 public class AdjustmentTest : TestBase
 {
     [Fact]
-    public void monetary_usage_discountValidation_Works()
+    public void MonetaryUsageDiscountValidationWorks()
     {
         Adjustment value = new(
             new Models::MonetaryUsageDiscountAdjustment()
@@ -1196,7 +1196,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_amount_discountValidation_Works()
+    public void MonetaryAmountDiscountValidationWorks()
     {
         Adjustment value = new(
             new Models::MonetaryAmountDiscountAdjustment()
@@ -1224,7 +1224,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_percentage_discountValidation_Works()
+    public void MonetaryPercentageDiscountValidationWorks()
     {
         Adjustment value = new(
             new Models::MonetaryPercentageDiscountAdjustment()
@@ -1254,7 +1254,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_minimumValidation_Works()
+    public void MonetaryMinimumValidationWorks()
     {
         Adjustment value = new(
             new Models::MonetaryMinimumAdjustment()
@@ -1283,7 +1283,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_maximumValidation_Works()
+    public void MonetaryMaximumValidationWorks()
     {
         Adjustment value = new(
             new Models::MonetaryMaximumAdjustment()
@@ -1311,7 +1311,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_usage_discountSerializationRoundtrip_Works()
+    public void MonetaryUsageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::MonetaryUsageDiscountAdjustment()
@@ -1343,7 +1343,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_amount_discountSerializationRoundtrip_Works()
+    public void MonetaryAmountDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::MonetaryAmountDiscountAdjustment()
@@ -1374,7 +1374,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_percentage_discountSerializationRoundtrip_Works()
+    public void MonetaryPercentageDiscountSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::MonetaryPercentageDiscountAdjustment()
@@ -1407,7 +1407,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_minimumSerializationRoundtrip_Works()
+    public void MonetaryMinimumSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::MonetaryMinimumAdjustment()
@@ -1439,7 +1439,7 @@ public class AdjustmentTest : TestBase
     }
 
     [Fact]
-    public void monetary_maximumSerializationRoundtrip_Works()
+    public void MonetaryMaximumSerializationRoundtripWorks()
     {
         Adjustment value = new(
             new Models::MonetaryMaximumAdjustment()
@@ -1473,7 +1473,7 @@ public class AdjustmentTest : TestBase
 public class SubLineItemTest : TestBase
 {
     [Fact]
-    public void matrixValidation_Works()
+    public void MatrixValidationWorks()
     {
         SubLineItem value = new(
             new Models::MatrixSubLineItem()
@@ -1491,7 +1491,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void tierValidation_Works()
+    public void TierValidationWorks()
     {
         SubLineItem value = new(
             new Models::TierSubLineItem()
@@ -1513,7 +1513,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void otherValidation_Works()
+    public void OtherValidationWorks()
     {
         SubLineItem value = new(
             new Models::OtherSubLineItem()
@@ -1529,7 +1529,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void matrixSerializationRoundtrip_Works()
+    public void MatrixSerializationRoundtripWorks()
     {
         SubLineItem value = new(
             new Models::MatrixSubLineItem()
@@ -1550,7 +1550,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void tierSerializationRoundtrip_Works()
+    public void TierSerializationRoundtripWorks()
     {
         SubLineItem value = new(
             new Models::TierSubLineItem()
@@ -1575,7 +1575,7 @@ public class SubLineItemTest : TestBase
     }
 
     [Fact]
-    public void otherSerializationRoundtrip_Works()
+    public void OtherSerializationRoundtripWorks()
     {
         SubLineItem value = new(
             new Models::OtherSubLineItem()

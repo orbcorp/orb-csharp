@@ -694,7 +694,7 @@ public class NewFloatingGroupedAllocationPriceModelTypeTest : TestBase
 public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -707,7 +707,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -729,7 +729,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -746,7 +746,7 @@ public class NewFloatingGroupedAllocationPriceConversionRateConfigTest : TestBas
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingGroupedAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

@@ -888,7 +888,7 @@ public class NewFloatingCumulativeGroupedBulkPriceModelTypeTest : TestBase
 public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -901,7 +901,7 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -923,7 +923,7 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -942,7 +942,7 @@ public class NewFloatingCumulativeGroupedBulkPriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         NewFloatingCumulativeGroupedBulkPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()

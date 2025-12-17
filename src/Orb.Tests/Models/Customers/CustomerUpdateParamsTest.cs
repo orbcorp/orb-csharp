@@ -459,7 +459,7 @@ public class CustomerUpdateParamsPaymentProviderTest : TestBase
 public class CustomerUpdateParamsTaxConfigurationTest : TestBase
 {
     [Fact]
-    public void new_avalaraValidation_Works()
+    public void NewAvalaraValidationWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new NewAvalaraTaxConfiguration()
@@ -474,7 +474,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_tax_jarValidation_Works()
+    public void NewTaxJarValidationWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new NewTaxJarConfiguration()
@@ -488,7 +488,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_sphereValidation_Works()
+    public void NewSphereValidationWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new NewSphereConfiguration()
@@ -502,7 +502,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void numeralValidation_Works()
+    public void NumeralValidationWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new CustomerUpdateParamsTaxConfigurationNumeral()
@@ -515,7 +515,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void anrokValidation_Works()
+    public void AnrokValidationWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new CustomerUpdateParamsTaxConfigurationAnrok()
@@ -528,7 +528,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void stripeValidation_Works()
+    public void StripeValidationWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new CustomerUpdateParamsTaxConfigurationStripe()
@@ -541,7 +541,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_avalaraSerializationRoundtrip_Works()
+    public void NewAvalaraSerializationRoundtripWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new NewAvalaraTaxConfiguration()
@@ -559,7 +559,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_tax_jarSerializationRoundtrip_Works()
+    public void NewTaxJarSerializationRoundtripWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new NewTaxJarConfiguration()
@@ -576,7 +576,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void new_sphereSerializationRoundtrip_Works()
+    public void NewSphereSerializationRoundtripWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new NewSphereConfiguration()
@@ -593,7 +593,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void numeralSerializationRoundtrip_Works()
+    public void NumeralSerializationRoundtripWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new CustomerUpdateParamsTaxConfigurationNumeral()
@@ -609,7 +609,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void anrokSerializationRoundtrip_Works()
+    public void AnrokSerializationRoundtripWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new CustomerUpdateParamsTaxConfigurationAnrok()
@@ -625,7 +625,7 @@ public class CustomerUpdateParamsTaxConfigurationTest : TestBase
     }
 
     [Fact]
-    public void stripeSerializationRoundtrip_Works()
+    public void StripeSerializationRoundtripWorks()
     {
         CustomerUpdateParamsTaxConfiguration value = new(
             new CustomerUpdateParamsTaxConfigurationStripe()

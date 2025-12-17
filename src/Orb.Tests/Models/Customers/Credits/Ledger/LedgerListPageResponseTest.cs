@@ -2483,7 +2483,7 @@ public class LedgerListPageResponseTest : TestBase
 public class DataTest : TestBase
 {
     [Fact]
-    public void increment_ledger_entryValidation_Works()
+    public void IncrementLedgerEntryValidationWorks()
     {
         Data value = new(
             new IncrementLedgerEntry()
@@ -2881,7 +2881,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void decrement_ledger_entryValidation_Works()
+    public void DecrementLedgerEntryValidationWorks()
     {
         Data value = new(
             new DecrementLedgerEntry()
@@ -2922,7 +2922,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void expiration_change_ledger_entryValidation_Works()
+    public void ExpirationChangeLedgerEntryValidationWorks()
     {
         Data value = new(
             new ExpirationChangeLedgerEntry()
@@ -2961,7 +2961,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void credit_block_expiry_ledger_entryValidation_Works()
+    public void CreditBlockExpiryLedgerEntryValidationWorks()
     {
         Data value = new(
             new CreditBlockExpiryLedgerEntry()
@@ -2999,7 +2999,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void void_ledger_entryValidation_Works()
+    public void VoidLedgerEntryValidationWorks()
     {
         Data value = new(
             new VoidLedgerEntry()
@@ -3039,7 +3039,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void void_initiated_ledger_entryValidation_Works()
+    public void VoidInitiatedLedgerEntryValidationWorks()
     {
         Data value = new(
             new VoidInitiatedLedgerEntry()
@@ -3080,7 +3080,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void amendment_ledger_entryValidation_Works()
+    public void AmendmentLedgerEntryValidationWorks()
     {
         Data value = new(
             new AmendmentLedgerEntry()
@@ -3118,7 +3118,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void increment_ledger_entrySerializationRoundtrip_Works()
+    public void IncrementLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new IncrementLedgerEntry()
@@ -3519,7 +3519,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void decrement_ledger_entrySerializationRoundtrip_Works()
+    public void DecrementLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new DecrementLedgerEntry()
@@ -3563,7 +3563,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void expiration_change_ledger_entrySerializationRoundtrip_Works()
+    public void ExpirationChangeLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new ExpirationChangeLedgerEntry()
@@ -3605,7 +3605,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void credit_block_expiry_ledger_entrySerializationRoundtrip_Works()
+    public void CreditBlockExpiryLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new CreditBlockExpiryLedgerEntry()
@@ -3646,7 +3646,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void void_ledger_entrySerializationRoundtrip_Works()
+    public void VoidLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new VoidLedgerEntry()
@@ -3689,7 +3689,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void void_initiated_ledger_entrySerializationRoundtrip_Works()
+    public void VoidInitiatedLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new VoidInitiatedLedgerEntry()
@@ -3733,7 +3733,7 @@ public class DataTest : TestBase
     }
 
     [Fact]
-    public void amendment_ledger_entrySerializationRoundtrip_Works()
+    public void AmendmentLedgerEntrySerializationRoundtripWorks()
     {
         Data value = new(
             new AmendmentLedgerEntry()

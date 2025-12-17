@@ -1785,7 +1785,7 @@ public class PlanTest : TestBase
 public class PlanAdjustmentTest : TestBase
 {
     [Fact]
-    public void plan_phase_usage_discountValidation_Works()
+    public void PlanPhaseUsageDiscountValidationWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseUsageDiscountAdjustment()
@@ -1814,7 +1814,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_amount_discountValidation_Works()
+    public void PlanPhaseAmountDiscountValidationWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseAmountDiscountAdjustment()
@@ -1843,7 +1843,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_percentage_discountValidation_Works()
+    public void PlanPhasePercentageDiscountValidationWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhasePercentageDiscountAdjustment()
@@ -1873,7 +1873,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_minimumValidation_Works()
+    public void PlanPhaseMinimumValidationWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseMinimumAdjustment()
@@ -1902,7 +1902,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_maximumValidation_Works()
+    public void PlanPhaseMaximumValidationWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseMaximumAdjustment()
@@ -1930,7 +1930,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_usage_discountSerializationRoundtrip_Works()
+    public void PlanPhaseUsageDiscountSerializationRoundtripWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseUsageDiscountAdjustment()
@@ -1962,7 +1962,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_amount_discountSerializationRoundtrip_Works()
+    public void PlanPhaseAmountDiscountSerializationRoundtripWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseAmountDiscountAdjustment()
@@ -1994,7 +1994,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_percentage_discountSerializationRoundtrip_Works()
+    public void PlanPhasePercentageDiscountSerializationRoundtripWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhasePercentageDiscountAdjustment()
@@ -2027,7 +2027,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_minimumSerializationRoundtrip_Works()
+    public void PlanPhaseMinimumSerializationRoundtripWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseMinimumAdjustment()
@@ -2059,7 +2059,7 @@ public class PlanAdjustmentTest : TestBase
     }
 
     [Fact]
-    public void plan_phase_maximumSerializationRoundtrip_Works()
+    public void PlanPhaseMaximumSerializationRoundtripWorks()
     {
         PlanAdjustment value = new(
             new Models::PlanPhaseMaximumAdjustment()

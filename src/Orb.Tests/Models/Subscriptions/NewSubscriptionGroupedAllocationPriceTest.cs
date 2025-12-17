@@ -743,7 +743,7 @@ public class NewSubscriptionGroupedAllocationPriceModelTypeTest : TestBase
 public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : TestBase
 {
     [Fact]
-    public void unitValidation_Works()
+    public void UnitValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -756,7 +756,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredValidation_Works()
+    public void TieredValidationWorks()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
@@ -778,7 +778,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void unitSerializationRoundtrip_Works()
+    public void UnitSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
             new SharedUnitConversionRateConfig()
@@ -797,7 +797,7 @@ public class NewSubscriptionGroupedAllocationPriceConversionRateConfigTest : Tes
     }
 
     [Fact]
-    public void tieredSerializationRoundtrip_Works()
+    public void TieredSerializationRoundtripWorks()
     {
         Subscriptions::NewSubscriptionGroupedAllocationPriceConversionRateConfig value = new(
             new SharedTieredConversionRateConfig()
