@@ -32,20 +32,8 @@ public class BodyTest : TestBase
                 InvoiceSettings = new()
                 {
                     AutoCollection = true,
-                    CustomDueDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
-                    InvoiceDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
                     Memo = "memo",
                     NetTerms = 0,
@@ -79,13 +67,7 @@ public class BodyTest : TestBase
         Ledger::Body value = new(
             new Ledger::ExpirationChange()
             {
-                TargetExpiryDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                TargetExpiryDate = "2019-12-27",
                 Amount = 0,
                 BlockID = "block_id",
                 Currency = "currency",
@@ -153,20 +135,8 @@ public class BodyTest : TestBase
                 InvoiceSettings = new()
                 {
                     AutoCollection = true,
-                    CustomDueDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
-                    InvoiceDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
                     Memo = "memo",
                     NetTerms = 0,
@@ -206,13 +176,7 @@ public class BodyTest : TestBase
         Ledger::Body value = new(
             new Ledger::ExpirationChange()
             {
-                TargetExpiryDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                TargetExpiryDate = "2019-12-27",
                 Amount = 0,
                 BlockID = "block_id",
                 Currency = "currency",
@@ -291,20 +255,8 @@ public class IncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -332,20 +284,8 @@ public class IncrementTest : TestBase
         Ledger::InvoiceSettings expectedInvoiceSettings = new()
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -399,20 +339,8 @@ public class IncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -450,20 +378,8 @@ public class IncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -495,20 +411,8 @@ public class IncrementTest : TestBase
         Ledger::InvoiceSettings expectedInvoiceSettings = new()
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -562,20 +466,8 @@ public class IncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -875,20 +767,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -896,20 +776,8 @@ public class InvoiceSettingsTest : TestBase
         };
 
         bool expectedAutoCollection = true;
-        Ledger::CustomDueDate expectedCustomDueDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
-        Ledger::InvoiceDate expectedInvoiceDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
+        Ledger::CustomDueDate expectedCustomDueDate = "2019-12-27";
+        Ledger::InvoiceDate expectedInvoiceDate = "2019-12-27";
         string expectedItemID = "item_id";
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
@@ -930,20 +798,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -962,20 +818,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -987,20 +831,8 @@ public class InvoiceSettingsTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedAutoCollection = true;
-        Ledger::CustomDueDate expectedCustomDueDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
-        Ledger::InvoiceDate expectedInvoiceDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
+        Ledger::CustomDueDate expectedCustomDueDate = "2019-12-27";
+        Ledger::InvoiceDate expectedInvoiceDate = "2019-12-27";
         string expectedItemID = "item_id";
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
@@ -1021,20 +853,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1050,20 +870,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1079,20 +887,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1107,20 +903,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1139,20 +923,8 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1248,13 +1020,7 @@ public class CustomDueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        Ledger::CustomDueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        Ledger::CustomDueDate value = new("2019-12-27");
         value.Validate();
     }
 
@@ -1268,13 +1034,7 @@ public class CustomDueDateTest : TestBase
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        Ledger::CustomDueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        Ledger::CustomDueDate value = new("2019-12-27");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::CustomDueDate>(element);
 
@@ -1297,13 +1057,7 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        Ledger::InvoiceDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        Ledger::InvoiceDate value = new("2019-12-27");
         value.Validate();
     }
 
@@ -1317,13 +1071,7 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        Ledger::InvoiceDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        Ledger::InvoiceDate value = new("2019-12-27");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<Ledger::InvoiceDate>(element);
 
@@ -1502,13 +1250,7 @@ public class ExpirationChangeTest : TestBase
     {
         var model = new Ledger::ExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1520,19 +1262,7 @@ public class ExpirationChangeTest : TestBase
         JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
             "\"expiration_change\""
         );
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedTargetExpiryDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
+        string expectedTargetExpiryDate = "2019-12-27";
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
         string expectedCurrency = "currency";
@@ -1561,13 +1291,7 @@ public class ExpirationChangeTest : TestBase
     {
         var model = new Ledger::ExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1587,13 +1311,7 @@ public class ExpirationChangeTest : TestBase
     {
         var model = new Ledger::ExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1609,19 +1327,7 @@ public class ExpirationChangeTest : TestBase
         JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
             "\"expiration_change\""
         );
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedTargetExpiryDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
+        string expectedTargetExpiryDate = "2019-12-27";
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
         string expectedCurrency = "currency";
@@ -1650,13 +1356,7 @@ public class ExpirationChangeTest : TestBase
     {
         var model = new Ledger::ExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1671,16 +1371,7 @@ public class ExpirationChangeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Ledger::ExpirationChange
-        {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-        };
+        var model = new Ledger::ExpirationChange { TargetExpiryDate = "2019-12-27" };
 
         Assert.Null(model.Amount);
         Assert.False(model.RawData.ContainsKey("amount"));
@@ -1699,16 +1390,7 @@ public class ExpirationChangeTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Ledger::ExpirationChange
-        {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-        };
+        var model = new Ledger::ExpirationChange { TargetExpiryDate = "2019-12-27" };
 
         model.Validate();
     }
@@ -1718,13 +1400,7 @@ public class ExpirationChangeTest : TestBase
     {
         var model = new Ledger::ExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
 
             Amount = null,
             BlockID = null,
@@ -1753,13 +1429,7 @@ public class ExpirationChangeTest : TestBase
     {
         var model = new Ledger::ExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
 
             Amount = null,
             BlockID = null,

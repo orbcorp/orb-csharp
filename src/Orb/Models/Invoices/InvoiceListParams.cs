@@ -72,21 +72,9 @@ public sealed record class InvoiceListParams : ParamsBase
         init { JsonModel.Set(this._rawQueryData, "date_type", value); }
     }
 
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? DueDate
+    public string? DueDate
     {
-        get { return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawQueryData, "due_date"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "due_date"); }
         init { JsonModel.Set(this._rawQueryData, "due_date", value); }
     }
 
@@ -102,45 +90,15 @@ public sealed record class InvoiceListParams : ParamsBase
         init { JsonModel.Set(this._rawQueryData, "due_date_window", value); }
     }
 
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? DueDateGt
+    public string? DueDateGt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawQueryData, "due_date[gt]");
-        }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "due_date[gt]"); }
         init { JsonModel.Set(this._rawQueryData, "due_date[gt]", value); }
     }
 
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? DueDateLt
+    public string? DueDateLt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawQueryData, "due_date[lt]");
-        }
+        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "due_date[lt]"); }
         init { JsonModel.Set(this._rawQueryData, "due_date[lt]", value); }
     }
 

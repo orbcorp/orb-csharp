@@ -96,24 +96,9 @@ public sealed record class SubscriptionUpdateFixedFeeQuantityParams : ParamsBase
     /// timezone. If this parameter is not passed in, the quantity change is effective
     /// according to `change_option`.
     /// </summary>
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? EffectiveDate
+    public string? EffectiveDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawBodyData, "effective_date");
-        }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "effective_date"); }
         init { JsonModel.Set(this._rawBodyData, "effective_date", value); }
     }
 

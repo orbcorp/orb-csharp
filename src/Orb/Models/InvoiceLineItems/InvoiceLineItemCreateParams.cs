@@ -42,21 +42,9 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// <summary>
     /// A date string to specify the line item's end date in the customer's timezone.
     /// </summary>
-    public required
-#if NET
-    DateOnly
-#else
-    DateTimeOffset
-#endif
-    EndDate
+    public required string EndDate
     {
-        get { return JsonModel.GetNotNullStruct<
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            >(this.RawBodyData, "end_date"); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "end_date"); }
         init { JsonModel.Set(this._rawBodyData, "end_date", value); }
     }
 
@@ -81,21 +69,9 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// <summary>
     /// A date string to specify the line item's start date in the customer's timezone.
     /// </summary>
-    public required
-#if NET
-    DateOnly
-#else
-    DateTimeOffset
-#endif
-    StartDate
+    public required string StartDate
     {
-        get { return JsonModel.GetNotNullStruct<
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            >(this.RawBodyData, "start_date"); }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "start_date"); }
         init { JsonModel.Set(this._rawBodyData, "start_date", value); }
     }
 

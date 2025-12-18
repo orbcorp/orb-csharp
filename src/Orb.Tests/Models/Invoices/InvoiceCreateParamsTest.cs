@@ -14,56 +14,21 @@ public class LineItemTest : TestBase
     {
         var model = new LineItem
         {
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
             ModelType = ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            StartDate = "2023-09-22",
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
         };
 
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedEndDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
+        string expectedEndDate = "2023-09-22";
         string expectedItemID = "4khy3nwzktxv7";
         ApiEnum<string, ModelType> expectedModelType = ModelType.Unit;
         string expectedName = "Line Item Name";
         double expectedQuantity = 1;
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedStartDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
+        string expectedStartDate = "2023-09-22";
         Models::UnitConfig expectedUnitConfig = new()
         {
             UnitAmount = "unit_amount",
@@ -84,24 +49,12 @@ public class LineItemTest : TestBase
     {
         var model = new LineItem
         {
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
             ModelType = ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            StartDate = "2023-09-22",
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
         };
 
@@ -116,24 +69,12 @@ public class LineItemTest : TestBase
     {
         var model = new LineItem
         {
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
             ModelType = ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            StartDate = "2023-09-22",
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
         };
 
@@ -141,35 +82,12 @@ public class LineItemTest : TestBase
         var deserialized = JsonSerializer.Deserialize<LineItem>(element);
         Assert.NotNull(deserialized);
 
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedEndDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
+        string expectedEndDate = "2023-09-22";
         string expectedItemID = "4khy3nwzktxv7";
         ApiEnum<string, ModelType> expectedModelType = ModelType.Unit;
         string expectedName = "Line Item Name";
         double expectedQuantity = 1;
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedStartDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
+        string expectedStartDate = "2023-09-22";
         Models::UnitConfig expectedUnitConfig = new()
         {
             UnitAmount = "unit_amount",
@@ -190,24 +108,12 @@ public class LineItemTest : TestBase
     {
         var model = new LineItem
         {
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
             ItemID = "4khy3nwzktxv7",
             ModelType = ModelType.Unit,
             Name = "Line Item Name",
             Quantity = 1,
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            StartDate = "2023-09-22",
             UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
         };
 
@@ -274,13 +180,7 @@ public class DueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        DueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        DueDate value = new("2019-12-27");
         value.Validate();
     }
 
@@ -294,13 +194,7 @@ public class DueDateTest : TestBase
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        DueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        DueDate value = new("2019-12-27");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<DueDate>(element);
 

@@ -26,24 +26,9 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// <summary>
     /// A date string to specify the date of the payment.
     /// </summary>
-    public required
-#if NET
-    DateOnly
-#else
-    DateTimeOffset
-#endif
-    PaymentReceivedDate
+    public required string PaymentReceivedDate
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            >(this.RawBodyData, "payment_received_date");
-        }
+        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "payment_received_date"); }
         init { JsonModel.Set(this._rawBodyData, "payment_received_date", value); }
     }
 

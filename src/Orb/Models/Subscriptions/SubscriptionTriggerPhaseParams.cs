@@ -43,21 +43,9 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// The date on which the phase change should take effect. If not provided, defaults
     /// to today in the customer's timezone.
     /// </summary>
-    public
-#if NET
-    DateOnly
-#else
-    DateTimeOffset
-#endif
-    ? EffectiveDate
+    public string? EffectiveDate
     {
-        get { return JsonModel.GetNullableStruct<
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            >(this.RawBodyData, "effective_date"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "effective_date"); }
         init { JsonModel.Set(this._rawBodyData, "effective_date", value); }
     }
 
