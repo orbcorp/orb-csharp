@@ -79,21 +79,9 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// items will use their original invoice line item service periods. This date
     /// is inclusive.
     /// </summary>
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? EndDate
+    public string? EndDate
     {
-        get { return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawBodyData, "end_date"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "end_date"); }
         init { JsonModel.Set(this._rawBodyData, "end_date", value); }
     }
 
@@ -113,24 +101,9 @@ public sealed record class CreditNoteCreateParams : ParamsBase
     /// items will use their original invoice line item service periods. This date
     /// is inclusive.
     /// </summary>
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? StartDate
+    public string? StartDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawBodyData, "start_date");
-        }
+        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "start_date"); }
         init { JsonModel.Set(this._rawBodyData, "start_date", value); }
     }
 
@@ -240,21 +213,9 @@ public sealed record class LineItem : JsonModel
     /// line item. If not provided, will use the global end_date if available, otherwise
     /// defaults to the original invoice line item's end date. This date is inclusive.
     /// </summary>
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? EndDate
+    public string? EndDate
     {
-        get { return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawData, "end_date"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "end_date"); }
         init { JsonModel.Set(this._rawData, "end_date", value); }
     }
 
@@ -265,21 +226,9 @@ public sealed record class LineItem : JsonModel
     /// otherwise defaults to the original invoice line item's start date. This date
     /// is inclusive.
     /// </summary>
-    public
-#if NET
-    System::DateOnly
-#else
-    System::DateTimeOffset
-#endif
-    ? StartDate
+    public string? StartDate
     {
-        get { return JsonModel.GetNullableStruct<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            >(this.RawData, "start_date"); }
+        get { return JsonModel.GetNullableClass<string>(this.RawData, "start_date"); }
         init { JsonModel.Set(this._rawData, "start_date", value); }
     }
 

@@ -9,13 +9,7 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        InvoiceUpdateParamsDueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        InvoiceUpdateParamsDueDate value = new("2019-12-27");
         value.Validate();
     }
 
@@ -29,13 +23,7 @@ public class InvoiceUpdateParamsDueDateTest : TestBase
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        InvoiceUpdateParamsDueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        InvoiceUpdateParamsDueDate value = new("2019-12-27");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<InvoiceUpdateParamsDueDate>(element);
 
@@ -58,13 +46,7 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateValidationWorks()
     {
-        InvoiceDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        InvoiceDate value = new("2019-12-27");
         value.Validate();
     }
 
@@ -78,13 +60,7 @@ public class InvoiceDateTest : TestBase
     [Fact]
     public void DateSerializationRoundtripWorks()
     {
-        InvoiceDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"));
+        InvoiceDate value = new("2019-12-27");
         string element = JsonSerializer.Serialize(value);
         var deserialized = JsonSerializer.Deserialize<InvoiceDate>(element);
 

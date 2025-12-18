@@ -1,4 +1,3 @@
-using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
@@ -15,50 +14,14 @@ public class LineItemTest : TestBase
         {
             Amount = "amount",
             InvoiceLineItemID = "4khy3nwzktxv7",
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
         };
 
         string expectedAmount = "amount";
         string expectedInvoiceLineItemID = "4khy3nwzktxv7";
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedEndDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedStartDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
+        string expectedEndDate = "2023-09-22";
+        string expectedStartDate = "2023-09-22";
 
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedInvoiceLineItemID, model.InvoiceLineItemID);
@@ -73,20 +36,8 @@ public class LineItemTest : TestBase
         {
             Amount = "amount",
             InvoiceLineItemID = "4khy3nwzktxv7",
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -102,20 +53,8 @@ public class LineItemTest : TestBase
         {
             Amount = "amount",
             InvoiceLineItemID = "4khy3nwzktxv7",
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
         };
 
         string element = JsonSerializer.Serialize(model);
@@ -124,32 +63,8 @@ public class LineItemTest : TestBase
 
         string expectedAmount = "amount";
         string expectedInvoiceLineItemID = "4khy3nwzktxv7";
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedEndDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedStartDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2023-09-22");
+        string expectedEndDate = "2023-09-22";
+        string expectedStartDate = "2023-09-22";
 
         Assert.Equal(expectedAmount, deserialized.Amount);
         Assert.Equal(expectedInvoiceLineItemID, deserialized.InvoiceLineItemID);
@@ -164,20 +79,8 @@ public class LineItemTest : TestBase
         {
             Amount = "amount",
             InvoiceLineItemID = "4khy3nwzktxv7",
-            EndDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
-            StartDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2023-09-22"),
+            EndDate = "2023-09-22",
+            StartDate = "2023-09-22",
         };
 
         model.Validate();

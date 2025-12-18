@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Orb.Models.CreditNotes;
 
@@ -18,20 +17,8 @@ public class CreditNoteServiceTest : TestBase
                     {
                         Amount = "amount",
                         InvoiceLineItemID = "4khy3nwzktxv7",
-                        EndDate =
-#if NET
-                        DateOnly
-#else
-                        DateTimeOffset
-#endif
-                        .Parse("2023-09-22"),
-                        StartDate =
-#if NET
-                        DateOnly
-#else
-                        DateTimeOffset
-#endif
-                        .Parse("2023-09-22"),
+                        EndDate = "2023-09-22",
+                        StartDate = "2023-09-22",
                     },
                 ],
                 Reason = Reason.Duplicate,

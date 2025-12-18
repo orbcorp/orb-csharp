@@ -178,13 +178,7 @@ public record class InvoiceUpdateParamsDueDate
         get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public InvoiceUpdateParamsDueDate(
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        value, JsonElement? element = null)
+    public InvoiceUpdateParamsDueDate(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -203,46 +197,22 @@ public record class InvoiceUpdateParamsDueDate
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="
-    /// #if NET
-    /// System::DateOnly
-    /// #else
-    /// System::DateTimeOffset
-    /// #endif
-    /// "/>.
+    /// type <see cref="string"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickDate(out var value)) {
-    ///     // `value` is of type `
-    /// #if NET
-    /// System::DateOnly
-    /// #else
-    /// System::DateTimeOffset
-    /// #endif
-    /// `
+    ///     // `value` is of type `string`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDate([NotNullWhen(true)] out
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        ? value)
+    public bool TryPickDate([NotNullWhen(true)] out string? value)
     {
-        value = this.Value as
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            ?;
+        value = this.Value as string;
         return value != null;
     }
 
@@ -281,38 +251,20 @@ public record class InvoiceUpdateParamsDueDate
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (
-    ///     #if NET
-    ///     System::DateOnly
-    ///     #else
-    ///     System::DateTimeOffset
-    ///     #endif
-    ///      value) => {...},
+    ///     (string value) => {...},
     ///     (System::DateTimeOffset value) => {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public void Switch(
-        System::Action<
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        > @date,
+        System::Action<string> @date,
         System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
         {
-            case
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            value:
+            case string value:
                 @date(value);
                 break;
             case System::DateTimeOffset value:
@@ -340,37 +292,20 @@ public record class InvoiceUpdateParamsDueDate
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (
-    ///     #if NET
-    ///     System::DateOnly
-    ///     #else
-    ///     System::DateTimeOffset
-    ///     #endif
-    ///      value) => {...},
+    ///     (string value) => {...},
     ///     (System::DateTimeOffset value) => {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public T Match<T>(
-        System::Func<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            , T> @date,
+        System::Func<string, T> @date,
         System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            value => @date(value),
+            string value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of InvoiceUpdateParamsDueDate"
@@ -378,13 +313,7 @@ public record class InvoiceUpdateParamsDueDate
         };
     }
 
-    public static implicit operator InvoiceUpdateParamsDueDate(
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        value) => new(value);
+    public static implicit operator InvoiceUpdateParamsDueDate(string value) => new(value);
 
     public static implicit operator InvoiceUpdateParamsDueDate(System::DateTimeOffset value) =>
         new(value);
@@ -431,13 +360,11 @@ sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdatePa
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(JsonSerializer.Deserialize<
-#if NET
-                System::DateOnly
-#else
-                System::DateTimeOffset
-#endif
-                >(element, options));
+            var deserialized = JsonSerializer.Deserialize<string>(element, options);
+            if (deserialized != null)
+            {
+                return new(deserialized, element);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -481,13 +408,7 @@ public record class InvoiceDate
         get { return this._element ??= JsonSerializer.SerializeToElement(this.Value); }
     }
 
-    public InvoiceDate(
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        value, JsonElement? element = null)
+    public InvoiceDate(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -506,46 +427,22 @@ public record class InvoiceDate
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="
-    /// #if NET
-    /// System::DateOnly
-    /// #else
-    /// System::DateTimeOffset
-    /// #endif
-    /// "/>.
+    /// type <see cref="string"/>.
     ///
     /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickDate(out var value)) {
-    ///     // `value` is of type `
-    /// #if NET
-    /// System::DateOnly
-    /// #else
-    /// System::DateTimeOffset
-    /// #endif
-    /// `
+    ///     // `value` is of type `string`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDate([NotNullWhen(true)] out
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        ? value)
+    public bool TryPickDate([NotNullWhen(true)] out string? value)
     {
-        value = this.Value as
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            ?;
+        value = this.Value as string;
         return value != null;
     }
 
@@ -584,38 +481,20 @@ public record class InvoiceDate
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (
-    ///     #if NET
-    ///     System::DateOnly
-    ///     #else
-    ///     System::DateTimeOffset
-    ///     #endif
-    ///      value) => {...},
+    ///     (string value) => {...},
     ///     (System::DateTimeOffset value) => {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public void Switch(
-        System::Action<
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        > @date,
+        System::Action<string> @date,
         System::Action<System::DateTimeOffset> @dateTime
     )
     {
         switch (this.Value)
         {
-            case
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            value:
+            case string value:
                 @date(value);
                 break;
             case System::DateTimeOffset value:
@@ -641,49 +520,26 @@ public record class InvoiceDate
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (
-    ///     #if NET
-    ///     System::DateOnly
-    ///     #else
-    ///     System::DateTimeOffset
-    ///     #endif
-    ///      value) => {...},
+    ///     (string value) => {...},
     ///     (System::DateTimeOffset value) => {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public T Match<T>(
-        System::Func<
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            , T> @date,
+        System::Func<string, T> @date,
         System::Func<System::DateTimeOffset, T> @dateTime
     )
     {
         return this.Value switch
         {
-#if NET
-            System::DateOnly
-#else
-            System::DateTimeOffset
-#endif
-            value => @date(value),
+            string value => @date(value),
             System::DateTimeOffset value => @dateTime(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of InvoiceDate"),
         };
     }
 
-    public static implicit operator InvoiceDate(
-#if NET
-        System::DateOnly
-#else
-        System::DateTimeOffset
-#endif
-        value) => new(value);
+    public static implicit operator InvoiceDate(string value) => new(value);
 
     public static implicit operator InvoiceDate(System::DateTimeOffset value) => new(value);
 
@@ -727,13 +583,11 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            return new(JsonSerializer.Deserialize<
-#if NET
-                System::DateOnly
-#else
-                System::DateTimeOffset
-#endif
-                >(element, options));
+            var deserialized = JsonSerializer.Deserialize<string>(element, options);
+            if (deserialized != null)
+            {
+                return new(deserialized, element);
+            }
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

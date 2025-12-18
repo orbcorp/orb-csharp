@@ -33,20 +33,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 InvoiceSettings = new()
                 {
                     AutoCollection = true,
-                    CustomDueDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
-                    InvoiceDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
                     Memo = "memo",
                     NetTerms = 0,
@@ -80,13 +68,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
             {
-                TargetExpiryDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                TargetExpiryDate = "2019-12-27",
                 Amount = 0,
                 BlockID = "block_id",
                 Currency = "currency",
@@ -155,20 +137,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
                 InvoiceSettings = new()
                 {
                     AutoCollection = true,
-                    CustomDueDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
-                    InvoiceDate =
-#if NET
-                    DateOnly
-#else
-                    DateTimeOffset
-#endif
-                    .Parse("2019-12-27"),
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
                     Memo = "memo",
                     NetTerms = 0,
@@ -212,13 +182,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyTest : TestBase
         LedgerCreateEntryByExternalIDParamsBody value = new(
             new LedgerCreateEntryByExternalIDParamsBodyExpirationChange()
             {
-                TargetExpiryDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                TargetExpiryDate = "2019-12-27",
                 Amount = 0,
                 BlockID = "block_id",
                 Currency = "currency",
@@ -304,20 +268,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -346,20 +298,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -414,20 +354,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -467,20 +395,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -514,20 +430,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -582,20 +486,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             InvoiceSettings = new()
             {
                 AutoCollection = true,
-                CustomDueDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
-                InvoiceDate =
-#if NET
-                DateOnly
-#else
-                DateTimeOffset
-#endif
-                .Parse("2019-12-27"),
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
                 Memo = "memo",
                 NetTerms = 0,
@@ -927,20 +819,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -949,19 +829,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
 
         bool expectedAutoCollection = true;
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27");
+            "2019-12-27";
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27");
+            "2019-12-27";
         string expectedItemID = "item_id";
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
@@ -982,20 +852,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1017,20 +875,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1046,19 +892,9 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
 
         bool expectedAutoCollection = true;
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate expectedCustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27");
+            "2019-12-27";
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate expectedInvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27");
+            "2019-12-27";
         string expectedItemID = "item_id";
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
@@ -1079,20 +915,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1108,20 +932,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1137,20 +949,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1165,20 +965,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1197,20 +985,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsTest
         var model = new LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettings
         {
             AutoCollection = true,
-            CustomDueDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
-            InvoiceDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
             ItemID = "item_id",
             Memo = "memo",
             NetTerms = 0,
@@ -1308,12 +1084,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     public void DateValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27")
+            "2019-12-27"
         );
         value.Validate();
     }
@@ -1331,12 +1102,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     public void DateSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27")
+            "2019-12-27"
         );
         string element = JsonSerializer.Serialize(value);
         var deserialized =
@@ -1370,12 +1136,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
     public void DateValidationWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27")
+            "2019-12-27"
         );
         value.Validate();
     }
@@ -1393,12 +1154,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvo
     public void DateSerializationRoundtripWorks()
     {
         LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate value = new(
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27")
+            "2019-12-27"
         );
         string element = JsonSerializer.Serialize(value);
         var deserialized =
@@ -1588,13 +1344,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1606,19 +1356,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
         JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
             "\"expiration_change\""
         );
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedTargetExpiryDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
+        string expectedTargetExpiryDate = "2019-12-27";
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
         string expectedCurrency = "currency";
@@ -1647,13 +1385,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1676,13 +1408,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1701,19 +1427,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
         JsonElement expectedEntryType = JsonSerializer.Deserialize<JsonElement>(
             "\"expiration_change\""
         );
-
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        expectedTargetExpiryDate =
-#if NET
-        DateOnly
-#else
-        DateTimeOffset
-#endif
-        .Parse("2019-12-27");
+        string expectedTargetExpiryDate = "2019-12-27";
         double expectedAmount = 0;
         string expectedBlockID = "block_id";
         string expectedCurrency = "currency";
@@ -1742,13 +1456,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
             Amount = 0,
             BlockID = "block_id",
             Currency = "currency",
@@ -1765,13 +1473,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
         };
 
         Assert.Null(model.Amount);
@@ -1793,13 +1495,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
         };
 
         model.Validate();
@@ -1810,13 +1506,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
 
             Amount = null,
             BlockID = null,
@@ -1845,13 +1535,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
     {
         var model = new LedgerCreateEntryByExternalIDParamsBodyExpirationChange
         {
-            TargetExpiryDate =
-#if NET
-            DateOnly
-#else
-            DateTimeOffset
-#endif
-            .Parse("2019-12-27"),
+            TargetExpiryDate = "2019-12-27",
 
             Amount = null,
             BlockID = null,
