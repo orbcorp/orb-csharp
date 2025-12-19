@@ -1,9 +1,94 @@
+using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Items;
 
 namespace Orb.Tests.Models.Items;
+
+public class ItemUpdateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new ItemUpdateParams
+        {
+            ItemID = "item_id",
+            ExternalConnections =
+            [
+                new()
+                {
+                    ExternalConnectionName = ExternalConnectionName.Stripe,
+                    ExternalEntityID = "external_entity_id",
+                },
+            ],
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            Name = "name",
+        };
+
+        string expectedItemID = "item_id";
+        List<ExternalConnection> expectedExternalConnections =
+        [
+            new()
+            {
+                ExternalConnectionName = ExternalConnectionName.Stripe,
+                ExternalEntityID = "external_entity_id",
+            },
+        ];
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        string expectedName = "name";
+
+        Assert.Equal(expectedItemID, parameters.ItemID);
+        Assert.NotNull(parameters.ExternalConnections);
+        Assert.Equal(expectedExternalConnections.Count, parameters.ExternalConnections.Count);
+        for (int i = 0; i < expectedExternalConnections.Count; i++)
+        {
+            Assert.Equal(expectedExternalConnections[i], parameters.ExternalConnections[i]);
+        }
+        Assert.NotNull(parameters.Metadata);
+        Assert.Equal(expectedMetadata.Count, parameters.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(parameters.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, parameters.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedName, parameters.Name);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new ItemUpdateParams { ItemID = "item_id" };
+
+        Assert.Null(parameters.ExternalConnections);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_connections"));
+        Assert.Null(parameters.Metadata);
+        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.Null(parameters.Name);
+        Assert.False(parameters.RawBodyData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new ItemUpdateParams
+        {
+            ItemID = "item_id",
+
+            ExternalConnections = null,
+            Metadata = null,
+            Name = null,
+        };
+
+        Assert.Null(parameters.ExternalConnections);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_connections"));
+        Assert.Null(parameters.Metadata);
+        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.Null(parameters.Name);
+        Assert.False(parameters.RawBodyData.ContainsKey("name"));
+    }
+}
 
 public class ExternalConnectionTest : TestBase
 {

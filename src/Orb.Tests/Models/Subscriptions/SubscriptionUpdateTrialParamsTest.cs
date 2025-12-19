@@ -6,6 +6,57 @@ using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
+public class SubscriptionUpdateTrialParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new SubscriptionUpdateTrialParams
+        {
+            SubscriptionID = "subscription_id",
+            TrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+            Shift = true,
+        };
+
+        string expectedSubscriptionID = "subscription_id";
+        TrialEndDate expectedTrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z");
+        bool expectedShift = true;
+
+        Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
+        Assert.Equal(expectedTrialEndDate, parameters.TrialEndDate);
+        Assert.Equal(expectedShift, parameters.Shift);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new SubscriptionUpdateTrialParams
+        {
+            SubscriptionID = "subscription_id",
+            TrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+        };
+
+        Assert.Null(parameters.Shift);
+        Assert.False(parameters.RawBodyData.ContainsKey("shift"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new SubscriptionUpdateTrialParams
+        {
+            SubscriptionID = "subscription_id",
+            TrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+
+            // Null should be interpreted as omitted for these properties
+            Shift = null,
+        };
+
+        Assert.Null(parameters.Shift);
+        Assert.False(parameters.RawBodyData.ContainsKey("shift"));
+    }
+}
+
 public class TrialEndDateTest : TestBase
 {
     [Fact]

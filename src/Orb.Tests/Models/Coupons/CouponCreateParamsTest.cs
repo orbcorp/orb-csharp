@@ -3,6 +3,64 @@ using Orb.Models.Coupons;
 
 namespace Orb.Tests.Models.Coupons;
 
+public class CouponCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new CouponCreateParams
+        {
+            Discount = new Percentage(0),
+            RedemptionCode = "HALFOFF",
+            DurationInMonths = 12,
+            MaxRedemptions = 1,
+        };
+
+        Discount expectedDiscount = new Percentage(0);
+        string expectedRedemptionCode = "HALFOFF";
+        long expectedDurationInMonths = 12;
+        long expectedMaxRedemptions = 1;
+
+        Assert.Equal(expectedDiscount, parameters.Discount);
+        Assert.Equal(expectedRedemptionCode, parameters.RedemptionCode);
+        Assert.Equal(expectedDurationInMonths, parameters.DurationInMonths);
+        Assert.Equal(expectedMaxRedemptions, parameters.MaxRedemptions);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new CouponCreateParams
+        {
+            Discount = new Percentage(0),
+            RedemptionCode = "HALFOFF",
+        };
+
+        Assert.Null(parameters.DurationInMonths);
+        Assert.False(parameters.RawBodyData.ContainsKey("duration_in_months"));
+        Assert.Null(parameters.MaxRedemptions);
+        Assert.False(parameters.RawBodyData.ContainsKey("max_redemptions"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new CouponCreateParams
+        {
+            Discount = new Percentage(0),
+            RedemptionCode = "HALFOFF",
+
+            DurationInMonths = null,
+            MaxRedemptions = null,
+        };
+
+        Assert.Null(parameters.DurationInMonths);
+        Assert.False(parameters.RawBodyData.ContainsKey("duration_in_months"));
+        Assert.Null(parameters.MaxRedemptions);
+        Assert.False(parameters.RawBodyData.ContainsKey("max_redemptions"));
+    }
+}
+
 public class DiscountTest : TestBase
 {
     [Fact]

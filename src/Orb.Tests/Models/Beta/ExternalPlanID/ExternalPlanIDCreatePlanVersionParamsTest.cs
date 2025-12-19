@@ -7,6 +7,522 @@ using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Beta.ExternalPlanID;
 
+public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new ExternalPlanIDCreatePlanVersionParams
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = 0,
+            AddAdjustments =
+            [
+                new()
+                {
+                    Adjustment = new Models::NewPercentageDiscount()
+                    {
+                        AdjustmentType =
+                            Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIDs = ["item_1", "item_2"],
+                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewPercentageDiscountFilterField.PriceID,
+                                Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                    },
+                    PlanPhaseOrder = 0,
+                },
+            ],
+            AddPrices =
+            [
+                new()
+                {
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Models::Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewAllocationPriceFilterField.ItemID,
+                                Operator = Models::NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    PlanPhaseOrder = 0,
+                    Price = new Models::NewPlanUnitPrice()
+                    {
+                        Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                },
+            ],
+            RemoveAdjustments = [new() { AdjustmentID = "adjustment_id", PlanPhaseOrder = 0 }],
+            RemovePrices = [new() { PriceID = "price_id", PlanPhaseOrder = 0 }],
+            ReplaceAdjustments =
+            [
+                new()
+                {
+                    Adjustment = new Models::NewPercentageDiscount()
+                    {
+                        AdjustmentType =
+                            Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                        PercentageDiscount = 0,
+                        AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                        AppliesToItemIDs = ["item_1", "item_2"],
+                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        Currency = "currency",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewPercentageDiscountFilterField.PriceID,
+                                Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        IsInvoiceLevel = true,
+                        PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                    },
+                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                    PlanPhaseOrder = 0,
+                },
+            ],
+            ReplacePrices =
+            [
+                new()
+                {
+                    ReplacesPriceID = "replaces_price_id",
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Models::Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewAllocationPriceFilterField.ItemID,
+                                Operator = Models::NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    PlanPhaseOrder = 0,
+                    Price = new Models::NewPlanUnitPrice()
+                    {
+                        Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                },
+            ],
+            SetAsDefault = true,
+        };
+
+        string expectedExternalPlanID = "external_plan_id";
+        long expectedVersion = 0;
+        List<AddAdjustment> expectedAddAdjustments =
+        [
+            new()
+            {
+                Adjustment = new Models::NewPercentageDiscount()
+                {
+                    AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                    PercentageDiscount = 0,
+                    AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                    AppliesToItemIDs = ["item_1", "item_2"],
+                    AppliesToPriceIDs = ["price_1", "price_2"],
+                    Currency = "currency",
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::NewPercentageDiscountFilterField.PriceID,
+                            Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    IsInvoiceLevel = true,
+                    PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                },
+                PlanPhaseOrder = 0,
+            },
+        ];
+        List<AddPrice> expectedAddPrices =
+        [
+            new()
+            {
+                AllocationPrice = new()
+                {
+                    Amount = "10.00",
+                    Cadence = Models::Cadence.Monthly,
+                    Currency = "USD",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    },
+                    ExpiresAtEndOfCadence = true,
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::NewAllocationPriceFilterField.ItemID,
+                            Operator = Models::NewAllocationPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ItemID = "item_id",
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                },
+                PlanPhaseOrder = 0,
+                Price = new Models::NewPlanUnitPrice()
+                {
+                    Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                    ItemID = "item_id",
+                    ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                    Name = "Annual fee",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                    BillableMetricID = "billable_metric_id",
+                    BilledInAdvance = true,
+                    BillingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    },
+                    ConversionRate = 0,
+                    ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                    {
+                        ConversionRateType =
+                            Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                        UnitConfig = new("unit_amount"),
+                    },
+                    Currency = "currency",
+                    DimensionalPriceConfiguration = new()
+                    {
+                        DimensionValues = ["string"],
+                        DimensionalPriceGroupID = "dimensional_price_group_id",
+                        ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                    },
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 0,
+                    InvoiceGroupingKey = "x",
+                    InvoicingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    ReferenceID = "reference_id",
+                },
+            },
+        ];
+        List<RemoveAdjustment> expectedRemoveAdjustments =
+        [
+            new() { AdjustmentID = "adjustment_id", PlanPhaseOrder = 0 },
+        ];
+        List<RemovePrice> expectedRemovePrices =
+        [
+            new() { PriceID = "price_id", PlanPhaseOrder = 0 },
+        ];
+        List<ReplaceAdjustment> expectedReplaceAdjustments =
+        [
+            new()
+            {
+                Adjustment = new Models::NewPercentageDiscount()
+                {
+                    AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
+                    PercentageDiscount = 0,
+                    AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
+                    AppliesToItemIDs = ["item_1", "item_2"],
+                    AppliesToPriceIDs = ["price_1", "price_2"],
+                    Currency = "currency",
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::NewPercentageDiscountFilterField.PriceID,
+                            Operator = Models::NewPercentageDiscountFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    IsInvoiceLevel = true,
+                    PriceType = Models::NewPercentageDiscountPriceType.Usage,
+                },
+                ReplacesAdjustmentID = "replaces_adjustment_id",
+                PlanPhaseOrder = 0,
+            },
+        ];
+        List<ReplacePrice> expectedReplacePrices =
+        [
+            new()
+            {
+                ReplacesPriceID = "replaces_price_id",
+                AllocationPrice = new()
+                {
+                    Amount = "10.00",
+                    Cadence = Models::Cadence.Monthly,
+                    Currency = "USD",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    },
+                    ExpiresAtEndOfCadence = true,
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::NewAllocationPriceFilterField.ItemID,
+                            Operator = Models::NewAllocationPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ItemID = "item_id",
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                },
+                PlanPhaseOrder = 0,
+                Price = new Models::NewPlanUnitPrice()
+                {
+                    Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                    ItemID = "item_id",
+                    ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                    Name = "Annual fee",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                    BillableMetricID = "billable_metric_id",
+                    BilledInAdvance = true,
+                    BillingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    },
+                    ConversionRate = 0,
+                    ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                    {
+                        ConversionRateType =
+                            Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                        UnitConfig = new("unit_amount"),
+                    },
+                    Currency = "currency",
+                    DimensionalPriceConfiguration = new()
+                    {
+                        DimensionValues = ["string"],
+                        DimensionalPriceGroupID = "dimensional_price_group_id",
+                        ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                    },
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 0,
+                    InvoiceGroupingKey = "x",
+                    InvoicingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                    },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    ReferenceID = "reference_id",
+                },
+            },
+        ];
+        bool expectedSetAsDefault = true;
+
+        Assert.Equal(expectedExternalPlanID, parameters.ExternalPlanID);
+        Assert.Equal(expectedVersion, parameters.Version);
+        Assert.NotNull(parameters.AddAdjustments);
+        Assert.Equal(expectedAddAdjustments.Count, parameters.AddAdjustments.Count);
+        for (int i = 0; i < expectedAddAdjustments.Count; i++)
+        {
+            Assert.Equal(expectedAddAdjustments[i], parameters.AddAdjustments[i]);
+        }
+        Assert.NotNull(parameters.AddPrices);
+        Assert.Equal(expectedAddPrices.Count, parameters.AddPrices.Count);
+        for (int i = 0; i < expectedAddPrices.Count; i++)
+        {
+            Assert.Equal(expectedAddPrices[i], parameters.AddPrices[i]);
+        }
+        Assert.NotNull(parameters.RemoveAdjustments);
+        Assert.Equal(expectedRemoveAdjustments.Count, parameters.RemoveAdjustments.Count);
+        for (int i = 0; i < expectedRemoveAdjustments.Count; i++)
+        {
+            Assert.Equal(expectedRemoveAdjustments[i], parameters.RemoveAdjustments[i]);
+        }
+        Assert.NotNull(parameters.RemovePrices);
+        Assert.Equal(expectedRemovePrices.Count, parameters.RemovePrices.Count);
+        for (int i = 0; i < expectedRemovePrices.Count; i++)
+        {
+            Assert.Equal(expectedRemovePrices[i], parameters.RemovePrices[i]);
+        }
+        Assert.NotNull(parameters.ReplaceAdjustments);
+        Assert.Equal(expectedReplaceAdjustments.Count, parameters.ReplaceAdjustments.Count);
+        for (int i = 0; i < expectedReplaceAdjustments.Count; i++)
+        {
+            Assert.Equal(expectedReplaceAdjustments[i], parameters.ReplaceAdjustments[i]);
+        }
+        Assert.NotNull(parameters.ReplacePrices);
+        Assert.Equal(expectedReplacePrices.Count, parameters.ReplacePrices.Count);
+        for (int i = 0; i < expectedReplacePrices.Count; i++)
+        {
+            Assert.Equal(expectedReplacePrices[i], parameters.ReplacePrices[i]);
+        }
+        Assert.Equal(expectedSetAsDefault, parameters.SetAsDefault);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new ExternalPlanIDCreatePlanVersionParams
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = 0,
+        };
+
+        Assert.Null(parameters.AddAdjustments);
+        Assert.False(parameters.RawBodyData.ContainsKey("add_adjustments"));
+        Assert.Null(parameters.AddPrices);
+        Assert.False(parameters.RawBodyData.ContainsKey("add_prices"));
+        Assert.Null(parameters.RemoveAdjustments);
+        Assert.False(parameters.RawBodyData.ContainsKey("remove_adjustments"));
+        Assert.Null(parameters.RemovePrices);
+        Assert.False(parameters.RawBodyData.ContainsKey("remove_prices"));
+        Assert.Null(parameters.ReplaceAdjustments);
+        Assert.False(parameters.RawBodyData.ContainsKey("replace_adjustments"));
+        Assert.Null(parameters.ReplacePrices);
+        Assert.False(parameters.RawBodyData.ContainsKey("replace_prices"));
+        Assert.Null(parameters.SetAsDefault);
+        Assert.False(parameters.RawBodyData.ContainsKey("set_as_default"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new ExternalPlanIDCreatePlanVersionParams
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = 0,
+
+            AddAdjustments = null,
+            AddPrices = null,
+            RemoveAdjustments = null,
+            RemovePrices = null,
+            ReplaceAdjustments = null,
+            ReplacePrices = null,
+            SetAsDefault = null,
+        };
+
+        Assert.Null(parameters.AddAdjustments);
+        Assert.False(parameters.RawBodyData.ContainsKey("add_adjustments"));
+        Assert.Null(parameters.AddPrices);
+        Assert.False(parameters.RawBodyData.ContainsKey("add_prices"));
+        Assert.Null(parameters.RemoveAdjustments);
+        Assert.False(parameters.RawBodyData.ContainsKey("remove_adjustments"));
+        Assert.Null(parameters.RemovePrices);
+        Assert.False(parameters.RawBodyData.ContainsKey("remove_prices"));
+        Assert.Null(parameters.ReplaceAdjustments);
+        Assert.False(parameters.RawBodyData.ContainsKey("replace_adjustments"));
+        Assert.Null(parameters.ReplacePrices);
+        Assert.False(parameters.RawBodyData.ContainsKey("replace_prices"));
+        Assert.Null(parameters.SetAsDefault);
+        Assert.False(parameters.RawBodyData.ContainsKey("set_as_default"));
+    }
+}
+
 public class AddAdjustmentTest : TestBase
 {
     [Fact]

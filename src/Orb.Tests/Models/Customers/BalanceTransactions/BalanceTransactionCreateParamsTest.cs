@@ -5,6 +5,61 @@ using Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Tests.Models.Customers.BalanceTransactions;
 
+public class BalanceTransactionCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new BalanceTransactionCreateParams
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Type = Type.Increment,
+            Description = "description",
+        };
+
+        string expectedCustomerID = "customer_id";
+        string expectedAmount = "amount";
+        ApiEnum<string, Type> expectedType = Type.Increment;
+        string expectedDescription = "description";
+
+        Assert.Equal(expectedCustomerID, parameters.CustomerID);
+        Assert.Equal(expectedAmount, parameters.Amount);
+        Assert.Equal(expectedType, parameters.Type);
+        Assert.Equal(expectedDescription, parameters.Description);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new BalanceTransactionCreateParams
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Type = Type.Increment,
+        };
+
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new BalanceTransactionCreateParams
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Type = Type.Increment,
+
+            Description = null,
+        };
+
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+    }
+}
+
 public class TypeTest : TestBase
 {
     [Theory]

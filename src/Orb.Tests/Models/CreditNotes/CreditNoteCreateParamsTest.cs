@@ -1,9 +1,116 @@
+using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.CreditNotes;
 
 namespace Orb.Tests.Models.CreditNotes;
+
+public class CreditNoteCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+            EndDate = "2023-09-22",
+            Memo = "An optional memo for my credit note.",
+            StartDate = "2023-09-22",
+        };
+
+        List<LineItem> expectedLineItems =
+        [
+            new()
+            {
+                Amount = "amount",
+                InvoiceLineItemID = "4khy3nwzktxv7",
+                EndDate = "2023-09-22",
+                StartDate = "2023-09-22",
+            },
+        ];
+        ApiEnum<string, Reason> expectedReason = Reason.Duplicate;
+        string expectedEndDate = "2023-09-22";
+        string expectedMemo = "An optional memo for my credit note.";
+        string expectedStartDate = "2023-09-22";
+
+        Assert.Equal(expectedLineItems.Count, parameters.LineItems.Count);
+        for (int i = 0; i < expectedLineItems.Count; i++)
+        {
+            Assert.Equal(expectedLineItems[i], parameters.LineItems[i]);
+        }
+        Assert.Equal(expectedReason, parameters.Reason);
+        Assert.Equal(expectedEndDate, parameters.EndDate);
+        Assert.Equal(expectedMemo, parameters.Memo);
+        Assert.Equal(expectedStartDate, parameters.StartDate);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+        };
+
+        Assert.Null(parameters.EndDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("end_date"));
+        Assert.Null(parameters.Memo);
+        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.Null(parameters.StartDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("start_date"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new CreditNoteCreateParams
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+
+            EndDate = null,
+            Memo = null,
+            StartDate = null,
+        };
+
+        Assert.Null(parameters.EndDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("end_date"));
+        Assert.Null(parameters.Memo);
+        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.Null(parameters.StartDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("start_date"));
+    }
+}
 
 public class LineItemTest : TestBase
 {

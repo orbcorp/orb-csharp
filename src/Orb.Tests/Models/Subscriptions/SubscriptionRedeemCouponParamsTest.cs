@@ -1,9 +1,84 @@
+using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
+
+public class SubscriptionRedeemCouponParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new SubscriptionRedeemCouponParams
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption = ChangeOption.RequestedDate,
+            AllowInvoiceCreditOrVoid = true,
+            ChangeDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+            CouponID = "coupon_id",
+            CouponRedemptionCode = "coupon_redemption_code",
+        };
+
+        string expectedSubscriptionID = "subscription_id";
+        ApiEnum<string, ChangeOption> expectedChangeOption = ChangeOption.RequestedDate;
+        bool expectedAllowInvoiceCreditOrVoid = true;
+        DateTimeOffset expectedChangeDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z");
+        string expectedCouponID = "coupon_id";
+        string expectedCouponRedemptionCode = "coupon_redemption_code";
+
+        Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
+        Assert.Equal(expectedChangeOption, parameters.ChangeOption);
+        Assert.Equal(expectedAllowInvoiceCreditOrVoid, parameters.AllowInvoiceCreditOrVoid);
+        Assert.Equal(expectedChangeDate, parameters.ChangeDate);
+        Assert.Equal(expectedCouponID, parameters.CouponID);
+        Assert.Equal(expectedCouponRedemptionCode, parameters.CouponRedemptionCode);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new SubscriptionRedeemCouponParams
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption = ChangeOption.RequestedDate,
+        };
+
+        Assert.Null(parameters.AllowInvoiceCreditOrVoid);
+        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.Null(parameters.ChangeDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("change_date"));
+        Assert.Null(parameters.CouponID);
+        Assert.False(parameters.RawBodyData.ContainsKey("coupon_id"));
+        Assert.Null(parameters.CouponRedemptionCode);
+        Assert.False(parameters.RawBodyData.ContainsKey("coupon_redemption_code"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new SubscriptionRedeemCouponParams
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption = ChangeOption.RequestedDate,
+
+            AllowInvoiceCreditOrVoid = null,
+            ChangeDate = null,
+            CouponID = null,
+            CouponRedemptionCode = null,
+        };
+
+        Assert.Null(parameters.AllowInvoiceCreditOrVoid);
+        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.Null(parameters.ChangeDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("change_date"));
+        Assert.Null(parameters.CouponID);
+        Assert.False(parameters.RawBodyData.ContainsKey("coupon_id"));
+        Assert.Null(parameters.CouponRedemptionCode);
+        Assert.False(parameters.RawBodyData.ContainsKey("coupon_redemption_code"));
+    }
+}
 
 public class ChangeOptionTest : TestBase
 {

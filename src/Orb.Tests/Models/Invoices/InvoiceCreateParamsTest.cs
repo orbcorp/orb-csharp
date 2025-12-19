@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
@@ -6,6 +7,302 @@ using Orb.Models.Invoices;
 using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Invoices;
+
+public class InvoiceCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new InvoiceCreateParams
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+            CustomerID = "4khy3nwzktxv7",
+            Discount = new Models::PercentageDiscount()
+            {
+                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            DueDate = "2023-09-22",
+            ExternalCustomerID = "external-customer-id",
+            Memo = "An optional memo for my invoice.",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+            WillAutoIssue = false,
+        };
+
+        string expectedCurrency = "USD";
+        DateTimeOffset expectedInvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        List<LineItem> expectedLineItems =
+        [
+            new()
+            {
+                EndDate = "2023-09-22",
+                ItemID = "4khy3nwzktxv7",
+                ModelType = ModelType.Unit,
+                Name = "Line Item Name",
+                Quantity = 1,
+                StartDate = "2023-09-22",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+            },
+        ];
+        string expectedCustomerID = "4khy3nwzktxv7";
+        Models::SharedDiscount expectedDiscount = new Models::PercentageDiscount()
+        {
+            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+            PercentageDiscountValue = 0.15,
+            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::PercentageDiscountFilterField.PriceID,
+                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+        };
+        DueDate expectedDueDate = "2023-09-22";
+        string expectedExternalCustomerID = "external-customer-id";
+        string expectedMemo = "An optional memo for my invoice.";
+        Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
+        long expectedNetTerms = 0;
+        bool expectedWillAutoIssue = false;
+
+        Assert.Equal(expectedCurrency, parameters.Currency);
+        Assert.Equal(expectedInvoiceDate, parameters.InvoiceDate);
+        Assert.Equal(expectedLineItems.Count, parameters.LineItems.Count);
+        for (int i = 0; i < expectedLineItems.Count; i++)
+        {
+            Assert.Equal(expectedLineItems[i], parameters.LineItems[i]);
+        }
+        Assert.Equal(expectedCustomerID, parameters.CustomerID);
+        Assert.Equal(expectedDiscount, parameters.Discount);
+        Assert.Equal(expectedDueDate, parameters.DueDate);
+        Assert.Equal(expectedExternalCustomerID, parameters.ExternalCustomerID);
+        Assert.Equal(expectedMemo, parameters.Memo);
+        Assert.NotNull(parameters.Metadata);
+        Assert.Equal(expectedMetadata.Count, parameters.Metadata.Count);
+        foreach (var item in expectedMetadata)
+        {
+            Assert.True(parameters.Metadata.TryGetValue(item.Key, out var value));
+
+            Assert.Equal(value, parameters.Metadata[item.Key]);
+        }
+        Assert.Equal(expectedNetTerms, parameters.NetTerms);
+        Assert.Equal(expectedWillAutoIssue, parameters.WillAutoIssue);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new InvoiceCreateParams
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+            CustomerID = "4khy3nwzktxv7",
+            Discount = new Models::PercentageDiscount()
+            {
+                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            DueDate = "2023-09-22",
+            ExternalCustomerID = "external-customer-id",
+            Memo = "An optional memo for my invoice.",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+        };
+
+        Assert.Null(parameters.WillAutoIssue);
+        Assert.False(parameters.RawBodyData.ContainsKey("will_auto_issue"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new InvoiceCreateParams
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+            CustomerID = "4khy3nwzktxv7",
+            Discount = new Models::PercentageDiscount()
+            {
+                DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                PercentageDiscountValue = 0.15,
+                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::PercentageDiscountFilterField.PriceID,
+                        Operator = Models::PercentageDiscountFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                Reason = "reason",
+            },
+            DueDate = "2023-09-22",
+            ExternalCustomerID = "external-customer-id",
+            Memo = "An optional memo for my invoice.",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+
+            // Null should be interpreted as omitted for these properties
+            WillAutoIssue = null,
+        };
+
+        Assert.Null(parameters.WillAutoIssue);
+        Assert.False(parameters.RawBodyData.ContainsKey("will_auto_issue"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new InvoiceCreateParams
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+            WillAutoIssue = false,
+        };
+
+        Assert.Null(parameters.CustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.Null(parameters.Discount);
+        Assert.False(parameters.RawBodyData.ContainsKey("discount"));
+        Assert.Null(parameters.DueDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("due_date"));
+        Assert.Null(parameters.ExternalCustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+        Assert.Null(parameters.Memo);
+        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.Null(parameters.Metadata);
+        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.Null(parameters.NetTerms);
+        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new InvoiceCreateParams
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+            WillAutoIssue = false,
+
+            CustomerID = null,
+            Discount = null,
+            DueDate = null,
+            ExternalCustomerID = null,
+            Memo = null,
+            Metadata = null,
+            NetTerms = null,
+        };
+
+        Assert.Null(parameters.CustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.Null(parameters.Discount);
+        Assert.False(parameters.RawBodyData.ContainsKey("discount"));
+        Assert.Null(parameters.DueDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("due_date"));
+        Assert.Null(parameters.ExternalCustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+        Assert.Null(parameters.Memo);
+        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.Null(parameters.Metadata);
+        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.Null(parameters.NetTerms);
+        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+    }
+}
 
 public class LineItemTest : TestBase
 {

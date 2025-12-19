@@ -1,9 +1,76 @@
+using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers.Costs;
 
 namespace Orb.Tests.Models.Customers.Costs;
+
+public class CostListParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new CostListParams
+        {
+            CustomerID = "customer_id",
+            Currency = "currency",
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            ViewMode = ViewMode.Periodic,
+        };
+
+        string expectedCustomerID = "customer_id";
+        string expectedCurrency = "currency";
+        DateTimeOffset expectedTimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z");
+        DateTimeOffset expectedTimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z");
+        ApiEnum<string, ViewMode> expectedViewMode = ViewMode.Periodic;
+
+        Assert.Equal(expectedCustomerID, parameters.CustomerID);
+        Assert.Equal(expectedCurrency, parameters.Currency);
+        Assert.Equal(expectedTimeframeEnd, parameters.TimeframeEnd);
+        Assert.Equal(expectedTimeframeStart, parameters.TimeframeStart);
+        Assert.Equal(expectedViewMode, parameters.ViewMode);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new CostListParams { CustomerID = "customer_id" };
+
+        Assert.Null(parameters.Currency);
+        Assert.False(parameters.RawQueryData.ContainsKey("currency"));
+        Assert.Null(parameters.TimeframeEnd);
+        Assert.False(parameters.RawQueryData.ContainsKey("timeframe_end"));
+        Assert.Null(parameters.TimeframeStart);
+        Assert.False(parameters.RawQueryData.ContainsKey("timeframe_start"));
+        Assert.Null(parameters.ViewMode);
+        Assert.False(parameters.RawQueryData.ContainsKey("view_mode"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new CostListParams
+        {
+            CustomerID = "customer_id",
+
+            Currency = null,
+            TimeframeEnd = null,
+            TimeframeStart = null,
+            ViewMode = null,
+        };
+
+        Assert.Null(parameters.Currency);
+        Assert.False(parameters.RawQueryData.ContainsKey("currency"));
+        Assert.Null(parameters.TimeframeEnd);
+        Assert.False(parameters.RawQueryData.ContainsKey("timeframe_end"));
+        Assert.Null(parameters.TimeframeStart);
+        Assert.False(parameters.RawQueryData.ContainsKey("timeframe_start"));
+        Assert.Null(parameters.ViewMode);
+        Assert.False(parameters.RawQueryData.ContainsKey("view_mode"));
+    }
+}
 
 public class ViewModeTest : TestBase
 {
