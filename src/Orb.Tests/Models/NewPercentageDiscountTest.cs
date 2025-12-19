@@ -432,6 +432,8 @@ public class NewPercentageDiscountAdjustmentTypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -486,6 +488,8 @@ public class NewPercentageDiscountAppliesToAllTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -628,6 +632,8 @@ public class NewPercentageDiscountFilterFieldTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -687,6 +693,8 @@ public class NewPercentageDiscountFilterOperatorTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -746,6 +754,8 @@ public class NewPercentageDiscountPriceTypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 

@@ -198,6 +198,8 @@ public class UsageDiscountIntervalDiscountTypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -340,6 +342,8 @@ public class UsageDiscountIntervalFilterFieldTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -399,6 +403,8 @@ public class UsageDiscountIntervalFilterOperatorTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 

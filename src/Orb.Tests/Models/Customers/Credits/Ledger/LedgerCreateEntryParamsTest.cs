@@ -307,6 +307,7 @@ public class IncrementTest : TestBase
             Assert.Equal(expectedFilters[i], model.Filters[i]);
         }
         Assert.Equal(expectedInvoiceSettings, model.InvoiceSettings);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -434,6 +435,7 @@ public class IncrementTest : TestBase
             Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
         }
         Assert.Equal(expectedInvoiceSettings, deserialized.InvoiceSettings);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -667,6 +669,8 @@ public class FieldTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -722,6 +726,8 @@ public class OperatorTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -1112,6 +1118,7 @@ public class DecrementTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1163,6 +1170,7 @@ public class DecrementTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1277,6 +1285,7 @@ public class ExpirationChangeTest : TestBase
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedExpiryDate, model.ExpiryDate);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1342,6 +1351,7 @@ public class ExpirationChangeTest : TestBase
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
         Assert.Equal(expectedExpiryDate, deserialized.ExpiryDate);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1471,6 +1481,7 @@ public class VoidTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1530,6 +1541,7 @@ public class VoidTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1639,6 +1651,8 @@ public class VoidReasonTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -1701,6 +1715,7 @@ public class AmendmentTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1756,6 +1771,7 @@ public class AmendmentTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {

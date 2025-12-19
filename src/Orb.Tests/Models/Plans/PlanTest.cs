@@ -2572,6 +2572,8 @@ public class PlanPlanPhaseDurationUnitTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -2706,6 +2708,8 @@ public class PlanStatusTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -2812,6 +2816,8 @@ public class TrialPeriodUnitTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 

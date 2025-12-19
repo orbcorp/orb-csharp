@@ -4679,6 +4679,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -4863,6 +4864,7 @@ public class BulkWithFiltersTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -5365,6 +5367,8 @@ public class CadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -5588,6 +5592,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -5755,6 +5760,7 @@ public class TieredWithProrationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -5977,6 +5983,8 @@ public class TieredWithProrationCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -6353,6 +6361,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -6535,6 +6544,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -6777,6 +6787,8 @@ public class GroupedWithMinMaxThresholdsCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -7093,6 +7105,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -7275,6 +7288,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -7517,6 +7531,8 @@ public class CumulativeGroupedAllocationCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -7815,6 +7831,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -7973,6 +7990,7 @@ public class PercentTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -8185,6 +8203,8 @@ public class PercentCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -8457,6 +8477,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -8630,6 +8651,7 @@ public class EventOutputTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -8867,6 +8889,8 @@ public class EventOutputCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -13996,6 +14020,7 @@ public class ReplacePricePriceBulkWithFiltersTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -14181,6 +14206,7 @@ public class ReplacePricePriceBulkWithFiltersTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -14745,6 +14771,8 @@ public class ReplacePricePriceBulkWithFiltersCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -14973,6 +15001,7 @@ public class ReplacePricePriceTieredWithProrationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -15141,6 +15170,7 @@ public class ReplacePricePriceTieredWithProrationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -15365,6 +15395,8 @@ public class ReplacePricePriceTieredWithProrationCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -15756,6 +15788,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -15943,6 +15976,7 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -16187,6 +16221,8 @@ public class ReplacePricePriceGroupedWithMinMaxThresholdsCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -16523,6 +16559,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -16710,6 +16747,7 @@ public class ReplacePricePriceCumulativeGroupedAllocationTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -16954,6 +16992,8 @@ public class ReplacePricePriceCumulativeGroupedAllocationCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -17272,6 +17312,7 @@ public class ReplacePricePricePercentTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -17431,6 +17472,7 @@ public class ReplacePricePricePercentTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -17643,6 +17685,8 @@ public class ReplacePricePricePercentCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -17920,6 +17964,7 @@ public class ReplacePricePriceEventOutputTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -18094,6 +18139,7 @@ public class ReplacePricePriceEventOutputTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -18333,6 +18379,8 @@ public class ReplacePricePriceEventOutputCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 

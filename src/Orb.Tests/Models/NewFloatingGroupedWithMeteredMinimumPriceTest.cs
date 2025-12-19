@@ -135,6 +135,7 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -344,6 +345,7 @@ public class NewFloatingGroupedWithMeteredMinimumPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -628,6 +630,8 @@ public class NewFloatingGroupedWithMeteredMinimumPriceCadenceTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -973,6 +977,8 @@ public class NewFloatingGroupedWithMeteredMinimumPriceModelTypeTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
