@@ -35,6 +35,8 @@ public class SubscriptionSchedulePlanChangeParamsChangeOptionTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -5049,6 +5051,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -5248,6 +5251,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersTes
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -5863,6 +5867,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCad
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -6127,6 +6133,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -6306,6 +6313,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -6561,6 +6569,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProratio
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -6999,6 +7009,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -7195,6 +7206,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -7470,6 +7482,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxT
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -7841,6 +7855,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -8037,6 +8052,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -8312,6 +8328,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedA
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -8664,6 +8682,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -8835,6 +8854,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentTest : Test
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -9074,6 +9094,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePricePercentCadenceTest
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -9411,6 +9433,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -9597,6 +9620,7 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputTest : 
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -9861,6 +9885,8 @@ public class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputCadence
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -10185,6 +10211,8 @@ public class BillingCycleAlignmentTest : TestBase
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -15212,6 +15240,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -15411,6 +15440,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -16027,6 +16057,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -16291,6 +16323,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -16470,6 +16503,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -16725,6 +16759,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithPror
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -17163,6 +17199,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -17359,6 +17396,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -17634,6 +17672,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMin
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -18005,6 +18045,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -18201,6 +18242,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -18476,6 +18518,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGrou
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -18828,6 +18872,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -18999,6 +19044,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentTest : 
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -19238,6 +19284,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentCadence
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -19577,6 +19625,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -19765,6 +19814,7 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputTes
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -20034,6 +20084,8 @@ public class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputCad
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 

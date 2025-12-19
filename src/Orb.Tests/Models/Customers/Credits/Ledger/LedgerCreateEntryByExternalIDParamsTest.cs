@@ -321,6 +321,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             Assert.Equal(expectedFilters[i], model.Filters[i]);
         }
         Assert.Equal(expectedInvoiceSettings, model.InvoiceSettings);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -453,6 +454,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementTest : TestBase
             Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
         }
         Assert.Equal(expectedInvoiceSettings, deserialized.InvoiceSettings);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -708,6 +710,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterFieldTest : T
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -771,6 +775,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyIncrementFilterOperatorTest 
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -1204,6 +1210,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyDecrementTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1257,6 +1264,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyDecrementTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1371,6 +1379,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedExpiryDate, model.ExpiryDate);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1442,6 +1451,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyExpirationChangeTest : TestB
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
         Assert.Equal(expectedExpiryDate, deserialized.ExpiryDate);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1578,6 +1588,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1642,6 +1653,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyVoidTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1761,6 +1773,8 @@ public class LedgerCreateEntryByExternalIDParamsBodyVoidVoidReasonTest : TestBas
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
+
+        Assert.NotNull(value);
         Assert.Throws<OrbInvalidDataException>(() => value.Validate());
     }
 
@@ -1825,6 +1839,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyAmendmentTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, model.EntryType));
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
@@ -1882,6 +1897,7 @@ public class LedgerCreateEntryByExternalIDParamsBodyAmendmentTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedEntryType, deserialized.EntryType));
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
         {
