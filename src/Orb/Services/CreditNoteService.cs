@@ -50,7 +50,7 @@ public sealed class CreditNoteService : ICreditNoteService
     }
 
     /// <inheritdoc/>
-    public async Task<CreditNoteListPageResponse> List(
+    public async Task<CreditNoteListPage> List(
         CreditNoteListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -72,7 +72,7 @@ public sealed class CreditNoteService : ICreditNoteService
         {
             page.Validate();
         }
-        return page;
+        return new CreditNoteListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

@@ -58,7 +58,7 @@ public interface ICreditNoteService
     /// subscription_id, or external_customer_id. The credit notes will be returned
     /// in reverse chronological order by `creation_time`.
     /// </summary>
-    Task<CreditNoteListPageResponse> List(
+    Task<CreditNoteListPage> List(
         CreditNoteListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

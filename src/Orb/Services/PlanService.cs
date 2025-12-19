@@ -94,7 +94,7 @@ public sealed class PlanService : IPlanService
     }
 
     /// <inheritdoc/>
-    public async Task<PlanListPageResponse> List(
+    public async Task<PlanListPage> List(
         PlanListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -116,7 +116,7 @@ public sealed class PlanService : IPlanService
         {
             page.Validate();
         }
-        return page;
+        return new PlanListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

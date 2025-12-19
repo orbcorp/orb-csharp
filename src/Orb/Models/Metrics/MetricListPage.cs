@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Orb.Core;
+using Orb.Exceptions;
+using Orb.Services;
+
+namespace Orb.Models.Metrics;
+
+public sealed class MetricListPage(
+    IMetricService service,
+    MetricListParams parameters,
+    MetricListPageResponse response
+) : IPage<BillableMetric>
+{
+    /// <inheritdoc/>
+    public IReadOnlyList<BillableMetric> Items
+    {
+        get { return response.Data; }
+    }
+
+    /// <inheritdoc/>
+    public bool HasNext()
+    {
+        try
+        {
+            return this.Items.Count > 0 && response.PaginationMetadata.NextCursor != null;
+        }
+        catch (OrbInvalidDataException)
+        {
+            // If accessing the response data to determine if there's a next page failed, then just
+            // assume there's no next page.
+            return false;
+        }
+    }
+
+    /// <inheritdoc/>
+    async Task<IPage<BillableMetric>> IPage<BillableMetric>.Next(
+        CancellationToken cancellationToken
+    ) => await this.Next(cancellationToken).ConfigureAwait(false);
+
+    /// <inheritdoc cref="IPage{T}.Next"/>
+    public async Task<MetricListPage> Next(CancellationToken cancellationToken = default)
+    {
+        var nextCursor =
+            response.PaginationMetadata.NextCursor
+            ?? throw new InvalidOperationException("Cannot request next page");
+        return await service
+            .List(parameters with { Cursor = nextCursor }, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public void Validate()
+    {
+        response.Validate();
+    }
+}

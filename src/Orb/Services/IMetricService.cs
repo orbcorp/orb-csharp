@@ -52,7 +52,7 @@ public interface IMetricService
     /// a metric identifier. It returns information about the metrics including its
     /// name, description, and item.
     /// </summary>
-    Task<MetricListPageResponse> List(
+    Task<MetricListPage> List(
         MetricListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

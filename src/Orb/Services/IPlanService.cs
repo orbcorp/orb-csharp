@@ -49,7 +49,7 @@ public interface IPlanService
     /// the most recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination),
     /// which lets the caller retrieve the next page of results if they exist.
     /// </summary>
-    Task<PlanListPageResponse> List(
+    Task<PlanListPage> List(
         PlanListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

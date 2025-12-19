@@ -41,7 +41,7 @@ public interface IItemService
     /// This endpoint returns a list of all Items, ordered in descending order by
     /// creation time.
     /// </summary>
-    Task<ItemListPageResponse> List(
+    Task<ItemListPage> List(
         ItemListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

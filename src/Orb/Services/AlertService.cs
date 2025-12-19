@@ -107,7 +107,7 @@ public sealed class AlertService : IAlertService
     }
 
     /// <inheritdoc/>
-    public async Task<AlertListPageResponse> List(
+    public async Task<AlertListPage> List(
         AlertListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -129,7 +129,7 @@ public sealed class AlertService : IAlertService
         {
             page.Validate();
         }
-        return page;
+        return new AlertListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

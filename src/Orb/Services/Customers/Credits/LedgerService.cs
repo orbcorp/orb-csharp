@@ -25,7 +25,7 @@ public sealed class LedgerService : ILedgerService
     }
 
     /// <inheritdoc/>
-    public async Task<LedgerListPageResponse> List(
+    public async Task<LedgerListPage> List(
         LedgerListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -50,11 +50,11 @@ public sealed class LedgerService : ILedgerService
         {
             page.Validate();
         }
-        return page;
+        return new LedgerListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<LedgerListPageResponse> List(
+    public async Task<LedgerListPage> List(
         string customerID,
         LedgerListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -156,7 +156,7 @@ public sealed class LedgerService : ILedgerService
     }
 
     /// <inheritdoc/>
-    public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+    public async Task<LedgerListByExternalIDPage> ListByExternalID(
         LedgerListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -181,11 +181,11 @@ public sealed class LedgerService : ILedgerService
         {
             page.Validate();
         }
-        return page;
+        return new LedgerListByExternalIDPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+    public async Task<LedgerListByExternalIDPage> ListByExternalID(
         string externalCustomerID,
         LedgerListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

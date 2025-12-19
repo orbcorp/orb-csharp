@@ -34,13 +34,13 @@ public interface ICreditService
     /// <para>Note that `currency` defaults to credits if not specified. To use a
     /// real world currency, set `currency` to an ISO 4217 string.</para>
     /// </summary>
-    Task<CreditListPageResponse> List(
+    Task<CreditListPage> List(
         CreditListParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="List(CreditListParams, CancellationToken)"/>
-    Task<CreditListPageResponse> List(
+    Task<CreditListPage> List(
         string customerID,
         CreditListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -55,13 +55,13 @@ public interface ICreditService
     /// <para>Note that `currency` defaults to credits if not specified. To use a
     /// real world currency, set `currency` to an ISO 4217 string.</para>
     /// </summary>
-    Task<CreditListByExternalIDPageResponse> ListByExternalID(
+    Task<CreditListByExternalIDPage> ListByExternalID(
         CreditListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/>
-    Task<CreditListByExternalIDPageResponse> ListByExternalID(
+    Task<CreditListByExternalIDPage> ListByExternalID(
         string externalCustomerID,
         CreditListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

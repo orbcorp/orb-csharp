@@ -61,7 +61,7 @@ public interface IPriceService
     /// <summary>
     /// This endpoint is used to list all add-on prices created using the [price creation endpoint](/api-reference/price/create-price).
     /// </summary>
-    Task<PriceListPageResponse> List(
+    Task<PriceListPage> List(
         PriceListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

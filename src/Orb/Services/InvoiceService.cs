@@ -87,7 +87,7 @@ public sealed class InvoiceService : IInvoiceService
     }
 
     /// <inheritdoc/>
-    public async Task<InvoiceListPageResponse> List(
+    public async Task<InvoiceListPage> List(
         InvoiceListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -109,7 +109,7 @@ public sealed class InvoiceService : IInvoiceService
         {
             page.Validate();
         }
-        return page;
+        return new InvoiceListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

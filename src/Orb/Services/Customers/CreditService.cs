@@ -40,7 +40,7 @@ public sealed class CreditService : ICreditService
     }
 
     /// <inheritdoc/>
-    public async Task<CreditListPageResponse> List(
+    public async Task<CreditListPage> List(
         CreditListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -65,11 +65,11 @@ public sealed class CreditService : ICreditService
         {
             page.Validate();
         }
-        return page;
+        return new CreditListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<CreditListPageResponse> List(
+    public async Task<CreditListPage> List(
         string customerID,
         CreditListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -81,7 +81,7 @@ public sealed class CreditService : ICreditService
     }
 
     /// <inheritdoc/>
-    public async Task<CreditListByExternalIDPageResponse> ListByExternalID(
+    public async Task<CreditListByExternalIDPage> ListByExternalID(
         CreditListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -106,11 +106,11 @@ public sealed class CreditService : ICreditService
         {
             page.Validate();
         }
-        return page;
+        return new CreditListByExternalIDPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<CreditListByExternalIDPageResponse> ListByExternalID(
+    public async Task<CreditListByExternalIDPage> ListByExternalID(
         string externalCustomerID,
         CreditListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

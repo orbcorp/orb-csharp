@@ -86,7 +86,7 @@ public sealed class ItemService : IItemService
     }
 
     /// <inheritdoc/>
-    public async Task<ItemListPageResponse> List(
+    public async Task<ItemListPage> List(
         ItemListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -108,7 +108,7 @@ public sealed class ItemService : IItemService
         {
             page.Validate();
         }
-        return page;
+        return new ItemListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

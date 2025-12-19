@@ -60,13 +60,13 @@ public interface IBalanceTransactionService
     /// chronological order for a single customer, providing a complete audit trail
     /// of all adjustments and invoice applications.</para>
     /// </summary>
-    Task<BalanceTransactionListPageResponse> List(
+    Task<BalanceTransactionListPage> List(
         BalanceTransactionListParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="List(BalanceTransactionListParams, CancellationToken)"/>
-    Task<BalanceTransactionListPageResponse> List(
+    Task<BalanceTransactionListPage> List(
         string customerID,
         BalanceTransactionListParams? parameters = null,
         CancellationToken cancellationToken = default

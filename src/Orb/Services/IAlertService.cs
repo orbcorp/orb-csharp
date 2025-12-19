@@ -59,7 +59,7 @@ public interface IAlertService
     /// <para>The list of alerts is ordered starting from the most recently created
     /// alert. This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).</para>
     /// </summary>
-    Task<AlertListPageResponse> List(
+    Task<AlertListPage> List(
         AlertListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

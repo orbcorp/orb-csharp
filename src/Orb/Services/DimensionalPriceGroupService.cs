@@ -157,7 +157,7 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
     }
 
     /// <inheritdoc/>
-    public async Task<DimensionalPriceGroupDimensionalPriceGroups> List(
+    public async Task<DimensionalPriceGroupListPage> List(
         DimensionalPriceGroupListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -179,6 +179,6 @@ public sealed class DimensionalPriceGroupService : IDimensionalPriceGroupService
         {
             page.Validate();
         }
-        return page;
+        return new DimensionalPriceGroupListPage(this, parameters, page);
     }
 }

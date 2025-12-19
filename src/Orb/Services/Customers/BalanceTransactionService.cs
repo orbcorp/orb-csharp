@@ -64,7 +64,7 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
     }
 
     /// <inheritdoc/>
-    public async Task<BalanceTransactionListPageResponse> List(
+    public async Task<BalanceTransactionListPage> List(
         BalanceTransactionListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -89,11 +89,11 @@ public sealed class BalanceTransactionService : IBalanceTransactionService
         {
             page.Validate();
         }
-        return page;
+        return new BalanceTransactionListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<BalanceTransactionListPageResponse> List(
+    public async Task<BalanceTransactionListPage> List(
         string customerID,
         BalanceTransactionListParams? parameters = null,
         CancellationToken cancellationToken = default
