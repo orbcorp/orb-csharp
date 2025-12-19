@@ -40,7 +40,7 @@ public interface ICouponService
     /// retrieve the next page of results if they exist. More information about pagination
     /// can be found in the Pagination-metadata schema.</para>
     /// </summary>
-    Task<CouponListPageResponse> List(
+    Task<CouponListPage> List(
         CouponListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

@@ -90,7 +90,7 @@ public sealed class MetricService : IMetricService
     }
 
     /// <inheritdoc/>
-    public async Task<MetricListPageResponse> List(
+    public async Task<MetricListPage> List(
         MetricListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -112,7 +112,7 @@ public sealed class MetricService : IMetricService
         {
             page.Validate();
         }
-        return page;
+        return new MetricListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

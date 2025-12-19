@@ -43,13 +43,13 @@ public interface ITopUpService
     /// <summary>
     /// List top-ups
     /// </summary>
-    Task<TopUpListPageResponse> List(
+    Task<TopUpListPage> List(
         TopUpListParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="List(TopUpListParams, CancellationToken)"/>
-    Task<TopUpListPageResponse> List(
+    Task<TopUpListPage> List(
         string customerID,
         TopUpListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -107,13 +107,13 @@ public interface ITopUpService
     /// <summary>
     /// List top-ups by external ID
     /// </summary>
-    Task<TopUpListByExternalIDPageResponse> ListByExternalID(
+    Task<TopUpListByExternalIDPage> ListByExternalID(
         TopUpListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="ListByExternalID(TopUpListByExternalIDParams, CancellationToken)"/>
-    Task<TopUpListByExternalIDPageResponse> ListByExternalID(
+    Task<TopUpListByExternalIDPage> ListByExternalID(
         string externalCustomerID,
         TopUpListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

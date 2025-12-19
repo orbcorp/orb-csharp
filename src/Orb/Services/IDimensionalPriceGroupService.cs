@@ -74,7 +74,7 @@ public interface IDimensionalPriceGroupService
     /// <summary>
     /// List dimensional price groups
     /// </summary>
-    Task<DimensionalPriceGroupDimensionalPriceGroups> List(
+    Task<DimensionalPriceGroupListPage> List(
         DimensionalPriceGroupListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

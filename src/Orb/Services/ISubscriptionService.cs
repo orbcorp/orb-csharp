@@ -251,7 +251,7 @@ public interface ISubscriptionService
     /// the customer_id or external_customer_id query parameters. To filter subscriptions
     /// for multiple customers, use the customer_id[] or external_customer_id[] query parameters.</para>
     /// </summary>
-    Task<SubscriptionSubscriptions> List(
+    Task<SubscriptionListPage> List(
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -369,13 +369,13 @@ public interface ISubscriptionService
     /// This list contains the subscription's initial plan along with past and future
     /// plan changes.
     /// </summary>
-    Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
+    Task<SubscriptionFetchSchedulePage> FetchSchedule(
         SubscriptionFetchScheduleParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="FetchSchedule(SubscriptionFetchScheduleParams, CancellationToken)"/>
-    Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
+    Task<SubscriptionFetchSchedulePage> FetchSchedule(
         string subscriptionID,
         SubscriptionFetchScheduleParams? parameters = null,
         CancellationToken cancellationToken = default

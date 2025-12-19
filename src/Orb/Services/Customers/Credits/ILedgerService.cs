@@ -91,13 +91,13 @@ public interface ILedgerService
     /// of a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.</para>
     /// </summary>
-    Task<LedgerListPageResponse> List(
+    Task<LedgerListPage> List(
         LedgerListParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="List(LedgerListParams, CancellationToken)"/>
-    Task<LedgerListPageResponse> List(
+    Task<LedgerListPage> List(
         string customerID,
         LedgerListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -370,13 +370,13 @@ public interface ILedgerService
     /// of a correction, this entry will be added to the ledger to indicate the adjustment
     /// of credits.</para>
     /// </summary>
-    Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+    Task<LedgerListByExternalIDPage> ListByExternalID(
         LedgerListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="ListByExternalID(LedgerListByExternalIDParams, CancellationToken)"/>
-    Task<LedgerListByExternalIDPageResponse> ListByExternalID(
+    Task<LedgerListByExternalIDPage> ListByExternalID(
         string externalCustomerID,
         LedgerListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

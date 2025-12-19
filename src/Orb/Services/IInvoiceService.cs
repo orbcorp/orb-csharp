@@ -64,7 +64,7 @@ public interface IInvoiceService
     /// values for each draft invoice, which may not always be up-to-date since Orb
     /// regularly refreshes invoices asynchronously.</para>
     /// </summary>
-    Task<InvoiceListPageResponse> List(
+    Task<InvoiceListPage> List(
         InvoiceListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

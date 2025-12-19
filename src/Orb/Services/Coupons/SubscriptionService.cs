@@ -30,7 +30,7 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
     }
 
     /// <inheritdoc/>
-    public async Task<Subscriptions::SubscriptionSubscriptions> List(
+    public async Task<SubscriptionListPage> List(
         SubscriptionListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -55,11 +55,11 @@ public sealed class SubscriptionService : global::Orb.Services.Coupons.ISubscrip
         {
             page.Validate();
         }
-        return page;
+        return new SubscriptionListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<Subscriptions::SubscriptionSubscriptions> List(
+    public async Task<SubscriptionListPage> List(
         string couponID,
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default

@@ -492,15 +492,9 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Credits::Field>(),
             new ApiEnumConverter<string, Credits::Operator>(),
             new ApiEnumConverter<string, Credits::Status>(),
-            new ApiEnumConverter<
-                string,
-                Credits::CreditListByExternalIDPageResponseDataFilterField
-            >(),
-            new ApiEnumConverter<
-                string,
-                Credits::CreditListByExternalIDPageResponseDataFilterOperator
-            >(),
-            new ApiEnumConverter<string, Credits::CreditListByExternalIDPageResponseDataStatus>(),
+            new ApiEnumConverter<string, Credits::CreditListByExternalIDResponseFilterField>(),
+            new ApiEnumConverter<string, Credits::CreditListByExternalIDResponseFilterOperator>(),
+            new ApiEnumConverter<string, Credits::CreditListByExternalIDResponseStatus>(),
             new ApiEnumConverter<string, Ledger::AffectedBlockFilterField>(),
             new ApiEnumConverter<string, Ledger::AffectedBlockFilterOperator>(),
             new ApiEnumConverter<string, Ledger::AmendmentLedgerEntryEntryStatus>(),
@@ -537,9 +531,9 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Ledger::LedgerListByExternalIDParamsEntryStatus>(),
             new ApiEnumConverter<string, Ledger::LedgerListByExternalIDParamsEntryType>(),
             new ApiEnumConverter<string, TopUpCreateResponseExpiresAfterUnit>(),
-            new ApiEnumConverter<string, DataExpiresAfterUnit>(),
+            new ApiEnumConverter<string, TopUpListResponseExpiresAfterUnit>(),
             new ApiEnumConverter<string, TopUpCreateByExternalIDResponseExpiresAfterUnit>(),
-            new ApiEnumConverter<string, TopUpListByExternalIDPageResponseDataExpiresAfterUnit>(),
+            new ApiEnumConverter<string, TopUpListByExternalIDResponseExpiresAfterUnit>(),
             new ApiEnumConverter<string, ExpiresAfterUnit>(),
             new ApiEnumConverter<string, TopUpCreateByExternalIDParamsExpiresAfterUnit>(),
             new ApiEnumConverter<string, BalanceTransactions::Action>(),
@@ -547,11 +541,14 @@ public abstract record class ModelBase
                 string,
                 BalanceTransactions::BalanceTransactionCreateResponseType
             >(),
-            new ApiEnumConverter<string, BalanceTransactions::DataAction>(),
-            new ApiEnumConverter<string, BalanceTransactions::DataType>(),
+            new ApiEnumConverter<
+                string,
+                BalanceTransactions::BalanceTransactionListResponseAction
+            >(),
+            new ApiEnumConverter<string, BalanceTransactions::BalanceTransactionListResponseType>(),
             new ApiEnumConverter<string, BalanceTransactions::Type>(),
             new ApiEnumConverter<string, Backfills::Status>(),
-            new ApiEnumConverter<string, Backfills::DataStatus>(),
+            new ApiEnumConverter<string, Backfills::BackfillListResponseStatus>(),
             new ApiEnumConverter<string, Backfills::BackfillCloseResponseStatus>(),
             new ApiEnumConverter<string, Backfills::BackfillFetchResponseStatus>(),
             new ApiEnumConverter<string, Backfills::BackfillRevertResponseStatus>(),

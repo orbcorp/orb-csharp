@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Orb.Core;
 using Orb.Models.Coupons.Subscriptions;
-using Subscriptions = Orb.Models.Subscriptions;
 
 namespace Orb.Services.Coupons;
 
@@ -29,13 +28,13 @@ public interface ISubscriptionService
     /// from the most recently created subscription. For a full discussion of the
     /// subscription resource, see [Subscription](/core-concepts#subscription).
     /// </summary>
-    Task<Subscriptions::SubscriptionSubscriptions> List(
+    Task<SubscriptionListPage> List(
         SubscriptionListParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="List(SubscriptionListParams, CancellationToken)"/>
-    Task<Subscriptions::SubscriptionSubscriptions> List(
+    Task<SubscriptionListPage> List(
         string couponID,
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default

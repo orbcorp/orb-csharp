@@ -49,7 +49,7 @@ public sealed class BackfillService : IBackfillService
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillListPageResponse> List(
+    public async Task<BackfillListPage> List(
         BackfillListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -71,7 +71,7 @@ public sealed class BackfillService : IBackfillService
         {
             page.Validate();
         }
-        return page;
+        return new BackfillListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

@@ -64,7 +64,7 @@ public sealed class TopUpService : ITopUpService
     }
 
     /// <inheritdoc/>
-    public async Task<TopUpListPageResponse> List(
+    public async Task<TopUpListPage> List(
         TopUpListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -89,11 +89,11 @@ public sealed class TopUpService : ITopUpService
         {
             page.Validate();
         }
-        return page;
+        return new TopUpListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<TopUpListPageResponse> List(
+    public async Task<TopUpListPage> List(
         string customerID,
         TopUpListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -212,7 +212,7 @@ public sealed class TopUpService : ITopUpService
     }
 
     /// <inheritdoc/>
-    public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
+    public async Task<TopUpListByExternalIDPage> ListByExternalID(
         TopUpListByExternalIDParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -237,11 +237,11 @@ public sealed class TopUpService : ITopUpService
         {
             page.Validate();
         }
-        return page;
+        return new TopUpListByExternalIDPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<TopUpListByExternalIDPageResponse> ListByExternalID(
+    public async Task<TopUpListByExternalIDPage> ListByExternalID(
         string externalCustomerID,
         TopUpListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

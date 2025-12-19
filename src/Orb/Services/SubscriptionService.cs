@@ -99,7 +99,7 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     /// <inheritdoc/>
-    public async Task<SubscriptionSubscriptions> List(
+    public async Task<SubscriptionListPage> List(
         SubscriptionListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -121,7 +121,7 @@ public sealed class SubscriptionService : ISubscriptionService
         {
             page.Validate();
         }
-        return page;
+        return new SubscriptionListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
@@ -264,7 +264,7 @@ public sealed class SubscriptionService : ISubscriptionService
     }
 
     /// <inheritdoc/>
-    public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
+    public async Task<SubscriptionFetchSchedulePage> FetchSchedule(
         SubscriptionFetchScheduleParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -289,11 +289,11 @@ public sealed class SubscriptionService : ISubscriptionService
         {
             page.Validate();
         }
-        return page;
+        return new SubscriptionFetchSchedulePage(this, parameters, page);
     }
 
     /// <inheritdoc/>
-    public async Task<SubscriptionFetchSchedulePageResponse> FetchSchedule(
+    public async Task<SubscriptionFetchSchedulePage> FetchSchedule(
         string subscriptionID,
         SubscriptionFetchScheduleParams? parameters = null,
         CancellationToken cancellationToken = default

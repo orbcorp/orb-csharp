@@ -68,7 +68,7 @@ public interface ICustomerService
     ///
     /// <para>See [Customer](/core-concepts##customer) for an overview of the customer model.</para>
     /// </summary>
-    Task<CustomerListPageResponse> List(
+    Task<CustomerListPage> List(
         CustomerListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

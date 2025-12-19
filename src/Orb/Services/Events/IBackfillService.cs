@@ -72,7 +72,7 @@ public interface IBackfillService
     /// which lets the caller retrieve the next page of results if they exist. More
     /// information about pagination can be found in the [Pagination-metadata schema](pagination).</para>
     /// </summary>
-    Task<BackfillListPageResponse> List(
+    Task<BackfillListPage> List(
         BackfillListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

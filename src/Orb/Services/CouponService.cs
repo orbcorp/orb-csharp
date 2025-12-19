@@ -55,7 +55,7 @@ public sealed class CouponService : ICouponService
     }
 
     /// <inheritdoc/>
-    public async Task<CouponListPageResponse> List(
+    public async Task<CouponListPage> List(
         CouponListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -77,7 +77,7 @@ public sealed class CouponService : ICouponService
         {
             page.Validate();
         }
-        return page;
+        return new CouponListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

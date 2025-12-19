@@ -99,7 +99,7 @@ public sealed class PriceService : IPriceService
     }
 
     /// <inheritdoc/>
-    public async Task<PriceListPageResponse> List(
+    public async Task<PriceListPage> List(
         PriceListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -121,7 +121,7 @@ public sealed class PriceService : IPriceService
         {
             page.Validate();
         }
-        return page;
+        return new PriceListPage(this, parameters, page);
     }
 
     /// <inheritdoc/>
