@@ -1,9 +1,68 @@
+using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
+
+public class SubscriptionCancelParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new SubscriptionCancelParams
+        {
+            SubscriptionID = "subscription_id",
+            CancelOption = CancelOption.EndOfSubscriptionTerm,
+            AllowInvoiceCreditOrVoid = true,
+            CancellationDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        string expectedSubscriptionID = "subscription_id";
+        ApiEnum<string, CancelOption> expectedCancelOption = CancelOption.EndOfSubscriptionTerm;
+        bool expectedAllowInvoiceCreditOrVoid = true;
+        DateTimeOffset expectedCancellationDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+
+        Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
+        Assert.Equal(expectedCancelOption, parameters.CancelOption);
+        Assert.Equal(expectedAllowInvoiceCreditOrVoid, parameters.AllowInvoiceCreditOrVoid);
+        Assert.Equal(expectedCancellationDate, parameters.CancellationDate);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new SubscriptionCancelParams
+        {
+            SubscriptionID = "subscription_id",
+            CancelOption = CancelOption.EndOfSubscriptionTerm,
+        };
+
+        Assert.Null(parameters.AllowInvoiceCreditOrVoid);
+        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.Null(parameters.CancellationDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("cancellation_date"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new SubscriptionCancelParams
+        {
+            SubscriptionID = "subscription_id",
+            CancelOption = CancelOption.EndOfSubscriptionTerm,
+
+            AllowInvoiceCreditOrVoid = null,
+            CancellationDate = null,
+        };
+
+        Assert.Null(parameters.AllowInvoiceCreditOrVoid);
+        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.Null(parameters.CancellationDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("cancellation_date"));
+    }
+}
 
 public class CancelOptionTest : TestBase
 {

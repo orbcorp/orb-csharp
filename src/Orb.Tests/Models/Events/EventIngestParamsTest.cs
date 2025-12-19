@@ -5,6 +5,173 @@ using Orb.Models.Events;
 
 namespace Orb.Tests.Models.Events;
 
+public class EventIngestParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new EventIngestParams
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            BackfillID = "backfill_id",
+            Debug = true,
+        };
+
+        List<Event> expectedEvents =
+        [
+            new()
+            {
+                EventName = "event_name",
+                IdempotencyKey = "idempotency_key",
+                Properties = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                CustomerID = "customer_id",
+                ExternalCustomerID = "external_customer_id",
+            },
+        ];
+        string expectedBackfillID = "backfill_id";
+        bool expectedDebug = true;
+
+        Assert.Equal(expectedEvents.Count, parameters.Events.Count);
+        for (int i = 0; i < expectedEvents.Count; i++)
+        {
+            Assert.Equal(expectedEvents[i], parameters.Events[i]);
+        }
+        Assert.Equal(expectedBackfillID, parameters.BackfillID);
+        Assert.Equal(expectedDebug, parameters.Debug);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new EventIngestParams
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            BackfillID = "backfill_id",
+        };
+
+        Assert.Null(parameters.Debug);
+        Assert.False(parameters.RawQueryData.ContainsKey("debug"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new EventIngestParams
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            BackfillID = "backfill_id",
+
+            // Null should be interpreted as omitted for these properties
+            Debug = null,
+        };
+
+        Assert.Null(parameters.Debug);
+        Assert.False(parameters.RawQueryData.ContainsKey("debug"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new EventIngestParams
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            Debug = true,
+        };
+
+        Assert.Null(parameters.BackfillID);
+        Assert.False(parameters.RawQueryData.ContainsKey("backfill_id"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new EventIngestParams
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            Debug = true,
+
+            BackfillID = null,
+        };
+
+        Assert.Null(parameters.BackfillID);
+        Assert.False(parameters.RawQueryData.ContainsKey("backfill_id"));
+    }
+}
+
 public class EventTest : TestBase
 {
     [Fact]

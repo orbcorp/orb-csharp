@@ -1,9 +1,121 @@
+using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Tests.Models.Customers.Credits.TopUps;
+
+public class TopUpCreateByExternalIDParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new TopUpCreateByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Amount = "amount",
+            Currency = "currency",
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                NetTerms = 0,
+                Memo = "memo",
+                RequireSuccessfulPayment = true,
+            },
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Threshold = "threshold",
+            ActiveFrom = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiresAfter = 0,
+            ExpiresAfterUnit = TopUpCreateByExternalIDParamsExpiresAfterUnit.Day,
+        };
+
+        string expectedExternalCustomerID = "external_customer_id";
+        string expectedAmount = "amount";
+        string expectedCurrency = "currency";
+        TopUpCreateByExternalIDParamsInvoiceSettings expectedInvoiceSettings = new()
+        {
+            AutoCollection = true,
+            NetTerms = 0,
+            Memo = "memo",
+            RequireSuccessfulPayment = true,
+        };
+        string expectedPerUnitCostBasis = "per_unit_cost_basis";
+        string expectedThreshold = "threshold";
+        DateTimeOffset expectedActiveFrom = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        long expectedExpiresAfter = 0;
+        ApiEnum<string, TopUpCreateByExternalIDParamsExpiresAfterUnit> expectedExpiresAfterUnit =
+            TopUpCreateByExternalIDParamsExpiresAfterUnit.Day;
+
+        Assert.Equal(expectedExternalCustomerID, parameters.ExternalCustomerID);
+        Assert.Equal(expectedAmount, parameters.Amount);
+        Assert.Equal(expectedCurrency, parameters.Currency);
+        Assert.Equal(expectedInvoiceSettings, parameters.InvoiceSettings);
+        Assert.Equal(expectedPerUnitCostBasis, parameters.PerUnitCostBasis);
+        Assert.Equal(expectedThreshold, parameters.Threshold);
+        Assert.Equal(expectedActiveFrom, parameters.ActiveFrom);
+        Assert.Equal(expectedExpiresAfter, parameters.ExpiresAfter);
+        Assert.Equal(expectedExpiresAfterUnit, parameters.ExpiresAfterUnit);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new TopUpCreateByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Amount = "amount",
+            Currency = "currency",
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                NetTerms = 0,
+                Memo = "memo",
+                RequireSuccessfulPayment = true,
+            },
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Threshold = "threshold",
+        };
+
+        Assert.Null(parameters.ActiveFrom);
+        Assert.False(parameters.RawBodyData.ContainsKey("active_from"));
+        Assert.Null(parameters.ExpiresAfter);
+        Assert.False(parameters.RawBodyData.ContainsKey("expires_after"));
+        Assert.Null(parameters.ExpiresAfterUnit);
+        Assert.False(parameters.RawBodyData.ContainsKey("expires_after_unit"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new TopUpCreateByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Amount = "amount",
+            Currency = "currency",
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                NetTerms = 0,
+                Memo = "memo",
+                RequireSuccessfulPayment = true,
+            },
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Threshold = "threshold",
+
+            ActiveFrom = null,
+            ExpiresAfter = null,
+            ExpiresAfterUnit = null,
+        };
+
+        Assert.Null(parameters.ActiveFrom);
+        Assert.False(parameters.RawBodyData.ContainsKey("active_from"));
+        Assert.Null(parameters.ExpiresAfter);
+        Assert.False(parameters.RawBodyData.ContainsKey("expires_after"));
+        Assert.Null(parameters.ExpiresAfterUnit);
+        Assert.False(parameters.RawBodyData.ContainsKey("expires_after_unit"));
+    }
+}
 
 public class TopUpCreateByExternalIDParamsInvoiceSettingsTest : TestBase
 {

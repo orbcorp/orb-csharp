@@ -1,9 +1,70 @@
+using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Alerts;
 
 namespace Orb.Tests.Models.Alerts;
+
+public class AlertCreateForSubscriptionParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new AlertCreateForSubscriptionParams
+        {
+            SubscriptionID = "subscription_id",
+            Thresholds = [new(0)],
+            Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+            MetricID = "metric_id",
+        };
+
+        string expectedSubscriptionID = "subscription_id";
+        List<Threshold> expectedThresholds = [new(0)];
+        ApiEnum<string, AlertCreateForSubscriptionParamsType> expectedType =
+            AlertCreateForSubscriptionParamsType.UsageExceeded;
+        string expectedMetricID = "metric_id";
+
+        Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
+        Assert.Equal(expectedThresholds.Count, parameters.Thresholds.Count);
+        for (int i = 0; i < expectedThresholds.Count; i++)
+        {
+            Assert.Equal(expectedThresholds[i], parameters.Thresholds[i]);
+        }
+        Assert.Equal(expectedType, parameters.Type);
+        Assert.Equal(expectedMetricID, parameters.MetricID);
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new AlertCreateForSubscriptionParams
+        {
+            SubscriptionID = "subscription_id",
+            Thresholds = [new(0)],
+            Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+        };
+
+        Assert.Null(parameters.MetricID);
+        Assert.False(parameters.RawBodyData.ContainsKey("metric_id"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new AlertCreateForSubscriptionParams
+        {
+            SubscriptionID = "subscription_id",
+            Thresholds = [new(0)],
+            Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+
+            MetricID = null,
+        };
+
+        Assert.Null(parameters.MetricID);
+        Assert.False(parameters.RawBodyData.ContainsKey("metric_id"));
+    }
+}
 
 public class AlertCreateForSubscriptionParamsTypeTest : TestBase
 {

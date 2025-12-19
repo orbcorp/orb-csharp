@@ -5,6 +5,110 @@ using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
 
+public class SubscriptionUpdateFixedFeeQuantityParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            AllowInvoiceCreditOrVoid = true,
+            ChangeOption = SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+            EffectiveDate = "2022-12-21",
+        };
+
+        string expectedSubscriptionID = "subscription_id";
+        string expectedPriceID = "price_id";
+        double expectedQuantity = 0;
+        bool expectedAllowInvoiceCreditOrVoid = true;
+        ApiEnum<string, SubscriptionUpdateFixedFeeQuantityParamsChangeOption> expectedChangeOption =
+            SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate;
+        string expectedEffectiveDate = "2022-12-21";
+
+        Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
+        Assert.Equal(expectedPriceID, parameters.PriceID);
+        Assert.Equal(expectedQuantity, parameters.Quantity);
+        Assert.Equal(expectedAllowInvoiceCreditOrVoid, parameters.AllowInvoiceCreditOrVoid);
+        Assert.Equal(expectedChangeOption, parameters.ChangeOption);
+        Assert.Equal(expectedEffectiveDate, parameters.EffectiveDate);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            AllowInvoiceCreditOrVoid = true,
+            EffectiveDate = "2022-12-21",
+        };
+
+        Assert.Null(parameters.ChangeOption);
+        Assert.False(parameters.RawBodyData.ContainsKey("change_option"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            AllowInvoiceCreditOrVoid = true,
+            EffectiveDate = "2022-12-21",
+
+            // Null should be interpreted as omitted for these properties
+            ChangeOption = null,
+        };
+
+        Assert.Null(parameters.ChangeOption);
+        Assert.False(parameters.RawBodyData.ContainsKey("change_option"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            ChangeOption = SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+        };
+
+        Assert.Null(parameters.AllowInvoiceCreditOrVoid);
+        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.Null(parameters.EffectiveDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("effective_date"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            ChangeOption = SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+
+            AllowInvoiceCreditOrVoid = null,
+            EffectiveDate = null,
+        };
+
+        Assert.Null(parameters.AllowInvoiceCreditOrVoid);
+        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.Null(parameters.EffectiveDate);
+        Assert.False(parameters.RawBodyData.ContainsKey("effective_date"));
+    }
+}
+
 public class SubscriptionUpdateFixedFeeQuantityParamsChangeOptionTest : TestBase
 {
     [Theory]

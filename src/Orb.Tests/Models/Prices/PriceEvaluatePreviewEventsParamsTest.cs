@@ -8,6 +8,361 @@ using Orb.Models.Prices;
 
 namespace Orb.Tests.Models.Prices;
 
+public class PriceEvaluatePreviewEventsParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new PriceEvaluatePreviewEventsParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            ExternalCustomerID = "external_customer_id",
+            PriceEvaluations =
+            [
+                new()
+                {
+                    ExternalPriceID = "external_price_id",
+                    Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+                    GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    Price = new NewFloatingUnitPrice()
+                    {
+                        Cadence = NewFloatingUnitPriceCadence.Annual,
+                        Currency = "currency",
+                        ItemID = "item_id",
+                        ModelType = NewFloatingUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    },
+                    PriceID = "price_id",
+                },
+            ],
+        };
+
+        DateTimeOffset expectedTimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedTimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedCustomerID = "customer_id";
+        List<Event> expectedEvents =
+        [
+            new()
+            {
+                EventName = "event_name",
+                Properties = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                CustomerID = "customer_id",
+                ExternalCustomerID = "external_customer_id",
+            },
+        ];
+        string expectedExternalCustomerID = "external_customer_id";
+        List<PriceEvaluatePreviewEventsParamsPriceEvaluation> expectedPriceEvaluations =
+        [
+            new()
+            {
+                ExternalPriceID = "external_price_id",
+                Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+                GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                Price = new NewFloatingUnitPrice()
+                {
+                    Cadence = NewFloatingUnitPriceCadence.Annual,
+                    Currency = "currency",
+                    ItemID = "item_id",
+                    ModelType = NewFloatingUnitPriceModelType.Unit,
+                    Name = "Annual fee",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                    BillableMetricID = "billable_metric_id",
+                    BilledInAdvance = true,
+                    BillingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                    },
+                    ConversionRate = 0,
+                    ConversionRateConfig = new SharedUnitConversionRateConfig()
+                    {
+                        ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                        UnitConfig = new("unit_amount"),
+                    },
+                    DimensionalPriceConfiguration = new()
+                    {
+                        DimensionValues = ["string"],
+                        DimensionalPriceGroupID = "dimensional_price_group_id",
+                        ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                    },
+                    ExternalPriceID = "external_price_id",
+                    FixedPriceQuantity = 0,
+                    InvoiceGroupingKey = "x",
+                    InvoicingCycleConfiguration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                    },
+                    Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                },
+                PriceID = "price_id",
+            },
+        ];
+
+        Assert.Equal(expectedTimeframeEnd, parameters.TimeframeEnd);
+        Assert.Equal(expectedTimeframeStart, parameters.TimeframeStart);
+        Assert.Equal(expectedCustomerID, parameters.CustomerID);
+        Assert.NotNull(parameters.Events);
+        Assert.Equal(expectedEvents.Count, parameters.Events.Count);
+        for (int i = 0; i < expectedEvents.Count; i++)
+        {
+            Assert.Equal(expectedEvents[i], parameters.Events[i]);
+        }
+        Assert.Equal(expectedExternalCustomerID, parameters.ExternalCustomerID);
+        Assert.NotNull(parameters.PriceEvaluations);
+        Assert.Equal(expectedPriceEvaluations.Count, parameters.PriceEvaluations.Count);
+        for (int i = 0; i < expectedPriceEvaluations.Count; i++)
+        {
+            Assert.Equal(expectedPriceEvaluations[i], parameters.PriceEvaluations[i]);
+        }
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new PriceEvaluatePreviewEventsParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        Assert.Null(parameters.Events);
+        Assert.False(parameters.RawBodyData.ContainsKey("events"));
+        Assert.Null(parameters.PriceEvaluations);
+        Assert.False(parameters.RawBodyData.ContainsKey("price_evaluations"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new PriceEvaluatePreviewEventsParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+
+            // Null should be interpreted as omitted for these properties
+            Events = null,
+            PriceEvaluations = null,
+        };
+
+        Assert.Null(parameters.Events);
+        Assert.False(parameters.RawBodyData.ContainsKey("events"));
+        Assert.Null(parameters.PriceEvaluations);
+        Assert.False(parameters.RawBodyData.ContainsKey("price_evaluations"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new PriceEvaluatePreviewEventsParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            PriceEvaluations =
+            [
+                new()
+                {
+                    ExternalPriceID = "external_price_id",
+                    Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+                    GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    Price = new NewFloatingUnitPrice()
+                    {
+                        Cadence = NewFloatingUnitPriceCadence.Annual,
+                        Currency = "currency",
+                        ItemID = "item_id",
+                        ModelType = NewFloatingUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    },
+                    PriceID = "price_id",
+                },
+            ],
+        };
+
+        Assert.Null(parameters.CustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.Null(parameters.ExternalCustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+    }
+
+    [Fact]
+    public void OptionalNullableParamsSetToNullAreSetToNull_Works()
+    {
+        var parameters = new PriceEvaluatePreviewEventsParams
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            PriceEvaluations =
+            [
+                new()
+                {
+                    ExternalPriceID = "external_price_id",
+                    Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+                    GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+                    Price = new NewFloatingUnitPrice()
+                    {
+                        Cadence = NewFloatingUnitPriceCadence.Annual,
+                        Currency = "currency",
+                        ItemID = "item_id",
+                        ModelType = NewFloatingUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                    },
+                    PriceID = "price_id",
+                },
+            ],
+
+            CustomerID = null,
+            ExternalCustomerID = null,
+        };
+
+        Assert.Null(parameters.CustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.Null(parameters.ExternalCustomerID);
+        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+    }
+}
+
 public class EventTest : TestBase
 {
     [Fact]
