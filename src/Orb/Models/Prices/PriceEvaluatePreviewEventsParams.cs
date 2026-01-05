@@ -273,8 +273,8 @@ public sealed record class Event : JsonModel
 
     public Event() { }
 
-    public Event(Event event1)
-        : base(event1) { }
+    public Event(Event event_)
+        : base(event_) { }
 
     public Event(IReadOnlyDictionary<string, JsonElement> rawData)
     {
