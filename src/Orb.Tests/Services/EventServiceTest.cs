@@ -10,7 +10,7 @@ public class EventServiceTest : TestBase
     [Fact]
     public async Task Update_Works()
     {
-        var event1 = await this.client.Events.Update(
+        var event_ = await this.client.Events.Update(
             "event_id",
             new()
             {
@@ -23,7 +23,7 @@ public class EventServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        event1.Validate();
+        event_.Validate();
     }
 
     [Fact]

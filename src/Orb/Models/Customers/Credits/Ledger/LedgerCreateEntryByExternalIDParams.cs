@@ -218,7 +218,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 increment: (x) => x.Amount,
                 decrement: (x) => x.Amount,
                 expirationChange: (x) => x.Amount,
-                void1: (x) => x.Amount,
+                void_: (x) => x.Amount,
                 amendment: (x) => x.Amount
             );
         }
@@ -232,7 +232,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 increment: (x) => x.EntryType,
                 decrement: (x) => x.EntryType,
                 expirationChange: (x) => x.EntryType,
-                void1: (x) => x.EntryType,
+                void_: (x) => x.EntryType,
                 amendment: (x) => x.EntryType
             );
         }
@@ -246,7 +246,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 increment: (x) => x.Currency,
                 decrement: (x) => x.Currency,
                 expirationChange: (x) => x.Currency,
-                void1: (x) => x.Currency,
+                void_: (x) => x.Currency,
                 amendment: (x) => x.Currency
             );
         }
@@ -260,7 +260,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 increment: (x) => x.Description,
                 decrement: (x) => x.Description,
                 expirationChange: (x) => x.Description,
-                void1: (x) => x.Description,
+                void_: (x) => x.Description,
                 amendment: (x) => x.Description
             );
         }
@@ -274,7 +274,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 increment: (x) => x.ExpiryDate,
                 decrement: (_) => null,
                 expirationChange: (x) => x.ExpiryDate,
-                void1: (_) => null,
+                void_: (_) => null,
                 amendment: (_) => null
             );
         }
@@ -288,7 +288,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 increment: (_) => null,
                 decrement: (_) => null,
                 expirationChange: (x) => x.BlockID,
-                void1: (x) => x.BlockID,
+                void_: (x) => x.BlockID,
                 amendment: (x) => x.BlockID
             );
         }
@@ -486,7 +486,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         System::Action<LedgerCreateEntryByExternalIDParamsBodyIncrement> increment,
         System::Action<LedgerCreateEntryByExternalIDParamsBodyDecrement> decrement,
         System::Action<LedgerCreateEntryByExternalIDParamsBodyExpirationChange> expirationChange,
-        System::Action<LedgerCreateEntryByExternalIDParamsBodyVoid> void1,
+        System::Action<LedgerCreateEntryByExternalIDParamsBodyVoid> void_,
         System::Action<LedgerCreateEntryByExternalIDParamsBodyAmendment> amendment
     )
     {
@@ -502,7 +502,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
                 expirationChange(value);
                 break;
             case LedgerCreateEntryByExternalIDParamsBodyVoid value:
-                void1(value);
+                void_(value);
                 break;
             case LedgerCreateEntryByExternalIDParamsBodyAmendment value:
                 amendment(value);
@@ -542,7 +542,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
         System::Func<LedgerCreateEntryByExternalIDParamsBodyIncrement, T> increment,
         System::Func<LedgerCreateEntryByExternalIDParamsBodyDecrement, T> decrement,
         System::Func<LedgerCreateEntryByExternalIDParamsBodyExpirationChange, T> expirationChange,
-        System::Func<LedgerCreateEntryByExternalIDParamsBodyVoid, T> void1,
+        System::Func<LedgerCreateEntryByExternalIDParamsBodyVoid, T> void_,
         System::Func<LedgerCreateEntryByExternalIDParamsBodyAmendment, T> amendment
     )
     {
@@ -553,7 +553,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
             LedgerCreateEntryByExternalIDParamsBodyExpirationChange value => expirationChange(
                 value
             ),
-            LedgerCreateEntryByExternalIDParamsBodyVoid value => void1(value),
+            LedgerCreateEntryByExternalIDParamsBodyVoid value => void_(value),
             LedgerCreateEntryByExternalIDParamsBodyAmendment value => amendment(value),
             _ => throw new OrbInvalidDataException(
                 "Data did not match any variant of LedgerCreateEntryByExternalIDParamsBody"
@@ -603,7 +603,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
             (increment) => increment.Validate(),
             (decrement) => decrement.Validate(),
             (expirationChange) => expirationChange.Validate(),
-            (void1) => void1.Validate(),
+            (void_) => void_.Validate(),
             (amendment) => amendment.Validate()
         );
     }

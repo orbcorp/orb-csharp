@@ -207,7 +207,7 @@ public record class Body
                 increment: (x) => x.Amount,
                 decrement: (x) => x.Amount,
                 expirationChange: (x) => x.Amount,
-                void1: (x) => x.Amount,
+                void_: (x) => x.Amount,
                 amendment: (x) => x.Amount
             );
         }
@@ -221,7 +221,7 @@ public record class Body
                 increment: (x) => x.EntryType,
                 decrement: (x) => x.EntryType,
                 expirationChange: (x) => x.EntryType,
-                void1: (x) => x.EntryType,
+                void_: (x) => x.EntryType,
                 amendment: (x) => x.EntryType
             );
         }
@@ -235,7 +235,7 @@ public record class Body
                 increment: (x) => x.Currency,
                 decrement: (x) => x.Currency,
                 expirationChange: (x) => x.Currency,
-                void1: (x) => x.Currency,
+                void_: (x) => x.Currency,
                 amendment: (x) => x.Currency
             );
         }
@@ -249,7 +249,7 @@ public record class Body
                 increment: (x) => x.Description,
                 decrement: (x) => x.Description,
                 expirationChange: (x) => x.Description,
-                void1: (x) => x.Description,
+                void_: (x) => x.Description,
                 amendment: (x) => x.Description
             );
         }
@@ -263,7 +263,7 @@ public record class Body
                 increment: (x) => x.ExpiryDate,
                 decrement: (_) => null,
                 expirationChange: (x) => x.ExpiryDate,
-                void1: (_) => null,
+                void_: (_) => null,
                 amendment: (_) => null
             );
         }
@@ -277,7 +277,7 @@ public record class Body
                 increment: (_) => null,
                 decrement: (_) => null,
                 expirationChange: (x) => x.BlockID,
-                void1: (x) => x.BlockID,
+                void_: (x) => x.BlockID,
                 amendment: (x) => x.BlockID
             );
         }
@@ -450,7 +450,7 @@ public record class Body
         System::Action<Increment> increment,
         System::Action<Decrement> decrement,
         System::Action<ExpirationChange> expirationChange,
-        System::Action<Void> void1,
+        System::Action<Void> void_,
         System::Action<Amendment> amendment
     )
     {
@@ -466,7 +466,7 @@ public record class Body
                 expirationChange(value);
                 break;
             case Void value:
-                void1(value);
+                void_(value);
                 break;
             case Amendment value:
                 amendment(value);
@@ -504,7 +504,7 @@ public record class Body
         System::Func<Increment, T> increment,
         System::Func<Decrement, T> decrement,
         System::Func<ExpirationChange, T> expirationChange,
-        System::Func<Void, T> void1,
+        System::Func<Void, T> void_,
         System::Func<Amendment, T> amendment
     )
     {
@@ -513,7 +513,7 @@ public record class Body
             Increment value => increment(value),
             Decrement value => decrement(value),
             ExpirationChange value => expirationChange(value),
-            Void value => void1(value),
+            Void value => void_(value),
             Amendment value => amendment(value),
             _ => throw new OrbInvalidDataException("Data did not match any variant of Body"),
         };
@@ -549,7 +549,7 @@ public record class Body
             (increment) => increment.Validate(),
             (decrement) => decrement.Validate(),
             (expirationChange) => expirationChange.Validate(),
-            (void1) => void1.Validate(),
+            (void_) => void_.Validate(),
             (amendment) => amendment.Validate()
         );
     }
@@ -2052,8 +2052,8 @@ public sealed record class Void : JsonModel
         this.EntryType = JsonSerializer.Deserialize<JsonElement>("\"void\"");
     }
 
-    public Void(Void void1)
-        : base(void1) { }
+    public Void(Void void_)
+        : base(void_) { }
 
     public Void(IReadOnlyDictionary<string, JsonElement> rawData)
     {
