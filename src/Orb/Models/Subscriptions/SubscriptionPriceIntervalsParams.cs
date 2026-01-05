@@ -417,7 +417,7 @@ public sealed record class Add : JsonModel
     /// only. Provided usage_customer_ids must be either the customer for this subscription
     /// itself, or any of that customer's children.
     /// </summary>
-    public IReadOnlyList<string>? UsageCustomerIDs
+    public IReadOnlyList<string>? UsageCustomerIds
     {
         get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
         init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
@@ -444,7 +444,7 @@ public sealed record class Add : JsonModel
         _ = this.MinimumAmount;
         this.Price?.Validate();
         _ = this.PriceID;
-        _ = this.UsageCustomerIDs;
+        _ = this.UsageCustomerIds;
     }
 
     public Add() { }
@@ -9110,7 +9110,7 @@ public sealed record class Edit : JsonModel
     /// only. Provided usage_customer_ids must be either the customer for this subscription
     /// itself, or any of that customer's children.
     /// </summary>
-    public IReadOnlyList<string>? UsageCustomerIDs
+    public IReadOnlyList<string>? UsageCustomerIds
     {
         get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
         init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
@@ -9129,7 +9129,7 @@ public sealed record class Edit : JsonModel
             item.Validate();
         }
         this.StartDate?.Validate();
-        _ = this.UsageCustomerIDs;
+        _ = this.UsageCustomerIds;
     }
 
     public Edit() { }

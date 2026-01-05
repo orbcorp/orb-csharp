@@ -13,7 +13,7 @@ public class MaximumTest : TestBase
     {
         var model = new Maximum
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -26,7 +26,7 @@ public class MaximumTest : TestBase
             MaximumAmount = "maximum_amount",
         };
 
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         List<MaximumFilter> expectedFilters =
         [
             new()
@@ -38,10 +38,10 @@ public class MaximumTest : TestBase
         ];
         string expectedMaximumAmount = "maximum_amount";
 
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
@@ -56,7 +56,7 @@ public class MaximumTest : TestBase
     {
         var model = new Maximum
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -80,7 +80,7 @@ public class MaximumTest : TestBase
     {
         var model = new Maximum
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -97,7 +97,7 @@ public class MaximumTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Maximum>(element);
         Assert.NotNull(deserialized);
 
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         List<MaximumFilter> expectedFilters =
         [
             new()
@@ -109,10 +109,10 @@ public class MaximumTest : TestBase
         ];
         string expectedMaximumAmount = "maximum_amount";
 
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
@@ -127,7 +127,7 @@ public class MaximumTest : TestBase
     {
         var model = new Maximum
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()

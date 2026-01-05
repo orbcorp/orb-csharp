@@ -141,7 +141,7 @@ public sealed record class PriceInterval : JsonModel
     /// A list of customer IDs whose usage events will be aggregated and billed under
     /// this price interval.
     /// </summary>
-    public required IReadOnlyList<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIds
     {
         get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
         init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
@@ -163,7 +163,7 @@ public sealed record class PriceInterval : JsonModel
         }
         this.Price.Validate();
         _ = this.StartDate;
-        _ = this.UsageCustomerIDs;
+        _ = this.UsageCustomerIds;
     }
 
     public PriceInterval() { }

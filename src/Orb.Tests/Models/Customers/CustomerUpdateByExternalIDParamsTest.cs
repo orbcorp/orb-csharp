@@ -46,7 +46,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
             ExternalCustomerID = "external_customer_id",
             Hierarchy = new()
             {
-                ChildCustomerIDs = ["string"],
+                ChildCustomerIds = ["string"],
                 ParentCustomerID = "parent_customer_id",
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -121,7 +121,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
         string expectedExternalCustomerID = "external_customer_id";
         CustomerHierarchyConfig expectedHierarchy = new()
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
             ParentCustomerID = "parent_customer_id",
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -318,7 +318,7 @@ public class CustomerUpdateByExternalIDParamsTest : TestBase
     {
         CustomerUpdateByExternalIDParams parameters = new() { ID = "external_customer_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri(

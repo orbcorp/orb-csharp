@@ -39,7 +39,7 @@ public sealed record class EventSearchParams : ParamsBase
     /// supports events that have not been amended. Values in this array will be
     /// treated case sensitively.
     /// </summary>
-    public required IReadOnlyList<string> EventIDs
+    public required IReadOnlyList<string> EventIds
     {
         get { return JsonModel.GetNotNullClass<List<string>>(this.RawBodyData, "event_ids"); }
         init { JsonModel.Set(this._rawBodyData, "event_ids", value); }

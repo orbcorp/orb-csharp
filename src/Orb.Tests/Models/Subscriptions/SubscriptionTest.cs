@@ -29,7 +29,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -45,7 +45,7 @@ public class SubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -92,7 +92,7 @@ public class SubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -142,7 +142,7 @@ public class SubscriptionTest : TestBase
                 new AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -173,7 +173,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -193,7 +193,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -221,7 +221,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -253,7 +253,7 @@ public class SubscriptionTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -269,7 +269,7 @@ public class SubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -285,7 +285,7 @@ public class SubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -310,7 +310,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -326,7 +326,7 @@ public class SubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -341,7 +341,7 @@ public class SubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -412,7 +412,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -434,7 +434,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -450,7 +450,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -563,7 +563,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -585,7 +585,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -601,7 +601,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -626,7 +626,7 @@ public class SubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -651,7 +651,7 @@ public class SubscriptionTest : TestBase
                 {
                     ID = "id",
                     AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -667,7 +667,7 @@ public class SubscriptionTest : TestBase
                     ReplacesAdjustmentID = "replaces_adjustment_id",
                     UsageDiscount = 0,
                 },
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
@@ -718,7 +718,7 @@ public class SubscriptionTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -768,7 +768,7 @@ public class SubscriptionTest : TestBase
             new AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -799,7 +799,7 @@ public class SubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -819,7 +819,7 @@ public class SubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -846,7 +846,7 @@ public class SubscriptionTest : TestBase
                 {
                     ID = "id",
                     AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -878,7 +878,7 @@ public class SubscriptionTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -894,7 +894,7 @@ public class SubscriptionTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -910,7 +910,7 @@ public class SubscriptionTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -935,7 +935,7 @@ public class SubscriptionTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -951,7 +951,7 @@ public class SubscriptionTest : TestBase
                     DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -966,7 +966,7 @@ public class SubscriptionTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1036,7 +1036,7 @@ public class SubscriptionTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1058,7 +1058,7 @@ public class SubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1074,7 +1074,7 @@ public class SubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1180,7 +1180,7 @@ public class SubscriptionTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1202,7 +1202,7 @@ public class SubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1218,7 +1218,7 @@ public class SubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1243,7 +1243,7 @@ public class SubscriptionTest : TestBase
                     },
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         CouponRedemption expectedRedeemedCoupon = new()
@@ -1337,7 +1337,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1353,7 +1353,7 @@ public class SubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -1400,7 +1400,7 @@ public class SubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -1450,7 +1450,7 @@ public class SubscriptionTest : TestBase
                 new AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -1481,7 +1481,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -1501,7 +1501,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -1529,7 +1529,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1561,7 +1561,7 @@ public class SubscriptionTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1577,7 +1577,7 @@ public class SubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1593,7 +1593,7 @@ public class SubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1618,7 +1618,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -1634,7 +1634,7 @@ public class SubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1649,7 +1649,7 @@ public class SubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1720,7 +1720,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -1742,7 +1742,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1758,7 +1758,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1871,7 +1871,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -1893,7 +1893,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1909,7 +1909,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1934,7 +1934,7 @@ public class SubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -1971,7 +1971,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1987,7 +1987,7 @@ public class SubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -2034,7 +2034,7 @@ public class SubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -2084,7 +2084,7 @@ public class SubscriptionTest : TestBase
                 new AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -2115,7 +2115,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -2135,7 +2135,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -2163,7 +2163,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2195,7 +2195,7 @@ public class SubscriptionTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2211,7 +2211,7 @@ public class SubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2227,7 +2227,7 @@ public class SubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2252,7 +2252,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -2268,7 +2268,7 @@ public class SubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2283,7 +2283,7 @@ public class SubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2354,7 +2354,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -2376,7 +2376,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2392,7 +2392,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2505,7 +2505,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -2527,7 +2527,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2543,7 +2543,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2568,7 +2568,7 @@ public class SubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -2597,7 +2597,7 @@ public class SubscriptionTest : TestBase
                 {
                     ID = "id",
                     AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2613,7 +2613,7 @@ public class SubscriptionTest : TestBase
                     ReplacesAdjustmentID = "replaces_adjustment_id",
                     UsageDiscount = 0,
                 },
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
@@ -2664,7 +2664,7 @@ public class SubscriptionTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -2714,7 +2714,7 @@ public class SubscriptionTest : TestBase
             new AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -2745,7 +2745,7 @@ public class SubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -2765,7 +2765,7 @@ public class SubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -2792,7 +2792,7 @@ public class SubscriptionTest : TestBase
                 {
                     ID = "id",
                     AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2824,7 +2824,7 @@ public class SubscriptionTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -2840,7 +2840,7 @@ public class SubscriptionTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2856,7 +2856,7 @@ public class SubscriptionTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2881,7 +2881,7 @@ public class SubscriptionTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -2897,7 +2897,7 @@ public class SubscriptionTest : TestBase
                     DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2912,7 +2912,7 @@ public class SubscriptionTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2982,7 +2982,7 @@ public class SubscriptionTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -3004,7 +3004,7 @@ public class SubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3020,7 +3020,7 @@ public class SubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3126,7 +3126,7 @@ public class SubscriptionTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -3148,7 +3148,7 @@ public class SubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3164,7 +3164,7 @@ public class SubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3189,7 +3189,7 @@ public class SubscriptionTest : TestBase
                     },
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         CouponRedemption expectedRedeemedCoupon = new()
@@ -3292,7 +3292,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3308,7 +3308,7 @@ public class SubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -3355,7 +3355,7 @@ public class SubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -3405,7 +3405,7 @@ public class SubscriptionTest : TestBase
                 new AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -3436,7 +3436,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -3456,7 +3456,7 @@ public class SubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -3484,7 +3484,7 @@ public class SubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3516,7 +3516,7 @@ public class SubscriptionTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3532,7 +3532,7 @@ public class SubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3548,7 +3548,7 @@ public class SubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3573,7 +3573,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -3589,7 +3589,7 @@ public class SubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3604,7 +3604,7 @@ public class SubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3675,7 +3675,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -3697,7 +3697,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3713,7 +3713,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3826,7 +3826,7 @@ public class SubscriptionTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -3848,7 +3848,7 @@ public class SubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3864,7 +3864,7 @@ public class SubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3889,7 +3889,7 @@ public class SubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -3916,7 +3916,7 @@ public class DiscountIntervalTest : TestBase
             new AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -3940,7 +3940,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new PercentageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -3965,7 +3965,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new UsageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = UsageDiscountIntervalDiscountType.Usage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -3991,7 +3991,7 @@ public class DiscountIntervalTest : TestBase
             new AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -4018,7 +4018,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new PercentageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = PercentageDiscountIntervalDiscountType.Percentage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -4046,7 +4046,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new UsageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = UsageDiscountIntervalDiscountType.Usage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =

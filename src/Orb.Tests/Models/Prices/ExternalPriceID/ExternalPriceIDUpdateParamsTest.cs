@@ -57,7 +57,7 @@ public class ExternalPriceIDUpdateParamsTest : TestBase
     {
         ExternalPriceIDUpdateParams parameters = new() { ExternalPriceID = "external_price_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/prices/external_price_id/external_price_id"),

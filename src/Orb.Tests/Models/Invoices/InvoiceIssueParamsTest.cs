@@ -46,7 +46,7 @@ public class InvoiceIssueParamsTest : TestBase
     {
         InvoiceIssueParams parameters = new() { InvoiceID = "invoice_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/issue"), url);
     }

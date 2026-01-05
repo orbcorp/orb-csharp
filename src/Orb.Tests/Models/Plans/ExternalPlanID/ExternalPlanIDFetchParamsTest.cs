@@ -20,7 +20,7 @@ public class ExternalPlanIDFetchParamsTest : TestBase
     {
         ExternalPlanIDFetchParams parameters = new() { ExternalPlanID = "external_plan_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id"),

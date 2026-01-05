@@ -98,7 +98,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "h74gfhdjvn7ujokd",
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             AddAdjustments =
@@ -111,8 +111,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -150,7 +150,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             EditAdjustments =
@@ -246,7 +246,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },
                 PriceID = "h74gfhdjvn7ujokd",
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         List<Subscriptions::SubscriptionPriceIntervalsParamsAddAdjustment> expectedAddAdjustments =
@@ -259,8 +259,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                     PercentageDiscount = 0,
                     AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                    AppliesToItemIDs = ["item_1", "item_2"],
-                    AppliesToPriceIDs = ["price_1", "price_2"],
+                    AppliesToItemIds = ["item_1", "item_2"],
+                    AppliesToPriceIds = ["price_1", "price_2"],
                     Currency = "currency",
                     Filters =
                     [
@@ -298,7 +298,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                     },
                 ],
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         List<Subscriptions::EditAdjustment> expectedEditAdjustments =
@@ -474,7 +474,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "h74gfhdjvn7ujokd",
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             AddAdjustments =
@@ -487,8 +487,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -524,7 +524,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             EditAdjustments =
@@ -632,7 +632,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                     },
                     PriceID = "h74gfhdjvn7ujokd",
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             AddAdjustments =
@@ -645,8 +645,8 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -682,7 +682,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
                         },
                     ],
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             EditAdjustments =
@@ -713,7 +713,7 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
             SubscriptionID = "subscription_id",
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/price_intervals"),
@@ -806,7 +806,7 @@ public class AddTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "h74gfhdjvn7ujokd",
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         Subscriptions::StartDate expectedStartDate = DateTimeOffset.Parse(
@@ -888,7 +888,7 @@ public class AddTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string expectedPriceID = "h74gfhdjvn7ujokd";
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedStartDate, model.StartDate);
         Assert.Equal(expectedAllocationPrice, model.AllocationPrice);
@@ -918,11 +918,11 @@ public class AddTest : TestBase
         Assert.Equal(expectedMinimumAmount, model.MinimumAmount);
         Assert.Equal(expectedPrice, model.Price);
         Assert.Equal(expectedPriceID, model.PriceID);
-        Assert.NotNull(model.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(model.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, model.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], model.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], model.UsageCustomerIds[i]);
         }
     }
 
@@ -1008,7 +1008,7 @@ public class AddTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "h74gfhdjvn7ujokd",
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -1099,7 +1099,7 @@ public class AddTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "h74gfhdjvn7ujokd",
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model);
@@ -1185,7 +1185,7 @@ public class AddTest : TestBase
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
         string expectedPriceID = "h74gfhdjvn7ujokd";
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedStartDate, deserialized.StartDate);
         Assert.Equal(expectedAllocationPrice, deserialized.AllocationPrice);
@@ -1215,11 +1215,11 @@ public class AddTest : TestBase
         Assert.Equal(expectedMinimumAmount, deserialized.MinimumAmount);
         Assert.Equal(expectedPrice, deserialized.Price);
         Assert.Equal(expectedPriceID, deserialized.PriceID);
-        Assert.NotNull(deserialized.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(deserialized.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, deserialized.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], deserialized.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], deserialized.UsageCustomerIds[i]);
         }
     }
 
@@ -1305,7 +1305,7 @@ public class AddTest : TestBase
                 Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             },
             PriceID = "h74gfhdjvn7ujokd",
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         model.Validate();
@@ -1341,7 +1341,7 @@ public class AddTest : TestBase
         Assert.False(model.RawData.ContainsKey("price"));
         Assert.Null(model.PriceID);
         Assert.False(model.RawData.ContainsKey("price_id"));
-        Assert.Null(model.UsageCustomerIDs);
+        Assert.Null(model.UsageCustomerIds);
         Assert.False(model.RawData.ContainsKey("usage_customer_ids"));
     }
 
@@ -1374,7 +1374,7 @@ public class AddTest : TestBase
             MinimumAmount = null,
             Price = null,
             PriceID = null,
-            UsageCustomerIDs = null,
+            UsageCustomerIds = null,
         };
 
         Assert.Null(model.AllocationPrice);
@@ -1399,7 +1399,7 @@ public class AddTest : TestBase
         Assert.True(model.RawData.ContainsKey("price"));
         Assert.Null(model.PriceID);
         Assert.True(model.RawData.ContainsKey("price_id"));
-        Assert.Null(model.UsageCustomerIDs);
+        Assert.Null(model.UsageCustomerIds);
         Assert.True(model.RawData.ContainsKey("usage_customer_ids"));
     }
 
@@ -1421,7 +1421,7 @@ public class AddTest : TestBase
             MinimumAmount = null,
             Price = null,
             PriceID = null,
-            UsageCustomerIDs = null,
+            UsageCustomerIds = null,
         };
 
         model.Validate();
@@ -9053,8 +9053,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9080,8 +9080,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9116,8 +9116,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9155,8 +9155,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9189,8 +9189,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9225,8 +9225,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9372,8 +9372,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9400,8 +9400,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9428,8 +9428,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9457,8 +9457,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9485,8 +9485,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9513,8 +9513,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9547,8 +9547,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9581,8 +9581,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9616,8 +9616,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9650,8 +9650,8 @@ public class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentTest : TestB
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9748,7 +9748,7 @@ public class EditTest : TestBase
                 },
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string expectedPriceIntervalID = "sdfs6wdjvn7ujokd";
@@ -9769,7 +9769,7 @@ public class EditTest : TestBase
         Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedPriceIntervalID, model.PriceIntervalID);
         Assert.Equal(expectedBillingCycleDay, model.BillingCycleDay);
@@ -9789,11 +9789,11 @@ public class EditTest : TestBase
             );
         }
         Assert.Equal(expectedStartDate, model.StartDate);
-        Assert.NotNull(model.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(model.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, model.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], model.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], model.UsageCustomerIds[i]);
         }
     }
 
@@ -9816,7 +9816,7 @@ public class EditTest : TestBase
                 },
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -9844,7 +9844,7 @@ public class EditTest : TestBase
                 },
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model);
@@ -9869,7 +9869,7 @@ public class EditTest : TestBase
         Subscriptions::EditStartDate expectedStartDate = DateTimeOffset.Parse(
             "2019-12-27T18:11:19.117Z"
         );
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedPriceIntervalID, deserialized.PriceIntervalID);
         Assert.Equal(expectedBillingCycleDay, deserialized.BillingCycleDay);
@@ -9889,11 +9889,11 @@ public class EditTest : TestBase
             );
         }
         Assert.Equal(expectedStartDate, deserialized.StartDate);
-        Assert.NotNull(deserialized.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(deserialized.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, deserialized.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], deserialized.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], deserialized.UsageCustomerIds[i]);
         }
     }
 
@@ -9916,7 +9916,7 @@ public class EditTest : TestBase
                 },
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         model.Validate();
@@ -9940,7 +9940,7 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         Assert.Null(model.StartDate);
@@ -9965,7 +9965,7 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         model.Validate();
@@ -9989,7 +9989,7 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
 
             // Null should be interpreted as omitted for these properties
             StartDate = null,
@@ -10017,7 +10017,7 @@ public class EditTest : TestBase
                     Quantity = 5,
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
 
             // Null should be interpreted as omitted for these properties
             StartDate = null,
@@ -10045,7 +10045,7 @@ public class EditTest : TestBase
         Assert.False(model.RawData.ContainsKey("filter"));
         Assert.Null(model.FixedFeeQuantityTransitions);
         Assert.False(model.RawData.ContainsKey("fixed_fee_quantity_transitions"));
-        Assert.Null(model.UsageCustomerIDs);
+        Assert.Null(model.UsageCustomerIds);
         Assert.False(model.RawData.ContainsKey("usage_customer_ids"));
     }
 
@@ -10074,7 +10074,7 @@ public class EditTest : TestBase
             EndDate = null,
             Filter = null,
             FixedFeeQuantityTransitions = null,
-            UsageCustomerIDs = null,
+            UsageCustomerIds = null,
         };
 
         Assert.Null(model.BillingCycleDay);
@@ -10087,7 +10087,7 @@ public class EditTest : TestBase
         Assert.True(model.RawData.ContainsKey("filter"));
         Assert.Null(model.FixedFeeQuantityTransitions);
         Assert.True(model.RawData.ContainsKey("fixed_fee_quantity_transitions"));
-        Assert.Null(model.UsageCustomerIDs);
+        Assert.Null(model.UsageCustomerIds);
         Assert.True(model.RawData.ContainsKey("usage_customer_ids"));
     }
 
@@ -10104,7 +10104,7 @@ public class EditTest : TestBase
             EndDate = null,
             Filter = null,
             FixedFeeQuantityTransitions = null,
-            UsageCustomerIDs = null,
+            UsageCustomerIds = null,
         };
 
         model.Validate();

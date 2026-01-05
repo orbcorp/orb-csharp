@@ -24,7 +24,7 @@ public sealed record class AmountDiscountInterval : JsonModel
     /// <summary>
     /// The price interval ids that this discount interval applies to.
     /// </summary>
-    public required IReadOnlyList<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIds
     {
         get
         {
@@ -91,7 +91,7 @@ public sealed record class AmountDiscountInterval : JsonModel
     public override void Validate()
     {
         _ = this.AmountDiscount;
-        _ = this.AppliesToPriceIntervalIDs;
+        _ = this.AppliesToPriceIntervalIds;
         this.DiscountType.Validate();
         _ = this.EndDate;
         foreach (var item in this.Filters)

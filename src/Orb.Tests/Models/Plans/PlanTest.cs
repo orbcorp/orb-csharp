@@ -23,7 +23,7 @@ public class PlanTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -56,7 +56,7 @@ public class PlanTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -72,7 +72,7 @@ public class PlanTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -88,7 +88,7 @@ public class PlanTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -113,7 +113,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -129,7 +129,7 @@ public class PlanTest : TestBase
                     DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -144,7 +144,7 @@ public class PlanTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -215,7 +215,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -237,7 +237,7 @@ public class PlanTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -253,7 +253,7 @@ public class PlanTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -297,7 +297,7 @@ public class PlanTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -329,7 +329,7 @@ public class PlanTest : TestBase
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -345,7 +345,7 @@ public class PlanTest : TestBase
         string expectedInvoicingCurrency = "invoicing_currency";
         Models::Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -361,7 +361,7 @@ public class PlanTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Models::Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -386,7 +386,7 @@ public class PlanTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -402,7 +402,7 @@ public class PlanTest : TestBase
                 DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -417,7 +417,7 @@ public class PlanTest : TestBase
                 MaximumAmount = "maximum_amount",
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -488,7 +488,7 @@ public class PlanTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -510,7 +510,7 @@ public class PlanTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -526,7 +526,7 @@ public class PlanTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -623,7 +623,7 @@ public class PlanTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -656,7 +656,7 @@ public class PlanTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -672,7 +672,7 @@ public class PlanTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -688,7 +688,7 @@ public class PlanTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -713,7 +713,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -729,7 +729,7 @@ public class PlanTest : TestBase
                     DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -744,7 +744,7 @@ public class PlanTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -815,7 +815,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -837,7 +837,7 @@ public class PlanTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -853,7 +853,7 @@ public class PlanTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -908,7 +908,7 @@ public class PlanTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -941,7 +941,7 @@ public class PlanTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -957,7 +957,7 @@ public class PlanTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -973,7 +973,7 @@ public class PlanTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -998,7 +998,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1014,7 +1014,7 @@ public class PlanTest : TestBase
                     DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1029,7 +1029,7 @@ public class PlanTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1100,7 +1100,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1122,7 +1122,7 @@ public class PlanTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1138,7 +1138,7 @@ public class PlanTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1186,7 +1186,7 @@ public class PlanTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1218,7 +1218,7 @@ public class PlanTest : TestBase
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -1234,7 +1234,7 @@ public class PlanTest : TestBase
         string expectedInvoicingCurrency = "invoicing_currency";
         Models::Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -1250,7 +1250,7 @@ public class PlanTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Models::Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -1275,7 +1275,7 @@ public class PlanTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1291,7 +1291,7 @@ public class PlanTest : TestBase
                 DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1306,7 +1306,7 @@ public class PlanTest : TestBase
                 MaximumAmount = "maximum_amount",
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1377,7 +1377,7 @@ public class PlanTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1399,7 +1399,7 @@ public class PlanTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1415,7 +1415,7 @@ public class PlanTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1512,7 +1512,7 @@ public class PlanTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1545,7 +1545,7 @@ public class PlanTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -1561,7 +1561,7 @@ public class PlanTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1577,7 +1577,7 @@ public class PlanTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1602,7 +1602,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1618,7 +1618,7 @@ public class PlanTest : TestBase
                     DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1633,7 +1633,7 @@ public class PlanTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1704,7 +1704,7 @@ public class PlanTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1726,7 +1726,7 @@ public class PlanTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1742,7 +1742,7 @@ public class PlanTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1793,7 +1793,7 @@ public class PlanAdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1823,7 +1823,7 @@ public class PlanAdjustmentTest : TestBase
                 AdjustmentType =
                     Models::PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1851,7 +1851,7 @@ public class PlanAdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     Models::PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1880,7 +1880,7 @@ public class PlanAdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1909,7 +1909,7 @@ public class PlanAdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1938,7 +1938,7 @@ public class PlanAdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1971,7 +1971,7 @@ public class PlanAdjustmentTest : TestBase
                 AdjustmentType =
                     Models::PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2002,7 +2002,7 @@ public class PlanAdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     Models::PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2034,7 +2034,7 @@ public class PlanAdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2066,7 +2066,7 @@ public class PlanAdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = Models::PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2177,7 +2177,7 @@ public class PlanPlanPhaseTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -2193,7 +2193,7 @@ public class PlanPlanPhaseTest : TestBase
             DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2208,7 +2208,7 @@ public class PlanPlanPhaseTest : TestBase
             MaximumAmount = "maximum_amount",
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2231,7 +2231,7 @@ public class PlanPlanPhaseTest : TestBase
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -2248,7 +2248,7 @@ public class PlanPlanPhaseTest : TestBase
             PlanPlanPhaseDurationUnit.Daily;
         Models::Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -2263,7 +2263,7 @@ public class PlanPlanPhaseTest : TestBase
         string expectedMaximumAmount = "maximum_amount";
         Models::Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -2303,7 +2303,7 @@ public class PlanPlanPhaseTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -2319,7 +2319,7 @@ public class PlanPlanPhaseTest : TestBase
             DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2334,7 +2334,7 @@ public class PlanPlanPhaseTest : TestBase
             MaximumAmount = "maximum_amount",
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2368,7 +2368,7 @@ public class PlanPlanPhaseTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -2384,7 +2384,7 @@ public class PlanPlanPhaseTest : TestBase
             DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2399,7 +2399,7 @@ public class PlanPlanPhaseTest : TestBase
             MaximumAmount = "maximum_amount",
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2426,7 +2426,7 @@ public class PlanPlanPhaseTest : TestBase
         {
             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -2443,7 +2443,7 @@ public class PlanPlanPhaseTest : TestBase
             PlanPlanPhaseDurationUnit.Daily;
         Models::Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -2458,7 +2458,7 @@ public class PlanPlanPhaseTest : TestBase
         string expectedMaximumAmount = "maximum_amount";
         Models::Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -2498,7 +2498,7 @@ public class PlanPlanPhaseTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -2514,7 +2514,7 @@ public class PlanPlanPhaseTest : TestBase
             DurationUnit = PlanPlanPhaseDurationUnit.Daily,
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2529,7 +2529,7 @@ public class PlanPlanPhaseTest : TestBase
             MaximumAmount = "maximum_amount",
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()

@@ -192,7 +192,7 @@ public sealed record class InvoiceLineItemCreateResponse : JsonModel
     /// <summary>
     /// A list of customer ids that were used to calculate the usage for this line item.
     /// </summary>
-    public required IReadOnlyList<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIds
     {
         get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
         init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
@@ -226,7 +226,7 @@ public sealed record class InvoiceLineItemCreateResponse : JsonModel
         {
             item.Validate();
         }
-        _ = this.UsageCustomerIDs;
+        _ = this.UsageCustomerIds;
     }
 
     public InvoiceLineItemCreateResponse() { }

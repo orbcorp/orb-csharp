@@ -69,7 +69,7 @@ public class InvoiceMarkPaidParamsTest : TestBase
             PaymentReceivedDate = "2023-09-22",
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/mark_paid"), url);
     }

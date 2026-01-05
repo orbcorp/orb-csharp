@@ -17,7 +17,7 @@ public sealed record class Minimum : JsonModel
     /// minimums, this can be a subset of prices.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required IReadOnlyList<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIds
     {
         get
         {
@@ -47,7 +47,7 @@ public sealed record class Minimum : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.AppliesToPriceIDs;
+        _ = this.AppliesToPriceIds;
         foreach (var item in this.Filters)
         {
             item.Validate();

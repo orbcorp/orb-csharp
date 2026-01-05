@@ -14,7 +14,7 @@ public sealed record class CustomerHierarchyConfig : JsonModel
     /// A list of child customer IDs to add to the hierarchy. The desired child customers
     /// must not already be part of another hierarchy.
     /// </summary>
-    public IReadOnlyList<string>? ChildCustomerIDs
+    public IReadOnlyList<string>? ChildCustomerIds
     {
         get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "child_customer_ids"); }
         init
@@ -41,7 +41,7 @@ public sealed record class CustomerHierarchyConfig : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.ChildCustomerIDs;
+        _ = this.ChildCustomerIds;
         _ = this.ParentCustomerID;
     }
 

@@ -35,7 +35,7 @@ public sealed record class PlanPhaseMaximumAdjustment : JsonModel
     /// The price IDs that this adjustment applies to.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required IReadOnlyList<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIds
     {
         get
         {
@@ -112,7 +112,7 @@ public sealed record class PlanPhaseMaximumAdjustment : JsonModel
     {
         _ = this.ID;
         this.AdjustmentType.Validate();
-        _ = this.AppliesToPriceIDs;
+        _ = this.AppliesToPriceIds;
         foreach (var item in this.Filters)
         {
             item.Validate();

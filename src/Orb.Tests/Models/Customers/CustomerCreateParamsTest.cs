@@ -46,7 +46,7 @@ public class CustomerCreateParamsTest : TestBase
             ExternalCustomerID = "external_customer_id",
             Hierarchy = new()
             {
-                ChildCustomerIDs = ["string"],
+                ChildCustomerIds = ["string"],
                 ParentCustomerID = "parent_customer_id",
             },
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -120,7 +120,7 @@ public class CustomerCreateParamsTest : TestBase
         string expectedExternalCustomerID = "external_customer_id";
         CustomerHierarchyConfig expectedHierarchy = new()
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
             ParentCustomerID = "parent_customer_id",
         };
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -311,7 +311,7 @@ public class CustomerCreateParamsTest : TestBase
     {
         CustomerCreateParams parameters = new() { Email = "dev@stainless.com", Name = "x" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/customers"), url);
     }

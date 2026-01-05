@@ -15,7 +15,7 @@ public class AmountDiscountIntervalTest : TestBase
         var model = new AmountDiscountInterval
         {
             AmountDiscount = "amount_discount",
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = AmountDiscountIntervalDiscountType.Amount,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
@@ -31,7 +31,7 @@ public class AmountDiscountIntervalTest : TestBase
         };
 
         string expectedAmountDiscount = "amount_discount";
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         ApiEnum<string, AmountDiscountIntervalDiscountType> expectedDiscountType =
             AmountDiscountIntervalDiscountType.Amount;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -48,12 +48,12 @@ public class AmountDiscountIntervalTest : TestBase
 
         Assert.Equal(expectedAmountDiscount, model.AmountDiscount);
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            model.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            model.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIntervalIDs[i], model.AppliesToPriceIntervalIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIntervalIds[i], model.AppliesToPriceIntervalIds[i]);
         }
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedEndDate, model.EndDate);
@@ -71,7 +71,7 @@ public class AmountDiscountIntervalTest : TestBase
         var model = new AmountDiscountInterval
         {
             AmountDiscount = "amount_discount",
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = AmountDiscountIntervalDiscountType.Amount,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
@@ -98,7 +98,7 @@ public class AmountDiscountIntervalTest : TestBase
         var model = new AmountDiscountInterval
         {
             AmountDiscount = "amount_discount",
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = AmountDiscountIntervalDiscountType.Amount,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
@@ -118,7 +118,7 @@ public class AmountDiscountIntervalTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedAmountDiscount = "amount_discount";
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         ApiEnum<string, AmountDiscountIntervalDiscountType> expectedDiscountType =
             AmountDiscountIntervalDiscountType.Amount;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -135,14 +135,14 @@ public class AmountDiscountIntervalTest : TestBase
 
         Assert.Equal(expectedAmountDiscount, deserialized.AmountDiscount);
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            deserialized.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            deserialized.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
             Assert.Equal(
-                expectedAppliesToPriceIntervalIDs[i],
-                deserialized.AppliesToPriceIntervalIDs[i]
+                expectedAppliesToPriceIntervalIds[i],
+                deserialized.AppliesToPriceIntervalIds[i]
             );
         }
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
@@ -161,7 +161,7 @@ public class AmountDiscountIntervalTest : TestBase
         var model = new AmountDiscountInterval
         {
             AmountDiscount = "amount_discount",
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = AmountDiscountIntervalDiscountType.Amount,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =

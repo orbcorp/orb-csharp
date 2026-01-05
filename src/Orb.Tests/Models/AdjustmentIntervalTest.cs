@@ -17,7 +17,7 @@ public class AdjustmentIntervalTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33,7 +33,7 @@ public class AdjustmentIntervalTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
                 UsageDiscount = 0,
             },
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -43,7 +43,7 @@ public class AdjustmentIntervalTest : TestBase
         {
             ID = "id",
             AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -59,19 +59,19 @@ public class AdjustmentIntervalTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
             UsageDiscount = 0,
         };
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAdjustment, model.Adjustment);
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            model.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            model.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIntervalIDs[i], model.AppliesToPriceIntervalIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIntervalIds[i], model.AppliesToPriceIntervalIds[i]);
         }
         Assert.Equal(expectedEndDate, model.EndDate);
         Assert.Equal(expectedStartDate, model.StartDate);
@@ -87,7 +87,7 @@ public class AdjustmentIntervalTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -103,7 +103,7 @@ public class AdjustmentIntervalTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
                 UsageDiscount = 0,
             },
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -124,7 +124,7 @@ public class AdjustmentIntervalTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -140,7 +140,7 @@ public class AdjustmentIntervalTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
                 UsageDiscount = 0,
             },
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -154,7 +154,7 @@ public class AdjustmentIntervalTest : TestBase
         {
             ID = "id",
             AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -170,21 +170,21 @@ public class AdjustmentIntervalTest : TestBase
             ReplacesAdjustmentID = "replaces_adjustment_id",
             UsageDiscount = 0,
         };
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAdjustment, deserialized.Adjustment);
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            deserialized.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            deserialized.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
             Assert.Equal(
-                expectedAppliesToPriceIntervalIDs[i],
-                deserialized.AppliesToPriceIntervalIDs[i]
+                expectedAppliesToPriceIntervalIds[i],
+                deserialized.AppliesToPriceIntervalIds[i]
             );
         }
         Assert.Equal(expectedEndDate, deserialized.EndDate);
@@ -201,7 +201,7 @@ public class AdjustmentIntervalTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -217,7 +217,7 @@ public class AdjustmentIntervalTest : TestBase
                 ReplacesAdjustmentID = "replaces_adjustment_id",
                 UsageDiscount = 0,
             },
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -236,7 +236,7 @@ public class AdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -265,7 +265,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -293,7 +293,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -321,7 +321,7 @@ public class AdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -350,7 +350,7 @@ public class AdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -378,7 +378,7 @@ public class AdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -410,7 +410,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = PlanPhaseAmountDiscountAdjustmentAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -441,7 +441,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType =
                     PlanPhasePercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -472,7 +472,7 @@ public class AdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -504,7 +504,7 @@ public class AdjustmentTest : TestBase
             {
                 ID = "id",
                 AdjustmentType = PlanPhaseMaximumAdjustmentAdjustmentType.Maximum,
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()

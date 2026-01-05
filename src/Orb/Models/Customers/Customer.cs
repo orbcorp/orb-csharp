@@ -180,7 +180,7 @@ public sealed record class Customer : JsonModel
         init { JsonModel.Set(this._rawData, "payment_provider_id", value); }
     }
 
-    public required string? PortalURL
+    public required string? PortalUrl
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "portal_url"); }
         init { JsonModel.Set(this._rawData, "portal_url", value); }
@@ -384,7 +384,7 @@ public sealed record class Customer : JsonModel
         _ = this.Name;
         this.PaymentProvider?.Validate();
         _ = this.PaymentProviderID;
-        _ = this.PortalURL;
+        _ = this.PortalUrl;
         this.ShippingAddress?.Validate();
         this.TaxID?.Validate();
         _ = this.Timezone;

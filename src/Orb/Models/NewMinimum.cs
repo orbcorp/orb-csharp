@@ -57,7 +57,7 @@ public sealed record class NewMinimum : JsonModel
     /// <summary>
     /// The set of item IDs to which this adjustment applies.
     /// </summary>
-    public IReadOnlyList<string>? AppliesToItemIDs
+    public IReadOnlyList<string>? AppliesToItemIds
     {
         get
         {
@@ -69,7 +69,7 @@ public sealed record class NewMinimum : JsonModel
     /// <summary>
     /// The set of price IDs to which this adjustment applies.
     /// </summary>
-    public IReadOnlyList<string>? AppliesToPriceIDs
+    public IReadOnlyList<string>? AppliesToPriceIds
     {
         get
         {
@@ -136,8 +136,8 @@ public sealed record class NewMinimum : JsonModel
         _ = this.ItemID;
         _ = this.MinimumAmount;
         this.AppliesToAll?.Validate();
-        _ = this.AppliesToItemIDs;
-        _ = this.AppliesToPriceIDs;
+        _ = this.AppliesToItemIds;
+        _ = this.AppliesToPriceIds;
         _ = this.Currency;
         foreach (var item in this.Filters ?? [])
         {

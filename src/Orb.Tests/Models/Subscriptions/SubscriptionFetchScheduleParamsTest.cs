@@ -135,7 +135,7 @@ public class SubscriptionFetchScheduleParamsTest : TestBase
             StartDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri(

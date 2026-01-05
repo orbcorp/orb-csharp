@@ -20,7 +20,7 @@ public class AlertRetrieveParamsTest : TestBase
     {
         AlertRetrieveParams parameters = new() { AlertID = "alert_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/alerts/alert_id"), url);
     }

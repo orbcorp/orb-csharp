@@ -44,7 +44,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -119,7 +119,7 @@ public class CustomerTest : TestBase
         ApiEnum<string, CustomerPaymentProvider> expectedPaymentProvider =
             CustomerPaymentProvider.Quickbooks;
         string expectedPaymentProviderID = "payment_provider_id";
-        string expectedPortalURL = "portal_url";
+        string expectedPortalUrl = "portal_url";
         Address expectedShippingAddress = new()
         {
             City = "city",
@@ -189,7 +189,7 @@ public class CustomerTest : TestBase
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPaymentProvider, model.PaymentProvider);
         Assert.Equal(expectedPaymentProviderID, model.PaymentProviderID);
-        Assert.Equal(expectedPortalURL, model.PortalURL);
+        Assert.Equal(expectedPortalUrl, model.PortalUrl);
         Assert.Equal(expectedShippingAddress, model.ShippingAddress);
         Assert.Equal(expectedTaxID, model.TaxID);
         Assert.Equal(expectedTimezone, model.Timezone);
@@ -233,7 +233,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -318,7 +318,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -397,7 +397,7 @@ public class CustomerTest : TestBase
         ApiEnum<string, CustomerPaymentProvider> expectedPaymentProvider =
             CustomerPaymentProvider.Quickbooks;
         string expectedPaymentProviderID = "payment_provider_id";
-        string expectedPortalURL = "portal_url";
+        string expectedPortalUrl = "portal_url";
         Address expectedShippingAddress = new()
         {
             City = "city",
@@ -467,7 +467,7 @@ public class CustomerTest : TestBase
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedPaymentProvider, deserialized.PaymentProvider);
         Assert.Equal(expectedPaymentProviderID, deserialized.PaymentProviderID);
-        Assert.Equal(expectedPortalURL, deserialized.PortalURL);
+        Assert.Equal(expectedPortalUrl, deserialized.PortalUrl);
         Assert.Equal(expectedShippingAddress, deserialized.ShippingAddress);
         Assert.Equal(expectedTaxID, deserialized.TaxID);
         Assert.Equal(expectedTimezone, deserialized.Timezone);
@@ -511,7 +511,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -593,7 +593,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -656,7 +656,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -712,7 +712,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -780,7 +780,7 @@ public class CustomerTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",

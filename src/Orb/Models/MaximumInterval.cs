@@ -15,7 +15,7 @@ public sealed record class MaximumInterval : JsonModel
     /// <summary>
     /// The price interval ids that this maximum interval applies to.
     /// </summary>
-    public required IReadOnlyList<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIds
     {
         get
         {
@@ -76,7 +76,7 @@ public sealed record class MaximumInterval : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.AppliesToPriceIntervalIDs;
+        _ = this.AppliesToPriceIntervalIds;
         _ = this.EndDate;
         foreach (var item in this.Filters)
         {

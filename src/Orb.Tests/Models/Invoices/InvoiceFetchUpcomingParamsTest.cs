@@ -20,7 +20,7 @@ public class InvoiceFetchUpcomingParamsTest : TestBase
     {
         InvoiceFetchUpcomingParams parameters = new() { SubscriptionID = "subscription_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/invoices/upcoming?subscription_id=subscription_id"),

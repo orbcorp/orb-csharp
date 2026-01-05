@@ -45,7 +45,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -119,7 +119,7 @@ public class SharedCreditNoteTest : TestBase
                     {
                         ID = "id",
                         AmountApplied = "amount_applied",
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         DiscountType = DiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AmountDiscount = "amount_discount",
@@ -220,7 +220,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -301,7 +301,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -379,7 +379,7 @@ public class SharedCreditNoteTest : TestBase
                     {
                         ID = "id",
                         AmountApplied = "amount_applied",
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         DiscountType = DiscountDiscountType.Percentage,
                         PercentageDiscount = 0,
                         AmountDiscount = "amount_discount",
@@ -480,7 +480,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -558,7 +558,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -626,7 +626,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -693,7 +693,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -764,7 +764,7 @@ public class SharedCreditNoteTest : TestBase
                         {
                             ID = "id",
                             AmountApplied = "amount_applied",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             DiscountType = DiscountDiscountType.Percentage,
                             PercentageDiscount = 0,
                             AmountDiscount = "amount_discount",
@@ -827,7 +827,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -859,7 +859,7 @@ public class SharedCreditNoteLineItemTest : TestBase
             {
                 ID = "id",
                 AmountApplied = "amount_applied",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 DiscountType = DiscountDiscountType.Percentage,
                 PercentageDiscount = 0,
                 AmountDiscount = "amount_discount",
@@ -918,7 +918,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -961,7 +961,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -997,7 +997,7 @@ public class SharedCreditNoteLineItemTest : TestBase
             {
                 ID = "id",
                 AmountApplied = "amount_applied",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 DiscountType = DiscountDiscountType.Percentage,
                 PercentageDiscount = 0,
                 AmountDiscount = "amount_discount",
@@ -1056,7 +1056,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -1212,7 +1212,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -1253,7 +1253,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -1291,7 +1291,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -1335,7 +1335,7 @@ public class SharedCreditNoteLineItemTest : TestBase
                 {
                     ID = "id",
                     AmountApplied = "amount_applied",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     DiscountType = DiscountDiscountType.Percentage,
                     PercentageDiscount = 0,
                     AmountDiscount = "amount_discount",
@@ -1360,7 +1360,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AmountDiscount = "amount_discount",
@@ -1369,7 +1369,7 @@ public class DiscountTest : TestBase
 
         string expectedID = "id";
         string expectedAmountApplied = "amount_applied";
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         ApiEnum<string, DiscountDiscountType> expectedDiscountType =
             DiscountDiscountType.Percentage;
         double expectedPercentageDiscount = 0;
@@ -1378,10 +1378,10 @@ public class DiscountTest : TestBase
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAmountApplied, model.AmountApplied);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedPercentageDiscount, model.PercentageDiscount);
@@ -1396,7 +1396,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AmountDiscount = "amount_discount",
@@ -1416,7 +1416,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AmountDiscount = "amount_discount",
@@ -1429,7 +1429,7 @@ public class DiscountTest : TestBase
 
         string expectedID = "id";
         string expectedAmountApplied = "amount_applied";
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         ApiEnum<string, DiscountDiscountType> expectedDiscountType =
             DiscountDiscountType.Percentage;
         double expectedPercentageDiscount = 0;
@@ -1438,10 +1438,10 @@ public class DiscountTest : TestBase
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAmountApplied, deserialized.AmountApplied);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
         Assert.Equal(expectedPercentageDiscount, deserialized.PercentageDiscount);
@@ -1456,7 +1456,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
             AmountDiscount = "amount_discount",
@@ -1473,7 +1473,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
         };
@@ -1491,7 +1491,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
         };
@@ -1506,7 +1506,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
 
@@ -1527,7 +1527,7 @@ public class DiscountTest : TestBase
         {
             ID = "id",
             AmountApplied = "amount_applied",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             DiscountType = DiscountDiscountType.Percentage,
             PercentageDiscount = 0,
 

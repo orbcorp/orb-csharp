@@ -15,7 +15,7 @@ public class UsageDiscountTest : TestBase
         {
             DiscountType = UsageDiscountDiscountType.Usage,
             UsageDiscountValue = 0,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -31,7 +31,7 @@ public class UsageDiscountTest : TestBase
         ApiEnum<string, UsageDiscountDiscountType> expectedDiscountType =
             UsageDiscountDiscountType.Usage;
         double expectedUsageDiscountValue = 0;
-        List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
+        List<string> expectedAppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
         List<UsageDiscountFilter> expectedFilters =
         [
             new()
@@ -45,11 +45,11 @@ public class UsageDiscountTest : TestBase
 
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedUsageDiscountValue, model.UsageDiscountValue);
-        Assert.NotNull(model.AppliesToPriceIDs);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.NotNull(model.Filters);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
@@ -67,7 +67,7 @@ public class UsageDiscountTest : TestBase
         {
             DiscountType = UsageDiscountDiscountType.Usage,
             UsageDiscountValue = 0,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -93,7 +93,7 @@ public class UsageDiscountTest : TestBase
         {
             DiscountType = UsageDiscountDiscountType.Usage,
             UsageDiscountValue = 0,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -113,7 +113,7 @@ public class UsageDiscountTest : TestBase
         ApiEnum<string, UsageDiscountDiscountType> expectedDiscountType =
             UsageDiscountDiscountType.Usage;
         double expectedUsageDiscountValue = 0;
-        List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
+        List<string> expectedAppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
         List<UsageDiscountFilter> expectedFilters =
         [
             new()
@@ -127,11 +127,11 @@ public class UsageDiscountTest : TestBase
 
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
         Assert.Equal(expectedUsageDiscountValue, deserialized.UsageDiscountValue);
-        Assert.NotNull(deserialized.AppliesToPriceIDs);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.NotNull(deserialized.Filters);
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
@@ -149,7 +149,7 @@ public class UsageDiscountTest : TestBase
         {
             DiscountType = UsageDiscountDiscountType.Usage,
             UsageDiscountValue = 0,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -174,7 +174,7 @@ public class UsageDiscountTest : TestBase
             UsageDiscountValue = 0,
         };
 
-        Assert.Null(model.AppliesToPriceIDs);
+        Assert.Null(model.AppliesToPriceIds);
         Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
         Assert.Null(model.Filters);
         Assert.False(model.RawData.ContainsKey("filters"));
@@ -202,12 +202,12 @@ public class UsageDiscountTest : TestBase
             DiscountType = UsageDiscountDiscountType.Usage,
             UsageDiscountValue = 0,
 
-            AppliesToPriceIDs = null,
+            AppliesToPriceIds = null,
             Filters = null,
             Reason = null,
         };
 
-        Assert.Null(model.AppliesToPriceIDs);
+        Assert.Null(model.AppliesToPriceIds);
         Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
         Assert.Null(model.Filters);
         Assert.True(model.RawData.ContainsKey("filters"));
@@ -223,7 +223,7 @@ public class UsageDiscountTest : TestBase
             DiscountType = UsageDiscountDiscountType.Usage,
             UsageDiscountValue = 0,
 
-            AppliesToPriceIDs = null,
+            AppliesToPriceIds = null,
             Filters = null,
             Reason = null,
         };

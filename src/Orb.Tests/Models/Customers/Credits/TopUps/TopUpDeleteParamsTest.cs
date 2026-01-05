@@ -26,7 +26,7 @@ public class TopUpDeleteParamsTest : TestBase
     {
         TopUpDeleteParams parameters = new() { CustomerID = "customer_id", TopUpID = "top_up_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/customers/customer_id/credits/top_ups/top_up_id"),

@@ -436,7 +436,7 @@ public sealed record class Discount : JsonModel
         init { JsonModel.Set(this._rawData, "amount_applied", value); }
     }
 
-    public required IReadOnlyList<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIds
     {
         get
         {
@@ -480,7 +480,7 @@ public sealed record class Discount : JsonModel
     {
         _ = this.ID;
         _ = this.AmountApplied;
-        _ = this.AppliesToPriceIDs;
+        _ = this.AppliesToPriceIds;
         this.DiscountType.Validate();
         _ = this.PercentageDiscount;
         _ = this.AmountDiscount;

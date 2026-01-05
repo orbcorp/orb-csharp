@@ -96,8 +96,8 @@ public class PlanCreateParamsTest : TestBase
                             Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -211,8 +211,8 @@ public class PlanCreateParamsTest : TestBase
                     AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                     PercentageDiscount = 0,
                     AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                    AppliesToItemIDs = ["item_1", "item_2"],
-                    AppliesToPriceIDs = ["price_1", "price_2"],
+                    AppliesToItemIds = ["item_1", "item_2"],
+                    AppliesToPriceIds = ["price_1", "price_2"],
                     Currency = "currency",
                     Filters =
                     [
@@ -364,8 +364,8 @@ public class PlanCreateParamsTest : TestBase
                             Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -488,8 +488,8 @@ public class PlanCreateParamsTest : TestBase
                             Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -800,7 +800,7 @@ public class PlanCreateParamsTest : TestBase
             ],
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans"), url);
     }
@@ -9340,8 +9340,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9363,8 +9363,8 @@ public class AdjustmentTest : TestBase
             AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
             AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -9394,8 +9394,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9428,8 +9428,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9455,8 +9455,8 @@ public class AdjustmentTest : TestBase
             AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
             AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -9486,8 +9486,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9517,8 +9517,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9548,8 +9548,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9578,8 +9578,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9611,8 +9611,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9645,8 +9645,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9673,8 +9673,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = Models::NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9701,8 +9701,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = Models::AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9730,8 +9730,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = Models::NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9758,8 +9758,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = Models::NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9786,8 +9786,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = Models::NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9817,8 +9817,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = Models::NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9848,8 +9848,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = Models::AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9880,8 +9880,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = Models::NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -9911,8 +9911,8 @@ public class AdjustmentAdjustmentTest : TestBase
                 AdjustmentType = Models::NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = Models::NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [

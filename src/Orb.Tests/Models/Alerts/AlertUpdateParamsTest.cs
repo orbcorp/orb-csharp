@@ -35,7 +35,7 @@ public class AlertUpdateParamsTest : TestBase
             Thresholds = [new(0)],
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/alerts/alert_configuration_id"), url);
     }

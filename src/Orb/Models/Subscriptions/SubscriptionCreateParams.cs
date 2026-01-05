@@ -604,7 +604,7 @@ public sealed record class SubscriptionCreateParams : ParamsBase
     /// only. Provided usage_customer_ids must be either the customer for this subscription
     /// itself, or any of that customer's children.
     /// </summary>
-    public IReadOnlyList<string>? UsageCustomerIDs
+    public IReadOnlyList<string>? UsageCustomerIds
     {
         get
         {
