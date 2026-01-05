@@ -4,7 +4,7 @@
     <Company>Orb</Company>
     <PackageTags>sdk;api;http;library</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Copyright>Copyright 2025 Orb</Copyright>
+    <Copyright>Copyright 2026 Orb</Copyright>
     <PackageProjectUrl>https://docs.withorb.com/reference/api-reference</PackageProjectUrl>
     <RepositoryUrl>https://www.github.com/orbcorp/orb-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
