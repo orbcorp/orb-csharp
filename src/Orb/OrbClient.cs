@@ -185,6 +185,7 @@ public sealed class OrbClient : IOrbClient
     )
         where T : ParamsBase
     {
+        var idempotencyHeaderValue = string.Format("stainless-csharp-retry-{0}", Guid.NewGuid());
         var maxRetries = this.MaxRetries ?? ClientOptions.DefaultMaxRetries;
         var retries = 0;
         while (true)
@@ -192,7 +193,12 @@ public sealed class OrbClient : IOrbClient
             HttpResponse? response = null;
             try
             {
-                response = await ExecuteOnce(request, retries, cancellationToken)
+                response = await ExecuteOnce(
+                        request,
+                        retries,
+                        idempotencyHeaderValue,
+                        cancellationToken
+                    )
                     .ConfigureAwait(false);
             }
             catch (Exception e)
@@ -236,6 +242,7 @@ public sealed class OrbClient : IOrbClient
     async Task<HttpResponse> ExecuteOnce<T>(
         HttpRequest<T> request,
         int retryCount,
+        string idempotencyHeaderValue,
         CancellationToken cancellationToken = default
     )
         where T : ParamsBase
@@ -251,6 +258,10 @@ public sealed class OrbClient : IOrbClient
         if (!requestMessage.Headers.Contains("x-stainless-retry-count"))
         {
             requestMessage.Headers.Add("x-stainless-retry-count", retryCount.ToString());
+        }
+        if (!requestMessage.Headers.Contains("Idempotency-Key"))
+        {
+            requestMessage.Headers.Add("Idempotency-Key", idempotencyHeaderValue);
         }
         using CancellationTokenSource timeoutCts = new(
             this.Timeout ?? ClientOptions.DefaultTimeout
