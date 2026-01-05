@@ -168,7 +168,39 @@ public class EventIngestParamsTest : TestBase
         };
 
         Assert.Null(parameters.BackfillID);
-        Assert.False(parameters.RawQueryData.ContainsKey("backfill_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("backfill_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        EventIngestParams parameters = new()
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            BackfillID = "backfill_id",
+            Debug = true,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/ingest?backfill_id=backfill_id&debug=true"),
+            url
+        );
     }
 }
 

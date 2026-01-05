@@ -110,14 +110,38 @@ public class SubscriptionFetchScheduleParamsTest : TestBase
         };
 
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.StartDateGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("start_date[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("start_date[gt]"));
         Assert.Null(parameters.StartDateGte);
-        Assert.False(parameters.RawQueryData.ContainsKey("start_date[gte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("start_date[gte]"));
         Assert.Null(parameters.StartDateLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("start_date[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("start_date[lt]"));
         Assert.Null(parameters.StartDateLte);
-        Assert.False(parameters.RawQueryData.ContainsKey("start_date[lte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("start_date[lte]"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionFetchScheduleParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+            Cursor = "cursor",
+            Limit = 1,
+            StartDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            StartDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/subscriptions/subscription_id/schedule?cursor=cursor&limit=1&start_date%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&start_date%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&start_date%5blt%5d=2019-12-27T18%3a11%3a19.117Z&start_date%5blte%5d=2019-12-27T18%3a11%3a19.117Z"
+            ),
+            url
+        );
     }
 }

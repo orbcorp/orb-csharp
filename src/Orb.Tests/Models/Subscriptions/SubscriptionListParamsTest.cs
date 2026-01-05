@@ -154,25 +154,53 @@ public class SubscriptionListParamsTest : TestBase
         };
 
         Assert.Null(parameters.CreatedAtGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[gt]"));
         Assert.Null(parameters.CreatedAtGte);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[gte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[gte]"));
         Assert.Null(parameters.CreatedAtLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[lt]"));
         Assert.Null(parameters.CreatedAtLte);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[lte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[lte]"));
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.CustomerID);
-        Assert.False(parameters.RawQueryData.ContainsKey("customer_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("customer_id"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawQueryData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.ExternalPlanID);
-        Assert.False(parameters.RawQueryData.ContainsKey("external_plan_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("external_plan_id"));
         Assert.Null(parameters.PlanID);
-        Assert.False(parameters.RawQueryData.ContainsKey("plan_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("plan_id"));
         Assert.Null(parameters.Status);
-        Assert.False(parameters.RawQueryData.ContainsKey("status"));
+        Assert.True(parameters.RawQueryData.ContainsKey("status"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionListParams parameters = new()
+        {
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Cursor = "cursor",
+            CustomerID = ["string"],
+            ExternalCustomerID = ["string"],
+            ExternalPlanID = "external_plan_id",
+            Limit = 1,
+            PlanID = "plan_id",
+            Status = Status.Active,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/subscriptions?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117Z&cursor=cursor&customer_id%5b%5d=string&external_customer_id%5b%5d=string&external_plan_id=external_plan_id&limit=1&plan_id=plan_id&status=active"
+            ),
+            url
+        );
     }
 }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -82,11 +83,21 @@ public class ItemUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.ExternalConnections);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_connections"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_connections"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
         Assert.Null(parameters.Name);
-        Assert.False(parameters.RawBodyData.ContainsKey("name"));
+        Assert.True(parameters.RawBodyData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ItemUpdateParams parameters = new() { ItemID = "item_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/items/item_id"), url);
     }
 }
 

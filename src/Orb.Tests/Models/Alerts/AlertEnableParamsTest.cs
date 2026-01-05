@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Alerts;
 
 namespace Orb.Tests.Models.Alerts;
@@ -40,6 +41,25 @@ public class AlertEnableParamsTest : TestBase
         };
 
         Assert.Null(parameters.SubscriptionID);
-        Assert.False(parameters.RawQueryData.ContainsKey("subscription_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("subscription_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AlertEnableParams parameters = new()
+        {
+            AlertConfigurationID = "alert_configuration_id",
+            SubscriptionID = "subscription_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/alerts/alert_configuration_id/enable?subscription_id=subscription_id"
+            ),
+            url
+        );
     }
 }

@@ -288,19 +288,46 @@ public class InvoiceCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.CustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("customer_id"));
         Assert.Null(parameters.Discount);
-        Assert.False(parameters.RawBodyData.ContainsKey("discount"));
+        Assert.True(parameters.RawBodyData.ContainsKey("discount"));
         Assert.Null(parameters.DueDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("due_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("due_date"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.Memo);
-        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.True(parameters.RawBodyData.ContainsKey("memo"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
         Assert.Null(parameters.NetTerms);
-        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+        Assert.True(parameters.RawBodyData.ContainsKey("net_terms"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        InvoiceCreateParams parameters = new()
+        {
+            Currency = "USD",
+            InvoiceDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    EndDate = "2023-09-22",
+                    ItemID = "4khy3nwzktxv7",
+                    ModelType = ModelType.Unit,
+                    Name = "Line Item Name",
+                    Quantity = 1,
+                    StartDate = "2023-09-22",
+                    UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                },
+            ],
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices"), url);
     }
 }
 

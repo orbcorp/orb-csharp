@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.DimensionalPriceGroups.ExternalDimensionalPriceGroupID;
 
@@ -63,8 +64,26 @@ public class ExternalDimensionalPriceGroupIDUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.ExternalDimensionalPriceGroupIDValue);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_dimensional_price_group_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_dimensional_price_group_id"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ExternalDimensionalPriceGroupIDUpdateParams parameters = new()
+        {
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/dimensional_price_groups/external_dimensional_price_group_id/external_dimensional_price_group_id"
+            ),
+            url
+        );
     }
 }

@@ -1,7 +1,8 @@
+using System;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models.Customers.BalanceTransactions;
+using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 
 namespace Orb.Tests.Models.Customers.BalanceTransactions;
 
@@ -10,17 +11,18 @@ public class BalanceTransactionCreateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new BalanceTransactionCreateParams
+        var parameters = new BalanceTransactions::BalanceTransactionCreateParams
         {
             CustomerID = "customer_id",
             Amount = "amount",
-            Type = Type.Increment,
+            Type = BalanceTransactions::Type.Increment,
             Description = "description",
         };
 
         string expectedCustomerID = "customer_id";
         string expectedAmount = "amount";
-        ApiEnum<string, Type> expectedType = Type.Increment;
+        ApiEnum<string, BalanceTransactions::Type> expectedType =
+            BalanceTransactions::Type.Increment;
         string expectedDescription = "description";
 
         Assert.Equal(expectedCustomerID, parameters.CustomerID);
@@ -32,11 +34,11 @@ public class BalanceTransactionCreateParamsTest : TestBase
     [Fact]
     public void OptionalNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new BalanceTransactionCreateParams
+        var parameters = new BalanceTransactions::BalanceTransactionCreateParams
         {
             CustomerID = "customer_id",
             Amount = "amount",
-            Type = Type.Increment,
+            Type = BalanceTransactions::Type.Increment,
         };
 
         Assert.Null(parameters.Description);
@@ -46,36 +48,54 @@ public class BalanceTransactionCreateParamsTest : TestBase
     [Fact]
     public void OptionalNullableParamsSetToNullAreSetToNull_Works()
     {
-        var parameters = new BalanceTransactionCreateParams
+        var parameters = new BalanceTransactions::BalanceTransactionCreateParams
         {
             CustomerID = "customer_id",
             Amount = "amount",
-            Type = Type.Increment,
+            Type = BalanceTransactions::Type.Increment,
 
             Description = null,
         };
 
         Assert.Null(parameters.Description);
-        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+        Assert.True(parameters.RawBodyData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        BalanceTransactions::BalanceTransactionCreateParams parameters = new()
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Type = BalanceTransactions::Type.Increment,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/customers/customer_id/balance_transactions"),
+            url
+        );
     }
 }
 
 public class TypeTest : TestBase
 {
     [Theory]
-    [InlineData(Type.Increment)]
-    [InlineData(Type.Decrement)]
-    public void Validation_Works(Type rawValue)
+    [InlineData(BalanceTransactions::Type.Increment)]
+    [InlineData(BalanceTransactions::Type.Decrement)]
+    public void Validation_Works(BalanceTransactions::Type rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Type> value = rawValue;
+        ApiEnum<string, BalanceTransactions::Type> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Type>>(
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
@@ -85,15 +105,15 @@ public class TypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(Type.Increment)]
-    [InlineData(Type.Decrement)]
-    public void SerializationRoundtrip_Works(Type rawValue)
+    [InlineData(BalanceTransactions::Type.Increment)]
+    [InlineData(BalanceTransactions::Type.Decrement)]
+    public void SerializationRoundtrip_Works(BalanceTransactions::Type rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Type> value = rawValue;
+        ApiEnum<string, BalanceTransactions::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Type>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -104,12 +124,12 @@ public class TypeTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Type>>(
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, BalanceTransactions::Type>>(
             json,
             ModelBase.SerializerOptions
         );

@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Items;
 
 namespace Orb.Tests.Models.Items;
@@ -60,6 +61,16 @@ public class ItemListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ItemListParams parameters = new() { Cursor = "cursor", Limit = 1 };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/items?cursor=cursor&limit=1"), url);
     }
 }

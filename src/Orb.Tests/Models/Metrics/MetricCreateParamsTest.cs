@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.Metrics;
 
@@ -67,6 +68,22 @@ public class MetricCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        MetricCreateParams parameters = new()
+        {
+            Description = "Sum of bytes downloaded in fast mode",
+            ItemID = "item_id",
+            Name = "Bytes downloaded",
+            Sql = "SELECT sum(bytes_downloaded) FROM events WHERE download_speed = 'fast'",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/metrics"), url);
     }
 }

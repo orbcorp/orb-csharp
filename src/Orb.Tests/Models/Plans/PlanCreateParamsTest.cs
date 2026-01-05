@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -708,17 +709,100 @@ public class PlanCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.Adjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("adjustments"));
         Assert.Null(parameters.DefaultInvoiceMemo);
-        Assert.False(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
+        Assert.True(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
         Assert.Null(parameters.ExternalPlanID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_plan_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_plan_id"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
         Assert.Null(parameters.NetTerms);
-        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+        Assert.True(parameters.RawBodyData.ContainsKey("net_terms"));
         Assert.Null(parameters.PlanPhases);
-        Assert.False(parameters.RawBodyData.ContainsKey("plan_phases"));
+        Assert.True(parameters.RawBodyData.ContainsKey("plan_phases"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        PlanCreateParams parameters = new()
+        {
+            Currency = "currency",
+            Name = "name",
+            Prices =
+            [
+                new()
+                {
+                    AllocationPrice = new()
+                    {
+                        Amount = "10.00",
+                        Cadence = Models::Cadence.Monthly,
+                        Currency = "USD",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                        },
+                        ExpiresAtEndOfCadence = true,
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::NewAllocationPriceFilterField.ItemID,
+                                Operator = Models::NewAllocationPriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ItemID = "item_id",
+                        PerUnitCostBasis = "per_unit_cost_basis",
+                    },
+                    PlanPhaseOrder = 0,
+                    PriceValue = new Models::NewPlanUnitPrice()
+                    {
+                        Cadence = Models::NewPlanUnitPriceCadence.Annual,
+                        ItemID = "item_id",
+                        ModelType = Models::NewPlanUnitPriceModelType.Unit,
+                        Name = "Annual fee",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        BillableMetricID = "billable_metric_id",
+                        BilledInAdvance = true,
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        ConversionRate = 0,
+                        ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        Currency = "currency",
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "x",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::NewBillingCycleConfigurationDurationUnit.Day,
+                        },
+                        Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                        ReferenceID = "reference_id",
+                    },
+                },
+            ],
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/plans"), url);
     }
 }
 

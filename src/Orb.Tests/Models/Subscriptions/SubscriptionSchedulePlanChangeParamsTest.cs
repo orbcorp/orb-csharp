@@ -713,55 +713,75 @@ public class SubscriptionSchedulePlanChangeParamsTest : TestBase
         };
 
         Assert.Null(parameters.AddAdjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("add_adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("add_adjustments"));
         Assert.Null(parameters.AddPrices);
-        Assert.False(parameters.RawBodyData.ContainsKey("add_prices"));
+        Assert.True(parameters.RawBodyData.ContainsKey("add_prices"));
         Assert.Null(parameters.AlignBillingWithPlanChangeDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("align_billing_with_plan_change_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("align_billing_with_plan_change_date"));
         Assert.Null(parameters.AutoCollection);
-        Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.BillingCycleAlignment);
-        Assert.False(parameters.RawBodyData.ContainsKey("billing_cycle_alignment"));
+        Assert.True(parameters.RawBodyData.ContainsKey("billing_cycle_alignment"));
         Assert.Null(parameters.BillingCycleAnchorConfiguration);
-        Assert.False(parameters.RawBodyData.ContainsKey("billing_cycle_anchor_configuration"));
+        Assert.True(parameters.RawBodyData.ContainsKey("billing_cycle_anchor_configuration"));
         Assert.Null(parameters.ChangeDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("change_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("change_date"));
         Assert.Null(parameters.CouponRedemptionCode);
-        Assert.False(parameters.RawBodyData.ContainsKey("coupon_redemption_code"));
+        Assert.True(parameters.RawBodyData.ContainsKey("coupon_redemption_code"));
         Assert.Null(parameters.CreditsOverageRate);
-        Assert.False(parameters.RawBodyData.ContainsKey("credits_overage_rate"));
+        Assert.True(parameters.RawBodyData.ContainsKey("credits_overage_rate"));
         Assert.Null(parameters.DefaultInvoiceMemo);
-        Assert.False(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
+        Assert.True(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
         Assert.Null(parameters.ExternalPlanID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_plan_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_plan_id"));
         Assert.Null(parameters.Filter);
-        Assert.False(parameters.RawBodyData.ContainsKey("filter"));
+        Assert.True(parameters.RawBodyData.ContainsKey("filter"));
         Assert.Null(parameters.InitialPhaseOrder);
-        Assert.False(parameters.RawBodyData.ContainsKey("initial_phase_order"));
+        Assert.True(parameters.RawBodyData.ContainsKey("initial_phase_order"));
         Assert.Null(parameters.InvoicingThreshold);
-        Assert.False(parameters.RawBodyData.ContainsKey("invoicing_threshold"));
+        Assert.True(parameters.RawBodyData.ContainsKey("invoicing_threshold"));
         Assert.Null(parameters.NetTerms);
-        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+        Assert.True(parameters.RawBodyData.ContainsKey("net_terms"));
         Assert.Null(parameters.PerCreditOverageAmount);
-        Assert.False(parameters.RawBodyData.ContainsKey("per_credit_overage_amount"));
+        Assert.True(parameters.RawBodyData.ContainsKey("per_credit_overage_amount"));
         Assert.Null(parameters.PlanID);
-        Assert.False(parameters.RawBodyData.ContainsKey("plan_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("plan_id"));
         Assert.Null(parameters.PlanVersionNumber);
-        Assert.False(parameters.RawBodyData.ContainsKey("plan_version_number"));
+        Assert.True(parameters.RawBodyData.ContainsKey("plan_version_number"));
         Assert.Null(parameters.PriceOverrides);
-        Assert.False(parameters.RawBodyData.ContainsKey("price_overrides"));
+        Assert.True(parameters.RawBodyData.ContainsKey("price_overrides"));
         Assert.Null(parameters.RemoveAdjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("remove_adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("remove_adjustments"));
         Assert.Null(parameters.RemovePrices);
-        Assert.False(parameters.RawBodyData.ContainsKey("remove_prices"));
+        Assert.True(parameters.RawBodyData.ContainsKey("remove_prices"));
         Assert.Null(parameters.ReplaceAdjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("replace_adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("replace_adjustments"));
         Assert.Null(parameters.ReplacePrices);
-        Assert.False(parameters.RawBodyData.ContainsKey("replace_prices"));
+        Assert.True(parameters.RawBodyData.ContainsKey("replace_prices"));
         Assert.Null(parameters.TrialDurationDays);
-        Assert.False(parameters.RawBodyData.ContainsKey("trial_duration_days"));
+        Assert.True(parameters.RawBodyData.ContainsKey("trial_duration_days"));
         Assert.Null(parameters.UsageCustomerIDs);
-        Assert.False(parameters.RawBodyData.ContainsKey("usage_customer_ids"));
+        Assert.True(parameters.RawBodyData.ContainsKey("usage_customer_ids"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        Subscriptions::SubscriptionSchedulePlanChangeParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption =
+                Subscriptions::SubscriptionSchedulePlanChangeParamsChangeOption.RequestedDate,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/subscriptions/subscription_id/schedule_plan_change"
+            ),
+            url
+        );
     }
 }
 

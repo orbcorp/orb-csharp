@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.InvoiceLineItems;
 
 namespace Orb.Tests.Models.InvoiceLineItems;
@@ -69,8 +70,25 @@ public class InvoiceLineItemCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.ItemID);
-        Assert.False(parameters.RawBodyData.ContainsKey("item_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("item_id"));
         Assert.Null(parameters.Name);
-        Assert.False(parameters.RawBodyData.ContainsKey("name"));
+        Assert.True(parameters.RawBodyData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        InvoiceLineItemCreateParams parameters = new()
+        {
+            Amount = "12.00",
+            EndDate = "2023-09-22",
+            InvoiceID = "4khy3nwzktxv7",
+            Quantity = 1,
+            StartDate = "2023-09-22",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/invoice_line_items"), url);
     }
 }

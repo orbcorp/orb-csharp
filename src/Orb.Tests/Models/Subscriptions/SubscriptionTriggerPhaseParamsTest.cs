@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Subscriptions;
 
 namespace Orb.Tests.Models.Subscriptions;
@@ -46,8 +47,21 @@ public class SubscriptionTriggerPhaseParamsTest : TestBase
         };
 
         Assert.Null(parameters.AllowInvoiceCreditOrVoid);
-        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.True(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
         Assert.Null(parameters.EffectiveDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("effective_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("effective_date"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionTriggerPhaseParams parameters = new() { SubscriptionID = "subscription_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/trigger_phase"),
+            url
+        );
     }
 }

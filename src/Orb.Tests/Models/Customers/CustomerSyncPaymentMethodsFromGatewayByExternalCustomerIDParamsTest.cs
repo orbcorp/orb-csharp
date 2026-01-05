@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Customers;
 
 namespace Orb.Tests.Models.Customers;
@@ -15,5 +16,23 @@ public class CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParamsTest
         string expectedExternalCustomerID = "external_customer_id";
 
         Assert.Equal(expectedExternalCustomerID, parameters.ExternalCustomerID);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters = new()
+        {
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/sync_payment_methods_from_gateway"
+            ),
+            url
+        );
     }
 }

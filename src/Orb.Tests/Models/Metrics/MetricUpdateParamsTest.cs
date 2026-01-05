@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.Metrics;
 
@@ -48,6 +49,16 @@ public class MetricUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        MetricUpdateParams parameters = new() { MetricID = "metric_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/metrics/metric_id"), url);
     }
 }

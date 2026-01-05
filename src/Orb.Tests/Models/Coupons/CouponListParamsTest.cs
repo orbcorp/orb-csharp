@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Coupons;
 
 namespace Orb.Tests.Models.Coupons;
@@ -83,10 +84,31 @@ public class CouponListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.RedemptionCode);
-        Assert.False(parameters.RawQueryData.ContainsKey("redemption_code"));
+        Assert.True(parameters.RawQueryData.ContainsKey("redemption_code"));
         Assert.Null(parameters.ShowArchived);
-        Assert.False(parameters.RawQueryData.ContainsKey("show_archived"));
+        Assert.True(parameters.RawQueryData.ContainsKey("show_archived"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CouponListParams parameters = new()
+        {
+            Cursor = "cursor",
+            Limit = 1,
+            RedemptionCode = "redemption_code",
+            ShowArchived = true,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/coupons?cursor=cursor&limit=1&redemption_code=redemption_code&show_archived=true"
+            ),
+            url
+        );
     }
 }

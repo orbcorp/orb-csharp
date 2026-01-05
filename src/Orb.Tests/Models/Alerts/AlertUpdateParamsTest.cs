@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.Alerts;
 
@@ -23,5 +24,19 @@ public class AlertUpdateParamsTest : TestBase
         {
             Assert.Equal(expectedThresholds[i], parameters.Thresholds[i]);
         }
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AlertUpdateParams parameters = new()
+        {
+            AlertConfigurationID = "alert_configuration_id",
+            Thresholds = [new(0)],
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/alerts/alert_configuration_id"), url);
     }
 }

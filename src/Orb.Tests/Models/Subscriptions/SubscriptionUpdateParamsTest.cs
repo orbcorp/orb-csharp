@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.Subscriptions;
 
@@ -72,14 +73,24 @@ public class SubscriptionUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.AutoCollection);
-        Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.DefaultInvoiceMemo);
-        Assert.False(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
+        Assert.True(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
         Assert.Null(parameters.InvoicingThreshold);
-        Assert.False(parameters.RawBodyData.ContainsKey("invoicing_threshold"));
+        Assert.True(parameters.RawBodyData.ContainsKey("invoicing_threshold"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
         Assert.Null(parameters.NetTerms);
-        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+        Assert.True(parameters.RawBodyData.ContainsKey("net_terms"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionUpdateParams parameters = new() { SubscriptionID = "subscription_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/subscriptions/subscription_id"), url);
     }
 }

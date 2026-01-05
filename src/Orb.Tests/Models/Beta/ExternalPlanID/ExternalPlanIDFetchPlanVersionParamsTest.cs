@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Beta.ExternalPlanID;
 
 namespace Orb.Tests.Models.Beta.ExternalPlanID;
@@ -18,5 +19,24 @@ public class ExternalPlanIDFetchPlanVersionParamsTest : TestBase
 
         Assert.Equal(expectedExternalPlanID, parameters.ExternalPlanID);
         Assert.Equal(expectedVersion, parameters.Version);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ExternalPlanIDFetchPlanVersionParams parameters = new()
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = "version",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/plans/external_plan_id/external_plan_id/versions/version"
+            ),
+            url
+        );
     }
 }

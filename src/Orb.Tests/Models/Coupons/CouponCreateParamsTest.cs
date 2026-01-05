@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json;
 using Orb.Models.Coupons;
 
@@ -55,9 +56,23 @@ public class CouponCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.DurationInMonths);
-        Assert.False(parameters.RawBodyData.ContainsKey("duration_in_months"));
+        Assert.True(parameters.RawBodyData.ContainsKey("duration_in_months"));
         Assert.Null(parameters.MaxRedemptions);
-        Assert.False(parameters.RawBodyData.ContainsKey("max_redemptions"));
+        Assert.True(parameters.RawBodyData.ContainsKey("max_redemptions"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CouponCreateParams parameters = new()
+        {
+            Discount = new Percentage(0),
+            RedemptionCode = "HALFOFF",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/coupons"), url);
     }
 }
 

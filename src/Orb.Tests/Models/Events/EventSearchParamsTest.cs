@@ -52,8 +52,18 @@ public class EventSearchParamsTest : TestBase
         };
 
         Assert.Null(parameters.TimeframeEnd);
-        Assert.False(parameters.RawBodyData.ContainsKey("timeframe_end"));
+        Assert.True(parameters.RawBodyData.ContainsKey("timeframe_end"));
         Assert.Null(parameters.TimeframeStart);
-        Assert.False(parameters.RawBodyData.ContainsKey("timeframe_start"));
+        Assert.True(parameters.RawBodyData.ContainsKey("timeframe_start"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        EventSearchParams parameters = new() { EventIDs = ["string"] };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/events/search"), url);
     }
 }

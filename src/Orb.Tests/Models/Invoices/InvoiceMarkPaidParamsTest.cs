@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Invoices;
 
 namespace Orb.Tests.Models.Invoices;
@@ -54,8 +55,22 @@ public class InvoiceMarkPaidParamsTest : TestBase
         };
 
         Assert.Null(parameters.ExternalID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_id"));
         Assert.Null(parameters.Notes);
-        Assert.False(parameters.RawBodyData.ContainsKey("notes"));
+        Assert.True(parameters.RawBodyData.ContainsKey("notes"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        InvoiceMarkPaidParams parameters = new()
+        {
+            InvoiceID = "invoice_id",
+            PaymentReceivedDate = "2023-09-22",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/mark_paid"), url);
     }
 }

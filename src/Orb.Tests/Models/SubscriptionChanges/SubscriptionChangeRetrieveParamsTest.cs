@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Tests.Models.SubscriptionChanges;
@@ -15,5 +16,21 @@ public class SubscriptionChangeRetrieveParamsTest : TestBase
         string expectedSubscriptionChangeID = "subscription_change_id";
 
         Assert.Equal(expectedSubscriptionChangeID, parameters.SubscriptionChangeID);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionChangeRetrieveParams parameters = new()
+        {
+            SubscriptionChangeID = "subscription_change_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/subscription_changes/subscription_change_id"),
+            url
+        );
     }
 }

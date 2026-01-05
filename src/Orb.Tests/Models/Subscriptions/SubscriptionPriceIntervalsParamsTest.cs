@@ -700,9 +700,25 @@ public class SubscriptionPriceIntervalsParamsTest : TestBase
         };
 
         Assert.Null(parameters.AllowInvoiceCreditOrVoid);
-        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.True(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
         Assert.Null(parameters.CanDeferBilling);
-        Assert.False(parameters.RawBodyData.ContainsKey("can_defer_billing"));
+        Assert.True(parameters.RawBodyData.ContainsKey("can_defer_billing"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        Subscriptions::SubscriptionPriceIntervalsParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/price_intervals"),
+            url
+        );
     }
 }
 

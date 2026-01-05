@@ -58,9 +58,26 @@ public class SubscriptionCancelParamsTest : TestBase
         };
 
         Assert.Null(parameters.AllowInvoiceCreditOrVoid);
-        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.True(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
         Assert.Null(parameters.CancellationDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("cancellation_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("cancellation_date"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionCancelParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+            CancelOption = CancelOption.EndOfSubscriptionTerm,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/cancel"),
+            url
+        );
     }
 }
 

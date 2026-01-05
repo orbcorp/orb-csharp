@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Metrics;
 
 namespace Orb.Tests.Models.Metrics;
@@ -12,5 +13,15 @@ public class MetricFetchParamsTest : TestBase
         string expectedMetricID = "metric_id";
 
         Assert.Equal(expectedMetricID, parameters.MetricID);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        MetricFetchParams parameters = new() { MetricID = "metric_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/metrics/metric_id"), url);
     }
 }

@@ -108,11 +108,38 @@ public class TopUpCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.ActiveFrom);
-        Assert.False(parameters.RawBodyData.ContainsKey("active_from"));
+        Assert.True(parameters.RawBodyData.ContainsKey("active_from"));
         Assert.Null(parameters.ExpiresAfter);
-        Assert.False(parameters.RawBodyData.ContainsKey("expires_after"));
+        Assert.True(parameters.RawBodyData.ContainsKey("expires_after"));
         Assert.Null(parameters.ExpiresAfterUnit);
-        Assert.False(parameters.RawBodyData.ContainsKey("expires_after_unit"));
+        Assert.True(parameters.RawBodyData.ContainsKey("expires_after_unit"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        TopUpCreateParams parameters = new()
+        {
+            CustomerID = "customer_id",
+            Amount = "amount",
+            Currency = "currency",
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                NetTerms = 0,
+                Memo = "memo",
+                RequireSuccessfulPayment = true,
+            },
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Threshold = "threshold",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/customers/customer_id/credits/top_ups"),
+            url
+        );
     }
 }
 
