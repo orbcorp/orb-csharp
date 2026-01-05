@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Customers.Credits;
 
 namespace Orb.Tests.Models.Customers.Credits;
@@ -95,8 +96,30 @@ public class CreditListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Currency);
-        Assert.False(parameters.RawQueryData.ContainsKey("currency"));
+        Assert.True(parameters.RawQueryData.ContainsKey("currency"));
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CreditListParams parameters = new()
+        {
+            CustomerID = "customer_id",
+            Currency = "currency",
+            Cursor = "cursor",
+            IncludeAllBlocks = true,
+            Limit = 1,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/customers/customer_id/credits?currency=currency&cursor=cursor&include_all_blocks=true&limit=1"
+            ),
+            url
+        );
     }
 }

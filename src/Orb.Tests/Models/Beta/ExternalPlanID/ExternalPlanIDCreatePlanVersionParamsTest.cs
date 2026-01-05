@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -507,19 +508,36 @@ public class ExternalPlanIDCreatePlanVersionParamsTest : TestBase
         };
 
         Assert.Null(parameters.AddAdjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("add_adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("add_adjustments"));
         Assert.Null(parameters.AddPrices);
-        Assert.False(parameters.RawBodyData.ContainsKey("add_prices"));
+        Assert.True(parameters.RawBodyData.ContainsKey("add_prices"));
         Assert.Null(parameters.RemoveAdjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("remove_adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("remove_adjustments"));
         Assert.Null(parameters.RemovePrices);
-        Assert.False(parameters.RawBodyData.ContainsKey("remove_prices"));
+        Assert.True(parameters.RawBodyData.ContainsKey("remove_prices"));
         Assert.Null(parameters.ReplaceAdjustments);
-        Assert.False(parameters.RawBodyData.ContainsKey("replace_adjustments"));
+        Assert.True(parameters.RawBodyData.ContainsKey("replace_adjustments"));
         Assert.Null(parameters.ReplacePrices);
-        Assert.False(parameters.RawBodyData.ContainsKey("replace_prices"));
+        Assert.True(parameters.RawBodyData.ContainsKey("replace_prices"));
         Assert.Null(parameters.SetAsDefault);
-        Assert.False(parameters.RawBodyData.ContainsKey("set_as_default"));
+        Assert.True(parameters.RawBodyData.ContainsKey("set_as_default"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ExternalPlanIDCreatePlanVersionParams parameters = new()
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = 0,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id/versions"),
+            url
+        );
     }
 }
 

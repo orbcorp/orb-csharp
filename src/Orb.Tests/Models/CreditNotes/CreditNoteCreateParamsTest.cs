@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -104,11 +105,34 @@ public class CreditNoteCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.EndDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("end_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("end_date"));
         Assert.Null(parameters.Memo);
-        Assert.False(parameters.RawBodyData.ContainsKey("memo"));
+        Assert.True(parameters.RawBodyData.ContainsKey("memo"));
         Assert.Null(parameters.StartDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("start_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("start_date"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CreditNoteCreateParams parameters = new()
+        {
+            LineItems =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    InvoiceLineItemID = "4khy3nwzktxv7",
+                    EndDate = "2023-09-22",
+                    StartDate = "2023-09-22",
+                },
+            ],
+            Reason = Reason.Duplicate,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/credit_notes"), url);
     }
 }
 

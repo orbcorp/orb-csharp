@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.Plans.ExternalPlanID;
 
@@ -57,8 +58,21 @@ public class ExternalPlanIDUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.ExternalPlanID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_plan_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_plan_id"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ExternalPlanIDUpdateParams parameters = new() { OtherExternalPlanID = "external_plan_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id"),
+            url
+        );
     }
 }

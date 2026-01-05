@@ -62,13 +62,35 @@ public class SubscriptionFetchCostsParamsTest : TestBase
         };
 
         Assert.Null(parameters.Currency);
-        Assert.False(parameters.RawQueryData.ContainsKey("currency"));
+        Assert.True(parameters.RawQueryData.ContainsKey("currency"));
         Assert.Null(parameters.TimeframeEnd);
-        Assert.False(parameters.RawQueryData.ContainsKey("timeframe_end"));
+        Assert.True(parameters.RawQueryData.ContainsKey("timeframe_end"));
         Assert.Null(parameters.TimeframeStart);
-        Assert.False(parameters.RawQueryData.ContainsKey("timeframe_start"));
+        Assert.True(parameters.RawQueryData.ContainsKey("timeframe_start"));
         Assert.Null(parameters.ViewMode);
-        Assert.False(parameters.RawQueryData.ContainsKey("view_mode"));
+        Assert.True(parameters.RawQueryData.ContainsKey("view_mode"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionFetchCostsParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+            Currency = "currency",
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            ViewMode = ViewMode.Periodic,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/subscriptions/subscription_id/costs?currency=currency&timeframe_end=2022-03-01T05%3a00%3a00Z&timeframe_start=2022-02-01T05%3a00%3a00Z&view_mode=periodic"
+            ),
+            url
+        );
     }
 }
 

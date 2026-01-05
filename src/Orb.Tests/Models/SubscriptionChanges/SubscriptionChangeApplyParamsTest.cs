@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.SubscriptionChanges;
 
 namespace Orb.Tests.Models.SubscriptionChanges;
@@ -73,16 +74,32 @@ public class SubscriptionChangeApplyParamsTest : TestBase
         };
 
         Assert.Null(parameters.Description);
-        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+        Assert.True(parameters.RawBodyData.ContainsKey("description"));
         Assert.Null(parameters.MarkAsPaid);
-        Assert.False(parameters.RawBodyData.ContainsKey("mark_as_paid"));
+        Assert.True(parameters.RawBodyData.ContainsKey("mark_as_paid"));
         Assert.Null(parameters.PaymentExternalID);
-        Assert.False(parameters.RawBodyData.ContainsKey("payment_external_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("payment_external_id"));
         Assert.Null(parameters.PaymentNotes);
-        Assert.False(parameters.RawBodyData.ContainsKey("payment_notes"));
+        Assert.True(parameters.RawBodyData.ContainsKey("payment_notes"));
         Assert.Null(parameters.PaymentReceivedDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("payment_received_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("payment_received_date"));
         Assert.Null(parameters.PreviouslyCollectedAmount);
-        Assert.False(parameters.RawBodyData.ContainsKey("previously_collected_amount"));
+        Assert.True(parameters.RawBodyData.ContainsKey("previously_collected_amount"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionChangeApplyParams parameters = new()
+        {
+            SubscriptionChangeID = "subscription_change_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/subscription_changes/subscription_change_id/apply"),
+            url
+        );
     }
 }

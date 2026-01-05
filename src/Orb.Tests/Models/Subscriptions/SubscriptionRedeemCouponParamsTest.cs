@@ -70,13 +70,30 @@ public class SubscriptionRedeemCouponParamsTest : TestBase
         };
 
         Assert.Null(parameters.AllowInvoiceCreditOrVoid);
-        Assert.False(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
+        Assert.True(parameters.RawBodyData.ContainsKey("allow_invoice_credit_or_void"));
         Assert.Null(parameters.ChangeDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("change_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("change_date"));
         Assert.Null(parameters.CouponID);
-        Assert.False(parameters.RawBodyData.ContainsKey("coupon_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("coupon_id"));
         Assert.Null(parameters.CouponRedemptionCode);
-        Assert.False(parameters.RawBodyData.ContainsKey("coupon_redemption_code"));
+        Assert.True(parameters.RawBodyData.ContainsKey("coupon_redemption_code"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionRedeemCouponParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+            ChangeOption = ChangeOption.RequestedDate,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/redeem_coupon"),
+            url
+        );
     }
 }
 

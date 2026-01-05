@@ -291,9 +291,23 @@ public class PriceEvaluateMultipleParamsTest : TestBase
         };
 
         Assert.Null(parameters.CustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("customer_id"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_customer_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        PriceEvaluateMultipleParams parameters = new()
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/prices/evaluate"), url);
     }
 }
 

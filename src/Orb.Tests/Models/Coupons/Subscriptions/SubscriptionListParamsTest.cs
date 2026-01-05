@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Coupons.Subscriptions;
 
 namespace Orb.Tests.Models.Coupons.Subscriptions;
@@ -69,6 +70,26 @@ public class SubscriptionListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        SubscriptionListParams parameters = new()
+        {
+            CouponID = "coupon_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/coupons/coupon_id/subscriptions?cursor=cursor&limit=1"
+            ),
+            url
+        );
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -62,7 +63,25 @@ public class AlertCreateForSubscriptionParamsTest : TestBase
         };
 
         Assert.Null(parameters.MetricID);
-        Assert.False(parameters.RawBodyData.ContainsKey("metric_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metric_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AlertCreateForSubscriptionParams parameters = new()
+        {
+            SubscriptionID = "subscription_id",
+            Thresholds = [new(0)],
+            Type = AlertCreateForSubscriptionParamsType.UsageExceeded,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/alerts/subscription_id/subscription_id"),
+            url
+        );
     }
 }
 

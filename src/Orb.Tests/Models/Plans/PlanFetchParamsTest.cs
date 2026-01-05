@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Plans;
 
 namespace Orb.Tests.Models.Plans;
@@ -12,5 +13,15 @@ public class PlanFetchParamsTest : TestBase
         string expectedPlanID = "plan_id";
 
         Assert.Equal(expectedPlanID, parameters.PlanID);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        PlanFetchParams parameters = new() { PlanID = "plan_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id"), url);
     }
 }

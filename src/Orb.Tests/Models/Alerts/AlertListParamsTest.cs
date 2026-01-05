@@ -124,20 +124,46 @@ public class AlertListParamsTest : TestBase
         };
 
         Assert.Null(parameters.CreatedAtGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[gt]"));
         Assert.Null(parameters.CreatedAtGte);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[gte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[gte]"));
         Assert.Null(parameters.CreatedAtLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[lt]"));
         Assert.Null(parameters.CreatedAtLte);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[lte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[lte]"));
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.CustomerID);
-        Assert.False(parameters.RawQueryData.ContainsKey("customer_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("customer_id"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawQueryData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.SubscriptionID);
-        Assert.False(parameters.RawQueryData.ContainsKey("subscription_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("subscription_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AlertListParams parameters = new()
+        {
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+            Limit = 1,
+            SubscriptionID = "subscription_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/alerts?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117Z&cursor=cursor&customer_id=customer_id&external_customer_id=external_customer_id&limit=1&subscription_id=subscription_id"
+            ),
+            url
+        );
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Prices;
 
 namespace Orb.Tests.Models.Prices;
@@ -60,6 +61,16 @@ public class PriceListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        PriceListParams parameters = new() { Cursor = "cursor", Limit = 1 };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/prices?cursor=cursor&limit=1"), url);
     }
 }

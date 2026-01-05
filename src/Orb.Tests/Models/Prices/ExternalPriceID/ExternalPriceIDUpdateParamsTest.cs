@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Orb.Models.Prices.ExternalPriceID;
 
@@ -48,6 +49,19 @@ public class ExternalPriceIDUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        ExternalPriceIDUpdateParams parameters = new() { ExternalPriceID = "external_price_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/prices/external_price_id/external_price_id"),
+            url
+        );
     }
 }

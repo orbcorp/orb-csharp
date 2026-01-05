@@ -110,12 +110,26 @@ public class BackfillCreateParamsTest : TestBase
         };
 
         Assert.Null(parameters.CloseTime);
-        Assert.False(parameters.RawBodyData.ContainsKey("close_time"));
+        Assert.True(parameters.RawBodyData.ContainsKey("close_time"));
         Assert.Null(parameters.CustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("customer_id"));
         Assert.Null(parameters.DeprecationFilter);
-        Assert.False(parameters.RawBodyData.ContainsKey("deprecation_filter"));
+        Assert.True(parameters.RawBodyData.ContainsKey("deprecation_filter"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_customer_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        BackfillCreateParams parameters = new()
+        {
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/events/backfills"), url);
     }
 }

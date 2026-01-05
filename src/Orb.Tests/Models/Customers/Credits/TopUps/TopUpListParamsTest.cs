@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Customers.Credits.TopUps;
 
 namespace Orb.Tests.Models.Customers.Credits.TopUps;
@@ -69,6 +70,26 @@ public class TopUpListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        TopUpListParams parameters = new()
+        {
+            CustomerID = "customer_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/customers/customer_id/credits/top_ups?cursor=cursor&limit=1"
+            ),
+            url
+        );
     }
 }

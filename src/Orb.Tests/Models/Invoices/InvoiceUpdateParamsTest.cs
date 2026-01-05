@@ -68,13 +68,23 @@ public class InvoiceUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.DueDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("due_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("due_date"));
         Assert.Null(parameters.InvoiceDate);
-        Assert.False(parameters.RawBodyData.ContainsKey("invoice_date"));
+        Assert.True(parameters.RawBodyData.ContainsKey("invoice_date"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
         Assert.Null(parameters.NetTerms);
-        Assert.False(parameters.RawBodyData.ContainsKey("net_terms"));
+        Assert.True(parameters.RawBodyData.ContainsKey("net_terms"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        InvoiceUpdateParams parameters = new() { InvoiceID = "invoice_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id"), url);
     }
 }
 

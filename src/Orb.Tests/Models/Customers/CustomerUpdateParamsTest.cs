@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -273,43 +274,53 @@ public class CustomerUpdateParamsTest : TestBase
         };
 
         Assert.Null(parameters.AccountingSyncConfiguration);
-        Assert.False(parameters.RawBodyData.ContainsKey("accounting_sync_configuration"));
+        Assert.True(parameters.RawBodyData.ContainsKey("accounting_sync_configuration"));
         Assert.Null(parameters.AdditionalEmails);
-        Assert.False(parameters.RawBodyData.ContainsKey("additional_emails"));
+        Assert.True(parameters.RawBodyData.ContainsKey("additional_emails"));
         Assert.Null(parameters.AutoCollection);
-        Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.AutoIssuance);
-        Assert.False(parameters.RawBodyData.ContainsKey("auto_issuance"));
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.BillingAddress);
-        Assert.False(parameters.RawBodyData.ContainsKey("billing_address"));
+        Assert.True(parameters.RawBodyData.ContainsKey("billing_address"));
         Assert.Null(parameters.Currency);
-        Assert.False(parameters.RawBodyData.ContainsKey("currency"));
+        Assert.True(parameters.RawBodyData.ContainsKey("currency"));
         Assert.Null(parameters.Email);
-        Assert.False(parameters.RawBodyData.ContainsKey("email"));
+        Assert.True(parameters.RawBodyData.ContainsKey("email"));
         Assert.Null(parameters.EmailDelivery);
-        Assert.False(parameters.RawBodyData.ContainsKey("email_delivery"));
+        Assert.True(parameters.RawBodyData.ContainsKey("email_delivery"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.Hierarchy);
-        Assert.False(parameters.RawBodyData.ContainsKey("hierarchy"));
+        Assert.True(parameters.RawBodyData.ContainsKey("hierarchy"));
         Assert.Null(parameters.Metadata);
-        Assert.False(parameters.RawBodyData.ContainsKey("metadata"));
+        Assert.True(parameters.RawBodyData.ContainsKey("metadata"));
         Assert.Null(parameters.Name);
-        Assert.False(parameters.RawBodyData.ContainsKey("name"));
+        Assert.True(parameters.RawBodyData.ContainsKey("name"));
         Assert.Null(parameters.PaymentConfiguration);
-        Assert.False(parameters.RawBodyData.ContainsKey("payment_configuration"));
+        Assert.True(parameters.RawBodyData.ContainsKey("payment_configuration"));
         Assert.Null(parameters.PaymentProvider);
-        Assert.False(parameters.RawBodyData.ContainsKey("payment_provider"));
+        Assert.True(parameters.RawBodyData.ContainsKey("payment_provider"));
         Assert.Null(parameters.PaymentProviderID);
-        Assert.False(parameters.RawBodyData.ContainsKey("payment_provider_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("payment_provider_id"));
         Assert.Null(parameters.ReportingConfiguration);
-        Assert.False(parameters.RawBodyData.ContainsKey("reporting_configuration"));
+        Assert.True(parameters.RawBodyData.ContainsKey("reporting_configuration"));
         Assert.Null(parameters.ShippingAddress);
-        Assert.False(parameters.RawBodyData.ContainsKey("shipping_address"));
+        Assert.True(parameters.RawBodyData.ContainsKey("shipping_address"));
         Assert.Null(parameters.TaxConfiguration);
-        Assert.False(parameters.RawBodyData.ContainsKey("tax_configuration"));
+        Assert.True(parameters.RawBodyData.ContainsKey("tax_configuration"));
         Assert.Null(parameters.TaxID);
-        Assert.False(parameters.RawBodyData.ContainsKey("tax_id"));
+        Assert.True(parameters.RawBodyData.ContainsKey("tax_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        CustomerUpdateParams parameters = new() { CustomerID = "customer_id" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/customers/customer_id"), url);
     }
 }
 

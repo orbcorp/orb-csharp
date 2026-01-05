@@ -141,23 +141,51 @@ public class LedgerListParamsTest : TestBase
         };
 
         Assert.Null(parameters.CreatedAtGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[gt]"));
         Assert.Null(parameters.CreatedAtGte);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[gte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[gte]"));
         Assert.Null(parameters.CreatedAtLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[lt]"));
         Assert.Null(parameters.CreatedAtLte);
-        Assert.False(parameters.RawQueryData.ContainsKey("created_at[lte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("created_at[lte]"));
         Assert.Null(parameters.Currency);
-        Assert.False(parameters.RawQueryData.ContainsKey("currency"));
+        Assert.True(parameters.RawQueryData.ContainsKey("currency"));
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.EntryStatus);
-        Assert.False(parameters.RawQueryData.ContainsKey("entry_status"));
+        Assert.True(parameters.RawQueryData.ContainsKey("entry_status"));
         Assert.Null(parameters.EntryType);
-        Assert.False(parameters.RawQueryData.ContainsKey("entry_type"));
+        Assert.True(parameters.RawQueryData.ContainsKey("entry_type"));
         Assert.Null(parameters.MinimumAmount);
-        Assert.False(parameters.RawQueryData.ContainsKey("minimum_amount"));
+        Assert.True(parameters.RawQueryData.ContainsKey("minimum_amount"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        LedgerListParams parameters = new()
+        {
+            CustomerID = "customer_id",
+            CreatedAtGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAtLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Cursor = "cursor",
+            EntryStatus = EntryStatus.Committed,
+            EntryType = EntryType.Increment,
+            Limit = 1,
+            MinimumAmount = "minimum_amount",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/customers/customer_id/credits/ledger?created_at%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blt%5d=2019-12-27T18%3a11%3a19.117Z&created_at%5blte%5d=2019-12-27T18%3a11%3a19.117Z&currency=currency&cursor=cursor&entry_status=committed&entry_type=increment&limit=1&minimum_amount=minimum_amount"
+            ),
+            url
+        );
     }
 }
 

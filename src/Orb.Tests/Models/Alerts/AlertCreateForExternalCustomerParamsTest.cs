@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
@@ -63,7 +64,25 @@ public class AlertCreateForExternalCustomerParamsTest : TestBase
         };
 
         Assert.Null(parameters.Thresholds);
-        Assert.False(parameters.RawBodyData.ContainsKey("thresholds"));
+        Assert.True(parameters.RawBodyData.ContainsKey("thresholds"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        AlertCreateForExternalCustomerParams parameters = new()
+        {
+            ExternalCustomerID = "external_customer_id",
+            Currency = "currency",
+            Type = AlertCreateForExternalCustomerParamsType.CreditBalanceDepleted,
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri("https://api.withorb.com/v1/alerts/external_customer_id/external_customer_id"),
+            url
+        );
     }
 }
 

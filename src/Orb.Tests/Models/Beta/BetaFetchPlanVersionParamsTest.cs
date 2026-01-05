@@ -1,3 +1,4 @@
+using System;
 using Orb.Models.Beta;
 
 namespace Orb.Tests.Models.Beta;
@@ -14,5 +15,15 @@ public class BetaFetchPlanVersionParamsTest : TestBase
 
         Assert.Equal(expectedPlanID, parameters.PlanID);
         Assert.Equal(expectedVersion, parameters.Version);
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        BetaFetchPlanVersionParams parameters = new() { PlanID = "plan_id", Version = "version" };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id/versions/version"), url);
     }
 }

@@ -213,41 +213,77 @@ public class InvoiceListParamsTest : TestBase
         };
 
         Assert.Null(parameters.Amount);
-        Assert.False(parameters.RawQueryData.ContainsKey("amount"));
+        Assert.True(parameters.RawQueryData.ContainsKey("amount"));
         Assert.Null(parameters.AmountGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("amount[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("amount[gt]"));
         Assert.Null(parameters.AmountLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("amount[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("amount[lt]"));
         Assert.Null(parameters.Cursor);
-        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.True(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.CustomerID);
-        Assert.False(parameters.RawQueryData.ContainsKey("customer_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("customer_id"));
         Assert.Null(parameters.DateType);
-        Assert.False(parameters.RawQueryData.ContainsKey("date_type"));
+        Assert.True(parameters.RawQueryData.ContainsKey("date_type"));
         Assert.Null(parameters.DueDate);
-        Assert.False(parameters.RawQueryData.ContainsKey("due_date"));
+        Assert.True(parameters.RawQueryData.ContainsKey("due_date"));
         Assert.Null(parameters.DueDateWindow);
-        Assert.False(parameters.RawQueryData.ContainsKey("due_date_window"));
+        Assert.True(parameters.RawQueryData.ContainsKey("due_date_window"));
         Assert.Null(parameters.DueDateGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("due_date[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("due_date[gt]"));
         Assert.Null(parameters.DueDateLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("due_date[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("due_date[lt]"));
         Assert.Null(parameters.ExternalCustomerID);
-        Assert.False(parameters.RawQueryData.ContainsKey("external_customer_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.InvoiceDateGt);
-        Assert.False(parameters.RawQueryData.ContainsKey("invoice_date[gt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("invoice_date[gt]"));
         Assert.Null(parameters.InvoiceDateGte);
-        Assert.False(parameters.RawQueryData.ContainsKey("invoice_date[gte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("invoice_date[gte]"));
         Assert.Null(parameters.InvoiceDateLt);
-        Assert.False(parameters.RawQueryData.ContainsKey("invoice_date[lt]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("invoice_date[lt]"));
         Assert.Null(parameters.InvoiceDateLte);
-        Assert.False(parameters.RawQueryData.ContainsKey("invoice_date[lte]"));
+        Assert.True(parameters.RawQueryData.ContainsKey("invoice_date[lte]"));
         Assert.Null(parameters.IsRecurring);
-        Assert.False(parameters.RawQueryData.ContainsKey("is_recurring"));
+        Assert.True(parameters.RawQueryData.ContainsKey("is_recurring"));
         Assert.Null(parameters.Status);
-        Assert.False(parameters.RawQueryData.ContainsKey("status"));
+        Assert.True(parameters.RawQueryData.ContainsKey("status"));
         Assert.Null(parameters.SubscriptionID);
-        Assert.False(parameters.RawQueryData.ContainsKey("subscription_id"));
+        Assert.True(parameters.RawQueryData.ContainsKey("subscription_id"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        InvoiceListParams parameters = new()
+        {
+            Amount = "amount",
+            AmountGt = "amount[gt]",
+            AmountLt = "amount[lt]",
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            DateType = DateType.DueDate,
+            DueDate = "2019-12-27",
+            DueDateWindow = "due_date_window",
+            DueDateGt = "2019-12-27",
+            DueDateLt = "2019-12-27",
+            ExternalCustomerID = "external_customer_id",
+            InvoiceDateGt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateGte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateLt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            InvoiceDateLte = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            IsRecurring = true,
+            Limit = 1,
+            Status = [Status.Draft],
+            SubscriptionID = "subscription_id",
+        };
+
+        var url = parameters.Url(new() { APIKey = "My API Key" });
+
+        Assert.Equal(
+            new Uri(
+                "https://api.withorb.com/v1/invoices?amount=amount&amount%5bgt%5d=amount%5bgt%5d&amount%5blt%5d=amount%5blt%5d&cursor=cursor&customer_id=customer_id&date_type=due_date&due_date=2019-12-27&due_date_window=due_date_window&due_date%5bgt%5d=2019-12-27&due_date%5blt%5d=2019-12-27&external_customer_id=external_customer_id&invoice_date%5bgt%5d=2019-12-27T18%3a11%3a19.117Z&invoice_date%5bgte%5d=2019-12-27T18%3a11%3a19.117Z&invoice_date%5blt%5d=2019-12-27T18%3a11%3a19.117Z&invoice_date%5blte%5d=2019-12-27T18%3a11%3a19.117Z&is_recurring=true&limit=1&status%5b%5d=draft&subscription_id=subscription_id"
+            ),
+            url
+        );
     }
 }
 
