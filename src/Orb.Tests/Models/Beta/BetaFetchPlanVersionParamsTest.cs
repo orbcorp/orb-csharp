@@ -22,7 +22,7 @@ public class BetaFetchPlanVersionParamsTest : TestBase
     {
         BetaFetchPlanVersionParams parameters = new() { PlanID = "plan_id", Version = "version" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/plans/plan_id/versions/version"), url);
     }

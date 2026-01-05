@@ -57,7 +57,7 @@ public class MetricUpdateParamsTest : TestBase
     {
         MetricUpdateParams parameters = new() { MetricID = "metric_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/metrics/metric_id"), url);
     }

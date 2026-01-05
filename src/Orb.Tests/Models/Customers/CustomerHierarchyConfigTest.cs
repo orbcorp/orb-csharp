@@ -11,18 +11,18 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
             ParentCustomerID = "parent_customer_id",
         };
 
-        List<string> expectedChildCustomerIDs = ["string"];
+        List<string> expectedChildCustomerIds = ["string"];
         string expectedParentCustomerID = "parent_customer_id";
 
-        Assert.NotNull(model.ChildCustomerIDs);
-        Assert.Equal(expectedChildCustomerIDs.Count, model.ChildCustomerIDs.Count);
-        for (int i = 0; i < expectedChildCustomerIDs.Count; i++)
+        Assert.NotNull(model.ChildCustomerIds);
+        Assert.Equal(expectedChildCustomerIds.Count, model.ChildCustomerIds.Count);
+        for (int i = 0; i < expectedChildCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedChildCustomerIDs[i], model.ChildCustomerIDs[i]);
+            Assert.Equal(expectedChildCustomerIds[i], model.ChildCustomerIds[i]);
         }
         Assert.Equal(expectedParentCustomerID, model.ParentCustomerID);
     }
@@ -32,7 +32,7 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
             ParentCustomerID = "parent_customer_id",
         };
 
@@ -47,7 +47,7 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
             ParentCustomerID = "parent_customer_id",
         };
 
@@ -55,14 +55,14 @@ public class CustomerHierarchyConfigTest : TestBase
         var deserialized = JsonSerializer.Deserialize<CustomerHierarchyConfig>(element);
         Assert.NotNull(deserialized);
 
-        List<string> expectedChildCustomerIDs = ["string"];
+        List<string> expectedChildCustomerIds = ["string"];
         string expectedParentCustomerID = "parent_customer_id";
 
-        Assert.NotNull(deserialized.ChildCustomerIDs);
-        Assert.Equal(expectedChildCustomerIDs.Count, deserialized.ChildCustomerIDs.Count);
-        for (int i = 0; i < expectedChildCustomerIDs.Count; i++)
+        Assert.NotNull(deserialized.ChildCustomerIds);
+        Assert.Equal(expectedChildCustomerIds.Count, deserialized.ChildCustomerIds.Count);
+        for (int i = 0; i < expectedChildCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedChildCustomerIDs[i], deserialized.ChildCustomerIDs[i]);
+            Assert.Equal(expectedChildCustomerIds[i], deserialized.ChildCustomerIds[i]);
         }
         Assert.Equal(expectedParentCustomerID, deserialized.ParentCustomerID);
     }
@@ -72,7 +72,7 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
             ParentCustomerID = "parent_customer_id",
         };
 
@@ -84,7 +84,7 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig { ParentCustomerID = "parent_customer_id" };
 
-        Assert.Null(model.ChildCustomerIDs);
+        Assert.Null(model.ChildCustomerIds);
         Assert.False(model.RawData.ContainsKey("child_customer_ids"));
     }
 
@@ -104,10 +104,10 @@ public class CustomerHierarchyConfigTest : TestBase
             ParentCustomerID = "parent_customer_id",
 
             // Null should be interpreted as omitted for these properties
-            ChildCustomerIDs = null,
+            ChildCustomerIds = null,
         };
 
-        Assert.Null(model.ChildCustomerIDs);
+        Assert.Null(model.ChildCustomerIds);
         Assert.False(model.RawData.ContainsKey("child_customer_ids"));
     }
 
@@ -119,7 +119,7 @@ public class CustomerHierarchyConfigTest : TestBase
             ParentCustomerID = "parent_customer_id",
 
             // Null should be interpreted as omitted for these properties
-            ChildCustomerIDs = null,
+            ChildCustomerIds = null,
         };
 
         model.Validate();
@@ -128,7 +128,7 @@ public class CustomerHierarchyConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new CustomerHierarchyConfig { ChildCustomerIDs = ["string"] };
+        var model = new CustomerHierarchyConfig { ChildCustomerIds = ["string"] };
 
         Assert.Null(model.ParentCustomerID);
         Assert.False(model.RawData.ContainsKey("parent_customer_id"));
@@ -137,7 +137,7 @@ public class CustomerHierarchyConfigTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new CustomerHierarchyConfig { ChildCustomerIDs = ["string"] };
+        var model = new CustomerHierarchyConfig { ChildCustomerIds = ["string"] };
 
         model.Validate();
     }
@@ -147,7 +147,7 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
 
             ParentCustomerID = null,
         };
@@ -161,7 +161,7 @@ public class CustomerHierarchyConfigTest : TestBase
     {
         var model = new CustomerHierarchyConfig
         {
-            ChildCustomerIDs = ["string"],
+            ChildCustomerIds = ["string"],
 
             ParentCustomerID = null,
         };

@@ -65,7 +65,7 @@ public class SubscriptionUpdateTrialParamsTest : TestBase
             TrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/update_trial"),

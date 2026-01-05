@@ -14,7 +14,7 @@ public class UsageDiscountIntervalTest : TestBase
     {
         var model = new UsageDiscountInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = UsageDiscountIntervalDiscountType.Usage,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
@@ -30,7 +30,7 @@ public class UsageDiscountIntervalTest : TestBase
             UsageDiscount = 0,
         };
 
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         ApiEnum<string, UsageDiscountIntervalDiscountType> expectedDiscountType =
             UsageDiscountIntervalDiscountType.Usage;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -47,12 +47,12 @@ public class UsageDiscountIntervalTest : TestBase
         double expectedUsageDiscount = 0;
 
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            model.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            model.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIntervalIDs[i], model.AppliesToPriceIntervalIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIntervalIds[i], model.AppliesToPriceIntervalIds[i]);
         }
         Assert.Equal(expectedDiscountType, model.DiscountType);
         Assert.Equal(expectedEndDate, model.EndDate);
@@ -70,7 +70,7 @@ public class UsageDiscountIntervalTest : TestBase
     {
         var model = new UsageDiscountInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = UsageDiscountIntervalDiscountType.Usage,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
@@ -97,7 +97,7 @@ public class UsageDiscountIntervalTest : TestBase
     {
         var model = new UsageDiscountInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = UsageDiscountIntervalDiscountType.Usage,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
@@ -117,7 +117,7 @@ public class UsageDiscountIntervalTest : TestBase
         var deserialized = JsonSerializer.Deserialize<UsageDiscountInterval>(element);
         Assert.NotNull(deserialized);
 
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         ApiEnum<string, UsageDiscountIntervalDiscountType> expectedDiscountType =
             UsageDiscountIntervalDiscountType.Usage;
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -134,14 +134,14 @@ public class UsageDiscountIntervalTest : TestBase
         double expectedUsageDiscount = 0;
 
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            deserialized.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            deserialized.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
             Assert.Equal(
-                expectedAppliesToPriceIntervalIDs[i],
-                deserialized.AppliesToPriceIntervalIDs[i]
+                expectedAppliesToPriceIntervalIds[i],
+                deserialized.AppliesToPriceIntervalIds[i]
             );
         }
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
@@ -160,7 +160,7 @@ public class UsageDiscountIntervalTest : TestBase
     {
         var model = new UsageDiscountInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             DiscountType = UsageDiscountIntervalDiscountType.Usage,
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =

@@ -49,7 +49,7 @@ public class CustomerListPageResponseTest : TestBase
                     Name = "name",
                     PaymentProvider = CustomerPaymentProvider.Quickbooks,
                     PaymentProviderID = "payment_provider_id",
-                    PortalURL = "portal_url",
+                    PortalUrl = "portal_url",
                     ShippingAddress = new()
                     {
                         City = "city",
@@ -130,7 +130,7 @@ public class CustomerListPageResponseTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -230,7 +230,7 @@ public class CustomerListPageResponseTest : TestBase
                     Name = "name",
                     PaymentProvider = CustomerPaymentProvider.Quickbooks,
                     PaymentProviderID = "payment_provider_id",
-                    PortalURL = "portal_url",
+                    PortalUrl = "portal_url",
                     ShippingAddress = new()
                     {
                         City = "city",
@@ -325,7 +325,7 @@ public class CustomerListPageResponseTest : TestBase
                     Name = "name",
                     PaymentProvider = CustomerPaymentProvider.Quickbooks,
                     PaymentProviderID = "payment_provider_id",
-                    PortalURL = "portal_url",
+                    PortalUrl = "portal_url",
                     ShippingAddress = new()
                     {
                         City = "city",
@@ -410,7 +410,7 @@ public class CustomerListPageResponseTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -510,7 +510,7 @@ public class CustomerListPageResponseTest : TestBase
                     Name = "name",
                     PaymentProvider = CustomerPaymentProvider.Quickbooks,
                     PaymentProviderID = "payment_provider_id",
-                    PortalURL = "portal_url",
+                    PortalUrl = "portal_url",
                     ShippingAddress = new()
                     {
                         City = "city",

@@ -16,8 +16,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -37,8 +37,8 @@ public class NewUsageDiscountTest : TestBase
         double expectedUsageDiscount = 0;
         ApiEnum<bool, NewUsageDiscountAppliesToAll> expectedAppliesToAll =
             NewUsageDiscountAppliesToAll.True;
-        List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
-        List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
         string expectedCurrency = "currency";
         List<NewUsageDiscountFilter> expectedFilters =
         [
@@ -56,17 +56,17 @@ public class NewUsageDiscountTest : TestBase
         Assert.Equal(expectedAdjustmentType, model.AdjustmentType);
         Assert.Equal(expectedUsageDiscount, model.UsageDiscount);
         Assert.Equal(expectedAppliesToAll, model.AppliesToAll);
-        Assert.NotNull(model.AppliesToItemIDs);
-        Assert.Equal(expectedAppliesToItemIDs.Count, model.AppliesToItemIDs.Count);
-        for (int i = 0; i < expectedAppliesToItemIDs.Count; i++)
+        Assert.NotNull(model.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, model.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToItemIDs[i], model.AppliesToItemIDs[i]);
+            Assert.Equal(expectedAppliesToItemIds[i], model.AppliesToItemIds[i]);
         }
-        Assert.NotNull(model.AppliesToPriceIDs);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedCurrency, model.Currency);
         Assert.NotNull(model.Filters);
@@ -87,8 +87,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -117,8 +117,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -142,8 +142,8 @@ public class NewUsageDiscountTest : TestBase
         double expectedUsageDiscount = 0;
         ApiEnum<bool, NewUsageDiscountAppliesToAll> expectedAppliesToAll =
             NewUsageDiscountAppliesToAll.True;
-        List<string> expectedAppliesToItemIDs = ["item_1", "item_2"];
-        List<string> expectedAppliesToPriceIDs = ["price_1", "price_2"];
+        List<string> expectedAppliesToItemIds = ["item_1", "item_2"];
+        List<string> expectedAppliesToPriceIds = ["price_1", "price_2"];
         string expectedCurrency = "currency";
         List<NewUsageDiscountFilter> expectedFilters =
         [
@@ -161,17 +161,17 @@ public class NewUsageDiscountTest : TestBase
         Assert.Equal(expectedAdjustmentType, deserialized.AdjustmentType);
         Assert.Equal(expectedUsageDiscount, deserialized.UsageDiscount);
         Assert.Equal(expectedAppliesToAll, deserialized.AppliesToAll);
-        Assert.NotNull(deserialized.AppliesToItemIDs);
-        Assert.Equal(expectedAppliesToItemIDs.Count, deserialized.AppliesToItemIDs.Count);
-        for (int i = 0; i < expectedAppliesToItemIDs.Count; i++)
+        Assert.NotNull(deserialized.AppliesToItemIds);
+        Assert.Equal(expectedAppliesToItemIds.Count, deserialized.AppliesToItemIds.Count);
+        for (int i = 0; i < expectedAppliesToItemIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToItemIDs[i], deserialized.AppliesToItemIDs[i]);
+            Assert.Equal(expectedAppliesToItemIds[i], deserialized.AppliesToItemIds[i]);
         }
-        Assert.NotNull(deserialized.AppliesToPriceIDs);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedCurrency, deserialized.Currency);
         Assert.NotNull(deserialized.Filters);
@@ -192,8 +192,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -219,8 +219,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -246,8 +246,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -272,8 +272,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -302,8 +302,8 @@ public class NewUsageDiscountTest : TestBase
             AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
             UsageDiscount = 0,
             AppliesToAll = NewUsageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -335,9 +335,9 @@ public class NewUsageDiscountTest : TestBase
 
         Assert.Null(model.AppliesToAll);
         Assert.False(model.RawData.ContainsKey("applies_to_all"));
-        Assert.Null(model.AppliesToItemIDs);
+        Assert.Null(model.AppliesToItemIds);
         Assert.False(model.RawData.ContainsKey("applies_to_item_ids"));
-        Assert.Null(model.AppliesToPriceIDs);
+        Assert.Null(model.AppliesToPriceIds);
         Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
         Assert.Null(model.Currency);
         Assert.False(model.RawData.ContainsKey("currency"));
@@ -370,8 +370,8 @@ public class NewUsageDiscountTest : TestBase
             IsInvoiceLevel = true,
 
             AppliesToAll = null,
-            AppliesToItemIDs = null,
-            AppliesToPriceIDs = null,
+            AppliesToItemIds = null,
+            AppliesToPriceIds = null,
             Currency = null,
             Filters = null,
             PriceType = null,
@@ -379,9 +379,9 @@ public class NewUsageDiscountTest : TestBase
 
         Assert.Null(model.AppliesToAll);
         Assert.True(model.RawData.ContainsKey("applies_to_all"));
-        Assert.Null(model.AppliesToItemIDs);
+        Assert.Null(model.AppliesToItemIds);
         Assert.True(model.RawData.ContainsKey("applies_to_item_ids"));
-        Assert.Null(model.AppliesToPriceIDs);
+        Assert.Null(model.AppliesToPriceIds);
         Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
         Assert.Null(model.Currency);
         Assert.True(model.RawData.ContainsKey("currency"));
@@ -401,8 +401,8 @@ public class NewUsageDiscountTest : TestBase
             IsInvoiceLevel = true,
 
             AppliesToAll = null,
-            AppliesToItemIDs = null,
-            AppliesToPriceIDs = null,
+            AppliesToItemIds = null,
+            AppliesToPriceIds = null,
             Currency = null,
             Filters = null,
             PriceType = null,

@@ -48,7 +48,7 @@ public class CreditNoteListPageResponseTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -125,7 +125,7 @@ public class CreditNoteListPageResponseTest : TestBase
                             {
                                 ID = "id",
                                 AmountApplied = "amount_applied",
-                                AppliesToPriceIDs = ["string"],
+                                AppliesToPriceIds = ["string"],
                                 DiscountType = Models::DiscountDiscountType.Percentage,
                                 PercentageDiscount = 0,
                                 AmountDiscount = "amount_discount",
@@ -218,7 +218,7 @@ public class CreditNoteListPageResponseTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -306,7 +306,7 @@ public class CreditNoteListPageResponseTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -387,7 +387,7 @@ public class CreditNoteListPageResponseTest : TestBase
                             {
                                 ID = "id",
                                 AmountApplied = "amount_applied",
-                                AppliesToPriceIDs = ["string"],
+                                AppliesToPriceIds = ["string"],
                                 DiscountType = Models::DiscountDiscountType.Percentage,
                                 PercentageDiscount = 0,
                                 AmountDiscount = "amount_discount",
@@ -480,7 +480,7 @@ public class CreditNoteListPageResponseTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",

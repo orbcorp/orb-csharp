@@ -17,7 +17,7 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             AdjustmentType = AdjustmentType.AmountDiscount,
             Amount = "amount",
             AmountDiscount = "amount_discount",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -36,7 +36,7 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
         ApiEnum<string, AdjustmentType> expectedAdjustmentType = AdjustmentType.AmountDiscount;
         string expectedAmount = "amount";
         string expectedAmountDiscount = "amount_discount";
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         List<MonetaryAmountDiscountAdjustmentFilter> expectedFilters =
         [
             new()
@@ -54,10 +54,10 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
         Assert.Equal(expectedAdjustmentType, model.AdjustmentType);
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedAmountDiscount, model.AmountDiscount);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
@@ -78,7 +78,7 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             AdjustmentType = AdjustmentType.AmountDiscount,
             Amount = "amount",
             AmountDiscount = "amount_discount",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -108,7 +108,7 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             AdjustmentType = AdjustmentType.AmountDiscount,
             Amount = "amount",
             AmountDiscount = "amount_discount",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -131,7 +131,7 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
         ApiEnum<string, AdjustmentType> expectedAdjustmentType = AdjustmentType.AmountDiscount;
         string expectedAmount = "amount";
         string expectedAmountDiscount = "amount_discount";
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         List<MonetaryAmountDiscountAdjustmentFilter> expectedFilters =
         [
             new()
@@ -149,10 +149,10 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
         Assert.Equal(expectedAdjustmentType, deserialized.AdjustmentType);
         Assert.Equal(expectedAmount, deserialized.Amount);
         Assert.Equal(expectedAmountDiscount, deserialized.AmountDiscount);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
@@ -173,7 +173,7 @@ public class MonetaryAmountDiscountAdjustmentTest : TestBase
             AdjustmentType = AdjustmentType.AmountDiscount,
             Amount = "amount",
             AmountDiscount = "amount_discount",
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()

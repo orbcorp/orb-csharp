@@ -15,7 +15,7 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         {
             ID = "id",
             AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -36,7 +36,7 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         string expectedID = "id";
         ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseMinimumAdjustmentAdjustmentType.Minimum;
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         List<PlanPhaseMinimumAdjustmentFilter> expectedFilters =
         [
             new()
@@ -55,10 +55,10 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAdjustmentType, model.AdjustmentType);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
@@ -80,7 +80,7 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         {
             ID = "id",
             AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -111,7 +111,7 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         {
             ID = "id",
             AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -136,7 +136,7 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         string expectedID = "id";
         ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> expectedAdjustmentType =
             PlanPhaseMinimumAdjustmentAdjustmentType.Minimum;
-        List<string> expectedAppliesToPriceIDs = ["string"];
+        List<string> expectedAppliesToPriceIds = ["string"];
         List<PlanPhaseMinimumAdjustmentFilter> expectedFilters =
         [
             new()
@@ -155,10 +155,10 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAdjustmentType, deserialized.AdjustmentType);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
         for (int i = 0; i < expectedFilters.Count; i++)
@@ -180,7 +180,7 @@ public class PlanPhaseMinimumAdjustmentTest : TestBase
         {
             ID = "id",
             AdjustmentType = PlanPhaseMinimumAdjustmentAdjustmentType.Minimum,
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()

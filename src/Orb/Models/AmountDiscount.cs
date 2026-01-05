@@ -37,7 +37,7 @@ public sealed record class AmountDiscount : JsonModel
     /// List of price_ids that this discount applies to. For plan/plan phase discounts,
     /// this can be a subset of prices.
     /// </summary>
-    public IReadOnlyList<string>? AppliesToPriceIDs
+    public IReadOnlyList<string>? AppliesToPriceIds
     {
         get
         {
@@ -69,7 +69,7 @@ public sealed record class AmountDiscount : JsonModel
     {
         _ = this.AmountDiscountValue;
         this.DiscountType.Validate();
-        _ = this.AppliesToPriceIDs;
+        _ = this.AppliesToPriceIds;
         foreach (var item in this.Filters ?? [])
         {
             item.Validate();

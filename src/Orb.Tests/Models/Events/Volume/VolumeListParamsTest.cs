@@ -102,7 +102,7 @@ public class VolumeListParamsTest : TestBase
             TimeframeEnd = DateTimeOffset.Parse("2024-10-11T06:00:00Z"),
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri(

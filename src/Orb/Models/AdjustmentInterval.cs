@@ -27,7 +27,7 @@ public sealed record class AdjustmentInterval : JsonModel
     /// <summary>
     /// The price interval IDs that this adjustment applies to.
     /// </summary>
-    public required IReadOnlyList<string> AppliesToPriceIntervalIDs
+    public required IReadOnlyList<string> AppliesToPriceIntervalIds
     {
         get
         {
@@ -68,7 +68,7 @@ public sealed record class AdjustmentInterval : JsonModel
     {
         _ = this.ID;
         this.Adjustment.Validate();
-        _ = this.AppliesToPriceIntervalIDs;
+        _ = this.AppliesToPriceIntervalIds;
         _ = this.EndDate;
         _ = this.StartDate;
     }

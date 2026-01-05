@@ -15,7 +15,7 @@ public class AmountDiscountTest : TestBase
         {
             AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -30,7 +30,7 @@ public class AmountDiscountTest : TestBase
 
         string expectedAmountDiscountValue = "amount_discount";
         ApiEnum<string, DiscountType> expectedDiscountType = DiscountType.Amount;
-        List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
+        List<string> expectedAppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
         List<AmountDiscountFilter> expectedFilters =
         [
             new()
@@ -44,11 +44,11 @@ public class AmountDiscountTest : TestBase
 
         Assert.Equal(expectedAmountDiscountValue, model.AmountDiscountValue);
         Assert.Equal(expectedDiscountType, model.DiscountType);
-        Assert.NotNull(model.AppliesToPriceIDs);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, model.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.NotNull(model.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], model.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
         }
         Assert.NotNull(model.Filters);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
@@ -66,7 +66,7 @@ public class AmountDiscountTest : TestBase
         {
             AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -92,7 +92,7 @@ public class AmountDiscountTest : TestBase
         {
             AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -111,7 +111,7 @@ public class AmountDiscountTest : TestBase
 
         string expectedAmountDiscountValue = "amount_discount";
         ApiEnum<string, DiscountType> expectedDiscountType = DiscountType.Amount;
-        List<string> expectedAppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
+        List<string> expectedAppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"];
         List<AmountDiscountFilter> expectedFilters =
         [
             new()
@@ -125,11 +125,11 @@ public class AmountDiscountTest : TestBase
 
         Assert.Equal(expectedAmountDiscountValue, deserialized.AmountDiscountValue);
         Assert.Equal(expectedDiscountType, deserialized.DiscountType);
-        Assert.NotNull(deserialized.AppliesToPriceIDs);
-        Assert.Equal(expectedAppliesToPriceIDs.Count, deserialized.AppliesToPriceIDs.Count);
-        for (int i = 0; i < expectedAppliesToPriceIDs.Count; i++)
+        Assert.NotNull(deserialized.AppliesToPriceIds);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIDs[i], deserialized.AppliesToPriceIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
         }
         Assert.NotNull(deserialized.Filters);
         Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
@@ -147,7 +147,7 @@ public class AmountDiscountTest : TestBase
         {
             AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -172,7 +172,7 @@ public class AmountDiscountTest : TestBase
             DiscountType = DiscountType.Amount,
         };
 
-        Assert.Null(model.AppliesToPriceIDs);
+        Assert.Null(model.AppliesToPriceIds);
         Assert.False(model.RawData.ContainsKey("applies_to_price_ids"));
         Assert.Null(model.Filters);
         Assert.False(model.RawData.ContainsKey("filters"));
@@ -200,12 +200,12 @@ public class AmountDiscountTest : TestBase
             AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
 
-            AppliesToPriceIDs = null,
+            AppliesToPriceIds = null,
             Filters = null,
             Reason = null,
         };
 
-        Assert.Null(model.AppliesToPriceIDs);
+        Assert.Null(model.AppliesToPriceIds);
         Assert.True(model.RawData.ContainsKey("applies_to_price_ids"));
         Assert.Null(model.Filters);
         Assert.True(model.RawData.ContainsKey("filters"));
@@ -221,7 +221,7 @@ public class AmountDiscountTest : TestBase
             AmountDiscountValue = "amount_discount",
             DiscountType = DiscountType.Amount,
 
-            AppliesToPriceIDs = null,
+            AppliesToPriceIds = null,
             Filters = null,
             Reason = null,
         };

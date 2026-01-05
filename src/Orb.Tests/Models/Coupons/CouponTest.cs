@@ -18,7 +18,7 @@ public class CouponTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -42,7 +42,7 @@ public class CouponTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -79,7 +79,7 @@ public class CouponTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -114,7 +114,7 @@ public class CouponTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -142,7 +142,7 @@ public class CouponTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -179,7 +179,7 @@ public class CouponTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -211,7 +211,7 @@ public class CouponDiscountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -235,7 +235,7 @@ public class CouponDiscountTest : TestBase
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -259,7 +259,7 @@ public class CouponDiscountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -286,7 +286,7 @@ public class CouponDiscountTest : TestBase
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()

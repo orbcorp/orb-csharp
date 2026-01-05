@@ -68,7 +68,7 @@ public class EventServiceTest : TestBase
     public async Task Search_Works()
     {
         var response = await this.client.Events.Search(
-            new() { EventIDs = ["string"] },
+            new() { EventIds = ["string"] },
             TestContext.Current.CancellationToken
         );
         response.Validate();

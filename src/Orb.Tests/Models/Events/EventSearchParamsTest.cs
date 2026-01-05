@@ -11,19 +11,19 @@ public class EventSearchParamsTest : TestBase
     {
         var parameters = new EventSearchParams
         {
-            EventIDs = ["string"],
+            EventIds = ["string"],
             TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        List<string> expectedEventIDs = ["string"];
+        List<string> expectedEventIds = ["string"];
         DateTimeOffset expectedTimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         DateTimeOffset expectedTimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
-        Assert.Equal(expectedEventIDs.Count, parameters.EventIDs.Count);
-        for (int i = 0; i < expectedEventIDs.Count; i++)
+        Assert.Equal(expectedEventIds.Count, parameters.EventIds.Count);
+        for (int i = 0; i < expectedEventIds.Count; i++)
         {
-            Assert.Equal(expectedEventIDs[i], parameters.EventIDs[i]);
+            Assert.Equal(expectedEventIds[i], parameters.EventIds[i]);
         }
         Assert.Equal(expectedTimeframeEnd, parameters.TimeframeEnd);
         Assert.Equal(expectedTimeframeStart, parameters.TimeframeStart);
@@ -32,7 +32,7 @@ public class EventSearchParamsTest : TestBase
     [Fact]
     public void OptionalNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new EventSearchParams { EventIDs = ["string"] };
+        var parameters = new EventSearchParams { EventIds = ["string"] };
 
         Assert.Null(parameters.TimeframeEnd);
         Assert.False(parameters.RawBodyData.ContainsKey("timeframe_end"));
@@ -45,7 +45,7 @@ public class EventSearchParamsTest : TestBase
     {
         var parameters = new EventSearchParams
         {
-            EventIDs = ["string"],
+            EventIds = ["string"],
 
             TimeframeEnd = null,
             TimeframeStart = null,
@@ -60,9 +60,9 @@ public class EventSearchParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        EventSearchParams parameters = new() { EventIDs = ["string"] };
+        EventSearchParams parameters = new() { EventIds = ["string"] };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/events/search"), url);
     }

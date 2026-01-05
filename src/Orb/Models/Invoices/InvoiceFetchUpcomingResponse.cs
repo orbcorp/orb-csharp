@@ -267,7 +267,7 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
     /// A URL for the customer-facing invoice portal. This URL expires 30 days after
     /// the invoice's due date, or 60 days after being re-generated through the UI.
     /// </summary>
-    public required string? HostedInvoiceURL
+    public required string? HostedInvoiceUrl
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "hosted_invoice_url"); }
         init { JsonModel.Set(this._rawData, "hosted_invoice_url", value); }
@@ -593,7 +593,7 @@ public sealed record class InvoiceFetchUpcomingResponse : JsonModel
         }
         _ = this.DueDate;
         _ = this.EligibleToIssueAt;
-        _ = this.HostedInvoiceURL;
+        _ = this.HostedInvoiceUrl;
         _ = this.InvoiceNumber;
         _ = this.InvoicePdf;
         this.InvoiceSource.Validate();
@@ -1382,7 +1382,7 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : JsonModel
     /// <summary>
     /// A list of customer ids that were used to calculate the usage for this line item.
     /// </summary>
-    public required IReadOnlyList<string>? UsageCustomerIDs
+    public required IReadOnlyList<string>? UsageCustomerIds
     {
         get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
         init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
@@ -1416,7 +1416,7 @@ public sealed record class InvoiceFetchUpcomingResponseLineItem : JsonModel
         {
             item.Validate();
         }
-        _ = this.UsageCustomerIDs;
+        _ = this.UsageCustomerIds;
     }
 
     public InvoiceFetchUpcomingResponseLineItem() { }

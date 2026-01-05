@@ -60,7 +60,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -82,7 +82,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -98,7 +98,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -177,7 +177,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -199,7 +199,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -215,7 +215,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -307,7 +307,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -329,7 +329,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -345,7 +345,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -432,7 +432,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -454,7 +454,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -470,7 +470,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -548,7 +548,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -570,7 +570,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -586,7 +586,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -665,7 +665,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -696,7 +696,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -712,7 +712,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -790,7 +790,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -812,7 +812,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -828,7 +828,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -915,7 +915,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -937,7 +937,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -953,7 +953,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1040,7 +1040,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1062,7 +1062,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1078,7 +1078,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1176,7 +1176,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1207,7 +1207,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1223,7 +1223,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1301,7 +1301,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1323,7 +1323,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1339,7 +1339,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1436,7 +1436,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1458,7 +1458,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1474,7 +1474,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1558,7 +1558,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1580,7 +1580,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1596,7 +1596,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1675,7 +1675,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1707,7 +1707,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1723,7 +1723,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1801,7 +1801,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1823,7 +1823,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1839,7 +1839,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1920,7 +1920,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1942,7 +1942,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1958,7 +1958,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2037,7 +2037,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2065,7 +2065,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2081,7 +2081,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2165,7 +2165,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2187,7 +2187,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2203,7 +2203,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2281,7 +2281,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2309,7 +2309,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2325,7 +2325,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2403,7 +2403,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2440,7 +2440,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2456,7 +2456,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2534,7 +2534,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2563,7 +2563,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2579,7 +2579,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2657,7 +2657,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2692,7 +2692,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2708,7 +2708,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2786,7 +2786,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2818,7 +2818,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2834,7 +2834,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2912,7 +2912,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2944,7 +2944,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2960,7 +2960,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3039,7 +3039,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3061,7 +3061,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3077,7 +3077,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3172,7 +3172,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3194,7 +3194,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3210,7 +3210,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3320,7 +3320,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3342,7 +3342,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3358,7 +3358,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3443,7 +3443,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3465,7 +3465,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3481,7 +3481,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3559,7 +3559,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3581,7 +3581,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3597,7 +3597,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3676,7 +3676,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3698,7 +3698,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3714,7 +3714,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3793,7 +3793,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3821,7 +3821,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3837,7 +3837,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3915,7 +3915,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3937,7 +3937,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3953,7 +3953,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4035,7 +4035,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4057,7 +4057,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4073,7 +4073,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4168,7 +4168,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4190,7 +4190,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4206,7 +4206,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4296,7 +4296,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4318,7 +4318,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4334,7 +4334,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4415,7 +4415,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4437,7 +4437,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4453,7 +4453,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4535,7 +4535,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4566,7 +4566,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4582,7 +4582,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4663,7 +4663,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4685,7 +4685,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4701,7 +4701,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4791,7 +4791,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4813,7 +4813,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4829,7 +4829,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4919,7 +4919,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4941,7 +4941,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4957,7 +4957,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5058,7 +5058,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5089,7 +5089,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5105,7 +5105,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5186,7 +5186,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5208,7 +5208,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5224,7 +5224,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5324,7 +5324,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5346,7 +5346,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5362,7 +5362,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5449,7 +5449,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5471,7 +5471,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5487,7 +5487,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5569,7 +5569,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5601,7 +5601,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5617,7 +5617,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5698,7 +5698,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5720,7 +5720,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5736,7 +5736,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5820,7 +5820,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5842,7 +5842,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5858,7 +5858,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5940,7 +5940,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -5968,7 +5968,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -5984,7 +5984,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6071,7 +6071,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6093,7 +6093,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6109,7 +6109,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6190,7 +6190,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6218,7 +6218,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6234,7 +6234,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6315,7 +6315,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6352,7 +6352,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6368,7 +6368,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6449,7 +6449,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6478,7 +6478,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6494,7 +6494,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6575,7 +6575,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6610,7 +6610,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6626,7 +6626,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6707,7 +6707,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6739,7 +6739,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6755,7 +6755,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6836,7 +6836,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6868,7 +6868,7 @@ public class PriceTest : TestBase
                 },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6884,7 +6884,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6966,7 +6966,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -6988,7 +6988,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7004,7 +7004,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7102,7 +7102,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7124,7 +7124,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7140,7 +7140,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7253,7 +7253,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7275,7 +7275,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7291,7 +7291,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7379,7 +7379,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7401,7 +7401,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7417,7 +7417,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7498,7 +7498,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7520,7 +7520,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7536,7 +7536,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7618,7 +7618,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7640,7 +7640,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7656,7 +7656,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7738,7 +7738,7 @@ public class PriceTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7766,7 +7766,7 @@ public class PriceTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7782,7 +7782,7 @@ public class PriceTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7865,7 +7865,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -7883,7 +7883,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -7899,7 +7899,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -7973,7 +7973,7 @@ public class UnitTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -7995,7 +7995,7 @@ public class UnitTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -8011,7 +8011,7 @@ public class UnitTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -8127,7 +8127,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8145,7 +8145,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8161,7 +8161,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8242,7 +8242,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8260,7 +8260,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8276,7 +8276,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8354,7 +8354,7 @@ public class UnitTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -8376,7 +8376,7 @@ public class UnitTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -8392,7 +8392,7 @@ public class UnitTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -8511,7 +8511,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8529,7 +8529,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8545,7 +8545,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8623,7 +8623,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8641,7 +8641,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8657,7 +8657,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8731,7 +8731,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8749,7 +8749,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8765,7 +8765,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8838,7 +8838,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8856,7 +8856,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8872,7 +8872,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8948,7 +8948,7 @@ public class UnitTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -8966,7 +8966,7 @@ public class UnitTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -8982,7 +8982,7 @@ public class UnitTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -9529,7 +9529,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -9547,7 +9547,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -9563,7 +9563,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -9650,7 +9650,7 @@ public class TieredTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -9672,7 +9672,7 @@ public class TieredTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -9688,7 +9688,7 @@ public class TieredTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -9816,7 +9816,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -9834,7 +9834,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -9850,7 +9850,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -9943,7 +9943,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -9961,7 +9961,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -9977,7 +9977,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10068,7 +10068,7 @@ public class TieredTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -10090,7 +10090,7 @@ public class TieredTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -10106,7 +10106,7 @@ public class TieredTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -10237,7 +10237,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -10255,7 +10255,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10271,7 +10271,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10361,7 +10361,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -10379,7 +10379,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10395,7 +10395,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10481,7 +10481,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -10499,7 +10499,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10515,7 +10515,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10600,7 +10600,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -10618,7 +10618,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10634,7 +10634,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10722,7 +10722,7 @@ public class TieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -10740,7 +10740,7 @@ public class TieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -10756,7 +10756,7 @@ public class TieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11314,7 +11314,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -11332,7 +11332,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11348,7 +11348,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11424,7 +11424,7 @@ public class BulkTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -11446,7 +11446,7 @@ public class BulkTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -11462,7 +11462,7 @@ public class BulkTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -11578,7 +11578,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -11596,7 +11596,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11612,7 +11612,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11693,7 +11693,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -11711,7 +11711,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11727,7 +11727,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11807,7 +11807,7 @@ public class BulkTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -11829,7 +11829,7 @@ public class BulkTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -11845,7 +11845,7 @@ public class BulkTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -11964,7 +11964,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -11982,7 +11982,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -11998,7 +11998,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12076,7 +12076,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -12094,7 +12094,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12110,7 +12110,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12184,7 +12184,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -12202,7 +12202,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12218,7 +12218,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12291,7 +12291,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -12309,7 +12309,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12325,7 +12325,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12401,7 +12401,7 @@ public class BulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -12419,7 +12419,7 @@ public class BulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12435,7 +12435,7 @@ public class BulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -12988,7 +12988,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -13006,7 +13006,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13022,7 +13022,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13106,7 +13106,7 @@ public class BulkWithFiltersTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -13128,7 +13128,7 @@ public class BulkWithFiltersTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -13144,7 +13144,7 @@ public class BulkWithFiltersTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -13271,7 +13271,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -13289,7 +13289,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13305,7 +13305,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13394,7 +13394,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -13412,7 +13412,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13428,7 +13428,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13516,7 +13516,7 @@ public class BulkWithFiltersTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -13538,7 +13538,7 @@ public class BulkWithFiltersTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -13554,7 +13554,7 @@ public class BulkWithFiltersTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -13684,7 +13684,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -13702,7 +13702,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13718,7 +13718,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13804,7 +13804,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -13822,7 +13822,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13838,7 +13838,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13920,7 +13920,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -13938,7 +13938,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -13954,7 +13954,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -14035,7 +14035,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -14053,7 +14053,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -14069,7 +14069,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -14153,7 +14153,7 @@ public class BulkWithFiltersTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -14171,7 +14171,7 @@ public class BulkWithFiltersTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -14187,7 +14187,7 @@ public class BulkWithFiltersTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15011,7 +15011,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -15029,7 +15029,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15045,7 +15045,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15120,7 +15120,7 @@ public class PackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -15142,7 +15142,7 @@ public class PackageTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -15158,7 +15158,7 @@ public class PackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -15278,7 +15278,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -15296,7 +15296,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15312,7 +15312,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15393,7 +15393,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -15411,7 +15411,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15427,7 +15427,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15506,7 +15506,7 @@ public class PackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -15528,7 +15528,7 @@ public class PackageTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -15544,7 +15544,7 @@ public class PackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -15667,7 +15667,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -15685,7 +15685,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15701,7 +15701,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15779,7 +15779,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -15797,7 +15797,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15813,7 +15813,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15887,7 +15887,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -15905,7 +15905,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15921,7 +15921,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -15994,7 +15994,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -16012,7 +16012,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -16028,7 +16028,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -16104,7 +16104,7 @@ public class PackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -16122,7 +16122,7 @@ public class PackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -16138,7 +16138,7 @@ public class PackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -16687,7 +16687,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -16711,7 +16711,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -16727,7 +16727,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -16801,7 +16801,7 @@ public class MatrixTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -16829,7 +16829,7 @@ public class MatrixTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -16845,7 +16845,7 @@ public class MatrixTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -16960,7 +16960,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -16984,7 +16984,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17000,7 +17000,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17080,7 +17080,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -17104,7 +17104,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17120,7 +17120,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17198,7 +17198,7 @@ public class MatrixTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -17226,7 +17226,7 @@ public class MatrixTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -17242,7 +17242,7 @@ public class MatrixTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -17360,7 +17360,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -17384,7 +17384,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17400,7 +17400,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17477,7 +17477,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -17501,7 +17501,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17517,7 +17517,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17590,7 +17590,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -17614,7 +17614,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17630,7 +17630,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17702,7 +17702,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -17726,7 +17726,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17742,7 +17742,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17817,7 +17817,7 @@ public class MatrixTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -17841,7 +17841,7 @@ public class MatrixTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -17857,7 +17857,7 @@ public class MatrixTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18401,7 +18401,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -18419,7 +18419,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18435,7 +18435,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18520,7 +18520,7 @@ public class ThresholdTotalAmountTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -18542,7 +18542,7 @@ public class ThresholdTotalAmountTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -18558,7 +18558,7 @@ public class ThresholdTotalAmountTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -18685,7 +18685,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -18703,7 +18703,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18719,7 +18719,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18808,7 +18808,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -18826,7 +18826,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18842,7 +18842,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -18931,7 +18931,7 @@ public class ThresholdTotalAmountTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -18953,7 +18953,7 @@ public class ThresholdTotalAmountTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -18969,7 +18969,7 @@ public class ThresholdTotalAmountTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -19099,7 +19099,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -19117,7 +19117,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19133,7 +19133,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19219,7 +19219,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -19237,7 +19237,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19253,7 +19253,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19335,7 +19335,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -19353,7 +19353,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19369,7 +19369,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19450,7 +19450,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -19468,7 +19468,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19484,7 +19484,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19568,7 +19568,7 @@ public class ThresholdTotalAmountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -19586,7 +19586,7 @@ public class ThresholdTotalAmountTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -19602,7 +19602,7 @@ public class ThresholdTotalAmountTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20407,7 +20407,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -20425,7 +20425,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20441,7 +20441,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20525,7 +20525,7 @@ public class TieredPackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -20547,7 +20547,7 @@ public class TieredPackageTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -20563,7 +20563,7 @@ public class TieredPackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -20690,7 +20690,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -20708,7 +20708,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20724,7 +20724,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20813,7 +20813,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -20831,7 +20831,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20847,7 +20847,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -20935,7 +20935,7 @@ public class TieredPackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -20957,7 +20957,7 @@ public class TieredPackageTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -20973,7 +20973,7 @@ public class TieredPackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -21103,7 +21103,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -21121,7 +21121,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21137,7 +21137,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21223,7 +21223,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -21241,7 +21241,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21257,7 +21257,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21339,7 +21339,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -21357,7 +21357,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21373,7 +21373,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21454,7 +21454,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -21472,7 +21472,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21488,7 +21488,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21572,7 +21572,7 @@ public class TieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -21590,7 +21590,7 @@ public class TieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -21606,7 +21606,7 @@ public class TieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22333,7 +22333,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -22351,7 +22351,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22367,7 +22367,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22463,7 +22463,7 @@ public class TieredWithMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -22485,7 +22485,7 @@ public class TieredWithMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -22501,7 +22501,7 @@ public class TieredWithMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -22639,7 +22639,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -22657,7 +22657,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22673,7 +22673,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22773,7 +22773,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -22791,7 +22791,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22807,7 +22807,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -22907,7 +22907,7 @@ public class TieredWithMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -22929,7 +22929,7 @@ public class TieredWithMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -22945,7 +22945,7 @@ public class TieredWithMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -23086,7 +23086,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -23104,7 +23104,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23120,7 +23120,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23217,7 +23217,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -23235,7 +23235,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23251,7 +23251,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23344,7 +23344,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -23362,7 +23362,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23378,7 +23378,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23470,7 +23470,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -23488,7 +23488,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23504,7 +23504,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23599,7 +23599,7 @@ public class TieredWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -23617,7 +23617,7 @@ public class TieredWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -23633,7 +23633,7 @@ public class TieredWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -24571,7 +24571,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -24598,7 +24598,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -24614,7 +24614,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -24689,7 +24689,7 @@ public class GroupedTieredTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -24720,7 +24720,7 @@ public class GroupedTieredTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -24736,7 +24736,7 @@ public class GroupedTieredTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -24854,7 +24854,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -24881,7 +24881,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -24897,7 +24897,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -24977,7 +24977,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -25004,7 +25004,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25020,7 +25020,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25099,7 +25099,7 @@ public class GroupedTieredTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -25130,7 +25130,7 @@ public class GroupedTieredTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -25146,7 +25146,7 @@ public class GroupedTieredTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -25267,7 +25267,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -25294,7 +25294,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25310,7 +25310,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25387,7 +25387,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -25414,7 +25414,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25430,7 +25430,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25503,7 +25503,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -25530,7 +25530,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25546,7 +25546,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25618,7 +25618,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -25645,7 +25645,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25661,7 +25661,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25736,7 +25736,7 @@ public class GroupedTieredTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -25763,7 +25763,7 @@ public class GroupedTieredTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -25779,7 +25779,7 @@ public class GroupedTieredTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -26497,7 +26497,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -26515,7 +26515,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -26531,7 +26531,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -26626,7 +26626,7 @@ public class TieredPackageWithMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -26648,7 +26648,7 @@ public class TieredPackageWithMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -26664,7 +26664,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -26802,7 +26802,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -26820,7 +26820,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -26836,7 +26836,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -26935,7 +26935,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -26953,7 +26953,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -26969,7 +26969,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27068,7 +27068,7 @@ public class TieredPackageWithMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -27090,7 +27090,7 @@ public class TieredPackageWithMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -27106,7 +27106,7 @@ public class TieredPackageWithMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -27250,7 +27250,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -27268,7 +27268,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27284,7 +27284,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27380,7 +27380,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -27398,7 +27398,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27414,7 +27414,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27506,7 +27506,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -27524,7 +27524,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27540,7 +27540,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27631,7 +27631,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -27649,7 +27649,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27665,7 +27665,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27759,7 +27759,7 @@ public class TieredPackageWithMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -27777,7 +27777,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -27793,7 +27793,7 @@ public class TieredPackageWithMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -28618,7 +28618,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -28636,7 +28636,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -28652,7 +28652,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -28734,7 +28734,7 @@ public class PackageWithAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -28756,7 +28756,7 @@ public class PackageWithAllocationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -28772,7 +28772,7 @@ public class PackageWithAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -28896,7 +28896,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -28914,7 +28914,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -28930,7 +28930,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29016,7 +29016,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -29034,7 +29034,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29050,7 +29050,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29136,7 +29136,7 @@ public class PackageWithAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -29158,7 +29158,7 @@ public class PackageWithAllocationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -29174,7 +29174,7 @@ public class PackageWithAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -29301,7 +29301,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -29319,7 +29319,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29335,7 +29335,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29418,7 +29418,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -29436,7 +29436,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29452,7 +29452,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29531,7 +29531,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -29549,7 +29549,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29565,7 +29565,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29643,7 +29643,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -29661,7 +29661,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29677,7 +29677,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29758,7 +29758,7 @@ public class PackageWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -29776,7 +29776,7 @@ public class PackageWithAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -29792,7 +29792,7 @@ public class PackageWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30432,7 +30432,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -30450,7 +30450,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30466,7 +30466,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30542,7 +30542,7 @@ public class UnitWithPercentTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -30564,7 +30564,7 @@ public class UnitWithPercentTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -30580,7 +30580,7 @@ public class UnitWithPercentTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -30703,7 +30703,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -30721,7 +30721,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30737,7 +30737,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30818,7 +30818,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -30836,7 +30836,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30852,7 +30852,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -30932,7 +30932,7 @@ public class UnitWithPercentTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -30954,7 +30954,7 @@ public class UnitWithPercentTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -30970,7 +30970,7 @@ public class UnitWithPercentTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -31096,7 +31096,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -31114,7 +31114,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31130,7 +31130,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31208,7 +31208,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -31226,7 +31226,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31242,7 +31242,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31316,7 +31316,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -31334,7 +31334,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31350,7 +31350,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31423,7 +31423,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -31441,7 +31441,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31457,7 +31457,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31533,7 +31533,7 @@ public class UnitWithPercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -31551,7 +31551,7 @@ public class UnitWithPercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -31567,7 +31567,7 @@ public class UnitWithPercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32188,7 +32188,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -32213,7 +32213,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32229,7 +32229,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32305,7 +32305,7 @@ public class MatrixWithAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -32334,7 +32334,7 @@ public class MatrixWithAllocationTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -32350,7 +32350,7 @@ public class MatrixWithAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -32468,7 +32468,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -32493,7 +32493,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32509,7 +32509,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32589,7 +32589,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -32614,7 +32614,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32630,7 +32630,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32710,7 +32710,7 @@ public class MatrixWithAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -32739,7 +32739,7 @@ public class MatrixWithAllocationTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -32755,7 +32755,7 @@ public class MatrixWithAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -32876,7 +32876,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -32901,7 +32901,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32917,7 +32917,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -32994,7 +32994,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -33019,7 +33019,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33035,7 +33035,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33108,7 +33108,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -33133,7 +33133,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33149,7 +33149,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33221,7 +33221,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -33246,7 +33246,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33262,7 +33262,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33337,7 +33337,7 @@ public class MatrixWithAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -33362,7 +33362,7 @@ public class MatrixWithAllocationTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33378,7 +33378,7 @@ public class MatrixWithAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33936,7 +33936,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -33954,7 +33954,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -33970,7 +33970,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34049,7 +34049,7 @@ public class TieredWithProrationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -34071,7 +34071,7 @@ public class TieredWithProrationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -34087,7 +34087,7 @@ public class TieredWithProrationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -34208,7 +34208,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -34226,7 +34226,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34242,7 +34242,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34325,7 +34325,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -34343,7 +34343,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34359,7 +34359,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34442,7 +34442,7 @@ public class TieredWithProrationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -34464,7 +34464,7 @@ public class TieredWithProrationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -34480,7 +34480,7 @@ public class TieredWithProrationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -34604,7 +34604,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -34622,7 +34622,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34638,7 +34638,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34718,7 +34718,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -34736,7 +34736,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34752,7 +34752,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34828,7 +34828,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -34846,7 +34846,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34862,7 +34862,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34937,7 +34937,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -34955,7 +34955,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -34971,7 +34971,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -35049,7 +35049,7 @@ public class TieredWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -35067,7 +35067,7 @@ public class TieredWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -35083,7 +35083,7 @@ public class TieredWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -35788,7 +35788,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -35806,7 +35806,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -35822,7 +35822,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -35899,7 +35899,7 @@ public class UnitWithProrationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -35921,7 +35921,7 @@ public class UnitWithProrationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -35937,7 +35937,7 @@ public class UnitWithProrationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -36058,7 +36058,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36076,7 +36076,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36092,7 +36092,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36173,7 +36173,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36191,7 +36191,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36207,7 +36207,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36288,7 +36288,7 @@ public class UnitWithProrationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -36310,7 +36310,7 @@ public class UnitWithProrationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -36326,7 +36326,7 @@ public class UnitWithProrationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -36450,7 +36450,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36468,7 +36468,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36484,7 +36484,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36562,7 +36562,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36580,7 +36580,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36596,7 +36596,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36670,7 +36670,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36688,7 +36688,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36704,7 +36704,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36777,7 +36777,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36795,7 +36795,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36811,7 +36811,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36887,7 +36887,7 @@ public class UnitWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -36905,7 +36905,7 @@ public class UnitWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -36921,7 +36921,7 @@ public class UnitWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -37528,7 +37528,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -37552,7 +37552,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -37568,7 +37568,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -37644,7 +37644,7 @@ public class GroupedAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -37672,7 +37672,7 @@ public class GroupedAllocationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -37688,7 +37688,7 @@ public class GroupedAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -37806,7 +37806,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -37830,7 +37830,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -37846,7 +37846,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -37926,7 +37926,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -37950,7 +37950,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -37966,7 +37966,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38046,7 +38046,7 @@ public class GroupedAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -38074,7 +38074,7 @@ public class GroupedAllocationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -38090,7 +38090,7 @@ public class GroupedAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -38211,7 +38211,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -38235,7 +38235,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38251,7 +38251,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38328,7 +38328,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -38352,7 +38352,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38368,7 +38368,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38441,7 +38441,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -38465,7 +38465,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38481,7 +38481,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38553,7 +38553,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -38577,7 +38577,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38593,7 +38593,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38668,7 +38668,7 @@ public class GroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -38692,7 +38692,7 @@ public class GroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -38708,7 +38708,7 @@ public class GroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39348,7 +39348,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -39366,7 +39366,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39382,7 +39382,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39464,7 +39464,7 @@ public class BulkWithProrationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -39486,7 +39486,7 @@ public class BulkWithProrationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -39502,7 +39502,7 @@ public class BulkWithProrationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -39626,7 +39626,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -39644,7 +39644,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39660,7 +39660,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39746,7 +39746,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -39764,7 +39764,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39780,7 +39780,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -39866,7 +39866,7 @@ public class BulkWithProrationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -39888,7 +39888,7 @@ public class BulkWithProrationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -39904,7 +39904,7 @@ public class BulkWithProrationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -40031,7 +40031,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -40049,7 +40049,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40065,7 +40065,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40148,7 +40148,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -40166,7 +40166,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40182,7 +40182,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40261,7 +40261,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -40279,7 +40279,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40295,7 +40295,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40373,7 +40373,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -40391,7 +40391,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40407,7 +40407,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40488,7 +40488,7 @@ public class BulkWithProrationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -40506,7 +40506,7 @@ public class BulkWithProrationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -40522,7 +40522,7 @@ public class BulkWithProrationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41286,7 +41286,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -41310,7 +41310,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41326,7 +41326,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41402,7 +41402,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -41431,7 +41431,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -41447,7 +41447,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -41568,7 +41568,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -41592,7 +41592,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41608,7 +41608,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41688,7 +41688,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -41712,7 +41712,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41728,7 +41728,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -41808,7 +41808,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -41837,7 +41837,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -41853,7 +41853,7 @@ public class GroupedWithProratedMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -41977,7 +41977,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -42001,7 +42001,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42017,7 +42017,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42094,7 +42094,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -42118,7 +42118,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42134,7 +42134,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42207,7 +42207,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -42231,7 +42231,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42247,7 +42247,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42319,7 +42319,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -42343,7 +42343,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42359,7 +42359,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42434,7 +42434,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -42458,7 +42458,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -42474,7 +42474,7 @@ public class GroupedWithProratedMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43116,7 +43116,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -43149,7 +43149,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43165,7 +43165,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43241,7 +43241,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -43279,7 +43279,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -43295,7 +43295,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -43416,7 +43416,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -43449,7 +43449,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43465,7 +43465,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43545,7 +43545,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -43578,7 +43578,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43594,7 +43594,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43674,7 +43674,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -43712,7 +43712,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -43728,7 +43728,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -43852,7 +43852,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -43885,7 +43885,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43901,7 +43901,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -43978,7 +43978,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -44011,7 +44011,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44027,7 +44027,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44100,7 +44100,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -44133,7 +44133,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44149,7 +44149,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44221,7 +44221,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -44254,7 +44254,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44270,7 +44270,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44345,7 +44345,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -44378,7 +44378,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -44394,7 +44394,7 @@ public class GroupedWithMeteredMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45240,7 +45240,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -45265,7 +45265,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45281,7 +45281,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45357,7 +45357,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -45386,7 +45386,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -45402,7 +45402,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -45523,7 +45523,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -45548,7 +45548,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45564,7 +45564,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45644,7 +45644,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -45669,7 +45669,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45685,7 +45685,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45765,7 +45765,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -45794,7 +45794,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -45810,7 +45810,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -45934,7 +45934,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -45959,7 +45959,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -45975,7 +45975,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46052,7 +46052,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -46077,7 +46077,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46093,7 +46093,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46166,7 +46166,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -46191,7 +46191,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46207,7 +46207,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46279,7 +46279,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -46304,7 +46304,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46320,7 +46320,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46395,7 +46395,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -46420,7 +46420,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -46436,7 +46436,7 @@ public class GroupedWithMinMaxThresholdsTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47080,7 +47080,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -47111,7 +47111,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47127,7 +47127,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47203,7 +47203,7 @@ public class MatrixWithDisplayNameTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -47238,7 +47238,7 @@ public class MatrixWithDisplayNameTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -47254,7 +47254,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -47372,7 +47372,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -47403,7 +47403,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47419,7 +47419,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47499,7 +47499,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -47530,7 +47530,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47546,7 +47546,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47626,7 +47626,7 @@ public class MatrixWithDisplayNameTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -47661,7 +47661,7 @@ public class MatrixWithDisplayNameTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -47677,7 +47677,7 @@ public class MatrixWithDisplayNameTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -47798,7 +47798,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -47829,7 +47829,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47845,7 +47845,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47922,7 +47922,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -47953,7 +47953,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -47969,7 +47969,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -48042,7 +48042,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -48073,7 +48073,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -48089,7 +48089,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -48161,7 +48161,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -48192,7 +48192,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -48208,7 +48208,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -48283,7 +48283,7 @@ public class MatrixWithDisplayNameTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -48314,7 +48314,7 @@ public class MatrixWithDisplayNameTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -48330,7 +48330,7 @@ public class MatrixWithDisplayNameTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49092,7 +49092,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -49120,7 +49120,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49136,7 +49136,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49212,7 +49212,7 @@ public class GroupedTieredPackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -49244,7 +49244,7 @@ public class GroupedTieredPackageTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -49260,7 +49260,7 @@ public class GroupedTieredPackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -49378,7 +49378,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -49406,7 +49406,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49422,7 +49422,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49502,7 +49502,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -49530,7 +49530,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49546,7 +49546,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49626,7 +49626,7 @@ public class GroupedTieredPackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -49658,7 +49658,7 @@ public class GroupedTieredPackageTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -49674,7 +49674,7 @@ public class GroupedTieredPackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -49795,7 +49795,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -49823,7 +49823,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49839,7 +49839,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49916,7 +49916,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -49944,7 +49944,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -49960,7 +49960,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -50033,7 +50033,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -50061,7 +50061,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -50077,7 +50077,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -50149,7 +50149,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -50177,7 +50177,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -50193,7 +50193,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -50268,7 +50268,7 @@ public class GroupedTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -50296,7 +50296,7 @@ public class GroupedTieredPackageTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -50312,7 +50312,7 @@ public class GroupedTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51046,7 +51046,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -51074,7 +51074,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51090,7 +51090,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51166,7 +51166,7 @@ public class MaxGroupTieredPackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -51198,7 +51198,7 @@ public class MaxGroupTieredPackageTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -51214,7 +51214,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -51332,7 +51332,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -51360,7 +51360,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51376,7 +51376,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51456,7 +51456,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -51484,7 +51484,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51500,7 +51500,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51580,7 +51580,7 @@ public class MaxGroupTieredPackageTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -51612,7 +51612,7 @@ public class MaxGroupTieredPackageTest : TestBase
         };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -51628,7 +51628,7 @@ public class MaxGroupTieredPackageTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -51749,7 +51749,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -51777,7 +51777,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51793,7 +51793,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51870,7 +51870,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -51898,7 +51898,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51914,7 +51914,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -51987,7 +51987,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -52015,7 +52015,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -52031,7 +52031,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -52103,7 +52103,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -52131,7 +52131,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -52147,7 +52147,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -52222,7 +52222,7 @@ public class MaxGroupTieredPackageTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -52250,7 +52250,7 @@ public class MaxGroupTieredPackageTest : TestBase
             },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -52266,7 +52266,7 @@ public class MaxGroupTieredPackageTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53002,7 +53002,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -53020,7 +53020,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53036,7 +53036,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53128,7 +53128,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -53150,7 +53150,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -53166,7 +53166,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -53304,7 +53304,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -53322,7 +53322,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53338,7 +53338,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53434,7 +53434,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -53452,7 +53452,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53468,7 +53468,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53564,7 +53564,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -53586,7 +53586,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -53602,7 +53602,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -53743,7 +53743,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -53761,7 +53761,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53777,7 +53777,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53870,7 +53870,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -53888,7 +53888,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53904,7 +53904,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -53993,7 +53993,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -54011,7 +54011,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -54027,7 +54027,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -54115,7 +54115,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -54133,7 +54133,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -54149,7 +54149,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -54240,7 +54240,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -54258,7 +54258,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -54274,7 +54274,7 @@ public class ScalableMatrixWithUnitPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55251,7 +55251,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -55269,7 +55269,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55285,7 +55285,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55380,7 +55380,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -55402,7 +55402,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -55418,7 +55418,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -55559,7 +55559,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -55577,7 +55577,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55593,7 +55593,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55692,7 +55692,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -55710,7 +55710,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55726,7 +55726,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -55825,7 +55825,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -55847,7 +55847,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -55863,7 +55863,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -56007,7 +56007,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -56025,7 +56025,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56041,7 +56041,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56137,7 +56137,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -56155,7 +56155,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56171,7 +56171,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56263,7 +56263,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -56281,7 +56281,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56297,7 +56297,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56388,7 +56388,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -56406,7 +56406,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56422,7 +56422,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56516,7 +56516,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -56534,7 +56534,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -56550,7 +56550,7 @@ public class ScalableMatrixWithTieredPricingTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -57659,7 +57659,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -57677,7 +57677,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -57693,7 +57693,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -57782,7 +57782,7 @@ public class CumulativeGroupedBulkTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -57804,7 +57804,7 @@ public class CumulativeGroupedBulkTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -57820,7 +57820,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -57951,7 +57951,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -57969,7 +57969,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -57985,7 +57985,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58078,7 +58078,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -58096,7 +58096,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58112,7 +58112,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58205,7 +58205,7 @@ public class CumulativeGroupedBulkTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -58227,7 +58227,7 @@ public class CumulativeGroupedBulkTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -58243,7 +58243,7 @@ public class CumulativeGroupedBulkTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -58377,7 +58377,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -58395,7 +58395,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58411,7 +58411,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58501,7 +58501,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -58519,7 +58519,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58535,7 +58535,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58621,7 +58621,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -58639,7 +58639,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58655,7 +58655,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58740,7 +58740,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -58758,7 +58758,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58774,7 +58774,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58862,7 +58862,7 @@ public class CumulativeGroupedBulkTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -58880,7 +58880,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -58896,7 +58896,7 @@ public class CumulativeGroupedBulkTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -59665,7 +59665,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -59683,7 +59683,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -59699,7 +59699,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -59782,7 +59782,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -59804,7 +59804,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -59820,7 +59820,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -59948,7 +59948,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -59966,7 +59966,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -59982,7 +59982,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60069,7 +60069,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60087,7 +60087,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60103,7 +60103,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60190,7 +60190,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -60212,7 +60212,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -60228,7 +60228,7 @@ public class CumulativeGroupedAllocationTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -60359,7 +60359,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60377,7 +60377,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60393,7 +60393,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60477,7 +60477,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60495,7 +60495,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60511,7 +60511,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60591,7 +60591,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60609,7 +60609,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60625,7 +60625,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60704,7 +60704,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60722,7 +60722,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60738,7 +60738,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60820,7 +60820,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60838,7 +60838,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -60854,7 +60854,7 @@ public class CumulativeGroupedAllocationTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61498,7 +61498,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -61516,7 +61516,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61532,7 +61532,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61608,7 +61608,7 @@ public class PriceMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -61630,7 +61630,7 @@ public class PriceMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -61646,7 +61646,7 @@ public class PriceMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -61766,7 +61766,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -61784,7 +61784,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61800,7 +61800,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61881,7 +61881,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -61899,7 +61899,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61915,7 +61915,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -61995,7 +61995,7 @@ public class PriceMinimumTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -62017,7 +62017,7 @@ public class PriceMinimumTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -62033,7 +62033,7 @@ public class PriceMinimumTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -62156,7 +62156,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -62174,7 +62174,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62190,7 +62190,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62268,7 +62268,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -62286,7 +62286,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62302,7 +62302,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62376,7 +62376,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -62394,7 +62394,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62410,7 +62410,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62483,7 +62483,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -62501,7 +62501,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62517,7 +62517,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62593,7 +62593,7 @@ public class PriceMinimumTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -62611,7 +62611,7 @@ public class PriceMinimumTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -62627,7 +62627,7 @@ public class PriceMinimumTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63292,7 +63292,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -63310,7 +63310,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63326,7 +63326,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63401,7 +63401,7 @@ public class PercentTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -63423,7 +63423,7 @@ public class PercentTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -63439,7 +63439,7 @@ public class PercentTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -63555,7 +63555,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -63573,7 +63573,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63589,7 +63589,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63670,7 +63670,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -63688,7 +63688,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63704,7 +63704,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63783,7 +63783,7 @@ public class PercentTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -63805,7 +63805,7 @@ public class PercentTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -63821,7 +63821,7 @@ public class PercentTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -63940,7 +63940,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -63958,7 +63958,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -63974,7 +63974,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64052,7 +64052,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -64070,7 +64070,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64086,7 +64086,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64160,7 +64160,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -64178,7 +64178,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64194,7 +64194,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64267,7 +64267,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -64285,7 +64285,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64301,7 +64301,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64377,7 +64377,7 @@ public class PercentTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -64395,7 +64395,7 @@ public class PercentTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -64411,7 +64411,7 @@ public class PercentTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65006,7 +65006,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -65030,7 +65030,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65046,7 +65046,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65121,7 +65121,7 @@ public class EventOutputTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -65149,7 +65149,7 @@ public class EventOutputTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -65165,7 +65165,7 @@ public class EventOutputTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -65280,7 +65280,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -65304,7 +65304,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65320,7 +65320,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65400,7 +65400,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -65424,7 +65424,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65440,7 +65440,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65519,7 +65519,7 @@ public class EventOutputTest : TestBase
         {
             DiscountType = PercentageDiscountDiscountType.Percentage,
             PercentageDiscountValue = 0.15,
-            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
             Filters =
             [
                 new()
@@ -65547,7 +65547,7 @@ public class EventOutputTest : TestBase
         ItemSlim expectedItem = new() { ID = "id", Name = "name" };
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -65563,7 +65563,7 @@ public class EventOutputTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -65681,7 +65681,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -65705,7 +65705,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65721,7 +65721,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65798,7 +65798,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -65822,7 +65822,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65838,7 +65838,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65911,7 +65911,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -65935,7 +65935,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -65951,7 +65951,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -66023,7 +66023,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -66047,7 +66047,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -66063,7 +66063,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -66138,7 +66138,7 @@ public class EventOutputTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -66162,7 +66162,7 @@ public class EventOutputTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -66178,7 +66178,7 @@ public class EventOutputTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()

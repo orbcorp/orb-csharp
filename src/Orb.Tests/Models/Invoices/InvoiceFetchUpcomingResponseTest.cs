@@ -78,7 +78,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -93,7 +93,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             ],
             DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
             EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            HostedInvoiceURL = "hosted_invoice_url",
+            HostedInvoiceUrl = "hosted_invoice_url",
             InvoiceNumber = "JYEFHK-00001",
             InvoicePdf = "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
             InvoiceSource = Invoices::InvoiceSource.Subscription,
@@ -113,7 +113,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             AdjustmentType =
                                 MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                             Amount = "amount",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -189,7 +189,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -211,7 +211,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -227,7 +227,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -276,12 +276,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             TaxRatePercentage = "tax_rate_percentage",
                         },
                     ],
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -298,7 +298,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -415,7 +415,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -430,7 +430,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
         ];
         DateTimeOffset expectedDueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00");
         DateTimeOffset expectedEligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedHostedInvoiceURL = "hosted_invoice_url";
+        string expectedHostedInvoiceUrl = "hosted_invoice_url";
         string expectedInvoiceNumber = "JYEFHK-00001";
         string expectedInvoicePdf =
             "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb";
@@ -452,7 +452,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         AdjustmentType =
                             MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                         Amount = "amount",
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -526,7 +526,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -548,7 +548,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -564,7 +564,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -613,12 +613,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         TaxRatePercentage = "tax_rate_percentage",
                     },
                 ],
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -635,7 +635,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -716,7 +716,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
         }
         Assert.Equal(expectedDueDate, model.DueDate);
         Assert.Equal(expectedEligibleToIssueAt, model.EligibleToIssueAt);
-        Assert.Equal(expectedHostedInvoiceURL, model.HostedInvoiceURL);
+        Assert.Equal(expectedHostedInvoiceUrl, model.HostedInvoiceUrl);
         Assert.Equal(expectedInvoiceNumber, model.InvoiceNumber);
         Assert.Equal(expectedInvoicePdf, model.InvoicePdf);
         Assert.Equal(expectedInvoiceSource, model.InvoiceSource);
@@ -827,7 +827,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -842,7 +842,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             ],
             DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
             EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            HostedInvoiceURL = "hosted_invoice_url",
+            HostedInvoiceUrl = "hosted_invoice_url",
             InvoiceNumber = "JYEFHK-00001",
             InvoicePdf = "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
             InvoiceSource = Invoices::InvoiceSource.Subscription,
@@ -862,7 +862,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             AdjustmentType =
                                 MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                             Amount = "amount",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -938,7 +938,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -960,7 +960,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -976,7 +976,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1025,12 +1025,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             TaxRatePercentage = "tax_rate_percentage",
                         },
                     ],
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1047,7 +1047,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1171,7 +1171,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1186,7 +1186,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             ],
             DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
             EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            HostedInvoiceURL = "hosted_invoice_url",
+            HostedInvoiceUrl = "hosted_invoice_url",
             InvoiceNumber = "JYEFHK-00001",
             InvoicePdf = "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
             InvoiceSource = Invoices::InvoiceSource.Subscription,
@@ -1206,7 +1206,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             AdjustmentType =
                                 MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                             Amount = "amount",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1282,7 +1282,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -1304,7 +1304,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1320,7 +1320,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1369,12 +1369,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             TaxRatePercentage = "tax_rate_percentage",
                         },
                     ],
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1391,7 +1391,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1514,7 +1514,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -1529,7 +1529,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
         ];
         DateTimeOffset expectedDueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00");
         DateTimeOffset expectedEligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedHostedInvoiceURL = "hosted_invoice_url";
+        string expectedHostedInvoiceUrl = "hosted_invoice_url";
         string expectedInvoiceNumber = "JYEFHK-00001";
         string expectedInvoicePdf =
             "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb";
@@ -1551,7 +1551,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         AdjustmentType =
                             MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                         Amount = "amount",
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1625,7 +1625,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     {
                         DiscountType = PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1647,7 +1647,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1663,7 +1663,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1712,12 +1712,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         TaxRatePercentage = "tax_rate_percentage",
                     },
                 ],
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         Maximum expectedMaximum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -1734,7 +1734,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
         Dictionary<string, string> expectedMetadata = new() { { "foo", "string" } };
         Minimum expectedMinimum = new()
         {
-            AppliesToPriceIDs = ["string"],
+            AppliesToPriceIds = ["string"],
             Filters =
             [
                 new()
@@ -1815,7 +1815,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
         }
         Assert.Equal(expectedDueDate, deserialized.DueDate);
         Assert.Equal(expectedEligibleToIssueAt, deserialized.EligibleToIssueAt);
-        Assert.Equal(expectedHostedInvoiceURL, deserialized.HostedInvoiceURL);
+        Assert.Equal(expectedHostedInvoiceUrl, deserialized.HostedInvoiceUrl);
         Assert.Equal(expectedInvoiceNumber, deserialized.InvoiceNumber);
         Assert.Equal(expectedInvoicePdf, deserialized.InvoicePdf);
         Assert.Equal(expectedInvoiceSource, deserialized.InvoiceSource);
@@ -1926,7 +1926,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1941,7 +1941,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             ],
             DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
             EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            HostedInvoiceURL = "hosted_invoice_url",
+            HostedInvoiceUrl = "hosted_invoice_url",
             InvoiceNumber = "JYEFHK-00001",
             InvoicePdf = "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
             InvoiceSource = Invoices::InvoiceSource.Subscription,
@@ -1961,7 +1961,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             AdjustmentType =
                                 MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                             Amount = "amount",
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2037,7 +2037,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         {
                             DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -2059,7 +2059,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2075,7 +2075,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -2124,12 +2124,12 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
                             TaxRatePercentage = "tax_rate_percentage",
                         },
                     ],
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2146,7 +2146,7 @@ public class InvoiceFetchUpcomingResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2732,7 +2732,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     ID = "id",
                     AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2802,7 +2802,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -2824,7 +2824,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2840,7 +2840,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -2889,7 +2889,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string expectedID = "id";
@@ -2901,7 +2901,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -2971,7 +2971,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -2989,7 +2989,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3005,7 +3005,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3054,7 +3054,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 TaxRatePercentage = "tax_rate_percentage",
             },
         ];
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAdjustedSubtotal, model.AdjustedSubtotal);
@@ -3084,11 +3084,11 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], model.TaxAmounts[i]);
         }
-        Assert.NotNull(model.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(model.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, model.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], model.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], model.UsageCustomerIds[i]);
         }
     }
 
@@ -3106,7 +3106,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     ID = "id",
                     AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3176,7 +3176,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3198,7 +3198,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3214,7 +3214,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3263,7 +3263,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -3287,7 +3287,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     ID = "id",
                     AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3357,7 +3357,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3379,7 +3379,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3395,7 +3395,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3444,7 +3444,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model);
@@ -3461,7 +3461,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3531,7 +3531,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -3549,7 +3549,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3565,7 +3565,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3614,7 +3614,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 TaxRatePercentage = "tax_rate_percentage",
             },
         ];
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAdjustedSubtotal, deserialized.AdjustedSubtotal);
@@ -3644,11 +3644,11 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], deserialized.TaxAmounts[i]);
         }
-        Assert.NotNull(deserialized.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(deserialized.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, deserialized.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], deserialized.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], deserialized.UsageCustomerIds[i]);
         }
     }
 
@@ -3666,7 +3666,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     ID = "id",
                     AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3736,7 +3736,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3758,7 +3758,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3774,7 +3774,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3823,7 +3823,7 @@ public class InvoiceFetchUpcomingResponseLineItemTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         model.Validate();
@@ -3841,7 +3841,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3870,7 +3870,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = AdjustmentType.AmountDiscount,
                 Amount = "amount",
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3898,7 +3898,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType =
                     MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3926,7 +3926,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3955,7 +3955,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -3983,7 +3983,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -4015,7 +4015,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = AdjustmentType.AmountDiscount,
                 Amount = "amount",
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -4046,7 +4046,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType =
                     MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -4077,7 +4077,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryMinimumAdjustmentAdjustmentType.Minimum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -4109,7 +4109,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = MonetaryMaximumAdjustmentAdjustmentType.Maximum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()

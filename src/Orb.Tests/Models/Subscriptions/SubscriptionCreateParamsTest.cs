@@ -24,8 +24,8 @@ public class SubscriptionCreateParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -172,8 +172,8 @@ public class SubscriptionCreateParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -276,7 +276,7 @@ public class SubscriptionCreateParamsTest : TestBase
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             TrialDurationDays = 0,
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         List<Subscriptions::AddAdjustment> expectedAddAdjustments =
@@ -288,8 +288,8 @@ public class SubscriptionCreateParamsTest : TestBase
                     AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                     PercentageDiscount = 0,
                     AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                    AppliesToItemIDs = ["item_1", "item_2"],
-                    AppliesToPriceIDs = ["price_1", "price_2"],
+                    AppliesToItemIds = ["item_1", "item_2"],
+                    AppliesToPriceIds = ["price_1", "price_2"],
                     Currency = "currency",
                     Filters =
                     [
@@ -436,8 +436,8 @@ public class SubscriptionCreateParamsTest : TestBase
                     AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                     PercentageDiscount = 0,
                     AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                    AppliesToItemIDs = ["item_1", "item_2"],
-                    AppliesToPriceIDs = ["price_1", "price_2"],
+                    AppliesToItemIds = ["item_1", "item_2"],
+                    AppliesToPriceIds = ["price_1", "price_2"],
                     Currency = "currency",
                     Filters =
                     [
@@ -539,7 +539,7 @@ public class SubscriptionCreateParamsTest : TestBase
         ];
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         long expectedTrialDurationDays = 0;
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.NotNull(parameters.AddAdjustments);
         Assert.Equal(expectedAddAdjustments.Count, parameters.AddAdjustments.Count);
@@ -626,11 +626,11 @@ public class SubscriptionCreateParamsTest : TestBase
         }
         Assert.Equal(expectedStartDate, parameters.StartDate);
         Assert.Equal(expectedTrialDurationDays, parameters.TrialDurationDays);
-        Assert.NotNull(parameters.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, parameters.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(parameters.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, parameters.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], parameters.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], parameters.UsageCustomerIds[i]);
         }
     }
 
@@ -648,8 +648,8 @@ public class SubscriptionCreateParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -795,8 +795,8 @@ public class SubscriptionCreateParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -899,7 +899,7 @@ public class SubscriptionCreateParamsTest : TestBase
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             TrialDurationDays = 0,
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         Assert.Null(parameters.AlignBillingWithSubscriptionStartDate);
@@ -922,8 +922,8 @@ public class SubscriptionCreateParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -1069,8 +1069,8 @@ public class SubscriptionCreateParamsTest : TestBase
                         AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                         PercentageDiscount = 0,
                         AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                        AppliesToItemIDs = ["item_1", "item_2"],
-                        AppliesToPriceIDs = ["price_1", "price_2"],
+                        AppliesToItemIds = ["item_1", "item_2"],
+                        AppliesToPriceIds = ["price_1", "price_2"],
                         Currency = "currency",
                         Filters =
                         [
@@ -1173,7 +1173,7 @@ public class SubscriptionCreateParamsTest : TestBase
             ],
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             TrialDurationDays = 0,
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
 
             // Null should be interpreted as omitted for these properties
             AlignBillingWithSubscriptionStartDate = null,
@@ -1255,7 +1255,7 @@ public class SubscriptionCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("start_date"));
         Assert.Null(parameters.TrialDurationDays);
         Assert.False(parameters.RawBodyData.ContainsKey("trial_duration_days"));
-        Assert.Null(parameters.UsageCustomerIDs);
+        Assert.Null(parameters.UsageCustomerIds);
         Assert.False(parameters.RawBodyData.ContainsKey("usage_customer_ids"));
     }
 
@@ -1297,7 +1297,7 @@ public class SubscriptionCreateParamsTest : TestBase
             ReplacePrices = null,
             StartDate = null,
             TrialDurationDays = null,
-            UsageCustomerIDs = null,
+            UsageCustomerIds = null,
         };
 
         Assert.Null(parameters.AddAdjustments);
@@ -1362,7 +1362,7 @@ public class SubscriptionCreateParamsTest : TestBase
         Assert.True(parameters.RawBodyData.ContainsKey("start_date"));
         Assert.Null(parameters.TrialDurationDays);
         Assert.True(parameters.RawBodyData.ContainsKey("trial_duration_days"));
-        Assert.Null(parameters.UsageCustomerIDs);
+        Assert.Null(parameters.UsageCustomerIds);
         Assert.True(parameters.RawBodyData.ContainsKey("usage_customer_ids"));
     }
 
@@ -1371,7 +1371,7 @@ public class SubscriptionCreateParamsTest : TestBase
     {
         Subscriptions::SubscriptionCreateParams parameters = new();
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/subscriptions"), url);
     }
@@ -1389,8 +1389,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1414,8 +1414,8 @@ public class AddAdjustmentTest : TestBase
             AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
             AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -1449,8 +1449,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1485,8 +1485,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1514,8 +1514,8 @@ public class AddAdjustmentTest : TestBase
             AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
             AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -1549,8 +1549,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1582,8 +1582,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1617,8 +1617,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1647,8 +1647,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1686,8 +1686,8 @@ public class AddAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1722,8 +1722,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1750,8 +1750,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1778,8 +1778,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1807,8 +1807,8 @@ public class AdjustmentTest : TestBase
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1835,8 +1835,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1863,8 +1863,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1894,8 +1894,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1925,8 +1925,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1957,8 +1957,8 @@ public class AdjustmentTest : TestBase
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -1988,8 +1988,8 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -10959,8 +10959,8 @@ public class ReplaceAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -10982,8 +10982,8 @@ public class ReplaceAdjustmentTest : TestBase
             AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
             AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -11013,8 +11013,8 @@ public class ReplaceAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11047,8 +11047,8 @@ public class ReplaceAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11074,8 +11074,8 @@ public class ReplaceAdjustmentTest : TestBase
             AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
             PercentageDiscount = 0,
             AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-            AppliesToItemIDs = ["item_1", "item_2"],
-            AppliesToPriceIDs = ["price_1", "price_2"],
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
             Currency = "currency",
             Filters =
             [
@@ -11105,8 +11105,8 @@ public class ReplaceAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11138,8 +11138,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11166,8 +11166,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11194,8 +11194,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11223,8 +11223,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11251,8 +11251,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11279,8 +11279,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewPercentageDiscountAdjustmentType.PercentageDiscount,
                 PercentageDiscount = 0,
                 AppliesToAll = NewPercentageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11312,8 +11312,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
                 UsageDiscount = 0,
                 AppliesToAll = NewUsageDiscountAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11345,8 +11345,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewAmountDiscountAdjustmentType.AmountDiscount,
                 AmountDiscount = "amount_discount",
                 AppliesToAll = AppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11379,8 +11379,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 ItemID = "item_id",
                 MinimumAmount = "minimum_amount",
                 AppliesToAll = NewMinimumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [
@@ -11412,8 +11412,8 @@ public class ReplaceAdjustmentAdjustmentTest : TestBase
                 AdjustmentType = NewMaximumAdjustmentType.Maximum,
                 MaximumAmount = "maximum_amount",
                 AppliesToAll = NewMaximumAppliesToAll.True,
-                AppliesToItemIDs = ["item_1", "item_2"],
-                AppliesToPriceIDs = ["price_1", "price_2"],
+                AppliesToItemIds = ["item_1", "item_2"],
+                AppliesToPriceIds = ["price_1", "price_2"],
                 Currency = "currency",
                 Filters =
                 [

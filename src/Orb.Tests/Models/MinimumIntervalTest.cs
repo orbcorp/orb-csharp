@@ -14,7 +14,7 @@ public class MinimumIntervalTest : TestBase
     {
         var model = new MinimumInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
             [
@@ -29,7 +29,7 @@ public class MinimumIntervalTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         List<MinimumIntervalFilter> expectedFilters =
         [
@@ -44,12 +44,12 @@ public class MinimumIntervalTest : TestBase
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            model.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            model.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
-            Assert.Equal(expectedAppliesToPriceIntervalIDs[i], model.AppliesToPriceIntervalIDs[i]);
+            Assert.Equal(expectedAppliesToPriceIntervalIds[i], model.AppliesToPriceIntervalIds[i]);
         }
         Assert.Equal(expectedEndDate, model.EndDate);
         Assert.Equal(expectedFilters.Count, model.Filters.Count);
@@ -66,7 +66,7 @@ public class MinimumIntervalTest : TestBase
     {
         var model = new MinimumInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
             [
@@ -92,7 +92,7 @@ public class MinimumIntervalTest : TestBase
     {
         var model = new MinimumInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
             [
@@ -111,7 +111,7 @@ public class MinimumIntervalTest : TestBase
         var deserialized = JsonSerializer.Deserialize<MinimumInterval>(element);
         Assert.NotNull(deserialized);
 
-        List<string> expectedAppliesToPriceIntervalIDs = ["string"];
+        List<string> expectedAppliesToPriceIntervalIds = ["string"];
         DateTimeOffset expectedEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         List<MinimumIntervalFilter> expectedFilters =
         [
@@ -126,14 +126,14 @@ public class MinimumIntervalTest : TestBase
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(
-            expectedAppliesToPriceIntervalIDs.Count,
-            deserialized.AppliesToPriceIntervalIDs.Count
+            expectedAppliesToPriceIntervalIds.Count,
+            deserialized.AppliesToPriceIntervalIds.Count
         );
-        for (int i = 0; i < expectedAppliesToPriceIntervalIDs.Count; i++)
+        for (int i = 0; i < expectedAppliesToPriceIntervalIds.Count; i++)
         {
             Assert.Equal(
-                expectedAppliesToPriceIntervalIDs[i],
-                deserialized.AppliesToPriceIntervalIDs[i]
+                expectedAppliesToPriceIntervalIds[i],
+                deserialized.AppliesToPriceIntervalIds[i]
             );
         }
         Assert.Equal(expectedEndDate, deserialized.EndDate);
@@ -151,7 +151,7 @@ public class MinimumIntervalTest : TestBase
     {
         var model = new MinimumInterval
         {
-            AppliesToPriceIntervalIDs = ["string"],
+            AppliesToPriceIntervalIds = ["string"],
             EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Filters =
             [

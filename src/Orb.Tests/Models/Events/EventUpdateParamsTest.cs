@@ -104,7 +104,7 @@ public class EventUpdateParamsTest : TestBase
             Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
         };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/events/event_id"), url);
     }

@@ -69,7 +69,7 @@ public class DimensionalPriceGroupListParamsTest : TestBase
     {
         DimensionalPriceGroupListParams parameters = new() { Cursor = "cursor", Limit = 1 };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://api.withorb.com/v1/dimensional_price_groups?cursor=cursor&limit=1"),

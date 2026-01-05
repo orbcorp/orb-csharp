@@ -20,7 +20,7 @@ public class ItemFetchParamsTest : TestBase
     {
         ItemFetchParams parameters = new() { ItemID = "item_id" };
 
-        var url = parameters.Url(new() { APIKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://api.withorb.com/v1/items/item_id"), url);
     }

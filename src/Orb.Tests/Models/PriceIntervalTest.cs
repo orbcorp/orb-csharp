@@ -75,7 +75,7 @@ public class PriceIntervalTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -97,7 +97,7 @@ public class PriceIntervalTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -113,7 +113,7 @@ public class PriceIntervalTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -138,7 +138,7 @@ public class PriceIntervalTest : TestBase
                 },
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string expectedID = "id";
@@ -208,7 +208,7 @@ public class PriceIntervalTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -226,7 +226,7 @@ public class PriceIntervalTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -242,7 +242,7 @@ public class PriceIntervalTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -267,7 +267,7 @@ public class PriceIntervalTest : TestBase
             },
         };
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBillingCycleDay, model.BillingCycleDay);
@@ -290,11 +290,11 @@ public class PriceIntervalTest : TestBase
         }
         Assert.Equal(expectedPrice, model.Price);
         Assert.Equal(expectedStartDate, model.StartDate);
-        Assert.NotNull(model.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(model.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, model.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], model.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], model.UsageCustomerIds[i]);
         }
     }
 
@@ -366,7 +366,7 @@ public class PriceIntervalTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -388,7 +388,7 @@ public class PriceIntervalTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -404,7 +404,7 @@ public class PriceIntervalTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -429,7 +429,7 @@ public class PriceIntervalTest : TestBase
                 },
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -506,7 +506,7 @@ public class PriceIntervalTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -528,7 +528,7 @@ public class PriceIntervalTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -544,7 +544,7 @@ public class PriceIntervalTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -569,7 +569,7 @@ public class PriceIntervalTest : TestBase
                 },
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model);
@@ -643,7 +643,7 @@ public class PriceIntervalTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -661,7 +661,7 @@ public class PriceIntervalTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -677,7 +677,7 @@ public class PriceIntervalTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -702,7 +702,7 @@ public class PriceIntervalTest : TestBase
             },
         };
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBillingCycleDay, deserialized.BillingCycleDay);
@@ -728,11 +728,11 @@ public class PriceIntervalTest : TestBase
         }
         Assert.Equal(expectedPrice, deserialized.Price);
         Assert.Equal(expectedStartDate, deserialized.StartDate);
-        Assert.NotNull(deserialized.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(deserialized.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, deserialized.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], deserialized.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], deserialized.UsageCustomerIds[i]);
         }
     }
 
@@ -804,7 +804,7 @@ public class PriceIntervalTest : TestBase
                 {
                     DiscountType = PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -826,7 +826,7 @@ public class PriceIntervalTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -842,7 +842,7 @@ public class PriceIntervalTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -867,7 +867,7 @@ public class PriceIntervalTest : TestBase
                 },
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         model.Validate();

@@ -60,7 +60,7 @@ Or manually:
 ```csharp
 using Orb;
 
-OrbClient client = new() { APIKey = "My API Key" };
+OrbClient client = new() { ApiKey = "My API Key" };
 ```
 
 Or using a combination of the two approaches.
@@ -69,7 +69,7 @@ See this table for the available options:
 
 | Property        | Environment variable | Required | Default value                  |
 | --------------- | -------------------- | -------- | ------------------------------ |
-| `APIKey`        | `ORB_API_KEY`        | true     | -                              |
+| `ApiKey`        | `ORB_API_KEY`        | true     | -                              |
 | `WebhookSecret` | `ORB_WEBHOOK_SECRET` | false    | -                              |
 | `BaseUrl`       | `ORB_BASE_URL`       | true     | `"https://api.withorb.com/v1"` |
 

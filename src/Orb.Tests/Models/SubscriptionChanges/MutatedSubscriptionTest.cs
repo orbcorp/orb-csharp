@@ -29,7 +29,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -46,7 +46,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -93,7 +93,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -143,7 +143,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -174,7 +174,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -194,7 +194,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -222,7 +222,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -255,7 +255,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -271,7 +271,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -287,7 +287,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -312,7 +312,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -328,7 +328,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -343,7 +343,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -414,7 +414,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -436,7 +436,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -452,7 +452,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -565,7 +565,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -587,7 +587,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -603,7 +603,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -628,7 +628,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -677,7 +677,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -788,7 +788,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -804,7 +804,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -827,7 +827,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -907,7 +907,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -935,7 +935,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -954,7 +954,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -1007,12 +1007,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1029,7 +1029,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1113,7 +1113,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -1225,7 +1225,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -1241,7 +1241,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -1263,7 +1263,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -1343,7 +1343,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -1371,7 +1371,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -1390,7 +1390,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -1443,12 +1443,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1465,7 +1465,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -1530,7 +1530,7 @@ public class MutatedSubscriptionTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1547,7 +1547,7 @@ public class MutatedSubscriptionTest : TestBase
                     ReplacesAdjustmentID = "replaces_adjustment_id",
                     UsageDiscount = 0,
                 },
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
@@ -1598,7 +1598,7 @@ public class MutatedSubscriptionTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -1648,7 +1648,7 @@ public class MutatedSubscriptionTest : TestBase
             new Models::AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -1679,7 +1679,7 @@ public class MutatedSubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -1699,7 +1699,7 @@ public class MutatedSubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -1727,7 +1727,7 @@ public class MutatedSubscriptionTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1760,7 +1760,7 @@ public class MutatedSubscriptionTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -1776,7 +1776,7 @@ public class MutatedSubscriptionTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1792,7 +1792,7 @@ public class MutatedSubscriptionTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1817,7 +1817,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1833,7 +1833,7 @@ public class MutatedSubscriptionTest : TestBase
                     DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1848,7 +1848,7 @@ public class MutatedSubscriptionTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1919,7 +1919,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -1941,7 +1941,7 @@ public class MutatedSubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -1957,7 +1957,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2064,7 +2064,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -2086,7 +2086,7 @@ public class MutatedSubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2102,7 +2102,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2127,7 +2127,7 @@ public class MutatedSubscriptionTest : TestBase
                     },
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         Models::CouponRedemption expectedRedeemedCoupon = new()
@@ -2178,7 +2178,7 @@ public class MutatedSubscriptionTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -2284,7 +2284,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -2299,7 +2299,7 @@ public class MutatedSubscriptionTest : TestBase
                     ],
                     DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                     EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    HostedInvoiceURL = "hosted_invoice_url",
+                    HostedInvoiceUrl = "hosted_invoice_url",
                     InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                     InvoiceNumber = "JYEFHK-00001",
                     InvoicePdf =
@@ -2322,7 +2322,7 @@ public class MutatedSubscriptionTest : TestBase
                                     AdjustmentType =
                                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                     Amount = "amount",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -2400,7 +2400,7 @@ public class MutatedSubscriptionTest : TestBase
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
                                     PercentageDiscountValue = 0.15,
-                                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
@@ -2423,7 +2423,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Item = new() { ID = "id", Name = "name" },
                                 Maximum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -2439,7 +2439,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                                 Minimum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -2488,12 +2488,12 @@ public class MutatedSubscriptionTest : TestBase
                                     TaxRatePercentage = "tax_rate_percentage",
                                 },
                             ],
-                            UsageCustomerIDs = ["string"],
+                            UsageCustomerIds = ["string"],
                         },
                     ],
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2510,7 +2510,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2594,7 +2594,7 @@ public class MutatedSubscriptionTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -2701,7 +2701,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -2716,7 +2716,7 @@ public class MutatedSubscriptionTest : TestBase
                     ],
                     DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                     EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    HostedInvoiceURL = "hosted_invoice_url",
+                    HostedInvoiceUrl = "hosted_invoice_url",
                     InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                     InvoiceNumber = "JYEFHK-00001",
                     InvoicePdf =
@@ -2738,7 +2738,7 @@ public class MutatedSubscriptionTest : TestBase
                                     AdjustmentType =
                                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                     Amount = "amount",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -2816,7 +2816,7 @@ public class MutatedSubscriptionTest : TestBase
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
                                     PercentageDiscountValue = 0.15,
-                                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
@@ -2839,7 +2839,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Item = new() { ID = "id", Name = "name" },
                                 Maximum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -2855,7 +2855,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                                 Minimum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -2904,12 +2904,12 @@ public class MutatedSubscriptionTest : TestBase
                                     TaxRatePercentage = "tax_rate_percentage",
                                 },
                             ],
-                            UsageCustomerIDs = ["string"],
+                            UsageCustomerIds = ["string"],
                         },
                     ],
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -2926,7 +2926,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3057,7 +3057,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3074,7 +3074,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -3121,7 +3121,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -3171,7 +3171,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -3202,7 +3202,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -3222,7 +3222,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -3250,7 +3250,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -3283,7 +3283,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -3299,7 +3299,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3315,7 +3315,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -3340,7 +3340,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -3356,7 +3356,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3371,7 +3371,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3442,7 +3442,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -3464,7 +3464,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3480,7 +3480,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3593,7 +3593,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -3615,7 +3615,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3631,7 +3631,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -3656,7 +3656,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -3705,7 +3705,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -3816,7 +3816,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -3832,7 +3832,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -3855,7 +3855,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -3935,7 +3935,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -3963,7 +3963,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -3982,7 +3982,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -4035,12 +4035,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4057,7 +4057,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4141,7 +4141,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -4253,7 +4253,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -4269,7 +4269,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -4291,7 +4291,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -4371,7 +4371,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -4399,7 +4399,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -4418,7 +4418,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -4471,12 +4471,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4493,7 +4493,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4569,7 +4569,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -4586,7 +4586,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -4633,7 +4633,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -4683,7 +4683,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -4714,7 +4714,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -4734,7 +4734,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -4762,7 +4762,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -4795,7 +4795,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -4811,7 +4811,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4827,7 +4827,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -4852,7 +4852,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -4868,7 +4868,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4883,7 +4883,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4954,7 +4954,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -4976,7 +4976,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -4992,7 +4992,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -5105,7 +5105,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -5127,7 +5127,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -5143,7 +5143,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -5168,7 +5168,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -5217,7 +5217,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -5328,7 +5328,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -5344,7 +5344,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -5367,7 +5367,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -5447,7 +5447,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -5475,7 +5475,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -5494,7 +5494,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -5547,12 +5547,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -5569,7 +5569,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -5653,7 +5653,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -5765,7 +5765,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -5781,7 +5781,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -5803,7 +5803,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -5883,7 +5883,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -5911,7 +5911,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -5930,7 +5930,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -5983,12 +5983,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -6005,7 +6005,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -6074,7 +6074,7 @@ public class MutatedSubscriptionTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6091,7 +6091,7 @@ public class MutatedSubscriptionTest : TestBase
                     ReplacesAdjustmentID = "replaces_adjustment_id",
                     UsageDiscount = 0,
                 },
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
@@ -6142,7 +6142,7 @@ public class MutatedSubscriptionTest : TestBase
             Name = "name",
             PaymentProvider = CustomerPaymentProvider.Quickbooks,
             PaymentProviderID = "payment_provider_id",
-            PortalURL = "portal_url",
+            PortalUrl = "portal_url",
             ShippingAddress = new()
             {
                 City = "city",
@@ -6192,7 +6192,7 @@ public class MutatedSubscriptionTest : TestBase
             new Models::AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -6223,7 +6223,7 @@ public class MutatedSubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -6243,7 +6243,7 @@ public class MutatedSubscriptionTest : TestBase
         [
             new()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
                 [
@@ -6271,7 +6271,7 @@ public class MutatedSubscriptionTest : TestBase
                     ID = "id",
                     AdjustmentType =
                         Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -6304,7 +6304,7 @@ public class MutatedSubscriptionTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -6320,7 +6320,7 @@ public class MutatedSubscriptionTest : TestBase
             InvoicingCurrency = "invoicing_currency",
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -6336,7 +6336,7 @@ public class MutatedSubscriptionTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -6361,7 +6361,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -6377,7 +6377,7 @@ public class MutatedSubscriptionTest : TestBase
                     DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -6392,7 +6392,7 @@ public class MutatedSubscriptionTest : TestBase
                     MaximumAmount = "maximum_amount",
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -6463,7 +6463,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -6485,7 +6485,7 @@ public class MutatedSubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -6501,7 +6501,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -6608,7 +6608,7 @@ public class MutatedSubscriptionTest : TestBase
                     {
                         DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                         PercentageDiscountValue = 0.15,
-                        AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                        AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                         Filters =
                         [
                             new()
@@ -6630,7 +6630,7 @@ public class MutatedSubscriptionTest : TestBase
                     Item = new() { ID = "id", Name = "name" },
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -6646,7 +6646,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -6671,7 +6671,7 @@ public class MutatedSubscriptionTest : TestBase
                     },
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsageCustomerIDs = ["string"],
+                UsageCustomerIds = ["string"],
             },
         ];
         Models::CouponRedemption expectedRedeemedCoupon = new()
@@ -6722,7 +6722,7 @@ public class MutatedSubscriptionTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -6828,7 +6828,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -6843,7 +6843,7 @@ public class MutatedSubscriptionTest : TestBase
                     ],
                     DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                     EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    HostedInvoiceURL = "hosted_invoice_url",
+                    HostedInvoiceUrl = "hosted_invoice_url",
                     InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                     InvoiceNumber = "JYEFHK-00001",
                     InvoicePdf =
@@ -6866,7 +6866,7 @@ public class MutatedSubscriptionTest : TestBase
                                     AdjustmentType =
                                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                     Amount = "amount",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -6944,7 +6944,7 @@ public class MutatedSubscriptionTest : TestBase
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
                                     PercentageDiscountValue = 0.15,
-                                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
@@ -6967,7 +6967,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Item = new() { ID = "id", Name = "name" },
                                 Maximum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -6983,7 +6983,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                                 Minimum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -7032,12 +7032,12 @@ public class MutatedSubscriptionTest : TestBase
                                     TaxRatePercentage = "tax_rate_percentage",
                                 },
                             ],
-                            UsageCustomerIDs = ["string"],
+                            UsageCustomerIds = ["string"],
                         },
                     ],
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -7054,7 +7054,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -7138,7 +7138,7 @@ public class MutatedSubscriptionTest : TestBase
                                 {
                                     ID = "id",
                                     AmountApplied = "amount_applied",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     DiscountType = Models::DiscountDiscountType.Percentage,
                                     PercentageDiscount = 0,
                                     AmountDiscount = "amount_discount",
@@ -7245,7 +7245,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -7260,7 +7260,7 @@ public class MutatedSubscriptionTest : TestBase
                     ],
                     DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                     EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    HostedInvoiceURL = "hosted_invoice_url",
+                    HostedInvoiceUrl = "hosted_invoice_url",
                     InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                     InvoiceNumber = "JYEFHK-00001",
                     InvoicePdf =
@@ -7282,7 +7282,7 @@ public class MutatedSubscriptionTest : TestBase
                                     AdjustmentType =
                                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                     Amount = "amount",
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -7360,7 +7360,7 @@ public class MutatedSubscriptionTest : TestBase
                                     DiscountType =
                                         Models::PercentageDiscountDiscountType.Percentage,
                                     PercentageDiscountValue = 0.15,
-                                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
@@ -7383,7 +7383,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Item = new() { ID = "id", Name = "name" },
                                 Maximum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -7399,7 +7399,7 @@ public class MutatedSubscriptionTest : TestBase
                                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                                 Minimum = new()
                                 {
-                                    AppliesToPriceIDs = ["string"],
+                                    AppliesToPriceIds = ["string"],
                                     Filters =
                                     [
                                         new()
@@ -7448,12 +7448,12 @@ public class MutatedSubscriptionTest : TestBase
                                     TaxRatePercentage = "tax_rate_percentage",
                                 },
                             ],
-                            UsageCustomerIDs = ["string"],
+                            UsageCustomerIds = ["string"],
                         },
                     ],
                     Maximum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -7470,7 +7470,7 @@ public class MutatedSubscriptionTest : TestBase
                     Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     Minimum = new()
                     {
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -7610,7 +7610,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -7627,7 +7627,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -7674,7 +7674,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -7724,7 +7724,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -7755,7 +7755,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -7775,7 +7775,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -7803,7 +7803,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -7836,7 +7836,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -7852,7 +7852,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7868,7 +7868,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -7893,7 +7893,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -7909,7 +7909,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -7924,7 +7924,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -7995,7 +7995,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -8017,7 +8017,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -8033,7 +8033,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -8146,7 +8146,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -8168,7 +8168,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -8184,7 +8184,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -8209,7 +8209,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -8258,7 +8258,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -8369,7 +8369,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -8385,7 +8385,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -8408,7 +8408,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -8488,7 +8488,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -8516,7 +8516,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -8535,7 +8535,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -8588,12 +8588,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -8610,7 +8610,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -8694,7 +8694,7 @@ public class MutatedSubscriptionTest : TestBase
                                     {
                                         ID = "id",
                                         AmountApplied = "amount_applied",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         DiscountType = Models::DiscountDiscountType.Percentage,
                                         PercentageDiscount = 0,
                                         AmountDiscount = "amount_discount",
@@ -8806,7 +8806,7 @@ public class MutatedSubscriptionTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -8822,7 +8822,7 @@ public class MutatedSubscriptionTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -8844,7 +8844,7 @@ public class MutatedSubscriptionTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -8924,7 +8924,7 @@ public class MutatedSubscriptionTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -8952,7 +8952,7 @@ public class MutatedSubscriptionTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -8971,7 +8971,7 @@ public class MutatedSubscriptionTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -9024,12 +9024,12 @@ public class MutatedSubscriptionTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9046,7 +9046,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9119,7 +9119,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -9136,7 +9136,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -9183,7 +9183,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -9233,7 +9233,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -9264,7 +9264,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -9284,7 +9284,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -9312,7 +9312,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -9345,7 +9345,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -9361,7 +9361,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -9377,7 +9377,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -9402,7 +9402,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -9418,7 +9418,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9433,7 +9433,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9504,7 +9504,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -9526,7 +9526,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9542,7 +9542,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9655,7 +9655,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -9677,7 +9677,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9693,7 +9693,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -9718,7 +9718,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -9753,7 +9753,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -9770,7 +9770,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -9817,7 +9817,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -9867,7 +9867,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -9898,7 +9898,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -9918,7 +9918,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -9946,7 +9946,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -9979,7 +9979,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -9995,7 +9995,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -10011,7 +10011,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -10036,7 +10036,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -10052,7 +10052,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10067,7 +10067,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10138,7 +10138,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -10160,7 +10160,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10176,7 +10176,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10289,7 +10289,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -10311,7 +10311,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10327,7 +10327,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10352,7 +10352,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -10386,7 +10386,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -10403,7 +10403,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -10450,7 +10450,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -10500,7 +10500,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -10531,7 +10531,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -10551,7 +10551,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -10579,7 +10579,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -10612,7 +10612,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -10628,7 +10628,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -10644,7 +10644,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -10669,7 +10669,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -10685,7 +10685,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10700,7 +10700,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10771,7 +10771,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -10793,7 +10793,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10809,7 +10809,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10922,7 +10922,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -10944,7 +10944,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10960,7 +10960,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -10985,7 +10985,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -11022,7 +11022,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -11039,7 +11039,7 @@ public class MutatedSubscriptionTest : TestBase
                         ReplacesAdjustmentID = "replaces_adjustment_id",
                         UsageDiscount = 0,
                     },
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
@@ -11086,7 +11086,7 @@ public class MutatedSubscriptionTest : TestBase
                 Name = "name",
                 PaymentProvider = CustomerPaymentProvider.Quickbooks,
                 PaymentProviderID = "payment_provider_id",
-                PortalURL = "portal_url",
+                PortalUrl = "portal_url",
                 ShippingAddress = new()
                 {
                     City = "city",
@@ -11136,7 +11136,7 @@ public class MutatedSubscriptionTest : TestBase
                 new Models::AmountDiscountInterval()
                 {
                     AmountDiscount = "amount_discount",
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -11167,7 +11167,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -11187,7 +11187,7 @@ public class MutatedSubscriptionTest : TestBase
             [
                 new()
                 {
-                    AppliesToPriceIntervalIDs = ["string"],
+                    AppliesToPriceIntervalIds = ["string"],
                     EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
                     [
@@ -11215,7 +11215,7 @@ public class MutatedSubscriptionTest : TestBase
                         ID = "id",
                         AdjustmentType =
                             Models::PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
-                        AppliesToPriceIDs = ["string"],
+                        AppliesToPriceIds = ["string"],
                         Filters =
                         [
                             new()
@@ -11248,7 +11248,7 @@ public class MutatedSubscriptionTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -11264,7 +11264,7 @@ public class MutatedSubscriptionTest : TestBase
                 InvoicingCurrency = "invoicing_currency",
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -11280,7 +11280,7 @@ public class MutatedSubscriptionTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -11305,7 +11305,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -11321,7 +11321,7 @@ public class MutatedSubscriptionTest : TestBase
                         DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -11336,7 +11336,7 @@ public class MutatedSubscriptionTest : TestBase
                         MaximumAmount = "maximum_amount",
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -11407,7 +11407,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -11429,7 +11429,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -11445,7 +11445,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -11558,7 +11558,7 @@ public class MutatedSubscriptionTest : TestBase
                         {
                             DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
-                            AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
@@ -11580,7 +11580,7 @@ public class MutatedSubscriptionTest : TestBase
                         Item = new() { ID = "id", Name = "name" },
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -11596,7 +11596,7 @@ public class MutatedSubscriptionTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -11621,7 +11621,7 @@ public class MutatedSubscriptionTest : TestBase
                         },
                     },
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    UsageCustomerIDs = ["string"],
+                    UsageCustomerIds = ["string"],
                 },
             ],
             RedeemedCoupon = new()
@@ -11650,7 +11650,7 @@ public class DiscountIntervalTest : TestBase
             new Models::AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -11674,7 +11674,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new Models::PercentageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::PercentageDiscountIntervalDiscountType.Percentage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -11699,7 +11699,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new Models::UsageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::UsageDiscountIntervalDiscountType.Usage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -11725,7 +11725,7 @@ public class DiscountIntervalTest : TestBase
             new Models::AmountDiscountInterval()
             {
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::AmountDiscountIntervalDiscountType.Amount,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -11752,7 +11752,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new Models::PercentageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::PercentageDiscountIntervalDiscountType.Percentage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -11780,7 +11780,7 @@ public class DiscountIntervalTest : TestBase
         DiscountInterval value = new(
             new Models::UsageDiscountInterval()
             {
-                AppliesToPriceIntervalIDs = ["string"],
+                AppliesToPriceIntervalIds = ["string"],
                 DiscountType = Models::UsageDiscountIntervalDiscountType.Usage,
                 EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =

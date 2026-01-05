@@ -111,7 +111,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -127,7 +127,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -149,7 +149,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -229,7 +229,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -257,7 +257,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -276,7 +276,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -329,12 +329,12 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -351,7 +351,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -746,7 +746,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             {
                                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                                 PercentageDiscountValue = 0.15,
-                                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                 Filters =
                                 [
                                     new()
@@ -762,7 +762,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         ],
                         DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
                         EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                        HostedInvoiceURL = "hosted_invoice_url",
+                        HostedInvoiceUrl = "hosted_invoice_url",
                         InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
                         InvoiceNumber = "JYEFHK-00001",
                         InvoicePdf =
@@ -784,7 +784,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         AdjustmentType =
                                             Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                         Amount = "amount",
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -864,7 +864,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         DiscountType =
                                             Models::PercentageDiscountDiscountType.Percentage,
                                         PercentageDiscountValue = 0.15,
-                                        AppliesToPriceIDs =
+                                        AppliesToPriceIds =
                                         [
                                             "h74gfhdjvn7ujokd",
                                             "7hfgtgjnbvc3ujkl",
@@ -892,7 +892,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     Item = new() { ID = "id", Name = "name" },
                                     Maximum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -911,7 +911,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     },
                                     Minimum = new()
                                     {
-                                        AppliesToPriceIDs = ["string"],
+                                        AppliesToPriceIds = ["string"],
                                         Filters =
                                         [
                                             new()
@@ -964,12 +964,12 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         TaxRatePercentage = "tax_rate_percentage",
                                     },
                                 ],
-                                UsageCustomerIDs = ["string"],
+                                UsageCustomerIds = ["string"],
                             },
                         ],
                         Maximum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()
@@ -986,7 +986,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                         Minimum = new()
                         {
-                            AppliesToPriceIDs = ["string"],
+                            AppliesToPriceIds = ["string"],
                             Filters =
                             [
                                 new()

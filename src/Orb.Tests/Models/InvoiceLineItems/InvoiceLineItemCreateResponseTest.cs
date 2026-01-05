@@ -23,7 +23,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     AdjustmentType =
                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -99,7 +99,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -121,7 +121,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -137,7 +137,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -186,7 +186,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string expectedID = "id";
@@ -199,7 +199,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 AdjustmentType =
                     Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -273,7 +273,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -295,7 +295,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -311,7 +311,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -360,7 +360,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 TaxRatePercentage = "tax_rate_percentage",
             },
         ];
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAdjustedSubtotal, model.AdjustedSubtotal);
@@ -390,11 +390,11 @@ public class InvoiceLineItemCreateResponseTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], model.TaxAmounts[i]);
         }
-        Assert.NotNull(model.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, model.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(model.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, model.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], model.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], model.UsageCustomerIds[i]);
         }
     }
 
@@ -413,7 +413,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     AdjustmentType =
                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -489,7 +489,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -511,7 +511,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -527,7 +527,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -576,7 +576,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string json = JsonSerializer.Serialize(model);
@@ -600,7 +600,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     AdjustmentType =
                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -676,7 +676,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -698,7 +698,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -714,7 +714,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -763,7 +763,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         string element = JsonSerializer.Serialize(model);
@@ -780,7 +780,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 AdjustmentType =
                     Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -854,7 +854,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             {
                 DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -876,7 +876,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             Item = new() { ID = "id", Name = "name" },
             Maximum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -892,7 +892,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
             Metadata = new Dictionary<string, string>() { { "foo", "string" } },
             Minimum = new()
             {
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -941,7 +941,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 TaxRatePercentage = "tax_rate_percentage",
             },
         ];
-        List<string> expectedUsageCustomerIDs = ["string"];
+        List<string> expectedUsageCustomerIds = ["string"];
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAdjustedSubtotal, deserialized.AdjustedSubtotal);
@@ -971,11 +971,11 @@ public class InvoiceLineItemCreateResponseTest : TestBase
         {
             Assert.Equal(expectedTaxAmounts[i], deserialized.TaxAmounts[i]);
         }
-        Assert.NotNull(deserialized.UsageCustomerIDs);
-        Assert.Equal(expectedUsageCustomerIDs.Count, deserialized.UsageCustomerIDs.Count);
-        for (int i = 0; i < expectedUsageCustomerIDs.Count; i++)
+        Assert.NotNull(deserialized.UsageCustomerIds);
+        Assert.Equal(expectedUsageCustomerIds.Count, deserialized.UsageCustomerIds.Count);
+        for (int i = 0; i < expectedUsageCustomerIds.Count; i++)
         {
-            Assert.Equal(expectedUsageCustomerIDs[i], deserialized.UsageCustomerIDs[i]);
+            Assert.Equal(expectedUsageCustomerIds[i], deserialized.UsageCustomerIds[i]);
         }
     }
 
@@ -994,7 +994,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     AdjustmentType =
                         Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                     Amount = "amount",
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1070,7 +1070,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 {
                     DiscountType = Models::PercentageDiscountDiscountType.Percentage,
                     PercentageDiscountValue = 0.15,
-                    AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                     Filters =
                     [
                         new()
@@ -1092,7 +1092,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Item = new() { ID = "id", Name = "name" },
                 Maximum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1108,7 +1108,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                 Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 Minimum = new()
                 {
-                    AppliesToPriceIDs = ["string"],
+                    AppliesToPriceIds = ["string"],
                     Filters =
                     [
                         new()
@@ -1157,7 +1157,7 @@ public class InvoiceLineItemCreateResponseTest : TestBase
                     TaxRatePercentage = "tax_rate_percentage",
                 },
             ],
-            UsageCustomerIDs = ["string"],
+            UsageCustomerIds = ["string"],
         };
 
         model.Validate();
@@ -1176,7 +1176,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType =
                     Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1205,7 +1205,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::AdjustmentType.AmountDiscount,
                 Amount = "amount",
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1233,7 +1233,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType =
                     Models::MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1262,7 +1262,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1291,7 +1291,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1320,7 +1320,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType =
                     Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1352,7 +1352,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType = Models::AdjustmentType.AmountDiscount,
                 Amount = "amount",
                 AmountDiscount = "amount_discount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1383,7 +1383,7 @@ public class AdjustmentTest : TestBase
                 AdjustmentType =
                     Models::MonetaryPercentageDiscountAdjustmentAdjustmentType.PercentageDiscount,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1415,7 +1415,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = Models::MonetaryMinimumAdjustmentAdjustmentType.Minimum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()
@@ -1447,7 +1447,7 @@ public class AdjustmentTest : TestBase
                 ID = "id",
                 AdjustmentType = Models::MonetaryMaximumAdjustmentAdjustmentType.Maximum,
                 Amount = "amount",
-                AppliesToPriceIDs = ["string"],
+                AppliesToPriceIds = ["string"],
                 Filters =
                 [
                     new()

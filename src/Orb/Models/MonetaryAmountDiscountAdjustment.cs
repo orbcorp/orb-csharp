@@ -58,7 +58,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : JsonModel
     /// The price IDs that this adjustment applies to.
     /// </summary>
     [System::Obsolete("deprecated")]
-    public required IReadOnlyList<string> AppliesToPriceIDs
+    public required IReadOnlyList<string> AppliesToPriceIds
     {
         get
         {
@@ -118,7 +118,7 @@ public sealed record class MonetaryAmountDiscountAdjustment : JsonModel
         this.AdjustmentType.Validate();
         _ = this.Amount;
         _ = this.AmountDiscount;
-        _ = this.AppliesToPriceIDs;
+        _ = this.AppliesToPriceIds;
         foreach (var item in this.Filters)
         {
             item.Validate();

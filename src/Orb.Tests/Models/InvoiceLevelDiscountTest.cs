@@ -13,7 +13,7 @@ public class InvoiceLevelDiscountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -37,7 +37,7 @@ public class InvoiceLevelDiscountTest : TestBase
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -60,7 +60,7 @@ public class InvoiceLevelDiscountTest : TestBase
             new TrialDiscount()
             {
                 DiscountType = TrialDiscountDiscountType.Trial,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -86,7 +86,7 @@ public class InvoiceLevelDiscountTest : TestBase
             {
                 DiscountType = PercentageDiscountDiscountType.Percentage,
                 PercentageDiscountValue = 0.15,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -113,7 +113,7 @@ public class InvoiceLevelDiscountTest : TestBase
             {
                 AmountDiscountValue = "amount_discount",
                 DiscountType = DiscountType.Amount,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
@@ -139,7 +139,7 @@ public class InvoiceLevelDiscountTest : TestBase
             new TrialDiscount()
             {
                 DiscountType = TrialDiscountDiscountType.Trial,
-                AppliesToPriceIDs = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                 Filters =
                 [
                     new()
