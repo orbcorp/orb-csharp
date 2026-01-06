@@ -401,9 +401,6 @@ sealed class NewFloatingTieredPackageWithMinimumPriceModelTypeConverter
 )]
 public sealed record class TieredPackageWithMinimumConfig : JsonModel
 {
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required double PackageSize
     {
         get { return JsonModel.GetNotNullStruct<double>(this.RawData, "package_size"); }
@@ -484,27 +481,18 @@ class TieredPackageWithMinimumConfigFromRaw : IFromRawJson<TieredPackageWithMini
 )]
 public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
 {
-    /// <summary>
-    /// Minimum amount
-    /// </summary>
     public required string MinimumAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
         init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
-    /// <summary>
-    /// Price per package
-    /// </summary>
     public required string PerUnit
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit"); }
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

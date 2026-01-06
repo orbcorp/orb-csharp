@@ -507,9 +507,6 @@ class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigFromRaw
 public sealed record class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
     : JsonModel
 {
-    /// <summary>
-    /// Quantity threshold
-    /// </summary>
     public required string Threshold
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }

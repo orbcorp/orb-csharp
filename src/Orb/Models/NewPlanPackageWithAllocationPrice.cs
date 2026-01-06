@@ -410,27 +410,18 @@ sealed class NewPlanPackageWithAllocationPriceModelTypeConverter
 )]
 public sealed record class NewPlanPackageWithAllocationPricePackageWithAllocationConfig : JsonModel
 {
-    /// <summary>
-    /// Usage allocation
-    /// </summary>
     public required string Allocation
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "allocation"); }
         init { JsonModel.Set(this._rawData, "allocation", value); }
     }
 
-    /// <summary>
-    /// Price per package
-    /// </summary>
     public required string PackageAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_amount"); }
         init { JsonModel.Set(this._rawData, "package_amount", value); }
     }
 
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }

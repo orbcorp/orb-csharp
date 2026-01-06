@@ -503,18 +503,12 @@ class GroupedWithMeteredMinimumConfigFromRaw
 )]
 public sealed record class ScalingFactor : JsonModel
 {
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactorValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Scaling value
-    /// </summary>
     public required string ScalingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_value"); }
@@ -574,9 +568,6 @@ class ScalingFactorFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.Scali
 )]
 public sealed record class UnitAmount : JsonModel
 {
-    /// <summary>
-    /// Pricing value
-    /// </summary>
     public required string PricingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "pricing_value"); }

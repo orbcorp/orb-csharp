@@ -364,9 +364,6 @@ public sealed record class CumulativeGroupedBulkConfig : JsonModel
         init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
-    /// <summary>
-    /// Grouping key name
-    /// </summary>
     public required string Group
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "group"); }

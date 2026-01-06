@@ -479,9 +479,6 @@ class ThresholdTotalAmountConfigFromRaw : IFromRawJson<ThresholdTotalAmountConfi
 [JsonConverter(typeof(JsonModelConverter<ConsumptionTable, ConsumptionTableFromRaw>))]
 public sealed record class ConsumptionTable : JsonModel
 {
-    /// <summary>
-    /// Quantity threshold
-    /// </summary>
     public required string Threshold
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }

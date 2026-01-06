@@ -358,9 +358,6 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
         init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -439,9 +436,6 @@ class MaxGroupTieredPackageConfigFromRaw : IFromRawJson<MaxGroupTieredPackageCon
 )]
 public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

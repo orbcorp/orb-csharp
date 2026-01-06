@@ -437,9 +437,6 @@ public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMa
         init { JsonModel.Set(this._rawData, "matrix_scaling_factors", value); }
     }
 
-    /// <summary>
-    /// Tier pricing structure
-    /// </summary>
     public required IReadOnlyList<NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier> Tiers
     {
         get
@@ -532,27 +529,18 @@ class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricing
 public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
     : JsonModel
 {
-    /// <summary>
-    /// First dimension value
-    /// </summary>
     public required string FirstDimensionValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
         init { JsonModel.Set(this._rawData, "first_dimension_value", value); }
     }
 
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Second dimension value (optional)
-    /// </summary>
     public string? SecondDimensionValue
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension_value"); }
@@ -627,18 +615,12 @@ class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricing
 public sealed record class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier
     : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
         init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
-    /// <summary>
-    /// Per unit amount
-    /// </summary>
     public required string UnitAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }

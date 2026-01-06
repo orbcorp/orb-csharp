@@ -473,18 +473,12 @@ class GroupedWithMeteredMinimumConfigFromRaw : IFromRawJson<GroupedWithMeteredMi
 [JsonConverter(typeof(JsonModelConverter<ScalingFactor, ScalingFactorFromRaw>))]
 public sealed record class ScalingFactor : JsonModel
 {
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactorValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Scaling value
-    /// </summary>
     public required string ScalingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_value"); }
@@ -536,9 +530,6 @@ class ScalingFactorFromRaw : IFromRawJson<ScalingFactor>
 [JsonConverter(typeof(JsonModelConverter<UnitAmount, UnitAmountFromRaw>))]
 public sealed record class UnitAmount : JsonModel
 {
-    /// <summary>
-    /// Pricing value
-    /// </summary>
     public required string PricingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "pricing_value"); }
