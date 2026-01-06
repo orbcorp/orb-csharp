@@ -515,27 +515,18 @@ class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRawJson<ScalableMatrixWi
 )]
 public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFactor : JsonModel
 {
-    /// <summary>
-    /// First dimension value
-    /// </summary>
     public required string FirstDimensionValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
         init { JsonModel.Set(this._rawData, "first_dimension_value", value); }
     }
 
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Second dimension value (optional)
-    /// </summary>
     public string? SecondDimensionValue
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension_value"); }

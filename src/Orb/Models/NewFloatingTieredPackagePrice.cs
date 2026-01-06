@@ -389,9 +389,6 @@ sealed class NewFloatingTieredPackagePriceModelTypeConverter
 [JsonConverter(typeof(JsonModelConverter<TieredPackageConfig, TieredPackageConfigFromRaw>))]
 public sealed record class TieredPackageConfig : JsonModel
 {
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -472,9 +469,6 @@ public sealed record class TieredPackageConfigTier : JsonModel
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

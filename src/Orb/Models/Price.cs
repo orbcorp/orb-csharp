@@ -9904,9 +9904,6 @@ class ThresholdTotalAmountThresholdTotalAmountConfigFromRaw
 public sealed record class ThresholdTotalAmountThresholdTotalAmountConfigConsumptionTable
     : JsonModel
 {
-    /// <summary>
-    /// Quantity threshold
-    /// </summary>
     public required string Threshold
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "threshold"); }
@@ -10951,9 +10948,6 @@ sealed class TieredPackagePriceTypeConverter : JsonConverter<TieredPackagePriceT
 )]
 public sealed record class TieredPackageTieredPackageConfig : JsonModel
 {
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -11045,9 +11039,6 @@ public sealed record class TieredPackageTieredPackageConfigTier : JsonModel
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
@@ -12203,18 +12194,12 @@ class TieredWithMinimumTieredWithMinimumConfigFromRaw
 )]
 public sealed record class TieredWithMinimumTieredWithMinimumConfigTier : JsonModel
 {
-    /// <summary>
-    /// Minimum amount
-    /// </summary>
     public required string MinimumAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
         init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
@@ -13293,9 +13278,6 @@ class GroupedTieredGroupedTieredConfigFromRaw : IFromRawJson<GroupedTieredGroupe
 )]
 public sealed record class GroupedTieredGroupedTieredConfigTier : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
@@ -14395,9 +14377,6 @@ sealed class TieredPackageWithMinimumPriceTypeConverter
 )]
 public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfig : JsonModel
 {
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required double PackageSize
     {
         get { return JsonModel.GetNotNullStruct<double>(this.RawData, "package_size"); }
@@ -14482,27 +14461,18 @@ class TieredPackageWithMinimumTieredPackageWithMinimumConfigFromRaw
 )]
 public sealed record class TieredPackageWithMinimumTieredPackageWithMinimumConfigTier : JsonModel
 {
-    /// <summary>
-    /// Minimum amount
-    /// </summary>
     public required string MinimumAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
         init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
-    /// <summary>
-    /// Price per package
-    /// </summary>
     public required string PerUnit
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "per_unit"); }
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
@@ -15499,27 +15469,18 @@ sealed class PackageWithAllocationConversionRateConfigConverter
 )]
 public sealed record class PackageWithAllocationPackageWithAllocationConfig : JsonModel
 {
-    /// <summary>
-    /// Usage allocation
-    /// </summary>
     public required string Allocation
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "allocation"); }
         init { JsonModel.Set(this._rawData, "allocation", value); }
     }
 
-    /// <summary>
-    /// Price per package
-    /// </summary>
     public required string PackageAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_amount"); }
         init { JsonModel.Set(this._rawData, "package_amount", value); }
     }
 
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -24171,18 +24132,12 @@ class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigFromRaw
 public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactor
     : JsonModel
 {
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Scaling value
-    /// </summary>
     public required string ScalingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_value"); }
@@ -24253,9 +24208,6 @@ class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigScalingFactorFromR
 public sealed record class GroupedWithMeteredMinimumGroupedWithMeteredMinimumConfigUnitAmount
     : JsonModel
 {
-    /// <summary>
-    /// Pricing value
-    /// </summary>
     public required string PricingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "pricing_value"); }
@@ -27547,9 +27499,6 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfig : Json
         init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -27634,7 +27583,7 @@ class GroupedTieredPackageGroupedTieredPackageConfigFromRaw
 public sealed record class GroupedTieredPackageGroupedTieredPackageConfigTier : JsonModel
 {
     /// <summary>
-    /// Price per package
+    /// Per package
     /// </summary>
     public required string PerUnit
     {
@@ -27642,9 +27591,6 @@ public sealed record class GroupedTieredPackageGroupedTieredPackageConfigTier : 
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
@@ -28696,9 +28642,6 @@ public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfig : Js
         init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -28781,9 +28724,6 @@ class MaxGroupTieredPackageMaxGroupTieredPackageConfigFromRaw
 )]
 public sealed record class MaxGroupTieredPackageMaxGroupTieredPackageConfigTier : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
@@ -30012,27 +29952,18 @@ class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigFromRaw
 public sealed record class ScalableMatrixWithUnitPricingScalableMatrixWithUnitPricingConfigMatrixScalingFactor
     : JsonModel
 {
-    /// <summary>
-    /// First dimension value
-    /// </summary>
     public required string FirstDimensionValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
         init { JsonModel.Set(this._rawData, "first_dimension_value", value); }
     }
 
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Second dimension value (optional)
-    /// </summary>
     public string? SecondDimensionValue
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension_value"); }
@@ -31120,9 +31051,6 @@ public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTier
         init { JsonModel.Set(this._rawData, "matrix_scaling_factors", value); }
     }
 
-    /// <summary>
-    /// Tier pricing structure
-    /// </summary>
     public required IReadOnlyList<ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier> Tiers
     {
         get
@@ -31215,27 +31143,18 @@ class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigFromRa
 public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrixScalingFactor
     : JsonModel
 {
-    /// <summary>
-    /// First dimension value
-    /// </summary>
     public required string FirstDimensionValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
         init { JsonModel.Set(this._rawData, "first_dimension_value", value); }
     }
 
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Second dimension value (optional)
-    /// </summary>
     public string? SecondDimensionValue
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension_value"); }
@@ -31310,18 +31229,12 @@ class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigMatrix
 public sealed record class ScalableMatrixWithTieredPricingScalableMatrixWithTieredPricingConfigTier
     : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
         init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
-    /// <summary>
-    /// Per unit amount
-    /// </summary>
     public required string UnitAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
@@ -32334,9 +32247,6 @@ public sealed record class CumulativeGroupedBulkCumulativeGroupedBulkConfig : Js
         init { JsonModel.Set(this._rawData, "dimension_values", value); }
     }
 
-    /// <summary>
-    /// Grouping key name
-    /// </summary>
     public required string Group
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "group"); }

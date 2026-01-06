@@ -405,9 +405,6 @@ sealed class NewPlanTieredPackagePriceModelTypeConverter
 )]
 public sealed record class NewPlanTieredPackagePriceTieredPackageConfig : JsonModel
 {
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -501,9 +498,6 @@ public sealed record class NewPlanTieredPackagePriceTieredPackageConfigTier : Js
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

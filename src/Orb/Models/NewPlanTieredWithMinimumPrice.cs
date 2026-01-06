@@ -528,18 +528,12 @@ class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigFromRaw
 )]
 public sealed record class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTier : JsonModel
 {
-    /// <summary>
-    /// Minimum amount
-    /// </summary>
     public required string MinimumAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
         init { JsonModel.Set(this._rawData, "minimum_amount", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

@@ -372,9 +372,6 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
         init { JsonModel.Set(this._rawData, "grouping_key", value); }
     }
 
-    /// <summary>
-    /// Package size
-    /// </summary>
     public required string PackageSize
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_size"); }
@@ -462,7 +459,7 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
     : JsonModel
 {
     /// <summary>
-    /// Price per package
+    /// Per package
     /// </summary>
     public required string PerUnit
     {
@@ -470,9 +467,6 @@ public sealed record class NewPlanGroupedTieredPackagePriceGroupedTieredPackageC
         init { JsonModel.Set(this._rawData, "per_unit", value); }
     }
 
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

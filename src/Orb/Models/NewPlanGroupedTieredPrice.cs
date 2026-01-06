@@ -444,9 +444,6 @@ class NewPlanGroupedTieredPriceGroupedTieredConfigFromRaw
 )]
 public sealed record class NewPlanGroupedTieredPriceGroupedTieredConfigTier : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }

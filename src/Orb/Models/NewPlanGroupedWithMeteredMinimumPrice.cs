@@ -505,18 +505,12 @@ class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigFromRa
 public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalingFactor
     : JsonModel
 {
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Scaling value
-    /// </summary>
     public required string ScalingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_value"); }
@@ -588,9 +582,6 @@ class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigScalin
 public sealed record class NewPlanGroupedWithMeteredMinimumPriceGroupedWithMeteredMinimumConfigUnitAmount
     : JsonModel
 {
-    /// <summary>
-    /// Pricing value
-    /// </summary>
     public required string PricingValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "pricing_value"); }

@@ -428,9 +428,6 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
         init { JsonModel.Set(this._rawData, "matrix_scaling_factors", value); }
     }
 
-    /// <summary>
-    /// Tier pricing structure
-    /// </summary>
     public required IReadOnlyList<ScalableMatrixWithTieredPricingConfigTier> Tiers
     {
         get
@@ -511,27 +508,18 @@ class ScalableMatrixWithTieredPricingConfigFromRaw
 [JsonConverter(typeof(JsonModelConverter<MatrixScalingFactor, MatrixScalingFactorFromRaw>))]
 public sealed record class MatrixScalingFactor : JsonModel
 {
-    /// <summary>
-    /// First dimension value
-    /// </summary>
     public required string FirstDimensionValue
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "first_dimension_value"); }
         init { JsonModel.Set(this._rawData, "first_dimension_value", value); }
     }
 
-    /// <summary>
-    /// Scaling factor
-    /// </summary>
     public required string ScalingFactor
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "scaling_factor"); }
         init { JsonModel.Set(this._rawData, "scaling_factor", value); }
     }
 
-    /// <summary>
-    /// Second dimension value (optional)
-    /// </summary>
     public string? SecondDimensionValue
     {
         get { return JsonModel.GetNullableClass<string>(this.RawData, "second_dimension_value"); }
@@ -591,18 +579,12 @@ class MatrixScalingFactorFromRaw : IFromRawJson<MatrixScalingFactor>
 )]
 public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
 {
-    /// <summary>
-    /// Tier lower bound
-    /// </summary>
     public required string TierLowerBound
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "tier_lower_bound"); }
         init { JsonModel.Set(this._rawData, "tier_lower_bound", value); }
     }
 
-    /// <summary>
-    /// Per unit amount
-    /// </summary>
     public required string UnitAmount
     {
         get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
