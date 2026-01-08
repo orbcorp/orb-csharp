@@ -178,6 +178,12 @@ public sealed class OrbClient : IOrbClient
         get { return _subscriptionChanges.Value; }
     }
 
+    readonly Lazy<ICreditBlockService> _creditBlocks;
+    public ICreditBlockService CreditBlocks
+    {
+        get { return _creditBlocks.Value; }
+    }
+
     /// <inheritdoc/>
     public async Task<HttpResponse> Execute<T>(
         HttpRequest<T> request,
@@ -399,6 +405,7 @@ public sealed class OrbClient : IOrbClient
         _alerts = new(() => new AlertService(this));
         _dimensionalPriceGroups = new(() => new DimensionalPriceGroupService(this));
         _subscriptionChanges = new(() => new SubscriptionChangeService(this));
+        _creditBlocks = new(() => new CreditBlockService(this));
     }
 
     public OrbClient(ClientOptions options)

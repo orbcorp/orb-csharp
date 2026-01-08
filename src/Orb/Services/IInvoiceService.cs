@@ -70,6 +70,24 @@ public interface IInvoiceService
     );
 
     /// <summary>
+    /// This endpoint deletes an invoice line item from a draft invoice.
+    ///
+    /// <para>This endpoint only allows deletion of one-off line items (not subscription-based
+    /// line items). The invoice must be in a draft status for this operation to succeed.</para>
+    /// </summary>
+    Task DeleteLineItem(
+        InvoiceDeleteLineItemParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="DeleteLineItem(InvoiceDeleteLineItemParams, CancellationToken)"/>
+    Task DeleteLineItem(
+        string lineItemID,
+        InvoiceDeleteLineItemParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// This endpoint is used to fetch an [`Invoice`](/core-concepts#invoice) given
     /// an identifier.
     /// </summary>
@@ -111,6 +129,28 @@ public interface IInvoiceService
     Task<Invoice> Issue(
         string invoiceID,
         InvoiceIssueParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This is a lighter-weight endpoint that returns a list of all [`Invoice`](/core-concepts#invoice)
+    /// summaries for an account in a list format.
+    ///
+    /// <para>These invoice summaries do not include line item details, minimums,
+    /// maximums, and discounts, making this endpoint more efficient.</para>
+    ///
+    /// <para>The list of invoices is ordered starting from the most recently issued
+    /// invoice date. The response also includes [`pagination_metadata`](/api-reference/pagination),
+    /// which lets the caller retrieve the next page of results if they exist.</para>
+    ///
+    /// <para>By default, this only returns invoices that are `issued`, `paid`, or `synced`.</para>
+    ///
+    /// <para>When fetching any `draft` invoices, this returns the last-computed invoice
+    /// values for each draft invoice, which may not always be up-to-date since Orb
+    /// regularly refreshes invoices asynchronously.</para>
+    /// </summary>
+    Task<InvoiceListSummaryPage> ListSummary(
+        InvoiceListSummaryParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

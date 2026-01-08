@@ -113,6 +113,37 @@ public sealed class InvoiceService : IInvoiceService
     }
 
     /// <inheritdoc/>
+    public async Task DeleteLineItem(
+        InvoiceDeleteLineItemParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.LineItemID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.LineItemID' cannot be null");
+        }
+
+        HttpRequest<InvoiceDeleteLineItemParams> request = new()
+        {
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task DeleteLineItem(
+        string lineItemID,
+        InvoiceDeleteLineItemParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        await this.DeleteLineItem(parameters with { LineItemID = lineItemID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
     public async Task<Invoice> Fetch(
         InvoiceFetchParams parameters,
         CancellationToken cancellationToken = default
@@ -212,6 +243,32 @@ public sealed class InvoiceService : IInvoiceService
         parameters ??= new();
 
         return await this.Issue(parameters with { InvoiceID = invoiceID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<InvoiceListSummaryPage> ListSummary(
+        InvoiceListSummaryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<InvoiceListSummaryParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<InvoiceListSummaryPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return new InvoiceListSummaryPage(this, parameters, page);
     }
 
     /// <inheritdoc/>

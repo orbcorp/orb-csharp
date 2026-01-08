@@ -4,9 +4,9 @@ using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers;
+using Orb.Models.Plans;
 using Orb.Models.SubscriptionChanges;
 using Models = Orb.Models;
-using Plans = Orb.Models.Plans;
 
 namespace Orb.Tests.Models.SubscriptionChanges;
 
@@ -337,7 +337,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -496,12 +496,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -654,7 +650,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -1890,7 +1886,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -2048,12 +2044,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -2203,7 +2195,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
             ChangedResources = new()
             {
@@ -3427,7 +3419,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -3586,12 +3578,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -3744,7 +3732,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -4996,7 +4984,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -5155,12 +5143,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -5313,7 +5297,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -6553,7 +6537,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -6711,12 +6695,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -6866,7 +6846,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
             ChangedResources = new()
             {
@@ -8090,7 +8070,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -8249,12 +8229,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -8407,7 +8383,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -9656,7 +9632,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -9815,12 +9791,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -9973,7 +9945,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -11227,7 +11199,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -11386,12 +11358,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -11544,7 +11512,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -12787,7 +12755,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -12946,12 +12914,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -13104,7 +13068,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {
@@ -14365,7 +14329,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                                 Reason = "reason",
                             },
                             Duration = 0,
-                            DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                            DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                             Maximum = new()
                             {
                                 AppliesToPriceIds = ["string"],
@@ -14524,12 +14488,8 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                         CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         Name = "name",
                     },
-                    Status = Plans::PlanStatus.Active,
-                    TrialConfig = new()
-                    {
-                        TrialPeriod = 0,
-                        TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                    },
+                    Status = PlanStatus.Active,
+                    TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                     Version = 0,
                 },
                 PriceIntervals =
@@ -14682,7 +14642,7 @@ public class SubscriptionChangeRetrieveResponseTest : TestBase
                     StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = Status.Active,
+                Status = MutatedSubscriptionStatus.Active,
                 TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
                 ChangedResources = new()
                 {

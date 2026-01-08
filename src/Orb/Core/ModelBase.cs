@@ -8,6 +8,7 @@ using Alerts = Orb.Models.Alerts;
 using Backfills = Orb.Models.Events.Backfills;
 using BalanceTransactions = Orb.Models.Customers.BalanceTransactions;
 using Beta = Orb.Models.Beta;
+using CreditBlocks = Orb.Models.CreditBlocks;
 using CreditNotes = Orb.Models.CreditNotes;
 using Credits = Orb.Models.Customers.Credits;
 using Customers = Orb.Models.Customers;
@@ -15,6 +16,7 @@ using ExternalPlanID = Orb.Models.Beta.ExternalPlanID;
 using Invoices = Orb.Models.Invoices;
 using Ledger = Orb.Models.Customers.Credits.Ledger;
 using Metrics = Orb.Models.Metrics;
+using Migrations = Orb.Models.Plans.Migrations;
 using Plans = Orb.Models.Plans;
 using Prices = Orb.Models.Prices;
 using SubscriptionChanges = Orb.Models.SubscriptionChanges;
@@ -557,9 +559,25 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Invoices::InvoiceSource>(),
             new ApiEnumConverter<string, Invoices::PaymentProvider>(),
             new ApiEnumConverter<string, Invoices::InvoiceFetchUpcomingResponseStatus>(),
+            new ApiEnumConverter<
+                string,
+                Invoices::InvoiceListSummaryResponseCustomerBalanceTransactionAction
+            >(),
+            new ApiEnumConverter<
+                string,
+                Invoices::InvoiceListSummaryResponseCustomerBalanceTransactionType
+            >(),
+            new ApiEnumConverter<string, Invoices::InvoiceListSummaryResponseInvoiceSource>(),
+            new ApiEnumConverter<
+                string,
+                Invoices::InvoiceListSummaryResponsePaymentAttemptPaymentProvider
+            >(),
+            new ApiEnumConverter<string, Invoices::InvoiceListSummaryResponseStatus>(),
             new ApiEnumConverter<string, Invoices::ModelType>(),
             new ApiEnumConverter<string, Invoices::DateType>(),
             new ApiEnumConverter<string, Invoices::Status>(),
+            new ApiEnumConverter<string, Invoices::InvoiceListSummaryParamsDateType>(),
+            new ApiEnumConverter<string, Invoices::InvoiceListSummaryParamsStatus>(),
             new ApiEnumConverter<string, ItemExternalConnectionExternalConnectionName>(),
             new ApiEnumConverter<string, ExternalConnectionName>(),
             new ApiEnumConverter<string, Metrics::Status>(),
@@ -575,6 +593,18 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Plans::DurationUnit>(),
             new ApiEnumConverter<string, Plans::Status>(),
             new ApiEnumConverter<string, Plans::PlanListParamsStatus>(),
+            new ApiEnumConverter<string, Migrations::UnionMember2>(),
+            new ApiEnumConverter<string, Migrations::Status>(),
+            new ApiEnumConverter<
+                string,
+                Migrations::MigrationListResponseEffectiveTimeUnionMember2
+            >(),
+            new ApiEnumConverter<string, Migrations::MigrationListResponseStatus>(),
+            new ApiEnumConverter<
+                string,
+                Migrations::MigrationCancelResponseEffectiveTimeUnionMember2
+            >(),
+            new ApiEnumConverter<string, Migrations::MigrationCancelResponseStatus>(),
             new ApiEnumConverter<string, Prices::Cadence>(),
             new ApiEnumConverter<string, Prices::GroupedWithMinMaxThresholdsCadence>(),
             new ApiEnumConverter<string, Prices::CumulativeGroupedAllocationCadence>(),
@@ -874,10 +904,14 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Alerts::Type>(),
             new ApiEnumConverter<string, Alerts::AlertCreateForExternalCustomerParamsType>(),
             new ApiEnumConverter<string, Alerts::AlertCreateForSubscriptionParamsType>(),
-            new ApiEnumConverter<string, SubscriptionChanges::Status>(),
+            new ApiEnumConverter<string, SubscriptionChanges::MutatedSubscriptionStatus>(),
             new ApiEnumConverter<
                 string,
                 SubscriptionChanges::SubscriptionChangeRetrieveResponseStatus
+            >(),
+            new ApiEnumConverter<
+                string,
+                SubscriptionChanges::SubscriptionChangeListResponseStatus
             >(),
             new ApiEnumConverter<
                 string,
@@ -887,6 +921,10 @@ public abstract record class ModelBase
                 string,
                 SubscriptionChanges::SubscriptionChangeCancelResponseStatus
             >(),
+            new ApiEnumConverter<string, SubscriptionChanges::Status>(),
+            new ApiEnumConverter<string, CreditBlocks::Field>(),
+            new ApiEnumConverter<string, CreditBlocks::Operator>(),
+            new ApiEnumConverter<string, CreditBlocks::Status>(),
         },
     };
 
