@@ -52,6 +52,16 @@ public class InvoiceServiceTest : TestBase
     }
 
     [Fact]
+    public async Task DeleteLineItem_Works()
+    {
+        await this.client.Invoices.DeleteLineItem(
+            "line_item_id",
+            new() { InvoiceID = "invoice_id" },
+            TestContext.Current.CancellationToken
+        );
+    }
+
+    [Fact]
     public async Task Fetch_Works()
     {
         var invoice = await this.client.Invoices.Fetch(
@@ -81,6 +91,16 @@ public class InvoiceServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         invoice.Validate();
+    }
+
+    [Fact]
+    public async Task ListSummary_Works()
+    {
+        var page = await this.client.Invoices.ListSummary(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        page.Validate();
     }
 
     [Fact]

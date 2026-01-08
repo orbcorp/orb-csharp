@@ -16,6 +16,16 @@ public class SubscriptionChangeServiceTest : TestBase
     }
 
     [Fact]
+    public async Task List_Works()
+    {
+        var page = await this.client.SubscriptionChanges.List(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        page.Validate();
+    }
+
+    [Fact]
     public async Task Apply_Works()
     {
         var response = await this.client.SubscriptionChanges.Apply(

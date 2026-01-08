@@ -4,9 +4,9 @@ using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
 using Orb.Models.Customers;
+using Orb.Models.Plans;
 using Orb.Models.SubscriptionChanges;
 using Models = Orb.Models;
-using Plans = Orb.Models.Plans;
 
 namespace Orb.Tests.Models.SubscriptionChanges;
 
@@ -325,7 +325,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -483,12 +483,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -638,7 +634,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
             ChangedResources = new()
             {
@@ -1717,7 +1713,7 @@ public class MutatedSubscriptionTest : TestBase
         string expectedName = "name";
         long expectedNetTerms = 0;
         Models::SubscriptionChangeMinified expectedPendingSubscriptionChange = new("id");
-        Plans::Plan expectedPlan = new()
+        Plan expectedPlan = new()
         {
             ID = "id",
             Adjustments =
@@ -1830,7 +1826,7 @@ public class MutatedSubscriptionTest : TestBase
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIds = ["string"],
@@ -1988,8 +1984,8 @@ public class MutatedSubscriptionTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Name = "name",
             },
-            Status = Plans::PlanStatus.Active,
-            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = Plans::TrialPeriodUnit.Days },
+            Status = PlanStatus.Active,
+            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
             Version = 0,
         };
         List<Models::PriceInterval> expectedPriceIntervals =
@@ -2137,7 +2133,8 @@ public class MutatedSubscriptionTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, Status> expectedStatus = Status.Active;
+        ApiEnum<string, MutatedSubscriptionStatus> expectedStatus =
+            MutatedSubscriptionStatus.Active;
         Models::SubscriptionTrialInfo expectedTrialInfo = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
         );
@@ -3353,7 +3350,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -3511,12 +3508,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -3666,7 +3659,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
             ChangedResources = new()
             {
@@ -4865,7 +4858,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -5023,12 +5016,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -5178,7 +5167,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
             ChangedResources = new()
             {
@@ -6261,7 +6250,7 @@ public class MutatedSubscriptionTest : TestBase
         string expectedName = "name";
         long expectedNetTerms = 0;
         Models::SubscriptionChangeMinified expectedPendingSubscriptionChange = new("id");
-        Plans::Plan expectedPlan = new()
+        Plan expectedPlan = new()
         {
             ID = "id",
             Adjustments =
@@ -6374,7 +6363,7 @@ public class MutatedSubscriptionTest : TestBase
                         Reason = "reason",
                     },
                     Duration = 0,
-                    DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                    DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                     Maximum = new()
                     {
                         AppliesToPriceIds = ["string"],
@@ -6532,8 +6521,8 @@ public class MutatedSubscriptionTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Name = "name",
             },
-            Status = Plans::PlanStatus.Active,
-            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = Plans::TrialPeriodUnit.Days },
+            Status = PlanStatus.Active,
+            TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
             Version = 0,
         };
         List<Models::PriceInterval> expectedPriceIntervals =
@@ -6681,7 +6670,8 @@ public class MutatedSubscriptionTest : TestBase
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         DateTimeOffset expectedStartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, Status> expectedStatus = Status.Active;
+        ApiEnum<string, MutatedSubscriptionStatus> expectedStatus =
+            MutatedSubscriptionStatus.Active;
         Models::SubscriptionTrialInfo expectedTrialInfo = new(
             DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")
         );
@@ -7906,7 +7896,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -8064,12 +8054,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -8219,7 +8205,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
             ChangedResources = new()
             {
@@ -9415,7 +9401,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -9573,12 +9559,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -9728,7 +9710,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
@@ -10049,7 +10031,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -10207,12 +10189,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -10362,7 +10340,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
         };
 
@@ -10682,7 +10660,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -10840,12 +10818,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -10995,7 +10969,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
 
             ChangedResources = null,
@@ -11318,7 +11292,7 @@ public class MutatedSubscriptionTest : TestBase
                             Reason = "reason",
                         },
                         Duration = 0,
-                        DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                        DurationUnit = PlanPlanPhaseDurationUnit.Daily,
                         Maximum = new()
                         {
                             AppliesToPriceIds = ["string"],
@@ -11476,12 +11450,8 @@ public class MutatedSubscriptionTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Name = "name",
                 },
-                Status = Plans::PlanStatus.Active,
-                TrialConfig = new()
-                {
-                    TrialPeriod = 0,
-                    TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
-                },
+                Status = PlanStatus.Active,
+                TrialConfig = new() { TrialPeriod = 0, TrialPeriodUnit = TrialPeriodUnit.Days },
                 Version = 0,
             },
             PriceIntervals =
@@ -11631,7 +11601,7 @@ public class MutatedSubscriptionTest : TestBase
                 StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = Status.Active,
+            Status = MutatedSubscriptionStatus.Active,
             TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
 
             ChangedResources = null,
@@ -11803,23 +11773,23 @@ public class DiscountIntervalTest : TestBase
     }
 }
 
-public class StatusTest : TestBase
+public class MutatedSubscriptionStatusTest : TestBase
 {
     [Theory]
-    [InlineData(Status.Active)]
-    [InlineData(Status.Ended)]
-    [InlineData(Status.Upcoming)]
-    public void Validation_Works(Status rawValue)
+    [InlineData(MutatedSubscriptionStatus.Active)]
+    [InlineData(MutatedSubscriptionStatus.Ended)]
+    [InlineData(MutatedSubscriptionStatus.Upcoming)]
+    public void Validation_Works(MutatedSubscriptionStatus rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Status> value = rawValue;
+        ApiEnum<string, MutatedSubscriptionStatus> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MutatedSubscriptionStatus>>(
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
@@ -11829,16 +11799,16 @@ public class StatusTest : TestBase
     }
 
     [Theory]
-    [InlineData(Status.Active)]
-    [InlineData(Status.Ended)]
-    [InlineData(Status.Upcoming)]
-    public void SerializationRoundtrip_Works(Status rawValue)
+    [InlineData(MutatedSubscriptionStatus.Active)]
+    [InlineData(MutatedSubscriptionStatus.Ended)]
+    [InlineData(MutatedSubscriptionStatus.Upcoming)]
+    public void SerializationRoundtrip_Works(MutatedSubscriptionStatus rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Status> value = rawValue;
+        ApiEnum<string, MutatedSubscriptionStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MutatedSubscriptionStatus>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -11849,12 +11819,12 @@ public class StatusTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MutatedSubscriptionStatus>>(
             JsonSerializer.Deserialize<JsonElement>("\"invalid value\""),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Status>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MutatedSubscriptionStatus>>(
             json,
             ModelBase.SerializerOptions
         );

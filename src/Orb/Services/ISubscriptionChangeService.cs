@@ -43,6 +43,16 @@ public interface ISubscriptionChangeService
     );
 
     /// <summary>
+    /// This endpoint returns a list of pending subscription changes for a customer.
+    /// Use the [Fetch Subscription Change](fetch-subscription-change) endpoint to
+    /// retrieve the expected subscription state after the pending change is applied.
+    /// </summary>
+    Task<SubscriptionChangeListPage> List(
+        SubscriptionChangeListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Apply a subscription change to perform the intended action. If a positive
     /// amount is passed with a request to this endpoint, any eligible invoices that
     /// were created will be issued immediately if they only contain in-advance fees.

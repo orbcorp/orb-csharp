@@ -72,6 +72,32 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     }
 
     /// <inheritdoc/>
+    public async Task<SubscriptionChangeListPage> List(
+        SubscriptionChangeListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<SubscriptionChangeListParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this
+            ._client.Execute(request, cancellationToken)
+            .ConfigureAwait(false);
+        var page = await response
+            .Deserialize<SubscriptionChangeListPageResponse>(cancellationToken)
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            page.Validate();
+        }
+        return new SubscriptionChangeListPage(this, parameters, page);
+    }
+
+    /// <inheritdoc/>
     public async Task<SubscriptionChangeApplyResponse> Apply(
         SubscriptionChangeApplyParams parameters,
         CancellationToken cancellationToken = default

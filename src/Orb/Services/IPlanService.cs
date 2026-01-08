@@ -23,6 +23,8 @@ public interface IPlanService
 
     IExternalPlanIDService ExternalPlanID { get; }
 
+    IMigrationService Migrations { get; }
+
     /// <summary>
     /// This endpoint allows creation of plans including their prices.
     /// </summary>

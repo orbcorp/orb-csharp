@@ -24,12 +24,19 @@ public sealed class PlanService : IPlanService
     {
         _client = client;
         _externalPlanID = new(() => new ExternalPlanIDService(client));
+        _migrations = new(() => new MigrationService(client));
     }
 
     readonly Lazy<IExternalPlanIDService> _externalPlanID;
     public IExternalPlanIDService ExternalPlanID
     {
         get { return _externalPlanID.Value; }
+    }
+
+    readonly Lazy<IMigrationService> _migrations;
+    public IMigrationService Migrations
+    {
+        get { return _migrations.Value; }
     }
 
     /// <inheritdoc/>

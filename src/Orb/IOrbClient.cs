@@ -116,6 +116,8 @@ public interface IOrbClient : IDisposable
 
     ISubscriptionChangeService SubscriptionChanges { get; }
 
+    ICreditBlockService CreditBlocks { get; }
+
     /// <summary>
     /// Sends a request to the Orb REST API.
     /// </summary>
