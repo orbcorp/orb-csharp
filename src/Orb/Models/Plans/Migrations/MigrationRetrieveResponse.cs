@@ -88,7 +88,7 @@ class MigrationRetrieveResponseFromRaw : IFromRawJson<MigrationRetrieveResponse>
 }
 
 [JsonConverter(typeof(EffectiveTimeConverter))]
-public record class EffectiveTime
+public record class EffectiveTime : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -288,7 +288,7 @@ public record class EffectiveTime
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

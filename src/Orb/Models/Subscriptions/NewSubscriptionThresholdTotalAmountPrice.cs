@@ -563,7 +563,7 @@ class ConsumptionTableFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.Co
 }
 
 [JsonConverter(typeof(NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConverter))]
-public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
+public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -733,7 +733,7 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

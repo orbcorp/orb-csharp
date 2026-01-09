@@ -458,7 +458,7 @@ sealed class NewFloatingMinimumCompositePriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewFloatingMinimumCompositePriceConversionRateConfigConverter))]
-public record class NewFloatingMinimumCompositePriceConversionRateConfig
+public record class NewFloatingMinimumCompositePriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -628,7 +628,7 @@ public record class NewFloatingMinimumCompositePriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

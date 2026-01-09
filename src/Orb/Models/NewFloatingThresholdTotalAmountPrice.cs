@@ -536,7 +536,7 @@ class ConsumptionTableFromRaw : IFromRawJson<ConsumptionTable>
 }
 
 [JsonConverter(typeof(NewFloatingThresholdTotalAmountPriceConversionRateConfigConverter))]
-public record class NewFloatingThresholdTotalAmountPriceConversionRateConfig
+public record class NewFloatingThresholdTotalAmountPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -706,7 +706,7 @@ public record class NewFloatingThresholdTotalAmountPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

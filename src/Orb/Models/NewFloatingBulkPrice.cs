@@ -373,7 +373,7 @@ sealed class ModelTypeConverter : JsonConverter<ModelType>
 }
 
 [JsonConverter(typeof(ConversionRateConfigConverter))]
-public record class ConversionRateConfig
+public record class ConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -535,7 +535,7 @@ public record class ConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

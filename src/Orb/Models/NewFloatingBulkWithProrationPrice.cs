@@ -523,7 +523,7 @@ sealed class NewFloatingBulkWithProrationPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewFloatingBulkWithProrationPriceConversionRateConfigConverter))]
-public record class NewFloatingBulkWithProrationPriceConversionRateConfig
+public record class NewFloatingBulkWithProrationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -693,7 +693,7 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

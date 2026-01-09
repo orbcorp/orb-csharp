@@ -561,7 +561,7 @@ class TieredPackageWithMinimumConfigTierFromRaw
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigConverter))]
-public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig
+public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -731,7 +731,7 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

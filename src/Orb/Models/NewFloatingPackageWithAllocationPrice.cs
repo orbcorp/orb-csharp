@@ -458,7 +458,7 @@ class PackageWithAllocationConfigFromRaw : IFromRawJson<PackageWithAllocationCon
 }
 
 [JsonConverter(typeof(NewFloatingPackageWithAllocationPriceConversionRateConfigConverter))]
-public record class NewFloatingPackageWithAllocationPriceConversionRateConfig
+public record class NewFloatingPackageWithAllocationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -628,7 +628,7 @@ public record class NewFloatingPackageWithAllocationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

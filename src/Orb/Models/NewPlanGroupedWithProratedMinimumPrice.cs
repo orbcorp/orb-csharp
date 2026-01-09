@@ -493,7 +493,7 @@ sealed class NewPlanGroupedWithProratedMinimumPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewPlanGroupedWithProratedMinimumPriceConversionRateConfigConverter))]
-public record class NewPlanGroupedWithProratedMinimumPriceConversionRateConfig
+public record class NewPlanGroupedWithProratedMinimumPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -663,7 +663,7 @@ public record class NewPlanGroupedWithProratedMinimumPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

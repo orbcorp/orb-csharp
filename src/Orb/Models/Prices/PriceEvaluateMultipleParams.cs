@@ -302,7 +302,7 @@ class PriceEvaluationFromRaw : IFromRawJson<PriceEvaluation>
 /// New floating price request body params.
 /// </summary>
 [JsonConverter(typeof(global::Orb.Models.Prices.PriceConverter))]
-public record class Price
+public record class Price : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2134,7 +2134,7 @@ public record class Price
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -3513,7 +3513,7 @@ sealed class PriceBulkWithFiltersCadenceConverter : JsonConverter<PriceBulkWithF
 }
 
 [JsonConverter(typeof(PriceBulkWithFiltersConversionRateConfigConverter))]
-public record class PriceBulkWithFiltersConversionRateConfig
+public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3683,7 +3683,7 @@ public record class PriceBulkWithFiltersConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4235,7 +4235,7 @@ class PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFromRaw
 }
 
 [JsonConverter(typeof(PriceGroupedWithMinMaxThresholdsConversionRateConfigConverter))]
-public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig
+public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4405,7 +4405,7 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4957,7 +4957,7 @@ class PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFromRaw
 }
 
 [JsonConverter(typeof(PriceCumulativeGroupedAllocationConversionRateConfigConverter))]
-public record class PriceCumulativeGroupedAllocationConversionRateConfig
+public record class PriceCumulativeGroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5127,7 +5127,7 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -5630,7 +5630,7 @@ class PricePercentPercentConfigFromRaw : IFromRawJson<PricePercentPercentConfig>
 }
 
 [JsonConverter(typeof(PricePercentConversionRateConfigConverter))]
-public record class PricePercentConversionRateConfig
+public record class PricePercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5800,7 +5800,7 @@ public record class PricePercentConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6333,7 +6333,7 @@ class PriceEventOutputEventOutputConfigFromRaw : IFromRawJson<PriceEventOutputEv
 }
 
 [JsonConverter(typeof(PriceEventOutputConversionRateConfigConverter))]
-public record class PriceEventOutputConversionRateConfig
+public record class PriceEventOutputConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6503,7 +6503,7 @@ public record class PriceEventOutputConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

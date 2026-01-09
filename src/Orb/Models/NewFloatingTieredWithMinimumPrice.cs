@@ -568,7 +568,7 @@ class TieredWithMinimumConfigTierFromRaw : IFromRawJson<TieredWithMinimumConfigT
 }
 
 [JsonConverter(typeof(NewFloatingTieredWithMinimumPriceConversionRateConfigConverter))]
-public record class NewFloatingTieredWithMinimumPriceConversionRateConfig
+public record class NewFloatingTieredWithMinimumPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -738,7 +738,7 @@ public record class NewFloatingTieredWithMinimumPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

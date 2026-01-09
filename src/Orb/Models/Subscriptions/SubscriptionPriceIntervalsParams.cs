@@ -491,7 +491,7 @@ class AddFromRaw : IFromRawJson<Add>
 /// billing on the subscription.
 /// </summary>
 [JsonConverter(typeof(StartDateConverter))]
-public record class StartDate
+public record class StartDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -652,7 +652,7 @@ public record class StartDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -723,7 +723,7 @@ sealed class StartDateConverter : JsonConverter<StartDate>
 }
 
 [JsonConverter(typeof(DiscountConverter))]
-public record class Discount
+public record class Discount : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -931,7 +931,7 @@ public record class Discount
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1291,7 +1291,7 @@ class UsageFromRaw : IFromRawJson<Usage>
 /// billing on the subscription.
 /// </summary>
 [JsonConverter(typeof(EndDateConverter))]
-public record class EndDate
+public record class EndDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1452,7 +1452,7 @@ public record class EndDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1599,7 +1599,7 @@ class FixedFeeQuantityTransitionFromRaw
 /// New floating price request body params.
 /// </summary>
 [JsonConverter(typeof(PriceModelConverter))]
-public record class PriceModel
+public record class PriceModel : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3404,7 +3404,7 @@ public record class PriceModel
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4793,7 +4793,7 @@ sealed class PriceModelBulkWithFiltersCadenceConverter
 }
 
 [JsonConverter(typeof(PriceModelBulkWithFiltersConversionRateConfigConverter))]
-public record class PriceModelBulkWithFiltersConversionRateConfig
+public record class PriceModelBulkWithFiltersConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4963,7 +4963,7 @@ public record class PriceModelBulkWithFiltersConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -5518,7 +5518,7 @@ class PriceModelGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfigFrom
 }
 
 [JsonConverter(typeof(PriceModelGroupedWithMinMaxThresholdsConversionRateConfigConverter))]
-public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig
+public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5688,7 +5688,7 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6243,7 +6243,7 @@ class PriceModelCumulativeGroupedAllocationCumulativeGroupedAllocationConfigFrom
 }
 
 [JsonConverter(typeof(PriceModelCumulativeGroupedAllocationConversionRateConfigConverter))]
-public record class PriceModelCumulativeGroupedAllocationConversionRateConfig
+public record class PriceModelCumulativeGroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6413,7 +6413,7 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6923,7 +6923,7 @@ class PriceModelPercentPercentConfigFromRaw : IFromRawJson<PriceModelPercentPerc
 }
 
 [JsonConverter(typeof(PriceModelPercentConversionRateConfigConverter))]
-public record class PriceModelPercentConversionRateConfig
+public record class PriceModelPercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7093,7 +7093,7 @@ public record class PriceModelPercentConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -7628,7 +7628,7 @@ class PriceModelEventOutputEventOutputConfigFromRaw
 }
 
 [JsonConverter(typeof(PriceModelEventOutputConversionRateConfigConverter))]
-public record class PriceModelEventOutputConversionRateConfig
+public record class PriceModelEventOutputConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7798,7 +7798,7 @@ public record class PriceModelEventOutputConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8041,7 +8041,7 @@ class SubscriptionPriceIntervalsParamsAddAdjustmentFromRaw
 /// as inclusive for in-advance prices, and exclusive for in-arrears prices.
 /// </summary>
 [JsonConverter(typeof(SubscriptionPriceIntervalsParamsAddAdjustmentStartDateConverter))]
-public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate
+public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8217,7 +8217,7 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8294,7 +8294,7 @@ sealed class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateConverter
 /// The definition of a new adjustment to create and add to the subscription.
 /// </summary>
 [JsonConverter(typeof(SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentConverter))]
-public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment
+public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8618,7 +8618,7 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8799,7 +8799,7 @@ sealed class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentConverter
 /// exclusive for in-advance prices, and inclusive for in-arrears prices.
 /// </summary>
 [JsonConverter(typeof(SubscriptionPriceIntervalsParamsAddAdjustmentEndDateConverter))]
-public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate
+public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8975,7 +8975,7 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -9212,7 +9212,7 @@ class EditFromRaw : IFromRawJson<Edit>
 /// not be updated.
 /// </summary>
 [JsonConverter(typeof(EditEndDateConverter))]
-public record class EditEndDate
+public record class EditEndDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -9373,7 +9373,7 @@ public record class EditEndDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -9524,7 +9524,7 @@ class EditFixedFeeQuantityTransitionFromRaw : IFromRawJson<EditFixedFeeQuantityT
 /// will not be updated.
 /// </summary>
 [JsonConverter(typeof(EditStartDateConverter))]
-public record class EditStartDate
+public record class EditStartDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -9693,7 +9693,7 @@ public record class EditStartDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -9858,7 +9858,7 @@ class EditAdjustmentFromRaw : IFromRawJson<EditAdjustment>
 /// will not be updated.
 /// </summary>
 [JsonConverter(typeof(EditAdjustmentEndDateConverter))]
-public record class EditAdjustmentEndDate
+public record class EditAdjustmentEndDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -10029,7 +10029,7 @@ public record class EditAdjustmentEndDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -10106,7 +10106,7 @@ sealed class EditAdjustmentEndDateConverter : JsonConverter<EditAdjustmentEndDat
 /// date will not be updated.
 /// </summary>
 [JsonConverter(typeof(EditAdjustmentStartDateConverter))]
-public record class EditAdjustmentStartDate
+public record class EditAdjustmentStartDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -10277,7 +10277,7 @@ public record class EditAdjustmentStartDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

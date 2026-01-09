@@ -93,7 +93,7 @@ class MigrationListResponseFromRaw : IFromRawJson<MigrationListResponse>
 }
 
 [JsonConverter(typeof(MigrationListResponseEffectiveTimeConverter))]
-public record class MigrationListResponseEffectiveTime
+public record class MigrationListResponseEffectiveTime : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -313,7 +313,7 @@ public record class MigrationListResponseEffectiveTime
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

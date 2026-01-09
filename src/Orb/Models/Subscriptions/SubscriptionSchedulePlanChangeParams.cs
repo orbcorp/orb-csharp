@@ -767,7 +767,7 @@ class SubscriptionSchedulePlanChangeParamsAddAdjustmentFromRaw
 /// The definition of a new adjustment to create and add to the subscription.
 /// </summary>
 [JsonConverter(typeof(SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverter))]
-public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
+public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1091,7 +1091,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1452,7 +1452,7 @@ class SubscriptionSchedulePlanChangeParamsAddPriceFromRaw
 /// New subscription price request body params.
 /// </summary>
 [JsonConverter(typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceConverter))]
-public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
+public record class SubscriptionSchedulePlanChangeParamsAddPricePrice : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3502,7 +3502,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4976,6 +4976,7 @@ sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersCad
     typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5147,7 +5148,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -5821,6 +5822,7 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationTiered
     typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5992,7 +5994,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6600,6 +6602,7 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThreshol
     typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6771,7 +6774,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -7379,6 +7382,7 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocati
     typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7550,7 +7554,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8110,6 +8114,7 @@ class SubscriptionSchedulePlanChangeParamsAddPricePricePercentPercentConfigFromR
     typeof(SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8281,7 +8286,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8872,6 +8877,7 @@ class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputEventOutputCon
     typeof(SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -9043,7 +9049,7 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -9437,7 +9443,7 @@ class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentFromRaw
 /// The definition of a new adjustment to create and add to the subscription.
 /// </summary>
 [JsonConverter(typeof(SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConverter))]
-public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment
+public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -9761,7 +9767,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -10112,7 +10118,7 @@ class SubscriptionSchedulePlanChangeParamsReplacePriceFromRaw
 /// New subscription price request body params.
 /// </summary>
 [JsonConverter(typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter))]
-public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
+public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -12167,7 +12173,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -13644,6 +13650,7 @@ sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFilter
     typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -13815,7 +13822,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -14491,6 +14498,7 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationTi
     typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -14662,7 +14670,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -15270,6 +15278,7 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThre
     typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -15441,7 +15450,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -16049,6 +16058,7 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllo
     typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -16220,7 +16230,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -16786,6 +16796,7 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentPercentConfigF
     typeof(SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -16957,7 +16968,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -17555,6 +17566,7 @@ class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputEventOutpu
     typeof(SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfigConverter)
 )]
 public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -17726,7 +17738,7 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

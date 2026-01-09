@@ -267,7 +267,7 @@ class InvoiceLineItemCreateResponseFromRaw : IFromRawJson<InvoiceLineItemCreateR
 }
 
 [JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.AdjustmentConverter))]
-public record class Adjustment
+public record class Adjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -620,7 +620,7 @@ public record class Adjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -799,7 +799,7 @@ sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.InvoiceLineI
 }
 
 [JsonConverter(typeof(global::Orb.Models.InvoiceLineItems.SubLineItemConverter))]
-public record class SubLineItem
+public record class SubLineItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1035,7 +1035,7 @@ public record class SubLineItem
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

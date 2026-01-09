@@ -373,7 +373,7 @@ sealed class NewFloatingUnitPriceModelTypeConverter : JsonConverter<NewFloatingU
 }
 
 [JsonConverter(typeof(NewFloatingUnitPriceConversionRateConfigConverter))]
-public record class NewFloatingUnitPriceConversionRateConfig
+public record class NewFloatingUnitPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -543,7 +543,7 @@ public record class NewFloatingUnitPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

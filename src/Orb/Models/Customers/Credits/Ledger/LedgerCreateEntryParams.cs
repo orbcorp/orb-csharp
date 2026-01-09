@@ -188,7 +188,7 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
 }
 
 [JsonConverter(typeof(BodyConverter))]
-public record class Body
+public record class Body : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -539,7 +539,7 @@ public record class Body
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1225,7 +1225,7 @@ class InvoiceSettingsFromRaw : IFromRawJson<InvoiceSettings>
 /// calculated based on the `net_terms` value.
 /// </summary>
 [JsonConverter(typeof(CustomDueDateConverter))]
-public record class CustomDueDate
+public record class CustomDueDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1385,7 +1385,7 @@ public record class CustomDueDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1457,7 +1457,7 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
 /// block's effective date.
 /// </summary>
 [JsonConverter(typeof(InvoiceDateConverter))]
-public record class InvoiceDate
+public record class InvoiceDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1613,7 +1613,7 @@ public record class InvoiceDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

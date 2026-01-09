@@ -543,7 +543,7 @@ sealed class NewFloatingMaxGroupTieredPackagePriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewFloatingMaxGroupTieredPackagePriceConversionRateConfigConverter))]
-public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig
+public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -713,7 +713,7 @@ public record class NewFloatingMaxGroupTieredPackagePriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

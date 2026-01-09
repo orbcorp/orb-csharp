@@ -10,7 +10,7 @@ using System = System;
 namespace Orb.Models.Subscriptions;
 
 [JsonConverter(typeof(SubscriptionUsageConverter))]
-public record class SubscriptionUsage
+public record class SubscriptionUsage : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -171,7 +171,7 @@ public record class SubscriptionUsage
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

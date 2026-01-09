@@ -747,7 +747,7 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
 }
 
 [JsonConverter(typeof(CustomerUpdateByExternalIDParamsTaxConfigurationConverter))]
-public record class CustomerUpdateByExternalIDParamsTaxConfiguration
+public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1121,7 +1121,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

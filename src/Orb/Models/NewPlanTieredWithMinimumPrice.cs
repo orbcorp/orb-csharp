@@ -600,7 +600,7 @@ class NewPlanTieredWithMinimumPriceTieredWithMinimumConfigTierFromRaw
 }
 
 [JsonConverter(typeof(NewPlanTieredWithMinimumPriceConversionRateConfigConverter))]
-public record class NewPlanTieredWithMinimumPriceConversionRateConfig
+public record class NewPlanTieredWithMinimumPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -770,7 +770,7 @@ public record class NewPlanTieredWithMinimumPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

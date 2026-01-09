@@ -400,7 +400,7 @@ sealed class NewPlanMatrixWithAllocationPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewPlanMatrixWithAllocationPriceConversionRateConfigConverter))]
-public record class NewPlanMatrixWithAllocationPriceConversionRateConfig
+public record class NewPlanMatrixWithAllocationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -570,7 +570,7 @@ public record class NewPlanMatrixWithAllocationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

@@ -641,7 +641,7 @@ class ScalableMatrixWithTieredPricingConfigTierFromRaw
 [JsonConverter(
     typeof(NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfigConverter)
 )]
-public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
+public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -811,7 +811,7 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

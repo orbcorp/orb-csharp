@@ -575,7 +575,7 @@ class NewPlanThresholdTotalAmountPriceThresholdTotalAmountConfigConsumptionTable
 }
 
 [JsonConverter(typeof(NewPlanThresholdTotalAmountPriceConversionRateConfigConverter))]
-public record class NewPlanThresholdTotalAmountPriceConversionRateConfig
+public record class NewPlanThresholdTotalAmountPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -745,7 +745,7 @@ public record class NewPlanThresholdTotalAmountPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

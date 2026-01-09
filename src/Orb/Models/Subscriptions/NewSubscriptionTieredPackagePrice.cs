@@ -551,7 +551,7 @@ class TieredPackageConfigTierFromRaw
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackagePriceConversionRateConfigConverter))]
-public record class NewSubscriptionTieredPackagePriceConversionRateConfig
+public record class NewSubscriptionTieredPackagePriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -721,7 +721,7 @@ public record class NewSubscriptionTieredPackagePriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

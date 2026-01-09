@@ -450,7 +450,7 @@ class UnitWithProrationConfigFromRaw : IFromRawJson<UnitWithProrationConfig>
 }
 
 [JsonConverter(typeof(NewFloatingUnitWithProrationPriceConversionRateConfigConverter))]
-public record class NewFloatingUnitWithProrationPriceConversionRateConfig
+public record class NewFloatingUnitWithProrationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -620,7 +620,7 @@ public record class NewFloatingUnitWithProrationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

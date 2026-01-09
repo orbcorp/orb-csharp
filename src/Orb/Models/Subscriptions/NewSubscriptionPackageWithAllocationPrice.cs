@@ -478,7 +478,7 @@ class PackageWithAllocationConfigFromRaw
 }
 
 [JsonConverter(typeof(NewSubscriptionPackageWithAllocationPriceConversionRateConfigConverter))]
-public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfig
+public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -648,7 +648,7 @@ public record class NewSubscriptionPackageWithAllocationPriceConversionRateConfi
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

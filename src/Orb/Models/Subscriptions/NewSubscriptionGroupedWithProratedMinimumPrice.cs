@@ -491,7 +491,7 @@ sealed class NewSubscriptionGroupedWithProratedMinimumPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfigConverter))]
-public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig
+public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -661,7 +661,7 @@ public record class NewSubscriptionGroupedWithProratedMinimumPriceConversionRate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

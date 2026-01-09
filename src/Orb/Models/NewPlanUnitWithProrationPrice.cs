@@ -471,7 +471,7 @@ class NewPlanUnitWithProrationPriceUnitWithProrationConfigFromRaw
 }
 
 [JsonConverter(typeof(NewPlanUnitWithProrationPriceConversionRateConfigConverter))]
-public record class NewPlanUnitWithProrationPriceConversionRateConfig
+public record class NewPlanUnitWithProrationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -641,7 +641,7 @@ public record class NewPlanUnitWithProrationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

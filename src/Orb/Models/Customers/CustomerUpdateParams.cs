@@ -735,7 +735,7 @@ sealed class CustomerUpdateParamsPaymentProviderConverter
 }
 
 [JsonConverter(typeof(CustomerUpdateParamsTaxConfigurationConverter))]
-public record class CustomerUpdateParamsTaxConfiguration
+public record class CustomerUpdateParamsTaxConfiguration : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1109,7 +1109,7 @@ public record class CustomerUpdateParamsTaxConfiguration
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

@@ -374,7 +374,7 @@ sealed class NewFloatingTieredPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewFloatingTieredPriceConversionRateConfigConverter))]
-public record class NewFloatingTieredPriceConversionRateConfig
+public record class NewFloatingTieredPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -544,7 +544,7 @@ public record class NewFloatingTieredPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

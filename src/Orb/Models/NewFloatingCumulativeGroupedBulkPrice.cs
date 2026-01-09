@@ -536,7 +536,7 @@ sealed class NewFloatingCumulativeGroupedBulkPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewFloatingCumulativeGroupedBulkPriceConversionRateConfigConverter))]
-public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig
+public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -706,7 +706,7 @@ public record class NewFloatingCumulativeGroupedBulkPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

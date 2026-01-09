@@ -1503,7 +1503,7 @@ class LineItemFromRaw : IFromRawJson<LineItem>
 }
 
 [JsonConverter(typeof(LineItemAdjustmentConverter))]
-public record class LineItemAdjustment
+public record class LineItemAdjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1859,7 +1859,7 @@ public record class LineItemAdjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -2040,7 +2040,7 @@ sealed class LineItemAdjustmentConverter : JsonConverter<LineItemAdjustment>
 }
 
 [JsonConverter(typeof(SubLineItemConverter))]
-public record class SubLineItem
+public record class SubLineItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2270,7 +2270,7 @@ public record class SubLineItem
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

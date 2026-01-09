@@ -533,7 +533,7 @@ class TieredWithProrationConfigTierFromRaw : IFromRawJson<TieredWithProrationCon
 }
 
 [JsonConverter(typeof(NewFloatingTieredWithProrationPriceConversionRateConfigConverter))]
-public record class NewFloatingTieredWithProrationPriceConversionRateConfig
+public record class NewFloatingTieredWithProrationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -703,7 +703,7 @@ public record class NewFloatingTieredWithProrationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

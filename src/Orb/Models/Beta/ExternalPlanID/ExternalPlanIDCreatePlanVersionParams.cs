@@ -290,7 +290,7 @@ class AddAdjustmentFromRaw : IFromRawJson<global::Orb.Models.Beta.ExternalPlanID
 /// The definition of a new adjustment to create and add to the plan.
 /// </summary>
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.AdjustmentConverter))]
-public record class Adjustment
+public record class Adjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -595,7 +595,7 @@ public record class Adjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -857,7 +857,7 @@ class AddPriceFromRaw : IFromRawJson<global::Orb.Models.Beta.ExternalPlanID.AddP
 /// New plan price request body params.
 /// </summary>
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.PriceConverter))]
-public record class Price
+public record class Price : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2761,7 +2761,7 @@ public record class Price
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4143,7 +4143,7 @@ sealed class CadenceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPl
 }
 
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ConversionRateConfigConverter))]
-public record class ConversionRateConfig
+public record class ConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4307,7 +4307,7 @@ public record class ConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4948,7 +4948,7 @@ class TieredWithProrationConfigTierFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.TieredWithProrationConversionRateConfigConverter)
 )]
-public record class TieredWithProrationConversionRateConfig
+public record class TieredWithProrationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5118,7 +5118,7 @@ public record class TieredWithProrationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -5741,7 +5741,7 @@ class GroupedWithMinMaxThresholdsConfigFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.GroupedWithMinMaxThresholdsConversionRateConfigConverter)
 )]
-public record class GroupedWithMinMaxThresholdsConversionRateConfig
+public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5911,7 +5911,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6534,7 +6534,7 @@ class CumulativeGroupedAllocationConfigFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.CumulativeGroupedAllocationConversionRateConfigConverter)
 )]
-public record class CumulativeGroupedAllocationConversionRateConfig
+public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6704,7 +6704,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -7234,7 +7234,7 @@ class PercentConfigFromRaw : IFromRawJson<global::Orb.Models.Beta.ExternalPlanID
 }
 
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.PercentConversionRateConfigConverter))]
-public record class PercentConversionRateConfig
+public record class PercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7404,7 +7404,7 @@ public record class PercentConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -7966,7 +7966,7 @@ class EventOutputConfigFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.EventOutputConversionRateConfigConverter)
 )]
-public record class EventOutputConversionRateConfig
+public record class EventOutputConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8136,7 +8136,7 @@ public record class EventOutputConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8492,7 +8492,7 @@ class ReplaceAdjustmentFromRaw
 /// The definition of a new adjustment to create and add to the plan.
 /// </summary>
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ReplaceAdjustmentAdjustmentConverter))]
-public record class ReplaceAdjustmentAdjustment
+public record class ReplaceAdjustmentAdjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8801,7 +8801,7 @@ public record class ReplaceAdjustmentAdjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -9087,7 +9087,7 @@ class ReplacePriceFromRaw : IFromRawJson<global::Orb.Models.Beta.ExternalPlanID.
 /// New plan price request body params.
 /// </summary>
 [JsonConverter(typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceConverter))]
-public record class ReplacePricePrice
+public record class ReplacePricePrice : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -11031,7 +11031,7 @@ public record class ReplacePricePrice
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -12520,7 +12520,7 @@ sealed class ReplacePricePriceBulkWithFiltersCadenceConverter
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceBulkWithFiltersConversionRateConfigConverter)
 )]
-public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
+public record class ReplacePricePriceBulkWithFiltersConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -12690,7 +12690,7 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -13402,7 +13402,7 @@ class ReplacePricePriceTieredWithProrationTieredWithProrationConfigTierFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceTieredWithProrationConversionRateConfigConverter)
 )]
-public record class ReplacePricePriceTieredWithProrationConversionRateConfig
+public record class ReplacePricePriceTieredWithProrationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -13572,7 +13572,7 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -14221,7 +14221,7 @@ class ReplacePricePriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsCon
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter)
 )]
-public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig
+public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -14391,7 +14391,7 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -15040,7 +15040,7 @@ class ReplacePricePriceCumulativeGroupedAllocationCumulativeGroupedAllocationCon
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter)
 )]
-public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig
+public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -15210,7 +15210,7 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -15795,7 +15795,7 @@ class ReplacePricePricePercentPercentConfigFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePricePercentConversionRateConfigConverter)
 )]
-public record class ReplacePricePricePercentConversionRateConfig
+public record class ReplacePricePricePercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -15965,7 +15965,7 @@ public record class ReplacePricePricePercentConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -16594,7 +16594,7 @@ class ReplacePricePriceEventOutputEventOutputConfigFromRaw
 [JsonConverter(
     typeof(global::Orb.Models.Beta.ExternalPlanID.ReplacePricePriceEventOutputConversionRateConfigConverter)
 )]
-public record class ReplacePricePriceEventOutputConversionRateConfig
+public record class ReplacePricePriceEventOutputConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -16764,7 +16764,7 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
