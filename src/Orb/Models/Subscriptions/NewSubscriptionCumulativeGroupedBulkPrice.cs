@@ -754,6 +754,9 @@ public record class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfi
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class NewSubscriptionCumulativeGroupedBulkPriceConversionRateConfigConverter

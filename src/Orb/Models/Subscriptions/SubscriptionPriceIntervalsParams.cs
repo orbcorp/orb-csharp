@@ -670,6 +670,9 @@ public record class StartDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class StartDateConverter : JsonConverter<StartDate>
@@ -950,6 +953,9 @@ public record class Discount
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class DiscountConverter : JsonConverter<global::Orb.Models.Subscriptions.Discount>
@@ -1464,6 +1470,9 @@ public record class EndDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EndDateConverter : JsonConverter<EndDate?>
@@ -3449,6 +3458,9 @@ public record class PriceModel
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceModelConverter : JsonConverter<PriceModel?>
@@ -4971,6 +4983,9 @@ public record class PriceModelBulkWithFiltersConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceModelBulkWithFiltersConversionRateConfigConverter
@@ -5693,6 +5708,9 @@ public record class PriceModelGroupedWithMinMaxThresholdsConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceModelGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -6415,6 +6433,9 @@ public record class PriceModelCumulativeGroupedAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceModelCumulativeGroupedAllocationConversionRateConfigConverter
@@ -7092,6 +7113,9 @@ public record class PriceModelPercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceModelPercentConversionRateConfigConverter
@@ -7794,6 +7818,9 @@ public record class PriceModelEventOutputConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceModelEventOutputConversionRateConfigConverter
@@ -8210,6 +8237,9 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentStartDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionPriceIntervalsParamsAddAdjustmentStartDateConverter
@@ -8614,6 +8644,9 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionPriceIntervalsParamsAddAdjustmentAdjustmentConverter
@@ -8962,6 +8995,9 @@ public record class SubscriptionPriceIntervalsParamsAddAdjustmentEndDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionPriceIntervalsParamsAddAdjustmentEndDateConverter
@@ -9355,6 +9391,9 @@ public record class EditEndDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EditEndDateConverter : JsonConverter<EditEndDate?>
@@ -9672,6 +9711,9 @@ public record class EditStartDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EditStartDateConverter : JsonConverter<EditStartDate>
@@ -10007,6 +10049,9 @@ public record class EditAdjustmentEndDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EditAdjustmentEndDateConverter : JsonConverter<EditAdjustmentEndDate?>
@@ -10252,6 +10297,9 @@ public record class EditAdjustmentStartDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EditAdjustmentStartDateConverter : JsonConverter<EditAdjustmentStartDate>

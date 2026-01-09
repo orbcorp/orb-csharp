@@ -2154,6 +2154,9 @@ public record class Price
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceConverter : JsonConverter<Price>
@@ -3663,6 +3666,9 @@ public record class UnitConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class UnitConversionRateConfigConverter : JsonConverter<UnitConversionRateConfig>
@@ -4622,6 +4628,9 @@ public record class TieredConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class TieredConversionRateConfigConverter : JsonConverter<TieredConversionRateConfig>
@@ -5577,6 +5586,9 @@ public record class BulkConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class BulkConversionRateConfigConverter : JsonConverter<BulkConversionRateConfig>
@@ -6772,6 +6784,9 @@ public record class BulkWithFiltersConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class BulkWithFiltersConversionRateConfigConverter
@@ -7732,6 +7747,9 @@ public record class PackageConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PackageConversionRateConfigConverter : JsonConverter<PackageConversionRateConfig>
@@ -8691,6 +8709,9 @@ public record class MatrixConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class MatrixConversionRateConfigConverter : JsonConverter<MatrixConversionRateConfig>
@@ -9666,6 +9687,9 @@ public record class ThresholdTotalAmountConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ThresholdTotalAmountConversionRateConfigConverter
@@ -10805,6 +10829,9 @@ public record class TieredPackageConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class TieredPackageConversionRateConfigConverter
@@ -11930,6 +11957,9 @@ public record class TieredWithMinimumConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class TieredWithMinimumConversionRateConfigConverter
@@ -13100,6 +13130,9 @@ public record class GroupedTieredConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedTieredConversionRateConfigConverter
@@ -14233,6 +14266,9 @@ public record class TieredPackageWithMinimumConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class TieredPackageWithMinimumConversionRateConfigConverter
@@ -15373,6 +15409,9 @@ public record class PackageWithAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PackageWithAllocationConversionRateConfigConverter
@@ -16419,6 +16458,9 @@ public record class UnitWithPercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class UnitWithPercentConversionRateConfigConverter
@@ -17469,6 +17511,9 @@ public record class MatrixWithAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class MatrixWithAllocationConversionRateConfigConverter
@@ -18441,6 +18486,9 @@ public record class TieredWithProrationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class TieredWithProrationConversionRateConfigConverter
@@ -19573,6 +19621,9 @@ public record class UnitWithProrationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class UnitWithProrationConversionRateConfigConverter
@@ -20618,6 +20669,9 @@ public record class GroupedAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedAllocationConversionRateConfigConverter
@@ -21843,6 +21897,9 @@ public record class BulkWithProrationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class BulkWithProrationConversionRateConfigConverter
@@ -22826,6 +22883,9 @@ public record class GroupedWithProratedMinimumConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedWithProratedMinimumConversionRateConfigConverter
@@ -23899,6 +23959,9 @@ public record class GroupedWithMeteredMinimumConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedWithMeteredMinimumConversionRateConfigConverter
@@ -25176,6 +25239,9 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -26246,6 +26312,9 @@ public record class MatrixWithDisplayNameConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class MatrixWithDisplayNameConversionRateConfigConverter
@@ -27394,6 +27463,9 @@ public record class GroupedTieredPackageConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedTieredPackageConversionRateConfigConverter
@@ -28537,6 +28609,9 @@ public record class MaxGroupTieredPackageConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class MaxGroupTieredPackageConversionRateConfigConverter
@@ -29690,6 +29765,9 @@ public record class ScalableMatrixWithUnitPricingConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ScalableMatrixWithUnitPricingConversionRateConfigConverter
@@ -30883,6 +30961,9 @@ public record class ScalableMatrixWithTieredPricingConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ScalableMatrixWithTieredPricingConversionRateConfigConverter
@@ -32137,6 +32218,9 @@ public record class CumulativeGroupedBulkConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class CumulativeGroupedBulkConversionRateConfigConverter
@@ -33292,6 +33376,9 @@ public record class CumulativeGroupedAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class CumulativeGroupedAllocationConversionRateConfigConverter
@@ -34355,6 +34442,9 @@ public record class PriceMinimumConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceMinimumConversionRateConfigConverter
@@ -35398,6 +35488,9 @@ public record class PercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PercentConversionRateConfigConverter : JsonConverter<PercentConversionRateConfig>
@@ -36427,6 +36520,9 @@ public record class EventOutputConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EventOutputConversionRateConfigConverter

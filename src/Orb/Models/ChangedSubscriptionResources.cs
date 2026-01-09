@@ -1885,6 +1885,9 @@ public record class LineItemAdjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class LineItemAdjustmentConverter : JsonConverter<LineItemAdjustment>
@@ -2289,6 +2292,9 @@ public record class SubLineItem
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubLineItemConverter : JsonConverter<SubLineItem>

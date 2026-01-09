@@ -347,6 +347,9 @@ public record class InvoiceUpdateParamsDueDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdateParamsDueDate?>
@@ -570,6 +573,9 @@ public record class InvoiceDate
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>

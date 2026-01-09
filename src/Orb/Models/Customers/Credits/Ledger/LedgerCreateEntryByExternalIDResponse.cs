@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Orb.Core;
 using Orb.Exceptions;
 using System = System;
 
@@ -629,6 +630,9 @@ public record class LedgerCreateEntryByExternalIDResponse
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class LedgerCreateEntryByExternalIDResponseConverter

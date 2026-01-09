@@ -313,6 +313,9 @@ public record class Discount
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class DiscountConverter : JsonConverter<global::Orb.Models.Coupons.Discount>

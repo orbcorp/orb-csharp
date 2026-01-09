@@ -2188,6 +2188,9 @@ public record class Price
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
@@ -3700,6 +3703,9 @@ public record class PriceBulkWithFiltersConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceBulkWithFiltersConversionRateConfigConverter
@@ -4419,6 +4425,9 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -5138,6 +5147,9 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -5808,6 +5820,9 @@ public record class PricePercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PricePercentConversionRateConfigConverter
@@ -6508,6 +6523,9 @@ public record class PriceEventOutputConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEventOutputConversionRateConfigConverter

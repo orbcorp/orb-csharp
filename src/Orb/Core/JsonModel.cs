@@ -119,7 +119,7 @@ public abstract record class JsonModel : ModelBase
     }
 
     public sealed override string ToString() =>
-        JsonSerializer.Serialize(this.RawData, ToStringSerializerOptions);
+        JsonSerializer.Serialize(this.RawData, ModelBase.ToStringSerializerOptions);
 
     public virtual bool Equals(JsonModel? other)
     {

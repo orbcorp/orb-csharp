@@ -2014,6 +2014,9 @@ public record class Body
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class BodyConverter : JsonConverter<Body>
@@ -3516,6 +3519,9 @@ public record class ConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ConversionRateConfigConverter
@@ -4243,6 +4249,9 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -4972,6 +4981,9 @@ public record class CumulativeGroupedAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class CumulativeGroupedAllocationConversionRateConfigConverter
@@ -5654,6 +5666,9 @@ public record class PercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PercentConversionRateConfigConverter
@@ -6358,6 +6373,9 @@ public record class EventOutputConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EventOutputConversionRateConfigConverter

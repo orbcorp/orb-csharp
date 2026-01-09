@@ -523,6 +523,9 @@ public record class PlanVersionAdjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PlanVersionAdjustmentConverter : JsonConverter<PlanVersionAdjustment>

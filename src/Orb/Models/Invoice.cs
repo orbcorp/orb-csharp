@@ -1823,6 +1823,9 @@ public record class InvoiceLineItemAdjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemAdjustment>
@@ -2235,6 +2238,9 @@ public record class InvoiceLineItemSubLineItem
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItemSubLineItem>

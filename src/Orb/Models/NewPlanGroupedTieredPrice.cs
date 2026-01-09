@@ -742,6 +742,9 @@ public record class NewPlanGroupedTieredPriceConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class NewPlanGroupedTieredPriceConversionRateConfigConverter
