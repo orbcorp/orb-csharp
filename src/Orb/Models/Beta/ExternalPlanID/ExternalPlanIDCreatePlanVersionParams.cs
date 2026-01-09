@@ -619,6 +619,9 @@ public record class Adjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.Adjustment>
@@ -2810,6 +2813,9 @@ public record class Price
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceConverter : JsonConverter<global::Orb.Models.Beta.ExternalPlanID.Price?>
@@ -4321,6 +4327,9 @@ public record class ConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ConversionRateConfigConverter
@@ -5131,6 +5140,9 @@ public record class TieredWithProrationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class TieredWithProrationConversionRateConfigConverter
@@ -5921,6 +5933,9 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class GroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -6711,6 +6726,9 @@ public record class CumulativeGroupedAllocationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class CumulativeGroupedAllocationConversionRateConfigConverter
@@ -7408,6 +7426,9 @@ public record class PercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PercentConversionRateConfigConverter
@@ -8137,6 +8158,9 @@ public record class EventOutputConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class EventOutputConversionRateConfigConverter
@@ -8805,6 +8829,9 @@ public record class ReplaceAdjustmentAdjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplaceAdjustmentAdjustmentConverter
@@ -11058,6 +11085,9 @@ public record class ReplacePricePrice
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePriceConverter
@@ -12682,6 +12712,9 @@ public record class ReplacePricePriceBulkWithFiltersConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePriceBulkWithFiltersConversionRateConfigConverter
@@ -13561,6 +13594,9 @@ public record class ReplacePricePriceTieredWithProrationConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePriceTieredWithProrationConversionRateConfigConverter
@@ -14377,6 +14413,9 @@ public record class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateCo
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -15193,6 +15232,9 @@ public record class ReplacePricePriceCumulativeGroupedAllocationConversionRateCo
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -15945,6 +15987,9 @@ public record class ReplacePricePricePercentConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePricePercentConversionRateConfigConverter
@@ -16741,6 +16786,9 @@ public record class ReplacePricePriceEventOutputConversionRateConfig
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class ReplacePricePriceEventOutputConversionRateConfigConverter

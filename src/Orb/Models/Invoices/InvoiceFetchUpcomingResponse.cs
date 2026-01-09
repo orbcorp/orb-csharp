@@ -1835,6 +1835,9 @@ public record class Adjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class AdjustmentConverter : JsonConverter<global::Orb.Models.Invoices.Adjustment>
@@ -2245,6 +2248,9 @@ public record class SubLineItem
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubLineItemConverter : JsonConverter<global::Orb.Models.Invoices.SubLineItem>

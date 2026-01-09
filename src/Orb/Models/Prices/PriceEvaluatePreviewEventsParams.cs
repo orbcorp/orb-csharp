@@ -2446,6 +2446,9 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter
@@ -4036,6 +4039,9 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfigConverter
@@ -4800,6 +4806,9 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -5564,6 +5573,9 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -6283,6 +6295,9 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfigConverter
@@ -7036,6 +7051,9 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfigConverter

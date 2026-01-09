@@ -1117,6 +1117,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustment
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddAdjustmentAdjustmentConverter
@@ -3560,6 +3563,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePrice
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceConverter
@@ -5163,6 +5169,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFil
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceBulkWithFiltersConversionRateConfigConverter
@@ -6005,6 +6014,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithP
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceTieredWithProrationConversionRateConfigConverter
@@ -6781,6 +6793,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWith
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -7557,6 +7572,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeG
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -8285,6 +8303,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConv
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePricePercentConversionRateConfigConverter
@@ -9044,6 +9065,9 @@ public record class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutput
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsAddPricePriceEventOutputConversionRateConfigConverter
@@ -9765,6 +9789,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustm
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplaceAdjustmentAdjustmentConverter
@@ -12201,6 +12228,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePrice
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceConverter
@@ -13807,6 +13837,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWit
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceBulkWithFiltersConversionRateConfigConverter
@@ -14651,6 +14684,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredW
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceTieredWithProrationConversionRateConfigConverter
@@ -15427,6 +15463,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceGrouped
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -16203,6 +16242,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulat
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -16937,6 +16979,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePricePercent
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePricePercentConversionRateConfigConverter
@@ -17703,6 +17748,9 @@ public record class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOu
     {
         return 0;
     }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
 }
 
 sealed class SubscriptionSchedulePlanChangeParamsReplacePricePriceEventOutputConversionRateConfigConverter
