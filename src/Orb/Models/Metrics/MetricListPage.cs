@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.Metrics;
 
 public sealed class MetricListPage(
-    IMetricService service,
+    IMetricServiceWithRawResponse service,
     MetricListParams parameters,
     MetricListPageResponse response
 ) : IPage<BillableMetric>
@@ -46,9 +46,10 @@ public sealed class MetricListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

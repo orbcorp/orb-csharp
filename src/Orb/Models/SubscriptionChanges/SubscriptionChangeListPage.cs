@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.SubscriptionChanges;
 
 public sealed class SubscriptionChangeListPage(
-    ISubscriptionChangeService service,
+    ISubscriptionChangeServiceWithRawResponse service,
     SubscriptionChangeListParams parameters,
     SubscriptionChangeListPageResponse response
 ) : IPage<SubscriptionChangeListResponse>
@@ -48,9 +48,10 @@ public sealed class SubscriptionChangeListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

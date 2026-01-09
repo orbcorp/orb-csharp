@@ -15,6 +15,12 @@ namespace Orb.Services.DimensionalPriceGroups;
 public interface IExternalDimensionalPriceGroupIDService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IExternalDimensionalPriceGroupIDServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -50,6 +56,54 @@ public interface IExternalDimensionalPriceGroupIDService
 
     /// <inheritdoc cref="Update(ExternalDimensionalPriceGroupIDUpdateParams, CancellationToken)"/>
     Task<DimensionalPriceGroup> Update(
+        string externalDimensionalPriceGroupID,
+        ExternalDimensionalPriceGroupIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IExternalDimensionalPriceGroupIDService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IExternalDimensionalPriceGroupIDServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IExternalDimensionalPriceGroupIDServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}`, but is otherwise the
+    /// same as <see cref="IExternalDimensionalPriceGroupIDService.Retrieve(ExternalDimensionalPriceGroupIDRetrieveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DimensionalPriceGroup>> Retrieve(
+        ExternalDimensionalPriceGroupIDRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(ExternalDimensionalPriceGroupIDRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<DimensionalPriceGroup>> Retrieve(
+        string externalDimensionalPriceGroupID,
+        ExternalDimensionalPriceGroupIDRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}`, but is otherwise the
+    /// same as <see cref="IExternalDimensionalPriceGroupIDService.Update(ExternalDimensionalPriceGroupIDUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DimensionalPriceGroup>> Update(
+        ExternalDimensionalPriceGroupIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(ExternalDimensionalPriceGroupIDUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<DimensionalPriceGroup>> Update(
         string externalDimensionalPriceGroupID,
         ExternalDimensionalPriceGroupIDUpdateParams? parameters = null,
         CancellationToken cancellationToken = default

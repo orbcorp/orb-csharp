@@ -9,7 +9,7 @@ using Orb.Services.Customers.Credits;
 namespace Orb.Models.Customers.Credits.TopUps;
 
 public sealed class TopUpListPage(
-    ITopUpService service,
+    ITopUpServiceWithRawResponse service,
     TopUpListParams parameters,
     TopUpListPageResponse response
 ) : IPage<TopUpListResponse>
@@ -46,9 +46,10 @@ public sealed class TopUpListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.Customers;
 
 public sealed class CustomerListPage(
-    ICustomerService service,
+    ICustomerServiceWithRawResponse service,
     CustomerListParams parameters,
     CustomerListPageResponse response
 ) : IPage<Customer>
@@ -45,9 +45,10 @@ public sealed class CustomerListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

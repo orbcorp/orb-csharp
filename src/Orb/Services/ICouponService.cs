@@ -15,6 +15,12 @@ namespace Orb.Services;
 public interface ICouponService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICouponServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -70,6 +76,72 @@ public interface ICouponService
 
     /// <inheritdoc cref="Fetch(CouponFetchParams, CancellationToken)"/>
     Task<Coupon> Fetch(
+        string couponID,
+        CouponFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICouponService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICouponServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICouponServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    Coupons::ISubscriptionServiceWithRawResponse Subscriptions { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /coupons`, but is otherwise the
+    /// same as <see cref="ICouponService.Create(CouponCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Coupon>> Create(
+        CouponCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /coupons`, but is otherwise the
+    /// same as <see cref="ICouponService.List(CouponListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CouponListPage>> List(
+        CouponListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /coupons/{coupon_id}/archive`, but is otherwise the
+    /// same as <see cref="ICouponService.Archive(CouponArchiveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Coupon>> Archive(
+        CouponArchiveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Archive(CouponArchiveParams, CancellationToken)"/>
+    Task<HttpResponse<Coupon>> Archive(
+        string couponID,
+        CouponArchiveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /coupons/{coupon_id}`, but is otherwise the
+    /// same as <see cref="ICouponService.Fetch(CouponFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Coupon>> Fetch(
+        CouponFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(CouponFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Coupon>> Fetch(
         string couponID,
         CouponFetchParams? parameters = null,
         CancellationToken cancellationToken = default

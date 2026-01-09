@@ -11,17 +11,29 @@ namespace Orb.Services;
 /// <inheritdoc/>
 public sealed class SubscriptionChangeService : ISubscriptionChangeService
 {
+    readonly Lazy<ISubscriptionChangeServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public ISubscriptionChangeServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IOrbClient _client;
+
     /// <inheritdoc/>
     public ISubscriptionChangeService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new SubscriptionChangeService(this._client.WithOptions(modifier));
     }
 
-    readonly IOrbClient _client;
-
     public SubscriptionChangeService(IOrbClient client)
     {
         _client = client;
+
+        _withRawResponse = new(() =>
+            new SubscriptionChangeServiceWithRawResponse(client.WithRawResponse)
+        );
     }
 
     /// <inheritdoc/>
@@ -30,31 +42,14 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.SubscriptionChangeID == null)
-        {
-            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
-        }
-
-        HttpRequest<SubscriptionChangeRetrieveParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
         using var response = await this
-            ._client.Execute(request, cancellationToken)
+            .WithRawResponse.Retrieve(parameters, cancellationToken)
             .ConfigureAwait(false);
-        var subscriptionChange = await response
-            .Deserialize<SubscriptionChangeRetrieveResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            subscriptionChange.Validate();
-        }
-        return subscriptionChange;
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task<SubscriptionChangeRetrieveResponse> Retrieve(
+    public Task<SubscriptionChangeRetrieveResponse> Retrieve(
         string subscriptionChangeID,
         SubscriptionChangeRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -62,7 +57,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     {
         parameters ??= new();
 
-        return await this.Retrieve(
+        return this.Retrieve(
             parameters with
             {
                 SubscriptionChangeID = subscriptionChangeID,
@@ -77,24 +72,10 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
-        HttpRequest<SubscriptionChangeListParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
         using var response = await this
-            ._client.Execute(request, cancellationToken)
+            .WithRawResponse.List(parameters, cancellationToken)
             .ConfigureAwait(false);
-        var page = await response
-            .Deserialize<SubscriptionChangeListPageResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            page.Validate();
-        }
-        return new SubscriptionChangeListPage(this, parameters, page);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
@@ -103,31 +84,14 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.SubscriptionChangeID == null)
-        {
-            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
-        }
-
-        HttpRequest<SubscriptionChangeApplyParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
         using var response = await this
-            ._client.Execute(request, cancellationToken)
+            .WithRawResponse.Apply(parameters, cancellationToken)
             .ConfigureAwait(false);
-        var deserializedResponse = await response
-            .Deserialize<SubscriptionChangeApplyResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            deserializedResponse.Validate();
-        }
-        return deserializedResponse;
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task<SubscriptionChangeApplyResponse> Apply(
+    public Task<SubscriptionChangeApplyResponse> Apply(
         string subscriptionChangeID,
         SubscriptionChangeApplyParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -135,7 +99,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     {
         parameters ??= new();
 
-        return await this.Apply(
+        return this.Apply(
             parameters with
             {
                 SubscriptionChangeID = subscriptionChangeID,
@@ -150,6 +114,188 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
         CancellationToken cancellationToken = default
     )
     {
+        using var response = await this
+            .WithRawResponse.Cancel(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<SubscriptionChangeCancelResponse> Cancel(
+        string subscriptionChangeID,
+        SubscriptionChangeCancelParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Cancel(
+            parameters with
+            {
+                SubscriptionChangeID = subscriptionChangeID,
+            },
+            cancellationToken
+        );
+    }
+}
+
+/// <inheritdoc/>
+public sealed class SubscriptionChangeServiceWithRawResponse
+    : ISubscriptionChangeServiceWithRawResponse
+{
+    readonly IOrbClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public ISubscriptionChangeServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    )
+    {
+        return new SubscriptionChangeServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public SubscriptionChangeServiceWithRawResponse(IOrbClientWithRawResponse client)
+    {
+        _client = client;
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<SubscriptionChangeRetrieveResponse>> Retrieve(
+        SubscriptionChangeRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.SubscriptionChangeID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
+        }
+
+        HttpRequest<SubscriptionChangeRetrieveParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var subscriptionChange = await response
+                    .Deserialize<SubscriptionChangeRetrieveResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    subscriptionChange.Validate();
+                }
+                return subscriptionChange;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<SubscriptionChangeRetrieveResponse>> Retrieve(
+        string subscriptionChangeID,
+        SubscriptionChangeRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Retrieve(
+            parameters with
+            {
+                SubscriptionChangeID = subscriptionChangeID,
+            },
+            cancellationToken
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<SubscriptionChangeListPage>> List(
+        SubscriptionChangeListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<SubscriptionChangeListParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response
+                    .Deserialize<SubscriptionChangeListPageResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new SubscriptionChangeListPage(this, parameters, page);
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<SubscriptionChangeApplyResponse>> Apply(
+        SubscriptionChangeApplyParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.SubscriptionChangeID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
+        }
+
+        HttpRequest<SubscriptionChangeApplyParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<SubscriptionChangeApplyResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<SubscriptionChangeApplyResponse>> Apply(
+        string subscriptionChangeID,
+        SubscriptionChangeApplyParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Apply(
+            parameters with
+            {
+                SubscriptionChangeID = subscriptionChangeID,
+            },
+            cancellationToken
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<SubscriptionChangeCancelResponse>> Cancel(
+        SubscriptionChangeCancelParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
         if (parameters.SubscriptionChangeID == null)
         {
             throw new OrbInvalidDataException("'parameters.SubscriptionChangeID' cannot be null");
@@ -160,21 +306,25 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var deserializedResponse = await response
-            .Deserialize<SubscriptionChangeCancelResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            deserializedResponse.Validate();
-        }
-        return deserializedResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<SubscriptionChangeCancelResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<SubscriptionChangeCancelResponse> Cancel(
+    public Task<HttpResponse<SubscriptionChangeCancelResponse>> Cancel(
         string subscriptionChangeID,
         SubscriptionChangeCancelParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -182,7 +332,7 @@ public sealed class SubscriptionChangeService : ISubscriptionChangeService
     {
         parameters ??= new();
 
-        return await this.Cancel(
+        return this.Cancel(
             parameters with
             {
                 SubscriptionChangeID = subscriptionChangeID,

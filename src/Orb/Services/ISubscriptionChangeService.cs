@@ -14,6 +14,12 @@ namespace Orb.Services;
 public interface ISubscriptionChangeService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ISubscriptionChangeServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -81,6 +87,79 @@ public interface ISubscriptionChangeService
 
     /// <inheritdoc cref="Cancel(SubscriptionChangeCancelParams, CancellationToken)"/>
     Task<SubscriptionChangeCancelResponse> Cancel(
+        string subscriptionChangeID,
+        SubscriptionChangeCancelParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ISubscriptionChangeService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ISubscriptionChangeServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ISubscriptionChangeServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /subscription_changes/{subscription_change_id}`, but is otherwise the
+    /// same as <see cref="ISubscriptionChangeService.Retrieve(SubscriptionChangeRetrieveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SubscriptionChangeRetrieveResponse>> Retrieve(
+        SubscriptionChangeRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(SubscriptionChangeRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<SubscriptionChangeRetrieveResponse>> Retrieve(
+        string subscriptionChangeID,
+        SubscriptionChangeRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /subscription_changes`, but is otherwise the
+    /// same as <see cref="ISubscriptionChangeService.List(SubscriptionChangeListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SubscriptionChangeListPage>> List(
+        SubscriptionChangeListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /subscription_changes/{subscription_change_id}/apply`, but is otherwise the
+    /// same as <see cref="ISubscriptionChangeService.Apply(SubscriptionChangeApplyParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SubscriptionChangeApplyResponse>> Apply(
+        SubscriptionChangeApplyParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Apply(SubscriptionChangeApplyParams, CancellationToken)"/>
+    Task<HttpResponse<SubscriptionChangeApplyResponse>> Apply(
+        string subscriptionChangeID,
+        SubscriptionChangeApplyParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /subscription_changes/{subscription_change_id}/cancel`, but is otherwise the
+    /// same as <see cref="ISubscriptionChangeService.Cancel(SubscriptionChangeCancelParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SubscriptionChangeCancelResponse>> Cancel(
+        SubscriptionChangeCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Cancel(SubscriptionChangeCancelParams, CancellationToken)"/>
+    Task<HttpResponse<SubscriptionChangeCancelResponse>> Cancel(
         string subscriptionChangeID,
         SubscriptionChangeCancelParams? parameters = null,
         CancellationToken cancellationToken = default

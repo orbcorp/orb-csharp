@@ -16,6 +16,12 @@ namespace Orb.Services;
 public interface IPriceService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IPriceServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -170,6 +176,106 @@ public interface IPriceService
 
     /// <inheritdoc cref="Fetch(PriceFetchParams, CancellationToken)"/>
     Task<Models::Price> Fetch(
+        string priceID,
+        PriceFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IPriceService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IPriceServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IPriceServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IExternalPriceIDServiceWithRawResponse ExternalPriceID { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /prices`, but is otherwise the
+    /// same as <see cref="IPriceService.Create(PriceCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Models::Price>> Create(
+        PriceCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /prices/{price_id}`, but is otherwise the
+    /// same as <see cref="IPriceService.Update(PriceUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Models::Price>> Update(
+        PriceUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(PriceUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Models::Price>> Update(
+        string priceID,
+        PriceUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /prices`, but is otherwise the
+    /// same as <see cref="IPriceService.List(PriceListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PriceListPage>> List(
+        PriceListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /prices/{price_id}/evaluate`, but is otherwise the
+    /// same as <see cref="IPriceService.Evaluate(PriceEvaluateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PriceEvaluateResponse>> Evaluate(
+        PriceEvaluateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Evaluate(PriceEvaluateParams, CancellationToken)"/>
+    Task<HttpResponse<PriceEvaluateResponse>> Evaluate(
+        string priceID,
+        PriceEvaluateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /prices/evaluate`, but is otherwise the
+    /// same as <see cref="IPriceService.EvaluateMultiple(PriceEvaluateMultipleParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PriceEvaluateMultipleResponse>> EvaluateMultiple(
+        PriceEvaluateMultipleParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /prices/evaluate_preview_events`, but is otherwise the
+    /// same as <see cref="IPriceService.EvaluatePreviewEvents(PriceEvaluatePreviewEventsParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PriceEvaluatePreviewEventsResponse>> EvaluatePreviewEvents(
+        PriceEvaluatePreviewEventsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /prices/{price_id}`, but is otherwise the
+    /// same as <see cref="IPriceService.Fetch(PriceFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Models::Price>> Fetch(
+        PriceFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(PriceFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Models::Price>> Fetch(
         string priceID,
         PriceFetchParams? parameters = null,
         CancellationToken cancellationToken = default

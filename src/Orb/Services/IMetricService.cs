@@ -14,6 +14,12 @@ namespace Orb.Services;
 public interface IMetricService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IMetricServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -68,6 +74,70 @@ public interface IMetricService
 
     /// <inheritdoc cref="Fetch(MetricFetchParams, CancellationToken)"/>
     Task<BillableMetric> Fetch(
+        string metricID,
+        MetricFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IMetricService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IMetricServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IMetricServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /metrics`, but is otherwise the
+    /// same as <see cref="IMetricService.Create(MetricCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BillableMetric>> Create(
+        MetricCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /metrics/{metric_id}`, but is otherwise the
+    /// same as <see cref="IMetricService.Update(MetricUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BillableMetric>> Update(
+        MetricUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(MetricUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<BillableMetric>> Update(
+        string metricID,
+        MetricUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /metrics`, but is otherwise the
+    /// same as <see cref="IMetricService.List(MetricListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<MetricListPage>> List(
+        MetricListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /metrics/{metric_id}`, but is otherwise the
+    /// same as <see cref="IMetricService.Fetch(MetricFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BillableMetric>> Fetch(
+        MetricFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(MetricFetchParams, CancellationToken)"/>
+    Task<HttpResponse<BillableMetric>> Fetch(
         string metricID,
         MetricFetchParams? parameters = null,
         CancellationToken cancellationToken = default

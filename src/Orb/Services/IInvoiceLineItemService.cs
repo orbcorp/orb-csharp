@@ -14,6 +14,12 @@ namespace Orb.Services;
 public interface IInvoiceLineItemService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IInvoiceLineItemServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -34,6 +40,29 @@ public interface IInvoiceLineItemService
     /// `name` is used for the line item (not the item's name).</para>
     /// </summary>
     Task<InvoiceLineItemCreateResponse> Create(
+        InvoiceLineItemCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IInvoiceLineItemService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IInvoiceLineItemServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IInvoiceLineItemServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /invoice_line_items`, but is otherwise the
+    /// same as <see cref="IInvoiceLineItemService.Create(InvoiceLineItemCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<InvoiceLineItemCreateResponse>> Create(
         InvoiceLineItemCreateParams parameters,
         CancellationToken cancellationToken = default
     );

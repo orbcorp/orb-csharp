@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.Coupons;
 
 public sealed class CouponListPage(
-    ICouponService service,
+    ICouponServiceWithRawResponse service,
     CouponListParams parameters,
     CouponListPageResponse response
 ) : IPage<Coupon>
@@ -45,9 +45,10 @@ public sealed class CouponListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.DimensionalPriceGroups;
 
 public sealed class DimensionalPriceGroupListPage(
-    IDimensionalPriceGroupService service,
+    IDimensionalPriceGroupServiceWithRawResponse service,
     DimensionalPriceGroupListParams parameters,
     DimensionalPriceGroupDimensionalPriceGroups response
 ) : IPage<DimensionalPriceGroup>
@@ -48,9 +48,10 @@ public sealed class DimensionalPriceGroupListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

@@ -10,7 +10,7 @@ using Models = Orb.Models;
 namespace Orb.Models.Prices;
 
 public sealed class PriceListPage(
-    IPriceService service,
+    IPriceServiceWithRawResponse service,
     PriceListParams parameters,
     PriceListPageResponse response
 ) : IPage<Models::Price>
@@ -47,9 +47,10 @@ public sealed class PriceListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

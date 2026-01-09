@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.Invoices;
 
 public sealed class InvoiceListSummaryPage(
-    IInvoiceService service,
+    IInvoiceServiceWithRawResponse service,
     InvoiceListSummaryParams parameters,
     InvoiceListSummaryPageResponse response
 ) : IPage<InvoiceListSummaryResponse>
@@ -46,9 +46,10 @@ public sealed class InvoiceListSummaryPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .ListSummary(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

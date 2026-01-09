@@ -9,7 +9,7 @@ using Orb.Services.Plans;
 namespace Orb.Models.Plans.Migrations;
 
 public sealed class MigrationListPage(
-    IMigrationService service,
+    IMigrationServiceWithRawResponse service,
     MigrationListParams parameters,
     MigrationListPageResponse response
 ) : IPage<MigrationListResponse>
@@ -46,9 +46,10 @@ public sealed class MigrationListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

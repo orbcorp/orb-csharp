@@ -14,6 +14,12 @@ namespace Orb.Services.Events;
 public interface IBackfillService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IBackfillServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -126,6 +132,86 @@ public interface IBackfillService
 
     /// <inheritdoc cref="Revert(BackfillRevertParams, CancellationToken)"/>
     Task<BackfillRevertResponse> Revert(
+        string backfillID,
+        BackfillRevertParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IBackfillService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IBackfillServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IBackfillServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /events/backfills`, but is otherwise the
+    /// same as <see cref="IBackfillService.Create(BackfillCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BackfillCreateResponse>> Create(
+        BackfillCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /events/backfills`, but is otherwise the
+    /// same as <see cref="IBackfillService.List(BackfillListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BackfillListPage>> List(
+        BackfillListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /events/backfills/{backfill_id}/close`, but is otherwise the
+    /// same as <see cref="IBackfillService.Close(BackfillCloseParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BackfillCloseResponse>> Close(
+        BackfillCloseParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Close(BackfillCloseParams, CancellationToken)"/>
+    Task<HttpResponse<BackfillCloseResponse>> Close(
+        string backfillID,
+        BackfillCloseParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /events/backfills/{backfill_id}`, but is otherwise the
+    /// same as <see cref="IBackfillService.Fetch(BackfillFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BackfillFetchResponse>> Fetch(
+        BackfillFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(BackfillFetchParams, CancellationToken)"/>
+    Task<HttpResponse<BackfillFetchResponse>> Fetch(
+        string backfillID,
+        BackfillFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /events/backfills/{backfill_id}/revert`, but is otherwise the
+    /// same as <see cref="IBackfillService.Revert(BackfillRevertParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BackfillRevertResponse>> Revert(
+        BackfillRevertParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Revert(BackfillRevertParams, CancellationToken)"/>
+    Task<HttpResponse<BackfillRevertResponse>> Revert(
         string backfillID,
         BackfillRevertParams? parameters = null,
         CancellationToken cancellationToken = default

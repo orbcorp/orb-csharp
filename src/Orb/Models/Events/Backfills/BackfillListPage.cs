@@ -9,7 +9,7 @@ using Orb.Services.Events;
 namespace Orb.Models.Events.Backfills;
 
 public sealed class BackfillListPage(
-    IBackfillService service,
+    IBackfillServiceWithRawResponse service,
     BackfillListParams parameters,
     BackfillListPageResponse response
 ) : IPage<BackfillListResponse>
@@ -46,9 +46,10 @@ public sealed class BackfillListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

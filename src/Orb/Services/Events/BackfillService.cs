@@ -11,21 +11,144 @@ namespace Orb.Services.Events;
 /// <inheritdoc/>
 public sealed class BackfillService : IBackfillService
 {
+    readonly Lazy<IBackfillServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IBackfillServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IOrbClient _client;
+
     /// <inheritdoc/>
     public IBackfillService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new BackfillService(this._client.WithOptions(modifier));
     }
 
-    readonly IOrbClient _client;
-
     public BackfillService(IOrbClient client)
+    {
+        _client = client;
+
+        _withRawResponse = new(() => new BackfillServiceWithRawResponse(client.WithRawResponse));
+    }
+
+    /// <inheritdoc/>
+    public async Task<BackfillCreateResponse> Create(
+        BackfillCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Create(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<BackfillListPage> List(
+        BackfillListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<BackfillCloseResponse> Close(
+        BackfillCloseParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Close(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<BackfillCloseResponse> Close(
+        string backfillID,
+        BackfillCloseParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Close(parameters with { BackfillID = backfillID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<BackfillFetchResponse> Fetch(
+        BackfillFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Fetch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<BackfillFetchResponse> Fetch(
+        string backfillID,
+        BackfillFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Fetch(parameters with { BackfillID = backfillID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<BackfillRevertResponse> Revert(
+        BackfillRevertParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Revert(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<BackfillRevertResponse> Revert(
+        string backfillID,
+        BackfillRevertParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Revert(parameters with { BackfillID = backfillID }, cancellationToken);
+    }
+}
+
+/// <inheritdoc/>
+public sealed class BackfillServiceWithRawResponse : IBackfillServiceWithRawResponse
+{
+    readonly IOrbClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public IBackfillServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new BackfillServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public BackfillServiceWithRawResponse(IOrbClientWithRawResponse client)
     {
         _client = client;
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillCreateResponse> Create(
+    public async Task<HttpResponse<BackfillCreateResponse>> Create(
         BackfillCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -35,21 +158,25 @@ public sealed class BackfillService : IBackfillService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var backfill = await response
-            .Deserialize<BackfillCreateResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            backfill.Validate();
-        }
-        return backfill;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var backfill = await response
+                    .Deserialize<BackfillCreateResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    backfill.Validate();
+                }
+                return backfill;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillListPage> List(
+    public async Task<HttpResponse<BackfillListPage>> List(
         BackfillListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -61,21 +188,25 @@ public sealed class BackfillService : IBackfillService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var page = await response
-            .Deserialize<BackfillListPageResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            page.Validate();
-        }
-        return new BackfillListPage(this, parameters, page);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response
+                    .Deserialize<BackfillListPageResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new BackfillListPage(this, parameters, page);
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillCloseResponse> Close(
+    public async Task<HttpResponse<BackfillCloseResponse>> Close(
         BackfillCloseParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -90,21 +221,25 @@ public sealed class BackfillService : IBackfillService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var deserializedResponse = await response
-            .Deserialize<BackfillCloseResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            deserializedResponse.Validate();
-        }
-        return deserializedResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<BackfillCloseResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillCloseResponse> Close(
+    public Task<HttpResponse<BackfillCloseResponse>> Close(
         string backfillID,
         BackfillCloseParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -112,11 +247,11 @@ public sealed class BackfillService : IBackfillService
     {
         parameters ??= new();
 
-        return await this.Close(parameters with { BackfillID = backfillID }, cancellationToken);
+        return this.Close(parameters with { BackfillID = backfillID }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillFetchResponse> Fetch(
+    public async Task<HttpResponse<BackfillFetchResponse>> Fetch(
         BackfillFetchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -131,21 +266,25 @@ public sealed class BackfillService : IBackfillService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var deserializedResponse = await response
-            .Deserialize<BackfillFetchResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            deserializedResponse.Validate();
-        }
-        return deserializedResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<BackfillFetchResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillFetchResponse> Fetch(
+    public Task<HttpResponse<BackfillFetchResponse>> Fetch(
         string backfillID,
         BackfillFetchParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -153,11 +292,11 @@ public sealed class BackfillService : IBackfillService
     {
         parameters ??= new();
 
-        return await this.Fetch(parameters with { BackfillID = backfillID }, cancellationToken);
+        return this.Fetch(parameters with { BackfillID = backfillID }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillRevertResponse> Revert(
+    public async Task<HttpResponse<BackfillRevertResponse>> Revert(
         BackfillRevertParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -172,21 +311,25 @@ public sealed class BackfillService : IBackfillService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var deserializedResponse = await response
-            .Deserialize<BackfillRevertResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            deserializedResponse.Validate();
-        }
-        return deserializedResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<BackfillRevertResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BackfillRevertResponse> Revert(
+    public Task<HttpResponse<BackfillRevertResponse>> Revert(
         string backfillID,
         BackfillRevertParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -194,6 +337,6 @@ public sealed class BackfillService : IBackfillService
     {
         parameters ??= new();
 
-        return await this.Revert(parameters with { BackfillID = backfillID }, cancellationToken);
+        return this.Revert(parameters with { BackfillID = backfillID }, cancellationToken);
     }
 }

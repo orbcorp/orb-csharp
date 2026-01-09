@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.Alerts;
 
 public sealed class AlertListPage(
-    IAlertService service,
+    IAlertServiceWithRawResponse service,
     AlertListParams parameters,
     AlertListPageResponse response
 ) : IPage<Alert>
@@ -45,9 +45,10 @@ public sealed class AlertListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

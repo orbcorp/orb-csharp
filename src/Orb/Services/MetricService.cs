@@ -11,21 +11,120 @@ namespace Orb.Services;
 /// <inheritdoc/>
 public sealed class MetricService : IMetricService
 {
+    readonly Lazy<IMetricServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IMetricServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IOrbClient _client;
+
     /// <inheritdoc/>
     public IMetricService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new MetricService(this._client.WithOptions(modifier));
     }
 
-    readonly IOrbClient _client;
-
     public MetricService(IOrbClient client)
+    {
+        _client = client;
+
+        _withRawResponse = new(() => new MetricServiceWithRawResponse(client.WithRawResponse));
+    }
+
+    /// <inheritdoc/>
+    public async Task<BillableMetric> Create(
+        MetricCreateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Create(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<BillableMetric> Update(
+        MetricUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Update(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<BillableMetric> Update(
+        string metricID,
+        MetricUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Update(parameters with { MetricID = metricID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<MetricListPage> List(
+        MetricListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<BillableMetric> Fetch(
+        MetricFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Fetch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<BillableMetric> Fetch(
+        string metricID,
+        MetricFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Fetch(parameters with { MetricID = metricID }, cancellationToken);
+    }
+}
+
+/// <inheritdoc/>
+public sealed class MetricServiceWithRawResponse : IMetricServiceWithRawResponse
+{
+    readonly IOrbClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public IMetricServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new MetricServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public MetricServiceWithRawResponse(IOrbClientWithRawResponse client)
     {
         _client = client;
     }
 
     /// <inheritdoc/>
-    public async Task<BillableMetric> Create(
+    public async Task<HttpResponse<BillableMetric>> Create(
         MetricCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -35,21 +134,25 @@ public sealed class MetricService : IMetricService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var billableMetric = await response
-            .Deserialize<BillableMetric>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            billableMetric.Validate();
-        }
-        return billableMetric;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var billableMetric = await response
+                    .Deserialize<BillableMetric>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    billableMetric.Validate();
+                }
+                return billableMetric;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BillableMetric> Update(
+    public async Task<HttpResponse<BillableMetric>> Update(
         MetricUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -64,21 +167,25 @@ public sealed class MetricService : IMetricService
             Method = HttpMethod.Put,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var billableMetric = await response
-            .Deserialize<BillableMetric>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            billableMetric.Validate();
-        }
-        return billableMetric;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var billableMetric = await response
+                    .Deserialize<BillableMetric>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    billableMetric.Validate();
+                }
+                return billableMetric;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BillableMetric> Update(
+    public Task<HttpResponse<BillableMetric>> Update(
         string metricID,
         MetricUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -86,11 +193,11 @@ public sealed class MetricService : IMetricService
     {
         parameters ??= new();
 
-        return await this.Update(parameters with { MetricID = metricID }, cancellationToken);
+        return this.Update(parameters with { MetricID = metricID }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<MetricListPage> List(
+    public async Task<HttpResponse<MetricListPage>> List(
         MetricListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -102,21 +209,25 @@ public sealed class MetricService : IMetricService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var page = await response
-            .Deserialize<MetricListPageResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            page.Validate();
-        }
-        return new MetricListPage(this, parameters, page);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response
+                    .Deserialize<MetricListPageResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new MetricListPage(this, parameters, page);
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BillableMetric> Fetch(
+    public async Task<HttpResponse<BillableMetric>> Fetch(
         MetricFetchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -131,21 +242,25 @@ public sealed class MetricService : IMetricService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var billableMetric = await response
-            .Deserialize<BillableMetric>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            billableMetric.Validate();
-        }
-        return billableMetric;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var billableMetric = await response
+                    .Deserialize<BillableMetric>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    billableMetric.Validate();
+                }
+                return billableMetric;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<BillableMetric> Fetch(
+    public Task<HttpResponse<BillableMetric>> Fetch(
         string metricID,
         MetricFetchParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -153,6 +268,6 @@ public sealed class MetricService : IMetricService
     {
         parameters ??= new();
 
-        return await this.Fetch(parameters with { MetricID = metricID }, cancellationToken);
+        return this.Fetch(parameters with { MetricID = metricID }, cancellationToken);
     }
 }

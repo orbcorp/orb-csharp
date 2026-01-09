@@ -9,7 +9,7 @@ using Orb.Services.Customers.Credits;
 namespace Orb.Models.Customers.Credits.Ledger;
 
 public sealed class LedgerListByExternalIDPage(
-    ILedgerService service,
+    ILedgerServiceWithRawResponse service,
     LedgerListByExternalIDParams parameters,
     LedgerListByExternalIDPageResponse response
 ) : IPage<LedgerListByExternalIDResponse>
@@ -48,9 +48,10 @@ public sealed class LedgerListByExternalIDPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .ListByExternalID(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

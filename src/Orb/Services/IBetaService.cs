@@ -16,6 +16,12 @@ namespace Orb.Services;
 public interface IBetaService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IBetaServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -65,6 +71,70 @@ public interface IBetaService
 
     /// <inheritdoc cref="SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams, CancellationToken)"/>
     Task<Plan> SetDefaultPlanVersion(
+        string planID,
+        BetaSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IBetaService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IBetaServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IBetaServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IExternalPlanIDServiceWithRawResponse ExternalPlanID { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /plans/{plan_id}/versions`, but is otherwise the
+    /// same as <see cref="IBetaService.CreatePlanVersion(BetaCreatePlanVersionParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PlanVersion>> CreatePlanVersion(
+        BetaCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CreatePlanVersion(BetaCreatePlanVersionParams, CancellationToken)"/>
+    Task<HttpResponse<PlanVersion>> CreatePlanVersion(
+        string planID,
+        BetaCreatePlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans/{plan_id}/versions/{version}`, but is otherwise the
+    /// same as <see cref="IBetaService.FetchPlanVersion(BetaFetchPlanVersionParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PlanVersion>> FetchPlanVersion(
+        BetaFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="FetchPlanVersion(BetaFetchPlanVersionParams, CancellationToken)"/>
+    Task<HttpResponse<PlanVersion>> FetchPlanVersion(
+        string version,
+        BetaFetchPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /plans/{plan_id}/set_default_version`, but is otherwise the
+    /// same as <see cref="IBetaService.SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> SetDefaultPlanVersion(
+        BetaSetDefaultPlanVersionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> SetDefaultPlanVersion(
         string planID,
         BetaSetDefaultPlanVersionParams parameters,
         CancellationToken cancellationToken = default

@@ -15,6 +15,12 @@ namespace Orb.Services;
 public interface IDimensionalPriceGroupService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IDimensionalPriceGroupServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -75,6 +81,74 @@ public interface IDimensionalPriceGroupService
     /// List dimensional price groups
     /// </summary>
     Task<DimensionalPriceGroupListPage> List(
+        DimensionalPriceGroupListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IDimensionalPriceGroupService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IDimensionalPriceGroupServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IDimensionalPriceGroupServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    );
+
+    IExternalDimensionalPriceGroupIDServiceWithRawResponse ExternalDimensionalPriceGroupID { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /dimensional_price_groups`, but is otherwise the
+    /// same as <see cref="IDimensionalPriceGroupService.Create(DimensionalPriceGroupCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DimensionalPriceGroup>> Create(
+        DimensionalPriceGroupCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /dimensional_price_groups/{dimensional_price_group_id}`, but is otherwise the
+    /// same as <see cref="IDimensionalPriceGroupService.Retrieve(DimensionalPriceGroupRetrieveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DimensionalPriceGroup>> Retrieve(
+        DimensionalPriceGroupRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(DimensionalPriceGroupRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<DimensionalPriceGroup>> Retrieve(
+        string dimensionalPriceGroupID,
+        DimensionalPriceGroupRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /dimensional_price_groups/{dimensional_price_group_id}`, but is otherwise the
+    /// same as <see cref="IDimensionalPriceGroupService.Update(DimensionalPriceGroupUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DimensionalPriceGroup>> Update(
+        DimensionalPriceGroupUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(DimensionalPriceGroupUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<DimensionalPriceGroup>> Update(
+        string dimensionalPriceGroupID,
+        DimensionalPriceGroupUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /dimensional_price_groups`, but is otherwise the
+    /// same as <see cref="IDimensionalPriceGroupService.List(DimensionalPriceGroupListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DimensionalPriceGroupListPage>> List(
         DimensionalPriceGroupListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
