@@ -710,7 +710,7 @@ sealed class CustomerCreateParamsPaymentProviderConverter
 }
 
 [JsonConverter(typeof(TaxConfigurationConverter))]
-public record class TaxConfiguration
+public record class TaxConfiguration : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1049,7 +1049,7 @@ public record class TaxConfiguration
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

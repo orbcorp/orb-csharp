@@ -21,7 +21,7 @@ namespace Orb.Models;
 /// <para>For more on the types of prices, see [the core concepts documentation](/core-concepts#plan-and-price)</para>
 /// </summary>
 [JsonConverter(typeof(PriceConverter))]
-public record class Price
+public record class Price : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2104,7 +2104,7 @@ public record class Price
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -3476,7 +3476,7 @@ sealed class CompositePriceFilterOperatorConverter : JsonConverter<CompositePric
 }
 
 [JsonConverter(typeof(UnitConversionRateConfigConverter))]
-public record class UnitConversionRateConfig
+public record class UnitConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3646,7 +3646,7 @@ public record class UnitConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4438,7 +4438,7 @@ sealed class TieredCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(TieredConversionRateConfigConverter))]
-public record class TieredConversionRateConfig
+public record class TieredConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4608,7 +4608,7 @@ public record class TieredConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -5396,7 +5396,7 @@ sealed class BulkCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(BulkConversionRateConfigConverter))]
-public record class BulkConversionRateConfig
+public record class BulkConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5566,7 +5566,7 @@ public record class BulkConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6594,7 +6594,7 @@ sealed class BulkWithFiltersCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(BulkWithFiltersConversionRateConfigConverter))]
-public record class BulkWithFiltersConversionRateConfig
+public record class BulkWithFiltersConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6764,7 +6764,7 @@ public record class BulkWithFiltersConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -7557,7 +7557,7 @@ sealed class PackageCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(PackageConversionRateConfigConverter))]
-public record class PackageConversionRateConfig
+public record class PackageConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7727,7 +7727,7 @@ public record class PackageConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -8519,7 +8519,7 @@ sealed class MatrixCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(MatrixConversionRateConfigConverter))]
-public record class MatrixConversionRateConfig
+public record class MatrixConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -8689,7 +8689,7 @@ public record class MatrixConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -9497,7 +9497,7 @@ sealed class ThresholdTotalAmountCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(ThresholdTotalAmountConversionRateConfigConverter))]
-public record class ThresholdTotalAmountConversionRateConfig
+public record class ThresholdTotalAmountConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -9667,7 +9667,7 @@ public record class ThresholdTotalAmountConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -10639,7 +10639,7 @@ sealed class TieredPackageCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(TieredPackageConversionRateConfigConverter))]
-public record class TieredPackageConversionRateConfig
+public record class TieredPackageConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -10809,7 +10809,7 @@ public record class TieredPackageConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -11767,7 +11767,7 @@ sealed class TieredWithMinimumCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(TieredWithMinimumConversionRateConfigConverter))]
-public record class TieredWithMinimumConversionRateConfig
+public record class TieredWithMinimumConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -11937,7 +11937,7 @@ public record class TieredWithMinimumConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -12940,7 +12940,7 @@ sealed class GroupedTieredCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(GroupedTieredConversionRateConfigConverter))]
-public record class GroupedTieredConversionRateConfig
+public record class GroupedTieredConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -13110,7 +13110,7 @@ public record class GroupedTieredConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -14076,7 +14076,7 @@ sealed class TieredPackageWithMinimumCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(TieredPackageWithMinimumConversionRateConfigConverter))]
-public record class TieredPackageWithMinimumConversionRateConfig
+public record class TieredPackageWithMinimumConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -14246,7 +14246,7 @@ public record class TieredPackageWithMinimumConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -15219,7 +15219,7 @@ sealed class PackageWithAllocationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(PackageWithAllocationConversionRateConfigConverter))]
-public record class PackageWithAllocationConversionRateConfig
+public record class PackageWithAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -15389,7 +15389,7 @@ public record class PackageWithAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -16268,7 +16268,7 @@ sealed class UnitWithPercentCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(UnitWithPercentConversionRateConfigConverter))]
-public record class UnitWithPercentConversionRateConfig
+public record class UnitWithPercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -16438,7 +16438,7 @@ public record class UnitWithPercentConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -17321,7 +17321,7 @@ sealed class MatrixWithAllocationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(MatrixWithAllocationConversionRateConfigConverter))]
-public record class MatrixWithAllocationConversionRateConfig
+public record class MatrixWithAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -17491,7 +17491,7 @@ public record class MatrixWithAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -18296,7 +18296,7 @@ sealed class TieredWithProrationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(TieredWithProrationConversionRateConfigConverter))]
-public record class TieredWithProrationConversionRateConfig
+public record class TieredWithProrationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -18466,7 +18466,7 @@ public record class TieredWithProrationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -19431,7 +19431,7 @@ sealed class UnitWithProrationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(UnitWithProrationConversionRateConfigConverter))]
-public record class UnitWithProrationConversionRateConfig
+public record class UnitWithProrationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -19601,7 +19601,7 @@ public record class UnitWithProrationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -20479,7 +20479,7 @@ sealed class GroupedAllocationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(GroupedAllocationConversionRateConfigConverter))]
-public record class GroupedAllocationConversionRateConfig
+public record class GroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -20649,7 +20649,7 @@ public record class GroupedAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -21707,7 +21707,7 @@ sealed class BulkWithProrationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(BulkWithProrationConversionRateConfigConverter))]
-public record class BulkWithProrationConversionRateConfig
+public record class BulkWithProrationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -21877,7 +21877,7 @@ public record class BulkWithProrationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -22693,7 +22693,7 @@ sealed class GroupedWithProratedMinimumCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(GroupedWithProratedMinimumConversionRateConfigConverter))]
-public record class GroupedWithProratedMinimumConversionRateConfig
+public record class GroupedWithProratedMinimumConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -22863,7 +22863,7 @@ public record class GroupedWithProratedMinimumConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -23769,7 +23769,7 @@ sealed class GroupedWithMeteredMinimumCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(GroupedWithMeteredMinimumConversionRateConfigConverter))]
-public record class GroupedWithMeteredMinimumConversionRateConfig
+public record class GroupedWithMeteredMinimumConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -23939,7 +23939,7 @@ public record class GroupedWithMeteredMinimumConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -25049,7 +25049,7 @@ sealed class GroupedWithMinMaxThresholdsCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(GroupedWithMinMaxThresholdsConversionRateConfigConverter))]
-public record class GroupedWithMinMaxThresholdsConversionRateConfig
+public record class GroupedWithMinMaxThresholdsConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -25219,7 +25219,7 @@ public record class GroupedWithMinMaxThresholdsConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -26122,7 +26122,7 @@ sealed class MatrixWithDisplayNameCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(MatrixWithDisplayNameConversionRateConfigConverter))]
-public record class MatrixWithDisplayNameConversionRateConfig
+public record class MatrixWithDisplayNameConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -26292,7 +26292,7 @@ public record class MatrixWithDisplayNameConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -27273,7 +27273,7 @@ sealed class GroupedTieredPackageCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(GroupedTieredPackageConversionRateConfigConverter))]
-public record class GroupedTieredPackageConversionRateConfig
+public record class GroupedTieredPackageConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -27443,7 +27443,7 @@ public record class GroupedTieredPackageConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -28419,7 +28419,7 @@ sealed class MaxGroupTieredPackageCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(MaxGroupTieredPackageConversionRateConfigConverter))]
-public record class MaxGroupTieredPackageConversionRateConfig
+public record class MaxGroupTieredPackageConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -28589,7 +28589,7 @@ public record class MaxGroupTieredPackageConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -29575,7 +29575,7 @@ sealed class ScalableMatrixWithUnitPricingCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(ScalableMatrixWithUnitPricingConversionRateConfigConverter))]
-public record class ScalableMatrixWithUnitPricingConversionRateConfig
+public record class ScalableMatrixWithUnitPricingConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -29745,7 +29745,7 @@ public record class ScalableMatrixWithUnitPricingConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -30771,7 +30771,7 @@ sealed class ScalableMatrixWithTieredPricingCompositePriceFilterOperatorConverte
 }
 
 [JsonConverter(typeof(ScalableMatrixWithTieredPricingConversionRateConfigConverter))]
-public record class ScalableMatrixWithTieredPricingConversionRateConfig
+public record class ScalableMatrixWithTieredPricingConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -30941,7 +30941,7 @@ public record class ScalableMatrixWithTieredPricingConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -32028,7 +32028,7 @@ sealed class CumulativeGroupedBulkCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(CumulativeGroupedBulkConversionRateConfigConverter))]
-public record class CumulativeGroupedBulkConversionRateConfig
+public record class CumulativeGroupedBulkConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -32198,7 +32198,7 @@ public record class CumulativeGroupedBulkConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -33186,7 +33186,7 @@ sealed class CumulativeGroupedAllocationCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(CumulativeGroupedAllocationConversionRateConfigConverter))]
-public record class CumulativeGroupedAllocationConversionRateConfig
+public record class CumulativeGroupedAllocationConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -33356,7 +33356,7 @@ public record class CumulativeGroupedAllocationConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -34252,7 +34252,7 @@ sealed class PriceMinimumCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(PriceMinimumConversionRateConfigConverter))]
-public record class PriceMinimumConversionRateConfig
+public record class PriceMinimumConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -34422,7 +34422,7 @@ public record class PriceMinimumConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -35298,7 +35298,7 @@ sealed class PercentCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(PercentConversionRateConfigConverter))]
-public record class PercentConversionRateConfig
+public record class PercentConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -35468,7 +35468,7 @@ public record class PercentConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -36330,7 +36330,7 @@ sealed class EventOutputCompositePriceFilterOperatorConverter
 }
 
 [JsonConverter(typeof(EventOutputConversionRateConfigConverter))]
-public record class EventOutputConversionRateConfig
+public record class EventOutputConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -36500,7 +36500,7 @@ public record class EventOutputConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

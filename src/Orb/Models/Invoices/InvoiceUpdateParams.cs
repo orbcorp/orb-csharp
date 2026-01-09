@@ -167,7 +167,7 @@ public sealed record class InvoiceUpdateParams : ParamsBase
 /// calculated based on the `net_terms` value.
 /// </summary>
 [JsonConverter(typeof(InvoiceUpdateParamsDueDateConverter))]
-public record class InvoiceUpdateParamsDueDate
+public record class InvoiceUpdateParamsDueDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -328,7 +328,7 @@ public record class InvoiceUpdateParamsDueDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -400,7 +400,7 @@ sealed class InvoiceUpdateParamsDueDateConverter : JsonConverter<InvoiceUpdatePa
 /// The date of the invoice. Can only be modified for one-off draft invoices.
 /// </summary>
 [JsonConverter(typeof(InvoiceDateConverter))]
-public record class InvoiceDate
+public record class InvoiceDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -556,7 +556,7 @@ public record class InvoiceDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

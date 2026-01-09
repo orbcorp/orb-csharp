@@ -584,7 +584,7 @@ class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
 }
 
 [JsonConverter(typeof(NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfigConverter))]
-public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig
+public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -754,7 +754,7 @@ public record class NewFloatingScalableMatrixWithUnitPricingPriceConversionRateC
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

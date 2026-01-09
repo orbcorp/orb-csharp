@@ -153,7 +153,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 /// end the trial immediately.
 /// </summary>
 [JsonConverter(typeof(TrialEndDateConverter))]
-public record class TrialEndDate
+public record class TrialEndDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -313,7 +313,7 @@ public record class TrialEndDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

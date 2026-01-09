@@ -465,7 +465,7 @@ class MutatedSubscriptionFromRaw : IFromRawJson<MutatedSubscription>
 }
 
 [JsonConverter(typeof(DiscountIntervalConverter))]
-public record class DiscountInterval
+public record class DiscountInterval : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -687,7 +687,7 @@ public record class DiscountInterval
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

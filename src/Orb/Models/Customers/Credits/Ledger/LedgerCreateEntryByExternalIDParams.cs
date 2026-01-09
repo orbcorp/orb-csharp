@@ -199,7 +199,7 @@ public sealed record class LedgerCreateEntryByExternalIDParams : ParamsBase
 }
 
 [JsonConverter(typeof(LedgerCreateEntryByExternalIDParamsBodyConverter))]
-public record class LedgerCreateEntryByExternalIDParamsBody
+public record class LedgerCreateEntryByExternalIDParamsBody : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -591,7 +591,7 @@ public record class LedgerCreateEntryByExternalIDParamsBody
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1365,6 +1365,7 @@ class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsFromRaw
     typeof(LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDateConverter)
 )]
 public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCustomDueDate
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1536,7 +1537,7 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -1616,6 +1617,7 @@ sealed class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsCust
     typeof(LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDateConverter)
 )]
 public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSettingsInvoiceDate
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1787,7 +1789,7 @@ public record class LedgerCreateEntryByExternalIDParamsBodyIncrementInvoiceSetti
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

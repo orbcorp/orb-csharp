@@ -387,7 +387,7 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Subscriptions
 }
 
 [JsonConverter(typeof(NewSubscriptionBulkPriceConversionRateConfigConverter))]
-public record class NewSubscriptionBulkPriceConversionRateConfig
+public record class NewSubscriptionBulkPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -557,7 +557,7 @@ public record class NewSubscriptionBulkPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

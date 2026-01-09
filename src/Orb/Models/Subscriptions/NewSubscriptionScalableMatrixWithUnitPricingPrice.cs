@@ -610,6 +610,7 @@ class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
     typeof(NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfigConverter)
 )]
 public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -781,7 +782,7 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

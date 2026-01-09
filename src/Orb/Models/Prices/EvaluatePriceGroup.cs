@@ -88,7 +88,7 @@ class EvaluatePriceGroupFromRaw : IFromRawJson<EvaluatePriceGroup>
 }
 
 [JsonConverter(typeof(GroupingValueConverter))]
-public record class GroupingValue
+public record class GroupingValue : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -285,7 +285,7 @@ public record class GroupingValue
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

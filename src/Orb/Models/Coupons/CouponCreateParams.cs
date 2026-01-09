@@ -139,7 +139,7 @@ public sealed record class CouponCreateParams : ParamsBase
 }
 
 [JsonConverter(typeof(DiscountConverter))]
-public record class Discount
+public record class Discount : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -295,7 +295,7 @@ public record class Discount
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

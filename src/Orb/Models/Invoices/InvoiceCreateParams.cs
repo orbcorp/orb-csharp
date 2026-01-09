@@ -396,7 +396,7 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
 /// calculated based on the `net_terms` value.
 /// </summary>
 [JsonConverter(typeof(DueDateConverter))]
-public record class DueDate
+public record class DueDate : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -552,7 +552,7 @@ public record class DueDate
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

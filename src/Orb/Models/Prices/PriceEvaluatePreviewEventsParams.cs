@@ -426,7 +426,7 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationFromRaw
 /// New floating price request body params.
 /// </summary>
 [JsonConverter(typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceConverter))]
-public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
+public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2390,7 +2390,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPrice
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -3846,6 +3846,7 @@ sealed class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFilters
     typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfigConverter)
 )]
 public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWithFiltersConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4017,7 +4018,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceBulkWith
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -4613,6 +4614,7 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThres
     typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfigConverter)
 )]
 public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedWithMinMaxThresholdsConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4784,7 +4786,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceGroupedW
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -5380,6 +5382,7 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAlloc
     typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfigConverter)
 )]
 public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulativeGroupedAllocationConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5551,7 +5554,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceCumulati
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6102,6 +6105,7 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentPercentConfigFr
     typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfigConverter)
 )]
 public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6273,7 +6277,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPricePercentC
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
@@ -6858,6 +6862,7 @@ class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputEventOutput
     typeof(PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfigConverter)
 )]
 public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOutputConversionRateConfig
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7029,7 +7034,7 @@ public record class PriceEvaluatePreviewEventsParamsPriceEvaluationPriceEventOut
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

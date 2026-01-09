@@ -463,7 +463,7 @@ sealed class NewFloatingGroupedAllocationPriceModelTypeConverter
 }
 
 [JsonConverter(typeof(NewFloatingGroupedAllocationPriceConversionRateConfigConverter))]
-public record class NewFloatingGroupedAllocationPriceConversionRateConfig
+public record class NewFloatingGroupedAllocationPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -633,7 +633,7 @@ public record class NewFloatingGroupedAllocationPriceConversionRateConfig
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

@@ -108,7 +108,7 @@ class AdjustmentIntervalFromRaw : IFromRawJson<AdjustmentInterval>
 }
 
 [JsonConverter(typeof(AdjustmentConverter))]
-public record class Adjustment
+public record class Adjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -454,7 +454,7 @@ public record class Adjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

@@ -8,7 +8,7 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(typeof(InvoiceLevelDiscountConverter))]
-public record class InvoiceLevelDiscount
+public record class InvoiceLevelDiscount : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -217,7 +217,7 @@ public record class InvoiceLevelDiscount
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

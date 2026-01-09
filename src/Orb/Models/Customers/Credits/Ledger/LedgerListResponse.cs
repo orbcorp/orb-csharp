@@ -12,7 +12,7 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// credits within Orb.
 /// </summary>
 [JsonConverter(typeof(LedgerListResponseConverter))]
-public record class LedgerListResponse
+public record class LedgerListResponse : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -574,7 +574,7 @@ public record class LedgerListResponse
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

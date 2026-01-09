@@ -8,7 +8,7 @@ using System = System;
 namespace Orb.Models;
 
 [JsonConverter(typeof(SharedDiscountConverter))]
-public record class SharedDiscount
+public record class SharedDiscount : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -255,7 +255,7 @@ public record class SharedDiscount
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

@@ -307,7 +307,7 @@ class PlanFromRaw : IFromRawJson<Plan>
 }
 
 [JsonConverter(typeof(PlanAdjustmentConverter))]
-public record class PlanAdjustment
+public record class PlanAdjustment : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -677,7 +677,7 @@ public record class PlanAdjustment
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {

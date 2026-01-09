@@ -609,7 +609,7 @@ class NewPlanScalableMatrixWithUnitPricingPriceScalableMatrixWithUnitPricingConf
 }
 
 [JsonConverter(typeof(NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfigConverter))]
-public record class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig
+public record class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -779,7 +779,7 @@ public record class NewPlanScalableMatrixWithUnitPricingPriceConversionRateConfi
     /// Thrown when the instance does not pass validation.
     /// </exception>
     /// </summary>
-    public void Validate()
+    public override void Validate()
     {
         if (this.Value == null)
         {
