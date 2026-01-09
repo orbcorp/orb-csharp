@@ -15,6 +15,12 @@ namespace Orb.Services;
 public interface ICustomerService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICustomerServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -189,6 +195,156 @@ public interface ICustomerService
 
     /// <inheritdoc cref="UpdateByExternalID(CustomerUpdateByExternalIDParams, CancellationToken)"/>
     Task<Customer> UpdateByExternalID(
+        string id,
+        CustomerUpdateByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICustomerService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICustomerServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICustomerServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    ICostServiceWithRawResponse Costs { get; }
+
+    ICreditServiceWithRawResponse Credits { get; }
+
+    IBalanceTransactionServiceWithRawResponse BalanceTransactions { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /customers`, but is otherwise the
+    /// same as <see cref="ICustomerService.Create(CustomerCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Customer>> Create(
+        CustomerCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /customers/{customer_id}`, but is otherwise the
+    /// same as <see cref="ICustomerService.Update(CustomerUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Customer>> Update(
+        CustomerUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(CustomerUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Customer>> Update(
+        string customerID,
+        CustomerUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers`, but is otherwise the
+    /// same as <see cref="ICustomerService.List(CustomerListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CustomerListPage>> List(
+        CustomerListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `delete /customers/{customer_id}`, but is otherwise the
+    /// same as <see cref="ICustomerService.Delete(CustomerDeleteParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> Delete(
+        CustomerDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Delete(CustomerDeleteParams, CancellationToken)"/>
+    Task<HttpResponse> Delete(
+        string customerID,
+        CustomerDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/{customer_id}`, but is otherwise the
+    /// same as <see cref="ICustomerService.Fetch(CustomerFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Customer>> Fetch(
+        CustomerFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(CustomerFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Customer>> Fetch(
+        string customerID,
+        CustomerFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}`, but is otherwise the
+    /// same as <see cref="ICustomerService.FetchByExternalID(CustomerFetchByExternalIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Customer>> FetchByExternalID(
+        CustomerFetchByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="FetchByExternalID(CustomerFetchByExternalIDParams, CancellationToken)"/>
+    Task<HttpResponse<Customer>> FetchByExternalID(
+        string externalCustomerID,
+        CustomerFetchByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /customers/{customer_id}/sync_payment_methods_from_gateway`, but is otherwise the
+    /// same as <see cref="ICustomerService.SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> SyncPaymentMethodsFromGateway(
+        CustomerSyncPaymentMethodsFromGatewayParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams, CancellationToken)"/>
+    Task<HttpResponse> SyncPaymentMethodsFromGateway(
+        string customerID,
+        CustomerSyncPaymentMethodsFromGatewayParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /customers/external_customer_id/{external_customer_id}/sync_payment_methods_from_gateway`, but is otherwise the
+    /// same as <see cref="ICustomerService.SyncPaymentMethodsFromGatewayByExternalCustomerID(CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> SyncPaymentMethodsFromGatewayByExternalCustomerID(
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="SyncPaymentMethodsFromGatewayByExternalCustomerID(CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams, CancellationToken)"/>
+    Task<HttpResponse> SyncPaymentMethodsFromGatewayByExternalCustomerID(
+        string externalCustomerID,
+        CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /customers/external_customer_id/{external_customer_id}`, but is otherwise the
+    /// same as <see cref="ICustomerService.UpdateByExternalID(CustomerUpdateByExternalIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Customer>> UpdateByExternalID(
+        CustomerUpdateByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="UpdateByExternalID(CustomerUpdateByExternalIDParams, CancellationToken)"/>
+    Task<HttpResponse<Customer>> UpdateByExternalID(
         string id,
         CustomerUpdateByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

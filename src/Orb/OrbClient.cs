@@ -14,17 +14,6 @@ namespace Orb;
 /// <inheritdoc/>
 public sealed class OrbClient : IOrbClient
 {
-#if NET
-    static readonly Random Random = Random.Shared;
-#else
-    static readonly ThreadLocal<Random> _threadLocalRandom = new(() => new Random());
-
-    static Random Random
-    {
-        get { return _threadLocalRandom.Value!; }
-    }
-#endif
-
     readonly ClientOptions _options;
 
     /// <inheritdoc/>
@@ -74,6 +63,14 @@ public sealed class OrbClient : IOrbClient
     {
         get { return this._options.WebhookSecret; }
         init { this._options.WebhookSecret = value; }
+    }
+
+    readonly Lazy<IOrbClientWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IOrbClientWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
     }
 
     /// <inheritdoc/>
@@ -180,6 +177,212 @@ public sealed class OrbClient : IOrbClient
 
     readonly Lazy<ICreditBlockService> _creditBlocks;
     public ICreditBlockService CreditBlocks
+    {
+        get { return _creditBlocks.Value; }
+    }
+
+    public void Dispose() => this.HttpClient.Dispose();
+
+    public OrbClient()
+    {
+        _options = new();
+
+        _withRawResponse = new(() => new OrbClientWithRawResponse(this._options));
+        _topLevel = new(() => new TopLevelService(this));
+        _beta = new(() => new BetaService(this));
+        _coupons = new(() => new CouponService(this));
+        _creditNotes = new(() => new CreditNoteService(this));
+        _customers = new(() => new CustomerService(this));
+        _events = new(() => new EventService(this));
+        _invoiceLineItems = new(() => new InvoiceLineItemService(this));
+        _invoices = new(() => new InvoiceService(this));
+        _items = new(() => new ItemService(this));
+        _metrics = new(() => new MetricService(this));
+        _plans = new(() => new PlanService(this));
+        _prices = new(() => new PriceService(this));
+        _subscriptions = new(() => new SubscriptionService(this));
+        _alerts = new(() => new AlertService(this));
+        _dimensionalPriceGroups = new(() => new DimensionalPriceGroupService(this));
+        _subscriptionChanges = new(() => new SubscriptionChangeService(this));
+        _creditBlocks = new(() => new CreditBlockService(this));
+    }
+
+    public OrbClient(ClientOptions options)
+        : this()
+    {
+        _options = options;
+    }
+}
+
+/// <inheritdoc/>
+public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
+{
+#if NET
+    static readonly Random Random = Random.Shared;
+#else
+    static readonly ThreadLocal<Random> _threadLocalRandom = new(() => new Random());
+
+    static Random Random
+    {
+        get { return _threadLocalRandom.Value!; }
+    }
+#endif
+
+    readonly ClientOptions _options;
+
+    /// <inheritdoc/>
+    public HttpClient HttpClient
+    {
+        get { return this._options.HttpClient; }
+        init { this._options.HttpClient = value; }
+    }
+
+    /// <inheritdoc/>
+    public string BaseUrl
+    {
+        get { return this._options.BaseUrl; }
+        init { this._options.BaseUrl = value; }
+    }
+
+    /// <inheritdoc/>
+    public bool ResponseValidation
+    {
+        get { return this._options.ResponseValidation; }
+        init { this._options.ResponseValidation = value; }
+    }
+
+    /// <inheritdoc/>
+    public int? MaxRetries
+    {
+        get { return this._options.MaxRetries; }
+        init { this._options.MaxRetries = value; }
+    }
+
+    /// <inheritdoc/>
+    public TimeSpan? Timeout
+    {
+        get { return this._options.Timeout; }
+        init { this._options.Timeout = value; }
+    }
+
+    /// <inheritdoc/>
+    public string ApiKey
+    {
+        get { return this._options.ApiKey; }
+        init { this._options.ApiKey = value; }
+    }
+
+    /// <inheritdoc/>
+    public string? WebhookSecret
+    {
+        get { return this._options.WebhookSecret; }
+        init { this._options.WebhookSecret = value; }
+    }
+
+    /// <inheritdoc/>
+    public IOrbClientWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new OrbClientWithRawResponse(modifier(this._options));
+    }
+
+    readonly Lazy<ITopLevelServiceWithRawResponse> _topLevel;
+    public ITopLevelServiceWithRawResponse TopLevel
+    {
+        get { return _topLevel.Value; }
+    }
+
+    readonly Lazy<IBetaServiceWithRawResponse> _beta;
+    public IBetaServiceWithRawResponse Beta
+    {
+        get { return _beta.Value; }
+    }
+
+    readonly Lazy<ICouponServiceWithRawResponse> _coupons;
+    public ICouponServiceWithRawResponse Coupons
+    {
+        get { return _coupons.Value; }
+    }
+
+    readonly Lazy<ICreditNoteServiceWithRawResponse> _creditNotes;
+    public ICreditNoteServiceWithRawResponse CreditNotes
+    {
+        get { return _creditNotes.Value; }
+    }
+
+    readonly Lazy<ICustomerServiceWithRawResponse> _customers;
+    public ICustomerServiceWithRawResponse Customers
+    {
+        get { return _customers.Value; }
+    }
+
+    readonly Lazy<IEventServiceWithRawResponse> _events;
+    public IEventServiceWithRawResponse Events
+    {
+        get { return _events.Value; }
+    }
+
+    readonly Lazy<IInvoiceLineItemServiceWithRawResponse> _invoiceLineItems;
+    public IInvoiceLineItemServiceWithRawResponse InvoiceLineItems
+    {
+        get { return _invoiceLineItems.Value; }
+    }
+
+    readonly Lazy<IInvoiceServiceWithRawResponse> _invoices;
+    public IInvoiceServiceWithRawResponse Invoices
+    {
+        get { return _invoices.Value; }
+    }
+
+    readonly Lazy<IItemServiceWithRawResponse> _items;
+    public IItemServiceWithRawResponse Items
+    {
+        get { return _items.Value; }
+    }
+
+    readonly Lazy<IMetricServiceWithRawResponse> _metrics;
+    public IMetricServiceWithRawResponse Metrics
+    {
+        get { return _metrics.Value; }
+    }
+
+    readonly Lazy<IPlanServiceWithRawResponse> _plans;
+    public IPlanServiceWithRawResponse Plans
+    {
+        get { return _plans.Value; }
+    }
+
+    readonly Lazy<IPriceServiceWithRawResponse> _prices;
+    public IPriceServiceWithRawResponse Prices
+    {
+        get { return _prices.Value; }
+    }
+
+    readonly Lazy<ISubscriptionServiceWithRawResponse> _subscriptions;
+    public ISubscriptionServiceWithRawResponse Subscriptions
+    {
+        get { return _subscriptions.Value; }
+    }
+
+    readonly Lazy<IAlertServiceWithRawResponse> _alerts;
+    public IAlertServiceWithRawResponse Alerts
+    {
+        get { return _alerts.Value; }
+    }
+
+    readonly Lazy<IDimensionalPriceGroupServiceWithRawResponse> _dimensionalPriceGroups;
+    public IDimensionalPriceGroupServiceWithRawResponse DimensionalPriceGroups
+    {
+        get { return _dimensionalPriceGroups.Value; }
+    }
+
+    readonly Lazy<ISubscriptionChangeServiceWithRawResponse> _subscriptionChanges;
+    public ISubscriptionChangeServiceWithRawResponse SubscriptionChanges
+    {
+        get { return _subscriptionChanges.Value; }
+    }
+
+    readonly Lazy<ICreditBlockServiceWithRawResponse> _creditBlocks;
+    public ICreditBlockServiceWithRawResponse CreditBlocks
     {
         get { return _creditBlocks.Value; }
     }
@@ -385,30 +588,30 @@ public sealed class OrbClient : IOrbClient
 
     public void Dispose() => this.HttpClient.Dispose();
 
-    public OrbClient()
+    public OrbClientWithRawResponse()
     {
         _options = new();
 
-        _topLevel = new(() => new TopLevelService(this));
-        _beta = new(() => new BetaService(this));
-        _coupons = new(() => new CouponService(this));
-        _creditNotes = new(() => new CreditNoteService(this));
-        _customers = new(() => new CustomerService(this));
-        _events = new(() => new EventService(this));
-        _invoiceLineItems = new(() => new InvoiceLineItemService(this));
-        _invoices = new(() => new InvoiceService(this));
-        _items = new(() => new ItemService(this));
-        _metrics = new(() => new MetricService(this));
-        _plans = new(() => new PlanService(this));
-        _prices = new(() => new PriceService(this));
-        _subscriptions = new(() => new SubscriptionService(this));
-        _alerts = new(() => new AlertService(this));
-        _dimensionalPriceGroups = new(() => new DimensionalPriceGroupService(this));
-        _subscriptionChanges = new(() => new SubscriptionChangeService(this));
-        _creditBlocks = new(() => new CreditBlockService(this));
+        _topLevel = new(() => new TopLevelServiceWithRawResponse(this));
+        _beta = new(() => new BetaServiceWithRawResponse(this));
+        _coupons = new(() => new CouponServiceWithRawResponse(this));
+        _creditNotes = new(() => new CreditNoteServiceWithRawResponse(this));
+        _customers = new(() => new CustomerServiceWithRawResponse(this));
+        _events = new(() => new EventServiceWithRawResponse(this));
+        _invoiceLineItems = new(() => new InvoiceLineItemServiceWithRawResponse(this));
+        _invoices = new(() => new InvoiceServiceWithRawResponse(this));
+        _items = new(() => new ItemServiceWithRawResponse(this));
+        _metrics = new(() => new MetricServiceWithRawResponse(this));
+        _plans = new(() => new PlanServiceWithRawResponse(this));
+        _prices = new(() => new PriceServiceWithRawResponse(this));
+        _subscriptions = new(() => new SubscriptionServiceWithRawResponse(this));
+        _alerts = new(() => new AlertServiceWithRawResponse(this));
+        _dimensionalPriceGroups = new(() => new DimensionalPriceGroupServiceWithRawResponse(this));
+        _subscriptionChanges = new(() => new SubscriptionChangeServiceWithRawResponse(this));
+        _creditBlocks = new(() => new CreditBlockServiceWithRawResponse(this));
     }
 
-    public OrbClient(ClientOptions options)
+    public OrbClientWithRawResponse(ClientOptions options)
         : this()
     {
         _options = options;

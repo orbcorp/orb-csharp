@@ -14,6 +14,12 @@ namespace Orb.Services;
 public interface IAlertService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IAlertServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -157,6 +163,141 @@ public interface IAlertService
 
     /// <inheritdoc cref="Enable(AlertEnableParams, CancellationToken)"/>
     Task<Alert> Enable(
+        string alertConfigurationID,
+        AlertEnableParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IAlertService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IAlertServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IAlertServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /alerts/{alert_id}`, but is otherwise the
+    /// same as <see cref="IAlertService.Retrieve(AlertRetrieveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> Retrieve(
+        AlertRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(AlertRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> Retrieve(
+        string alertID,
+        AlertRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /alerts/{alert_configuration_id}`, but is otherwise the
+    /// same as <see cref="IAlertService.Update(AlertUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> Update(
+        AlertUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(AlertUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> Update(
+        string alertConfigurationID,
+        AlertUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /alerts`, but is otherwise the
+    /// same as <see cref="IAlertService.List(AlertListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AlertListPage>> List(
+        AlertListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /alerts/customer_id/{customer_id}`, but is otherwise the
+    /// same as <see cref="IAlertService.CreateForCustomer(AlertCreateForCustomerParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> CreateForCustomer(
+        AlertCreateForCustomerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CreateForCustomer(AlertCreateForCustomerParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> CreateForCustomer(
+        string customerID,
+        AlertCreateForCustomerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /alerts/external_customer_id/{external_customer_id}`, but is otherwise the
+    /// same as <see cref="IAlertService.CreateForExternalCustomer(AlertCreateForExternalCustomerParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> CreateForExternalCustomer(
+        AlertCreateForExternalCustomerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CreateForExternalCustomer(AlertCreateForExternalCustomerParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> CreateForExternalCustomer(
+        string externalCustomerID,
+        AlertCreateForExternalCustomerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /alerts/subscription_id/{subscription_id}`, but is otherwise the
+    /// same as <see cref="IAlertService.CreateForSubscription(AlertCreateForSubscriptionParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> CreateForSubscription(
+        AlertCreateForSubscriptionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CreateForSubscription(AlertCreateForSubscriptionParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> CreateForSubscription(
+        string subscriptionID,
+        AlertCreateForSubscriptionParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /alerts/{alert_configuration_id}/disable`, but is otherwise the
+    /// same as <see cref="IAlertService.Disable(AlertDisableParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> Disable(
+        AlertDisableParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Disable(AlertDisableParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> Disable(
+        string alertConfigurationID,
+        AlertDisableParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /alerts/{alert_configuration_id}/enable`, but is otherwise the
+    /// same as <see cref="IAlertService.Enable(AlertEnableParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Alert>> Enable(
+        AlertEnableParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Enable(AlertEnableParams, CancellationToken)"/>
+    Task<HttpResponse<Alert>> Enable(
         string alertConfigurationID,
         AlertEnableParams? parameters = null,
         CancellationToken cancellationToken = default

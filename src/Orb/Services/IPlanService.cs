@@ -15,6 +15,12 @@ namespace Orb.Services;
 public interface IPlanService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IPlanServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -75,6 +81,74 @@ public interface IPlanService
 
     /// <inheritdoc cref="Fetch(PlanFetchParams, CancellationToken)"/>
     Task<Plan> Fetch(
+        string planID,
+        PlanFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IPlanService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IPlanServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IPlanServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IExternalPlanIDServiceWithRawResponse ExternalPlanID { get; }
+
+    IMigrationServiceWithRawResponse Migrations { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /plans`, but is otherwise the
+    /// same as <see cref="IPlanService.Create(PlanCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Create(
+        PlanCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /plans/{plan_id}`, but is otherwise the
+    /// same as <see cref="IPlanService.Update(PlanUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Update(
+        PlanUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(PlanUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> Update(
+        string planID,
+        PlanUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans`, but is otherwise the
+    /// same as <see cref="IPlanService.List(PlanListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PlanListPage>> List(
+        PlanListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans/{plan_id}`, but is otherwise the
+    /// same as <see cref="IPlanService.Fetch(PlanFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Fetch(
+        PlanFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(PlanFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> Fetch(
         string planID,
         PlanFetchParams? parameters = null,
         CancellationToken cancellationToken = default

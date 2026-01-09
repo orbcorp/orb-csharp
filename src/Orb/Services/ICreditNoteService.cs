@@ -15,6 +15,12 @@ namespace Orb.Services;
 public interface ICreditNoteService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICreditNoteServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -74,6 +80,54 @@ public interface ICreditNoteService
 
     /// <inheritdoc cref="Fetch(CreditNoteFetchParams, CancellationToken)"/>
     Task<SharedCreditNote> Fetch(
+        string creditNoteID,
+        CreditNoteFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICreditNoteService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICreditNoteServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICreditNoteServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /credit_notes`, but is otherwise the
+    /// same as <see cref="ICreditNoteService.Create(CreditNoteCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SharedCreditNote>> Create(
+        CreditNoteCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /credit_notes`, but is otherwise the
+    /// same as <see cref="ICreditNoteService.List(CreditNoteListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditNoteListPage>> List(
+        CreditNoteListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /credit_notes/{credit_note_id}`, but is otherwise the
+    /// same as <see cref="ICreditNoteService.Fetch(CreditNoteFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SharedCreditNote>> Fetch(
+        CreditNoteFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(CreditNoteFetchParams, CancellationToken)"/>
+    Task<HttpResponse<SharedCreditNote>> Fetch(
         string creditNoteID,
         CreditNoteFetchParams? parameters = null,
         CancellationToken cancellationToken = default

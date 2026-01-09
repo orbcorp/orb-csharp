@@ -15,6 +15,12 @@ namespace Orb.Services.Customers;
 public interface ICreditService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICreditServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -62,6 +68,56 @@ public interface ICreditService
 
     /// <inheritdoc cref="ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/>
     Task<CreditListByExternalIDPage> ListByExternalID(
+        string externalCustomerID,
+        CreditListByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICreditService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICreditServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICreditServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    ILedgerServiceWithRawResponse Ledger { get; }
+
+    ITopUpServiceWithRawResponse TopUps { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/{customer_id}/credits`, but is otherwise the
+    /// same as <see cref="ICreditService.List(CreditListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditListPage>> List(
+        CreditListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="List(CreditListParams, CancellationToken)"/>
+    Task<HttpResponse<CreditListPage>> List(
+        string customerID,
+        CreditListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}/credits`, but is otherwise the
+    /// same as <see cref="ICreditService.ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditListByExternalIDPage>> ListByExternalID(
+        CreditListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListByExternalID(CreditListByExternalIDParams, CancellationToken)"/>
+    Task<HttpResponse<CreditListByExternalIDPage>> ListByExternalID(
         string externalCustomerID,
         CreditListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

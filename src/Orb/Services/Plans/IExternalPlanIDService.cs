@@ -15,6 +15,12 @@ namespace Orb.Services.Plans;
 public interface IExternalPlanIDService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IExternalPlanIDServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -62,6 +68,52 @@ public interface IExternalPlanIDService
 
     /// <inheritdoc cref="Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>
     Task<Plan> Fetch(
+        string externalPlanID,
+        ExternalPlanIDFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IExternalPlanIDService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IExternalPlanIDServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IExternalPlanIDServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /plans/external_plan_id/{external_plan_id}`, but is otherwise the
+    /// same as <see cref="IExternalPlanIDService.Update(ExternalPlanIDUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Update(
+        ExternalPlanIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(ExternalPlanIDUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> Update(
+        string otherExternalPlanID,
+        ExternalPlanIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /plans/external_plan_id/{external_plan_id}`, but is otherwise the
+    /// same as <see cref="IExternalPlanIDService.Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Plan>> Fetch(
+        ExternalPlanIDFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Plan>> Fetch(
         string externalPlanID,
         ExternalPlanIDFetchParams? parameters = null,
         CancellationToken cancellationToken = default

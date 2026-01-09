@@ -14,6 +14,12 @@ namespace Orb.Services.Customers;
 public interface IBalanceTransactionService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IBalanceTransactionServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -67,6 +73,54 @@ public interface IBalanceTransactionService
 
     /// <inheritdoc cref="List(BalanceTransactionListParams, CancellationToken)"/>
     Task<BalanceTransactionListPage> List(
+        string customerID,
+        BalanceTransactionListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IBalanceTransactionService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IBalanceTransactionServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IBalanceTransactionServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /customers/{customer_id}/balance_transactions`, but is otherwise the
+    /// same as <see cref="IBalanceTransactionService.Create(BalanceTransactionCreateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BalanceTransactionCreateResponse>> Create(
+        BalanceTransactionCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Create(BalanceTransactionCreateParams, CancellationToken)"/>
+    Task<HttpResponse<BalanceTransactionCreateResponse>> Create(
+        string customerID,
+        BalanceTransactionCreateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/{customer_id}/balance_transactions`, but is otherwise the
+    /// same as <see cref="IBalanceTransactionService.List(BalanceTransactionListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<BalanceTransactionListPage>> List(
+        BalanceTransactionListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="List(BalanceTransactionListParams, CancellationToken)"/>
+    Task<HttpResponse<BalanceTransactionListPage>> List(
         string customerID,
         BalanceTransactionListParams? parameters = null,
         CancellationToken cancellationToken = default

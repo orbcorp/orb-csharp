@@ -14,6 +14,12 @@ namespace Orb.Services.Customers.Credits;
 public interface ILedgerService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ILedgerServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -377,6 +383,84 @@ public interface ILedgerService
 
     /// <inheritdoc cref="ListByExternalID(LedgerListByExternalIDParams, CancellationToken)"/>
     Task<LedgerListByExternalIDPage> ListByExternalID(
+        string externalCustomerID,
+        LedgerListByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ILedgerService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ILedgerServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ILedgerServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/{customer_id}/credits/ledger`, but is otherwise the
+    /// same as <see cref="ILedgerService.List(LedgerListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<LedgerListPage>> List(
+        LedgerListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="List(LedgerListParams, CancellationToken)"/>
+    Task<HttpResponse<LedgerListPage>> List(
+        string customerID,
+        LedgerListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /customers/{customer_id}/credits/ledger_entry`, but is otherwise the
+    /// same as <see cref="ILedgerService.CreateEntry(LedgerCreateEntryParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<LedgerCreateEntryResponse>> CreateEntry(
+        LedgerCreateEntryParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CreateEntry(LedgerCreateEntryParams, CancellationToken)"/>
+    Task<HttpResponse<LedgerCreateEntryResponse>> CreateEntry(
+        string customerID,
+        LedgerCreateEntryParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /customers/external_customer_id/{external_customer_id}/credits/ledger_entry`, but is otherwise the
+    /// same as <see cref="ILedgerService.CreateEntryByExternalID(LedgerCreateEntryByExternalIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<LedgerCreateEntryByExternalIDResponse>> CreateEntryByExternalID(
+        LedgerCreateEntryByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CreateEntryByExternalID(LedgerCreateEntryByExternalIDParams, CancellationToken)"/>
+    Task<HttpResponse<LedgerCreateEntryByExternalIDResponse>> CreateEntryByExternalID(
+        string externalCustomerID,
+        LedgerCreateEntryByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}/credits/ledger`, but is otherwise the
+    /// same as <see cref="ILedgerService.ListByExternalID(LedgerListByExternalIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<LedgerListByExternalIDPage>> ListByExternalID(
+        LedgerListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListByExternalID(LedgerListByExternalIDParams, CancellationToken)"/>
+    Task<HttpResponse<LedgerListByExternalIDPage>> ListByExternalID(
         string externalCustomerID,
         LedgerListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

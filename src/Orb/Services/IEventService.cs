@@ -15,6 +15,12 @@ namespace Orb.Services;
 public interface IEventService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IEventServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -323,6 +329,74 @@ public interface IEventService
     /// return an empty array for `data` instead.</para>
     /// </summary>
     Task<EventSearchResponse> Search(
+        EventSearchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IEventService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IEventServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IEventServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IBackfillServiceWithRawResponse Backfills { get; }
+
+    IVolumeServiceWithRawResponse Volume { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /events/{event_id}`, but is otherwise the
+    /// same as <see cref="IEventService.Update(EventUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<EventUpdateResponse>> Update(
+        EventUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(EventUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<EventUpdateResponse>> Update(
+        string eventID,
+        EventUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /events/{event_id}/deprecate`, but is otherwise the
+    /// same as <see cref="IEventService.Deprecate(EventDeprecateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<EventDeprecateResponse>> Deprecate(
+        EventDeprecateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Deprecate(EventDeprecateParams, CancellationToken)"/>
+    Task<HttpResponse<EventDeprecateResponse>> Deprecate(
+        string eventID,
+        EventDeprecateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /ingest`, but is otherwise the
+    /// same as <see cref="IEventService.Ingest(EventIngestParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<EventIngestResponse>> Ingest(
+        EventIngestParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `post /events/search`, but is otherwise the
+    /// same as <see cref="IEventService.Search(EventSearchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<EventSearchResponse>> Search(
         EventSearchParams parameters,
         CancellationToken cancellationToken = default
     );

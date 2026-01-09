@@ -9,7 +9,7 @@ using Orb.Services;
 namespace Orb.Models.Subscriptions;
 
 public sealed class SubscriptionFetchSchedulePage(
-    ISubscriptionService service,
+    ISubscriptionServiceWithRawResponse service,
     SubscriptionFetchScheduleParams parameters,
     SubscriptionFetchSchedulePageResponse response
 ) : IPage<SubscriptionFetchScheduleResponse>
@@ -49,9 +49,10 @@ public sealed class SubscriptionFetchSchedulePage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .FetchSchedule(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

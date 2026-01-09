@@ -9,7 +9,7 @@ using Orb.Services.Customers;
 namespace Orb.Models.Customers.BalanceTransactions;
 
 public sealed class BalanceTransactionListPage(
-    IBalanceTransactionService service,
+    IBalanceTransactionServiceWithRawResponse service,
     BalanceTransactionListParams parameters,
     BalanceTransactionListPageResponse response
 ) : IPage<BalanceTransactionListResponse>
@@ -48,9 +48,10 @@ public sealed class BalanceTransactionListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

@@ -14,6 +14,12 @@ namespace Orb.Services.Events;
 public interface IVolumeService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IVolumeServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -34,6 +40,29 @@ public interface IVolumeService
     /// includes the hours the timestamp falls in.</para>
     /// </summary>
     Task<EventVolumes> List(
+        VolumeListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IVolumeService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IVolumeServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IVolumeServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /events/volume`, but is otherwise the
+    /// same as <see cref="IVolumeService.List(VolumeListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<EventVolumes>> List(
         VolumeListParams parameters,
         CancellationToken cancellationToken = default
     );

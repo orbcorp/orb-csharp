@@ -11,21 +11,116 @@ namespace Orb.Services.Plans;
 /// <inheritdoc/>
 public sealed class MigrationService : IMigrationService
 {
+    readonly Lazy<IMigrationServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IMigrationServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IOrbClient _client;
+
     /// <inheritdoc/>
     public IMigrationService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new MigrationService(this._client.WithOptions(modifier));
     }
 
-    readonly IOrbClient _client;
-
     public MigrationService(IOrbClient client)
+    {
+        _client = client;
+
+        _withRawResponse = new(() => new MigrationServiceWithRawResponse(client.WithRawResponse));
+    }
+
+    /// <inheritdoc/>
+    public async Task<MigrationRetrieveResponse> Retrieve(
+        MigrationRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Retrieve(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<MigrationRetrieveResponse> Retrieve(
+        string migrationID,
+        MigrationRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Retrieve(parameters with { MigrationID = migrationID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<MigrationListPage> List(
+        MigrationListParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<MigrationListPage> List(
+        string planID,
+        MigrationListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.List(parameters with { PlanID = planID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<MigrationCancelResponse> Cancel(
+        MigrationCancelParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Cancel(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<MigrationCancelResponse> Cancel(
+        string migrationID,
+        MigrationCancelParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Cancel(parameters with { MigrationID = migrationID }, cancellationToken);
+    }
+}
+
+/// <inheritdoc/>
+public sealed class MigrationServiceWithRawResponse : IMigrationServiceWithRawResponse
+{
+    readonly IOrbClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public IMigrationServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    {
+        return new MigrationServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public MigrationServiceWithRawResponse(IOrbClientWithRawResponse client)
     {
         _client = client;
     }
 
     /// <inheritdoc/>
-    public async Task<MigrationRetrieveResponse> Retrieve(
+    public async Task<HttpResponse<MigrationRetrieveResponse>> Retrieve(
         MigrationRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -40,37 +135,35 @@ public sealed class MigrationService : IMigrationService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var migration = await response
-            .Deserialize<MigrationRetrieveResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            migration.Validate();
-        }
-        return migration;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var migration = await response
+                    .Deserialize<MigrationRetrieveResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    migration.Validate();
+                }
+                return migration;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<MigrationRetrieveResponse> Retrieve(
+    public Task<HttpResponse<MigrationRetrieveResponse>> Retrieve(
         string migrationID,
         MigrationRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return await this.Retrieve(
-            parameters with
-            {
-                MigrationID = migrationID,
-            },
-            cancellationToken
-        );
+        return this.Retrieve(parameters with { MigrationID = migrationID }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<MigrationListPage> List(
+    public async Task<HttpResponse<MigrationListPage>> List(
         MigrationListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -85,21 +178,25 @@ public sealed class MigrationService : IMigrationService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var page = await response
-            .Deserialize<MigrationListPageResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            page.Validate();
-        }
-        return new MigrationListPage(this, parameters, page);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response
+                    .Deserialize<MigrationListPageResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new MigrationListPage(this, parameters, page);
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<MigrationListPage> List(
+    public Task<HttpResponse<MigrationListPage>> List(
         string planID,
         MigrationListParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -107,11 +204,11 @@ public sealed class MigrationService : IMigrationService
     {
         parameters ??= new();
 
-        return await this.List(parameters with { PlanID = planID }, cancellationToken);
+        return this.List(parameters with { PlanID = planID }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<MigrationCancelResponse> Cancel(
+    public async Task<HttpResponse<MigrationCancelResponse>> Cancel(
         MigrationCancelParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -126,26 +223,30 @@ public sealed class MigrationService : IMigrationService
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var deserializedResponse = await response
-            .Deserialize<MigrationCancelResponse>(cancellationToken)
-            .ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            deserializedResponse.Validate();
-        }
-        return deserializedResponse;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<MigrationCancelResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<MigrationCancelResponse> Cancel(
+    public Task<HttpResponse<MigrationCancelResponse>> Cancel(
         string migrationID,
         MigrationCancelParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return await this.Cancel(parameters with { MigrationID = migrationID }, cancellationToken);
+        return this.Cancel(parameters with { MigrationID = migrationID }, cancellationToken);
     }
 }

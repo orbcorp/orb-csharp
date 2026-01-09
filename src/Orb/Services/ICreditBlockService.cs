@@ -14,6 +14,12 @@ namespace Orb.Services;
 public interface ICreditBlockService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICreditBlockServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -52,6 +58,52 @@ public interface ICreditBlockService
 
     /// <inheritdoc cref="Delete(CreditBlockDeleteParams, CancellationToken)"/>
     Task Delete(
+        string blockID,
+        CreditBlockDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICreditBlockService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICreditBlockServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICreditBlockServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /credit_blocks/{block_id}`, but is otherwise the
+    /// same as <see cref="ICreditBlockService.Retrieve(CreditBlockRetrieveParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditBlockRetrieveResponse>> Retrieve(
+        CreditBlockRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(CreditBlockRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<CreditBlockRetrieveResponse>> Retrieve(
+        string blockID,
+        CreditBlockRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `delete /credit_blocks/{block_id}`, but is otherwise the
+    /// same as <see cref="ICreditBlockService.Delete(CreditBlockDeleteParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> Delete(
+        CreditBlockDeleteParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Delete(CreditBlockDeleteParams, CancellationToken)"/>
+    Task<HttpResponse> Delete(
         string blockID,
         CreditBlockDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

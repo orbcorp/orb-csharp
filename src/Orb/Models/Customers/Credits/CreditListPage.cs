@@ -9,7 +9,7 @@ using Orb.Services.Customers;
 namespace Orb.Models.Customers.Credits;
 
 public sealed class CreditListPage(
-    ICreditService service,
+    ICreditServiceWithRawResponse service,
     CreditListParams parameters,
     CreditListPageResponse response
 ) : IPage<CreditListResponse>
@@ -46,9 +46,10 @@ public sealed class CreditListPage(
         var nextCursor =
             response.PaginationMetadata.NextCursor
             ?? throw new InvalidOperationException("Cannot request next page");
-        return await service
+        using var nextResponse = await service
             .List(parameters with { Cursor = nextCursor }, cancellationToken)
             .ConfigureAwait(false);
+        return await nextResponse.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>

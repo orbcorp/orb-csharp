@@ -12,17 +12,29 @@ namespace Orb.Services.Prices;
 /// <inheritdoc/>
 public sealed class ExternalPriceIDService : IExternalPriceIDService
 {
+    readonly Lazy<IExternalPriceIDServiceWithRawResponse> _withRawResponse;
+
+    /// <inheritdoc/>
+    public IExternalPriceIDServiceWithRawResponse WithRawResponse
+    {
+        get { return _withRawResponse.Value; }
+    }
+
+    readonly IOrbClient _client;
+
     /// <inheritdoc/>
     public IExternalPriceIDService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ExternalPriceIDService(this._client.WithOptions(modifier));
     }
 
-    readonly IOrbClient _client;
-
     public ExternalPriceIDService(IOrbClient client)
     {
         _client = client;
+
+        _withRawResponse = new(() =>
+            new ExternalPriceIDServiceWithRawResponse(client.WithRawResponse)
+        );
     }
 
     /// <inheritdoc/>
@@ -31,29 +43,14 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.ExternalPriceID == null)
-        {
-            throw new OrbInvalidDataException("'parameters.ExternalPriceID' cannot be null");
-        }
-
-        HttpRequest<ExternalPriceIDUpdateParams> request = new()
-        {
-            Method = HttpMethod.Put,
-            Params = parameters,
-        };
         using var response = await this
-            ._client.Execute(request, cancellationToken)
+            .WithRawResponse.Update(parameters, cancellationToken)
             .ConfigureAwait(false);
-        var price = await response.Deserialize<Price>(cancellationToken).ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            price.Validate();
-        }
-        return price;
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task<Price> Update(
+    public Task<Price> Update(
         string externalPriceID,
         ExternalPriceIDUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -61,7 +58,7 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
     {
         parameters ??= new();
 
-        return await this.Update(
+        return this.Update(
             parameters with
             {
                 ExternalPriceID = externalPriceID,
@@ -76,6 +73,98 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
         CancellationToken cancellationToken = default
     )
     {
+        using var response = await this
+            .WithRawResponse.Fetch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Price> Fetch(
+        string externalPriceID,
+        ExternalPriceIDFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Fetch(parameters with { ExternalPriceID = externalPriceID }, cancellationToken);
+    }
+}
+
+/// <inheritdoc/>
+public sealed class ExternalPriceIDServiceWithRawResponse : IExternalPriceIDServiceWithRawResponse
+{
+    readonly IOrbClientWithRawResponse _client;
+
+    /// <inheritdoc/>
+    public IExternalPriceIDServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    )
+    {
+        return new ExternalPriceIDServiceWithRawResponse(this._client.WithOptions(modifier));
+    }
+
+    public ExternalPriceIDServiceWithRawResponse(IOrbClientWithRawResponse client)
+    {
+        _client = client;
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Price>> Update(
+        ExternalPriceIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ExternalPriceID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.ExternalPriceID' cannot be null");
+        }
+
+        HttpRequest<ExternalPriceIDUpdateParams> request = new()
+        {
+            Method = HttpMethod.Put,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var price = await response.Deserialize<Price>(token).ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    price.Validate();
+                }
+                return price;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Price>> Update(
+        string externalPriceID,
+        ExternalPriceIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Update(
+            parameters with
+            {
+                ExternalPriceID = externalPriceID,
+            },
+            cancellationToken
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Price>> Fetch(
+        ExternalPriceIDFetchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
         if (parameters.ExternalPriceID == null)
         {
             throw new OrbInvalidDataException("'parameters.ExternalPriceID' cannot be null");
@@ -86,19 +175,23 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        using var response = await this
-            ._client.Execute(request, cancellationToken)
-            .ConfigureAwait(false);
-        var price = await response.Deserialize<Price>(cancellationToken).ConfigureAwait(false);
-        if (this._client.ResponseValidation)
-        {
-            price.Validate();
-        }
-        return price;
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var price = await response.Deserialize<Price>(token).ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    price.Validate();
+                }
+                return price;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public async Task<Price> Fetch(
+    public Task<HttpResponse<Price>> Fetch(
         string externalPriceID,
         ExternalPriceIDFetchParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -106,12 +199,6 @@ public sealed class ExternalPriceIDService : IExternalPriceIDService
     {
         parameters ??= new();
 
-        return await this.Fetch(
-            parameters with
-            {
-                ExternalPriceID = externalPriceID,
-            },
-            cancellationToken
-        );
+        return this.Fetch(parameters with { ExternalPriceID = externalPriceID }, cancellationToken);
     }
 }

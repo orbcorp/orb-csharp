@@ -14,6 +14,12 @@ namespace Orb.Services.Customers;
 public interface ICostService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    ICostServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -237,6 +243,52 @@ public interface ICostService
 
     /// <inheritdoc cref="ListByExternalID(CostListByExternalIDParams, CancellationToken)"/>
     Task<CostListByExternalIDResponse> ListByExternalID(
+        string externalCustomerID,
+        CostListByExternalIDParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="ICostService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface ICostServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    ICostServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/{customer_id}/costs`, but is otherwise the
+    /// same as <see cref="ICostService.List(CostListParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CostListResponse>> List(
+        CostListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="List(CostListParams, CancellationToken)"/>
+    Task<HttpResponse<CostListResponse>> List(
+        string customerID,
+        CostListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}/costs`, but is otherwise the
+    /// same as <see cref="ICostService.ListByExternalID(CostListByExternalIDParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CostListByExternalIDResponse>> ListByExternalID(
+        CostListByExternalIDParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListByExternalID(CostListByExternalIDParams, CancellationToken)"/>
+    Task<HttpResponse<CostListByExternalIDResponse>> ListByExternalID(
         string externalCustomerID,
         CostListByExternalIDParams? parameters = null,
         CancellationToken cancellationToken = default

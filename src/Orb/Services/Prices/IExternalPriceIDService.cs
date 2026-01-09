@@ -15,6 +15,12 @@ namespace Orb.Services.Prices;
 public interface IExternalPriceIDService
 {
     /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IExternalPriceIDServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
     /// Returns a view of this service with the given option modifications applied.
     ///
     /// <para>The original service is not modified.</para>
@@ -50,6 +56,52 @@ public interface IExternalPriceIDService
 
     /// <inheritdoc cref="Fetch(ExternalPriceIDFetchParams, CancellationToken)"/>
     Task<Price> Fetch(
+        string externalPriceID,
+        ExternalPriceIDFetchParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+}
+
+/// <summary>
+/// A view of <see cref="IExternalPriceIDService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IExternalPriceIDServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IExternalPriceIDServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    /// <summary>
+    /// Returns a raw HTTP response for `put /prices/external_price_id/{external_price_id}`, but is otherwise the
+    /// same as <see cref="IExternalPriceIDService.Update(ExternalPriceIDUpdateParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Price>> Update(
+        ExternalPriceIDUpdateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Update(ExternalPriceIDUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Price>> Update(
+        string externalPriceID,
+        ExternalPriceIDUpdateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for `get /prices/external_price_id/{external_price_id}`, but is otherwise the
+    /// same as <see cref="IExternalPriceIDService.Fetch(ExternalPriceIDFetchParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<Price>> Fetch(
+        ExternalPriceIDFetchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Fetch(ExternalPriceIDFetchParams, CancellationToken)"/>
+    Task<HttpResponse<Price>> Fetch(
         string externalPriceID,
         ExternalPriceIDFetchParams? parameters = null,
         CancellationToken cancellationToken = default
