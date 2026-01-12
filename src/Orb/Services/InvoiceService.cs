@@ -84,15 +84,12 @@ public sealed class InvoiceService : IInvoiceService
     }
 
     /// <inheritdoc/>
-    public async Task DeleteLineItem(
+    public Task DeleteLineItem(
         InvoiceDeleteLineItemParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.DeleteLineItem(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.DeleteLineItem(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
