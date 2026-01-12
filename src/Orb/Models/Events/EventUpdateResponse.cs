@@ -15,8 +15,8 @@ public sealed record class EventUpdateResponse : JsonModel
     /// </summary>
     public required string Amended
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amended"); }
-        init { JsonModel.Set(this._rawData, "amended", value); }
+        get { return this._rawData.GetNotNullClass<string>("amended"); }
+        init { this._rawData.Set("amended", value); }
     }
 
     /// <inheritdoc/>
@@ -32,14 +32,14 @@ public sealed record class EventUpdateResponse : JsonModel
 
     public EventUpdateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EventUpdateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

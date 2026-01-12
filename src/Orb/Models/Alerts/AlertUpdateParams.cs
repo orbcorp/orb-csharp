@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Orb.Models.Alerts;
 /// </summary>
 public sealed record class AlertUpdateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -27,8 +28,14 @@ public sealed record class AlertUpdateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<Threshold> Thresholds
     {
-        get { return JsonModel.GetNotNullClass<List<Threshold>>(this.RawBodyData, "thresholds"); }
-        init { JsonModel.Set(this._rawBodyData, "thresholds", value); }
+        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds"); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<Threshold>>(
+                "thresholds",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public AlertUpdateParams() { }
@@ -38,7 +45,7 @@ public sealed record class AlertUpdateParams : ParamsBase
     {
         this.AlertConfigurationID = alertUpdateParams.AlertConfigurationID;
 
-        this._rawBodyData = [.. alertUpdateParams._rawBodyData];
+        this._rawBodyData = new(alertUpdateParams._rawBodyData);
     }
 
     public AlertUpdateParams(
@@ -47,9 +54,9 @@ public sealed record class AlertUpdateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -60,9 +67,9 @@ public sealed record class AlertUpdateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

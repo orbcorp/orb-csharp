@@ -24,7 +24,7 @@ namespace Orb.Models.InvoiceLineItems;
 /// </summary>
 public sealed record class InvoiceLineItemCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -35,8 +35,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "amount"); }
-        init { JsonModel.Set(this._rawBodyData, "amount", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("amount"); }
+        init { this._rawBodyData.Set("amount", value); }
     }
 
     /// <summary>
@@ -44,8 +44,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string EndDate
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "end_date"); }
-        init { JsonModel.Set(this._rawBodyData, "end_date", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("end_date"); }
+        init { this._rawBodyData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -53,8 +53,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string InvoiceID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "invoice_id"); }
-        init { JsonModel.Set(this._rawBodyData, "invoice_id", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("invoice_id"); }
+        init { this._rawBodyData.Set("invoice_id", value); }
     }
 
     /// <summary>
@@ -62,8 +62,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawBodyData, "quantity"); }
-        init { JsonModel.Set(this._rawBodyData, "quantity", value); }
+        get { return this._rawBodyData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawBodyData.Set("quantity", value); }
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public required string StartDate
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "start_date"); }
-        init { JsonModel.Set(this._rawBodyData, "start_date", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("start_date"); }
+        init { this._rawBodyData.Set("start_date", value); }
     }
 
     /// <summary>
@@ -83,8 +83,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? ItemID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "item_id"); }
-        init { JsonModel.Set(this._rawBodyData, "item_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("item_id"); }
+        init { this._rawBodyData.Set("item_id", value); }
     }
 
     /// <summary>
@@ -97,8 +97,8 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     /// </summary>
     public string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "name"); }
-        init { JsonModel.Set(this._rawBodyData, "name", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("name"); }
+        init { this._rawBodyData.Set("name", value); }
     }
 
     public InvoiceLineItemCreateParams() { }
@@ -106,7 +106,7 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
     public InvoiceLineItemCreateParams(InvoiceLineItemCreateParams invoiceLineItemCreateParams)
         : base(invoiceLineItemCreateParams)
     {
-        this._rawBodyData = [.. invoiceLineItemCreateParams._rawBodyData];
+        this._rawBodyData = new(invoiceLineItemCreateParams._rawBodyData);
     }
 
     public InvoiceLineItemCreateParams(
@@ -115,9 +115,9 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -128,9 +128,9 @@ public sealed record class InvoiceLineItemCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

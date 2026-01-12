@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,14 +15,14 @@ public sealed record class AdjustmentInterval : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required Adjustment Adjustment
     {
-        get { return JsonModel.GetNotNullClass<Adjustment>(this.RawData, "adjustment"); }
-        init { JsonModel.Set(this._rawData, "adjustment", value); }
+        get { return this._rawData.GetNotNullClass<Adjustment>("adjustment"); }
+        init { this._rawData.Set("adjustment", value); }
     }
 
     /// <summary>
@@ -31,12 +32,17 @@ public sealed record class AdjustmentInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<string>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
                 "applies_to_price_interval_ids"
             );
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_interval_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -44,11 +50,8 @@ public sealed record class AdjustmentInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
-        }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -56,11 +59,8 @@ public sealed record class AdjustmentInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
-        }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -80,14 +80,14 @@ public sealed record class AdjustmentInterval : JsonModel
 
     public AdjustmentInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AdjustmentInterval(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

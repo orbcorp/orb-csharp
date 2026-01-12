@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -13,8 +14,11 @@ public sealed record class EventSearchResponse : JsonModel
 {
     public required IReadOnlyList<Data> Data
     {
-        get { return JsonModel.GetNotNullClass<List<Data>>(this.RawData, "data"); }
-        init { JsonModel.Set(this._rawData, "data", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<Data>>("data"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Data>>("data", ImmutableArray.ToImmutableArray(value));
+        }
     }
 
     /// <inheritdoc/>
@@ -33,14 +37,14 @@ public sealed record class EventSearchResponse : JsonModel
 
     public EventSearchResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EventSearchResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -82,8 +86,8 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -91,8 +95,8 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { JsonModel.Set(this._rawData, "customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        init { this._rawData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -100,8 +104,8 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required bool Deprecated
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "deprecated"); }
-        init { JsonModel.Set(this._rawData, "deprecated", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("deprecated"); }
+        init { this._rawData.Set("deprecated", value); }
     }
 
     /// <summary>
@@ -109,8 +113,8 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string EventName
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "event_name"); }
-        init { JsonModel.Set(this._rawData, "event_name", value); }
+        get { return this._rawData.GetNotNullClass<string>("event_name"); }
+        init { this._rawData.Set("event_name", value); }
     }
 
     /// <summary>
@@ -118,8 +122,8 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -130,12 +134,17 @@ public sealed record class Data : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, JsonElement>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
         }
-        init { JsonModel.Set(this._rawData, "properties", value); }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>>(
+                "properties",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -145,8 +154,8 @@ public sealed record class Data : JsonModel
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "timestamp"); }
-        init { JsonModel.Set(this._rawData, "timestamp", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("timestamp"); }
+        init { this._rawData.Set("timestamp", value); }
     }
 
     /// <inheritdoc/>
@@ -168,14 +177,14 @@ public sealed record class Data : JsonModel
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Data(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

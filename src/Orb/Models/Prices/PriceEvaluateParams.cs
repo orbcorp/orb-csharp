@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Orb.Models.Prices;
 /// </summary>
 public sealed record class PriceEvaluateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -49,11 +50,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
-        }
-        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
+        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
     /// <summary>
@@ -61,11 +59,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeStart
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
-        }
-        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
+        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        init { this._rawBodyData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -73,8 +68,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        init { this._rawBodyData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -82,8 +77,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -92,8 +87,8 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public string? Filter
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "filter"); }
-        init { JsonModel.Set(this._rawBodyData, "filter", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("filter"); }
+        init { this._rawBodyData.Set("filter", value); }
     }
 
     /// <summary>
@@ -102,7 +97,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     /// </summary>
     public IReadOnlyList<string>? GroupingKeys
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawBodyData, "grouping_keys"); }
+        get { return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("grouping_keys"); }
         init
         {
             if (value == null)
@@ -110,7 +105,10 @@ public sealed record class PriceEvaluateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "grouping_keys", value);
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "grouping_keys",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -121,7 +119,7 @@ public sealed record class PriceEvaluateParams : ParamsBase
     {
         this.PriceID = priceEvaluateParams.PriceID;
 
-        this._rawBodyData = [.. priceEvaluateParams._rawBodyData];
+        this._rawBodyData = new(priceEvaluateParams._rawBodyData);
     }
 
     public PriceEvaluateParams(
@@ -130,9 +128,9 @@ public sealed record class PriceEvaluateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -143,9 +141,9 @@ public sealed record class PriceEvaluateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

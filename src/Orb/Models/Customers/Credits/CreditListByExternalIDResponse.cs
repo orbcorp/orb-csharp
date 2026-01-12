@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,71 +20,66 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required double Balance
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "balance"); }
-        init { JsonModel.Set(this._rawData, "balance", value); }
+        get { return this._rawData.GetNotNullStruct<double>("balance"); }
+        init { this._rawData.Set("balance", value); }
     }
 
     public required System::DateTimeOffset? EffectiveDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawData,
-                "effective_date"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "effective_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("effective_date"); }
+        init { this._rawData.Set("effective_date", value); }
     }
 
     public required System::DateTimeOffset? ExpiryDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "expiry_date");
-        }
-        init { JsonModel.Set(this._rawData, "expiry_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiry_date"); }
+        init { this._rawData.Set("expiry_date", value); }
     }
 
     public required IReadOnlyList<CreditListByExternalIDResponseFilter> Filters
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<CreditListByExternalIDResponseFilter>>(
-                this.RawData,
-                "filters"
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<CreditListByExternalIDResponseFilter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<CreditListByExternalIDResponseFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
             );
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
     }
 
     public required double? MaximumInitialBalance
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "maximum_initial_balance"); }
-        init { JsonModel.Set(this._rawData, "maximum_initial_balance", value); }
+        get { return this._rawData.GetNullableStruct<double>("maximum_initial_balance"); }
+        init { this._rawData.Set("maximum_initial_balance", value); }
     }
 
     public required string? PerUnitCostBasis
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
-        init { JsonModel.Set(this._rawData, "per_unit_cost_basis", value); }
+        get { return this._rawData.GetNullableClass<string>("per_unit_cost_basis"); }
+        init { this._rawData.Set("per_unit_cost_basis", value); }
     }
 
     public required ApiEnum<string, CreditListByExternalIDResponseStatus> Status
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, CreditListByExternalIDResponseStatus>>(
-                this.RawData,
-                "status"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, CreditListByExternalIDResponseStatus>
+            >("status");
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     /// <inheritdoc/>
@@ -111,14 +107,14 @@ public sealed record class CreditListByExternalIDResponse : JsonModel
 
     public CreditListByExternalIDResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreditListByExternalIDResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -157,11 +153,11 @@ public sealed record class CreditListByExternalIDResponseFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, CreditListByExternalIDResponseFilterField>
-            >(this.RawData, "field");
+            >("field");
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -171,11 +167,11 @@ public sealed record class CreditListByExternalIDResponseFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, CreditListByExternalIDResponseFilterOperator>
-            >(this.RawData, "operator");
+            >("operator");
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -183,8 +179,14 @@ public sealed record class CreditListByExternalIDResponseFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -204,14 +206,14 @@ public sealed record class CreditListByExternalIDResponseFilter : JsonModel
 
     public CreditListByExternalIDResponseFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreditListByExternalIDResponseFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

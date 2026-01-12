@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -20,8 +21,8 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     /// </summary>
     public required string Allocation
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "allocation"); }
-        init { JsonModel.Set(this._rawData, "allocation", value); }
+        get { return this._rawData.GetNotNullClass<string>("allocation"); }
+        init { this._rawData.Set("allocation", value); }
     }
 
     /// <summary>
@@ -29,8 +30,8 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     /// </summary>
     public required string DefaultUnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "default_unit_amount"); }
-        init { JsonModel.Set(this._rawData, "default_unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("default_unit_amount"); }
+        init { this._rawData.Set("default_unit_amount", value); }
     }
 
     /// <summary>
@@ -38,8 +39,14 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> Dimensions
     {
-        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimensions"); }
-        init { JsonModel.Set(this._rawData, "dimensions", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -49,12 +56,17 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<MatrixWithAllocationConfigMatrixValue>>(
-                this.RawData,
-                "matrix_values"
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<MatrixWithAllocationConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MatrixWithAllocationConfigMatrixValue>>(
+                "matrix_values",
+                ImmutableArray.ToImmutableArray(value)
             );
         }
-        init { JsonModel.Set(this._rawData, "matrix_values", value); }
     }
 
     /// <inheritdoc/>
@@ -76,14 +88,14 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
 
     public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MatrixWithAllocationConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -122,8 +134,14 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
-        init { JsonModel.Set(this._rawData, "dimension_values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -131,8 +149,8 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { JsonModel.Set(this._rawData, "unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -151,14 +169,14 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
 
     public MatrixWithAllocationConfigMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MatrixWithAllocationConfigMatrixValue(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

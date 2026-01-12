@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventSearchParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -41,8 +42,14 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> EventIds
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawBodyData, "event_ids"); }
-        init { JsonModel.Set(this._rawBodyData, "event_ids", value); }
+        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("event_ids"); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<string>>(
+                "event_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -51,11 +58,8 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public DateTimeOffset? TimeframeEnd
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
-        }
-        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
+        get { return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_end"); }
+        init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
     /// <summary>
@@ -64,11 +68,8 @@ public sealed record class EventSearchParams : ParamsBase
     /// </summary>
     public DateTimeOffset? TimeframeStart
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
-        }
-        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
+        get { return this._rawBodyData.GetNullableStruct<DateTimeOffset>("timeframe_start"); }
+        init { this._rawBodyData.Set("timeframe_start", value); }
     }
 
     public EventSearchParams() { }
@@ -76,7 +77,7 @@ public sealed record class EventSearchParams : ParamsBase
     public EventSearchParams(EventSearchParams eventSearchParams)
         : base(eventSearchParams)
     {
-        this._rawBodyData = [.. eventSearchParams._rawBodyData];
+        this._rawBodyData = new(eventSearchParams._rawBodyData);
     }
 
     public EventSearchParams(
@@ -85,9 +86,9 @@ public sealed record class EventSearchParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -98,9 +99,9 @@ public sealed record class EventSearchParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

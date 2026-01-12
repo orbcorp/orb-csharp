@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,20 +13,20 @@ public sealed record class InvoiceListPageResponse : JsonModel
 {
     public required IReadOnlyList<Invoice> Data
     {
-        get { return JsonModel.GetNotNullClass<List<Invoice>>(this.RawData, "data"); }
-        init { JsonModel.Set(this._rawData, "data", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<Invoice>>("data"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Invoice>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required PaginationMetadata PaginationMetadata
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<PaginationMetadata>(
-                this.RawData,
-                "pagination_metadata"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "pagination_metadata", value); }
+        get { return this._rawData.GetNotNullClass<PaginationMetadata>("pagination_metadata"); }
+        init { this._rawData.Set("pagination_metadata", value); }
     }
 
     /// <inheritdoc/>
@@ -45,14 +46,14 @@ public sealed record class InvoiceListPageResponse : JsonModel
 
     public InvoiceListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     InvoiceListPageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

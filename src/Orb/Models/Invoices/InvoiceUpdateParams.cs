@@ -22,7 +22,7 @@ namespace Orb.Models.Invoices;
 /// </summary>
 public sealed record class InvoiceUpdateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -36,14 +36,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public InvoiceUpdateParamsDueDate? DueDate
     {
-        get
-        {
-            return JsonModel.GetNullableClass<InvoiceUpdateParamsDueDate>(
-                this.RawBodyData,
-                "due_date"
-            );
-        }
-        init { JsonModel.Set(this._rawBodyData, "due_date", value); }
+        get { return this._rawBodyData.GetNullableClass<InvoiceUpdateParamsDueDate>("due_date"); }
+        init { this._rawBodyData.Set("due_date", value); }
     }
 
     /// <summary>
@@ -51,8 +45,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public InvoiceDate? InvoiceDate
     {
-        get { return JsonModel.GetNullableClass<InvoiceDate>(this.RawBodyData, "invoice_date"); }
-        init { JsonModel.Set(this._rawBodyData, "invoice_date", value); }
+        get { return this._rawBodyData.GetNullableClass<InvoiceDate>("invoice_date"); }
+        init { this._rawBodyData.Set("invoice_date", value); }
     }
 
     /// <summary>
@@ -64,12 +58,17 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -82,8 +81,8 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     /// </summary>
     public long? NetTerms
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "net_terms"); }
-        init { JsonModel.Set(this._rawBodyData, "net_terms", value); }
+        get { return this._rawBodyData.GetNullableStruct<long>("net_terms"); }
+        init { this._rawBodyData.Set("net_terms", value); }
     }
 
     public InvoiceUpdateParams() { }
@@ -93,7 +92,7 @@ public sealed record class InvoiceUpdateParams : ParamsBase
     {
         this.InvoiceID = invoiceUpdateParams.InvoiceID;
 
-        this._rawBodyData = [.. invoiceUpdateParams._rawBodyData];
+        this._rawBodyData = new(invoiceUpdateParams._rawBodyData);
     }
 
     public InvoiceUpdateParams(
@@ -102,9 +101,9 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -115,9 +114,9 @@ public sealed record class InvoiceUpdateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

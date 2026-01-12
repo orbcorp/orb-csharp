@@ -12,14 +12,14 @@ public sealed record class CustomerMinified : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawData, "external_customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawData.Set("external_customer_id", value); }
     }
 
     /// <inheritdoc/>
@@ -36,14 +36,14 @@ public sealed record class CustomerMinified : JsonModel
 
     public CustomerMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CustomerMinified(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

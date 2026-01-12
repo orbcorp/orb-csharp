@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -23,8 +24,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -32,11 +33,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
-        }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     /// <summary>
@@ -44,8 +42,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required string? Currency
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNullableClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -53,8 +51,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required CustomerMinified? Customer
     {
-        get { return JsonModel.GetNullableClass<CustomerMinified>(this.RawData, "customer"); }
-        init { JsonModel.Set(this._rawData, "customer", value); }
+        get { return this._rawData.GetNullableClass<CustomerMinified>("customer"); }
+        init { this._rawData.Set("customer", value); }
     }
 
     /// <summary>
@@ -62,8 +60,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required bool Enabled
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "enabled"); }
-        init { JsonModel.Set(this._rawData, "enabled", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("enabled"); }
+        init { this._rawData.Set("enabled", value); }
     }
 
     /// <summary>
@@ -71,8 +69,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required Metric? Metric
     {
-        get { return JsonModel.GetNullableClass<Metric>(this.RawData, "metric"); }
-        init { JsonModel.Set(this._rawData, "metric", value); }
+        get { return this._rawData.GetNullableClass<Metric>("metric"); }
+        init { this._rawData.Set("metric", value); }
     }
 
     /// <summary>
@@ -80,8 +78,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required Plan? Plan
     {
-        get { return JsonModel.GetNullableClass<Plan>(this.RawData, "plan"); }
-        init { JsonModel.Set(this._rawData, "plan", value); }
+        get { return this._rawData.GetNullableClass<Plan>("plan"); }
+        init { this._rawData.Set("plan", value); }
     }
 
     /// <summary>
@@ -89,11 +87,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required SubscriptionMinified? Subscription
     {
-        get
-        {
-            return JsonModel.GetNullableClass<SubscriptionMinified>(this.RawData, "subscription");
-        }
-        init { JsonModel.Set(this._rawData, "subscription", value); }
+        get { return this._rawData.GetNullableClass<SubscriptionMinified>("subscription"); }
+        init { this._rawData.Set("subscription", value); }
     }
 
     /// <summary>
@@ -101,8 +96,14 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required IReadOnlyList<Threshold>? Thresholds
     {
-        get { return JsonModel.GetNullableClass<List<Threshold>>(this.RawData, "thresholds"); }
-        init { JsonModel.Set(this._rawData, "thresholds", value); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<Threshold>>("thresholds"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Threshold>?>(
+                "thresholds",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -110,8 +111,8 @@ public sealed record class Alert : JsonModel
     /// </summary>
     public required ApiEnum<string, AlertType> Type
     {
-        get { return JsonModel.GetNotNullClass<ApiEnum<string, AlertType>>(this.RawData, "type"); }
-        init { JsonModel.Set(this._rawData, "type", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, AlertType>>("type"); }
+        init { this._rawData.Set("type", value); }
     }
 
     /// <summary>
@@ -121,12 +122,17 @@ public sealed record class Alert : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<BalanceAlertStatus>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<BalanceAlertStatus>>(
                 "balance_alert_status"
             );
         }
-        init { JsonModel.Set(this._rawData, "balance_alert_status", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<BalanceAlertStatus>?>(
+                "balance_alert_status",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -158,14 +164,14 @@ public sealed record class Alert : JsonModel
 
     public Alert(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Alert(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -191,8 +197,8 @@ public sealed record class Metric : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <inheritdoc/>
@@ -208,14 +214,14 @@ public sealed record class Metric : JsonModel
 
     public Metric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Metric(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -248,8 +254,8 @@ public sealed record class Plan : JsonModel
 {
     public required string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -259,20 +265,20 @@ public sealed record class Plan : JsonModel
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_plan_id"); }
-        init { JsonModel.Set(this._rawData, "external_plan_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_plan_id"); }
+        init { this._rawData.Set("external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNullableClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     public required string PlanVersion
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "plan_version"); }
-        init { JsonModel.Set(this._rawData, "plan_version", value); }
+        get { return this._rawData.GetNotNullClass<string>("plan_version"); }
+        init { this._rawData.Set("plan_version", value); }
     }
 
     /// <inheritdoc/>
@@ -291,14 +297,14 @@ public sealed record class Plan : JsonModel
 
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Plan(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -383,8 +389,8 @@ public sealed record class BalanceAlertStatus : JsonModel
     /// </summary>
     public required bool InAlert
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "in_alert"); }
-        init { JsonModel.Set(this._rawData, "in_alert", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("in_alert"); }
+        init { this._rawData.Set("in_alert", value); }
     }
 
     /// <summary>
@@ -392,8 +398,8 @@ public sealed record class BalanceAlertStatus : JsonModel
     /// </summary>
     public required double ThresholdValue
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "threshold_value"); }
-        init { JsonModel.Set(this._rawData, "threshold_value", value); }
+        get { return this._rawData.GetNotNullStruct<double>("threshold_value"); }
+        init { this._rawData.Set("threshold_value", value); }
     }
 
     /// <inheritdoc/>
@@ -410,14 +416,14 @@ public sealed record class BalanceAlertStatus : JsonModel
 
     public BalanceAlertStatus(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BalanceAlertStatus(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

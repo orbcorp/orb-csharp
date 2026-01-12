@@ -39,8 +39,8 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -56,56 +56,32 @@ public sealed record class BalanceTransactionListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
     public DateTimeOffset? OperationTimeGt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawQueryData,
-                "operation_time[gt]"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "operation_time[gt]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gt]"); }
+        init { this._rawQueryData.Set("operation_time[gt]", value); }
     }
 
     public DateTimeOffset? OperationTimeGte
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawQueryData,
-                "operation_time[gte]"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "operation_time[gte]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[gte]"); }
+        init { this._rawQueryData.Set("operation_time[gte]", value); }
     }
 
     public DateTimeOffset? OperationTimeLt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawQueryData,
-                "operation_time[lt]"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "operation_time[lt]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lt]"); }
+        init { this._rawQueryData.Set("operation_time[lt]", value); }
     }
 
     public DateTimeOffset? OperationTimeLte
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawQueryData,
-                "operation_time[lte]"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "operation_time[lte]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("operation_time[lte]"); }
+        init { this._rawQueryData.Set("operation_time[lte]", value); }
     }
 
     public BalanceTransactionListParams() { }
@@ -121,8 +97,8 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -132,8 +108,8 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

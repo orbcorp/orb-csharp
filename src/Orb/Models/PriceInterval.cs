@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,8 @@ public sealed record class PriceInterval : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -26,8 +27,8 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required long BillingCycleDay
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "billing_cycle_day"); }
-        init { JsonModel.Set(this._rawData, "billing_cycle_day", value); }
+        get { return this._rawData.GetNotNullStruct<long>("billing_cycle_day"); }
+        init { this._rawData.Set("billing_cycle_day", value); }
     }
 
     /// <summary>
@@ -37,8 +38,8 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required bool CanDeferBilling
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "can_defer_billing"); }
-        init { JsonModel.Set(this._rawData, "can_defer_billing", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("can_defer_billing"); }
+        init { this._rawData.Set("can_defer_billing", value); }
     }
 
     /// <summary>
@@ -50,12 +51,11 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<DateTimeOffset>(
                 "current_billing_period_end_date"
             );
         }
-        init { JsonModel.Set(this._rawData, "current_billing_period_end_date", value); }
+        init { this._rawData.Set("current_billing_period_end_date", value); }
     }
 
     /// <summary>
@@ -67,12 +67,11 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<DateTimeOffset>(
                 "current_billing_period_start_date"
             );
         }
-        init { JsonModel.Set(this._rawData, "current_billing_period_start_date", value); }
+        init { this._rawData.Set("current_billing_period_start_date", value); }
     }
 
     /// <summary>
@@ -81,8 +80,8 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required DateTimeOffset? EndDate
     {
-        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -90,8 +89,8 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required string? Filter
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "filter"); }
-        init { JsonModel.Set(this._rawData, "filter", value); }
+        get { return this._rawData.GetNullableClass<string>("filter"); }
+        init { this._rawData.Set("filter", value); }
     }
 
     /// <summary>
@@ -102,12 +101,17 @@ public sealed record class PriceInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<FixedFeeQuantityTransition>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<FixedFeeQuantityTransition>>(
                 "fixed_fee_quantity_transitions"
             );
         }
-        init { JsonModel.Set(this._rawData, "fixed_fee_quantity_transitions", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<FixedFeeQuantityTransition>?>(
+                "fixed_fee_quantity_transitions",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -123,8 +127,8 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required Price Price
     {
-        get { return JsonModel.GetNotNullClass<Price>(this.RawData, "price"); }
-        init { JsonModel.Set(this._rawData, "price", value); }
+        get { return this._rawData.GetNotNullClass<Price>("price"); }
+        init { this._rawData.Set("price", value); }
     }
 
     /// <summary>
@@ -133,8 +137,8 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required DateTimeOffset StartDate
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <summary>
@@ -143,8 +147,17 @@ public sealed record class PriceInterval : JsonModel
     /// </summary>
     public required IReadOnlyList<string>? UsageCustomerIds
     {
-        get { return JsonModel.GetNullableClass<List<string>>(this.RawData, "usage_customer_ids"); }
-        init { JsonModel.Set(this._rawData, "usage_customer_ids", value); }
+        get
+        {
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("usage_customer_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "usage_customer_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -173,14 +186,14 @@ public sealed record class PriceInterval : JsonModel
 
     public PriceInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PriceInterval(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

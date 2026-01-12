@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,8 @@ public sealed record class AmountDiscountInterval : JsonModel
     /// </summary>
     public required string AmountDiscount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_discount"); }
-        init { JsonModel.Set(this._rawData, "amount_discount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount_discount"); }
+        init { this._rawData.Set("amount_discount", value); }
     }
 
     /// <summary>
@@ -28,24 +29,28 @@ public sealed record class AmountDiscountInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<string>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
                 "applies_to_price_interval_ids"
             );
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_interval_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required ApiEnum<string, AmountDiscountIntervalDiscountType> DiscountType
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, AmountDiscountIntervalDiscountType>>(
-                this.RawData,
-                "discount_type"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, AmountDiscountIntervalDiscountType>
+            >("discount_type");
         }
-        init { JsonModel.Set(this._rawData, "discount_type", value); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     /// <summary>
@@ -53,11 +58,8 @@ public sealed record class AmountDiscountInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
-        }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -67,12 +69,17 @@ public sealed record class AmountDiscountInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<AmountDiscountIntervalFilter>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<AmountDiscountIntervalFilter>>(
                 "filters"
             );
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<AmountDiscountIntervalFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -80,11 +87,8 @@ public sealed record class AmountDiscountInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
-        }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -108,14 +112,14 @@ public sealed record class AmountDiscountInterval : JsonModel
 
     public AmountDiscountInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AmountDiscountInterval(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -190,12 +194,11 @@ public sealed record class AmountDiscountIntervalFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, AmountDiscountIntervalFilterField>>(
-                this.RawData,
-                "field"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, AmountDiscountIntervalFilterField>
+            >("field");
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -205,12 +208,11 @@ public sealed record class AmountDiscountIntervalFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, AmountDiscountIntervalFilterOperator>>(
-                this.RawData,
-                "operator"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, AmountDiscountIntervalFilterOperator>
+            >("operator");
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -218,8 +220,14 @@ public sealed record class AmountDiscountIntervalFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -237,14 +245,14 @@ public sealed record class AmountDiscountIntervalFilter : JsonModel
 
     public AmountDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     AmountDiscountIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

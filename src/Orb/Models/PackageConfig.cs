@@ -18,8 +18,8 @@ public sealed record class PackageConfig : JsonModel
     /// </summary>
     public required string PackageAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "package_amount"); }
-        init { JsonModel.Set(this._rawData, "package_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("package_amount"); }
+        init { this._rawData.Set("package_amount", value); }
     }
 
     /// <summary>
@@ -28,8 +28,8 @@ public sealed record class PackageConfig : JsonModel
     /// </summary>
     public required long PackageSize
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "package_size"); }
-        init { JsonModel.Set(this._rawData, "package_size", value); }
+        get { return this._rawData.GetNotNullStruct<long>("package_size"); }
+        init { this._rawData.Set("package_size", value); }
     }
 
     /// <inheritdoc/>
@@ -46,14 +46,14 @@ public sealed record class PackageConfig : JsonModel
 
     public PackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PackageConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

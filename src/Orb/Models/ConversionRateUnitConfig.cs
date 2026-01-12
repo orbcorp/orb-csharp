@@ -17,8 +17,8 @@ public sealed record class ConversionRateUnitConfig : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { JsonModel.Set(this._rawData, "unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <inheritdoc/>
@@ -34,14 +34,14 @@ public sealed record class ConversionRateUnitConfig : JsonModel
 
     public ConversionRateUnitConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ConversionRateUnitConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

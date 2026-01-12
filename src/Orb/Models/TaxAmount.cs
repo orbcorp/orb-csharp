@@ -15,8 +15,8 @@ public sealed record class TaxAmount : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
@@ -24,8 +24,8 @@ public sealed record class TaxAmount : JsonModel
     /// </summary>
     public required string TaxRateDescription
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "tax_rate_description"); }
-        init { JsonModel.Set(this._rawData, "tax_rate_description", value); }
+        get { return this._rawData.GetNotNullClass<string>("tax_rate_description"); }
+        init { this._rawData.Set("tax_rate_description", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class TaxAmount : JsonModel
     /// </summary>
     public required string? TaxRatePercentage
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "tax_rate_percentage"); }
-        init { JsonModel.Set(this._rawData, "tax_rate_percentage", value); }
+        get { return this._rawData.GetNullableClass<string>("tax_rate_percentage"); }
+        init { this._rawData.Set("tax_rate_percentage", value); }
     }
 
     /// <inheritdoc/>
@@ -52,14 +52,14 @@ public sealed record class TaxAmount : JsonModel
 
     public TaxAmount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     TaxAmount(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

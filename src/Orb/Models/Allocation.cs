@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,28 +15,25 @@ public sealed record class Allocation : JsonModel
 {
     public required bool AllowsRollover
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "allows_rollover"); }
-        init { JsonModel.Set(this._rawData, "allows_rollover", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("allows_rollover"); }
+        init { this._rawData.Set("allows_rollover", value); }
     }
 
     public required string Currency
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     public required CustomExpiration? CustomExpiration
     {
-        get
-        {
-            return JsonModel.GetNullableClass<CustomExpiration>(this.RawData, "custom_expiration");
-        }
-        init { JsonModel.Set(this._rawData, "custom_expiration", value); }
+        get { return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration"); }
+        init { this._rawData.Set("custom_expiration", value); }
     }
 
     public IReadOnlyList<Filter>? Filters
     {
-        get { return JsonModel.GetNullableClass<List<Filter>>(this.RawData, "filters"); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters"); }
         init
         {
             if (value == null)
@@ -43,7 +41,10 @@ public sealed record class Allocation : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "filters", value);
+            this._rawData.Set<ImmutableArray<Filter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -66,14 +67,14 @@ public sealed record class Allocation : JsonModel
 
     public Allocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Allocation(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -99,8 +100,8 @@ public sealed record class Filter : JsonModel
     /// </summary>
     public required ApiEnum<string, Field> Field
     {
-        get { return JsonModel.GetNotNullClass<ApiEnum<string, Field>>(this.RawData, "field"); }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field"); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -108,11 +109,8 @@ public sealed record class Filter : JsonModel
     /// </summary>
     public required ApiEnum<string, Operator> Operator
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ApiEnum<string, Operator>>(this.RawData, "operator");
-        }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator"); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -120,8 +118,14 @@ public sealed record class Filter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -139,14 +143,14 @@ public sealed record class Filter : JsonModel
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Filter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

@@ -17,7 +17,7 @@ namespace Orb.Models.Customers.BalanceTransactions;
 /// </summary>
 public sealed record class BalanceTransactionCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -27,19 +27,19 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
 
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "amount"); }
-        init { JsonModel.Set(this._rawBodyData, "amount", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("amount"); }
+        init { this._rawBodyData.Set("amount", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type> Type
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawBodyData.GetNotNullClass<
                 ApiEnum<string, global::Orb.Models.Customers.BalanceTransactions.Type>
-            >(this.RawBodyData, "type");
+            >("type");
         }
-        init { JsonModel.Set(this._rawBodyData, "type", value); }
+        init { this._rawBodyData.Set("type", value); }
     }
 
     /// <summary>
@@ -47,8 +47,8 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     /// </summary>
     public string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "description"); }
-        init { JsonModel.Set(this._rawBodyData, "description", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("description"); }
+        init { this._rawBodyData.Set("description", value); }
     }
 
     public BalanceTransactionCreateParams() { }
@@ -60,7 +60,7 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
     {
         this.CustomerID = balanceTransactionCreateParams.CustomerID;
 
-        this._rawBodyData = [.. balanceTransactionCreateParams._rawBodyData];
+        this._rawBodyData = new(balanceTransactionCreateParams._rawBodyData);
     }
 
     public BalanceTransactionCreateParams(
@@ -69,9 +69,9 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -82,9 +82,9 @@ public sealed record class BalanceTransactionCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

@@ -17,38 +17,32 @@ public sealed record class OtherSubLineItem : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     public required SubLineItemGrouping? Grouping
     {
-        get { return JsonModel.GetNullableClass<SubLineItemGrouping>(this.RawData, "grouping"); }
-        init { JsonModel.Set(this._rawData, "grouping", value); }
+        get { return this._rawData.GetNullableClass<SubLineItemGrouping>("grouping"); }
+        init { this._rawData.Set("grouping", value); }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     public required ApiEnum<string, OtherSubLineItemType> Type
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ApiEnum<string, OtherSubLineItemType>>(
-                this.RawData,
-                "type"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "type", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, OtherSubLineItemType>>("type"); }
+        init { this._rawData.Set("type", value); }
     }
 
     /// <inheritdoc/>
@@ -68,14 +62,14 @@ public sealed record class OtherSubLineItem : JsonModel
 
     public OtherSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     OtherSubLineItem(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

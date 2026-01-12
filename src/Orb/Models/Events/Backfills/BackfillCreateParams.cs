@@ -48,7 +48,7 @@ namespace Orb.Models.Events.Backfills;
 /// </summary>
 public sealed record class BackfillCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -61,11 +61,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_end");
-        }
-        init { JsonModel.Set(this._rawBodyData, "timeframe_end", value); }
+        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_end"); }
+        init { this._rawBodyData.Set("timeframe_end", value); }
     }
 
     /// <summary>
@@ -75,11 +72,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset TimeframeStart
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timeframe_start");
-        }
-        init { JsonModel.Set(this._rawBodyData, "timeframe_start", value); }
+        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timeframe_start"); }
+        init { this._rawBodyData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -89,8 +83,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public DateTimeOffset? CloseTime
     {
-        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawBodyData, "close_time"); }
-        init { JsonModel.Set(this._rawBodyData, "close_time", value); }
+        get { return this._rawBodyData.GetNullableStruct<DateTimeOffset>("close_time"); }
+        init { this._rawBodyData.Set("close_time", value); }
     }
 
     /// <summary>
@@ -99,8 +93,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        init { this._rawBodyData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -109,8 +103,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "deprecation_filter"); }
-        init { JsonModel.Set(this._rawBodyData, "deprecation_filter", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("deprecation_filter"); }
+        init { this._rawBodyData.Set("deprecation_filter", value); }
     }
 
     /// <summary>
@@ -119,8 +113,8 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
     /// <summary>
@@ -129,10 +123,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     /// </summary>
     public bool? ReplaceExistingEvents
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<bool>(this.RawBodyData, "replace_existing_events");
-        }
+        get { return this._rawBodyData.GetNullableStruct<bool>("replace_existing_events"); }
         init
         {
             if (value == null)
@@ -140,7 +131,7 @@ public sealed record class BackfillCreateParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawBodyData, "replace_existing_events", value);
+            this._rawBodyData.Set("replace_existing_events", value);
         }
     }
 
@@ -149,7 +140,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     public BackfillCreateParams(BackfillCreateParams backfillCreateParams)
         : base(backfillCreateParams)
     {
-        this._rawBodyData = [.. backfillCreateParams._rawBodyData];
+        this._rawBodyData = new(backfillCreateParams._rawBodyData);
     }
 
     public BackfillCreateParams(
@@ -158,9 +149,9 @@ public sealed record class BackfillCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -171,9 +162,9 @@ public sealed record class BackfillCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

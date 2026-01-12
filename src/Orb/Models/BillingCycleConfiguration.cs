@@ -16,20 +16,17 @@ public sealed record class BillingCycleConfiguration : JsonModel
 {
     public required long Duration
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "duration"); }
-        init { JsonModel.Set(this._rawData, "duration", value); }
+        get { return this._rawData.GetNotNullStruct<long>("duration"); }
+        init { this._rawData.Set("duration", value); }
     }
 
     public required ApiEnum<string, DurationUnit> DurationUnit
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, DurationUnit>>(
-                this.RawData,
-                "duration_unit"
-            );
+            return this._rawData.GetNotNullClass<ApiEnum<string, DurationUnit>>("duration_unit");
         }
-        init { JsonModel.Set(this._rawData, "duration_unit", value); }
+        init { this._rawData.Set("duration_unit", value); }
     }
 
     /// <inheritdoc/>
@@ -46,14 +43,14 @@ public sealed record class BillingCycleConfiguration : JsonModel
 
     public BillingCycleConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BillingCycleConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

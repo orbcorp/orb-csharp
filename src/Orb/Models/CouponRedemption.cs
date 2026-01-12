@@ -13,20 +13,20 @@ public sealed record class CouponRedemption : JsonModel
 {
     public required string CouponID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "coupon_id"); }
-        init { JsonModel.Set(this._rawData, "coupon_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("coupon_id"); }
+        init { this._rawData.Set("coupon_id", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -44,14 +44,14 @@ public sealed record class CouponRedemption : JsonModel
 
     public CouponRedemption(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CouponRedemption(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

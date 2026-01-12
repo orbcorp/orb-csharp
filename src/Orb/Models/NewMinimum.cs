@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,12 +17,11 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewMinimumAdjustmentType>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewMinimumAdjustmentType>>(
                 "adjustment_type"
             );
         }
-        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
+        init { this._rawData.Set("adjustment_type", value); }
     }
 
     /// <summary>
@@ -29,14 +29,14 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public required string ItemID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { JsonModel.Set(this._rawData, "item_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        init { this._rawData.Set("item_id", value); }
     }
 
     public required string MinimumAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("minimum_amount"); }
+        init { this._rawData.Set("minimum_amount", value); }
     }
 
     /// <summary>
@@ -46,12 +46,11 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<ApiEnum<bool, NewMinimumAppliesToAll>>(
-                this.RawData,
+            return this._rawData.GetNullableClass<ApiEnum<bool, NewMinimumAppliesToAll>>(
                 "applies_to_all"
             );
         }
-        init { JsonModel.Set(this._rawData, "applies_to_all", value); }
+        init { this._rawData.Set("applies_to_all", value); }
     }
 
     /// <summary>
@@ -61,9 +60,15 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_item_ids");
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_item_ids");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_item_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_item_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -73,9 +78,15 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>?>(
+                "applies_to_price_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -83,8 +94,8 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public string? Currency
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNullableClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -92,8 +103,14 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public IReadOnlyList<NewMinimumFilter>? Filters
     {
-        get { return JsonModel.GetNullableClass<List<NewMinimumFilter>>(this.RawData, "filters"); }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        get { return this._rawData.GetNullableStruct<ImmutableArray<NewMinimumFilter>>("filters"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<NewMinimumFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -102,7 +119,7 @@ public sealed record class NewMinimum : JsonModel
     /// </summary>
     public bool? IsInvoiceLevel
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "is_invoice_level"); }
+        get { return this._rawData.GetNullableStruct<bool>("is_invoice_level"); }
         init
         {
             if (value == null)
@@ -110,7 +127,7 @@ public sealed record class NewMinimum : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "is_invoice_level", value);
+            this._rawData.Set("is_invoice_level", value);
         }
     }
 
@@ -121,12 +138,11 @@ public sealed record class NewMinimum : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<ApiEnum<string, NewMinimumPriceType>>(
-                this.RawData,
+            return this._rawData.GetNullableClass<ApiEnum<string, NewMinimumPriceType>>(
                 "price_type"
             );
         }
-        init { JsonModel.Set(this._rawData, "price_type", value); }
+        init { this._rawData.Set("price_type", value); }
     }
 
     /// <inheritdoc/>
@@ -154,14 +170,14 @@ public sealed record class NewMinimum : JsonModel
 
     public NewMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewMinimum(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -274,12 +290,9 @@ public sealed record class NewMinimumFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewMinimumFilterField>>(
-                this.RawData,
-                "field"
-            );
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewMinimumFilterField>>("field");
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -289,12 +302,11 @@ public sealed record class NewMinimumFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewMinimumFilterOperator>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewMinimumFilterOperator>>(
                 "operator"
             );
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -302,8 +314,14 @@ public sealed record class NewMinimumFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -321,14 +339,14 @@ public sealed record class NewMinimumFilter : JsonModel
 
     public NewMinimumFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewMinimumFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

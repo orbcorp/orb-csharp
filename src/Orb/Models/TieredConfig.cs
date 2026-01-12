@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,8 +19,14 @@ public sealed record class TieredConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<SharedTier> Tiers
     {
-        get { return JsonModel.GetNotNullClass<List<SharedTier>>(this.RawData, "tiers"); }
-        init { JsonModel.Set(this._rawData, "tiers", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<SharedTier>>("tiers"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<SharedTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -27,7 +34,7 @@ public sealed record class TieredConfig : JsonModel
     /// </summary>
     public bool? Prorated
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "prorated"); }
+        get { return this._rawData.GetNullableStruct<bool>("prorated"); }
         init
         {
             if (value == null)
@@ -35,7 +42,7 @@ public sealed record class TieredConfig : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "prorated", value);
+            this._rawData.Set("prorated", value);
         }
     }
 
@@ -56,14 +63,14 @@ public sealed record class TieredConfig : JsonModel
 
     public TieredConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     TieredConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

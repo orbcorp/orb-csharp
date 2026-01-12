@@ -17,7 +17,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -30,8 +30,8 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     /// </summary>
     public required string PriceID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "price_id"); }
-        init { JsonModel.Set(this._rawBodyData, "price_id", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("price_id"); }
+        init { this._rawBodyData.Set("price_id", value); }
     }
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams() { }
@@ -43,7 +43,7 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
     {
         this.SubscriptionID = subscriptionUnscheduleFixedFeeQuantityUpdatesParams.SubscriptionID;
 
-        this._rawBodyData = [.. subscriptionUnscheduleFixedFeeQuantityUpdatesParams._rawBodyData];
+        this._rawBodyData = new(subscriptionUnscheduleFixedFeeQuantityUpdatesParams._rawBodyData);
     }
 
     public SubscriptionUnscheduleFixedFeeQuantityUpdatesParams(
@@ -52,9 +52,9 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -65,9 +65,9 @@ public sealed record class SubscriptionUnscheduleFixedFeeQuantityUpdatesParams :
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

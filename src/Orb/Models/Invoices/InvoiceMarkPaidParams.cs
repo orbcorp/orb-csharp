@@ -15,7 +15,7 @@ namespace Orb.Models.Invoices;
 /// </summary>
 public sealed record class InvoiceMarkPaidParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -28,8 +28,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public required string PaymentReceivedDate
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "payment_received_date"); }
-        init { JsonModel.Set(this._rawBodyData, "payment_received_date", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("payment_received_date"); }
+        init { this._rawBodyData.Set("payment_received_date", value); }
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? ExternalID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_id"); }
-        init { JsonModel.Set(this._rawBodyData, "external_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("external_id"); }
+        init { this._rawBodyData.Set("external_id", value); }
     }
 
     /// <summary>
@@ -46,8 +46,8 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     /// </summary>
     public string? Notes
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "notes"); }
-        init { JsonModel.Set(this._rawBodyData, "notes", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("notes"); }
+        init { this._rawBodyData.Set("notes", value); }
     }
 
     public InvoiceMarkPaidParams() { }
@@ -57,7 +57,7 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
     {
         this.InvoiceID = invoiceMarkPaidParams.InvoiceID;
 
-        this._rawBodyData = [.. invoiceMarkPaidParams._rawBodyData];
+        this._rawBodyData = new(invoiceMarkPaidParams._rawBodyData);
     }
 
     public InvoiceMarkPaidParams(
@@ -66,9 +66,9 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -79,9 +79,9 @@ public sealed record class InvoiceMarkPaidParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

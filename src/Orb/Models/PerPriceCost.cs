@@ -15,8 +15,8 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required Price Price
     {
-        get { return JsonModel.GetNotNullClass<Price>(this.RawData, "price"); }
-        init { JsonModel.Set(this._rawData, "price", value); }
+        get { return this._rawData.GetNotNullClass<Price>("price"); }
+        init { this._rawData.Set("price", value); }
     }
 
     /// <summary>
@@ -24,8 +24,8 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required string PriceID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "price_id"); }
-        init { JsonModel.Set(this._rawData, "price_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("price_id"); }
+        init { this._rawData.Set("price_id", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required string Subtotal
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "subtotal"); }
-        init { JsonModel.Set(this._rawData, "subtotal", value); }
+        get { return this._rawData.GetNotNullClass<string>("subtotal"); }
+        init { this._rawData.Set("subtotal", value); }
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public required string Total
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "total"); }
-        init { JsonModel.Set(this._rawData, "total", value); }
+        get { return this._rawData.GetNotNullClass<string>("total"); }
+        init { this._rawData.Set("total", value); }
     }
 
     /// <summary>
@@ -51,8 +51,8 @@ public sealed record class PerPriceCost : JsonModel
     /// </summary>
     public double? Quantity
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNullableStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -72,14 +72,14 @@ public sealed record class PerPriceCost : JsonModel
 
     public PerPriceCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PerPriceCost(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

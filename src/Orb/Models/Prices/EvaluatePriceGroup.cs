@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,8 @@ public sealed record class EvaluatePriceGroup : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
@@ -28,9 +29,15 @@ public sealed record class EvaluatePriceGroup : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<GroupingValue>>(this.RawData, "grouping_values");
+            return this._rawData.GetNotNullStruct<ImmutableArray<GroupingValue>>("grouping_values");
         }
-        init { JsonModel.Set(this._rawData, "grouping_values", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<GroupingValue>>(
+                "grouping_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -38,8 +45,8 @@ public sealed record class EvaluatePriceGroup : JsonModel
     /// </summary>
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     /// <inheritdoc/>
@@ -60,14 +67,14 @@ public sealed record class EvaluatePriceGroup : JsonModel
 
     public EvaluatePriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     EvaluatePriceGroup(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

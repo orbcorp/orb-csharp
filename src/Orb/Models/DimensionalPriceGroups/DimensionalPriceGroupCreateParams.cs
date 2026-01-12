@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Orb.Models.DimensionalPriceGroups;
 /// </summary>
 public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -29,8 +30,8 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
 
     public required string BillableMetricID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "billable_metric_id"); }
-        init { JsonModel.Set(this._rawBodyData, "billable_metric_id", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("billable_metric_id"); }
+        init { this._rawBodyData.Set("billable_metric_id", value); }
     }
 
     /// <summary>
@@ -38,26 +39,31 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawBodyData, "dimensions"); }
-        init { JsonModel.Set(this._rawBodyData, "dimensions", value); }
+        get { return this._rawBodyData.GetNotNullStruct<ImmutableArray<string>>("dimensions"); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<string>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "name"); }
-        init { JsonModel.Set(this._rawBodyData, "name", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("name"); }
+        init { this._rawBodyData.Set("name", value); }
     }
 
     public string? ExternalDimensionalPriceGroupID
     {
         get
         {
-            return JsonModel.GetNullableClass<string>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<string>(
                 "external_dimensional_price_group_id"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "external_dimensional_price_group_id", value); }
+        init { this._rawBodyData.Set("external_dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -69,12 +75,17 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     public DimensionalPriceGroupCreateParams() { }
@@ -84,7 +95,7 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
     )
         : base(dimensionalPriceGroupCreateParams)
     {
-        this._rawBodyData = [.. dimensionalPriceGroupCreateParams._rawBodyData];
+        this._rawBodyData = new(dimensionalPriceGroupCreateParams._rawBodyData);
     }
 
     public DimensionalPriceGroupCreateParams(
@@ -93,9 +104,9 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -106,9 +117,9 @@ public sealed record class DimensionalPriceGroupCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

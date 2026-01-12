@@ -12,14 +12,14 @@ public sealed record class PaginationMetadata : JsonModel
 {
     public required bool HasMore
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "has_more"); }
-        init { JsonModel.Set(this._rawData, "has_more", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("has_more"); }
+        init { this._rawData.Set("has_more", value); }
     }
 
     public required string? NextCursor
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "next_cursor"); }
-        init { JsonModel.Set(this._rawData, "next_cursor", value); }
+        get { return this._rawData.GetNullableClass<string>("next_cursor"); }
+        init { this._rawData.Set("next_cursor", value); }
     }
 
     /// <inheritdoc/>
@@ -36,14 +36,14 @@ public sealed record class PaginationMetadata : JsonModel
 
     public PaginationMetadata(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PaginationMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

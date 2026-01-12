@@ -17,7 +17,7 @@ namespace Orb.Models.Coupons;
 /// </summary>
 public sealed record class CouponCreateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -27,12 +27,11 @@ public sealed record class CouponCreateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNotNullClass<global::Orb.Models.Coupons.Discount>(
                 "discount"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "discount", value); }
+        init { this._rawBodyData.Set("discount", value); }
     }
 
     /// <summary>
@@ -40,8 +39,8 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public required string RedemptionCode
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "redemption_code"); }
-        init { JsonModel.Set(this._rawBodyData, "redemption_code", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("redemption_code"); }
+        init { this._rawBodyData.Set("redemption_code", value); }
     }
 
     /// <summary>
@@ -50,8 +49,8 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public long? DurationInMonths
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "duration_in_months"); }
-        init { JsonModel.Set(this._rawBodyData, "duration_in_months", value); }
+        get { return this._rawBodyData.GetNullableStruct<long>("duration_in_months"); }
+        init { this._rawBodyData.Set("duration_in_months", value); }
     }
 
     /// <summary>
@@ -60,8 +59,8 @@ public sealed record class CouponCreateParams : ParamsBase
     /// </summary>
     public long? MaxRedemptions
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawBodyData, "max_redemptions"); }
-        init { JsonModel.Set(this._rawBodyData, "max_redemptions", value); }
+        get { return this._rawBodyData.GetNullableStruct<long>("max_redemptions"); }
+        init { this._rawBodyData.Set("max_redemptions", value); }
     }
 
     public CouponCreateParams() { }
@@ -69,7 +68,7 @@ public sealed record class CouponCreateParams : ParamsBase
     public CouponCreateParams(CouponCreateParams couponCreateParams)
         : base(couponCreateParams)
     {
-        this._rawBodyData = [.. couponCreateParams._rawBodyData];
+        this._rawBodyData = new(couponCreateParams._rawBodyData);
     }
 
     public CouponCreateParams(
@@ -78,9 +77,9 @@ public sealed record class CouponCreateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -91,9 +90,9 @@ public sealed record class CouponCreateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 
@@ -399,14 +398,14 @@ public sealed record class Percentage : JsonModel
 {
     public JsonElement DiscountType
     {
-        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
-        init { JsonModel.Set(this._rawData, "discount_type", value); }
+        get { return this._rawData.GetNotNullStruct<JsonElement>("discount_type"); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     public required double PercentageDiscount
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
+        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        init { this._rawData.Set("percentage_discount", value); }
     }
 
     /// <inheritdoc/>
@@ -434,7 +433,7 @@ public sealed record class Percentage : JsonModel
 
     public Percentage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
 
         this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"percentage\"");
     }
@@ -443,7 +442,7 @@ public sealed record class Percentage : JsonModel
     [SetsRequiredMembers]
     Percentage(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -473,14 +472,14 @@ public sealed record class Amount : JsonModel
 {
     public required string AmountDiscount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount_discount"); }
-        init { JsonModel.Set(this._rawData, "amount_discount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount_discount"); }
+        init { this._rawData.Set("amount_discount", value); }
     }
 
     public JsonElement DiscountType
     {
-        get { return JsonModel.GetNotNullStruct<JsonElement>(this.RawData, "discount_type"); }
-        init { JsonModel.Set(this._rawData, "discount_type", value); }
+        get { return this._rawData.GetNotNullStruct<JsonElement>("discount_type"); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     /// <inheritdoc/>
@@ -508,7 +507,7 @@ public sealed record class Amount : JsonModel
 
     public Amount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
 
         this.DiscountType = JsonSerializer.Deserialize<JsonElement>("\"amount\"");
     }
@@ -517,7 +516,7 @@ public sealed record class Amount : JsonModel
     [SetsRequiredMembers]
     Amount(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

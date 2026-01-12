@@ -18,8 +18,8 @@ public sealed record class BackfillFetchResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -28,20 +28,14 @@ public sealed record class BackfillFetchResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? CloseTime
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "close_time");
-        }
-        init { JsonModel.Set(this._rawData, "close_time", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("close_time"); }
+        init { this._rawData.Set("close_time", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
-        }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     /// <summary>
@@ -50,8 +44,8 @@ public sealed record class BackfillFetchResponse : JsonModel
     /// </summary>
     public required string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "customer_id"); }
-        init { JsonModel.Set(this._rawData, "customer_id", value); }
+        get { return this._rawData.GetNullableClass<string>("customer_id"); }
+        init { this._rawData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -59,8 +53,8 @@ public sealed record class BackfillFetchResponse : JsonModel
     /// </summary>
     public required long EventsIngested
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "events_ingested"); }
-        init { JsonModel.Set(this._rawData, "events_ingested", value); }
+        get { return this._rawData.GetNotNullStruct<long>("events_ingested"); }
+        init { this._rawData.Set("events_ingested", value); }
     }
 
     /// <summary>
@@ -70,8 +64,8 @@ public sealed record class BackfillFetchResponse : JsonModel
     /// </summary>
     public required bool ReplaceExistingEvents
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "replace_existing_events"); }
-        init { JsonModel.Set(this._rawData, "replace_existing_events", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("replace_existing_events"); }
+        init { this._rawData.Set("replace_existing_events", value); }
     }
 
     /// <summary>
@@ -79,11 +73,8 @@ public sealed record class BackfillFetchResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset? RevertedAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "reverted_at");
-        }
-        init { JsonModel.Set(this._rawData, "reverted_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("reverted_at"); }
+        init { this._rawData.Set("reverted_at", value); }
     }
 
     /// <summary>
@@ -93,36 +84,23 @@ public sealed record class BackfillFetchResponse : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, BackfillFetchResponseStatus>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, BackfillFetchResponseStatus>>(
                 "status"
             );
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     public required System::DateTimeOffset TimeframeEnd
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "timeframe_end"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "timeframe_end", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_end"); }
+        init { this._rawData.Set("timeframe_end", value); }
     }
 
     public required System::DateTimeOffset TimeframeStart
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "timeframe_start"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "timeframe_start", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("timeframe_start"); }
+        init { this._rawData.Set("timeframe_start", value); }
     }
 
     /// <summary>
@@ -131,8 +109,8 @@ public sealed record class BackfillFetchResponse : JsonModel
     /// </summary>
     public string? DeprecationFilter
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "deprecation_filter"); }
-        init { JsonModel.Set(this._rawData, "deprecation_filter", value); }
+        get { return this._rawData.GetNullableClass<string>("deprecation_filter"); }
+        init { this._rawData.Set("deprecation_filter", value); }
     }
 
     /// <inheritdoc/>
@@ -158,14 +136,14 @@ public sealed record class BackfillFetchResponse : JsonModel
 
     public BackfillFetchResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BackfillFetchResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

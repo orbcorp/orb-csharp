@@ -23,8 +23,8 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -33,17 +33,14 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required System::DateTimeOffset? ArchivedAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "archived_at");
-        }
-        init { JsonModel.Set(this._rawData, "archived_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("archived_at"); }
+        init { this._rawData.Set("archived_at", value); }
     }
 
     public required CouponDiscount Discount
     {
-        get { return JsonModel.GetNotNullClass<CouponDiscount>(this.RawData, "discount"); }
-        init { JsonModel.Set(this._rawData, "discount", value); }
+        get { return this._rawData.GetNotNullClass<CouponDiscount>("discount"); }
+        init { this._rawData.Set("discount", value); }
     }
 
     /// <summary>
@@ -52,8 +49,8 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required long? DurationInMonths
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "duration_in_months"); }
-        init { JsonModel.Set(this._rawData, "duration_in_months", value); }
+        get { return this._rawData.GetNullableStruct<long>("duration_in_months"); }
+        init { this._rawData.Set("duration_in_months", value); }
     }
 
     /// <summary>
@@ -62,8 +59,8 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required long? MaxRedemptions
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "max_redemptions"); }
-        init { JsonModel.Set(this._rawData, "max_redemptions", value); }
+        get { return this._rawData.GetNullableStruct<long>("max_redemptions"); }
+        init { this._rawData.Set("max_redemptions", value); }
     }
 
     /// <summary>
@@ -71,8 +68,8 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required string RedemptionCode
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "redemption_code"); }
-        init { JsonModel.Set(this._rawData, "redemption_code", value); }
+        get { return this._rawData.GetNotNullClass<string>("redemption_code"); }
+        init { this._rawData.Set("redemption_code", value); }
     }
 
     /// <summary>
@@ -80,8 +77,8 @@ public sealed record class Coupon : JsonModel
     /// </summary>
     public required long TimesRedeemed
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "times_redeemed"); }
-        init { JsonModel.Set(this._rawData, "times_redeemed", value); }
+        get { return this._rawData.GetNotNullStruct<long>("times_redeemed"); }
+        init { this._rawData.Set("times_redeemed", value); }
     }
 
     /// <inheritdoc/>
@@ -103,14 +100,14 @@ public sealed record class Coupon : JsonModel
 
     public Coupon(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Coupon(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

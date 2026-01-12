@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -21,23 +22,28 @@ public sealed record class PercentageDiscountInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<string>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
                 "applies_to_price_interval_ids"
             );
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_interval_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required ApiEnum<string, PercentageDiscountIntervalDiscountType> DiscountType
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, PercentageDiscountIntervalDiscountType>
-            >(this.RawData, "discount_type");
+            >("discount_type");
         }
-        init { JsonModel.Set(this._rawData, "discount_type", value); }
+        init { this._rawData.Set("discount_type", value); }
     }
 
     /// <summary>
@@ -45,11 +51,8 @@ public sealed record class PercentageDiscountInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
-        }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -59,12 +62,17 @@ public sealed record class PercentageDiscountInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<PercentageDiscountIntervalFilter>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<PercentageDiscountIntervalFilter>>(
                 "filters"
             );
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PercentageDiscountIntervalFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -73,8 +81,8 @@ public sealed record class PercentageDiscountInterval : JsonModel
     /// </summary>
     public required double PercentageDiscount
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "percentage_discount"); }
-        init { JsonModel.Set(this._rawData, "percentage_discount", value); }
+        get { return this._rawData.GetNotNullStruct<double>("percentage_discount"); }
+        init { this._rawData.Set("percentage_discount", value); }
     }
 
     /// <summary>
@@ -82,11 +90,8 @@ public sealed record class PercentageDiscountInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
-        }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -110,14 +115,14 @@ public sealed record class PercentageDiscountInterval : JsonModel
 
     public PercentageDiscountInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PercentageDiscountInterval(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -195,11 +200,11 @@ public sealed record class PercentageDiscountIntervalFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, PercentageDiscountIntervalFilterField>
-            >(this.RawData, "field");
+            >("field");
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -209,11 +214,11 @@ public sealed record class PercentageDiscountIntervalFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, PercentageDiscountIntervalFilterOperator>
-            >(this.RawData, "operator");
+            >("operator");
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -221,8 +226,14 @@ public sealed record class PercentageDiscountIntervalFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -242,14 +253,14 @@ public sealed record class PercentageDiscountIntervalFilter : JsonModel
 
     public PercentageDiscountIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PercentageDiscountIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

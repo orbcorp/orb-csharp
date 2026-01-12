@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -25,30 +26,38 @@ public sealed record class PlanVersion : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<PlanVersionAdjustment>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<PlanVersionAdjustment>>(
                 "adjustments"
             );
         }
-        init { JsonModel.Set(this._rawData, "adjustments", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PlanVersionAdjustment>>(
+                "adjustments",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
-        }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     public required IReadOnlyList<PlanVersionPhase>? PlanPhases
     {
         get
         {
-            return JsonModel.GetNullableClass<List<PlanVersionPhase>>(this.RawData, "plan_phases");
+            return this._rawData.GetNullableStruct<ImmutableArray<PlanVersionPhase>>("plan_phases");
         }
-        init { JsonModel.Set(this._rawData, "plan_phases", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PlanVersionPhase>?>(
+                "plan_phases",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -57,14 +66,20 @@ public sealed record class PlanVersion : JsonModel
     /// </summary>
     public required IReadOnlyList<Models::Price> Prices
     {
-        get { return JsonModel.GetNotNullClass<List<Models::Price>>(this.RawData, "prices"); }
-        init { JsonModel.Set(this._rawData, "prices", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<Models::Price>>("prices"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Models::Price>>(
+                "prices",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     public required long Version
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "version"); }
-        init { JsonModel.Set(this._rawData, "version", value); }
+        get { return this._rawData.GetNotNullStruct<long>("version"); }
+        init { this._rawData.Set("version", value); }
     }
 
     /// <inheritdoc/>
@@ -93,14 +108,14 @@ public sealed record class PlanVersion : JsonModel
 
     public PlanVersion(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PlanVersion(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

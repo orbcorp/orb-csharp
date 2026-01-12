@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Orb.Models.Items;
 /// </summary>
 public sealed record class ItemUpdateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -28,12 +29,17 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<List<ExternalConnection>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<ExternalConnection>>(
                 "external_connections"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "external_connections", value); }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<ExternalConnection>?>(
+                "external_connections",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -45,18 +51,23 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNullableClass<Dictionary<string, string?>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNullableClass<FrozenDictionary<string, string?>>(
                 "metadata"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "metadata", value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     public string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "name"); }
-        init { JsonModel.Set(this._rawBodyData, "name", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("name"); }
+        init { this._rawBodyData.Set("name", value); }
     }
 
     public ItemUpdateParams() { }
@@ -66,7 +77,7 @@ public sealed record class ItemUpdateParams : ParamsBase
     {
         this.ItemID = itemUpdateParams.ItemID;
 
-        this._rawBodyData = [.. itemUpdateParams._rawBodyData];
+        this._rawBodyData = new(itemUpdateParams._rawBodyData);
     }
 
     public ItemUpdateParams(
@@ -75,9 +86,9 @@ public sealed record class ItemUpdateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -88,9 +99,9 @@ public sealed record class ItemUpdateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 
@@ -151,12 +162,11 @@ public sealed record class ExternalConnection : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, ExternalConnectionName>>(
                 "external_connection_name"
             );
         }
-        init { JsonModel.Set(this._rawData, "external_connection_name", value); }
+        init { this._rawData.Set("external_connection_name", value); }
     }
 
     /// <summary>
@@ -164,8 +174,8 @@ public sealed record class ExternalConnection : JsonModel
     /// </summary>
     public required string ExternalEntityID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "external_entity_id"); }
-        init { JsonModel.Set(this._rawData, "external_entity_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("external_entity_id"); }
+        init { this._rawData.Set("external_entity_id", value); }
     }
 
     /// <inheritdoc/>
@@ -182,14 +192,14 @@ public sealed record class ExternalConnection : JsonModel
 
     public ExternalConnection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     ExternalConnection(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

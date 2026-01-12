@@ -14,7 +14,7 @@ namespace Orb.Models.Subscriptions;
 /// </summary>
 public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -29,14 +29,8 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// </summary>
     public bool? AllowInvoiceCreditOrVoid
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<bool>(
-                this.RawBodyData,
-                "allow_invoice_credit_or_void"
-            );
-        }
-        init { JsonModel.Set(this._rawBodyData, "allow_invoice_credit_or_void", value); }
+        get { return this._rawBodyData.GetNullableStruct<bool>("allow_invoice_credit_or_void"); }
+        init { this._rawBodyData.Set("allow_invoice_credit_or_void", value); }
     }
 
     /// <summary>
@@ -45,8 +39,8 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     /// </summary>
     public string? EffectiveDate
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "effective_date"); }
-        init { JsonModel.Set(this._rawBodyData, "effective_date", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("effective_date"); }
+        init { this._rawBodyData.Set("effective_date", value); }
     }
 
     public SubscriptionTriggerPhaseParams() { }
@@ -58,7 +52,7 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
     {
         this.SubscriptionID = subscriptionTriggerPhaseParams.SubscriptionID;
 
-        this._rawBodyData = [.. subscriptionTriggerPhaseParams._rawBodyData];
+        this._rawBodyData = new(subscriptionTriggerPhaseParams._rawBodyData);
     }
 
     public SubscriptionTriggerPhaseParams(
@@ -67,9 +61,9 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -80,9 +74,9 @@ public sealed record class SubscriptionTriggerPhaseParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

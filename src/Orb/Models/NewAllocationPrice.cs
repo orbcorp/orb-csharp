@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,8 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public required string Amount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     /// <summary>
@@ -26,8 +27,8 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public required ApiEnum<string, Cadence> Cadence
     {
-        get { return JsonModel.GetNotNullClass<ApiEnum<string, Cadence>>(this.RawData, "cadence"); }
-        init { JsonModel.Set(this._rawData, "cadence", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, Cadence>>("cadence"); }
+        init { this._rawData.Set("cadence", value); }
     }
 
     /// <summary>
@@ -36,8 +37,8 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public required string Currency
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     /// <summary>
@@ -45,11 +46,8 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public CustomExpiration? CustomExpiration
     {
-        get
-        {
-            return JsonModel.GetNullableClass<CustomExpiration>(this.RawData, "custom_expiration");
-        }
-        init { JsonModel.Set(this._rawData, "custom_expiration", value); }
+        get { return this._rawData.GetNullableClass<CustomExpiration>("custom_expiration"); }
+        init { this._rawData.Set("custom_expiration", value); }
     }
 
     /// <summary>
@@ -58,8 +56,8 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public bool? ExpiresAtEndOfCadence
     {
-        get { return JsonModel.GetNullableStruct<bool>(this.RawData, "expires_at_end_of_cadence"); }
-        init { JsonModel.Set(this._rawData, "expires_at_end_of_cadence", value); }
+        get { return this._rawData.GetNullableStruct<bool>("expires_at_end_of_cadence"); }
+        init { this._rawData.Set("expires_at_end_of_cadence", value); }
     }
 
     /// <summary>
@@ -69,12 +67,17 @@ public sealed record class NewAllocationPrice : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<List<NewAllocationPriceFilter>>(
-                this.RawData,
+            return this._rawData.GetNullableStruct<ImmutableArray<NewAllocationPriceFilter>>(
                 "filters"
             );
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<NewAllocationPriceFilter>?>(
+                "filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -84,8 +87,8 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public string? ItemID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "item_id"); }
-        init { JsonModel.Set(this._rawData, "item_id", value); }
+        get { return this._rawData.GetNullableClass<string>("item_id"); }
+        init { this._rawData.Set("item_id", value); }
     }
 
     /// <summary>
@@ -95,7 +98,7 @@ public sealed record class NewAllocationPrice : JsonModel
     /// </summary>
     public string? PerUnitCostBasis
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "per_unit_cost_basis"); }
+        get { return this._rawData.GetNullableClass<string>("per_unit_cost_basis"); }
         init
         {
             if (value == null)
@@ -103,7 +106,7 @@ public sealed record class NewAllocationPrice : JsonModel
                 return;
             }
 
-            JsonModel.Set(this._rawData, "per_unit_cost_basis", value);
+            this._rawData.Set("per_unit_cost_basis", value);
         }
     }
 
@@ -130,14 +133,14 @@ public sealed record class NewAllocationPrice : JsonModel
 
     public NewAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewAllocationPrice(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -224,12 +227,11 @@ public sealed record class NewAllocationPriceFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterField>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterField>>(
                 "field"
             );
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -239,12 +241,11 @@ public sealed record class NewAllocationPriceFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterOperator>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, NewAllocationPriceFilterOperator>>(
                 "operator"
             );
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -252,8 +253,14 @@ public sealed record class NewAllocationPriceFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -271,14 +278,14 @@ public sealed record class NewAllocationPriceFilter : JsonModel
 
     public NewAllocationPriceFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     NewAllocationPriceFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

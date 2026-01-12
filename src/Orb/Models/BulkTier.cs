@@ -18,8 +18,8 @@ public sealed record class BulkTier : JsonModel
     /// </summary>
     public required string UnitAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "unit_amount"); }
-        init { JsonModel.Set(this._rawData, "unit_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("unit_amount"); }
+        init { this._rawData.Set("unit_amount", value); }
     }
 
     /// <summary>
@@ -27,8 +27,8 @@ public sealed record class BulkTier : JsonModel
     /// </summary>
     public double? MaximumUnits
     {
-        get { return JsonModel.GetNullableStruct<double>(this.RawData, "maximum_units"); }
-        init { JsonModel.Set(this._rawData, "maximum_units", value); }
+        get { return this._rawData.GetNullableStruct<double>("maximum_units"); }
+        init { this._rawData.Set("maximum_units", value); }
     }
 
     /// <inheritdoc/>
@@ -45,14 +45,14 @@ public sealed record class BulkTier : JsonModel
 
     public BulkTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BulkTier(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

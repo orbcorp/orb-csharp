@@ -14,38 +14,36 @@ public sealed record class MigrationCancelResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required MigrationCancelResponseEffectiveTime? EffectiveTime
     {
         get
         {
-            return JsonModel.GetNullableClass<MigrationCancelResponseEffectiveTime>(
-                this.RawData,
+            return this._rawData.GetNullableClass<MigrationCancelResponseEffectiveTime>(
                 "effective_time"
             );
         }
-        init { JsonModel.Set(this._rawData, "effective_time", value); }
+        init { this._rawData.Set("effective_time", value); }
     }
 
     public required string PlanID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "plan_id"); }
-        init { JsonModel.Set(this._rawData, "plan_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("plan_id"); }
+        init { this._rawData.Set("plan_id", value); }
     }
 
     public required ApiEnum<string, MigrationCancelResponseStatus> Status
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, MigrationCancelResponseStatus>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, MigrationCancelResponseStatus>>(
                 "status"
             );
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     /// <inheritdoc/>
@@ -64,14 +62,14 @@ public sealed record class MigrationCancelResponse : JsonModel
 
     public MigrationCancelResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MigrationCancelResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

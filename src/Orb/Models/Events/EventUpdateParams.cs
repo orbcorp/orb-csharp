@@ -51,7 +51,7 @@ namespace Orb.Models.Events;
 /// </summary>
 public sealed record class EventUpdateParams : ParamsBase
 {
-    readonly FreezableDictionary<string, JsonElement> _rawBodyData = [];
+    readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
@@ -64,8 +64,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public required string EventName
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawBodyData, "event_name"); }
-        init { JsonModel.Set(this._rawBodyData, "event_name", value); }
+        get { return this._rawBodyData.GetNotNullClass<string>("event_name"); }
+        init { this._rawBodyData.Set("event_name", value); }
     }
 
     /// <summary>
@@ -76,12 +76,17 @@ public sealed record class EventUpdateParams : ParamsBase
     {
         get
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, JsonElement>>(
-                this.RawBodyData,
+            return this._rawBodyData.GetNotNullClass<FrozenDictionary<string, JsonElement>>(
                 "properties"
             );
         }
-        init { JsonModel.Set(this._rawBodyData, "properties", value); }
+        init
+        {
+            this._rawBodyData.Set<FrozenDictionary<string, JsonElement>>(
+                "properties",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
     }
 
     /// <summary>
@@ -91,8 +96,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public required DateTimeOffset Timestamp
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawBodyData, "timestamp"); }
-        init { JsonModel.Set(this._rawBodyData, "timestamp", value); }
+        get { return this._rawBodyData.GetNotNullStruct<DateTimeOffset>("timestamp"); }
+        init { this._rawBodyData.Set("timestamp", value); }
     }
 
     /// <summary>
@@ -100,8 +105,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public string? CustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "customer_id"); }
-        init { JsonModel.Set(this._rawBodyData, "customer_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("customer_id"); }
+        init { this._rawBodyData.Set("customer_id", value); }
     }
 
     /// <summary>
@@ -109,8 +114,8 @@ public sealed record class EventUpdateParams : ParamsBase
     /// </summary>
     public string? ExternalCustomerID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawBodyData, "external_customer_id"); }
-        init { JsonModel.Set(this._rawBodyData, "external_customer_id", value); }
+        get { return this._rawBodyData.GetNullableClass<string>("external_customer_id"); }
+        init { this._rawBodyData.Set("external_customer_id", value); }
     }
 
     public EventUpdateParams() { }
@@ -120,7 +125,7 @@ public sealed record class EventUpdateParams : ParamsBase
     {
         this.EventID = eventUpdateParams.EventID;
 
-        this._rawBodyData = [.. eventUpdateParams._rawBodyData];
+        this._rawBodyData = new(eventUpdateParams._rawBodyData);
     }
 
     public EventUpdateParams(
@@ -129,9 +134,9 @@ public sealed record class EventUpdateParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
@@ -142,9 +147,9 @@ public sealed record class EventUpdateParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawBodyData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
-        this._rawBodyData = [.. rawBodyData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this._rawBodyData = new(rawBodyData);
     }
 #pragma warning restore CS8618
 

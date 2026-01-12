@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,19 +17,19 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType> AdjustmentType
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentAdjustmentType>
-            >(this.RawData, "adjustment_type");
+            >("adjustment_type");
         }
-        init { JsonModel.Set(this._rawData, "adjustment_type", value); }
+        init { this._rawData.Set("adjustment_type", value); }
     }
 
     /// <summary>
@@ -39,9 +40,15 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<string>>(this.RawData, "applies_to_price_ids");
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -51,12 +58,17 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<PlanPhaseMinimumAdjustmentFilter>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<PlanPhaseMinimumAdjustmentFilter>>(
                 "filters"
             );
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<PlanPhaseMinimumAdjustmentFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -65,8 +77,8 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required bool IsInvoiceLevel
     {
-        get { return JsonModel.GetNotNullStruct<bool>(this.RawData, "is_invoice_level"); }
-        init { JsonModel.Set(this._rawData, "is_invoice_level", value); }
+        get { return this._rawData.GetNotNullStruct<bool>("is_invoice_level"); }
+        init { this._rawData.Set("is_invoice_level", value); }
     }
 
     /// <summary>
@@ -74,8 +86,8 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string ItemID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "item_id"); }
-        init { JsonModel.Set(this._rawData, "item_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("item_id"); }
+        init { this._rawData.Set("item_id", value); }
     }
 
     /// <summary>
@@ -84,8 +96,8 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string MinimumAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("minimum_amount"); }
+        init { this._rawData.Set("minimum_amount", value); }
     }
 
     /// <summary>
@@ -93,8 +105,8 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required long? PlanPhaseOrder
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "plan_phase_order"); }
-        init { JsonModel.Set(this._rawData, "plan_phase_order", value); }
+        get { return this._rawData.GetNullableStruct<long>("plan_phase_order"); }
+        init { this._rawData.Set("plan_phase_order", value); }
     }
 
     /// <summary>
@@ -102,8 +114,8 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string? Reason
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "reason"); }
-        init { JsonModel.Set(this._rawData, "reason", value); }
+        get { return this._rawData.GetNullableClass<string>("reason"); }
+        init { this._rawData.Set("reason", value); }
     }
 
     /// <summary>
@@ -112,8 +124,8 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     /// </summary>
     public required string? ReplacesAdjustmentID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "replaces_adjustment_id"); }
-        init { JsonModel.Set(this._rawData, "replaces_adjustment_id", value); }
+        get { return this._rawData.GetNullableClass<string>("replaces_adjustment_id"); }
+        init { this._rawData.Set("replaces_adjustment_id", value); }
     }
 
     /// <inheritdoc/>
@@ -144,7 +156,7 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public PlanPhaseMinimumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
@@ -152,7 +164,7 @@ public sealed record class PlanPhaseMinimumAdjustment : JsonModel
     [SetsRequiredMembers]
     PlanPhaseMinimumAdjustment(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -230,11 +242,11 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentFilterField>
-            >(this.RawData, "field");
+            >("field");
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -244,11 +256,11 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, PlanPhaseMinimumAdjustmentFilterOperator>
-            >(this.RawData, "operator");
+            >("operator");
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -256,8 +268,14 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -277,14 +295,14 @@ public sealed record class PlanPhaseMinimumAdjustmentFilter : JsonModel
 
     public PlanPhaseMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PlanPhaseMinimumAdjustmentFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

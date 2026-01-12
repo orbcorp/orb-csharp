@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -17,8 +18,8 @@ public sealed record class DimensionalPriceGroup : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -28,8 +29,8 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required string BillableMetricID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "billable_metric_id"); }
-        init { JsonModel.Set(this._rawData, "billable_metric_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("billable_metric_id"); }
+        init { this._rawData.Set("billable_metric_id", value); }
     }
 
     /// <summary>
@@ -37,8 +38,14 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Dimensions
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "dimensions"); }
-        init { JsonModel.Set(this._rawData, "dimensions", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("dimensions"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -48,12 +55,9 @@ public sealed record class DimensionalPriceGroup : JsonModel
     {
         get
         {
-            return JsonModel.GetNullableClass<string>(
-                this.RawData,
-                "external_dimensional_price_group_id"
-            );
+            return this._rawData.GetNullableClass<string>("external_dimensional_price_group_id");
         }
-        init { JsonModel.Set(this._rawData, "external_dimensional_price_group_id", value); }
+        init { this._rawData.Set("external_dimensional_price_group_id", value); }
     }
 
     /// <summary>
@@ -64,11 +68,14 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get
+        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        init
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
-        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     /// <summary>
@@ -76,8 +83,8 @@ public sealed record class DimensionalPriceGroup : JsonModel
     /// </summary>
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <inheritdoc/>
@@ -98,14 +105,14 @@ public sealed record class DimensionalPriceGroup : JsonModel
 
     public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     DimensionalPriceGroup(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

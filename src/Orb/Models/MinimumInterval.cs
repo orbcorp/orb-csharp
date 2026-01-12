@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,12 +20,17 @@ public sealed record class MinimumInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<string>>(
-                this.RawData,
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>(
                 "applies_to_price_interval_ids"
             );
         }
-        init { JsonModel.Set(this._rawData, "applies_to_price_interval_ids", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_interval_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -32,11 +38,8 @@ public sealed record class MinimumInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset? EndDate
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "end_date");
-        }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     /// <summary>
@@ -46,9 +49,15 @@ public sealed record class MinimumInterval : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<List<MinimumIntervalFilter>>(this.RawData, "filters");
+            return this._rawData.GetNotNullStruct<ImmutableArray<MinimumIntervalFilter>>("filters");
         }
-        init { JsonModel.Set(this._rawData, "filters", value); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<MinimumIntervalFilter>>(
+                "filters",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <summary>
@@ -57,8 +66,8 @@ public sealed record class MinimumInterval : JsonModel
     /// </summary>
     public required string MinimumAmount
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "minimum_amount"); }
-        init { JsonModel.Set(this._rawData, "minimum_amount", value); }
+        get { return this._rawData.GetNotNullClass<string>("minimum_amount"); }
+        init { this._rawData.Set("minimum_amount", value); }
     }
 
     /// <summary>
@@ -66,11 +75,8 @@ public sealed record class MinimumInterval : JsonModel
     /// </summary>
     public required System::DateTimeOffset StartDate
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "start_date");
-        }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -93,14 +99,14 @@ public sealed record class MinimumInterval : JsonModel
 
     public MinimumInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MinimumInterval(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -128,12 +134,11 @@ public sealed record class MinimumIntervalFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterField>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterField>>(
                 "field"
             );
         }
-        init { JsonModel.Set(this._rawData, "field", value); }
+        init { this._rawData.Set("field", value); }
     }
 
     /// <summary>
@@ -143,12 +148,11 @@ public sealed record class MinimumIntervalFilter : JsonModel
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterOperator>>(
-                this.RawData,
+            return this._rawData.GetNotNullClass<ApiEnum<string, MinimumIntervalFilterOperator>>(
                 "operator"
             );
         }
-        init { JsonModel.Set(this._rawData, "operator", value); }
+        init { this._rawData.Set("operator", value); }
     }
 
     /// <summary>
@@ -156,8 +160,14 @@ public sealed record class MinimumIntervalFilter : JsonModel
     /// </summary>
     public required IReadOnlyList<string> Values
     {
-        get { return JsonModel.GetNotNullClass<List<string>>(this.RawData, "values"); }
-        init { JsonModel.Set(this._rawData, "values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -175,14 +185,14 @@ public sealed record class MinimumIntervalFilter : JsonModel
 
     public MinimumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     MinimumIntervalFilter(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

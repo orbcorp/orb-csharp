@@ -114,26 +114,20 @@ public sealed record class CustomerTaxID : JsonModel
 {
     public required ApiEnum<string, Country> Country
     {
-        get { return JsonModel.GetNotNullClass<ApiEnum<string, Country>>(this.RawData, "country"); }
-        init { JsonModel.Set(this._rawData, "country", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, Country>>("country"); }
+        init { this._rawData.Set("country", value); }
     }
 
     public required ApiEnum<string, CustomerTaxIDType> Type
     {
-        get
-        {
-            return JsonModel.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>(
-                this.RawData,
-                "type"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "type", value); }
+        get { return this._rawData.GetNotNullClass<ApiEnum<string, CustomerTaxIDType>>("type"); }
+        init { this._rawData.Set("type", value); }
     }
 
     public required string Value
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "value"); }
-        init { JsonModel.Set(this._rawData, "value", value); }
+        get { return this._rawData.GetNotNullClass<string>("value"); }
+        init { this._rawData.Set("value", value); }
     }
 
     /// <inheritdoc/>
@@ -151,14 +145,14 @@ public sealed record class CustomerTaxID : JsonModel
 
     public CustomerTaxID(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CustomerTaxID(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

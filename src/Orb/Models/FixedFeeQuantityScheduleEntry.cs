@@ -15,26 +15,26 @@ public sealed record class FixedFeeQuantityScheduleEntry : JsonModel
 {
     public required DateTimeOffset? EndDate
     {
-        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     public required string PriceID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "price_id"); }
-        init { JsonModel.Set(this._rawData, "price_id", value); }
+        get { return this._rawData.GetNotNullClass<string>("price_id"); }
+        init { this._rawData.Set("price_id", value); }
     }
 
     public required double Quantity
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "quantity"); }
-        init { JsonModel.Set(this._rawData, "quantity", value); }
+        get { return this._rawData.GetNotNullStruct<double>("quantity"); }
+        init { this._rawData.Set("quantity", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -55,14 +55,14 @@ public sealed record class FixedFeeQuantityScheduleEntry : JsonModel
 
     public FixedFeeQuantityScheduleEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     FixedFeeQuantityScheduleEntry(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

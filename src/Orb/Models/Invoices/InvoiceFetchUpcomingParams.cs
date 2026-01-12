@@ -16,8 +16,8 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
 {
     public required string SubscriptionID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawQueryData, "subscription_id"); }
-        init { JsonModel.Set(this._rawQueryData, "subscription_id", value); }
+        get { return this._rawQueryData.GetNotNullClass<string>("subscription_id"); }
+        init { this._rawQueryData.Set("subscription_id", value); }
     }
 
     public InvoiceFetchUpcomingParams() { }
@@ -30,8 +30,8 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -41,8 +41,8 @@ public sealed record class InvoiceFetchUpcomingParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 

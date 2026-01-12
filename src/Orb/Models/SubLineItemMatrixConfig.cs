@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -15,8 +16,14 @@ public sealed record class SubLineItemMatrixConfig : JsonModel
     /// </summary>
     public required IReadOnlyList<string?> DimensionValues
     {
-        get { return JsonModel.GetNotNullClass<List<string?>>(this.RawData, "dimension_values"); }
-        init { JsonModel.Set(this._rawData, "dimension_values", value); }
+        get { return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values"); }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
     }
 
     /// <inheritdoc/>
@@ -32,14 +39,14 @@ public sealed record class SubLineItemMatrixConfig : JsonModel
 
     public SubLineItemMatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SubLineItemMatrixConfig(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

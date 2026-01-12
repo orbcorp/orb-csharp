@@ -19,8 +19,8 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -28,32 +28,25 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     /// </summary>
     public required System::DateTimeOffset ExpirationTime
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(
-                this.RawData,
-                "expiration_time"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "expiration_time", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("expiration_time"); }
+        init { this._rawData.Set("expiration_time", value); }
     }
 
     public required ApiEnum<string, SubscriptionChangeListResponseStatus> Status
     {
         get
         {
-            return JsonModel.GetNotNullClass<ApiEnum<string, SubscriptionChangeListResponseStatus>>(
-                this.RawData,
-                "status"
-            );
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, SubscriptionChangeListResponseStatus>
+            >("status");
         }
-        init { JsonModel.Set(this._rawData, "status", value); }
+        init { this._rawData.Set("status", value); }
     }
 
     public required string? SubscriptionID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "subscription_id"); }
-        init { JsonModel.Set(this._rawData, "subscription_id", value); }
+        get { return this._rawData.GetNullableClass<string>("subscription_id"); }
+        init { this._rawData.Set("subscription_id", value); }
     }
 
     /// <summary>
@@ -61,11 +54,8 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? AppliedAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(this.RawData, "applied_at");
-        }
-        init { JsonModel.Set(this._rawData, "applied_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("applied_at"); }
+        init { this._rawData.Set("applied_at", value); }
     }
 
     /// <summary>
@@ -73,14 +63,8 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
     /// </summary>
     public System::DateTimeOffset? CancelledAt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<System::DateTimeOffset>(
-                this.RawData,
-                "cancelled_at"
-            );
-        }
-        init { JsonModel.Set(this._rawData, "cancelled_at", value); }
+        get { return this._rawData.GetNullableStruct<System::DateTimeOffset>("cancelled_at"); }
+        init { this._rawData.Set("cancelled_at", value); }
     }
 
     /// <inheritdoc/>
@@ -103,14 +87,14 @@ public sealed record class SubscriptionChangeListResponse : JsonModel
 
     public SubscriptionChangeListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SubscriptionChangeListResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

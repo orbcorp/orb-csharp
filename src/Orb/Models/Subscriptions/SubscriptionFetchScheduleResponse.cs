@@ -18,26 +18,26 @@ public sealed record class SubscriptionFetchScheduleResponse : JsonModel
 {
     public required DateTimeOffset CreatedAt
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "created_at"); }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     public required DateTimeOffset? EndDate
     {
-        get { return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawData, "end_date"); }
-        init { JsonModel.Set(this._rawData, "end_date", value); }
+        get { return this._rawData.GetNullableStruct<DateTimeOffset>("end_date"); }
+        init { this._rawData.Set("end_date", value); }
     }
 
     public required Plan? Plan
     {
-        get { return JsonModel.GetNullableClass<Plan>(this.RawData, "plan"); }
-        init { JsonModel.Set(this._rawData, "plan", value); }
+        get { return this._rawData.GetNullableClass<Plan>("plan"); }
+        init { this._rawData.Set("plan", value); }
     }
 
     public required DateTimeOffset StartDate
     {
-        get { return JsonModel.GetNotNullStruct<DateTimeOffset>(this.RawData, "start_date"); }
-        init { JsonModel.Set(this._rawData, "start_date", value); }
+        get { return this._rawData.GetNotNullStruct<DateTimeOffset>("start_date"); }
+        init { this._rawData.Set("start_date", value); }
     }
 
     /// <inheritdoc/>
@@ -58,14 +58,14 @@ public sealed record class SubscriptionFetchScheduleResponse : JsonModel
 
     public SubscriptionFetchScheduleResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     SubscriptionFetchScheduleResponse(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
@@ -91,8 +91,8 @@ public sealed record class Plan : JsonModel
 {
     public required string? ID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNullableClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
@@ -102,14 +102,14 @@ public sealed record class Plan : JsonModel
     /// </summary>
     public required string? ExternalPlanID
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "external_plan_id"); }
-        init { JsonModel.Set(this._rawData, "external_plan_id", value); }
+        get { return this._rawData.GetNullableClass<string>("external_plan_id"); }
+        init { this._rawData.Set("external_plan_id", value); }
     }
 
     public required string? Name
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNullableClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <inheritdoc/>
@@ -127,14 +127,14 @@ public sealed record class Plan : JsonModel
 
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     Plan(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

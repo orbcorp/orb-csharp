@@ -14,14 +14,14 @@ public sealed record class PlanVersionPhase : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
-        init { JsonModel.Set(this._rawData, "description", value); }
+        get { return this._rawData.GetNullableClass<string>("description"); }
+        init { this._rawData.Set("description", value); }
     }
 
     /// <summary>
@@ -30,25 +30,25 @@ public sealed record class PlanVersionPhase : JsonModel
     /// </summary>
     public required long? Duration
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "duration"); }
-        init { JsonModel.Set(this._rawData, "duration", value); }
+        get { return this._rawData.GetNullableStruct<long>("duration"); }
+        init { this._rawData.Set("duration", value); }
     }
 
     public required ApiEnum<string, global::Orb.Models.Beta.DurationUnit>? DurationUnit
     {
         get
         {
-            return JsonModel.GetNullableClass<
+            return this._rawData.GetNullableClass<
                 ApiEnum<string, global::Orb.Models.Beta.DurationUnit>
-            >(this.RawData, "duration_unit");
+            >("duration_unit");
         }
-        init { JsonModel.Set(this._rawData, "duration_unit", value); }
+        init { this._rawData.Set("duration_unit", value); }
     }
 
     public required string Name
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "name"); }
-        init { JsonModel.Set(this._rawData, "name", value); }
+        get { return this._rawData.GetNotNullClass<string>("name"); }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <summary>
@@ -56,8 +56,8 @@ public sealed record class PlanVersionPhase : JsonModel
     /// </summary>
     public required long Order
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "order"); }
-        init { JsonModel.Set(this._rawData, "order", value); }
+        get { return this._rawData.GetNotNullStruct<long>("order"); }
+        init { this._rawData.Set("order", value); }
     }
 
     /// <inheritdoc/>
@@ -78,14 +78,14 @@ public sealed record class PlanVersionPhase : JsonModel
 
     public PlanVersionPhase(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     PlanVersionPhase(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

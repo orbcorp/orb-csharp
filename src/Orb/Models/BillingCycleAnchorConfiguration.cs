@@ -23,8 +23,8 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
     /// </summary>
     public required long Day
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "day"); }
-        init { JsonModel.Set(this._rawData, "day", value); }
+        get { return this._rawData.GetNotNullStruct<long>("day"); }
+        init { this._rawData.Set("day", value); }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
     /// </summary>
     public long? Month
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "month"); }
-        init { JsonModel.Set(this._rawData, "month", value); }
+        get { return this._rawData.GetNullableStruct<long>("month"); }
+        init { this._rawData.Set("month", value); }
     }
 
     /// <summary>
@@ -43,8 +43,8 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
     /// </summary>
     public long? Year
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawData, "year"); }
-        init { JsonModel.Set(this._rawData, "year", value); }
+        get { return this._rawData.GetNullableStruct<long>("year"); }
+        init { this._rawData.Set("year", value); }
     }
 
     /// <inheritdoc/>
@@ -64,14 +64,14 @@ public sealed record class BillingCycleAnchorConfiguration : JsonModel
 
     public BillingCycleAnchorConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     BillingCycleAnchorConfiguration(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

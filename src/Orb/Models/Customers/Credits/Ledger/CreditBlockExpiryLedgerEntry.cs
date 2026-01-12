@@ -16,81 +16,78 @@ public sealed record class CreditBlockExpiryLedgerEntry : JsonModel
 {
     public required string ID
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "id"); }
-        init { JsonModel.Set(this._rawData, "id", value); }
+        get { return this._rawData.GetNotNullClass<string>("id"); }
+        init { this._rawData.Set("id", value); }
     }
 
     public required double Amount
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "amount"); }
-        init { JsonModel.Set(this._rawData, "amount", value); }
+        get { return this._rawData.GetNotNullStruct<double>("amount"); }
+        init { this._rawData.Set("amount", value); }
     }
 
     public required System::DateTimeOffset CreatedAt
     {
-        get
-        {
-            return JsonModel.GetNotNullStruct<System::DateTimeOffset>(this.RawData, "created_at");
-        }
-        init { JsonModel.Set(this._rawData, "created_at", value); }
+        get { return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at"); }
+        init { this._rawData.Set("created_at", value); }
     }
 
     public required AffectedBlock CreditBlock
     {
-        get { return JsonModel.GetNotNullClass<AffectedBlock>(this.RawData, "credit_block"); }
-        init { JsonModel.Set(this._rawData, "credit_block", value); }
+        get { return this._rawData.GetNotNullClass<AffectedBlock>("credit_block"); }
+        init { this._rawData.Set("credit_block", value); }
     }
 
     public required string Currency
     {
-        get { return JsonModel.GetNotNullClass<string>(this.RawData, "currency"); }
-        init { JsonModel.Set(this._rawData, "currency", value); }
+        get { return this._rawData.GetNotNullClass<string>("currency"); }
+        init { this._rawData.Set("currency", value); }
     }
 
     public required CustomerMinified Customer
     {
-        get { return JsonModel.GetNotNullClass<CustomerMinified>(this.RawData, "customer"); }
-        init { JsonModel.Set(this._rawData, "customer", value); }
+        get { return this._rawData.GetNotNullClass<CustomerMinified>("customer"); }
+        init { this._rawData.Set("customer", value); }
     }
 
     public required string? Description
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawData, "description"); }
-        init { JsonModel.Set(this._rawData, "description", value); }
+        get { return this._rawData.GetNullableClass<string>("description"); }
+        init { this._rawData.Set("description", value); }
     }
 
     public required double EndingBalance
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "ending_balance"); }
-        init { JsonModel.Set(this._rawData, "ending_balance", value); }
+        get { return this._rawData.GetNotNullStruct<double>("ending_balance"); }
+        init { this._rawData.Set("ending_balance", value); }
     }
 
     public required ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus> EntryStatus
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, CreditBlockExpiryLedgerEntryEntryStatus>
-            >(this.RawData, "entry_status");
+            >("entry_status");
         }
-        init { JsonModel.Set(this._rawData, "entry_status", value); }
+        init { this._rawData.Set("entry_status", value); }
     }
 
     public required ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType> EntryType
     {
         get
         {
-            return JsonModel.GetNotNullClass<
+            return this._rawData.GetNotNullClass<
                 ApiEnum<string, CreditBlockExpiryLedgerEntryEntryType>
-            >(this.RawData, "entry_type");
+            >("entry_type");
         }
-        init { JsonModel.Set(this._rawData, "entry_type", value); }
+        init { this._rawData.Set("entry_type", value); }
     }
 
     public required long LedgerSequenceNumber
     {
-        get { return JsonModel.GetNotNullStruct<long>(this.RawData, "ledger_sequence_number"); }
-        init { JsonModel.Set(this._rawData, "ledger_sequence_number", value); }
+        get { return this._rawData.GetNotNullStruct<long>("ledger_sequence_number"); }
+        init { this._rawData.Set("ledger_sequence_number", value); }
     }
 
     /// <summary>
@@ -101,17 +98,20 @@ public sealed record class CreditBlockExpiryLedgerEntry : JsonModel
     /// </summary>
     public required IReadOnlyDictionary<string, string> Metadata
     {
-        get
+        get { return this._rawData.GetNotNullClass<FrozenDictionary<string, string>>("metadata"); }
+        init
         {
-            return JsonModel.GetNotNullClass<Dictionary<string, string>>(this.RawData, "metadata");
+            this._rawData.Set<FrozenDictionary<string, string>>(
+                "metadata",
+                FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
-        init { JsonModel.Set(this._rawData, "metadata", value); }
     }
 
     public required double StartingBalance
     {
-        get { return JsonModel.GetNotNullStruct<double>(this.RawData, "starting_balance"); }
-        init { JsonModel.Set(this._rawData, "starting_balance", value); }
+        get { return this._rawData.GetNotNullStruct<double>("starting_balance"); }
+        init { this._rawData.Set("starting_balance", value); }
     }
 
     /// <inheritdoc/>
@@ -139,14 +139,14 @@ public sealed record class CreditBlockExpiryLedgerEntry : JsonModel
 
     public CreditBlockExpiryLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
     CreditBlockExpiryLedgerEntry(FrozenDictionary<string, JsonElement> rawData)
     {
-        this._rawData = [.. rawData];
+        this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 

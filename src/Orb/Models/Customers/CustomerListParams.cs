@@ -19,44 +19,26 @@ public sealed record class CustomerListParams : ParamsBase
 {
     public DateTimeOffset? CreatedAtGt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "created_at[gt]");
-        }
-        init { JsonModel.Set(this._rawQueryData, "created_at[gt]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gt]"); }
+        init { this._rawQueryData.Set("created_at[gt]", value); }
     }
 
     public DateTimeOffset? CreatedAtGte
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawQueryData,
-                "created_at[gte]"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "created_at[gte]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[gte]"); }
+        init { this._rawQueryData.Set("created_at[gte]", value); }
     }
 
     public DateTimeOffset? CreatedAtLt
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(this.RawQueryData, "created_at[lt]");
-        }
-        init { JsonModel.Set(this._rawQueryData, "created_at[lt]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lt]"); }
+        init { this._rawQueryData.Set("created_at[lt]", value); }
     }
 
     public DateTimeOffset? CreatedAtLte
     {
-        get
-        {
-            return JsonModel.GetNullableStruct<DateTimeOffset>(
-                this.RawQueryData,
-                "created_at[lte]"
-            );
-        }
-        init { JsonModel.Set(this._rawQueryData, "created_at[lte]", value); }
+        get { return this._rawQueryData.GetNullableStruct<DateTimeOffset>("created_at[lte]"); }
+        init { this._rawQueryData.Set("created_at[lte]", value); }
     }
 
     /// <summary>
@@ -65,8 +47,8 @@ public sealed record class CustomerListParams : ParamsBase
     /// </summary>
     public string? Cursor
     {
-        get { return JsonModel.GetNullableClass<string>(this.RawQueryData, "cursor"); }
-        init { JsonModel.Set(this._rawQueryData, "cursor", value); }
+        get { return this._rawQueryData.GetNullableClass<string>("cursor"); }
+        init { this._rawQueryData.Set("cursor", value); }
     }
 
     /// <summary>
@@ -74,7 +56,7 @@ public sealed record class CustomerListParams : ParamsBase
     /// </summary>
     public long? Limit
     {
-        get { return JsonModel.GetNullableStruct<long>(this.RawQueryData, "limit"); }
+        get { return this._rawQueryData.GetNullableStruct<long>("limit"); }
         init
         {
             if (value == null)
@@ -82,7 +64,7 @@ public sealed record class CustomerListParams : ParamsBase
                 return;
             }
 
-            JsonModel.Set(this._rawQueryData, "limit", value);
+            this._rawQueryData.Set("limit", value);
         }
     }
 
@@ -96,8 +78,8 @@ public sealed record class CustomerListParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 
 #pragma warning disable CS8618
@@ -107,8 +89,8 @@ public sealed record class CustomerListParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawQueryData
     )
     {
-        this._rawHeaderData = [.. rawHeaderData];
-        this._rawQueryData = [.. rawQueryData];
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
     }
 #pragma warning restore CS8618
 
